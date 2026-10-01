@@ -84,3 +84,5 @@ footer h4{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var
 :focus-visible{outline:2px solid var(--amber);outline-offset:3px}
 .hero .wrap{width:100%}
 h1,h2,h3{hyphens:auto;overflow-wrap:break-word}
+
+footer .proj{grid-column:1/-1;margin:0;font-size:13px}footer .proj b{display:block;margin-bottom:4px;font-size:11px;letter-spacing:.18em;text-transform:uppercase}
