@@ -1,0 +1,26 @@
+# KI Fachblatt
+
+> Deutschsprachiges Fachmagazin über künstliche Intelligenz: Sprachmodelle, Agenten, RAG, Kosten und Verlässlichkeit. Einordnen statt hypen. Herausgeber: Philipp Paulik (Bonn). Beiträge entstehen mit KI-Unterstützung und sind allgemein gehalten.
+
+## Beiträge
+
+- [Was ein KI-Agent wirklich ist](https://kifachblatt.de/was-ist-ein-ki-agent): Ein Sprachmodell in einer Schleife, mit Werkzeugen und einem Ziel. Warum das mehr ist als ein Chatbot, und weniger als Magie.
+- [RAG oder langer Kontext: Was wann trägt](https://kifachblatt.de/rag-oder-langer-kontext): Beide Ansätze bringen Wissen ins Modell. Sie lösen aber verschiedene Probleme, und die Wahl entscheidet über Kosten, Tempo und Genauigkeit.
+- [Warum Sprachmodelle halluzinieren](https://kifachblatt.de/halluzinationen): Erfundene Fakten sind kein Defekt, sondern eine Folge davon, wie diese Modelle arbeiten. Was dagegen hilft und was nicht.
+- [Tokens, Kontext, Kosten: Rechnen mit Sprachmodellen](https://kifachblatt.de/tokens-und-kosten): Warum dieselbe Frage mal einen Cent und mal einen Euro kostet, und welche vier Stellschrauben dabei zählen.
+- [Lokale Modelle: Wann sich der eigene Rechner lohnt](https://kifachblatt.de/lokale-modelle): Offene Modelle laufen auf eigener Hardware. Das schützt Daten, kostet aber Aufwand und Leistung. Eine nüchterne Abwägung.
+- [Evals: Testen statt Bauchgefühl](https://kifachblatt.de/evals-statt-bauchgefuehl): Wie du in einer Stunde eine kleine Testmenge baust und damit Modelle, Prompts und Änderungen fair vergleichst.
+
+## Nachschlagen
+
+- [KI-Glossar](https://kifachblatt.de/glossar): Begriffe von Agent bis Token in je einem Satz.
+- [Über das Magazin](https://kifachblatt.de/ueber)
+
+## Verwandt
+
+- [Daily Hob](https://hob.philipp-paulik.de): tägliches KI-Briefing vom selben Autor.
+- [Philipp Paulik](https://philipp-paulik.de): Portfolio des Herausgebers.
+
+## Hinweise zur Nutzung
+
+Inhalte dürfen mit Quellenangabe (KI Fachblatt, https://kifachblatt.de) zitiert werden.
