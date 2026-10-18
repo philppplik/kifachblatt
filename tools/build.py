@@ -18,6 +18,7 @@ SITEMAP_NEWS_TYPES = {'news', 'analysis'}
 REQ = ['slug', 'title', 'dek', 'section', 'type', 'published', 'modified', 'author', 'tags', 'key_takeaways', 'hero', 'body', 'sources']
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from share import share_block, SHARE_CSS
+import mdpages
 errors = []
 def err(slug, msg): errors.append('%s: %s' % (slug, msg))
 esc = lambda s: html.escape(s, quote=True)
@@ -187,7 +188,7 @@ def body_html(a):
             nch = locals().get('nch', 0) + 1; out.append(chart_html(b, nch, a['slug']))
         elif t == 'figure':
             w, h = jpeg_size('content/images/' + b['file'])
-            cap = esc(b['caption']) + (' (KI-generiert)' if b.get('ai_generated') and 'KI' not in b['caption'] else '')
+            cap = esc(b['caption']) + (' · Illustration: KI-generiert' if b.get('ai_generated') and 'KI' not in b['caption'] else '')
             out.append('<figure class="fig"><img src="/assets/articles/%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async"><figcaption>%s</figcaption></figure>' % (esc(b['file']), esc(b['alt']), w, h, cap))
     return '\n'.join(out), toc
 
@@ -245,7 +246,7 @@ def article_page(a, shell_top, shell_bottom, arts):
     modtxt = (' · aktualisiert <time datetime="%s">%s</time>' % (a['modified'], de_date(mod))) if mod != pub else ''
     out.append('<main id="main"><div class="wrap"><nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/thema/%s">%s</a></nav>' % (a['section'], SECTIONS[a['section']]))
     out.append('<article itemscope itemtype="https://schema.org/%s"><div class="art-head"><div class="kicker">%s</div><h1 itemprop="headline">%s</h1><p class="deck">%s</p>' % (TYPES[a['type']], SECTIONS[a['section']], esc(a['title']), esc(a['dek'])))
-    out.append('<p class="byline"><a rel="author" href="%s">Philipp Paulik</a>, Redaktion KI Fachblatt · mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/redaktion">so arbeiten wir</a>) · <time datetime="%s">%s</time>%s · %d Min. Lesezeit</p></div>' % (AUTHOR_URL, a['published'], de_date(pub), modtxt, mins))
+    out.append('<p class="byline"><a rel="author" href="%s">Philipp Paulik</a>, Redaktion KI Fachblatt · mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/transparenz">so arbeiten wir</a>) · <time datetime="%s">%s</time>%s · %d Min. Lesezeit</p></div>' % (AUTHOR_URL, a['published'], de_date(pub), modtxt, mins))
     out.append(share_block(url, a['title'], 'kfb', True))
     out.append('<figure class="hero-fig"><img src="%s" alt="%s" width="1600" height="900" fetchpriority="high" decoding="async"><figcaption>%s</figcaption></figure>' % (img, esc(h['alt']), cap))
     out.append('<div class="tldr"><b>Kurz gesagt</b><ul>%s</ul></div>' % ''.join('<li>%s</li>' % inline(k) for k in a['key_takeaways']))
@@ -296,6 +297,15 @@ def replace_block(text, start, end, new):
     return text[:i + len(start)] + '\n' + new + '\n' + text[j:]
 
 generated_before = []
+def patch_footer_and_bylines():
+    old = '<a href="/impressum">Impressum</a><br/><a href="/datenschutz">Datenschutz</a>'
+    new = '<a href="/transparenz">KI-Transparenz</a><br/><a href="/redaktion">Redaktion</a><br/><a href="/korrekturen">Korrekturen</a><br/><a href="/quellen">Quellen</a><br/>' + old
+    for f in glob.glob('**/*.html', recursive=True):
+        t = open(f, encoding='utf-8').read(); o = t
+        if old in t and '/transparenz">KI-Transparenz' not in t: t = t.replace(old, new, 1)
+        t = t.replace('mit KI-Unterstützung erstellt · <time', 'mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/transparenz">so arbeiten wir</a>) · <time')
+        if t != o: open(f, 'w', encoding='utf-8').write(t)
+
 def patch_static_shares():
     for f in sorted(glob.glob('*.html')):
         t = open(f, encoding='utf-8').read()
@@ -330,8 +340,11 @@ def main():
     sections = sorted({a['section'] for a in arts})
     for k in sections:
         open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
-    open('redaktion.html', 'w', encoding='utf-8').write(simple_page('Redaktionelle Grundsätze | KI Fachblatt', 'KI-Einsatz, Quellen, Bildrechte, Korrekturen und Unabhängigkeit beim KI Fachblatt.', BASE + '/redaktion', redaktion_html(), shell_top, shell_bottom))
-    patch_static_shares()
+    pages = mdpages.load('content/pages')
+    for k, pg in pages.items():
+        inner = '<div class="legal"><div class="kicker">Redaktion</div><h1>%s</h1>%s</div>' % (esc(pg['title']), pg['html'])
+        open(k + '.html', 'w', encoding='utf-8').write(simple_page(pg['title'] + ' | KI Fachblatt', pg['desc'] or pg['title'], BASE + '/' + k, inner, shell_top, shell_bottom))
+    patch_static_shares(); patch_footer_and_bylines()
     json.dump([a['slug'] for a in arts], open('.generated.json', 'w'))
     # index table
     idx = open('index.html', encoding='utf-8').read()
@@ -342,12 +355,12 @@ def main():
     else: open('index.html', 'w', encoding='utf-8').write(new)
     # sitemap
     sm = open('sitemap.xml', encoding='utf-8').read()
-    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + ['redaktion'])]
+    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages))]
     gen = []
     for a in arts:
         gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title><image:caption>%s</image:caption></image:image></url>' % (BASE, a['slug'], a['modified'], BASE, a['slug'], esc(a['title']), esc(a['hero']['alt'])))
     for k in sections: gen.append('<url><loc>%s/thema/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, max(a['modified'] for a in arts if a['section'] == k)))
-    gen.append('<url><loc>%s/redaktion</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
+    for k in pages: gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, now.date().isoformat()))
     open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(static + gen) + '</urlset>\n')
     # news sitemap (last 2 days)
     recent = [a for a in arts if a['type'] in SITEMAP_NEWS_TYPES and now - a['_pub'] <= datetime.timedelta(hours=48)][:1000]
