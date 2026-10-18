@@ -423,7 +423,7 @@ def main():
     else: open('index.html', 'w', encoding='utf-8').write(new)
     # sitemap
     sm = open('sitemap.xml', encoding='utf-8').read()
-    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages))]
+    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages) + ['berichte'])]
     gen = []
     for a in arts:
         gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title><image:caption>%s</image:caption></image:image></url>' % (BASE, a['slug'], a['modified'], BASE, a['slug'], esc(a['title']), esc(a['hero']['alt'])))
