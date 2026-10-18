@@ -155,7 +155,7 @@ def jsonld(a):
     return json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
 
 def head(title, desc, canon, extra='', og_type='website', image=None, ld=None, robots='index,follow,max-image-preview:large,max-snippet:-1'):
-    image = image or 'https://plane.philipp-paulik.de/assets/kifachblatt-og.png'
+    image = image or 'https://kifachblatt.de/assets/kifachblatt-og.png'
     return ('<!doctype html>\n<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<script>document.documentElement.className="js";if(/\\.html$/.test(location.pathname))history.replaceState(null,"",location.pathname.replace(/\\.html$/,""))</script>\n'
             '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n<meta name="robots" content="%s">\n<meta name="theme-color" content="#100f0d">\n'
             '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="alternate" type="application/rss+xml" title="KI Fachblatt" href="/feed.xml">\n'
