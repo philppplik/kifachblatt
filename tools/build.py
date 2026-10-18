@@ -143,7 +143,7 @@ def jsonld(a):
            'author': {'@type': 'Person', '@id': PERSON, 'name': 'Philipp Paulik', 'url': AUTHOR_URL}, 'publisher': {'@id': ORG},
            'image': [image], 'articleSection': SECTIONS[a['section']], 'keywords': ', '.join(a['tags']), 'isAccessibleForFree': True,
            'wordCount': len(body_text.split()), 'citation': [{'@type': 'CreativeWork', 'name': x['title'], 'url': x['url'], 'publisher': {'@type': 'Organization', 'name': x['publisher']}} for x in a['sources']]}
-    graph = [{'@type': 'Organization', '@id': ORG, 'name': PUB_NAME, 'url': BASE + '/', 'logo': {'@type': 'ImageObject', 'url': BASE + '/favicon.svg'}, 'founder': {'@id': PERSON}},
+    graph = [{'@type': 'Organization', '@id': ORG, 'name': PUB_NAME, 'url': BASE + '/', 'logo': {'@type': 'ImageObject', 'url': BASE + '/assets/logo-512.png', 'width': 512, 'height': 512}, 'founder': {'@id': PERSON}},
              {'@type': 'WebSite', '@id': BASE + '/#site', 'url': BASE + '/', 'name': PUB_NAME, 'inLanguage': 'de-DE', 'publisher': {'@id': ORG}},
              art, image,
              {'@type': 'BreadcrumbList', '@id': url + '#crumbs', 'itemListElement': [
@@ -158,7 +158,7 @@ def head(title, desc, canon, extra='', og_type='website', image=None, ld=None, r
     image = image or 'https://kifachblatt.de/assets/kifachblatt-og.png'
     return ('<!doctype html>\n<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<script>document.documentElement.className="js";if(/\\.html$/.test(location.pathname))history.replaceState(null,"",location.pathname.replace(/\\.html$/,""))</script>\n'
             '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n<meta name="robots" content="%s">\n<meta name="theme-color" content="#100f0d">\n'
-            '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="alternate" type="application/rss+xml" title="KI Fachblatt" href="/feed.xml">\n'
+            '<link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="alternate" type="application/rss+xml" title="KI Fachblatt" href="/feed.xml">\n'
             '<meta property="og:type" content="%s"><meta property="og:site_name" content="KI Fachblatt"><meta property="og:locale" content="de_DE">\n'
             '<meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:url" content="%s"><meta property="og:image" content="%s">%s\n'
             '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="%s">\n<link rel="stylesheet" href="/style.css">\n%s'
