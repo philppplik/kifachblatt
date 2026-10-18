@@ -302,12 +302,18 @@ def replace_block(text, start, end, new):
     return text[:i + len(start)] + '\n' + new + '\n' + text[j:]
 
 generated_before = []
+BURGER_JS = '<script>document.documentElement.classList.add("js");(function(){var b=document.querySelector(".burger"),m=document.getElementById("menu");if(!b||!m)return;function c(){m.classList.remove("open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Menü")}b.addEventListener("click",function(){var o=m.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"Menü schließen":"Menü")});document.addEventListener("keydown",function(e){if(e.key==="Escape")c()});m.addEventListener("click",function(e){if(e.target.tagName==="A")c()})})()</script>'
+BURGER_BTN = '<button type="button" class="burger" aria-label="Menü" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>'
+
 def patch_footer_and_bylines():
+    navre = re.compile(r'<nav(?: aria-label="Hauptnavigation" class="main"| class="main" aria-label="Hauptnavigation")>(.*?)</nav>', re.S)
     old = '<a href="/impressum">Impressum</a><br/><a href="/datenschutz">Datenschutz</a>'
     new = '<a href="/transparenz">KI-Transparenz</a><br/><a href="/redaktion">Redaktion</a><br/><a href="/korrekturen">Korrekturen</a><br/><a href="/quellen">Quellen</a><br/>' + old
     for f in glob.glob('**/*.html', recursive=True):
         t = open(f, encoding='utf-8').read(); o = t
         if old in t and '/transparenz">KI-Transparenz' not in t: t = t.replace(old, new, 1)
+        if 'class="burger"' not in t:
+            t = navre.sub(lambda m: BURGER_BTN + '<nav class="main" id="menu" aria-label="Hauptnavigation">' + m.group(1) + '</nav>' + BURGER_JS, t, count=1)
         t = t.replace('mit KI-Unterstützung erstellt · <time', 'mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/transparenz">so arbeiten wir</a>) · <time')
         if t != o: open(f, 'w', encoding='utf-8').write(t)
 
