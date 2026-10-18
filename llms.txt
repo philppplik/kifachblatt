@@ -24,3 +24,5 @@
 ## Hinweise zur Nutzung
 
 Inhalte dürfen mit Quellenangabe (KI Fachblatt, https://kifachblatt.de) zitiert werden.
+
+- Autor / author: Philipp Paulik, https://kifachblatt.de/redakteur/philipp-paulik
