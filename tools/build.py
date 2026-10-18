@@ -12,7 +12,7 @@ PUB_NAME = 'KI Fachblatt'
 SECTIONS = {  # key -> label
     'grundlagen': 'Grundlagen', 'architektur': 'Architektur', 'verlaesslichkeit': 'Verlässlichkeit', 'praxis': 'Praxis',
     'datenschutz': 'Datenschutz', 'methode': 'Methode', 'analyse': 'Analyse', 'modelle': 'Modelle', 'agenten': 'Agenten',
-    'forschung': 'Forschung', 'recht': 'Recht & Regulierung'}
+    'forschung': 'Forschung', 'evals': 'Evaluation', 'recht': 'Recht & Regulierung'}
 TYPES = {'news': 'NewsArticle', 'analysis': 'NewsArticle', 'explainer': 'Article'}
 SITEMAP_NEWS_TYPES = {'news', 'analysis'}
 REQ = ['slug', 'title', 'dek', 'section', 'type', 'published', 'modified', 'author', 'tags', 'key_takeaways', 'hero', 'body', 'sources']
