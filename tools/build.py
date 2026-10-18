@@ -334,6 +334,43 @@ def patch_static_shares():
         t = t[:i] + share_block(url, title, 'kfb', True) + t[i:j] + share_block(url, title, 'kfb') + t[j:]
         open(f, 'w', encoding='utf-8').write(t)
 
+def slugify(t):
+    t = t.lower().replace('ä', 'ae').replace('ö', 'oe').replace('ü', 'ue').replace('ß', 'ss')
+    return re.sub(r'[^a-z0-9]+', '-', t).strip('-')
+
+def glossary_page(shell_top, shell_bottom, now):
+    terms = sorted(json.load(open('content/glossary.json', encoding='utf-8')), key=lambda x: x['term'].lower())
+    ids = {x['term']: slugify(x['term']) for x in terms}
+    def art_title(path):
+        f = path.strip('/') + '.html'
+        try: m = re.search(r'<h1[^>]*>(.*?)</h1>', open(f, encoding='utf-8').read(), re.S); return html.unescape(re.sub(r'<[^>]+>', '', m.group(1))).strip()
+        except Exception: return None
+    letters = sorted({slugify(x['term'])[0].upper() for x in terms})
+    nav = '<nav class="az" aria-label="Glossar A bis Z">' + ''.join('<a href="#buchstabe-%s">%s</a>' % (l, l) for l in letters) + '</nav>'
+    body, cur = '', None
+    for x in terms:
+        l = slugify(x['term'])[0].upper()
+        if l != cur:
+            if cur: body += '</dl></section>'
+            body += '<section class="gl-sec" id="buchstabe-%s"><h2 class="gl-letter">%s</h2><dl class="gl-list">' % (l, l); cur = l
+        aka = ('<span class="gl-aka">auch: %s</span>' % esc(', '.join(x['aka']))) if x.get('aka') else ''
+        dd = '<p>%s</p>' % inline(x['definition'])
+        if x.get('usage'): dd += '<p class="gl-use"><b>In der Praxis:</b> %s</p>' % inline(x['usage'])
+        rel = [(r, art_title(r)) for r in x.get('related', [])]
+        links = ''.join('<a href="%s">%s</a>' % (r, esc(t)) for r, t in rel if t)
+        sa = ''.join('<a href="#%s">%s</a>' % (ids[t], esc(t)) for t in x.get('see_also', []) if t in ids)
+        if links: dd += '<p class="gl-more"><b>Artikel:</b> %s</p>' % links
+        if sa: dd += '<p class="gl-more"><b>Siehe auch:</b> %s</p>' % sa
+        if x.get('sources'): dd += '<p class="gl-src"><b>Quellen:</b> %s</p>' % ' · '.join('<a href="%s" rel="noopener">%s</a>' % (esc(sr['url']), esc(sr['title'])) for sr in x['sources'])
+        body += '<dt id="%s">%s%s</dt><dd>%s</dd>' % (ids[x['term']], esc(x['term']), aka, dd)
+    body += '</dl></section>'
+    setld = {'@context': 'https://schema.org', '@type': 'DefinedTermSet', '@id': BASE + '/glossar#set', 'name': 'KI-Glossar des KI Fachblatts', 'url': BASE + '/glossar', 'inLanguage': 'de',
+             'hasDefinedTerm': [dict({'@type': 'DefinedTerm', '@id': '%s/glossar#%s' % (BASE, ids[x['term']]), 'name': x['term'], 'description': x['definition'], 'url': '%s/glossar#%s' % (BASE, ids[x['term']]), 'inDefinedTermSet': BASE + '/glossar#set'}, **({'alternateName': x['aka']} if x.get('aka') else {})) for x in terms]}
+    inner = ('<div class="art-head"><div class="kicker">Nachschlagen</div><h1>Glossar: KI-Begriffe, kurz erklärt</h1><p class="deck">%d Begriffe rund um Sprachmodelle, Agenten und Werkzeuge: mit Definition, Praxishinweis und Quellen. Beispielrechnungen sind als „eigene Rechnung“ gekennzeichnet.</p></div>%s<div class="gl-wrap">%s</div>' % (len(terms), nav, body))
+    title = 'KI-Glossar: %d Begriffe von Adapter bis Zero-Shot erklärt | KI Fachblatt' % len(terms)
+    desc = 'Das KI-Glossar des KI Fachblatts erklärt %d Begriffe zu Sprachmodellen, Agenten, RAG und Evaluation: mit Definition, Praxishinweis, Quellen und Links zu Artikeln.' % len(terms)
+    return simple_page(title, desc, BASE + '/glossar', inner, shell_top, shell_bottom, ld=json.dumps(setld, ensure_ascii=False).replace('</', '<\\/'))
+
 def main():
     global generated_before
     os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -360,6 +397,7 @@ def main():
     sections = sorted({a['section'] for a in arts})
     for k in sections:
         open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
+    open('glossar.html', 'w', encoding='utf-8').write(glossary_page(shell_top, shell_bottom, now))
     pages = mdpages.load('content/pages')
     for k, pg in pages.items():
         inner = '<div class="legal"><div class="kicker">Redaktion</div><h1>%s</h1>%s</div>' % (esc(pg['title']), pg['html'])
