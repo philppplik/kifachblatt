@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns:image="http://www.google.com/schemas/image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url><loc>https://kifachblatt.de/</loc><lastmod>2026-10-01</lastmod></url>
 <url><loc>https://kifachblatt.de/was-ist-ein-ki-agent</loc><lastmod>2026-10-01</lastmod></url>
 <url><loc>https://kifachblatt.de/rag-oder-langer-kontext</loc><lastmod>2026-10-01</lastmod></url>
@@ -11,4 +11,4 @@
 <url><loc>https://kifachblatt.de/ueber</loc><lastmod>2026-10-01</lastmod></url>
 <url><loc>https://kifachblatt.de/impressum</loc><lastmod>2026-10-01</lastmod></url>
 <url><loc>https://kifachblatt.de/datenschutz</loc><lastmod>2026-10-01</lastmod></url>
-</urlset>
+<url><loc>https://kifachblatt.de/redakteur/philipp-paulik</loc><lastmod>2026-10-18</lastmod><image:image><image:loc>https://kifachblatt.de/assets/philipp-paulik-portrait-bibliothek-gruene-lampen.jpg</image:loc><image:title>Philipp Paulik, Redakteur · KI Fachblatt</image:title><image:caption>Philipp Paulik, Porträt: lächelnder Mann mit kurzem braunem Haar, Bart und Tweed-Sakko über schwarzem Pullover vor Bücherregalen mit grünen Leselampen</image:caption></image:image></url></urlset>
