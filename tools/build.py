@@ -19,6 +19,7 @@ REQ = ['slug', 'title', 'dek', 'section', 'type', 'published', 'modified', 'auth
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from share import share_block, SHARE_CSS
 import mdpages
+import report as kreport
 errors = []
 def err(slug, msg): errors.append('%s: %s' % (slug, msg))
 esc = lambda s: html.escape(s, quote=True)
@@ -314,6 +315,7 @@ def patch_footer_and_bylines():
     new = '<a href="/transparenz">KI-Transparenz</a><br/><a href="/redaktion">Redaktion</a><br/><a href="/korrekturen">Korrekturen</a><br/><a href="/quellen">Quellen</a><br/>' + old
     for f in glob.glob('**/*.html', recursive=True):
         t = open(f, encoding='utf-8').read(); o = t
+        if '<a href="/glossar">Glossar</a><br/><a href="/ueber">' in t and '/berichte">KI-Tagesbericht' not in t: t = t.replace('<a href="/glossar">Glossar</a><br/><a href="/ueber">', '<a href="/glossar">Glossar</a><br/><a href="/berichte">KI-Tagesbericht (PDF)</a><br/><a href="/ueber">', 1)
         if old in t and '/transparenz">KI-Transparenz' not in t: t = t.replace(old, new, 1)
         if 'class="burger"' not in t:
             t = navre.sub(lambda m: BURGER_BTN + '<nav class="main" id="menu" aria-label="Hauptnavigation">' + m.group(1) + '</nav>' + BURGER_JS, t, count=1)
@@ -398,6 +400,14 @@ def main():
     for k in sections:
         open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
     open('glossar.html', 'w', encoding='utf-8').write(glossary_page(shell_top, shell_bottom, now))
+
+    ok, hf = kreport.build(arts, now, BASE)
+    stand = now.strftime('%d.%m.%Y, %H:%M') + ' Uhr'
+    inner = ('<div class="legal"><div class="kicker">Berichte</div><h1>KI-Tagesbericht als PDF</h1>'
+             '<p>Die Tagesausgabe fasst die 20 aktuell meistbeachteten Modelle auf Hugging Face (Sortierung nach dem Trend-Score der öffentlichen API), die zwei neuesten Analysen des KI Fachblatts und das Impressum mit Redaktionsschluss auf vier A4-Seiten zusammen. Hell, druckfreundlich, ohne Tracking.</p>'
+             '<p><a class="btn" href="/berichte/ki-tagesbericht.pdf" download>PDF herunterladen</a> &nbsp; <a href="/berichte/tagesbericht">Druckansicht im Browser</a></p>'
+             '<p class="mut">Stand der aktuellen Ausgabe: %s. Modelldaten: Hugging Face (öffentliche API). Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung. Die Ausgabe wird automatisch erstellt; Inhalte entstehen mit KI-Unterstützung und werden redaktionell geprüft (<a href="/transparenz">so arbeiten wir</a>).</p></div>') % stand
+    open('berichte.html', 'w', encoding='utf-8').write(simple_page('KI-Tagesbericht als PDF | KI Fachblatt', 'Täglicher KI-Tagesbericht als PDF: Trending-Modelle von Hugging Face, die Analysen des Tages, Impressum. Kostenlos, druckfreundlich.', BASE + '/berichte', inner, shell_top, shell_bottom))
     pages = mdpages.load('content/pages')
     for k, pg in pages.items():
         inner = '<div class="legal"><div class="kicker">Redaktion</div><h1>%s</h1>%s</div>' % (esc(pg['title']), pg['html'])
@@ -418,6 +428,7 @@ def main():
     for a in arts:
         gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title><image:caption>%s</image:caption></image:image></url>' % (BASE, a['slug'], a['modified'], BASE, a['slug'], esc(a['title']), esc(a['hero']['alt'])))
     for k in sections: gen.append('<url><loc>%s/thema/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, max(a['modified'] for a in arts if a['section'] == k)))
+    gen.append('<url><loc>%s/berichte</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
     for k in pages: gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, now.date().isoformat()))
     open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(static + gen) + '</urlset>\n')
     # news sitemap (last 2 days)
