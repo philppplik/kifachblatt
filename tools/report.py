@@ -1,7 +1,7 @@
 """KI-Tagesbericht (A4 PDF + print page). Called from build.py. Data: Hugging Face public API (no key), own articles."""
 import json, os, re, sys, urllib.request, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from report_core import esc, DAYS, render, to_pdf, logo_inline
+from report_core import esc, DAYS, render, to_pdf, logo_inline, lnk, dom, srclist
 
 HF = 'https://huggingface.co/api/models?sort=trendingScore&limit=20&expand[]=likes&expand[]=downloads&expand[]=pipeline_tag&expand[]=createdAt&expand[]=trendingScore&expand[]=library_name'
 HF_PUBLIC = 'https://huggingface.co/models?sort=trending'
@@ -19,7 +19,7 @@ def build(arts, now, base, root='.'):
     models = fetch_models()
     if models:
         rows = ''.join('<tr><td class="l">%d</td><td class="l w"><b>%s</b></td><td class="l">%s</td><td>%s</td><td>%s</td><td>%s</td><td class="l">%s</td></tr>' % (
-            i + 1, esc(m['id']), esc(m.get('pipeline_tag') or '–'), nf(m.get('likes')), nf(m.get('downloads')), nf(m.get('trendingScore')), esc((m.get('createdAt') or '')[:10])) for i, m in enumerate(models))
+            i + 1, lnk('https://huggingface.co/' + m['id'], m['id']), esc(m.get('pipeline_tag') or '–'), nf(m.get('likes')), nf(m.get('downloads')), nf(m.get('trendingScore')), esc((m.get('createdAt') or '')[:10])) for i, m in enumerate(models))
         tbl = '<table><thead><tr><th class="l">#</th><th class="l">Modell</th><th class="l">Aufgabe</th><th>Likes</th><th>Downloads</th><th>Trend-Score</th><th class="l">Erstellt</th></tr></thead><tbody>%s</tbody></table>' % rows
         note = '<div class="note"><b>So lesen:</b> Reihenfolge nach dem Feld <i>trendingScore</i> der Hugging-Face-API, Stand %s. Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung und kein Benchmark-Ergebnis. „Aufgabe“ ist das Feld <i>pipeline_tag</i>. Quelle: huggingface.co (öffentliche API, ohne Schlüssel).</div>' % esc(stamp)
     else:
@@ -30,8 +30,8 @@ def build(arts, now, base, root='.'):
     ablk = ''
     for a in two:
         pts = ''.join('<li>%s</li>' % esc(cl(t)) for t in a.get('key_takeaways', [])[:3])
-        ablk += '<div class="art"><div class="m">%s · %s · %d Quellen</div><div class="t">%s</div><div class="d">%s</div><ul>%s</ul><div class="u">kifachblatt.de/%s</div></div>' % (
-            esc(a['section'].capitalize()), a['_pub'].strftime('%d.%m.%Y'), len(a.get('sources', [])), esc(a['title']), esc(a['dek']), pts, esc(a['slug']))
+        ablk += '<div class="art"><div class="m">%s · %s · %d Quellen</div><div class="t">%s</div><div class="d">%s</div><ul>%s</ul><div class="u">%s</div>%s</div>' % (
+            esc(a['section'].capitalize()), a['_pub'].strftime('%d.%m.%Y'), len(a.get('sources', [])), lnk(base + '/' + a['slug'], a['title']), esc(a['dek']), pts, lnk(base + '/' + a['slug']), srclist(a.get('sources', [])))
     p2 = '<h2>Die zwei Analysen des Tages</h2>%s<p class="foot">Vollständige Texte mit Quellen, Methode und Grenzen auf kifachblatt.de. „Eigene Rechnung“ kennzeichnet Berechnungen der Redaktion auf Basis der genannten Quellen.</p>' % (ablk or '<p class="mut">Noch keine Analysen.</p>')
     last = '''<h2>Impressum &amp; Redaktionsschluss</h2>
 <div class="imp"><div><h3>Anbieter nach § 5 DDG</h3><p>Philipp Paulik<br>Mozartstraße 1<br>53819 Neunkirchen-Seelscheid<br>Nordrhein-Westfalen</p><h3>Kontakt</h3><p>E-Mail: philipp.l.paulik@gmail.com<br>Web: kifachblatt.de</p></div>

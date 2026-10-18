@@ -4,6 +4,16 @@ import html, os, re, shutil, subprocess
 DAYS = ['Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag', 'Sonntag']
 esc = lambda s: html.escape(str(s), quote=True)
 
+def lnk(url, label=None):
+    return '<a href="%s">%s</a>' % (esc(url), esc(label if label is not None else url))
+
+def dom(u):
+    m = re.match(r'https?://(?:www\.)?([^/]+)', u or ''); return m.group(1) if m else (u or '')
+
+def srclist(sources, limit=12):
+    out = ''.join('<li>%s <span class="mut">(%s)</span></li>' % (lnk(x['url'], x.get('title') or dom(x['url'])), esc(dom(x['url']))) for x in sources[:limit] if x.get('url'))
+    return ('<div class="sl"><b>Quellen</b><ol>%s</ol></div>' % out) if out else ''
+
 CSS = '''
 @page{size:A4;margin:16mm 15mm 18mm 15mm;
  @bottom-left{content:"%(brand)s · %(kind)s %(date)s";font:8pt Helvetica,Arial,sans-serif;color:#8a8f9c}
@@ -14,7 +24,10 @@ CSS = '''
 *{box-sizing:border-box}
 html{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 body{margin:0;font:9.6pt/1.5 Helvetica,Arial,"Liberation Sans",sans-serif;color:#1a1c24;background:#fff}
-a{color:%(ac)s;text-decoration:none}
+a{color:%(ac)s;text-decoration:underline;text-decoration-color:rgba(0,0,0,.25)}
+.sl{margin-top:2mm;font-size:8pt;color:#3a3e4c}.sl ol{margin:1mm 0 0;padding-left:5mm}.sl li{margin:0 0 .6mm;overflow-wrap:anywhere}
+.sl ol{columns:2;column-gap:6mm}.sl li{break-inside:avoid}
+.art .t a{color:#14151b;text-decoration:none}
 .pg{break-after:page}.pg:last-of-type{break-after:auto}
 .cover{border-top:6px solid %(ac)s;background:%(soft)s;padding:12mm 15mm 9mm;margin-bottom:7mm;border-bottom:1px solid %(line)s}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15pt;letter-spacing:-.01em;color:%(dk)s}
