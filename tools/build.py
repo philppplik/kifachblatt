@@ -90,16 +90,78 @@ def load_articles(now):
                 if os.path.getsize(ip) > 350 * 1024: err(s, 'hero larger than 350 KB')
             except Exception as e: err(s, 'hero unreadable: %s' % e)
         for b in a['body']:
-            if b.get('t') == 'figure':
+            if b.get('t') == 'chart':
+                if not (b.get('alt') and b.get('caption') and b.get('labels') and b.get('series')): err(s, 'chart needs alt, caption, labels, series')
+            elif b.get('t') == 'figure':
                 fp = 'content/images/' + b.get('file', '')
                 if not os.path.exists(fp): err(s, 'missing figure file ' + fp)
                 if not b.get('alt') or not b.get('caption'): err(s, 'figure needs alt and caption')
-            elif b.get('t') not in ('p', 'h2', 'h3', 'ul', 'ol', 'quote', 'table', 'callout', 'code'): err(s, 'unknown block type %r' % b.get('t'))
+            elif b.get('t') not in ('p', 'h2', 'h3', 'ul', 'ol', 'quote', 'table', 'callout', 'code', 'chart'): err(s, 'unknown block type %r' % b.get('t'))
         if pub.tzinfo and pub > now: print('skip (scheduled):', s); continue
         a['_pub'], a['_mod'] = pub, mod
         arts.append(a)
     arts.sort(key=lambda a: a['_pub'], reverse=True)
     return arts
+
+
+PALETTE = ['#7040cd', '#169a86', '#e08a1e', '#3b7dd8', '#c0396b']
+def _num(v): return ('%.2f' % v).rstrip('0').rstrip('.').replace('.', ',') if isinstance(v, (int, float)) else str(v)
+def chart_html(b, idx, slug):
+    kind = b.get('kind', 'bar'); labels = b['labels']; series = b['series']; unit = b.get('unit', '')
+    if kind not in ('bar', 'column', 'line'): err(slug, 'chart kind must be bar|column|line')
+    for sr in series:
+        if len(sr['values']) != len(labels): err(slug, 'chart %d: series "%s" length != labels' % (idx, sr.get('name'))); return ''
+    vals = [v for sr in series for v in sr['values'] if v is not None]
+    vmax = b.get('max') or (max(vals) if vals else 1); vmin = min(0, min(vals)) if kind != 'line' else b.get('min', min(0, min(vals)))
+    if vmax == vmin: vmax = vmin + 1
+    leg = ''
+    if len(series) > 1: leg = '<ul class="ch-leg">%s</ul>' % ''.join('<li><i style="background:%s"></i>%s</li>' % (PALETTE[i % 5], esc(sr['name'])) for i, sr in enumerate(series))
+    if kind == 'bar':
+        rows = ''
+        for j, lab in enumerate(labels):
+            bars = ''
+            for i, sr in enumerate(series):
+                v = sr['values'][j]
+                if v is None: continue
+                w = max(0.5, (v - vmin) / (vmax - vmin) * 100)
+                bars += '<span class="ch-bar" style="width:%.1f%%;background:%s" title="%s: %s%s"></span><span class="ch-val">%s%s</span>' % (w, PALETTE[i % 5], esc(sr['name']), _num(v), esc(unit), _num(v), esc(unit))
+            rows += '<div class="ch-row"><span class="ch-lab">%s</span><span class="ch-trk">%s</span></div>' % (inline(lab), bars)
+        body = '<div class="ch-bars" role="img" aria-label="%s">%s</div>' % (esc(b['alt']), rows)
+    else:
+        W, H, L, R, T, B = 640, 340, 52, 16, 16, 64
+        pw, ph = W - L - R, H - T - B
+        y = lambda v: T + ph - (v - vmin) / (vmax - vmin) * ph
+        n = len(labels)
+        g = ''
+        for k in range(5):
+            v = vmin + (vmax - vmin) * k / 4
+            g += '<line x1="%d" x2="%d" y1="%.1f" y2="%.1f" class="ch-grid"/><text x="%d" y="%.1f" class="ch-t" text-anchor="end">%s</text>' % (L, W - R, y(v), y(v), L - 6, y(v) + 4, _num(round(v, 2)))
+        marks = ''
+        if kind == 'column':
+            gw = pw / n; bw = min(48, gw * 0.7 / len(series))
+            for j, lab in enumerate(labels):
+                cx = L + gw * (j + .5)
+                for i, sr in enumerate(series):
+                    v = sr['values'][j]
+                    if v is None: continue
+                    x0 = cx - bw * len(series) / 2 + i * bw
+                    marks += '<rect x="%.1f" y="%.1f" width="%.1f" height="%.1f" fill="%s" class="ch-m" tabindex="0"><title>%s, %s: %s%s</title></rect>' % (x0, min(y(v), y(0)), bw - 2, abs(y(v) - y(0)), PALETTE[i % 5], esc(lab), esc(sr['name']), _num(v), esc(unit))
+                marks += '<text x="%.1f" y="%d" class="ch-t" text-anchor="middle">%s</text>' % (cx, H - B + 18, esc(lab if len(lab) < 20 else lab[:19] + '…'))
+        else:
+            for j, lab in enumerate(labels):
+                cx = L + pw * (j + .5) / n
+                marks += '<text x="%.1f" y="%d" class="ch-t" text-anchor="middle">%s</text>' % (cx, H - B + 18, esc(lab if len(lab) < 20 else lab[:19] + '…'))
+            for i, sr in enumerate(series):
+                pts = [(L + pw * (j + .5) / n, y(v), v, labels[j]) for j, v in enumerate(sr['values']) if v is not None]
+                marks += '<polyline fill="none" stroke="%s" stroke-width="2.5" points="%s"/>' % (PALETTE[i % 5], ' '.join('%.1f,%.1f' % (px, py) for px, py, _, _ in pts))
+                marks += ''.join('<circle cx="%.1f" cy="%.1f" r="4.5" fill="%s" class="ch-m" tabindex="0"><title>%s, %s: %s%s</title></circle>' % (px, py, PALETTE[i % 5], esc(l), esc(sr['name']), _num(v), esc(unit)) for px, py, v, l in pts)
+        yl = '<text x="%d" y="12" class="ch-t">%s</text>' % (L, esc(b.get('y_label', unit))) if b.get('y_label', unit) else ''
+        body = '<svg class="ch-svg" viewBox="0 0 %d %d" role="img" aria-label="%s" preserveAspectRatio="xMidYMid meet">%s%s%s</svg>' % (W, H, esc(b['alt']), g, marks, yl)
+    head_ = ''.join('<th scope="col">%s</th>' % esc(x) for x in [b.get('x_label', '')] + [sr['name'] for sr in series])
+    trs = ''.join('<tr><th scope="row">%s</th>%s</tr>' % (inline(l), ''.join('<td>%s%s</td>' % (_num(sr['values'][j]) if sr['values'][j] is not None else '–', esc(unit) if sr['values'][j] is not None else '') for sr in series)) for j, l in enumerate(labels))
+    tbl = '<details class="ch-data"><summary>Daten als Tabelle</summary><div class="table-scroll"><table class="data"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div></details>' % (head_, trs)
+    src = '<p class="ch-src">Quelle: %s</p>' % inline(b['source']) if b.get('source') else ''
+    return '<figure class="chart" id="chart-%d"><figcaption class="ch-title">%s</figcaption>%s%s%s%s<p class="ch-cap">%s</p></figure>' % (idx, esc(b.get('title', b['caption'])), leg, body, tbl, src, esc(b['caption']))
 
 def body_html(a):
     out, toc, n = [], [], 0
@@ -121,6 +183,8 @@ def body_html(a):
             out.append('<div class="table-scroll"><table class="data">%s<thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (cap, th, rows))
         elif t == 'callout': out.append('<aside class="callout"><b>%s</b><p>%s</p></aside>' % (esc(b.get('title', 'Hinweis')), inline(b['x'])))
         elif t == 'code': out.append('<pre><code%s>%s</code></pre>' % (' class="language-%s"' % esc(b['lang']) if b.get('lang') else '', esc(b['x'])))
+        elif t == 'chart':
+            nch = locals().get('nch', 0) + 1; out.append(chart_html(b, nch, a['slug']))
         elif t == 'figure':
             w, h = jpeg_size('content/images/' + b['file'])
             cap = esc(b['caption']) + (' (KI-generiert)' if b.get('ai_generated') and 'KI' not in b['caption'] else '')
