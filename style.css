@@ -33,3 +33,5 @@ html,body{overflow-x:hidden}.art>*,.body>*{min-width:0;max-width:100%}.body img,
 @media(max-width:600px){.ch-row{grid-template-columns:1fr;gap:3px}.chart{padding:14px 12px 8px}}
 
 .share-top{margin:0 0 1.6em;padding:10px 0;border-top:0;border-bottom:1px solid var(--line)}.share-top b{display:none}
+
+table.data td.nw{white-space:nowrap}.ch-data td{white-space:nowrap}

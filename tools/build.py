@@ -113,7 +113,12 @@ def chart_html(b, idx, slug):
     for sr in series:
         if len(sr['values']) != len(labels): err(slug, 'chart %d: series "%s" length != labels' % (idx, sr.get('name'))); return ''
     vals = [v for sr in series for v in sr['values'] if v is not None]
-    vmax = b.get('max') or (max(vals) if vals else 1); vmin = min(0, min(vals)) if kind != 'line' else b.get('min', min(0, min(vals)))
+    vmax = b.get('max') or (max(vals) if vals else 1)
+    if not b.get('max') and vmax > 0:
+        import math
+        raw = (vmax - min(0, min(vals) if vals else 0)) / 4; mag = 10 ** math.floor(math.log10(raw)); step = next(m * mag for m in (1, 2, 2.5, 5, 10) if m * mag >= raw)
+        vmax = math.ceil(vmax / step - 1e-9) * step
+    vmin = min(0, min(vals)) if kind != 'line' else b.get('min', min(0, min(vals)))
     if vmax == vmin: vmax = vmin + 1
     leg = ''
     if len(series) > 1: leg = '<ul class="ch-leg">%s</ul>' % ''.join('<li><i style="background:%s"></i>%s</li>' % (PALETTE[i % 5], esc(sr['name'])) for i, sr in enumerate(series))
@@ -180,7 +185,7 @@ def body_html(a):
         elif t == 'table':
             cap = '<caption>%s</caption>' % esc(b['caption']) if b.get('caption') else ''
             th = ''.join('<th scope="col">%s</th>' % inline(c) for c in b['head'])
-            rows = ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % inline(c) for c in r) for r in b['rows'])
+            rows = ''.join('<tr>%s</tr>' % ''.join('<td%s>%s</td>' % (' class="nw"' if len(str(c)) <= 18 else '', inline(c)) for c in r) for r in b['rows'])
             out.append('<div class="table-scroll"><table class="data">%s<thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (cap, th, rows))
         elif t == 'callout': out.append('<aside class="callout"><b>%s</b><p>%s</p></aside>' % (esc(b.get('title', 'Hinweis')), inline(b['x'])))
         elif t == 'code': out.append('<pre><code%s>%s</code></pre>' % (' class="language-%s"' % esc(b['lang']) if b.get('lang') else '', esc(b['x'])))
