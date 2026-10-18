@@ -403,9 +403,16 @@ def main():
 
     ok, hf = kreport.build(arts, now, BASE)
     stand = now.strftime('%d.%m.%Y, %H:%M') + ' Uhr'
-    inner = ('<div class="legal"><div class="kicker">Berichte</div><h1>KI-Tagesbericht als PDF</h1>'
+    hfx = ('<div class="hfx" id="hfx" hidden><h2>Live-Auswahl</h2><p>Eigene Sortierung und Aufgabe wählen. Die Daten kommen live im Browser von der öffentlichen Hugging-Face-API (kein Schlüssel, kein Tracking durch uns) und werden zehn Minuten zwischengespeichert.</p>'
+           '<div class="ctl"><label>Sortierung<select id="hf-sort"><option value="trend">Trend</option><option value="likes">Likes</option><option value="downloads">Downloads</option><option value="new">Neueste (unter den 100 Trendigsten)</option></select></label>'
+           '<label>Aufgabe<select id="hf-tag"><option value="">Alle</option><option>text-generation</option><option>image-text-to-text</option><option>any-to-any</option><option>text-to-image</option><option>text-to-video</option><option>image-to-video</option><option>automatic-speech-recognition</option><option>text-to-speech</option><option>feature-extraction</option><option>image-classification</option><option>translation</option></select></label></div>'
+           '<p class="ts-print" id="hf-ts"></p><div class="bar nopr"><span id="hf-stand"></span><button type="button" class="btn" id="hf-reload">Neu laden</button><button type="button" class="btn" id="hf-print" disabled>Auswahl als PDF drucken / speichern</button></div>'
+           '<div id="hf-out" class="table-scroll"></div><p class="method-note">Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung und kein Benchmark-Ergebnis. „Neueste“ sortiert die 100 aktuell trendigsten Modelle nach Erstellungsdatum, weil die reine Neu-Liste fast nur leere Uploads enthält. Zum Speichern als PDF im Druckdialog „Als PDF speichern“ wählen.</p><hr class="nopr"><h2 class="nopr">Tägliches PDF</h2></div>'
+           '<p id="hf-nojs" class="mut">Für die Live-Auswahl wird JavaScript benötigt. Das tägliche PDF funktioniert ohne.</p>'
+           '<link rel="stylesheet" href="/assets/berichte.css"><script src="/assets/berichte.js" defer></script>')
+    inner = ('<div class="legal"><div class="kicker">Berichte</div><h1>KI-Tagesbericht</h1>'
              '<p>Die Tagesausgabe fasst die 20 aktuell meistbeachteten Modelle auf Hugging Face (Sortierung nach dem Trend-Score der öffentlichen API), die zwei neuesten Analysen des KI Fachblatts und das Impressum mit Redaktionsschluss auf vier A4-Seiten zusammen. Hell, druckfreundlich, ohne Tracking.</p>'
-             '<p><a class="btn" href="/berichte/ki-tagesbericht.pdf" download>PDF herunterladen</a> &nbsp; <a href="/berichte/tagesbericht">Druckansicht im Browser</a></p>'
+             + hfx + '<p><a class="btn" href="/berichte/ki-tagesbericht.pdf" download>PDF herunterladen</a> &nbsp; <a href="/berichte/tagesbericht">Druckansicht im Browser</a></p>'
              '<p class="mut">Stand der aktuellen Ausgabe: %s. Modelldaten: Hugging Face (öffentliche API). Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung. Die Ausgabe wird automatisch erstellt; Inhalte entstehen mit KI-Unterstützung und werden redaktionell geprüft (<a href="/transparenz">so arbeiten wir</a>).</p></div>') % stand
     open('berichte.html', 'w', encoding='utf-8').write(simple_page('KI-Tagesbericht als PDF | KI Fachblatt', 'Täglicher KI-Tagesbericht als PDF: Trending-Modelle von Hugging Face, die Analysen des Tages, Impressum. Kostenlos, druckfreundlich.', BASE + '/berichte', inner, shell_top, shell_bottom))
     pages = mdpages.load('content/pages')
