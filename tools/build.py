@@ -16,6 +16,8 @@ SECTIONS = {  # key -> label
 TYPES = {'news': 'NewsArticle', 'analysis': 'NewsArticle', 'explainer': 'Article'}
 SITEMAP_NEWS_TYPES = {'news', 'analysis'}
 REQ = ['slug', 'title', 'dek', 'section', 'type', 'published', 'modified', 'author', 'tags', 'key_takeaways', 'hero', 'body', 'sources']
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from share import share_block, SHARE_CSS
 errors = []
 def err(slug, msg): errors.append('%s: %s' % (slug, msg))
 esc = lambda s: html.escape(s, quote=True)
@@ -192,6 +194,7 @@ def article_page(a, shell_top, shell_bottom, arts):
         out.append(m)
     out.append('<h2 id="quellen">Quellen</h2><ol class="refs">%s</ol>' % ''.join(
         '<li id="q%d"><a href="%s" rel="noopener">%s</a>, %s%s</li>' % (i + 1, esc(x['url']), esc(x['title']), esc(x['publisher']), (' (abgerufen %s)' % esc(x['accessed'])) if x.get('accessed') else '') for i, x in enumerate(a['sources'])))
+    out.append(share_block(url, a['title'], 'kfb'))
     out.append('</div></div></article>')
     if a.get('faq'):
         out.append('<section class="faq" id="faq"><div class="wrap"><div class="sec-h"><h2>Häufige Fragen</h2></div>%s</div></section>' % ''.join('<details><summary>%s</summary><p>%s</p></details>' % (esc(q['q']), inline(q['a'])) for q in a['faq']))
