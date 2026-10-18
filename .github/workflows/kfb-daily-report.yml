@@ -1,0 +1,34 @@
+name: KI-Tagesbericht (daily)
+
+on:
+  schedule:
+    - cron: '20 5 * * *'   # daily, 05:20 UTC (07:20 CEST)
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: daily-report
+  cancel-in-progress: false
+
+jobs:
+  report:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build (generates the PDF with the preinstalled Chrome)
+        run: |
+          google-chrome --version
+          python3 tools/build.py
+      - name: Prune old dated PDFs
+        run: ls berichte/ki-tagesbericht-20*.pdf | sort | head -n -14 | xargs -r rm -f
+      - name: Commit and push
+        run: |
+          git config user.name "Philipp Paulik"
+          git config user.email "philipp.paulik@users.noreply.github.com"
+          git add -A berichte berichte.html
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "KI-Tagesbericht $(date -u +%F)"
+          git push
