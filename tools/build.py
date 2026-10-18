@@ -246,6 +246,7 @@ def article_page(a, shell_top, shell_bottom, arts):
     out.append('<main id="main"><div class="wrap"><nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/thema/%s">%s</a></nav>' % (a['section'], SECTIONS[a['section']]))
     out.append('<article itemscope itemtype="https://schema.org/%s"><div class="art-head"><div class="kicker">%s</div><h1 itemprop="headline">%s</h1><p class="deck">%s</p>' % (TYPES[a['type']], SECTIONS[a['section']], esc(a['title']), esc(a['dek'])))
     out.append('<p class="byline"><a rel="author" href="%s">Philipp Paulik</a>, Redaktion KI Fachblatt · mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/redaktion">so arbeiten wir</a>) · <time datetime="%s">%s</time>%s · %d Min. Lesezeit</p></div>' % (AUTHOR_URL, a['published'], de_date(pub), modtxt, mins))
+    out.append(share_block(url, a['title'], 'kfb', True))
     out.append('<figure class="hero-fig"><img src="%s" alt="%s" width="1600" height="900" fetchpriority="high" decoding="async"><figcaption>%s</figcaption></figure>' % (img, esc(h['alt']), cap))
     out.append('<div class="tldr"><b>Kurz gesagt</b><ul>%s</ul></div>' % ''.join('<li>%s</li>' % inline(k) for k in a['key_takeaways']))
     tocs = ''.join('<a href="#%s">%s</a>' % (i, esc(t)) for i, t in toc)

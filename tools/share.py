@@ -1,5 +1,5 @@
 import urllib.parse as _up
-def share_block(url, title, brand):
+def share_block(url, title, brand, top=False):
     q = _up.quote
     u, t = q(url, safe=''), q(title, safe='')
     def svg(inner): return '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">%s</svg>' % inner
@@ -22,7 +22,7 @@ def share_block(url, title, brand):
           "c.addEventListener('click',function(){var u=c.dataset.copy,l=c.querySelector('span'),o=l.textContent;"
           "function ok(){l.textContent='Kopiert';setTimeout(function(){l.textContent=o},2000)}"
           "if(navigator.clipboard){navigator.clipboard.writeText(u).then(ok,function(){})}else{var i=document.createElement('input');i.value=u;document.body.appendChild(i);i.select();try{document.execCommand('copy');ok()}catch(e){}i.remove()}})})();</script>")
-    return '<div class="share" role="group" aria-label="Artikel teilen"><b>Artikel teilen</b><ul>%s</ul>%s</div>' % (items, js)
+    return '<div class="share%s" role="group" aria-label="Artikel teilen"><b>Artikel teilen</b><ul>%s</ul>%s</div>' % (' share-top' if top else '', items, js)
 SHARE_CSS = ('.share{margin:2.2em 0 1.2em;padding:16px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}.share b{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.08em;color:var(--%s);margin-bottom:10px}'
              '.share ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:8px}.share li{margin:0!important}.sh-b{display:inline-flex;align-items:center;gap:7px;font:inherit;font-size:13px;line-height:1;padding:9px 12px;min-height:40px;border:1px solid var(--line);border-radius:999px;background:transparent;color:inherit;text-decoration:none!important;cursor:pointer}'
              '.sh-b:hover{background:var(--%s);border-color:var(--%s)}.sh-b:focus-visible{outline:3px solid #9466e3;outline-offset:2px}.sh-b[hidden]{display:none}@media(max-width:520px){.sh-b span{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}.sh-b{padding:10px;min-width:44px;justify-content:center}}')
