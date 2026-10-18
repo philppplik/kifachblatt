@@ -291,8 +291,11 @@ def redaktion_html():
 <h2 id="korrekturen">Korrekturen</h2><p>Fehler werden im Beitrag korrigiert. Bei inhaltlichen Änderungen setzen wir das Aktualisierungsdatum und vermerken die Korrektur im Text. Hinweise bitte per E-Mail an die oben genannte Adresse.</p>
 <h2 id="werbung">Werbung und Unabhängigkeit</h2><p>Das KI Fachblatt verkauft derzeit keine Anzeigen und nimmt keine bezahlten Beiträge an. Sollte sich das ändern, wird bezahlter Inhalt klar als solcher gekennzeichnet. Wir nehmen keine Stellung zu parteipolitischen Themen.</p></div>'''
 
+def thumb_html(a):
+    return ('<a class="thumb" href="/%s" tabindex="-1" aria-hidden="true"><img src="/assets/articles/%s-800.jpg" alt="" width="800" height="450" loading="lazy" decoding="async"></a>' % (a['slug'], a['slug'])) if os.path.exists('assets/articles/%s-800.jpg' % a['slug']) else ''
+
 def section_html(key, arts):
-    items = ''.join('<article class="card"><div class="kicker">%s</div><h3><a href="/%s">%s</a></h3><p>%s</p><span class="meta"><time datetime="%s">%s</time></span><br><a class="more" href="/%s">Lesen →</a></article>' % (
+    items = ''.join(('<article class="card">' + thumb_html(a) + '<div class="kicker">%s</div><h3><a href="/%s">%s</a></h3><p>%s</p><span class="meta"><time datetime="%s">%s</time></span><br><a class="more" href="/%s">Lesen →</a></article>') % (
         SECTIONS[key], a['slug'], esc(a['title']), esc(a['dek']), a['published'], de_date(a['_pub'], False), a['slug']) for a in arts if a['section'] == key)
     return '<div class="sec-h"><h1>%s</h1></div><div class="grid rel-grid">%s</div>' % (SECTIONS[key], items)
 
@@ -345,6 +348,12 @@ def main():
     os.makedirs('assets/articles', exist_ok=True); os.makedirs('thema', exist_ok=True)
     for a in arts:
         shutil.copyfile('content/images/%s.jpg' % a['slug'], 'assets/articles/%s.jpg' % a['slug'])
+        tp = 'assets/articles/%s-800.jpg' % a['slug']
+        if not os.path.exists(tp):
+            try:
+                from PIL import Image
+                Image.open('content/images/%s.jpg' % a['slug']).convert('RGB').resize((800, 450), Image.LANCZOS).save(tp, quality=82, optimize=True, progressive=True)
+            except ImportError: pass
         for b in a['body']:
             if b['t'] == 'figure': shutil.copyfile('content/images/' + b['file'], 'assets/articles/' + b['file'])
         open(a['slug'] + '.html', 'w', encoding='utf-8').write(article_page(a, shell_top, shell_bottom, arts))
@@ -359,7 +368,7 @@ def main():
     json.dump([a['slug'] for a in arts], open('.generated.json', 'w'))
     # index table
     idx = open('index.html', encoding='utf-8').read()
-    rows = ''.join('<tr data-topic="%s"><td><a href="/%s">%s</a><p>%s</p></td><td><span class="topic">%s</span></td><td>%s</td><td><a aria-label="%s lesen" class="read" href="/%s">Lesen ↗</a></td></tr>' % (
+    rows = ''.join(('<tr data-topic="%s"><td>' + thumb_html(a) + '<a href="/%s">%s</a><p>%s</p></td><td><span class="topic">%s</span></td><td>%s</td><td><a aria-label="%s lesen" class="read" href="/%s">Lesen ↗</a></td></tr>') % (
         SECTIONS[a['section']], a['slug'], esc(a['title']), esc(a['dek']), SECTIONS[a['section']], de_date(a['_pub'], False), esc(a['title']), a['slug']) for a in arts)
     new = replace_block(idx, '<!--GEN-ARTICLES:START-->', '<!--GEN-ARTICLES:END-->', rows)
     if new is None: print('WARN: index.html has no <!--GEN-ARTICLES--> markers; run PR setup first')
