@@ -21,3 +21,4 @@ table.data caption{text-align:left;font-size:12px;color:var(--mute);padding-bott
 .wrap{padding-left:max(clamp(18px,5vw,32px),env(safe-area-inset-left));padding-right:max(clamp(18px,5vw,32px),env(safe-area-inset-right))}
 html,body{overflow-x:hidden}.art>*,.body>*{min-width:0;max-width:100%}.body img,.body video,.hero-fig img{max-width:100%;height:auto}.body table{display:block;max-width:100%;overflow-x:auto;-webkit-overflow-scrolling:touch}.body pre,.body code{max-width:100%;overflow-x:auto}.body a,.refs a,.deck{overflow-wrap:anywhere}
 @media(max-width:900px){.toc{display:flex;flex-wrap:wrap;gap:8px;max-width:100%}.toc b{flex:0 0 100%;margin:0}.toc a{min-width:0;max-width:100%;white-space:normal;overflow-wrap:anywhere}.body{font-size:16.5px;line-height:1.7}.tldr{padding:16px 18px}}
+.wrap .wrap{padding-left:0;padding-right:0}
