@@ -22,7 +22,6 @@
 
 ## Verwandt
 
-- [Daily Hob](https://hob.philipp-paulik.de): tägliches KI-Briefing vom selben Autor.
 - [Philipp Paulik](https://philipp-paulik.de): Portfolio des Herausgebers.
 
 ## Hinweise zur Nutzung
