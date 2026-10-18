@@ -1,0 +1,408 @@
+{
+ "slug": "lhtb-2-langzeit-agenten-benchmark",
+ "lang": "de",
+ "section": "evals",
+ "type": "analysis",
+ "title": "Long-Horizon-Terminal-Bench 2.0: Was drei Stunden Agentenarbeit zeigen",
+ "dek": "Ein Preprint testet 15 KI-Modelle drei Stunden lang auf 77 Terminalaufgaben. Was Methode, Zahlen und Kosten belegen und wo die Grenzen der Studie liegen.",
+ "published": "2026-10-18T19:40:00+02:00",
+ "modified": "2026-10-18T19:40:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "KI-Agenten",
+  "Benchmark",
+  "Terminal-Bench",
+  "Evaluation",
+  "Kosten"
+ ],
+ "key_takeaways": [
+  "Umfang: 77 Aufgaben, 13 Domänen, acht Aufgabentypen, 1.145 gewertete Läufe von 15 Modellen [1].",
+  "Spitze: GPT-6-astra 37 von 77 Aufgaben (48,1 %), GPT-5.6-sol 32 (41,6 %), Kimi K3 17 (22,1 %) bei einer Schwelle von R ≥ 0,95 [1].",
+  "Binär gegen dicht: Auf den 30 Rekonstruktionsaufgaben liegt der binäre Durchschnitt bei 0,221, der Durchschnitt mit Fortschrittsleiter bei 0,653 [1].",
+  "Zeit: 42 % aller Lösungen kommen nach der ersten Stunde, 21 % nach der zweiten [1].",
+  "Kosten: Durchschnittlich geschätzte 48,41 Dollar pro Aufgabe, von 3,71 (Hunyuan hy4) bis 397,16 Dollar (GPT-6-astra) [1]."
+ ],
+ "hero": {
+  "alt": "Dunkler Betonkorridor mit drei leuchtenden violetten Kontrollpunkten auf einer waagerechten Linie, dahinter Treppenstufen aus Licht und grüne Zeichenspuren an der Wand: Sinnbild für Fortschritt über mehrere Prüfpunkte",
+  "caption": "Drei Prüfpunkte auf einer Linie: Sinnbild für Fortschritt, der über Stunden gemessen wird.",
+  "ai_generated": true,
+  "credit": "KI-generiert"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Long-Horizon-Terminal-Bench 2.0 (LHTB 2.0) umfasst 77 Terminalaufgaben mit bis zu drei Stunden Laufzeit und prüft den Fortschritt alle 30 Minuten. Laut dem Preprint löst das stärkste von 15 Modellen 37 Aufgaben (48,1 Prozent) mit mindestens 95 Prozent der Punkte, aber zu geschätzten Kosten von rund 397 Dollar pro Aufgabe. Die Autoren zeigen drei Dinge: Ein reines Bestanden/Durchgefallen-Urteil übersieht viel Fortschritt, 42 Prozent aller Lösungen entstehen erst nach der ersten Stunde, und schnelle Modelle melden den Abschluss oft zu früh."
+  },
+  {
+   "t": "h2",
+   "x": "Warum ein weiterer Benchmark?"
+  },
+  {
+   "t": "p",
+   "x": "Agenten sollen Aufgaben erledigen, die nicht in einer Antwort Platz haben: Experimente reproduzieren, kaputte Analysepipelines reparieren, Systeme optimieren. Die meisten Tests bewerten das Ergebnis am Ende mit „bestanden“ oder „nicht bestanden“. Das hat zwei Schwächen, die das Paper von Li et al. benennt: Man erfährt nicht, ob der Agent Fortschritte gemacht, sich festgefahren oder Arbeit überschrieben hat. Und lange Aufgaben von Hand zu bauen ist teuer [1]."
+  },
+  {
+   "t": "p",
+   "x": "LHTB 2.0 ist die Erweiterung eines früheren Benchmarks mit 46 Aufgaben. Sie behält diese 46, behebt Fehler in Aufgaben und Prüfumgebung und ergänzt 31 weitere. Dazu kommen drei Änderungen an der Messung: Jeder Lauf darf bis zu drei Stunden dauern (vorher 90 Minuten), der Prüfer läuft alle 30 Minuten, und statt eines Endurteils gibt es eine abgestufte Punktzahl [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Aufbau: Aufgaben, Prüfung, Punkte"
+  },
+  {
+   "t": "h3",
+   "x": "Aufgabenformat"
+  },
+  {
+   "t": "p",
+   "x": "Jede Aufgabe besteht aus einer Anweisung in natürlicher Sprache, einer Container-Umgebung mit Terminal, einer Konfiguration und einem deterministischen Prüfer oder Simulator. Der Agent sieht nur die Anweisung. Alles Weitere muss er über das Terminal erkunden, bis er fertig ist oder das Zeitbudget endet [1]. Das Format folgt Terminal-Bench und dem Harbor-Framework; als Agentenhülle dient Terminus-2 [1]."
+  },
+  {
+   "t": "h3",
+   "x": "Zwei Aufgabenfamilien"
+  },
+  {
+   "t": "p",
+   "x": "Die 77 Aufgaben teilen sich in zwei Gruppen. Die *freigegebenen Workflows* (in der Auswertung 47 Aufgaben: die 46 ursprünglichen und eine zusätzliche Optimierungsaufgabe) decken Audit und Reparatur, Optimierung, Spiele, Experiment-Reproduktion, Logikrätsel, Berufsabläufe und Engineering ab. Die *Rekonstruktionsaufgaben* (30) sind neu und werden halbautomatisch erzeugt [1]."
+  },
+  {
+   "t": "p",
+   "x": "Zur Einordnung: Abschnitt 2.2 des Papers nennt die Gruppen „46“ und „31 Aufgaben“, die Ergebnisabschnitte und die Typentabelle rechnen mit 47 und 30. Der Text erklärt die Differenz mit der einen zusätzlichen Optimierungsaufgabe. Die Summe von 77 stimmt in beiden Fällen."
+  },
+  {
+   "t": "h3",
+   "x": "Wie Rekonstruktionsaufgaben entstehen"
+  },
+  {
+   "t": "p",
+   "x": "Ausgangspunkt ist ein funktionierendes wissenschaftliches oder technisches Programm, etwa zur Registrierung von LiDAR-Punktwolken, zu chemischen Reaktionsvorlagen oder zur Raumakustik. Eine parametrisierte Referenzimplementierung erzeugt viele Szenarien. Sechs davon sieht der Agent als Verhaltensbeleg, drei bleiben für die Bewertung verborgen. Der Agent soll das Verhalten nachbauen, ohne die Referenz zu kennen, und wird an den verborgenen Fällen gemessen [1]. So lässt sich nicht einfach auswendig lernen, was öffentlich sichtbar ist."
+  },
+  {
+   "t": "h3",
+   "x": "Qualitätssicherung"
+  },
+  {
+   "t": "p",
+   "x": "Drei Bedingungen gelten laut Paper für jede Aufgabe: Die Referenzlösung läuft reproduzierbar und erreicht auf allen verborgenen Fällen die volle Punktzahl, das Startmaterial ist unvollständig genug, damit echte Arbeit nötig ist, und ein Sprachmodell (DeepSeek-V4-Pro) prüft, ob Anweisung und Prüfer zusammenpassen [1]. Das ist praktisch, bringt aber eine Abhängigkeit mit: DeepSeek V4 Pro gehört selbst zu den bewerteten Modellen. Ob das Ergebnisse beeinflusst, untersucht das Paper nach unserer Lektüre nicht."
+  },
+  {
+   "t": "h3",
+   "x": "Härtung der Auswertung"
+  },
+  {
+   "t": "p",
+   "x": "Die Autoren korrigierten drei Fehler in Harness und Konfiguration, trennten die Prüfphasen vom laufenden Agentenprozess, löschten Prüfprotokolle vor dem Fortsetzen und prüften erfolgreiche Läufe darauf, ob der Agent an verborgene Testdaten kam. Nur saubere Läufe zählen [1]. Das ist für Agenten-Benchmarks keine Selbstverständlichkeit, weil Agenten mit Terminalzugriff Prüfartefakte finden können."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung: Terminal-Bench, Zeithorizonte und was hier neu ist"
+  },
+  {
+   "t": "p",
+   "x": "LHTB steht auf dem Terminal-Bench. Terminal-Bench 2.0 (Merrill et al.) besteht aus 89 Aufgaben in Terminalumgebungen, jede mit eigener Umgebung, menschlich geschriebener Lösung und Tests; laut Abstract erreichen Spitzenmodelle und -agenten dort weniger als 65 Prozent [4]. Das zugehörige Harbor-Paket führt Tests in Containern aus und lässt sich horizontal skalieren [5]."
+  },
+  {
+   "t": "p",
+   "x": "Der erste LHTB (46 Aufgaben, neun Kategorien) setzte auf fein abgestufte Teilaufgaben mit Teilpunkten und ein Budget von 90 Minuten [2]. Die Projektseite nennt dafür 18 getestete Modelle, das Abstract des arXiv-Eintrags 17 [2][3]; das Paper zu Version 2.0 nennt diese Differenz nicht. Neu in 2.0 ist vor allem die Kombination aus halbautomatischer Aufgabenerzeugung, drei Stunden Laufzeit und Prüfpunkten im 30-Minuten-Takt."
+  },
+  {
+   "t": "p",
+   "x": "Ein anderer Ansatz zur Frage „wie lange können Agenten arbeiten?“ stammt von METR. Dort wird der 50-Prozent-Zeithorizont bestimmt: die Dauer, die Menschen typisch für Aufgaben brauchen, die ein Modell mit 50 Prozent Erfolg löst. Für Claude 3.7 Sonnet lag er laut der Arbeit bei rund 50 Minuten, und er habe sich seit 2019 etwa alle sieben Monate verdoppelt; die Autoren diskutieren selbst Grenzen der Übertragbarkeit [6]. Der Unterschied zu LHTB ist grundsätzlich: METR misst, wie lang die *menschliche* Bearbeitungszeit der lösbaren Aufgaben ist, LHTB misst, was ein Agent in *seinem* Zeitbudget schafft. Die Zahlen lassen sich deshalb nicht ineinander umrechnen."
+  },
+  {
+   "t": "h2",
+   "x": "Die Hauptergebnisse"
+  },
+  {
+   "t": "p",
+   "x": "Getestet wurden 15 Modelle bei höchster Denkstufe („xhigh“), mit drei Stunden Zeitlimit „aus Kostengründen“. Das Paper meldet 1.145 gewertete Modell-Aufgaben-Läufe [1]. Die Rangliste auf Basis der dichten Punktzahl mit Schwelle R ≥ 0,95:"
+  },
+  {
+   "t": "table",
+   "caption": "Aufgaben mit R ≥ 0,95 von 77 (Angaben aus dem Preprint, Abschnitt 4.1)",
+   "head": [
+    "Modell (Bezeichnung laut Paper)",
+    "Gelöst",
+    "Anteil"
+   ],
+   "rows": [
+    [
+     "GPT-6-astra",
+     "37",
+     "48,1 %"
+    ],
+    [
+     "GPT-5.6-sol",
+     "32",
+     "41,6 %"
+    ],
+    [
+     "Kimi K3",
+     "17",
+     "22,1 %"
+    ],
+    [
+     "Hunyuan hy4 / Gemini 3.8 Flash",
+     "je 15",
+     "je 19,5 %"
+    ],
+    [
+     "GLM-5.3",
+     "12",
+     "15,6 %"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die mittlere dichte Punktzahl liegt bei GPT-6-astra bei 0,69 und bei GPT-5.6-sol bei 0,67 [1]. Insgesamt bestehen nur 192 der 1.145 Läufe (16,8 %) [1]. Die Autoren schließen daraus, dass Langzeitausführung auch für Spitzenmodelle ein zentraler Engpass bleibt."
+  },
+  {
+   "t": "p",
+   "x": "**Der Vorsprung stammt fast vollständig aus einer Teilmenge.** Auf den 30 Rekonstruktionsaufgaben erreicht GPT-6-astra 0,93 und löst 24 Aufgaben, GPT-5.6-sol kommt auf 0,84 und 18. Auf den 47 freigegebenen Workflows liegt GPT-5.6-sol knapp vorn (0,57 gegen 0,54) [1]. Wer aus der Gesamtrangliste auf „bestes Modell für alles“ schließt, liest mehr heraus, als die Daten tragen."
+  },
+  {
+   "t": "p",
+   "x": "**Nach Veröffentlichungsdatum geordnet:** Das Paper beobachtet, dass offene Modelle grob mit dem Erscheinungsdatum besser werden, etwa Kimi K3 (16. Juli 2026) gegenüber Kimi K2.6 (20. April 2026) [1]. Das ist eine Beobachtung über wenige Modellpaare, kein Gesetz."
+  },
+  {
+   "t": "h2",
+   "x": "Wo Agenten scheitern"
+  },
+  {
+   "t": "p",
+   "x": "Systeme, Performance und Sicherheit sind die zugänglichste Kategorie (Mittelwert über alle Modelle 0,73). Jede Software- und Reverse-Engineering-Aufgabe wird von mindestens einem Modell gelöst; die am häufigsten gelöste Aufgabe, `riscv-core-debug`, schaffen 13 von 15 Modellen. Am schwersten sind wissenschaftliches Rechnen und Simulation (0,30) sowie multimodale Bildanalyse (0,31) [1]."
+  },
+  {
+   "t": "p",
+   "x": "24 Aufgaben löst kein Modell, 20 davon stammen aus den freigegebenen Workflows, 12 sind Audit-und-Reparatur-Aufgaben. Bei neun Aufgaben kommt kein Modell über 0,2, acht davon sind Audit und Reparatur. Das Paper folgert, die Schwierigkeit liege im ausdauernden Debuggen und Reparieren, nicht in einem fehlenden letzten Schritt [1]."
+  },
+  {
+   "t": "p",
+   "x": "Interessant ist die Analyse der Kommandos aus 1.135 Läufen mit vollständigem Verlauf. Zwei verschiedene Modelle teilen auf derselben Aufgabe im Schnitt nur 3 Prozent der exakten Befehle. Läufe mit mehr Dateibearbeitung erzielen tendenziell mehr Punkte, lange Wiederholungsschleifen tendenziell weniger. Unter den 800 Läufen, die auch nach drei Stunden scheitern, trennen diese Kennzahlen aber nicht gute von schlechten Fehlschlägen [1]. Es sind Korrelationen; ob mehr Bearbeitung zu Erfolg führt oder erfolgreiche Läufe einfach mehr bearbeiten, lässt sich daraus nicht ablesen."
+  },
+  {
+   "t": "h2",
+   "x": "Zeit: Warum drei Stunden das Ranking verändern"
+  },
+  {
+   "t": "p",
+   "x": "Weil der Prüfer alle 30 Minuten läuft, lässt sich der Fortschritt innerhalb eines Laufs verfolgen. Die Autoren zählen eine Aufgabe als gelöst, sobald ein Prüfpunkt R ≥ 0,95 zeigt. Das ergibt 189 Lösungen in 1.143 Läufen [1]."
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Die mittlere erfolgreiche Lösung dauert 57 Minuten. 42 % aller Lösungen entstehen nach der ersten Stunde, 21 % nach der zweiten.",
+    "Die Spitze stabilisiert sich früh: GPT-6-astra löst 27 Aufgaben innerhalb von 30 Minuten und 34 seiner 36 gelösten innerhalb einer Stunde, Median 24 Minuten.",
+    "Die Mitte nicht: Hunyuan hy4 (Median 121 Minuten) und DeepSeek V4 Pro (141 Minuten) lösen spät. Bei einem Stundenbudget läge hy4 auf Platz 9 statt 4, DeepSeek V4 Pro auf 13 statt 8.",
+    "Die mittlere Punktzahl über alle Läufe steigt von 0,29 nach 30 Minuten auf 0,43 am Ende. 267 von 693 Läufen gewinnen nach 30 Minuten mehr als 0,05 hinzu, 60 überschreiten die Schwelle erst danach."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Praxisfolge: Ein Test mit kurzem Zeitbudget ist nicht einfach eine schnellere Version desselben Tests. Er misst teilweise etwas anderes, nämlich Tempo. Wie Tempo und Ausdauer zusammenhängen, hängt außerdem von der Latenz pro Schritt ab: Sie reicht von 23 Sekunden (MiniMax M3) bis 141 Sekunden (Hunyuan hy4), und je nach Modell warten Agenten 48 bis 76 Prozent der Laufzeit auf das Modell. hy4 braucht mit median 58 Schritten weniger Schritte als GPT-5.6-sol (68), schafft im Zeitrahmen aber weniger als 80 [1]. Wer pro Schritt langsam ist, verliert bei festem Zeitbudget, nicht unbedingt bei festem Schrittbudget."
+  },
+  {
+   "t": "h3",
+   "x": "Rückschritte"
+  },
+  {
+   "t": "p",
+   "x": "65 Läufe enden mehr als 0,05 unter ihrem 30- oder 60-Minuten-Stand; 54 davon erst am Zeitlimit. Sie konzentrieren sich auf Spiele und Rätsel, wo spätere Aktionen den Zustand zerstören können. Die Autoren sehen Rückschritt nicht als dominantes Muster [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Voreilige Fertigmeldungen"
+  },
+  {
+   "t": "p",
+   "x": "Der Harness prüft jede Abschlussmeldung des Agenten und setzt den Lauf bei Misserfolg fort. Dadurch ist messbar, wie oft ein Agent „fertig“ sagt. Die schnellen Spitzenmodelle melden erstmals nach median 7 (GPT-6-astra) bzw. 8 Minuten (GPT-5.6-sol) Abschluss und tun das in nicht gelösten Läufen im Schnitt 24- bzw. 17-mal; MiniMax M3 58-mal. Langsamere Modelle wie Hunyuan hy4, GLM-5.3, Grok-4.6 und DeepSeek V4 Pro warten oft 1,5 bis 2,5 Stunden und melden nur 3 bis 14-mal. Insgesamt fallen 92 Prozent aller Abschlussmeldungen in Läufe, die nie die Prüfung bestehen [1]."
+  },
+  {
+   "t": "p",
+   "x": "Für den Alltag heißt das: Die Selbstauskunft eines Agenten ist ein schwaches Signal. Ein unabhängiger Prüfer, der den Lauf bei falscher Fertigmeldung fortsetzt, war in diesem Aufbau Teil der Methode, nicht Zubehör."
+  },
+  {
+   "t": "h2",
+   "x": "Kosten: der Preis der Spitze"
+  },
+  {
+   "t": "p",
+   "x": "Die Kosten sind aus Tokenverbrauch und öffentlichen Listenpreisen geschätzt, nicht abgerechnet [1]. Im Schnitt entstehen 27,3 Millionen Tokens, 262,5 Modellaufrufe und 94,3 Minuten Modellzeit je Aufgabe, bei 48,41 Dollar. Die Spreizung ist groß:"
+  },
+  {
+   "t": "table",
+   "caption": "Geschätzte Kosten je Aufgabe und eigene Umrechnung auf gelöste Aufgaben",
+   "head": [
+    "Modell",
+    "Kosten je Aufgabe [1]",
+    "Geschätzt für 77 Aufgaben",
+    "Pro gelöster Aufgabe (eigene Rechnung)"
+   ],
+   "rows": [
+    [
+     "Hunyuan hy4",
+     "3,71 $",
+     "ca. 286 $",
+     "ca. 19 $"
+    ],
+    [
+     "GLM-5.3",
+     "18,83 $",
+     "ca. 1.450 $",
+     "ca. 121 $"
+    ],
+    [
+     "Kimi K3",
+     "32,09 $",
+     "ca. 2.471 $",
+     "ca. 145 $"
+    ],
+    [
+     "GPT-5.6-sol",
+     "67,60 $",
+     "ca. 5.205 $",
+     "ca. 163 $"
+    ],
+    [
+     "GPT-6-astra",
+     "397,16 $",
+     "ca. 30.581 $",
+     "ca. 826 $"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die letzte Spalte haben wir selbst gebildet: Gesamtkosten (Kosten je Aufgabe mal 77) geteilt durch die Zahl der Aufgaben mit R ≥ 0,95. Sie ist eine grobe Größenordnung, weil die Kosten geschätzt sind und Fehlversuche die Rechnung dominieren. Sie zeigt aber, warum die Autoren GPT-5.6-sol mit etwa einem Sechstel der Kosten als „zweite Stufe“ der Pareto-Grenze beschreiben [1]. Die Preise stammen laut Paper aus „nächstliegenden Listungen“, wo kein genauer Treffer existierte."
+  },
+  {
+   "t": "h2",
+   "x": "Was belegt ist, was offen bleibt"
+  },
+  {
+   "t": "h3",
+   "x": "Belegt (nach Angabe des Papers)"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Auch die besten getesteten Modelle lösen weniger als die Hälfte der Aufgaben, und nur 16,8 % aller Läufe bestehen.",
+    "Binäre Bewertung unterschätzt Fortschritt deutlich: 0,221 gegen 0,653 auf den Rekonstruktionsaufgaben.",
+    "Zeitbudget ändert die Rangfolge im Mittelfeld."
+   ]
+  },
+  {
+   "t": "h3",
+   "x": "Offen oder mit Vorsicht zu lesen"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Preprint, nicht nachgerechnet.** Wir haben die Läufe nicht wiederholt und stützen uns auf die Angaben der Autoren.",
+    "**Interessenlage.** Die erstgenannte Affiliation ist Tencent HY LLM Frontier; Tencents Hunyuan hy4 gehört zu den bewerteten Modellen [1]. Das Paper legt keine Ergebnisse vor, die darauf hindeuten, wir erwähnen es der Vollständigkeit halber.",
+    "**Uneinheitliche Hülle.** Zwei Gemini-Modelle liefen laut Abbildungsunterschrift unter einem anderen Harness und fehlen in manchen Analysen [1]. Vergleiche mit ihnen sind schwächer.",
+    "**Modellnamen.** Die Bezeichnungen (etwa GPT-6-astra) übernehmen wir so, wie das Paper sie nennt. Wir haben die zugehörigen Anbieterangaben nicht einzeln geprüft.",
+    "**Eine Hülle, ein Zeitlimit.** Alle Ergebnisse gelten für Terminus-2, drei Stunden und höchste Denkstufe. Ob dieselbe Rangfolge mit anderen Agentenhüllen gilt, zeigt der Test nicht.",
+    "**Zahl der Wiederholungen.** Wir haben keine Angabe gefunden, wie viele Wiederholungen je Modell und Aufgabe laufen. Ohne sie ist unklar, wie stark der Zufall einzelne Platzierungen bewegt."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung für die Praxis"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Zeitbudget als Parameter behandeln.** Wer Agenten bewertet, sollte Prüfpunkte setzen und mehr als eine Messung nach dem Ende erheben.",
+    "**Fortschritt getrennt vom Endergebnis messen.** Eine abgestufte Bewertung zeigt, wo ein Agent steckenbleibt. Sie ist aber nur so gut wie ihre Stufen.",
+    "**Fertigmeldungen nie ungeprüft glauben.** Ein externer Test, der bei Fehlschlag weiterlaufen lässt, ist Teil eines belastbaren Aufbaus.",
+    "**Kosten pro gelöster Aufgabe ansehen,** nicht nur die Erfolgsquote."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Das ersetzt keine eigene Evaluation auf den eigenen Aufgaben. Wie man eine kleine, faire Testmenge baut, steht in [Evals: Testen statt Bauchgefühl](/evals-statt-bauchgefuehl); zu Kosten und Kontext hilft [Tokens, Kontext, Kosten](/tokens-und-kosten)."
+  },
+  {
+   "t": "h2",
+   "x": "Glossar"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Agent**: Ein Sprachmodell in einer Schleife mit Werkzeugen und Ziel, siehe [Was ein KI-Agent wirklich ist](/was-ist-ein-ki-agent).",
+    "**Harness**: Die Umgebung um das Modell: Werkzeuge, Kontextverwaltung, Ausführung und Rückmeldung.",
+    "**Dichte Belohnung (Fortschrittsleiter)**: Abgestufte Punkte für Teilziele statt nur 0 oder 1 am Ende.",
+    "**R ≥ 0,95 („soft pass“)**: Aufgabe gilt als nahezu vollständig gelöst, wenn die normierte Punktzahl mindestens 0,95 beträgt.",
+    "**Pareto-Grenze**: Die Menge an Modellen, die bei gegebenen Kosten nicht von einem anderen Modell mit höherer Leistung und geringeren Kosten übertroffen wird."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist Long-Horizon-Terminal-Bench 2.0?",
+   "a": "Ein Benchmark mit 77 Terminalaufgaben in 13 Domänen, bei dem KI-Agenten bis zu drei Stunden arbeiten und der Fortschritt alle 30 Minuten geprüft wird. Er erweitert einen früheren Benchmark mit 46 Aufgaben."
+  },
+  {
+   "q": "Welches Modell schneidet laut Paper am besten ab?",
+   "a": "GPT-6-astra löst 37 von 77 Aufgaben (48,1 Prozent) mit mindestens 95 Prozent der Punkte, vor GPT-5.6-sol mit 32 (41,6 Prozent). Der Vorsprung stammt weitgehend aus den 30 Rekonstruktionsaufgaben; auf den freigegebenen Workflows liegt GPT-5.6-sol knapp vorn."
+  },
+  {
+   "q": "Warum ist die Laufzeit so wichtig?",
+   "a": "Weil 42 Prozent der Lösungen erst nach der ersten Stunde entstehen. Ein kurzes Zeitbudget würde die Rangfolge im Mittelfeld verändern, etwa Hunyuan hy4 von Platz 4 auf Platz 9."
+  },
+  {
+   "q": "Sind die Kosten gemessen oder geschätzt?",
+   "a": "Geschätzt: Das Paper berechnet sie aus dem Tokenverbrauch und öffentlichen Listenpreisen. Im Schnitt sind es 48,41 Dollar je Aufgabe."
+  },
+  {
+   "q": "Wurde das Paper begutachtet?",
+   "a": "Es ist ein Preprint auf arXiv. Hinweise auf ein abgeschlossenes Peer-Review haben wir nicht gefunden, und wir haben die Ergebnisse nicht selbst nachgerechnet."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Long-Horizon-Terminal-Bench 2.0: Automating Diverse Task Construction and Measuring Sustained Agent Progress",
+   "publisher": "arXiv (Li et al.)",
+   "url": "https://arxiv.org/abs/2610.14146",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Long-Horizon-Terminal-Bench: Testing the Limits of Agents on Long-Horizon Terminal Tasks with Dense Reward-Based Grading",
+   "publisher": "arXiv (Li et al.)",
+   "url": "https://arxiv.org/abs/2607.08964",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Long-Horizon Terminal-Bench: Where Agents Run Out of Steam (Projektseite)",
+   "publisher": "Tencent HY LLM Frontier / zli12321.github.io",
+   "url": "https://zli12321.github.io/LHTB/",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Terminal-Bench: Benchmarking Agents on Hard, Realistic Tasks in Command Line Interfaces",
+   "publisher": "arXiv (Merrill et al.)",
+   "url": "https://arxiv.org/abs/2601.11868",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Terminal-Bench 2.0 and Harbor",
+   "publisher": "tbench.ai (Merrill, Shaw)",
+   "url": "https://www.tbench.ai/news/announcement-2-0",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Measuring AI Ability to Complete Long Software Tasks",
+   "publisher": "arXiv / NeurIPS 2025 (Kwa et al., METR)",
+   "url": "https://arxiv.org/abs/2503.14499",
+   "accessed": "2026-10-18"
+  }
+ ],
+ "method": "Dieser Beitrag wertet das genannte Preprint aus. Alle Zahlen stammen aus dem Paper, außer den ausdrücklich als „eigene Rechnung“ gekennzeichneten Umrechnungen. Wir haben keine Läufe selbst wiederholt. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet; Fehler bitte an die im Impressum genannte Adresse melden. Das Titelbild ist KI-generiert und im Bild gekennzeichnet.",
+ "limitations": "Preprint ohne uns bekanntes abgeschlossenes Peer-Review; Zahlen nicht nachgerechnet; Kosten sind Schätzungen der Autoren; eine Agentenhülle (Terminus-2), ein Zeitlimit (drei Stunden).",
+ "related": [
+  "evals-statt-bauchgefuehl",
+  "tokens-und-kosten"
+ ]
+}

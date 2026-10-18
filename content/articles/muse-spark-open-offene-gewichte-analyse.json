@@ -1,0 +1,363 @@
+{
+ "slug": "muse-spark-open-offene-gewichte-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Muse Spark Open: Was die offenen Gewichte technisch bedeuten",
+ "dek": "Metas 816-Milliarden-Modell im Check: Architektur, Speicherbedarf, Lizenzbedingungen und eine Benchmark-Bilanz, die eher gemischt ausfällt als überlegen.",
+ "published": "2026-10-18T19:55:00+02:00",
+ "modified": "2026-10-18T19:55:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Muse Spark Open",
+  "Meta",
+  "Open Weights",
+  "Mixture of Experts",
+  "Lizenz",
+  "Benchmarks"
+ ],
+ "key_takeaways": [
+  "816 Mrd. Parameter, 42 Mrd. aktiv, 1 Mio. Token Kontext, Eingaben aus Text, Bild, Audio und Video, Ausgabe nur Text [2][3].",
+  "Speicherbedarf laut Modellkarte: mindestens 700 GB (NVFP4) bzw. 2 TB (BF16); unsere Überschlagsrechnung kommt auf etwa 674 GB bzw. 1,9 TB.",
+  "Nach Metas eigener Tabelle liegt das Modell in 7 von 20 Fähigkeitstests vor allen Vergleichsmodellen, bei Terminal-Bench 2.1 und GPQA dahinter [3].",
+  "Lizenz: Namensnennung Pflicht, Umsatzschwelle von 20 Mio. US-Dollar für Modell-als-Dienst-Angebote, Nutzungsrichtlinie [3].",
+  "Benchmark- und Sicherheitswerte stammen von Meta; die veröffentlichten Parameterangaben ergeben bei unserer Nachrechnung eine Lücke."
+ ],
+ "hero": {
+  "alt": "Raster aus durchsichtigen Würfeln, von denen acht golden leuchten und über feine Linien mit einem Punkt verbunden sind: Sinnbild für acht aktive Experten aus 256 in einem Mixture-of-Experts-Modell",
+  "caption": "Acht von 256 Experten pro Schicht rechnen mit: Sinnbild für ein Mixture-of-Experts-Modell.",
+  "ai_generated": true,
+  "credit": "KI-generiert"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Meta hat am 15. Oktober 2026 die Gewichte von Muse Spark Open veröffentlicht: ein multimodales Mixture-of-Experts-Modell mit 816 Milliarden Parametern, davon 42 Milliarden pro Token aktiv, und einem Kontextfenster von einer Million Token [1][2][3]. Meta nennt es „das leistungsfähigste offene US-Modell bisher“. Dieser Beitrag trennt, was sich aus den Primärquellen belegen lässt (Architekturangaben, Speicherbedarf, Lizenzbedingungen), von dem, was Herstellerangabe bleibt (Benchmarks, Sicherheitswerte), und rechnet einige Zahlen selbst nach."
+  },
+  {
+   "t": "h2",
+   "x": "Was Meta veröffentlicht hat"
+  },
+  {
+   "t": "p",
+   "x": "Die Gewichte liegen auf Hugging Face in zwei Fassungen: BF16 und NVFP4, eine 4-Bit-Variante für NVIDIA-Blackwell-Karten [2][3]. Die Modellkarte nennt Meta Superintelligence Labs als Autor, ein Vokabular von 202.048 Einträgen, Training mit Daten aus mehr als 100 Sprachen sowie Eingaben aus Text, Bild, Video und Audio bei reiner Textausgabe [3]. Zusätzlich gibt es laut Meta eine Sicherheits-Nachtrainingsstufe speziell für die offene Version, weil sie ohne die Schutzmechanismen eines gehosteten Dienstes laufen kann [1][3][5]."
+  },
+  {
+   "t": "p",
+   "x": "Verfügbar ist das Modell über API-Anbieter (Baseten, Fireworks AI, Groq, Modal, Nebius, OpenRouter, Together AI) und als Download über Amazon SageMaker AI, Google Cloud Model Garden, Hugging Face und Microsoft Foundry Models [1]. Es läuft laut Meta unter anderem auf SGLang, vLLM, TensorRT-LLM, Transformers, MLX, llama.cpp und Unsloth [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Architektur im Detail"
+  },
+  {
+   "t": "table",
+   "caption": "Architekturangaben laut Modellkarte und Hugging-Face-Blog [2][3]",
+   "head": [
+    "Merkmal",
+    "Angabe"
+   ],
+   "rows": [
+    [
+     "Gesamtparameter / aktiv pro Token",
+     "816 Mrd. / 42 Mrd."
+    ],
+    [
+     "Schichten",
+     "62, Hidden-Dimension 8192"
+    ],
+    [
+     "Attention",
+     "Grouped-Query: 128 Query-Köpfe, 16 Key/Value-Köpfe, Kopfdimension 64; Ausgangsgate, QK-Norm"
+    ],
+    [
+     "Experten",
+     "256 pro MoE-Schicht, 8 pro Token (Top-k-Routing)"
+    ],
+    [
+     "Experten-Netz",
+     "8192 → 4096 → 8192, laut HF-Blog etwa 97 % der Parameter"
+    ],
+    [
+     "Embeddings",
+     "getrennte Ein- und Ausgabematrix, je 202.048 × 8192 ≈ 1,66 Mrd."
+    ],
+    [
+     "Wahrnehmung",
+     "Bildencoder mit 1,8 Mrd. Parametern, 50 Schichten, 14×14-Patches; Audio: ein Token je 80 ms (12,5 Token pro Sekunde)"
+    ],
+    [
+     "Kontext",
+     "bis 1.048.576 Token bei der Inferenz"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wie bei jedem MoE-Modell gilt: Gerechnet wird mit etwa 42 Milliarden Parametern pro Token, im Speicher liegen aber alle 256 Experten. Man bekommt also die Rechengeschwindigkeit eines mittelgroßen Modells, braucht aber den Speicher eines sehr großen [2]. Das ist der Kern der Hardwarefrage weiter unten."
+  },
+  {
+   "t": "p",
+   "x": "Ein Detail mit Folgen für lange Kontexte: Mit 16 Key/Value-Köpfen und Kopfdimension 64 über 62 Schichten speichert jedes Token 2 × 16 × 64 × 62 = 126.976 Werte im KV-Cache. In BF16 sind das rund 254 KB je Token und für eine Million Token etwa 266 GB, was der HF-Blog ebenfalls so angibt [2]. Wir haben die Rechnung nachvollzogen und kommen auf 266,3 GB."
+  },
+  {
+   "t": "h2",
+   "x": "Nachgerechnet: Die Parameterzahlen passen nicht ganz zusammen"
+  },
+  {
+   "t": "p",
+   "x": "Beim Gegenprüfen der Herstellerangaben fiel uns eine Lücke auf. Nimmt man den Experten-Aufbau wörtlich (jede Schicht 256 Experten, jeder Experte mit zwei Matrizen 8192 × 4096), ergeben sich 62 × 256 × 67,1 Mio. ≈ 1,07 Billionen Parameter allein für die Experten. Das liegt deutlich über 816 Milliarden. Die Angabe „Experten sind etwa 97 Prozent der Parameter“ (≈ 792 Mrd.) würde bei 62 MoE-Schichten außerdem Experten mit nur etwa 50 Mio. Parametern bedeuten, nicht 67 Mio. Auch die Gegenrechnung der aktiven Parameter geht nur ungefähr auf: 8 Experten × 62 Schichten × 67,1 Mio. ≈ 33 Mrd., dazu Attention (nach unserer Rechnung rund 9,4 Mrd.) und die Ausgabematrix (1,66 Mrd.) ergeben etwa 44 Mrd., gegen angegebene 42 Mrd."
+  },
+  {
+   "t": "p",
+   "x": "Das ist kein Beleg für einen Fehler. Mögliche Erklärungen sind, dass nicht alle Schichten MoE-Schichten sind, dass die Expertenmaße von der vereinfachten Beschreibung abweichen oder dass es Besonderheiten gibt, die die Texte nicht nennen. Der Anbieter Baseten spricht zudem von einem „komprimierten MoE-Block“ und „hybrider globaler/lokaler Attention“ sowie von 42,7 Milliarden aktiven Parametern [6]. Die Konfigurationsdatei (config.json), die das klären würde, war für uns nicht abrufbar (Zugriff nur nach Zustimmung zur Lizenz). Bis dahin gilt: Die Gesamtzahlen sind Herstellerangaben, unsere Rechnung ist eine Plausibilitätsprüfung mit vereinfachten Annahmen."
+  },
+  {
+   "t": "h2",
+   "x": "Hardware: Was läuft wo?"
+  },
+  {
+   "t": "p",
+   "x": "Die Modellkarte nennt für den Betrieb auf eigener Hardware mindestens 700 GB GPU-Speicher für NVFP4 und 2 TB für BF16 [3]. Das passt zu einer Überschlagsrechnung: 816 Mrd. Parameter × 0,5 Byte ≈ 408 GB für die 4-Bit-Gewichte, plus 266 GB KV-Cache bei vollem Kontext, ergibt etwa 674 GB. In BF16 sind es 1,63 TB Gewichte plus der Cache, also rund 1,9 TB. Beide Werte liegen knapp unter den Herstellerangaben, wie man es mit Aktivierungen und Overhead erwartet. Die Rechnung ist grob (Skalierungsfaktoren der Quantisierung und Overhead sind nicht eingerechnet)."
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Rechenzentrum: Der HF-Blog nennt für BF16 vier Knoten mit je 8 H200-GPUs (Tensor-Parallelität 32) und für NVFP4 einen einzelnen B200-Knoten; ein vorgetesteter Inference-Endpoint läuft mit NVFP4 auf 8 × RTX Pro 6000 (98 GB) bei 131.072 Token Kontext oder auf 8 × H200 (141 GB) bei der vollen Million [2].",
+    "Apple-Desktop: Meta nennt zwei Mac Studios mit M5 Ultra (je bis 512 GB, zusammen ein Terabyte einheitlicher Speicher) mit MLX, ohne Geschwindigkeitsangabe [1]. Hugging Face testete eine 3-Bit-Quantisierung (oQ3e, etwa 344 GB) auf einem M3 Ultra mit 512 GB: rund 225 Token pro Sekunde beim Einlesen und 21 Token pro Sekunde beim Erzeugen, gemessen mit einem Prompt von 1.024 Token und 128 erzeugten Token [2]. Das ist ein sehr kurzer Test, er sagt nichts über lange Kontexte.",
+    "Eigene Überschlagsrechnung dazu: Neben 344 GB Gewichten bleiben auf 512 GB höchstens etwa 168 GB. Bei 254 KB je Token im BF16-KV-Cache reichen sie rechnerisch für rund 660.000 Token, bevor Betriebssystem und Aktivierungen etwas abziehen. Die volle Million Token würde dort also nicht in BF16 hineinpassen. Mit einem quantisierten Cache sähe das anders aus; dazu haben wir keine Angaben gefunden."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer kleiner anfangen will: Für lokale Nutzung lohnt der Vergleich in [Lokale Modelle: Wann sich der eigene Rechner lohnt](/lokale-modelle). Muse Spark Open ist kein Gerät für den Laptop, sondern für Workstation-Cluster oder gemietete Rechenzeit."
+  },
+  {
+   "t": "h2",
+   "x": "Denkaufwand: ein Parameter mit Kostenfolgen"
+  },
+  {
+   "t": "p",
+   "x": "Muse Spark Open denkt immer. Das „Reasoning Effort“ lässt sich auf low, medium, high oder xhigh stellen (intern 16, 64, 256 und 512), ausschalten lässt sich das Denken nicht, und der Standard ist xhigh [2][3]. Die Modellkarte empfiehlt high oder xhigh für komplexe Aufgaben und Coding, und Muse Spark Open läuft laut Karte in allen Benchmarks mit xhigh [3]. Für die Praxis heißt das: Die veröffentlichten Werte gehören zur teuersten Einstellung. Wie viele Token die Benchmarks dabei verbrauchten und was ein Lauf kostet, nennen die gelesenen Quellen nicht. Dass der Tokenverbrauch ein eigenes Messproblem ist, zeigt unsere Analyse zu [Long-Horizon-Terminal-Bench 2.0](/lhtb-2-langzeit-agenten-benchmark)."
+  },
+  {
+   "t": "h2",
+   "x": "Benchmarks: Herstellerangaben, gemischte Bilanz"
+  },
+  {
+   "t": "p",
+   "x": "Die Modellkarte vergleicht Muse Spark Open mit sieben offenen Modellen ähnlicher Größe: Inkling, Nemotron 3 Ultra, Beam, Mistral Large 4, Qwen3.8-2.4T-A95B, GLM 5.3 und Kimi K3 [3]. Alle Werte stammen von Meta. Eine unabhängige Nachprüfung haben wir nicht gefunden, und bei den Coding-Tests steht „Preferred harness“, also der jeweils bevorzugte Agentenaufbau, nicht ein einheitlicher."
+  },
+  {
+   "t": "table",
+   "caption": "Auswahl aus der Benchmark-Tabelle der Modellkarte [3] (Herstellerangaben, höher ist besser)",
+   "head": [
+    "Test",
+    "Muse Spark Open (xhigh)",
+    "Bester anderer Wert in der Tabelle"
+   ],
+   "rows": [
+    [
+     "Artificial Analysis Intelligence Index",
+     "39",
+     "45 (GLM 5.3)"
+    ],
+    [
+     "MCP-Atlas",
+     "89,2",
+     "84,5 (Qwen3.8-2.4T-A95B)"
+    ],
+    [
+     "HLE-Diamond (ohne Werkzeuge)",
+     "26,1",
+     "22,2 (Kimi K3)"
+    ],
+    [
+     "GPQA Diamond",
+     "89,0",
+     "93,5 (Qwen3.8 und Kimi K3)"
+    ],
+    [
+     "Terminal-Bench 2.1 (Terminus 2)",
+     "76,4",
+     "85,0 (Kimi K3)"
+    ],
+    [
+     "DeepSWE 1.1",
+     "60",
+     "68 (Kimi K3)"
+    ],
+    [
+     "OSWorld Verified",
+     "80,4",
+     "84,8 (Kimi K3)"
+    ],
+    [
+     "GDPVal-AA v2",
+     "1401",
+     "1653 (GLM 5.3)"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zählt man alle 20 Fähigkeitszeilen der Tabelle (ohne die beiden Sicherheitstests), liegt Muse Spark Open bei 7 vorn: JobBench, MCP-Atlas, HLE-Diamond, AA Omniscience, ZeroBench, SimpleVQA und IntPhys2. Bei den übrigen 13 liegt mindestens ein anderes Modell der Tabelle vorn. In mehreren Zeilen sind nur zwei Vergleichswerte angegeben, und bei einigen fehlt Beam ganz. Beam liegt bei GPQA Diamond (90,5 gegen 89,0) und Terminal-Bench 2.1 (80,1 gegen 76,4) vor Muse Spark Open. Die Zählung ist unsere eigene und setzt voraus, dass die Zahlen der Karte stimmen."
+  },
+  {
+   "t": "p",
+   "x": "Was das für die Aussage „leistungsfähigstes offenes US-Modell“ heißt: Die Tabelle erlaubt es nicht, diesen Titel zu prüfen. Sie enthält wenige Vergleichsmodelle mit durchgehenden Werten, und die Herkunftsländer der Modelle sind nicht Teil der Tabelle. Das Profil ist eher: stark bei Werkzeugnutzung (MCP-Atlas), Wissensfragen und Teilen der Multimodalität, schwächer bei Terminal-Aufgaben und breiten Intelligenz-Indizes als die in der Tabelle aufgeführten Kimi-, GLM- und Qwen-Modelle."
+  },
+  {
+   "t": "h2",
+   "x": "Sicherheitsangaben: auffällig, aber nur von Meta"
+  },
+  {
+   "t": "p",
+   "x": "Meta bewertet vier Bereiche: Inhaltssicherheit, agentische Risiken, Privatsphäre und „Preparedness“ (Chemie/Biologie, Cyber, Kontrollverlust) [3]. Genannt werden unter anderem: 99,2 % abgewehrte Jailbreaks im internen Cyber-Test und 94,8 % über drei öffentliche Cyber-Tests aggregiert (Kimi K3 im selben Aufbau 75,5 % und 70,2 %), mehr als 98 % Ablehnung schädlicher Anfragen im BioTIER-Test von SecureBio, 98,1 % Ehrlichkeitsrate im MASK-Benchmark und 0 % Fehlverhalten im Agentic-Misalignment-Test [3]."
+  },
+  {
+   "t": "p",
+   "x": "Zwei Tabellenzeilen fallen auf. Im adaptiven StrongREJECT-v2-Test (niedriger ist besser) steht für Muse Spark Open 0,5, für die anderen Modelle 62,9 bis 86,4. Im statischen FORTRESS-Test hat Muse Spark Open den niedrigsten ARS-Wert (5,8 gegen 21,6 bis 28,2) und zugleich den höchsten ORS-Wert (17,4 gegen 2,7 bis 13,3) [3]. Die Abkürzungen erklärt der abgerufene Text nicht. Sollte ORS Überablehnung messen, was naheliegt, deutet das auf einen Zielkonflikt zwischen Schutz und Nutzbarkeit hin. Das ist eine Vermutung, keine Aussage der Quelle. So große Abstände wie bei StrongREJECT sind außergewöhnlich und brauchen Gegenprüfung durch Dritte, bevor man sie als Eigenschaft des Modells annimmt. Meta schränkt selbst ein: Die Tests gelten für den veröffentlichten Checkpoint unter den getesteten Bedingungen; Veränderungen wie Feintuning können die Sicherheit verschlechtern [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Lizenz: offen, aber mit Bedingungen"
+  },
+  {
+   "t": "p",
+   "x": "Die Gewichte stehen unter der „Muse Model License“. Aus dem abgerufenen Lizenztext (die Bedingung 1 war darin nicht sichtbar) ergibt sich [3]:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Erlaubt sind Nutzung, Kopie, Änderung (auch Feintuning), Ableitungen, Destillation, Zusammenführung, Veröffentlichung, Weitergabe und Verkauf, vorbehaltlich der Bedingungen.",
+    "Bedingung 2: „Built with Muse Spark Open“ muss in Produkten oder Dokumentation sichtbar genannt werden, auch bei Ableitungen, zu denen Modelle zählen, die mit Hilfe der Ausgaben trainiert wurden.",
+    "Bedingung 3: Wer Modelle als Dienst über eine Schnittstelle anbietet und zusammen mit verbundenen Unternehmen mehr als 20 Millionen US-Dollar Bruttoumsatz in zwölf Monaten erzielt, muss Meta benachrichtigen und eine gesonderte schriftliche Vereinbarung schließen. Ausgenommen sind interne Nutzung, Forschung und eigene Produktfunktionen, die kein „Model as a Service“ sind.",
+    "Meta erhebt keinen Eigentumsanspruch auf Ausgaben des Modells (Bedingung 4). Haftung und Gewährleistung sind ausgeschlossen.",
+    "Eine Nutzungsrichtlinie verbietet unter anderem Gesetzesverstöße, Desinformation und Betrug sowie militärische und nukleare Anwendungen. Das Modell ist nicht für Personen unter 18 vorgesehen [3]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Ob diese Lizenz nach der Open-Source-Definition als Open Source gilt, haben wir nicht geprüft. Meta selbst spricht von „Open Weights“ und von „limitierten kommerziellen Bedingungen“ [1]. Für Unternehmen mit Dienstangebot ist vor allem Bedingung 3 relevant. Wir sind keine Rechtsberatung: Für den kommerziellen Einsatz sollte der Originaltext von jemandem gelesen werden, der ihn bewerten darf."
+  },
+  {
+   "t": "h2",
+   "x": "Training und Feintuning"
+  },
+  {
+   "t": "p",
+   "x": "Die Modellkarte nennt als Trainingsdaten Text, Bilder, Audio und Video aus öffentlichen Quellen, Internet-Crawls, zugekauften Daten, Metas Produkten sowie synthetischen und von Vendor-Netzwerken aufbereiteten Daten [3]. Dateninhalte werden nicht aufgelistet."
+  },
+  {
+   "t": "p",
+   "x": "Zum Feintuning zeigt der HF-Blog ein Beispiel: 500 Schritte in rund zwei Stunden auf 64 H100-GPUs bei etwa 8.000 Token pro Sekunde, wobei die mittlere Token-Genauigkeit von 72 % auf 84 % stieg und der Loss von 1,26 auf 0,57 fiel [2]. Das sind Trainingskennzahlen auf dem Datensatz des Beispiels. Sie belegen einen funktionierenden Lauf, nicht bessere Antworten in der Praxis."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung: Was belegt ist, was offen bleibt"
+  },
+  {
+   "t": "h3",
+   "x": "Belegt (durch Herstellerdokumente)"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Gewichte sind in BF16 und NVFP4 verfügbar; 816 Mrd. Parameter, 42 Mrd. aktiv, 1 Mio. Token Kontext, Eingabe Text/Bild/Audio/Video.",
+    "Der Speicherbedarf liegt laut Karte bei mindestens 700 GB (NVFP4) bzw. 2 TB (BF16); unsere Überschlagsrechnung stützt das.",
+    "Die Lizenz enthält Namensnennung, eine Umsatzschwelle für Modell-als-Dienst-Angebote und eine Nutzungsrichtlinie."
+   ]
+  },
+  {
+   "t": "h3",
+   "x": "Offen oder nur Herstellerangabe"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Alle Benchmark- und Sicherheitswerte stammen von Meta. Der Evaluationsbericht, auf den Blog und Modellkarte verweisen, war für uns nicht einsehbar.",
+    "Die Parameterbilanz geht aus den veröffentlichten Beschreibungen nicht sauber auf (siehe oben); die Konfigurationsdatei war nicht abrufbar.",
+    "Tokenverbrauch und Kosten bei xhigh sind in den Quellen nicht angegeben.",
+    "Wir haben das Modell nicht selbst ausgeführt und keine eigenen Tests gemacht."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Glossar"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Mixture of Experts (MoE)**: Architektur, bei der pro Token nur ein Teil der Teilnetze („Experten“) rechnet.",
+    "**Aktive Parameter**: Die Parameter, die pro Token tatsächlich in die Rechnung eingehen.",
+    "**KV-Cache**: Zwischenspeicher der Aufmerksamkeitsschicht, der mit der Kontextlänge wächst.",
+    "**NVFP4**: 4-Bit-Zahlenformat für NVIDIA-Blackwell-GPUs, das den Speicherbedarf der Gewichte etwa auf ein Viertel von BF16 senkt.",
+    "**Open Weights**: Veröffentlichte Modellgewichte, die nicht zwingend eine offene Lizenz im Sinne von Open Source bedeuten.",
+    "**Reasoning Effort**: Stellgröße, wie viel das Modell vor der Antwort „nachdenkt“."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist Muse Spark Open?",
+   "a": "Ein von Meta am 15. Oktober 2026 als Open Weights veröffentlichtes multimodales Mixture-of-Experts-Modell mit 816 Milliarden Parametern, 42 Milliarden aktiv pro Token und einer Million Token Kontext."
+  },
+  {
+   "q": "Kann ich Muse Spark Open lokal betreiben?",
+   "a": "Nur mit sehr viel Speicher: Die Modellkarte nennt mindestens 700 GB GPU-Speicher für NVFP4 und 2 TB für BF16. Meta zeigt den Betrieb auf zwei Mac Studios mit M5 Ultra; Hugging Face testete eine 3-Bit-Fassung auf einem M3 Ultra mit 512 GB."
+  },
+  {
+   "q": "Darf man das Modell kommerziell nutzen?",
+   "a": "Ja, mit Bedingungen: Namensnennung („Built with Muse Spark Open“), eine Nutzungsrichtlinie und für Modell-als-Dienst-Anbieter mit mehr als 20 Millionen US-Dollar Jahresumsatz eine Vereinbarung mit Meta. Für verbindliche Aussagen den Lizenztext prüfen lassen."
+  },
+  {
+   "q": "Ist Muse Spark Open das beste offene Modell?",
+   "a": "Das lässt sich aus Metas Tabelle nicht ableiten: Das Modell liegt in 7 von 20 Fähigkeitstests vorn, bei Terminal-Bench 2.1 und GPQA Diamond aber hinter mehreren Vergleichsmodellen. Alle Werte stammen von Meta."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Introducing Muse Spark Open, The Most Capable US Open-Weight Model to Date",
+   "publisher": "Meta AI Research",
+   "url": "https://research.meta.ai/blog/muse-spark-open",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Welcome Muse Spark Open: open-weight frontier multimodal mixture-of-experts model from Meta",
+   "publisher": "Hugging Face (Pedro Cuenca)",
+   "url": "https://huggingface.co/blog/meta-muse-spark-open",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "meta-models/Muse-Spark-Open-816B-A42B: Muse Model License und Model Card",
+   "publisher": "Hugging Face / Meta",
+   "url": "https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Muse Spark Open (Collection)",
+   "publisher": "Hugging Face / meta-models",
+   "url": "https://huggingface.co/collections/meta-models/muse-spark-open",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Muse Spark Is Now an Open-Weights Model",
+   "publisher": "PyTorch Foundation",
+   "url": "https://pytorch.org/blog/muse-spark-open/",
+   "accessed": "2026-10-18"
+  },
+  {
+   "title": "Muse Spark Open, an open-weight model for coding agents",
+   "publisher": "Baseten",
+   "url": "https://www.baseten.co/blog/muse-spark-open-launch/",
+   "accessed": "2026-10-18"
+  }
+ ],
+ "method": "Grundlage sind die sechs genannten Quellen, die wir am 18. Oktober 2026 abgerufen haben. Rechenschritte (KV-Cache, Speicher, Parameterbilanz, Zählung der Benchmark-Zeilen) sind eigene Überschlagsrechnungen und im Text gekennzeichnet. Wir haben das Modell nicht ausgeführt. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Alle Benchmark- und Sicherheitswerte sind Herstellerangaben; config.json war nicht abrufbar; Evaluationsbericht nicht eingesehen; Lizenzbedingung 1 im abgerufenen Text nicht sichtbar; keine eigenen Tests.",
+ "related": [
+  "lhtb-2-langzeit-agenten-benchmark",
+  "lokale-modelle"
+ ]
+}
