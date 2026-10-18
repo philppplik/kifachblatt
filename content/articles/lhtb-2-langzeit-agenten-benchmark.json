@@ -6,7 +6,7 @@
  "title": "Long-Horizon-Terminal-Bench 2.0: Was drei Stunden Agentenarbeit zeigen",
  "dek": "Ein Preprint testet 15 KI-Modelle drei Stunden lang auf 77 Terminalaufgaben. Was Methode, Zahlen und Kosten belegen und wo die Grenzen der Studie liegen.",
  "published": "2026-10-18T19:32:00+02:00",
- "modified": "2026-10-18T19:32:00+02:00",
+ "modified": "2026-10-18T20:05:00+02:00",
  "author": "philipp-paulik",
  "tags": [
   "KI-Agenten",
@@ -17,10 +17,10 @@
  ],
  "key_takeaways": [
   "Umfang: 77 Aufgaben, 13 Domänen, acht Aufgabentypen, 1.145 gewertete Läufe von 15 Modellen [1].",
-  "Spitze: GPT-6-astra 37 von 77 Aufgaben (48,1 %), GPT-5.6-sol 32 (41,6 %), Kimi K3 17 (22,1 %) bei einer Schwelle von R ≥ 0,95 [1].",
+  "Spitze: GPT-6-astra 37 von 77 Aufgaben (48,1 %), GPT-5.6-sol 32 (41,6 %). Eigene Rechnung: Die 95-%-Intervalle beider Modelle überlappen weit, der Abstand von fünf Aufgaben ist statistisch nicht abgesichert [1].",
   "Binär gegen dicht: Auf den 30 Rekonstruktionsaufgaben liegt der binäre Durchschnitt bei 0,221, der Durchschnitt mit Fortschrittsleiter bei 0,653 [1].",
   "Zeit: 42 % aller Lösungen kommen nach der ersten Stunde, 21 % nach der zweiten [1].",
-  "Kosten: Durchschnittlich geschätzte 48,41 Dollar pro Aufgabe, von 3,71 (Hunyuan hy4) bis 397,16 Dollar (GPT-6-astra) [1]."
+  "Kosten: Durchschnittlich geschätzte 48,41 Dollar pro Aufgabe, von 3,71 (Hunyuan hy4) bis 397,16 Dollar (GPT-6-astra). Eigene Rechnung: Der Abstand liegt vor allem am Preis je Token (ca. 10,08 gegen 2,02 Dollar je Mio. Token), nicht am Verbrauch [1]."
  ],
  "hero": {
   "alt": "Dunkler Betonkorridor mit drei leuchtenden violetten Kontrollpunkten auf einer waagerechten Linie, dahinter Treppenstufen aus Licht und grüne Zeichenspuren an der Wand: Sinnbild für Fortschritt über mehrere Prüfpunkte",
@@ -166,6 +166,27 @@
    "x": "**Nach Veröffentlichungsdatum geordnet:** Das Paper beobachtet, dass offene Modelle grob mit dem Erscheinungsdatum besser werden, etwa Kimi K3 (16. Juli 2026) gegenüber Kimi K2.6 (20. April 2026) [1]. Das ist eine Beobachtung über wenige Modellpaare, kein Gesetz."
   },
   {
+   "t": "chart",
+   "kind": "column",
+   "title": "Binäre gegen dichte Bewertung",
+   "alt": "Auf den 30 Rekonstruktionsaufgaben liegt der Durchschnitt bei binärer Bewertung bei 0,221 und bei dichter Bewertung mit Fortschrittsleiter bei 0,653, knapp das Dreifache.",
+   "caption": "Mittlere Punktzahl auf den 30 Rekonstruktionsaufgaben.",
+   "source": "Li et al., LHTB 2.0, Abstract und Abschnitt 1 [1]",
+   "labels": [
+    "binär",
+    "dicht"
+   ],
+   "series": [
+    {
+     "name": "Mittlere Punktzahl",
+     "values": [
+      0.221,
+      0.653
+     ]
+    }
+   ]
+  },
+  {
    "t": "h2",
    "x": "Wo Agenten scheitern"
   },
@@ -180,6 +201,77 @@
   {
    "t": "p",
    "x": "Interessant ist die Analyse der Kommandos aus 1.135 Läufen mit vollständigem Verlauf. Zwei verschiedene Modelle teilen auf derselben Aufgabe im Schnitt nur 3 Prozent der exakten Befehle. Läufe mit mehr Dateibearbeitung erzielen tendenziell mehr Punkte, lange Wiederholungsschleifen tendenziell weniger. Unter den 800 Läufen, die auch nach drei Stunden scheitern, trennen diese Kennzahlen aber nicht gute von schlechten Fehlschlägen [1]. Es sind Korrelationen; ob mehr Bearbeitung zu Erfolg führt oder erfolgreiche Läufe einfach mehr bearbeiten, lässt sich daraus nicht ablesen."
+  },
+  {
+   "t": "h2",
+   "x": "Wie belastbar sind die Platzierungen? (eigene Rechnung)"
+  },
+  {
+   "t": "p",
+   "x": "Eine Rangliste aus 77 Aufgaben hat eine Stichprobengröße, die man ausrechnen kann. Wir haben für die sechs Modelle, deren Lösungszahl das Paper nennt, 95-Prozent-Konfidenzintervalle nach Wilson berechnet [1]. Das Ergebnis ist deutlicher, als die Rangfolge vermuten lässt:"
+  },
+  {
+   "t": "table",
+   "caption": "Wilson-Intervalle (95 %) für den Anteil gelöster Aufgaben, n = 77 (eigene Rechnung)",
+   "head": [
+    "Modell",
+    "Gelöst",
+    "Anteil",
+    "Intervall"
+   ],
+   "rows": [
+    [
+     "GPT-6-astra",
+     "37",
+     "48,1 %",
+     "37,3 bis 59,0 %"
+    ],
+    [
+     "GPT-5.6-sol",
+     "32",
+     "41,6 %",
+     "31,2 bis 52,7 %"
+    ],
+    [
+     "Kimi K3",
+     "17",
+     "22,1 %",
+     "14,3 bis 32,5 %"
+    ],
+    [
+     "Hunyuan hy4",
+     "15",
+     "19,5 %",
+     "12,2 bis 29,7 %"
+    ],
+    [
+     "Gemini 3.8 Flash",
+     "15",
+     "19,5 %",
+     "12,2 bis 29,7 %"
+    ],
+    [
+     "GLM-5.3",
+     "12",
+     "15,6 %",
+     "9,1 bis 25,3 %"
+    ]
+   ]
+  },
+  {
+   "t": "figure",
+   "file": "lhtb-2-langzeit-agenten-benchmark-2.jpg",
+   "alt": "Balkendiagramm: GPT-6-astra löst 37 von 77 Aufgaben (48,1 Prozent, Intervall 37 bis 59 Prozent), GPT-5.6-sol 32 (41,6 Prozent, 31 bis 53), Kimi K3 17 (22,1 Prozent), Hunyuan hy4 und Gemini 3.8 Flash je 15, GLM-5.3 12; die Intervalle der beiden Spitzenmodelle überlappen stark.",
+   "caption": "Gelöste Aufgaben mit 95-%-Wilson-Intervall. Balken: Zahlen aus dem Paper [1]; Intervalle: eigene Rechnung.",
+   "ai_generated": false
+  },
+  {
+   "t": "p",
+   "x": "Die Intervalle von GPT-6-astra (37,3 bis 59,0 Prozent) und GPT-5.6-sol (31,2 bis 52,7 Prozent) überlappen auf großer Breite. Der Abstand von fünf Aufgaben liegt allein durch die Auswahl der 77 Aufgaben im Bereich des Zufalls. Beide Spitzenmodelle heben sich dagegen von der Mitte ab; die obere Grenze von Kimi K3 (32,5 Prozent) liegt aber knapp über der unteren von GPT-5.6-sol (31,2 Prozent). Zwischen Kimi K3, Hunyuan hy4, Gemini 3.8 Flash und GLM-5.3 trennt die Zählung praktisch nichts: Die Intervalle liegen fast vollständig übereinander."
+  },
+  {
+   "t": "p",
+   "x": "Zwei Einschränkungen. Erstens behandelt das Wilson-Intervall die Aufgaben als zufällige Stichprobe aus allen denkbaren Aufgaben. Da alle Modelle dieselben 77 Aufgaben lösen, wäre ein gepaarter Vergleich schärfer, doch dafür bräuchte man die Ergebnisse je Aufgabe, die wir im gelesenen Text nicht gefunden haben. Zweitens enthält das Intervall keine Streuung zwischen wiederholten Läufen desselben Modells, weil das Paper nach unserer Lektüre nicht angibt, ob und wie oft wiederholt wurde. Die tatsächliche Unsicherheit ist also eher größer als hier dargestellt, nicht kleiner."
   },
   {
    "t": "h2",
@@ -201,6 +293,32 @@
   {
    "t": "p",
    "x": "Die Praxisfolge: Ein Test mit kurzem Zeitbudget ist nicht einfach eine schnellere Version desselben Tests. Er misst teilweise etwas anderes, nämlich Tempo. Wie Tempo und Ausdauer zusammenhängen, hängt außerdem von der Latenz pro Schritt ab: Sie reicht von 23 Sekunden (MiniMax M3) bis 141 Sekunden (Hunyuan hy4), und je nach Modell warten Agenten 48 bis 76 Prozent der Laufzeit auf das Modell. hy4 braucht mit median 58 Schritten weniger Schritte als GPT-5.6-sol (68), schafft im Zeitrahmen aber weniger als 80 [1]. Wer pro Schritt langsam ist, verliert bei festem Zeitbudget, nicht unbedingt bei festem Schrittbudget."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Mediane Zeit bis zur Lösung",
+   "alt": "GPT-6-astra löst im Median nach 24 Minuten, alle erfolgreichen Läufe nach 57 Minuten, Hunyuan hy4 nach 121 und DeepSeek V4 Pro nach 141 Minuten.",
+   "caption": "Mediane Lösungszeit in Minuten.",
+   "source": "Li et al., LHTB 2.0, Abschnitt 4.3 [1]",
+   "unit": " Min.",
+   "labels": [
+    "GPT-6-astra",
+    "alle Modelle",
+    "Hunyuan hy4",
+    "DeepSeek V4 Pro"
+   ],
+   "series": [
+    {
+     "name": "Minuten",
+     "values": [
+      24,
+      57,
+      121,
+      141
+     ]
+    }
+   ]
   },
   {
    "t": "h3",
@@ -278,6 +396,119 @@
   },
   {
    "t": "h2",
+   "x": "Kosten genauer: Preis je Token, nicht nur Verbrauch (eigene Rechnung)"
+  },
+  {
+   "t": "p",
+   "x": "Die Kostenspalte in Tabelle 2 des Papers lässt sich in zwei Faktoren zerlegen: wie viele Token ein Modell je Aufgabe verbraucht und was ein Token im Mittel kostet [1]. Teilt man die geschätzten Kosten je Aufgabe durch den Verbrauch in Millionen Token, ergibt sich ein Mischpreis, der Eingabe- und Ausgabetoken zusammenfasst. Er ist nur so genau wie die Kostenschätzung des Papers, zeigt aber die Größenordnungen."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Abgeleiteter Mischpreis je Million Token",
+   "alt": "GPT-6-astra kommt auf rund 10,08 US-Dollar je Million Token, GPT-5.6-sol, Grok-4.6, Qwen 3.8 Max und Kimi K3 auf rund 2 Dollar, DeepSeek V4 Flash auf 0,22 Dollar.",
+   "caption": "Eigene Rechnung: geschätzte Kosten je Aufgabe geteilt durch Token je Aufgabe.",
+   "source": "Eigene Rechnung nach Tabelle 2 in [1]; Kosten sind Schätzungen aus Listenpreisen",
+   "unit": " $",
+   "labels": [
+    "GPT-6-astra",
+    "Gemini 3.1 Pro",
+    "Grok-4.6",
+    "GPT-5.6-sol",
+    "Qwen 3.8 Max",
+    "Kimi K3",
+    "Kimi K2.6",
+    "GLM-5.3",
+    "Hunyuan hy4",
+    "Gemini 3.8 Flash",
+    "DeepSeek V4 Pro",
+    "GLM-5.2",
+    "Doubao Seed 2.1 Pro",
+    "MiniMax M3",
+    "DeepSeek V4 Flash"
+   ],
+   "series": [
+    {
+     "name": "US-Dollar je Mio. Token",
+     "values": [
+      10.08,
+      2.48,
+      2.02,
+      2.02,
+      2.01,
+      1.98,
+      0.96,
+      0.92,
+      0.84,
+      0.77,
+      0.58,
+      0.55,
+      0.51,
+      0.3,
+      0.22
+     ]
+    }
+   ]
+  },
+  {
+   "t": "p",
+   "x": "GPT-6-astra verbraucht mit 39,4 Millionen Token je Aufgabe etwa 18 Prozent mehr als GPT-5.6-sol (33,5 Millionen), kostet aber das 5,9-Fache (397,16 gegen 67,60 Dollar). Der Mischpreis liegt bei rund 10,08 gegen 2,02 Dollar je Million Token, also beim Fünffachen. Der Kostenabstand zwischen den beiden Spitzenmodellen kommt damit zum größten Teil vom Preis je Token, nicht vom Verbrauch. Unter den anderen Modellen liegen Grok-4.6, GPT-5.6-sol, Qwen 3.8 Max und Kimi K3 bei etwa 2 Dollar, die günstigste Gruppe (DeepSeek V4 Flash, MiniMax M3, Doubao Seed 2.1 Pro, GLM-5.2, DeepSeek V4 Pro) bei 0,22 bis 0,58 Dollar. Dass MiniMax M3 mit 71 Millionen Token am meisten verbraucht und trotzdem unter 22 Dollar je Aufgabe bleibt, folgt aus seinem niedrigen Preis."
+  },
+  {
+   "t": "p",
+   "x": "Im Durchschnitt über die Läufe ergibt sich außerdem, wie viel Kontext jeder Modellaufruf trägt: Teilt man Token je Aufgabe durch Aufrufe je Aufgabe, kommen GPT-5.6-sol und GPT-6-astra auf rund 191.000 und 185.000 Token je Aufruf, Hunyuan hy4 auf 56.000. Das sind Durchschnitte aus Eingabe und Ausgabe; weil jeder Aufruf den bisherigen Verlauf erneut als Eingabe enthält, sagen sie vor allem etwas über die Länge der Verläufe aus. Die Gemini-Zeilen weichen ab (13,3 Millionen Token bei 500 Aufrufen, nur 9,5 Minuten Modellzeit je Aufgabe). Das passt zur Angabe, dass die Gemini-Modelle unter einem anderen Harness liefen [1]; wir vergleichen sie deshalb nicht mit den übrigen."
+  },
+  {
+   "t": "h3",
+   "x": "Grenzkosten entlang der Frontier"
+  },
+  {
+   "t": "p",
+   "x": "Für sechs Modelle kennen wir sowohl Kosten als auch die Zahl gelöster Aufgaben. Ordnet man sie nach Kosten, bleiben vier auf der Frontier: Hunyuan hy4, Kimi K3, GPT-5.6-sol und GPT-6-astra. GLM-5.3 (12 Aufgaben, rund 1.450 Dollar) und Gemini 3.8 Flash (15 Aufgaben, rund 2.873 Dollar) werden von hy4 (15 Aufgaben, rund 286 Dollar) unterboten oder gleichgezogen. Für die übrigen neun Modelle nennt der gelesene Text keine Lösungszahl, die Frontier ist also eine Teilmenge."
+  },
+  {
+   "t": "figure",
+   "file": "lhtb-2-langzeit-agenten-benchmark-3.jpg",
+   "alt": "Streudiagramm mit logarithmischer Kostenachse: Hunyuan hy4 löst 15 Aufgaben für etwa 286 Dollar, Kimi K3 17 für etwa 2.471 Dollar, GPT-5.6-sol 32 für etwa 5.205 Dollar, GPT-6-astra 37 für etwa 30.581 Dollar; GLM-5.3 und Gemini 3.8 Flash liegen unterhalb der gestrichelten Linie.",
+   "caption": "Geschätzte Gesamtkosten (Kosten je Aufgabe × 77, eigene Rechnung nach [1]) gegen gelöste Aufgaben. Gestrichelt: Frontier der sechs Modelle mit bekannter Lösungszahl.",
+   "ai_generated": false
+  },
+  {
+   "t": "table",
+   "caption": "Grenzkosten entlang der Kosten-Frontier (eigene Rechnung nach [1])",
+   "head": [
+    "Schritt",
+    "Zusätzlich gelöst",
+    "Zusatzkosten (77 Aufgaben)",
+    "Je zusätzlich gelöster Aufgabe"
+   ],
+   "rows": [
+    [
+     "hy4 → Kimi K3",
+     "+2 (15 → 17)",
+     "ca. 2.185 $",
+     "ca. 1.090 $"
+    ],
+    [
+     "Kimi K3 → GPT-5.6-sol",
+     "+15 (17 → 32)",
+     "ca. 2.734 $",
+     "ca. 182 $"
+    ],
+    [
+     "GPT-5.6-sol → GPT-6-astra",
+     "+5 (32 → 37)",
+     "ca. 25.376 $",
+     "ca. 5.075 $"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Zeilen der Tabelle zeigen, wie ungleich die Stufen sind. Von Kimi K3 auf GPT-5.6-sol kostet jede zusätzlich gelöste Aufgabe rund 182 Dollar. Die letzten fünf Aufgaben von GPT-5.6-sol auf GPT-6-astra kosten rund 5.075 Dollar je Aufgabe, fast das 28-Fache. Ob sich das lohnt, hängt davon ab, was eine gelöste Aufgabe wert ist. Eine Benchmark-Aufgabe ist dabei kein Arbeitsauftrag mit Preis, die Zahl taugt als Vergleichsmaßstab, nicht als Budget."
+  },
+  {
+   "t": "h2",
    "x": "Was belegt ist, was offen bleibt"
   },
   {
@@ -323,6 +554,48 @@
   {
    "t": "p",
    "x": "Das ersetzt keine eigene Evaluation auf den eigenen Aufgaben. Wie man eine kleine, faire Testmenge baut, steht in [Evals: Testen statt Bauchgefühl](/evals-statt-bauchgefuehl); zu Kosten und Kontext hilft [Tokens, Kontext, Kosten](/tokens-und-kosten)."
+  },
+  {
+   "t": "h2",
+   "x": "Checkliste: So lesen Sie einen Agenten-Benchmark"
+  },
+  {
+   "t": "p",
+   "x": "Aus der Auswertung ergibt sich eine Liste von Fragen, die wir an jeden Agenten-Benchmark stellen. Sie ist unsere redaktionelle Einordnung, keine Aussage des Papers."
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Wie viele Aufgaben, wie viele Läufe?** Bei 77 Aufgaben bedeutet ein Abstand von fünf Aufgaben wenig. Ohne Wiederholungen ist unklar, wie viel der Zufall bewegt.",
+    "**Welches Zeitbudget?** Das Ranking im Mittelfeld hängt vom Budget ab. Ein Test mit einer Stunde misst teils Tempo.",
+    "**Wer prüft „fertig“?** Die Selbstmeldung des Agenten ist ein schwaches Signal, ein externer Prüfer ist Pflicht.",
+    "**Wie wird Fortschritt bewertet?** Binär übersieht Teilergebnisse, dichte Leitern hängen an der Qualität ihrer Stufen.",
+    "**Welcher Aufbau?** Dieselbe Agentenhülle für alle, oder nicht? Abweichungen (hier bei zwei Gemini-Modellen) schwächen den Vergleich.",
+    "**Was kostet ein Lauf, und womit wird gerechnet?** Geschätzte Listenpreise sind keine Rechnung.",
+    "**Wer hat den Test gebaut und wer wird getestet?** Überschneidungen sollten offengelegt sein, auch wenn sie keine Wirkung haben müssen."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Methode dieser Analyse"
+  },
+  {
+   "t": "p",
+   "x": "Alle Zahlen ohne Kennzeichnung stammen aus dem Preprint [1] und den in den Quellen genannten Seiten. Eigene Rechnungen sind im Text ausdrücklich so benannt und folgen diesen Formeln:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Gesamtkosten für 77 Aufgaben = Kosten je Aufgabe (Tabelle 2) × 77; Kosten je gelöster Aufgabe = Gesamtkosten ÷ Zahl der Aufgaben mit R ≥ 0,95.",
+    "Mischpreis = Kosten je Aufgabe ÷ Millionen Token je Aufgabe (Tabelle 2).",
+    "Wilson-Intervall für den Anteil p = k/n mit z = 1,96 und n = 77, ohne Korrektur für gepaarte Aufgaben oder Wiederholungen.",
+    "Grenzkosten = Differenz der Gesamtkosten zweier Frontier-Modelle ÷ Differenz der gelösten Aufgaben.",
+    "Token je Aufruf = Token je Aufgabe ÷ Modellaufrufe je Aufgabe (Tabelle 2)."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wir haben keine Benchmark-Läufe wiederholt, den Quellcode des Benchmarks nicht ausgeführt und die Aufgaben nicht geprüft. Die Diagramme wurden mit Python (matplotlib) aus den hier genannten Zahlen erzeugt; zu jedem Diagramm gibt es eine Tabelle oder die Zahlen stehen im Text."
   },
   {
    "t": "h2",
@@ -400,7 +673,7 @@
   }
  ],
  "method": "Dieser Beitrag wertet das genannte Preprint aus. Alle Zahlen stammen aus dem Paper, außer den ausdrücklich als „eigene Rechnung“ gekennzeichneten Umrechnungen. Wir haben keine Läufe selbst wiederholt. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet; Fehler bitte an die im Impressum genannte Adresse melden. Das Titelbild ist KI-generiert und im Bild gekennzeichnet.",
- "limitations": "Preprint ohne uns bekanntes abgeschlossenes Peer-Review; Zahlen nicht nachgerechnet; Kosten sind Schätzungen der Autoren; eine Agentenhülle (Terminus-2), ein Zeitlimit (drei Stunden).",
+ "limitations": "Preprint ohne uns bekanntes abgeschlossenes Peer-Review; Zahlen nicht nachgerechnet; Kosten sind Schätzungen der Autoren; eine Agentenhülle (Terminus-2), ein Zeitlimit (drei Stunden). Eigene Wilson-Intervalle ignorieren Paarung der Aufgaben und Wiederholungen.",
  "related": [
   "evals-statt-bauchgefuehl",
   "tokens-und-kosten"

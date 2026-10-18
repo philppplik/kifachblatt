@@ -6,7 +6,7 @@
  "title": "Muse Spark Open: Was die offenen Gewichte technisch bedeuten",
  "dek": "Metas 816-Milliarden-Modell im Check: Architektur, Speicherbedarf, Lizenzbedingungen und eine Benchmark-Bilanz, die eher gemischt ausfällt als überlegen.",
  "published": "2026-10-18T19:33:00+02:00",
- "modified": "2026-10-18T19:33:00+02:00",
+ "modified": "2026-10-18T20:05:00+02:00",
  "author": "philipp-paulik",
  "tags": [
   "Muse Spark Open",
@@ -21,7 +21,7 @@
   "Speicherbedarf laut Modellkarte: mindestens 700 GB (NVFP4) bzw. 2 TB (BF16); unsere Überschlagsrechnung kommt auf etwa 674 GB bzw. 1,9 TB.",
   "Nach Metas eigener Tabelle liegt das Modell in 7 von 20 Fähigkeitstests vor allen Vergleichsmodellen, bei Terminal-Bench 2.1 und GPQA dahinter [3].",
   "Lizenz: Namensnennung Pflicht, Umsatzschwelle von 20 Mio. US-Dollar für Modell-als-Dienst-Angebote, Nutzungsrichtlinie [3].",
-  "Benchmark- und Sicherheitswerte stammen von Meta; die veröffentlichten Parameterangaben ergeben bei unserer Nachrechnung eine Lücke."
+  "Eigene Rechnung: Die Herstellerzahlen (816 Mrd. gesamt, 42 Mrd. aktiv, 8 von 256 Experten) gehen zusammen auf: etwa 799 Mrd. Experten und 17 Mrd. übrige Parameter. Der beschriebene Expertenaufbau passt dazu nicht wörtlich."
  ],
  "hero": {
   "alt": "Raster aus durchsichtigen Würfeln, von denen acht golden leuchten und über feine Linien mit einem Punkt verbunden sind: Sinnbild für acht aktive Experten aus 256 in einem Mixture-of-Experts-Modell",
@@ -102,15 +102,69 @@
   },
   {
    "t": "h2",
-   "x": "Nachgerechnet: Die Parameterzahlen passen nicht ganz zusammen"
+   "x": "Nachgerechnet: Gehen die Parameterzahlen auf?"
   },
   {
    "t": "p",
-   "x": "Beim Gegenprüfen der Herstellerangaben fiel uns eine Lücke auf. Nimmt man den Experten-Aufbau wörtlich (jede Schicht 256 Experten, jeder Experte mit zwei Matrizen 8192 × 4096), ergeben sich 62 × 256 × 67,1 Mio. ≈ 1,07 Billionen Parameter allein für die Experten. Das liegt deutlich über 816 Milliarden. Die Angabe „Experten sind etwa 97 Prozent der Parameter“ (≈ 792 Mrd.) würde bei 62 MoE-Schichten außerdem Experten mit nur etwa 50 Mio. Parametern bedeuten, nicht 67 Mio. Auch die Gegenrechnung der aktiven Parameter geht nur ungefähr auf: 8 Experten × 62 Schichten × 67,1 Mio. ≈ 33 Mrd., dazu Attention (nach unserer Rechnung rund 9,4 Mrd.) und die Ausgabematrix (1,66 Mrd.) ergeben etwa 44 Mrd., gegen angegebene 42 Mrd."
+   "x": "Wir haben die Herstellerangaben gegeneinander geprüft. Nimmt man den beschriebenen Expertenaufbau wörtlich (256 Experten je Schicht, jeder mit zwei Matrizen 8192 × 4096, 62 Schichten), ergeben sich 62 × 256 × 67,1 Mio. ≈ 1,07 Billionen Parameter allein für die Experten, deutlich mehr als 816 Milliarden. Diese Lesart passt also nicht."
   },
   {
    "t": "p",
-   "x": "Das ist kein Beleg für einen Fehler. Mögliche Erklärungen sind, dass nicht alle Schichten MoE-Schichten sind, dass die Expertenmaße von der vereinfachten Beschreibung abweichen oder dass es Besonderheiten gibt, die die Texte nicht nennen. Der Anbieter Baseten spricht zudem von einem „komprimierten MoE-Block“ und „hybrider globaler/lokaler Attention“ sowie von 42,7 Milliarden aktiven Parametern [6]. Die Konfigurationsdatei (config.json), die das klären würde, war für uns nicht abrufbar (Zugriff nur nach Zustimmung zur Lizenz). Bis dahin gilt: Die Gesamtzahlen sind Herstellerangaben, unsere Rechnung ist eine Plausibilitätsprüfung mit vereinfachten Annahmen."
+   "x": "Es geht anders herum: Aus den drei Zahlen, die Meta selbst nennt (816 Mrd. gesamt, 42 Mrd. aktiv, 8 von 256 Experten je Token), lässt sich die Aufteilung ausrechnen. Mit x für die Parameter außerhalb der Experten und e für die Expertenparameter gilt x + e = 816 und x + e × 8/256 = 42. Daraus folgt e ≈ 799 Mrd. und x ≈ 17 Mrd., also ein Expertenanteil von etwa 97,9 Prozent. Das stimmt mit der Angabe „etwa 97 Prozent“ im Hugging-Face-Blog überein [2]. Die drei Zahlen sind also untereinander stimmig."
+  },
+  {
+   "t": "p",
+   "x": "Teilt man 799 Mrd. durch 62 Schichten und 256 Experten, kommt man auf rund 50,3 Mio. Parameter je Expert. Das entspricht genau 8192 × 3072 × 2 oder drei Matrizen der Größe 8192 × 2048 (3 × 8192 × 2048 = 50,33 Mio.), wie sie ein gated Feed-Forward-Netz hätte. Mit diesem Wert ergeben sich 798,9 Mrd. für alle Experten und 25,0 Mrd. für die acht aktiven je Token. Zusammen mit den 17 Mrd. übrigen Parametern sind das 42,0 Mrd. aktiv. Der im HF-Blog genannte Pfad 8192 → 4096 → 8192 liegt dagegen nicht auf dieser Linie. Wir vermuten daher, dass die Beschreibung vereinfacht ist. Das ist eine Hypothese, die die Zahlen stützen, aber keine Bestätigung: Die Konfigurationsdatei (config.json), die es klären würde, war für uns nicht abrufbar (Zugriff nur nach Zustimmung zur Lizenz)."
+  },
+  {
+   "t": "table",
+   "caption": "Parameterbilanz (eigene Rechnung nach Angaben in [2][3])",
+   "head": [
+    "Posten",
+    "Wert",
+    "Herleitung"
+   ],
+   "rows": [
+    [
+     "Experten gesamt",
+     "≈ 799 Mrd.",
+     "aus 816 Mrd. und 42 Mrd. aktiv, 8 von 256"
+    ],
+    [
+     "Übrige Parameter",
+     "≈ 17 Mrd.",
+     "816 − 799"
+    ],
+    [
+     "Je Expert",
+     "≈ 50,3 Mio.",
+     "799 Mrd. ÷ (62 × 256)"
+    ],
+    [
+     "Aktive Experten je Token",
+     "≈ 25,0 Mrd.",
+     "8 × 62 × 50,3 Mio."
+    ],
+    [
+     "Aktiv gesamt",
+     "≈ 42,0 Mrd.",
+     "25,0 + 17,0"
+    ],
+    [
+     "Ein- und Ausgabematrix",
+     "≈ 3,3 Mrd.",
+     "2 × 202.048 × 8192 [3]"
+    ],
+    [
+     "Attention (aus Maßen berechnet)",
+     "≈ 9,4 Mrd.",
+     "62 × (Q + O: je 8192 × 8192; K + V: je 8192 × 1024)"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Bleibt eine kleine Differenz: Matrizen für Ein- und Ausgabe (3,3 Mrd.) und Attention (9,4 Mrd.) ergeben 12,7 Mrd., die Rechnung verlangt 17 Mrd. Rund 4 Mrd. erklären wir nicht, möglich wären Router, Gates, Normierungen oder ähnliches. Der Anbieter Baseten nennt zudem einen „komprimierten MoE-Block“, „hybride globale/lokale Attention“ und 42,7 Mrd. aktive Parameter [6], was in den anderen Quellen nicht steht. Wir halten fest: Die Gesamtzahlen sind Herstellerangaben, unsere Rechnung ist eine Plausibilitätsprüfung mit vereinfachten Annahmen."
   },
   {
    "t": "h2",
@@ -121,6 +175,42 @@
    "x": "Die Modellkarte nennt für den Betrieb auf eigener Hardware mindestens 700 GB GPU-Speicher für NVFP4 und 2 TB für BF16 [3]. Das passt zu einer Überschlagsrechnung: 816 Mrd. Parameter × 0,5 Byte ≈ 408 GB für die 4-Bit-Gewichte, plus 266 GB KV-Cache bei vollem Kontext, ergibt etwa 674 GB. In BF16 sind es 1,63 TB Gewichte plus der Cache, also rund 1,9 TB. Beide Werte liegen knapp unter den Herstellerangaben, wie man es mit Aktivierungen und Overhead erwartet. Die Rechnung ist grob (Skalierungsfaktoren der Quantisierung und Overhead sind nicht eingerechnet)."
   },
   {
+   "t": "chart",
+   "kind": "column",
+   "title": "Speicherbedarf: Rechnung gegen Modellkarte",
+   "alt": "Für NVFP4 ergeben Gewichte 408 GB plus 266 GB KV-Cache bei einer Million Token, die Karte nennt mindestens 700 GB. Für BF16 sind es 1.632 GB plus 266 GB, die Karte nennt 2.000 GB.",
+   "caption": "Eigene Überschlagsrechnung (Gewichte ohne Skalierungsfaktoren) gegen die Mindestangabe der Modellkarte, in Gigabyte.",
+   "source": "Eigene Rechnung; Angaben der Modellkarte [3]",
+   "unit": " GB",
+   "labels": [
+    "NVFP4",
+    "BF16"
+   ],
+   "series": [
+    {
+     "name": "Gewichte (816 Mrd. Parameter)",
+     "values": [
+      408,
+      1632
+     ]
+    },
+    {
+     "name": "KV-Cache, 1 Mio. Token, BF16",
+     "values": [
+      266,
+      266
+     ]
+    },
+    {
+     "name": "Mindestangabe Modellkarte",
+     "values": [
+      700,
+      2000
+     ]
+    }
+   ]
+  },
+  {
    "t": "ul",
    "items": [
     "Rechenzentrum: Der HF-Blog nennt für BF16 vier Knoten mit je 8 H200-GPUs (Tensor-Parallelität 32) und für NVFP4 einen einzelnen B200-Knoten; ein vorgetesteter Inference-Endpoint läuft mit NVFP4 auf 8 × RTX Pro 6000 (98 GB) bei 131.072 Token Kontext oder auf 8 × H200 (141 GB) bei der vollen Million [2].",
@@ -129,8 +219,88 @@
    ]
   },
   {
+   "t": "chart",
+   "kind": "line",
+   "title": "KV-Cache wächst linear mit dem Kontext",
+   "alt": "Der KV-Cache in BF16 beträgt etwa 16,6 GB bei 64.000 Token, 33,3 GB bei 128.000, 66,6 GB bei 256.000, 133,3 GB bei 512.000 und 266,3 GB bei einer Million Token. Zum Vergleich bleiben neben der 344-GB-Quantisierung auf 512 GB etwa 168 GB.",
+   "caption": "Eigene Rechnung: 126.976 Werte je Token × 2 Byte, in Gigabyte (dezimal).",
+   "source": "Eigene Rechnung nach den Architekturangaben in [2][3]",
+   "unit": " GB",
+   "x_label": "Kontextlänge in Token",
+   "y_label": "GB",
+   "min": 0,
+   "labels": [
+    "64k",
+    "128k",
+    "256k",
+    "512k",
+    "1 Mio."
+   ],
+   "series": [
+    {
+     "name": "KV-Cache (BF16)",
+     "values": [
+      16.6,
+      33.3,
+      66.6,
+      133.1,
+      266.3
+     ]
+    },
+    {
+     "name": "Frei neben 344-GB-Quant auf 512 GB",
+     "values": [
+      168,
+      168,
+      168,
+      168,
+      168
+     ]
+    }
+   ],
+   "max": 300
+  },
+  {
+   "t": "p",
+   "x": "Für Geschwindigkeit gilt eine einfache Obergrenze (eigene, stark idealisierte Rechnung): Beim Erzeugen eines Tokens müssen die Gewichte der aktiven Experten einmal aus dem Speicher gelesen werden. Bei 4 Bit sind das 42 Mrd. × 0,5 Byte ≈ 21 GB. Bei den von Meta genannten 1,2 TB/s Speicherbandbreite des M5 Ultra ergibt das höchstens etwa 57 Token pro Sekunde, wenn nur diese Gewichte gelesen werden und nichts anderes bremst (Attention-Cache, Verteilung auf zwei Maschinen, Rechenzeit). Das ist eine Decke, keine Erwartung. Für die gemessenen 21 Token pro Sekunde auf dem M3 Ultra gilt: Die Bandbreite dieses Chips steht in unseren Quellen nicht, ein Vergleich mit der Decke wäre deshalb Spekulation."
+  },
+  {
    "t": "p",
    "x": "Wer kleiner anfangen will: Für lokale Nutzung lohnt der Vergleich in [Lokale Modelle: Wann sich der eigene Rechner lohnt](/lokale-modelle). Muse Spark Open ist kein Gerät für den Laptop, sondern für Workstation-Cluster oder gemietete Rechenzeit."
+  },
+  {
+   "t": "h2",
+   "x": "Software-Stack: Was heute läuft"
+  },
+  {
+   "t": "p",
+   "x": "Laut Hugging-Face-Blog gibt es mehrere Wege, das Modell zu betreiben [2]:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Transformers:** Eine eigene Implementierung (MuseSparkForConditionalGeneration) mit Prozessor für Text, Bild, Video und Audio. Für die Verteilung wird Tensor- und Expertenparallelität über eine DistributedConfig gesetzt.",
+    "**SGLang:** Unterstützt Text, Bild, Audio und Video. Die NVFP4-Referenzkonfiguration läuft auf vier GB300-GPUs.",
+    "**vLLM:** Die Referenzintegration unterstützt Text und Bild mit der NVFP4-Fassung und verlangt Blackwell-GPUs. Audio und Video fehlen dort laut Blog.",
+    "**MLX und llama.cpp:** MLX über oMLX und mlx-lm mit 3- und 4-Bit-Quantisierungen; für llama.cpp nennt der Blog ein 2-Bit-Beispiel, das auf einem Mac Ultra rund 18 Token pro Sekunde erreicht. Wegen der starken Quantisierung brauche es mehr Steuerung beim Prompten.",
+    "**Inference Endpoints:** Ein vorab geprüftes SGLang-Rezept für die NVFP4-Fassung."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Praktisch wichtig: Die Fähigkeiten hängen am gewählten Stack. Wer Audio oder Video braucht, kommt laut Blog mit der vLLM-Referenz nicht aus. Ausgaben trennen Denkprotokoll (reasoning_content) und Antwort (content), was für Anwendungen relevant ist, die kein rohes Denkprotokoll anzeigen sollen [2]. Die Modellkarte rät ausdrücklich davon ab, das rohe Denkprotokoll Endnutzern zu zeigen [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Kernel-Optimierung: Was „3,95-fach schneller“ bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "Meta und die PyTorch Foundation nennen für die mitgelieferten Helion-Kernel Beschleunigungen von 1,03 bis 3,95 Mal gegenüber hardwarespezifisch geschriebenen Kernen (etwa CUDA) auf NVIDIA GB300. Auf AMD MI350 seien dieselben Kernel portierbar gewesen und brächten insgesamt 3 Prozent mehr Durchsatz von Anfang bis Ende [1][5]. Die Kernel betreffen Operationen wie RoPE, RMSNorm und Quantisierung; zusätzlich gibt es in SGLang zusammengeführte „Megakernel“ [5]."
+  },
+  {
+   "t": "p",
+   "x": "Die Zahlen zeigen zwei Dinge. Erstens betrifft ein Kernel-Speedup nur einen Teil der Laufzeit. Eine 3,95-fache Beschleunigung einer Operation, die einen kleinen Anteil der Zeit ausmacht, ändert den Gesamtdurchsatz kaum, wie die 3 Prozent bei AMD zeigen. Zweitens ist die Spanne 1,03 bis 3,95 breit; die Quellen nennen nicht, welcher Kernel welchen Wert erreicht. Wer diese Zahlen für die eigene Planung braucht, sollte also den End-to-End-Durchsatz mit der eigenen Last messen."
   },
   {
    "t": "h2",
@@ -204,8 +374,68 @@
    "x": "Zählt man alle 20 Fähigkeitszeilen der Tabelle (ohne die beiden Sicherheitstests), liegt Muse Spark Open bei 7 vorn: JobBench, MCP-Atlas, HLE-Diamond, AA Omniscience, ZeroBench, SimpleVQA und IntPhys2. Bei den übrigen 13 liegt mindestens ein anderes Modell der Tabelle vorn. In mehreren Zeilen sind nur zwei Vergleichswerte angegeben, und bei einigen fehlt Beam ganz. Beam liegt bei GPQA Diamond (90,5 gegen 89,0) und Terminal-Bench 2.1 (80,1 gegen 76,4) vor Muse Spark Open. Die Zählung ist unsere eigene und setzt voraus, dass die Zahlen der Karte stimmen."
   },
   {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Abstand zum besten Vergleichswert",
+   "alt": "Differenz in Punkten zwischen Muse Spark Open und dem besten anderen Modell der Tabelle je Test: vorn bei MCP-Atlas (+4,7), HLE-Diamond (+3,9), AA Omniscience (+5), ZeroBench (+9), IntPhys2 (+8), JobBench (+0,4) und SimpleVQA (+1,7); am weitesten zurück bei Terminal-Bench 2.1 (−8,6), DeepSWE (−8), SWE-Atlas (−8) und GPQA Diamond (−4,5).",
+   "caption": "Muse Spark Open minus bester anderer Wert in Metas Tabelle, in Punkten; positiv heißt vorn. GDPVal-AA (Elo-Skala) fehlt.",
+   "source": "Eigene Rechnung nach Benchmark-Tabelle der Modellkarte [3] (Herstellerangaben)",
+   "unit": " P.",
+   "labels": [
+    "Intelligence Index (AA)",
+    "JobBench",
+    "MCP-Atlas",
+    "OSWorld Verified",
+    "Toolathlon Verified",
+    "HLE-Diamond (ohne Werkzeuge)",
+    "AA Omniscience",
+    "SciCode",
+    "HLE (mit Werkzeugen)",
+    "GPQA Diamond",
+    "DeepSWE 1.1",
+    "SWE-Atlas-QnA",
+    "Terminal-Bench 2.1",
+    "ZeroBench",
+    "BabyVision",
+    "SimpleVQA",
+    "WorldVQA",
+    "IntPhys2",
+    "VideoMMEv2"
+   ],
+   "series": [
+    {
+     "name": "Differenz in Punkten",
+     "values": [
+      -6,
+      0.4,
+      4.7,
+      -4.4,
+      -3.7,
+      3.9,
+      5,
+      -1.0,
+      -1.5,
+      -4.5,
+      -8,
+      -8,
+      -8.6,
+      9.0,
+      -5.5,
+      1.7,
+      -1.6,
+      8.0,
+      -3.9
+     ]
+    }
+   ]
+  },
+  {
    "t": "p",
-   "x": "Was das für die Aussage „leistungsfähigstes offenes US-Modell“ heißt: Die Tabelle erlaubt es nicht, diesen Titel zu prüfen. Sie enthält wenige Vergleichsmodelle mit durchgehenden Werten, und die Herkunftsländer der Modelle sind nicht Teil der Tabelle. Das Profil ist eher: stark bei Werkzeugnutzung (MCP-Atlas), Wissensfragen und Teilen der Multimodalität, schwächer bei Terminal-Aufgaben und breiten Intelligenz-Indizes als die in der Tabelle aufgeführten Kimi-, GLM- und Qwen-Modelle."
+   "x": "Die Differenzen sind nicht über Tests hinweg vergleichbar, weil die Skalen verschieden sind (ein Punkt bei GPQA ist nicht ein Punkt bei Terminal-Bench). Das Bild ist gemischt: Bei MCP-Atlas liegt Muse Spark Open vorn, bei OSWorld Verified und Toolathlon dagegen hinter Kimi K3; ein einheitliches „agentisch stark“ lässt sich daraus nicht ablesen. Am deutlichsten zurück liegt es bei Terminal- und Coding-Aufgaben (Terminal-Bench 2.1, DeepSWE, SWE-Atlas) mit 8 bis fast 9 Punkten. Die Zeile Terminal-Bench 2.1 nutzt wie unser Beitrag zu [Long-Horizon-Terminal-Bench 2.0](/lhtb-2-langzeit-agenten-benchmark) das Terminus-2-Harness; die Werte lassen sich trotzdem nicht mit denen aus jenem Paper vergleichen, weil Aufgaben und Zeitbudgets verschieden sind."
+  },
+  {
+   "t": "p",
+   "x": "Was das für die Aussage „leistungsfähigstes offenes US-Modell“ heißt: Die Tabelle erlaubt es nicht, diesen Titel zu prüfen. Sie enthält wenige Vergleichsmodelle mit durchgehenden Werten, und die Herkunftsländer der Modelle sind nicht Teil der Tabelle. Das Profil ist eher: vorn bei MCP-Atlas, bei Wissensfragen (HLE-Diamond, AA Omniscience) und einigen Multimodal-Tests, hinter den Kimi-, GLM- und Qwen-Modellen der Tabelle bei Terminal- und Coding-Tests sowie beim breiten Intelligenz-Index."
   },
   {
    "t": "h2",
@@ -214,6 +444,35 @@
   {
    "t": "p",
    "x": "Meta bewertet vier Bereiche: Inhaltssicherheit, agentische Risiken, Privatsphäre und „Preparedness“ (Chemie/Biologie, Cyber, Kontrollverlust) [3]. Genannt werden unter anderem: 99,2 % abgewehrte Jailbreaks im internen Cyber-Test und 94,8 % über drei öffentliche Cyber-Tests aggregiert (Kimi K3 im selben Aufbau 75,5 % und 70,2 %), mehr als 98 % Ablehnung schädlicher Anfragen im BioTIER-Test von SecureBio, 98,1 % Ehrlichkeitsrate im MASK-Benchmark und 0 % Fehlverhalten im Agentic-Misalignment-Test [3]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "StrongREJECT v2 (adaptiv), niedriger ist besser",
+   "alt": "Muse Spark Open erreicht 0,5, die übrigen Modelle der Tabelle liegen zwischen 62,9 (GLM 5.3) und 86,4 (Inkling).",
+   "caption": "StrongREJECT v2 mit adaptiven Angriffen, Herstellerangaben aus der Modellkarte.",
+   "source": "Modellkarte Muse Spark Open [3] (Herstellerangabe, nicht unabhängig geprüft)",
+   "labels": [
+    "Muse Spark Open",
+    "Inkling",
+    "Nemotron 3 Ultra",
+    "Qwen3.8-2.4T",
+    "GLM 5.3",
+    "Kimi K3"
+   ],
+   "series": [
+    {
+     "name": "StrongREJECT v2",
+     "values": [
+      0.5,
+      86.4,
+      80.7,
+      65.6,
+      62.9,
+      66.6
+     ]
+    }
+   ]
   },
   {
    "t": "p",
@@ -284,6 +543,46 @@
   },
   {
    "t": "h2",
+   "x": "Prüfplan: Was man unabhängig nachmessen sollte"
+  },
+  {
+   "t": "p",
+   "x": "Aus den offenen Punkten ergibt sich, was eine unabhängige Prüfung klären müsste. Das ist unsere Einordnung, keine Quelle:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Parameterbilanz:** Die config.json lesen und Expertenbreite, Zahl der MoE-Schichten und Gates mit unserer Hypothese vergleichen.",
+    "**Benchmarks mit einheitlichem Harness:** Dieselben Tests mit demselben Agentenaufbau für alle Modelle laufen lassen; Metas Tabelle nutzt bei Coding-Tests den „Preferred harness“.",
+    "**Denkaufwand und Kosten:** Den Tokenverbrauch je Aufgabe bei low, medium, high und xhigh messen, nicht nur die Genauigkeit.",
+    "**Quantisierung:** NVFP4 und die 3-Bit-Fassung gegen BF16 auf eigenen Aufgaben testen; die Karte spricht selbst von „kleinen Qualitätsunterschieden“ in Randfällen.",
+    "**Sicherheit:** Die StrongREJECT- und FORTRESS-Werte mit externen Red-Teams wiederholen, vor allem nach Feintuning."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Methode dieser Analyse"
+  },
+  {
+   "t": "p",
+   "x": "Quellen sind die sechs genannten Seiten, abgerufen am 18. Oktober 2026. Eigene Rechnungen folgen diesen Formeln:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "KV-Cache je Token = 2 (Key und Value) × 16 Köpfe × 64 Dimensionen × 62 Schichten × 2 Byte (BF16) = 253.952 Byte.",
+    "Gewichtsspeicher = 816 Mrd. × 0,5 Byte (4 Bit) bzw. × 2 Byte (BF16), ohne Skalierungsfaktoren der Quantisierung.",
+    "Parameterbilanz: Lösung des Gleichungspaars x + e = 816 und x + e × 8/256 = 42 (in Mrd.).",
+    "Bandbreitengrenze = Speicherbandbreite ÷ (aktive Parameter × Bytes je Parameter).",
+    "Benchmark-Differenz = Wert von Muse Spark Open minus höchster Wert der übrigen Modelle derselben Zeile; Zählung der 7 von 20 über alle Zeilen mit höher-ist-besser-Skala."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wir haben das Modell nicht ausgeführt, keine Benchmarks wiederholt und keine Lizenzprüfung durchgeführt. Die Diagramme entstehen aus den genannten Zahlen und stehen jeweils mit Datentabelle im Beitrag."
+  },
+  {
+   "t": "h2",
    "x": "Glossar"
   },
   {
@@ -294,7 +593,11 @@
     "**KV-Cache**: Zwischenspeicher der Aufmerksamkeitsschicht, der mit der Kontextlänge wächst.",
     "**NVFP4**: 4-Bit-Zahlenformat für NVIDIA-Blackwell-GPUs, das den Speicherbedarf der Gewichte etwa auf ein Viertel von BF16 senkt.",
     "**Open Weights**: Veröffentlichte Modellgewichte, die nicht zwingend eine offene Lizenz im Sinne von Open Source bedeuten.",
-    "**Reasoning Effort**: Stellgröße, wie viel das Modell vor der Antwort „nachdenkt“."
+    "**Reasoning Effort**: Stellgröße, wie viel das Modell vor der Antwort „nachdenkt“.",
+    "**Expertenparallelität**: Verteilung der Experten auf mehrere GPUs, sodass jede nur einen Teil hält.",
+    "**Tensorparallelität**: Aufteilung einzelner Matrizen auf mehrere GPUs.",
+    "**Kernel**: Kleines GPU-Programm für eine einzelne Operation, etwa eine Normierung.",
+    "**Quantisierung**: Speichern von Gewichten mit weniger Bits, um Speicher zu sparen, meist mit kleinen Qualitätsverlusten."
    ]
   }
  ],
@@ -355,7 +658,7 @@
   }
  ],
  "method": "Grundlage sind die sechs genannten Quellen, die wir am 18. Oktober 2026 abgerufen haben. Rechenschritte (KV-Cache, Speicher, Parameterbilanz, Zählung der Benchmark-Zeilen) sind eigene Überschlagsrechnungen und im Text gekennzeichnet. Wir haben das Modell nicht ausgeführt. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
- "limitations": "Alle Benchmark- und Sicherheitswerte sind Herstellerangaben; config.json war nicht abrufbar; Evaluationsbericht nicht eingesehen; Lizenzbedingung 1 im abgerufenen Text nicht sichtbar; keine eigenen Tests.",
+ "limitations": "Alle Benchmark- und Sicherheitswerte sind Herstellerangaben; config.json war nicht abrufbar, die Expertenbreite ist eine Hypothese; Evaluationsbericht nicht eingesehen; Lizenzbedingung 1 im abgerufenen Text nicht sichtbar; keine eigenen Tests.",
  "related": [
   "lhtb-2-langzeit-agenten-benchmark",
   "lokale-modelle"
