@@ -296,6 +296,20 @@ def replace_block(text, start, end, new):
     return text[:i + len(start)] + '\n' + new + '\n' + text[j:]
 
 generated_before = []
+def patch_static_shares():
+    for f in sorted(glob.glob('*.html')):
+        t = open(f, encoding='utf-8').read()
+        if 'class="byline"' not in t or 'class="share' in t: continue
+        m = re.search(r'<h1[^>]*>(.*?)</h1>', t, re.S); c = re.search(r'<link rel="canonical" href="([^"]+)"', t)
+        if not m or not c: continue
+        title = html.unescape(re.sub(r'<[^>]+>', '', m.group(1))).strip(); url = c.group(1)
+        i = t.find('<div class="tldr"')
+        j = t.find('<section class="faq"')
+        if j < 0: j = t.find('<section class="block"')
+        if i < 0 or j < 0 or j < i: print('WARN share skip', f); continue
+        t = t[:i] + share_block(url, title, 'kfb', True) + t[i:j] + share_block(url, title, 'kfb') + t[j:]
+        open(f, 'w', encoding='utf-8').write(t)
+
 def main():
     global generated_before
     os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -317,6 +331,7 @@ def main():
     for k in sections:
         open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
     open('redaktion.html', 'w', encoding='utf-8').write(simple_page('Redaktionelle Grundsätze | KI Fachblatt', 'KI-Einsatz, Quellen, Bildrechte, Korrekturen und Unabhängigkeit beim KI Fachblatt.', BASE + '/redaktion', redaktion_html(), shell_top, shell_bottom))
+    patch_static_shares()
     json.dump([a['slug'] for a in arts], open('.generated.json', 'w'))
     # index table
     idx = open('index.html', encoding='utf-8').read()
