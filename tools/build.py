@@ -189,8 +189,10 @@ def article_page(a, shell_top, shell_bottom, arts):
     out.append('<div class="art"><aside class="toc" aria-label="Inhalt"><b>Inhalt</b>%s%s</aside><div class="body" itemprop="articleBody">%s' % (tocs, extra_toc, body))
     if a.get('method') or a.get('limitations'):
         m = ''
-        if a.get('method'): m += '<h2 id="methode">Methode</h2><p>%s</p>' % inline(a['method'])
-        if a.get('limitations'): m += '<h3>Grenzen</h3><ul>%s</ul>' % ''.join('<li>%s</li>' % inline(l) for l in a['limitations'])
+        if a.get('method'): m += '<h2 id="methode">Methode</h2>' + ''.join('<p>%s</p>' % inline(x) for x in ([a['method']] if isinstance(a['method'], str) else a['method']))
+        lim = a.get('limitations')
+        if isinstance(lim, str): lim = [x for x in lim.split('\n') if x.strip()]
+        if lim: m += '<h3>Grenzen</h3>' + (('<p>%s</p>' % inline(lim[0])) if isinstance(a.get('limitations'), str) and len(lim) == 1 else '<ul>%s</ul>' % ''.join('<li>%s</li>' % inline(l) for l in lim))
         out.append(m)
     out.append('<h2 id="quellen">Quellen</h2><ol class="refs">%s</ol>' % ''.join(
         '<li id="q%d"><a href="%s" rel="noopener">%s</a>, %s%s</li>' % (i + 1, esc(x['url']), esc(x['title']), esc(x['publisher']), (' (abgerufen %s)' % esc(x['accessed'])) if x.get('accessed') else '') for i, x in enumerate(a['sources'])))
@@ -200,7 +202,7 @@ def article_page(a, shell_top, shell_bottom, arts):
         out.append('<section class="faq" id="faq"><div class="wrap"><div class="sec-h"><h2>Häufige Fragen</h2></div>%s</div></section>' % ''.join('<details><summary>%s</summary><p>%s</p></details>' % (esc(q['q']), inline(q['a'])) for q in a['faq']))
     rel = [x for x in arts if x['slug'] in a.get('related', [])] or [x for x in arts if x['slug'] != s and x['section'] == a['section']][:2]
     if rel:
-        out.append('<section class="block"><div class="wrap"><div class="sec-h"><h2>Weiterlesen</h2></div><div class="grid" style="grid-template-columns:repeat(2,1fr)">%s</div></div></section>' % ''.join(
+        out.append('<section class="block"><div class="wrap"><div class="sec-h"><h2>Weiterlesen</h2></div><div class="grid rel-grid">%s</div></div></section>' % ''.join(
             '<article class="card"><div class="kicker">%s</div><h3><a href="/%s">%s</a></h3><p>%s</p><a class="more" href="/%s">Lesen →</a></article>' % (SECTIONS[r['section']], r['slug'], esc(r['title']), esc(r['dek']), r['slug']) for r in rel))
     out.append('</div></main>')
     out.append(shell_bottom)
@@ -221,7 +223,7 @@ def redaktion_html():
 def section_html(key, arts):
     items = ''.join('<article class="card"><div class="kicker">%s</div><h3><a href="/%s">%s</a></h3><p>%s</p><span class="meta"><time datetime="%s">%s</time></span><br><a class="more" href="/%s">Lesen →</a></article>' % (
         SECTIONS[key], a['slug'], esc(a['title']), esc(a['dek']), a['published'], de_date(a['_pub'], False), a['slug']) for a in arts if a['section'] == key)
-    return '<div class="sec-h"><h1>%s</h1></div><div class="grid" style="grid-template-columns:repeat(2,1fr)">%s</div>' % (SECTIONS[key], items)
+    return '<div class="sec-h"><h1>%s</h1></div><div class="grid rel-grid">%s</div>' % (SECTIONS[key], items)
 
 def replace_block(text, start, end, new):
     i, j = text.find(start), text.find(end)
