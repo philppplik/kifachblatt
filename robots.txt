@@ -2,3 +2,4 @@ User-agent: *
 Allow: /
 
 Sitemap: https://kifachblatt.de/sitemap.xml
+Sitemap: https://kifachblatt.de/news-sitemap.xml

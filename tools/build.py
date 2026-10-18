@@ -1,0 +1,290 @@
+#!/usr/bin/env python3
+"""KI Fachblatt article generator. Format: docs/EDITORIAL.md. Run from repo root: python3 tools/build.py
+Reads content/articles/*.json + content/images/*.jpg, writes <slug>.html, thema/<section>.html, redaktion.html,
+assets/articles/<slug>.jpg and updates index.html (article table), sitemap.xml, news-sitemap.xml, feed.xml, llms.txt.
+Idempotent. Articles with a future "published" are skipped (scheduled). Stdlib only."""
+import json, os, re, sys, glob, html, shutil, struct, datetime
+BASE = 'https://kifachblatt.de'
+PERSON = 'https://philipp-paulik.de/#person'
+AUTHOR_URL = BASE + '/redakteur/philipp-paulik'
+ORG = BASE + '/#org'
+PUB_NAME = 'KI Fachblatt'
+SECTIONS = {  # key -> label
+    'grundlagen': 'Grundlagen', 'architektur': 'Architektur', 'verlaesslichkeit': 'Verlässlichkeit', 'praxis': 'Praxis',
+    'datenschutz': 'Datenschutz', 'methode': 'Methode', 'analyse': 'Analyse', 'modelle': 'Modelle', 'agenten': 'Agenten',
+    'forschung': 'Forschung', 'recht': 'Recht & Regulierung'}
+TYPES = {'news': 'NewsArticle', 'analysis': 'NewsArticle', 'explainer': 'Article'}
+SITEMAP_NEWS_TYPES = {'news', 'analysis'}
+REQ = ['slug', 'title', 'dek', 'section', 'type', 'published', 'modified', 'author', 'tags', 'key_takeaways', 'hero', 'body', 'sources']
+errors = []
+def err(slug, msg): errors.append('%s: %s' % (slug, msg))
+esc = lambda s: html.escape(s, quote=True)
+
+def inline(t):
+    t = esc(t)
+    t = re.sub(r'\[\^(\d+)\]', r'<sup><a href="#q\1" aria-label="Quelle \1">[\1]</a></sup>', t)
+    t = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
+    t = re.sub(r'(?<!\*)\*([^*]+?)\*(?!\*)', r'<em>\1</em>', t)
+    t = re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+|/[^)\s]*)\)', lambda m: '<a href="%s"%s>%s</a>' % (m.group(2), '' if m.group(2).startswith('/') else ' rel="noopener"', m.group(1)), t)
+    return t
+
+def jpeg_size(path):
+    with open(path, 'rb') as f:
+        d = f.read()
+    if d[:2] != b'\xff\xd8': raise ValueError('not a JPEG')
+    i = 2
+    while i < len(d):
+        if d[i] != 0xFF: i += 1; continue
+        m = d[i + 1]
+        if m in (0xC0, 0xC1, 0xC2):
+            h, w = struct.unpack('>HH', d[i + 5:i + 9]); return w, h
+        i += 2 + struct.unpack('>H', d[i + 2:i + 4])[0]
+    raise ValueError('no SOF')
+
+def parse_dt(s):
+    return datetime.datetime.fromisoformat(s)
+MONTHS = ['Januar', 'Februar', 'März', 'April', 'Mai', 'Juni', 'Juli', 'August', 'September', 'Oktober', 'November', 'Dezember']
+def de_date(dt, time=True):
+    s = '%d. %s %d' % (dt.day, MONTHS[dt.month - 1], dt.year)
+    return s + (', %02d:%02d Uhr' % (dt.hour, dt.minute) if time else '')
+
+def load_articles(now):
+    arts = []
+    for p in sorted(glob.glob('content/articles/*.json')):
+        slug0 = os.path.basename(p)[:-5]
+        try: a = json.load(open(p, encoding='utf-8'))
+        except Exception as e: err(slug0, 'invalid JSON: %s' % e); continue
+        n0 = len(errors)
+        for k in REQ:
+            if k not in a: err(slug0, 'missing field "%s"' % k)
+        if len(errors) > n0: continue
+        s = a['slug']
+        if s != slug0: err(s, 'slug differs from filename')
+        if not re.fullmatch(r'[a-z0-9]+(-[a-z0-9]+)*', s): err(s, 'slug must be lowercase ascii kebab-case')
+        if os.path.exists(s + '.html') and s not in [x for x in generated_before]: err(s, 'slug collides with an existing hand-written page')
+        if a['section'] not in SECTIONS: err(s, 'section must be one of %s' % ', '.join(SECTIONS))
+        if a['type'] not in TYPES: err(s, 'type must be news|analysis|explainer')
+        if len(a['title']) > 70: err(s, 'title longer than 70 chars (%d)' % len(a['title']))
+        if not 100 <= len(a['dek']) <= 160: err(s, 'dek must be 100-160 chars (is %d)' % len(a['dek']))
+        if len(a['key_takeaways']) < 3: err(s, 'need >=3 key_takeaways')
+        if len(a['sources']) < 3: err(s, 'need >=3 sources')
+        for i, so in enumerate(a['sources']):
+            for k in ('title', 'publisher', 'url'):
+                if not so.get(k): err(s, 'sources[%d] missing %s' % (i, k))
+            if not str(so.get('url', '')).startswith('https://'): err(s, 'sources[%d].url must be https' % i)
+        if a['author'] != 'philipp-paulik': err(s, 'author must be philipp-paulik')
+        try: pub = parse_dt(a['published']); mod = parse_dt(a['modified'])
+        except Exception as e: err(s, 'bad date: %s' % e); continue
+        if pub.tzinfo is None or mod.tzinfo is None: err(s, 'dates need a time zone offset, e.g. +02:00')
+        elif mod < pub: err(s, 'modified before published')
+        h = a['hero']
+        if not h.get('alt') or not h.get('caption'): err(s, 'hero needs alt and caption')
+        ip = 'content/images/%s.jpg' % s
+        if not os.path.exists(ip): err(s, 'missing %s' % ip)
+        else:
+            try:
+                w, hh = jpeg_size(ip)
+                if (w, hh) != (1600, 900): err(s, 'hero must be 1600x900 (is %dx%d)' % (w, hh))
+                if os.path.getsize(ip) > 350 * 1024: err(s, 'hero larger than 350 KB')
+            except Exception as e: err(s, 'hero unreadable: %s' % e)
+        for b in a['body']:
+            if b.get('t') == 'figure':
+                fp = 'content/images/' + b.get('file', '')
+                if not os.path.exists(fp): err(s, 'missing figure file ' + fp)
+                if not b.get('alt') or not b.get('caption'): err(s, 'figure needs alt and caption')
+            elif b.get('t') not in ('p', 'h2', 'h3', 'ul', 'ol', 'quote', 'table', 'callout', 'code'): err(s, 'unknown block type %r' % b.get('t'))
+        if pub.tzinfo and pub > now: print('skip (scheduled):', s); continue
+        a['_pub'], a['_mod'] = pub, mod
+        arts.append(a)
+    arts.sort(key=lambda a: a['_pub'], reverse=True)
+    return arts
+
+def body_html(a):
+    out, toc, n = [], [], 0
+    for b in a['body']:
+        t = b['t']
+        if t == 'p': out.append('<p>%s</p>' % inline(b['x']))
+        elif t in ('h2', 'h3'):
+            if t == 'h2': n += 1; toc.append((('s%d' % n), b['x'])); out.append('<h2 id="s%d">%s</h2>' % (n, inline(b['x'])))
+            else: out.append('<h3>%s</h3>' % inline(b['x']))
+        elif t in ('ul', 'ol'): out.append('<%s>%s</%s>' % (t, ''.join('<li>%s</li>' % inline(i) for i in b['items']), t))
+        elif t == 'quote':
+            c = ''
+            if b.get('cite'): c = '<footer>%s</footer>' % (('<a href="%s" rel="noopener">%s</a>' % (esc(b['url']), esc(b['cite']))) if b.get('url') else esc(b['cite']))
+            out.append('<blockquote><p>%s</p>%s</blockquote>' % (inline(b['x']), c))
+        elif t == 'table':
+            cap = '<caption>%s</caption>' % esc(b['caption']) if b.get('caption') else ''
+            th = ''.join('<th scope="col">%s</th>' % inline(c) for c in b['head'])
+            rows = ''.join('<tr>%s</tr>' % ''.join('<td>%s</td>' % inline(c) for c in r) for r in b['rows'])
+            out.append('<div class="table-scroll"><table class="data">%s<thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (cap, th, rows))
+        elif t == 'callout': out.append('<aside class="callout"><b>%s</b><p>%s</p></aside>' % (esc(b.get('title', 'Hinweis')), inline(b['x'])))
+        elif t == 'code': out.append('<pre><code%s>%s</code></pre>' % (' class="language-%s"' % esc(b['lang']) if b.get('lang') else '', esc(b['x'])))
+        elif t == 'figure':
+            w, h = jpeg_size('content/images/' + b['file'])
+            cap = esc(b['caption']) + (' (KI-generiert)' if b.get('ai_generated') and 'KI' not in b['caption'] else '')
+            out.append('<figure class="fig"><img src="/assets/articles/%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async"><figcaption>%s</figcaption></figure>' % (esc(b['file']), esc(b['alt']), w, h, cap))
+    return '\n'.join(out), toc
+
+def jsonld(a):
+    s, h = a['slug'], a['hero']
+    url = '%s/%s' % (BASE, s)
+    img_url = '%s/assets/articles/%s.jpg' % (BASE, s)
+    credit = h.get('credit') or ('Illustration: KI-generiert' if h.get('ai_generated') else '')
+    image = {'@type': 'ImageObject', '@id': url + '#image', 'url': img_url, 'contentUrl': img_url, 'width': 1600, 'height': 900,
+             'caption': h['caption'], 'description': h['alt'], 'creator': {'@id': PERSON} if not h.get('ai_generated') else {'@id': ORG},
+             'creditText': credit, 'license': BASE + '/redaktion#bildrechte', 'acquireLicensePage': BASE + '/redaktion#bildrechte'}
+    if h.get('ai_generated'):
+        image['digitalSourceType'] = 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia'
+    body_text = ' '.join(re.sub(r'<[^>]+>', '', x.get('x', '')) for x in a['body'] if x['t'] in ('p',))
+    art = {'@type': TYPES[a['type']], '@id': url + '#article', 'mainEntityOfPage': {'@type': 'WebPage', '@id': url}, 'url': url,
+           'headline': a['title'], 'description': a['dek'], 'inLanguage': 'de-DE', 'datePublished': a['published'], 'dateModified': a['modified'],
+           'author': {'@type': 'Person', '@id': PERSON, 'name': 'Philipp Paulik', 'url': AUTHOR_URL}, 'publisher': {'@id': ORG},
+           'image': [image], 'articleSection': SECTIONS[a['section']], 'keywords': ', '.join(a['tags']), 'isAccessibleForFree': True,
+           'wordCount': len(body_text.split()), 'citation': [{'@type': 'CreativeWork', 'name': x['title'], 'url': x['url'], 'publisher': {'@type': 'Organization', 'name': x['publisher']}} for x in a['sources']]}
+    graph = [{'@type': 'Organization', '@id': ORG, 'name': PUB_NAME, 'url': BASE + '/', 'logo': {'@type': 'ImageObject', 'url': BASE + '/favicon.svg'}, 'founder': {'@id': PERSON}},
+             {'@type': 'WebSite', '@id': BASE + '/#site', 'url': BASE + '/', 'name': PUB_NAME, 'inLanguage': 'de-DE', 'publisher': {'@id': ORG}},
+             art, image,
+             {'@type': 'BreadcrumbList', '@id': url + '#crumbs', 'itemListElement': [
+                 {'@type': 'ListItem', 'position': 1, 'name': 'Start', 'item': BASE + '/'},
+                 {'@type': 'ListItem', 'position': 2, 'name': SECTIONS[a['section']], 'item': '%s/thema/%s' % (BASE, a['section'])},
+                 {'@type': 'ListItem', 'position': 3, 'name': a['title'], 'item': url}]}]
+    if a.get('faq'):
+        graph.append({'@type': 'FAQPage', '@id': url + '#faq', 'mainEntity': [{'@type': 'Question', 'name': q['q'], 'acceptedAnswer': {'@type': 'Answer', 'text': q['a']}} for q in a['faq']]})
+    return json.dumps({'@context': 'https://schema.org', '@graph': graph}, ensure_ascii=False)
+
+def head(title, desc, canon, extra='', og_type='website', image=None, ld=None, robots='index,follow,max-image-preview:large,max-snippet:-1'):
+    image = image or 'https://plane.philipp-paulik.de/assets/kifachblatt-og.png'
+    return ('<!doctype html>\n<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<script>document.documentElement.className="js";if(/\\.html$/.test(location.pathname))history.replaceState(null,"",location.pathname.replace(/\\.html$/,""))</script>\n'
+            '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n<meta name="robots" content="%s">\n<meta name="theme-color" content="#100f0d">\n'
+            '<link rel="icon" href="/favicon.svg" type="image/svg+xml">\n<link rel="alternate" type="application/rss+xml" title="KI Fachblatt" href="/feed.xml">\n'
+            '<meta property="og:type" content="%s"><meta property="og:site_name" content="KI Fachblatt"><meta property="og:locale" content="de_DE">\n'
+            '<meta property="og:title" content="%s"><meta property="og:description" content="%s"><meta property="og:url" content="%s"><meta property="og:image" content="%s">%s\n'
+            '<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="%s">\n<link rel="stylesheet" href="/style.css">\n%s'
+            '<link rel="author" href="%s"></head>') % (esc(title), esc(desc), canon, robots, og_type, esc(title), esc(desc), canon, image, extra, image,
+            ('<script type="application/ld+json">%s</script>\n' % ld) if ld else '', AUTHOR_URL)
+
+def article_page(a, shell_top, shell_bottom, arts):
+    s, h = a['slug'], a['hero']
+    url = '%s/%s' % (BASE, s)
+    body, toc = body_html(a)
+    words = len(' '.join(x.get('x', '') for x in a['body']).split()) + sum(len(' '.join(x.get('items', [])).split()) for x in a['body'])
+    mins = max(1, round(words / 200))
+    pub, mod = a['_pub'], a['_mod']
+    img = '/assets/articles/%s.jpg' % s
+    extra = ('<meta property="og:image:width" content="1600"><meta property="og:image:height" content="900"><meta property="og:image:alt" content="%s">'
+             '<meta property="article:published_time" content="%s"><meta property="article:modified_time" content="%s"><meta property="article:author" content="%s"><meta property="article:section" content="%s">') % (esc(h['alt']), a['published'], a['modified'], AUTHOR_URL, SECTIONS[a['section']])
+    extra += ''.join('<meta property="article:tag" content="%s">' % esc(t) for t in a['tags'])
+    out = [head(a['title'] + ' | KI Fachblatt', a['dek'], url, extra, 'article', BASE + img, jsonld(a)), shell_top]
+    cap = esc(h['caption']) + ((' · ' + esc(h['credit'])) if h.get('credit') else (' · Illustration: KI-generiert' if h.get('ai_generated') else ''))
+    modtxt = (' · aktualisiert <time datetime="%s">%s</time>' % (a['modified'], de_date(mod))) if mod != pub else ''
+    out.append('<main id="main"><div class="wrap"><nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › <a href="/thema/%s">%s</a></nav>' % (a['section'], SECTIONS[a['section']]))
+    out.append('<article itemscope itemtype="https://schema.org/%s"><div class="art-head"><div class="kicker">%s</div><h1 itemprop="headline">%s</h1><p class="deck">%s</p>' % (TYPES[a['type']], SECTIONS[a['section']], esc(a['title']), esc(a['dek'])))
+    out.append('<p class="byline"><a rel="author" href="%s">Philipp Paulik</a>, Redaktion KI Fachblatt · mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/redaktion">so arbeiten wir</a>) · <time datetime="%s">%s</time>%s · %d Min. Lesezeit</p></div>' % (AUTHOR_URL, a['published'], de_date(pub), modtxt, mins))
+    out.append('<figure class="hero-fig"><img src="%s" alt="%s" width="1600" height="900" fetchpriority="high" decoding="async"><figcaption>%s</figcaption></figure>' % (img, esc(h['alt']), cap))
+    out.append('<div class="tldr"><b>Kurz gesagt</b><ul>%s</ul></div>' % ''.join('<li>%s</li>' % inline(k) for k in a['key_takeaways']))
+    tocs = ''.join('<a href="#%s">%s</a>' % (i, esc(t)) for i, t in toc)
+    extra_toc = '<a href="#quellen">Quellen</a>' + ('<a href="#faq">Häufige Fragen</a>' if a.get('faq') else '')
+    out.append('<div class="art"><aside class="toc" aria-label="Inhalt"><b>Inhalt</b>%s%s</aside><div class="body" itemprop="articleBody">%s' % (tocs, extra_toc, body))
+    if a.get('method') or a.get('limitations'):
+        m = ''
+        if a.get('method'): m += '<h2 id="methode">Methode</h2><p>%s</p>' % inline(a['method'])
+        if a.get('limitations'): m += '<h3>Grenzen</h3><ul>%s</ul>' % ''.join('<li>%s</li>' % inline(l) for l in a['limitations'])
+        out.append(m)
+    out.append('<h2 id="quellen">Quellen</h2><ol class="refs">%s</ol>' % ''.join(
+        '<li id="q%d"><a href="%s" rel="noopener">%s</a>, %s%s</li>' % (i + 1, esc(x['url']), esc(x['title']), esc(x['publisher']), (' (abgerufen %s)' % esc(x['accessed'])) if x.get('accessed') else '') for i, x in enumerate(a['sources'])))
+    out.append('</div></div></article>')
+    if a.get('faq'):
+        out.append('<section class="faq" id="faq"><div class="wrap"><div class="sec-h"><h2>Häufige Fragen</h2></div>%s</div></section>' % ''.join('<details><summary>%s</summary><p>%s</p></details>' % (esc(q['q']), inline(q['a'])) for q in a['faq']))
+    rel = [x for x in arts if x['slug'] in a.get('related', [])] or [x for x in arts if x['slug'] != s and x['section'] == a['section']][:2]
+    if rel:
+        out.append('<section class="block"><div class="wrap"><div class="sec-h"><h2>Weiterlesen</h2></div><div class="grid" style="grid-template-columns:repeat(2,1fr)">%s</div></div></section>' % ''.join(
+            '<article class="card"><div class="kicker">%s</div><h3><a href="/%s">%s</a></h3><p>%s</p><a class="more" href="/%s">Lesen →</a></article>' % (SECTIONS[r['section']], r['slug'], esc(r['title']), esc(r['dek']), r['slug']) for r in rel))
+    out.append('</div></main>')
+    out.append(shell_bottom)
+    return '\n'.join(out)
+
+def simple_page(title, desc, canon, inner, shell_top, shell_bottom, ld=None):
+    return '\n'.join([head(title, desc, canon, ld=ld), shell_top, '<main id="main"><div class="wrap">%s</div></main>' % inner, shell_bottom])
+
+def redaktion_html():
+    return '''<div class="legal"><div class="kicker">Redaktion</div><h1>Redaktionelle Grundsätze</h1>
+<p>Das KI Fachblatt erscheint im Verlag von Philipp Paulik, Neunkirchen-Seelscheid. Verantwortlich im Sinne des § 18 Abs. 2 MStV ist Philipp Paulik (<a href="/impressum">Impressum</a>, <a href="/redakteur/philipp-paulik">Autorenprofil</a>). Kontakt: <a href="mailto:philipp.l.paulik@gmail.com">philipp.l.paulik@gmail.com</a>.</p>
+<h2 id="ki-einsatz">Einsatz von KI</h2><p>Beiträge entstehen mit KI-Unterstützung: Recherche, Entwurf und Bildentwurf werden von KI-Werkzeugen unterstützt. Auswahl der Themen, Prüfung der Quellen und die Veröffentlichung verantwortet der Herausgeber. Jeder Beitrag nennt seine Quellen. Wir erfinden keine Zitate, Zahlen oder Studien und kennzeichnen Unsicherheit im Text.</p>
+<h2 id="bildrechte">Bilder und Bildrechte</h2><p>Von KI erzeugte Bilder tragen im Bild den Hinweis „KI-generiert“ und in der Bildunterschrift die Angabe „Illustration: KI-generiert“. Alle Bilder haben einen Alternativtext. Eigene Bilder des KI Fachblatts dürfen mit Quellenangabe (KI Fachblatt, kifachblatt.de) verlinkt und zitiert werden; für eine weitergehende Nutzung bitte per E-Mail anfragen.</p>
+<h2 id="quellen">Quellen und Belege</h2><p>Wir bevorzugen Primärquellen: Veröffentlichungen, Modellkarten, technische Dokumentation und Messdaten. Eigene Tests werden nur beschrieben, wenn wir sie wirklich durchgeführt haben, mit Methode und Grenzen.</p>
+<h2 id="korrekturen">Korrekturen</h2><p>Fehler werden im Beitrag korrigiert. Bei inhaltlichen Änderungen setzen wir das Aktualisierungsdatum und vermerken die Korrektur im Text. Hinweise bitte per E-Mail an die oben genannte Adresse.</p>
+<h2 id="werbung">Werbung und Unabhängigkeit</h2><p>Das KI Fachblatt verkauft derzeit keine Anzeigen und nimmt keine bezahlten Beiträge an. Sollte sich das ändern, wird bezahlter Inhalt klar als solcher gekennzeichnet. Wir nehmen keine Stellung zu parteipolitischen Themen.</p></div>'''
+
+def section_html(key, arts):
+    items = ''.join('<article class="card"><div class="kicker">%s</div><h3><a href="/%s">%s</a></h3><p>%s</p><span class="meta"><time datetime="%s">%s</time></span><br><a class="more" href="/%s">Lesen →</a></article>' % (
+        SECTIONS[key], a['slug'], esc(a['title']), esc(a['dek']), a['published'], de_date(a['_pub'], False), a['slug']) for a in arts if a['section'] == key)
+    return '<div class="sec-h"><h1>%s</h1></div><div class="grid" style="grid-template-columns:repeat(2,1fr)">%s</div>' % (SECTIONS[key], items)
+
+def replace_block(text, start, end, new):
+    i, j = text.find(start), text.find(end)
+    if i < 0 or j < 0: return None
+    return text[:i + len(start)] + '\n' + new + '\n' + text[j:]
+
+generated_before = []
+def main():
+    global generated_before
+    os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
+    now = datetime.datetime.now().astimezone()
+    if os.path.exists('.generated.json'): generated_before = json.load(open('.generated.json'))
+    arts = load_articles(now)
+    if errors:
+        print('BUILD FAILED:'); [print(' -', e) for e in errors]; sys.exit(1)
+    shell = open('halluzinationen.html', encoding='utf-8').read()
+    shell_top = shell[shell.index('<body>'):shell.index('<main id="main">')]
+    shell_bottom = shell[shell.index('</main>') + len('</main>'):]
+    os.makedirs('assets/articles', exist_ok=True); os.makedirs('thema', exist_ok=True)
+    for a in arts:
+        shutil.copyfile('content/images/%s.jpg' % a['slug'], 'assets/articles/%s.jpg' % a['slug'])
+        for b in a['body']:
+            if b['t'] == 'figure': shutil.copyfile('content/images/' + b['file'], 'assets/articles/' + b['file'])
+        open(a['slug'] + '.html', 'w', encoding='utf-8').write(article_page(a, shell_top, shell_bottom, arts))
+    sections = sorted({a['section'] for a in arts})
+    for k in sections:
+        open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
+    open('redaktion.html', 'w', encoding='utf-8').write(simple_page('Redaktionelle Grundsätze | KI Fachblatt', 'KI-Einsatz, Quellen, Bildrechte, Korrekturen und Unabhängigkeit beim KI Fachblatt.', BASE + '/redaktion', redaktion_html(), shell_top, shell_bottom))
+    json.dump([a['slug'] for a in arts], open('.generated.json', 'w'))
+    # index table
+    idx = open('index.html', encoding='utf-8').read()
+    rows = ''.join('<tr data-topic="%s"><td><a href="/%s">%s</a><p>%s</p></td><td><span class="topic">%s</span></td><td>%s</td><td><a aria-label="%s lesen" class="read" href="/%s">Lesen ↗</a></td></tr>' % (
+        SECTIONS[a['section']], a['slug'], esc(a['title']), esc(a['dek']), SECTIONS[a['section']], de_date(a['_pub'], False), esc(a['title']), a['slug']) for a in arts)
+    new = replace_block(idx, '<!--GEN-ARTICLES:START-->', '<!--GEN-ARTICLES:END-->', rows)
+    if new is None: print('WARN: index.html has no <!--GEN-ARTICLES--> markers; run PR setup first')
+    else: open('index.html', 'w', encoding='utf-8').write(new)
+    # sitemap
+    sm = open('sitemap.xml', encoding='utf-8').read()
+    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + ['redaktion'])]
+    gen = []
+    for a in arts:
+        gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title><image:caption>%s</image:caption></image:image></url>' % (BASE, a['slug'], a['modified'], BASE, a['slug'], esc(a['title']), esc(a['hero']['alt'])))
+    for k in sections: gen.append('<url><loc>%s/thema/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, max(a['modified'] for a in arts if a['section'] == k)))
+    gen.append('<url><loc>%s/redaktion</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
+    open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(static + gen) + '</urlset>\n')
+    # news sitemap (last 2 days)
+    recent = [a for a in arts if a['type'] in SITEMAP_NEWS_TYPES and now - a['_pub'] <= datetime.timedelta(hours=48)][:1000]
+    ns = ''.join('<url><loc>%s/%s</loc><news:news><news:publication><news:name>%s</news:name><news:language>de</news:language></news:publication><news:publication_date>%s</news:publication_date><news:title>%s</news:title></news:news></url>\n' % (BASE, a['slug'], PUB_NAME, a['published'], esc(a['title'])) for a in recent)
+    open('news-sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">\n' + ns + '</urlset>\n')
+    # robots
+    rb = open('robots.txt').read()
+    if 'news-sitemap.xml' not in rb: open('robots.txt', 'w').write(rb.rstrip('\n') + '\nSitemap: %s/news-sitemap.xml\n' % BASE)
+    # feed
+    fd = open('feed.xml', encoding='utf-8').read()
+    old = [m for m in re.findall(r'<item>.*?</item>', fd, re.S) if not any('<guid>%s/%s</guid>' % (BASE, a['slug']) in m for a in arts)]
+    items = ''.join('<item><title>%s</title><link>%s/%s</link><guid>%s/%s</guid><pubDate>%s</pubDate><category>%s</category><dc:creator>Philipp Paulik</dc:creator><description>%s</description></item>' % (
+        esc(a['title']), BASE, a['slug'], BASE, a['slug'], a['_pub'].strftime('%a, %d %b %Y %H:%M:%S %z'), SECTIONS[a['section']], esc(a['dek'])) for a in arts)
+    head_ = fd[:fd.index('<item>')] if '<item>' in fd else fd[:fd.index('</channel>')]
+    head_ = head_.replace('<rss version="2.0">', '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">')
+    open('feed.xml', 'w', encoding='utf-8').write(head_ + items + ''.join(old) + '</channel></rss>\n')
+    # llms.txt
+    ll = open('llms.txt', encoding='utf-8').read()
+    lines = ''.join('- [%s](%s/%s): %s\n' % (a['title'], BASE, a['slug'], a['dek']) for a in arts)
+    if '<!--GEN-->' in ll: ll = re.sub(r'<!--GEN-->.*?<!--/GEN-->', lambda m: '<!--GEN-->\n' + lines + '<!--/GEN-->', ll, flags=re.S)
+    else: ll = ll.replace('## Beiträge\n\n', '## Beiträge\n\n<!--GEN-->\n' + lines + '<!--/GEN-->\n', 1)
+    open('llms.txt', 'w', encoding='utf-8').write(ll)
+    print('built %d article(s), %d section page(s); news-sitemap: %d' % (len(arts), len(sections), len(recent)))
+
+if __name__ == '__main__': main()

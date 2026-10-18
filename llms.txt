@@ -4,6 +4,8 @@
 
 ## Beiträge
 
+<!--GEN-->
+<!--/GEN-->
 - [Was ein KI-Agent wirklich ist](https://kifachblatt.de/was-ist-ein-ki-agent): Ein Sprachmodell in einer Schleife, mit Werkzeugen und einem Ziel. Warum das mehr ist als ein Chatbot, und weniger als Magie.
 - [RAG oder langer Kontext: Was wann trägt](https://kifachblatt.de/rag-oder-langer-kontext): Beide Ansätze bringen Wissen ins Modell. Sie lösen aber verschiedene Probleme, und die Wahl entscheidet über Kosten, Tempo und Genauigkeit.
 - [Warum Sprachmodelle halluzinieren](https://kifachblatt.de/halluzinationen): Erfundene Fakten sind kein Defekt, sondern eine Folge davon, wie diese Modelle arbeiten. Was dagegen hilft und was nicht.
