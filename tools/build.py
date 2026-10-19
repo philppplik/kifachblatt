@@ -525,6 +525,8 @@ def main():
     for k, pg in pages.items():
         inner = '<div class="legal"><div class="kicker">Redaktion</div><h1>%s</h1>%s</div>' % (esc(pg['title']), pg['html'])
         open(k + '.html', 'w', encoding='utf-8').write(simple_page(pg['title'] + ' | KI Fachblatt', pg['desc'] or pg['title'], BASE + '/' + k, inner, shell_top, shell_bottom))
+    from about import render as render_about
+    render_about(arts)
     patch_static_shares(); patch_footer_and_bylines()
     json.dump([a['slug'] for a in arts], open('.generated.json', 'w'))
     # Homepage cards and source-grounded charts.
