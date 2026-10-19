@@ -566,3 +566,4 @@ if __name__ == '__main__':
     main()
     from portraits import render
     render('kfb', '.')
+    import footer; footer.main('.')
