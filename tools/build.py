@@ -518,7 +518,8 @@ def main():
              '<p>Die Tagesausgabe fasst die 20 aktuell meistbeachteten Modelle auf Hugging Face (Sortierung nach dem Trend-Score der öffentlichen API), die zwei neuesten Analysen des KI Fachblatts und das Impressum mit Redaktionsschluss auf vier A4-Seiten zusammen. Hell, druckfreundlich, ohne Tracking.</p>'
              + hfx + '<p><a class="btn" href="/berichte/ki-tagesbericht.pdf" download>PDF herunterladen</a> &nbsp; <a href="/berichte/tagesbericht">Druckansicht im Browser</a></p>'
              '<p class="mut">Stand der aktuellen Ausgabe: %s. Modelldaten: Hugging Face (öffentliche API). Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung. Die Ausgabe wird automatisch erstellt; Inhalte entstehen mit KI-Unterstützung und werden redaktionell geprüft (<a href="/transparenz">so arbeiten wir</a>).</p></div>') % stand
-    inner = inner.rsplit('</div>',1)[0] + archive_html(archive_dates, 'ki-tagesbericht-') + '</div>'
+    from report_landing import build as report_landing
+    inner = report_landing('.', '.', 'kfb', archive_dates, 'ki-tagesbericht.pdf', 'ki-tagesbericht-')
     open('berichte.html', 'w', encoding='utf-8').write(simple_page('KI-Tagesbericht als PDF | KI Fachblatt', 'Täglicher KI-Tagesbericht als PDF: Trending-Modelle von Hugging Face, die Analysen des Tages, Impressum. Kostenlos, druckfreundlich.', BASE + '/berichte', inner, shell_top, shell_bottom))
     pages = mdpages.load('content/pages')
     for k, pg in pages.items():
