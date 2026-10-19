@@ -136,6 +136,21 @@
       "title": "Offizielles Entwickler-Repository: googleapis/python-genai",
       "url": "https://github.com/googleapis/python-genai",
       "accessed": "2026-10-19"
+    },
+    "astra-rich": {
+      "title": "GPT-6 Astra: offizielle Modell-Dokumentation",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "accessed": "2026-10-19"
+    },
+    "opus-rich": {
+      "title": "Claude Opus 5.5: offizielle Modell-Dokumentation",
+      "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+      "accessed": "2026-10-19"
+    },
+    "fable-rich": {
+      "title": "Claude Fable 5.1: offizielle Modell-Dokumentation",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+      "accessed": "2026-10-19"
     }
   },
   "companies": [
@@ -466,13 +481,14 @@
       "name": "GPT-6 Astra",
       "company": "openai",
       "initials": "GA",
-      "summary": "Ein Modell für anspruchsvolle Denk-, Programmier- und Dokumentaufgaben.",
+      "summary": "GPT-6 Astra ist ein OpenAI-Modell für komplexes Reasoning, Programmieren, Recherche und Dokumentarbeit.",
       "detail": "Die API-Dokumentation nennt Text- und Bildeingaben sowie Textausgaben. Der Reasoning-Aufwand ist einstellbar. Die Einordnung als besonders leistungsfähig stammt vom Anbieter.",
       "access": "OpenAI API; Modell-ID gpt-6-astra.",
       "license": "Gehosteter API-Zugang; keine Gewichtslizenz aus dieser Quelle abgeleitet.",
       "limits": "Kontextfenster, maximale Eingabe und maximale Ausgabe sind unterschiedliche Grenzen. Tool-Unterstützung ist zusätzlich vom verwendeten API-Endpunkt abhängig.",
       "sources": [
-        "astra"
+        "astra",
+        "astra-rich"
       ],
       "facts": [
         {
@@ -500,7 +516,68 @@
           "value": "128.000 Token",
           "source": "astra"
         }
-      ]
+      ],
+      "rich_model": {
+        "source": "astra-rich",
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+        "name": "GPT-6 Astra",
+        "api": "gpt-6-astra",
+        "input": 10,
+        "output": 50,
+        "context": 1050000,
+        "maxout": 128000,
+        "date": null,
+        "headline": "Reasoning, Werkzeuge und Dokumente richtig einordnen.",
+        "answer": "GPT-6 Astra ist ein OpenAI-Modell für komplexes Reasoning, Programmieren, Recherche und Dokumentarbeit. Es verarbeitet Text und Bilder und erzeugt Text. Im API-Steckbrief stehen 1.050.000 Token Kontext und maximal 128.000 Ausgabe-Token.",
+        "practical": "Astra richtet sich laut OpenAI an anspruchsvolle Aufgaben. Ob es im eigenen Projekt passt, hängt von Ergebnisqualität, Antwortzeit, Kosten und dem verwendeten Werkzeugablauf ab, nicht allein von der Größe des Kontextfensters.",
+        "technical": "Die Modellseite nennt 922.000 Token als maximale Eingabe und 128.000 als maximale Ausgabe. Das Kontextfenster ist keine Zusage, dass jede Information darin korrekt gefunden oder verwendet wird. Reasoning beansprucht ebenfalls Token; Grenzen des Endpunkts bleiben zu prüfen.",
+        "sections": [
+          [
+            "Eingaben und Ausgaben",
+            "Text und Bilder können als Eingabe dienen, die Ausgabe ist Text. Audio, Live-Sprachdialog und Videoerzeugung sind in diesem Steckbrief nicht als native Ausgabe ausgewiesen."
+          ],
+          [
+            "Reasoning-Aufwand steuern",
+            "Die dokumentierten Stufen lauten low, medium, high, xhigh und max. Mehr Aufwand ist eine Konfiguration, keine Qualitätsgarantie. Für Vergleiche sollten Aufwand, Prompt, Werkzeuge und Budget konstant dokumentiert werden."
+          ],
+          [
+            "Werkzeuge über die Responses API",
+            "Die Modellseite listet unter anderem Websuche, Dateisuche, Code Interpreter, Computer Use und Funktionsaufrufe. Modellunterstützung ersetzt keine Freischaltung, sichere Werkzeugkonfiguration oder Prüfung von Ergebnissen."
+          ],
+          [
+            "Zugang ist nicht dasselbe wie ein Abo",
+            "Die hier genannten Preise gelten für API-Texttoken. Sie beschreiben keine ChatGPT-Abogebühr und keine pauschale Lizenz für Modellgewichte. Die tatsächlichen Limits hängen vom Nutzungstier ab."
+          ]
+        ],
+        "pricing_note": "Standard-Texttoken in USD je 1 Mio. Token: Eingabe 10, Ausgabe 50; Cache-Read 1 und Cache-Write 12,50. Bei Prompts über 272.000 Eingabe-Token nennt OpenAI 2-fache Eingabe-/Cache-Raten und 1,5-fache Ausgaberaten für die vollständige Anfrage. Batch/Flex: 50 % der Standardraten; Fast: 2-fache zutreffende Raten. Werkzeuge können zusätzliche Gebühren auslösen. Keine Abopreise, keine Steuer- oder Gesamtkostenzusage.",
+        "faq": [
+          [
+            "Was ist GPT-6 Astra?",
+            "Ein OpenAI-Modell für komplexes Reasoning, Code, Recherche und Dokumente. Die offizielle Modell-ID ist gpt-6-astra; ChatGPT bezeichnet dagegen eine Anwendung."
+          ],
+          [
+            "Wie groß ist das Kontextfenster von GPT-6 Astra?",
+            "1.050.000 Token laut API-Dokumentation. Separat nennt OpenAI maximal 922.000 Eingabe-Token und 128.000 Ausgabe-Token. Kontext und Ausgabe sind nicht dasselbe."
+          ],
+          [
+            "Was kostet GPT-6 Astra über die API?",
+            "Standard-Texttoken kosten laut Quelle 10 USD je Million Eingabe-Token und 50 USD je Million Ausgabe-Token. Lange Prompts, Caching, Verarbeitungsmodus und Werkzeuge verändern die Rechnung. Stand: 19.10.2026."
+          ],
+          [
+            "Kann GPT-6 Astra Bilder und Audio verarbeiten?",
+            "Die Modellseite nennt Text und Bilder als Eingaben und Text als Ausgabe. Ein Sprach- oder Videodienst darf daraus nicht pauschal abgeleitet werden."
+          ],
+          [
+            "Ist GPT-6 Astra ein Open-Weight-Modell?",
+            "Die geprüfte Quelle dokumentiert gehosteten API-Zugang und keine offene Gewichtslizenz. Ein öffentliches SDK ist nicht gleichbedeutend mit offenen Modellgewichten."
+          ]
+        ],
+        "migration": [
+          "Modell-ID gpt-6-astra und den tatsächlich verwendeten API-Endpunkt festhalten.",
+          "Reasoning-Aufwand explizit setzen und Ergebnisqualität mit festen Aufgaben prüfen.",
+          "Lange Prompts, Cache und Werkzeugkosten getrennt im Budget erfassen."
+        ]
+      }
     },
     {
       "slug": "claude-opus-5",
@@ -794,6 +871,218 @@
           "source": "meta"
         }
       ]
+    },
+    {
+      "slug": "claude-opus-5-5",
+      "name": "Claude Opus 5.5",
+      "company": "anthropic",
+      "initials": "CO",
+      "summary": "Claude Opus 5.5 ist ein Anthropic-Modell für länger laufende Programmier- und Wissensaufgaben mit Agenten.",
+      "detail": "Der aktuelle Anthropic-Katalog nennt Text- und Bildeingaben, Textausgabe sowie Werkzeugnutzung. Die Aufgabenbeschreibung ist Herstellerpositionierung; tatsächliche Latenz hängt unter anderem von Promptlänge und Thinking-Aufwand ab.",
+      "access": "Im offiziellen API-Katalog geführt. Konkrete Freischaltung und regionale Verfügbarkeit im eigenen Anbieterkonto prüfen.",
+      "license": "Gehosteter API-Zugang; keine offene Gewichtslizenz aus dieser Quelle abgeleitet.",
+      "limits": "Herstellerbeschreibung, kein eigener Leistungstest. Eignung mit eigenen Aufgaben prüfen; Modellname und Version beim Einsatz festhalten.",
+      "sources": [
+        "opus-rich"
+      ],
+      "facts": [
+        {
+          "label": "Claude-API-ID",
+          "value": "claude-opus-5-5",
+          "source": "opus-rich"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild → Text",
+          "source": "opus-rich"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "1 Mio. Token",
+          "source": "opus-rich"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "value": "128.000 Token (synchron)",
+          "source": "opus-rich"
+        },
+        {
+          "label": "Thinking",
+          "value": "Adaptiv, immer aktiv",
+          "source": "opus-rich"
+        }
+      ],
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Modelllogo"
+      },
+      "rich_model": {
+        "source": "opus-rich",
+        "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview",
+        "name": "Claude Opus 5.5",
+        "api": "claude-opus-5-5",
+        "input": 4,
+        "output": 20,
+        "context": 1000000,
+        "maxout": 128000,
+        "date": "22. September 2026",
+        "headline": "Agentische Arbeit mit konkreten API-Grenzen.",
+        "answer": "Claude Opus 5.5 ist ein Anthropic-Modell für länger laufende Programmier- und Wissensaufgaben mit Agenten. Es unterstützt Text- und Bildeingaben sowie Textausgabe. Die Quelle nennt 1 Mio. Token Kontext und maximal 128.000 Ausgabe-Token bei synchronen Anfragen.",
+        "practical": "Anthropic empfiehlt Opus 5.5 als Ausgangspunkt für die meisten Aufgaben. Das ist Anbieterberatung, kein hier ermitteltes Urteil. Prüfe einen kompletten Arbeitsablauf: Werkzeugaufrufe, Zwischenmeldungen, Ergebnis und Kosten.",
+        "technical": "Adaptive Thinking ist immer aktiv; der Standardaufwand ist medium. Erzwungene Werkzeugnutzung wird laut Migrationshinweisen abgewiesen. Thinking-Blöcke sind an Modell und Gespräch gebunden; Änderungen früherer Gesprächsrunden können diese Bindung beeinflussen.",
+        "sections": [
+          [
+            "Aufgabe und Modalitäten",
+            "Opus 5.5 ist für länger laufende Agenten-, Code- und Wissensarbeit positioniert. Text und Bilder gehen hinein, Text kommt heraus. Ein API-Modell ist nicht die vollständige Claude-Anwendung."
+          ],
+          [
+            "Thinking lässt sich nicht ausschalten",
+            "Adaptive Thinking bleibt bei Opus 5.5 aktiv. Die Tiefe wird über den Aufwand gesteuert, standardmäßig medium. Ein Upgrade ist deshalb nicht bloß der Austausch einer Modell-ID."
+          ],
+          [
+            "Werkzeugschleifen und Fortschrittsmeldungen",
+            "Erzwungene Werkzeugnutzung führt laut Dokumentation zu einem Fehler. Text zwischen Werkzeugaufrufen kann in Thinking-Blöcken stecken und bei der Standardanzeige leer bleiben. Anwendungen müssen ihre Streaming- und display-Einstellung prüfen."
+          ],
+          [
+            "Kontext und Batch-Ausgabe unterscheiden",
+            "Synchron sind bis 128.000 Ausgabe-Token dokumentiert. Für Message Batches nennt die Quelle bis 300.000 mit dem Beta-Header output-300k-2026-03-24. Diese Beta-Grenze ist kein Standardlimit jeder Anfrage."
+          ]
+        ],
+        "pricing_note": "Basispreise in USD je 1 Mio. Token: Eingabe 4, Ausgabe 20. Cache-Write 5 Min.: 5; Cache-Write 1 Std.: 8; Cache-Read: 0,20. Batch-API nennt 50 % Rabatt auf Eingabe und Ausgabe. Fast Mode und Plattformbedingungen separat prüfen; kein Claude-Abopreis, keine Gesamtkostenzusage.",
+        "faq": [
+          [
+            "Was ist Claude Opus 5.5?",
+            "Ein Anthropic-Modell für länger laufende agentische Programmier- und Wissensarbeit, veröffentlicht am 22. September 2026. Die Claude-API-ID lautet claude-opus-5-5."
+          ],
+          [
+            "Was kostet Claude Opus 5.5?",
+            "Die Basispreise betragen 4 USD je Million Eingabe-Token und 20 USD je Million Ausgabe-Token. Cache, Batch und Fast Mode haben eigene Bedingungen. Stand: 19.10.2026."
+          ],
+          [
+            "Wie groß ist das Kontextfenster von Opus 5.5?",
+            "Die offizielle Dokumentation nennt 1 Mio. Token Kontext und 128.000 maximale Ausgabe-Token synchron. Bis 300.000 Ausgabe-Token gelten nur für Message Batches mit dem angegebenen Beta-Header."
+          ],
+          [
+            "Kann man Thinking bei Opus 5.5 deaktivieren?",
+            "Nein. Laut Dokumentation ist Adaptive Thinking immer aktiv. Der Aufwand ist steuerbar und steht standardmäßig auf medium."
+          ],
+          [
+            "Ist Opus 5.5 besser als Fable 5.1?",
+            "Das lässt sich aus Kontext und Listenpreis nicht ableiten. Anthropic empfiehlt Opus als Startpunkt und Fable für anspruchsvollere Langzeitaufgaben, wenn eigene Evaluationen mit Opus bei höherem Aufwand nicht reichen. Das ist keine unabhängige Rangliste."
+          ]
+        ],
+        "migration": [
+          "Nicht versuchen, Thinking abzuschalten oder Werkzeugnutzung zu erzwingen.",
+          "Fortschrittsmeldungen und display-Einstellung im echten Streaming-Client testen.",
+          "Synchrones Ausgabelimit nicht mit dem Batch-Beta-Limit verwechseln."
+        ]
+      }
+    },
+    {
+      "slug": "claude-fable-5-1",
+      "name": "Claude Fable 5.1",
+      "company": "anthropic",
+      "initials": "CF",
+      "summary": "Claude Fable 5.1 ist ein Anthropic-Modell für anspruchsvolles Reasoning und länger laufende Agentenarbeit.",
+      "detail": "Der aktuelle Anthropic-Katalog nennt Text- und Bildeingaben, Textausgabe sowie Werkzeugnutzung. Die Aufgabenbeschreibung ist Herstellerpositionierung; tatsächliche Latenz hängt unter anderem von Promptlänge und Thinking-Aufwand ab.",
+      "access": "Im offiziellen API-Katalog geführt. Konkrete Freischaltung und regionale Verfügbarkeit im eigenen Anbieterkonto prüfen.",
+      "license": "Gehosteter API-Zugang; keine offene Gewichtslizenz aus dieser Quelle abgeleitet.",
+      "limits": "Herstellerbeschreibung, kein eigener Leistungstest. Eignung mit eigenen Aufgaben prüfen; Modellname und Version beim Einsatz festhalten.",
+      "sources": [
+        "fable-rich"
+      ],
+      "facts": [
+        {
+          "label": "Claude-API-ID",
+          "value": "claude-fable-5-1",
+          "source": "fable-rich"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild → Text",
+          "source": "fable-rich"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "1 Mio. Token",
+          "source": "fable-rich"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "value": "128.000 Token (synchron)",
+          "source": "fable-rich"
+        },
+        {
+          "label": "Thinking",
+          "value": "Adaptiv, immer aktiv",
+          "source": "fable-rich"
+        }
+      ],
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Modelllogo"
+      },
+      "rich_model": {
+        "source": "fable-rich",
+        "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
+        "name": "Claude Fable 5.1",
+        "api": "claude-fable-5-1",
+        "input": 10,
+        "output": 50,
+        "context": 1000000,
+        "maxout": 128000,
+        "date": "1. September 2026",
+        "headline": "Reasoning über lange Arbeitsabläufe.",
+        "answer": "Claude Fable 5.1 ist ein Anthropic-Modell für anspruchsvolles Reasoning und länger laufende Agentenarbeit. Es verarbeitet Text und Bilder und erzeugt Text. Die Quelle nennt 1 Mio. Token Kontext, maximal 128.000 Ausgabe-Token und dauerhaft aktives Adaptive Thinking.",
+        "practical": "Anthropic empfiehlt Fable 5.1 für anspruchsvolle mehrstufige Aufgaben oder wenn eigene Evaluationen mit Opus 5.5 bei höherem Aufwand nicht ausreichen. Ein höherer Preis ist kein Beweis, dass Fable für jede Aufgabe die bessere Wahl ist.",
+        "technical": "Der Standardaufwand lautet high. Erzwungene Werkzeugnutzung führt laut Quelle zu einem Fehler. Thinking-Blöcke von Fable 5.1 sind nur mit Fable 5.1 und Mythos 5.1 wiederverwendbar; das Bearbeiten früherer Gesprächsrunden macht sie ungültig.",
+        "sections": [
+          [
+            "Reasoning und lange Aufgaben",
+            "Die offizielle Beschreibung nennt Agentenprogrammierung, mehrstufige Recherche sowie Dokument-, Tabellen- und Präsentationsarbeit. Das sind Einsatzfelder laut Anbieter, keine von uns gemessenen Erfolgsquoten."
+          ],
+          [
+            "Thinking und Gesprächsverlauf",
+            "Adaptive Thinking ist immer aktiv; standardmäßig gilt high. Für die Wiederverwendung von Thinking-Blöcken gelten Modell- und Gesprächsgrenzen. Ein Verlauf sollte deshalb nicht unbemerkt zwischen unterschiedlichen Modellen gewechselt werden."
+          ],
+          [
+            "Fable ist nicht einfach Mythos",
+            "Anthropic beschreibt Mythos 5.1 mit denselben Fähigkeiten und Spezifikationen, aber mit Zugang nur für verifizierte Organisationen über entsprechende Programme. Ein Fable-Zugang beweist keinen Mythos-Zugang."
+          ],
+          [
+            "Neue Funktionen können Beta sein",
+            "Pro Nachricht gesetzter Aufwand, rundenbezogene Systemnachrichten und lesbare Fortschrittsmeldungen zwischen Werkzeugaufrufen werden als Beta beschrieben. Eine Beta darf nicht als dauerhaft unveränderte API zugesagt werden."
+          ]
+        ],
+        "pricing_note": "Basispreise in USD je 1 Mio. Token: Eingabe 10, Ausgabe 50. Cache-Write 5 Min.: 12,50; Cache-Write 1 Std.: 20; Cache-Read: 0,25. Batch-API nennt 50 % Rabatt auf Eingabe und Ausgabe. Zugang, Plattform und weitere Gebühren prüfen; kein Claude-Abopreis und keine vollständige Kostenschätzung.",
+        "faq": [
+          [
+            "Was ist Claude Fable 5.1?",
+            "Ein Anthropic-Modell für anspruchsvolles Reasoning und lange Agentenaufgaben. Die Veröffentlichung datiert auf den 1. September 2026; die API-ID lautet claude-fable-5-1."
+          ],
+          [
+            "Was kostet Claude Fable 5.1?",
+            "Die API-Basispreise liegen bei 10 USD je Million Eingabe-Token und 50 USD je Million Ausgabe-Token. Cache-Reads kosten 0,25 USD je Million Token; weitere Cache- und Batch-Bedingungen beachten. Stand: 19.10.2026."
+          ],
+          [
+            "Wie viel Kontext unterstützt Fable 5.1?",
+            "Die offizielle Modellseite nennt 1 Mio. Token Kontext und maximal 128.000 Ausgabe-Token. Das Kontextfenster ist keine Garantie, jede enthaltene Information korrekt zu verwenden."
+          ],
+          [
+            "Was unterscheidet Fable 5.1 und Opus 5.5?",
+            "Beide nennen 1 Mio. Token Kontext und 128.000 maximale Ausgabe-Token. Fable startet mit Aufwand high und höheren Basispreisen; Opus mit medium. Anthropic empfiehlt den Wechsel anhand eigener Aufgaben-Evaluationen, nicht pauschal."
+          ],
+          [
+            "Ist Claude Fable 5.1 dasselbe wie Mythos 5.1?",
+            "Nein. Anthropic nennt gleiche Fähigkeiten und Spezifikationen, aber Mythos ist nur für entsprechend verifizierte Organisationen zugänglich. Die Modellnamen und Zugangsbedingungen bleiben verschieden."
+          ]
+        ],
+        "migration": [
+          "Thinking-Blöcke nicht zwischen beliebigen Modellversionen wiederverwenden.",
+          "Frühere Gesprächsrunden nicht unbemerkt bearbeiten, wenn Thinking erhalten bleiben soll.",
+          "Beta-Funktionen gezielt aktivieren und erzwungene Werkzeugnutzung entfernen."
+        ]
+      }
     }
   ],
   "benchmarks": [
