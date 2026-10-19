@@ -136,7 +136,6 @@ def u(name): return SITE['urls'][name]
 PANEL = '''<section id="@@p@@-consent" class="@@p@@-consent" role="region" aria-labelledby="@@p@@-consent-title" hidden>
 <h2 id="@@p@@-consent-title">%(h)s</h2>
 <p>%(intro)s</p>
-<p><strong>Aktueller Stand:</strong> Statistik und Werbung sind noch nicht aktiviert.</p>
 <fieldset><legend>%(q)s</legend>
 <label><input type="checkbox" checked disabled><span><strong>Notwendig</strong><small>%(nec)s</small></span></label>
 <label><input type="checkbox" id="@@p@@-statistics"><span><strong>Statistik</strong><small>Seitenaufrufe und Interaktionen. Derzeit aus.</small></span></label>
