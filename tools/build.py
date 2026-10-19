@@ -527,13 +527,9 @@ def main():
         open(k + '.html', 'w', encoding='utf-8').write(simple_page(pg['title'] + ' | KI Fachblatt', pg['desc'] or pg['title'], BASE + '/' + k, inner, shell_top, shell_bottom))
     patch_static_shares(); patch_footer_and_bylines()
     json.dump([a['slug'] for a in arts], open('.generated.json', 'w'))
-    # index table
-    idx = open('index.html', encoding='utf-8').read()
-    rows = ''.join(('<tr data-topic="%s"><td>' + thumb_html(a) + '<a href="/%s">%s</a><p>%s</p></td><td><span class="topic">%s</span></td><td>%s</td><td><a aria-label="%s lesen" class="read" href="/%s">Lesen ↗</a></td></tr>') % (
-        SECTIONS[a['section']], a['slug'], esc(a['title']), esc(a['dek']), SECTIONS[a['section']], de_date(a['_pub'], False), esc(a['title']), a['slug']) for a in arts)
-    new = replace_block(idx, '<!--GEN-ARTICLES:START-->', '<!--GEN-ARTICLES:END-->', rows)
-    if new is None: print('WARN: index.html has no <!--GEN-ARTICLES--> markers; run PR setup first')
-    else: open('index.html', 'w', encoding='utf-8').write(new)
+    # Homepage cards and source-grounded charts.
+    from home_editorial import render as render_home
+    render_home(arts)
     # sitemap
     sm = open('sitemap.xml', encoding='utf-8').read()
     static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages) + ['berichte', 'suche'])]

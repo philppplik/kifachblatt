@@ -11,6 +11,6 @@ document.querySelectorAll('.body h2').forEach(function(h){so.observe(h)})}
 
 (function(){
 var input=document.getElementById('article-search'),filter=document.getElementById('article-topic');if(!input||!filter)return;
-function update(){var q=input.value.trim().toLocaleLowerCase('de'),topic=filter.value,n=0;document.querySelectorAll('#articles tbody tr').forEach(function(r){var show=(!q||r.textContent.toLocaleLowerCase('de').includes(q))&&(!topic||r.dataset.topic===topic);r.hidden=!show;if(show)n++});document.getElementById('article-count').textContent=n+' '+(n===1?'Beitrag':'Beiträge');document.getElementById('no-results').hidden=n!==0;}
+function update(){var q=input.value.trim().toLocaleLowerCase('de'),topic=filter.value,n=0;document.querySelectorAll('.hc-card').forEach(function(r){var show=(!q||r.textContent.toLocaleLowerCase('de').includes(q))&&(!topic||r.dataset.topic===topic);r.hidden=!show;if(show)n++});document.getElementById('article-count').textContent=n+' '+(n===1?'Beitrag':'Beiträge');document.getElementById('no-results').hidden=n!==0;}
 input.addEventListener('input',update);filter.addEventListener('change',update);
 })();
