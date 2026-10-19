@@ -1,0 +1,11 @@
+/* Fixed geometry reserves space before JS; the SVG is the no-JS/reduced-motion fallback. */
+.hero-grid{grid-template-columns:minmax(0,1fr) 440px;gap:54px;align-items:center}
+.hero-matrix{position:relative;width:100%;aspect-ratio:11/9;isolation:isolate;overflow:hidden;pointer-events:none;contain:layout paint}
+.hero-matrix::before{content:"";position:absolute;inset:14% 8%;background:radial-gradient(ellipse,rgba(137,80,251,.065),transparent 68%);z-index:-1}
+.hero-matrix>svg,.hero-matrix>canvas{position:absolute;inset:0;width:100%;height:100%;display:block}
+.hero-matrix>canvas{opacity:0}.hero-matrix.is-active>canvas{opacity:1}.hero-matrix.is-active>svg{opacity:0}
+@media(max-width:1100px) and (min-width:801px){.hero-grid{grid-template-columns:minmax(0,1fr) 35%;gap:28px}}
+@media(max-width:800px){.hero-grid{grid-template-columns:1fr;gap:20px}.hero-matrix{display:none}}
+@media(prefers-reduced-motion:reduce){.hero-matrix>canvas{display:none!important}.hero-matrix>svg{opacity:1!important}}
+
+.matrix-pause{position:absolute;bottom:0;right:10px;font:11px Arial,sans-serif;color:#64646f;background:#fff;border:1px solid #dedee4;border-radius:20px;padding:6px 11px;pointer-events:auto;cursor:pointer}.matrix-pause:focus-visible{outline:3px solid #9466e3;outline-offset:3px}
