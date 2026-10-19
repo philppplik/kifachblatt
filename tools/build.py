@@ -331,6 +331,8 @@ def replace_block(text, start, end, new):
 generated_before = []
 BURGER_JS = '<script>document.documentElement.classList.add("js");(function(){var b=document.querySelector(".burger"),m=document.getElementById("menu");if(!b||!m)return;function c(){m.classList.remove("open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Menü")}b.addEventListener("click",function(){var o=m.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"Menü schließen":"Menü")});document.addEventListener("keydown",function(e){if(e.key==="Escape")c()});m.addEventListener("click",function(e){if(e.target.tagName==="A")c()})})()</script>'
 BURGER_BTN = '<button type="button" class="burger" aria-label="Menü" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button>'
+SEARCH_ICO = ('<a class="search-ico" href="/suche" aria-label="Suche" title="Suche">'
+              '<svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg></a>')
 
 def patch_footer_and_bylines():
     navre = re.compile(r'<nav(?: aria-label="Hauptnavigation" class="main"| class="main" aria-label="Hauptnavigation")>(.*?)</nav>', re.S)
@@ -344,7 +346,10 @@ def patch_footer_and_bylines():
             t = navre.sub(lambda m: BURGER_BTN + '<nav class="main" id="menu" aria-label="Hauptnavigation">' + m.group(1) + '</nav>' + BURGER_JS, t, count=1)
         t = t.replace('mit KI-Unterstützung erstellt · <time', 'mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/transparenz">so arbeiten wir</a>) · <time')
         if 'href="/suche"' not in t:
-            t = re.sub(r'(<nav class="main" id="menu" aria-label="Hauptnavigation">(?:(?!</nav>).)*?)(<a href="/ueber")', lambda m: m.group(1) + '<a href="/suche">Suche</a>' + m.group(2), t, count=1, flags=re.S)
+            t = re.sub(r'(<nav class="main" id="menu" aria-label="Hauptnavigation">(?:(?!</nav>).)*?)(<a href="/ueber")', lambda m: m.group(1) + '<a class="st" href="/suche">Suche</a>' + m.group(2), t, count=1, flags=re.S)
+        t = t.replace('<a href="/suche">Suche</a>', '<a class="st" href="/suche">Suche</a>')
+        if 'class="search-ico"' not in t and '</nav>' in t:
+            t = t.replace('</nav>', '</nav>' + SEARCH_ICO, 1)
         if t != o: open(f, 'w', encoding='utf-8').write(t)
 
 def patch_static_shares():
