@@ -32,5 +32,31 @@ class ReportVisualsTest(unittest.TestCase):
         self.assertIn('71,07', out); self.assertIn('nicht für Ranglisten', out)
 
 
+class LogoTest(unittest.TestCase):
+    ROOT = os.path.join(os.path.dirname(__file__), '..')
+
+    def test_only_verified_manifest_assets_load(self):
+        V.load_logos(self.ROOT)
+        self.assertIn('claude', V.LOGOS); self.assertIn('nvidia', V.LOGOS)
+        self.assertTrue(V.LOGOS['claude']['uri'].startswith('data:image/svg+xml;base64,'))
+        self.assertIn('dk', V.logo_box('nvidia', 10, 4))
+
+    def test_tampered_or_missing_manifest_gives_no_logos(self):
+        import tempfile, json, shutil
+        d = tempfile.mkdtemp(); os.makedirs(d + '/content/portrait-logos')
+        open(d + '/content/portrait-logos/a.svg', 'w').write('<svg/>')
+        json.dump({'a': {'file': 'a.svg', 'sha256': '0' * 64}}, open(d + '/content/portrait-logos/manifest.json', 'w'))
+        V.load_logos(d); self.assertEqual(V.LOGOS, {})
+        V.load_logos('/nonexistent'); self.assertEqual(V.LOGOS, {})
+        shutil.rmtree(d)
+
+    def test_org_badge_allowlist_and_model_vs_company(self):
+        V.load_logos(self.ROOT)
+        self.assertIn('<img', V.org_badge('nvidia')); self.assertNotIn('<img', V.org_badge('google')); self.assertNotIn('<img', V.org_badge('meta-models'))
+        p = {'models': [{'slug': 'x', 'name': 'GPT-6 Astra', 'company': 'openai', 'initials': 'GA'}], 'companies': [{'slug': 'openai', 'name': 'OpenAI'}]}
+        self.assertNotIn('<img', V.portrait_cards(p))  # company logo is never used as a model logo
+        self.assertEqual(V.logo_credits() == '' or 'Marken' in V.logo_credits(), True)
+
+
 if __name__ == '__main__':
     unittest.main()

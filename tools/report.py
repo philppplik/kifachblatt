@@ -18,6 +18,7 @@ def fetch_models():
 def build(arts, now, base, root='.'):
     day = DAYS[now.weekday()] + ', ' + now.strftime('%d.%m.%Y'); stamp = now.strftime('%d.%m.%Y, %H:%M') + ' Uhr'
     models = fetch_models()
+    V.load_logos(root)
     try:
         portraits = json.load(open(os.path.join(root, 'content', 'portraits.json'), encoding='utf-8'))
     except (OSError, ValueError):
@@ -51,8 +52,8 @@ def build(arts, now, base, root='.'):
 <div><h3>Verantwortlich nach § 18 Abs. 2 MStV</h3><p>Philipp Paulik, Anschrift wie links</p><h3>Redaktion</h3><p>KI Fachblatt, Redaktion Philipp Paulik</p></div></div>
 <h3>Redaktionsschluss</h3><p>Diese Ausgabe wurde am %s automatisch erstellt. Später veröffentlichte Beiträge und Zählerstände sind nicht berücksichtigt.</p>
 <h3>Hinweis zu KI</h3><p>Die Inhalte des KI Fachblatts werden mit Unterstützung von KI erstellt und redaktionell geprüft (siehe kifachblatt.de/transparenz). Dieser Bericht wird automatisch aus öffentlichen Daten und den veröffentlichten Beiträgen zusammengestellt. Trotz Prüfung können Fehler nicht ausgeschlossen werden.</p>
-<h3>Datenquellen</h3><p>Modellliste: Hugging Face, öffentliche API (huggingface.co/api/models, Sortierung trendingScore), Stand %s. Analysen und KI-Verzeichnis: eigene Beiträge und Quellenprüfung des KI Fachblatts. Diagramme: eigene Darstellung der API-Zähler. Es werden keine fremden Logos oder Profilbilder verwendet, Organisationen erscheinen als Kürzel. Beitragsbilder sind KI-generiert und gekennzeichnet.</p>
-<p class="foot">© %d KI Fachblatt · Philipp Paulik · Stand %s</p>''' % (esc(stamp), esc(stamp), now.year, esc(stamp))
+<h3>Datenquellen</h3><p>Modellliste: Hugging Face, öffentliche API (huggingface.co/api/models, Sortierung trendingScore), Stand %s. Analysen und KI-Verzeichnis: eigene Beiträge und Quellenprüfung des KI Fachblatts. Diagramme: eigene Darstellung der API-Zähler. Logos nur aus dem lokalen, quellengeprüften Bestand des KI Fachblatts (siehe Logos und Marken), sonst Kürzel; keine Profilbilder von Hugging Face.</p>
+%s<p class="foot">© %d KI Fachblatt · Philipp Paulik · Stand %s</p>''' % (esc(stamp), esc(stamp), V.logo_credits(), now.year, esc(stamp))
     logo = logo_inline(os.path.join(root, 'assets', 'logo.svg'))
     htm = render('KI Fachblatt', 'KI-Tagesbericht', now.strftime('%d.%m.%Y'), '#7040cd', '#3d2380', '#f5f1fc', '#dcd0f3', logo,
                  'KI-Tagesbericht', day + ' · Trending-Modelle und die Analysen des Tages', [x for x in (p1, p1b, p3, p2) if x], last)

@@ -1,7 +1,7 @@
 """Visual blocks for the KI-Tagesbericht PDF: KPI cards, bar charts, donut, age buckets, scatter,
 model/benchmark cards from content/portraits.json and article images. Stdlib only, no network.
 Only own content, public API counters and monograms (no third-party logos or avatars)."""
-import collections, datetime, json, math, os
+import base64, collections, datetime, hashlib, json, math, os
 from report_core import esc, lnk
 
 AC, DK = '#7040cd', '#3d2380'
@@ -35,6 +35,44 @@ def age_days(m, now):
         return None
 
 
+# --- Portrait logos (offline, embedded). Only assets listed in content/portrait-logos/manifest.json, verified by SHA256. ---
+LOGOS, USED = {}, set()
+# HF organisation -> company asset. Only unambiguous organisation/company pairs; everything else stays a monogram.
+HF_ORG_LOGO = {'nvidia': 'nvidia', 'mistralai': 'mistral-ai', 'openai': 'openai', 'anthropic': 'anthropic'}
+DARK = {'nvidia'}  # white wordmark, needs the dark plate
+
+
+def load_logos(root):
+    LOGOS.clear(); USED.clear()
+    d = os.path.join(root, 'content', 'portrait-logos')
+    try:
+        man = json.load(open(os.path.join(d, 'manifest.json'), encoding='utf-8'))
+    except (OSError, ValueError):
+        return
+    for k, e in man.items():
+        try:
+            raw = open(os.path.join(d, e['file']), 'rb').read()
+        except (OSError, KeyError):
+            continue
+        if hashlib.sha256(raw).hexdigest() != e.get('sha256'):
+            continue
+        mime = 'image/svg+xml' if e['file'].endswith('.svg') else 'image/png'
+        LOGOS[k] = {'uri': 'data:%s;base64,%s' % (mime, base64.b64encode(raw).decode()), 'source': e.get('source', ''), 'license': e.get('license', ''), 'file': e['file']}
+
+
+def logo_box(key, w, h):
+    L = LOGOS.get(key)
+    if not L: return ''
+    USED.add(key)
+    return '<span class="lgbox%s" style="width:%smm;height:%smm"><img src="%s" alt=""></span>' % (' dk' if key in DARK else '', w, h, L['uri'])
+
+
+def org_badge(o, color=AC):
+    key = HF_ORG_LOGO.get(o.lower())
+    inner = logo_box(key, 13, 6) if key in LOGOS else monogram(o, 20, color)
+    return '<span class="slot">%s</span>' % inner
+
+
 def monogram(text, size=22, color=AC):
     t = ''.join(c for c in text if c.isalnum())[:2].upper() or '?'
     return '<span class="mono" style="width:%dpx;height:%dpx;font-size:%.1fpt;background:%s1a;color:%s;border-color:%s55">%s</span>' % (size, size, size / 3.1, color, color, color, esc(t))
@@ -58,7 +96,7 @@ def trend_bars(models, n=10):
     if not L: return ''
     mx = max(m.get('trendingScore') or 0 for m in L) or 1
     rows = ''.join('<div class="br"><span class="rk">%d</span>%s<span class="bn">%s<small>%s · %s</small></span><span class="bt"><i style="width:%.1f%%"></i></span><b>%s</b></div>' % (
-        i + 1, monogram(org(m), 20, PALETTE[i % len(PALETTE)]), lnk('https://huggingface.co/' + m['id'], name(m)), esc(org(m)), esc(task_label(m.get('pipeline_tag'))),
+        i + 1, org_badge(org(m), PALETTE[i % len(PALETTE)]), lnk('https://huggingface.co/' + m['id'], name(m)), esc(org(m)), esc(task_label(m.get('pipeline_tag'))),
         100.0 * (m.get('trendingScore') or 0) / mx, de(m.get('trendingScore') or 0)) for i, m in enumerate(L))
     return '<div class="bars">%s</div>' % rows
 
@@ -86,7 +124,7 @@ def org_bars(models, n=5):
     if not L: return ''
     mx = L[0][1]
     return '<div class="bars sm">%s</div>' % ''.join('<div class="br">%s<span class="bn">%s</span><span class="bt"><i style="width:%.0f%%;background:%s"></i></span><b>%d</b></div>' % (
-        monogram(o, 18, PALETTE[i % len(PALETTE)]), esc(o), 100.0 * v / mx, PALETTE[i % len(PALETTE)], v) for i, (o, v) in enumerate(L))
+        org_badge(o, PALETTE[i % len(PALETTE)]), esc(o), 100.0 * v / mx, PALETTE[i % len(PALETTE)], v) for i, (o, v) in enumerate(L))
 
 
 def age_buckets(models, now):
@@ -129,10 +167,17 @@ def scatter(models, w=560, h=190):
 
 def table(models, now, nf):
     mx = max((m.get('trendingScore') or 0) for m in models) or 1
-    rows = ''.join('<tr><td class="l">%d</td><td class="l w"><b>%s</b><small class="mut"> %s</small></td><td class="l">%s</td><td>%s</td><td>%s</td><td class="tb"><span><i style="width:%.0f%%"></i></span>%s</td><td class="l">%s</td></tr>' % (
-        i + 1, lnk('https://huggingface.co/' + m['id'], name(m)), esc(org(m)), esc(task_label(m.get('pipeline_tag'))), nf(m.get('likes')), nf(m.get('downloads')),
+    rows = ''.join('<tr><td class="l">%d</td><td class="l w"><b>%s</b><small class="mut"> %s</small>%s</td><td class="l">%s</td><td>%s</td><td>%s</td><td class="tb"><span><i style="width:%.0f%%"></i></span>%s</td><td class="l">%s</td></tr>' % (
+        i + 1, lnk('https://huggingface.co/' + m['id'], name(m)), esc(org(m)), (' ' + logo_box(HF_ORG_LOGO.get(org(m).lower()), 10, 4)) if HF_ORG_LOGO.get(org(m).lower()) in LOGOS else '', esc(task_label(m.get('pipeline_tag'))), nf(m.get('likes')), nf(m.get('downloads')),
         100.0 * (m.get('trendingScore') or 0) / mx, nf(m.get('trendingScore')), esc((m.get('createdAt') or '')[:10])) for i, m in enumerate(models))
     return ('<table><thead><tr><th class="l">#</th><th class="l">Modell</th><th class="l">Aufgabe</th><th>Likes</th><th>Downloads</th><th class="l">Trend-Score</th><th class="l">Erstellt</th></tr></thead><tbody>%s</tbody></table>' % rows)
+
+
+def logo_credits():
+    if not USED: return ''
+    li = ''.join('<li><b>%s</b>: <a href="%s">%s</a> · %s</li>' % (esc(k), esc(LOGOS[k]['source']), esc(LOGOS[k]['source']), esc(LOGOS[k]['license'])) for k in sorted(USED))
+    return ('<h3>Logos und Marken</h3><p>Logos stammen aus dem lokalen Bestand des KI Fachblatts (content/portrait-logos), unverändert und eingebettet, mit Quelle und Rechtehinweis je Datei. Marken gehören ihren jeweiligen Inhabern. '
+            'Die Logos dienen der redaktionellen Identifikation und deuten keine Partnerschaft, Freigabe oder Empfehlung durch die Markeninhaber an. Wo kein eindeutig zugeordnetes Logo vorliegt, steht ein Kürzel. Modelllogos und Unternehmenslogos werden nicht vermischt.</p><ul class="lc">%s</ul>' % li)
 
 
 def _fact(m, *labels):
@@ -153,8 +198,10 @@ def portrait_cards(portraits, limit=8):
             mk = lambda s: ''.join('<span class="ch">%s</span>' % esc(x.strip()) for x in s.split(',') if x.strip())
             chips = '<span class="mut" style="font-size:7.4pt">Ein</span>' + mk(ins) + ('<span class="mut" style="font-size:7.4pt">→ Aus</span>' + mk(outs) if outs.strip() else '')
         when = _fact(m, 'Veröffentlicht', 'Veröffentlichung der Quelle', 'Stand der Modellkarte')
+        mk = m.get('logo', {}).get('asset')
+        lead = ('<span class="mlg">%s</span>' % logo_box(mk, 24, 11)) if mk in LOGOS else monogram(m.get('initials') or m['name'], 30, PALETTE[i % len(PALETTE)])
         out += '<div class="mc">%s<div class="mb"><b>%s</b><small>%s</small><p>%s</p><div class="chs">%s</div>%s</div></div>' % (
-            monogram(m.get('initials') or m['name'], 30, PALETTE[i % len(PALETTE)]), esc(m['name']), esc(c.get('name', m['company'])), esc(m.get('summary', '')), chips,
+            lead, esc(m['name']), esc(c.get('name', m['company'])), esc(m.get('summary', '')), chips,
             ('<small class="mut">%s</small>' % esc(when)) if when else '')
     return '<div class="mcs">%s</div>' % out
 
@@ -174,6 +221,7 @@ def score_cards(portraits):
 
 
 CSS = '''
+.slot{display:inline-flex;width:13mm;justify-content:center;flex:none}.lgbox{display:inline-flex;align-items:center;justify-content:center;background:#fff;border:1px solid #e3e5ee;border-radius:2mm;padding:.8mm 1.2mm;flex:none}.lgbox.dk{background:#161616;border-color:#161616}.lgbox img{max-width:100%;max-height:100%;object-fit:contain;display:block}.mlg{flex:none;width:26mm}.lc{margin:1mm 0;padding-left:4mm;font-size:8pt;overflow-wrap:anywhere}
 .kp{display:flex;gap:3.5mm;margin:0 0 5mm}.k{flex:1;border:1px solid #dcd0f3;border-top:3px solid #7040cd;border-radius:4px;padding:3mm 3.5mm;background:#f5f1fc}
 .k .n{font-size:7.6pt;color:#6b7080;text-transform:uppercase;letter-spacing:.05em}.k .v{font-size:17pt;font-weight:800;color:#3d2380;margin:1px 0}.k .s{font-size:7.8pt;color:#4a4e5c;overflow-wrap:anywhere}
 .mono{display:inline-flex;align-items:center;justify-content:center;border-radius:50%;border:1px solid;font-weight:800;flex:none;letter-spacing:-.03em}
