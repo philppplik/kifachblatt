@@ -22,13 +22,11 @@ jobs:
         run: |
           google-chrome --version
           python3 tools/build.py
-      - name: Prune old dated PDFs
-        run: ls berichte/ki-tagesbericht-20*.pdf | sort | head -n -14 | xargs -r rm -f
       - name: Commit and push
         run: |
           git config user.name "Philipp Paulik"
           git config user.email "philipp.paulik@users.noreply.github.com"
-          git add -A berichte berichte.html
+          git add -A berichte berichte.html report-archive
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "KI-Tagesbericht $(date -u +%F)"
           git push

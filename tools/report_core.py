@@ -72,8 +72,12 @@ def render(brand, kind, date_label, ac, dk, soft, line, logo_svg, title, subtitl
 def to_pdf(html_path, pdf_path):
     chrome = shutil.which('google-chrome') or shutil.which('chromium') or shutil.which('chromium-browser')
     if not chrome: return False
-    subprocess.run([chrome, '--headless', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer', '--print-to-pdf=' + os.path.abspath(pdf_path), 'file://' + os.path.abspath(html_path)], capture_output=True)
-    return os.path.exists(pdf_path)
+    if os.path.exists(pdf_path + '.tmp'): os.remove(pdf_path + '.tmp')
+    subprocess.run([chrome, '--headless', '--no-sandbox', '--disable-gpu', '--no-pdf-header-footer', '--print-to-pdf=' + os.path.abspath(pdf_path + '.tmp'), 'file://' + os.path.abspath(html_path)], capture_output=True)
+    from daily_archive import valid_pdf
+    if not valid_pdf(pdf_path + '.tmp'): return False
+    os.replace(pdf_path + '.tmp', pdf_path)
+    return True
 
 def logo_inline(path):
     s = open(path, encoding='utf-8').read()

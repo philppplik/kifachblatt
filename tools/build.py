@@ -475,7 +475,8 @@ def build_search(arts, shell_top, shell_bottom, now):
 def main():
     global generated_before
     os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
-    now = datetime.datetime.now().astimezone()
+    from zoneinfo import ZoneInfo
+    now = datetime.datetime.now(ZoneInfo('Europe/Berlin'))
     if os.path.exists('.generated.json'): generated_before = json.load(open('.generated.json'))
     arts = load_articles(now)
     if errors:
@@ -501,7 +502,10 @@ def main():
     open('glossar.html', 'w', encoding='utf-8').write(glossary_page(shell_top, shell_bottom, now))
     n_search = build_search(arts, shell_top, shell_bottom, now)
 
+    from daily_archive import sync, archive_html
+    sync('.', 'berichte', 'ki-tagesbericht.pdf', 'ki-tagesbericht-', now, seed_only=True)
     ok, hf = kreport.build(arts, now, BASE)
+    archive_dates = sync('.', 'berichte', 'ki-tagesbericht.pdf', 'ki-tagesbericht-', now, archive_today=ok)
     stand = now.strftime('%d.%m.%Y, %H:%M') + ' Uhr'
     hfx = ('<div class="hfx" id="hfx" hidden><h2>Live-Auswahl</h2><p>Eigene Sortierung und Aufgabe wählen. Die Daten kommen live im Browser von der öffentlichen Hugging-Face-API (kein Schlüssel, kein Tracking durch uns) und werden zehn Minuten zwischengespeichert.</p>'
            '<div class="ctl"><label>Sortierung<select id="hf-sort"><option value="trend">Trend</option><option value="likes">Likes</option><option value="downloads">Downloads</option><option value="new">Neueste (unter den 100 Trendigsten)</option></select></label>'
@@ -514,6 +518,7 @@ def main():
              '<p>Die Tagesausgabe fasst die 20 aktuell meistbeachteten Modelle auf Hugging Face (Sortierung nach dem Trend-Score der öffentlichen API), die zwei neuesten Analysen des KI Fachblatts und das Impressum mit Redaktionsschluss auf vier A4-Seiten zusammen. Hell, druckfreundlich, ohne Tracking.</p>'
              + hfx + '<p><a class="btn" href="/berichte/ki-tagesbericht.pdf" download>PDF herunterladen</a> &nbsp; <a href="/berichte/tagesbericht">Druckansicht im Browser</a></p>'
              '<p class="mut">Stand der aktuellen Ausgabe: %s. Modelldaten: Hugging Face (öffentliche API). Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung. Die Ausgabe wird automatisch erstellt; Inhalte entstehen mit KI-Unterstützung und werden redaktionell geprüft (<a href="/transparenz">so arbeiten wir</a>).</p></div>') % stand
+    inner = inner.rsplit('</div>',1)[0] + archive_html(archive_dates, 'ki-tagesbericht-') + '</div>'
     open('berichte.html', 'w', encoding='utf-8').write(simple_page('KI-Tagesbericht als PDF | KI Fachblatt', 'Täglicher KI-Tagesbericht als PDF: Trending-Modelle von Hugging Face, die Analysen des Tages, Impressum. Kostenlos, druckfreundlich.', BASE + '/berichte', inner, shell_top, shell_bottom))
     pages = mdpages.load('content/pages')
     for k, pg in pages.items():
