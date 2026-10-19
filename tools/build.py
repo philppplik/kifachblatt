@@ -24,8 +24,26 @@ errors = []
 def err(slug, msg): errors.append('%s: %s' % (slug, msg))
 esc = lambda s: html.escape(s, quote=True)
 
+CITE = {'n': 0, 'ids': {}, 'seq': 0}
+
+def _cite(m):
+    nums = [int(x) for x in re.findall(r'\d+', m.group(0))]
+    if not CITE['n'] or any(n < 1 or n > CITE['n'] for n in nums): return m.group(0)
+    def link(n):
+        CITE['seq'] += 1; cid = 'cr%d-%d' % (n, len(CITE['ids'].setdefault(n, [])) + 1)
+        CITE['ids'][n].append(cid)
+        return '<a id="%s" href="#q%d" aria-label="Quelle %d im Quellenverzeichnis">%d</a>' % (cid, n, n, n)
+    txt = m.group(0)
+    if re.search(r'[\u2013-]', txt) and len(nums) == 2: sep = '\u2013'
+    else: sep = ', '
+    return '<sup class="cr">[' + sep.join(link(n) for n in nums) + ']</sup>'
+
+CITE_RE = r'\[(\d+)(?:\s*(?:,|\u2013|-)\s*\d+)*\]'
+def cites(t): return re.sub(CITE_RE, _cite, t)
+
 def inline(t):
     t = esc(t)
+    t = cites(t)
     t = re.sub(r'\[\^(\d+)\]', r'<sup><a href="#q\1" aria-label="Quelle \1">[\1]</a></sup>', t)
     t = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', t)
     t = re.sub(r'(?<!\*)\*([^*]+?)\*(?!\*)', r'<em>\1</em>', t)
@@ -168,7 +186,7 @@ def chart_html(b, idx, slug):
     trs = ''.join('<tr><th scope="row">%s</th>%s</tr>' % (inline(l), ''.join('<td>%s%s</td>' % (_num(sr['values'][j]) if sr['values'][j] is not None else '–', esc(unit) if sr['values'][j] is not None else '') for sr in series)) for j, l in enumerate(labels))
     tbl = '<details class="ch-data"><summary>Daten als Tabelle</summary><div class="table-scroll"><table class="data"><thead><tr>%s</tr></thead><tbody>%s</tbody></table></div></details>' % (head_, trs)
     src = '<p class="ch-src">Quelle: %s</p>' % inline(b['source']) if b.get('source') else ''
-    return '<figure class="chart" id="chart-%d"><figcaption class="ch-title">%s</figcaption>%s%s%s%s<p class="ch-cap">%s</p></figure>' % (idx, esc(b.get('title', b['caption'])), leg, body, tbl, src, esc(b['caption']))
+    return '<figure class="chart" id="chart-%d"><figcaption class="ch-title">%s</figcaption>%s%s%s%s<p class="ch-cap">%s</p></figure>' % (idx, cites(esc(b.get('title', b['caption']))), leg, body, tbl, src, cites(esc(b['caption'])))
 
 def body_html(a):
     out, toc, n = [], [], 0
@@ -184,7 +202,7 @@ def body_html(a):
             if b.get('cite'): c = '<footer>%s</footer>' % (('<a href="%s" rel="noopener">%s</a>' % (esc(b['url']), esc(b['cite']))) if b.get('url') else esc(b['cite']))
             out.append('<blockquote><p>%s</p>%s</blockquote>' % (inline(b['x']), c))
         elif t == 'table':
-            cap = '<caption>%s</caption>' % esc(b['caption']) if b.get('caption') else ''
+            cap = '<caption>%s</caption>' % cites(esc(b['caption'])) if b.get('caption') else ''
             th = ''.join('<th scope="col">%s</th>' % inline(c) for c in b['head'])
             rows = ''.join('<tr>%s</tr>' % ''.join('<td%s>%s</td>' % (' class="nw"' if len(str(c)) <= 18 else '', inline(c)) for c in r) for r in b['rows'])
             out.append('<div class="table-scroll"><table class="data">%s<thead><tr>%s</tr></thead><tbody>%s</tbody></table></div>' % (cap, th, rows))
@@ -194,7 +212,7 @@ def body_html(a):
             nch = locals().get('nch', 0) + 1; out.append(chart_html(b, nch, a['slug']))
         elif t == 'figure':
             w, h = jpeg_size('content/images/' + b['file'])
-            cap = esc(b['caption']) + (' · Illustration: KI-generiert' if b.get('ai_generated') and 'KI' not in b['caption'] else '')
+            cap = cites(esc(b['caption'])) + (' · Illustration: KI-generiert' if b.get('ai_generated') and 'KI' not in b['caption'] else '')
             out.append('<figure class="fig"><img src="/assets/articles/%s" alt="%s" width="%d" height="%d" loading="lazy" decoding="async"><figcaption>%s</figcaption></figure>' % (esc(b['file']), esc(b['alt']), w, h, cap))
     return '\n'.join(out), toc
 
@@ -239,6 +257,8 @@ def head(title, desc, canon, extra='', og_type='website', image=None, ld=None, r
 def article_page(a, shell_top, shell_bottom, arts):
     s, h = a['slug'], a['hero']
     url = '%s/%s' % (BASE, s)
+    CITE.update(n=len(a['sources']), ids={}, seq=0)
+    _tl = ''.join('<li>%s</li>' % inline(k) for k in a['key_takeaways'])
     body, toc = body_html(a)
     words = len(' '.join(x.get('x', '') for x in a['body']).split()) + sum(len(' '.join(x.get('items', [])).split()) for x in a['body'])
     mins = max(1, round(words / 200))
@@ -255,7 +275,7 @@ def article_page(a, shell_top, shell_bottom, arts):
     out.append('<p class="byline"><a rel="author" href="%s">Philipp Paulik</a>, Redaktion KI Fachblatt · mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/transparenz">so arbeiten wir</a>) · <time datetime="%s">%s</time>%s · %d Min. Lesezeit</p></div>' % (AUTHOR_URL, a['published'], de_date(pub), modtxt, mins))
     out.append(share_block(url, a['title'], 'kfb', True))
     out.append('<figure class="hero-fig"><img src="%s" alt="%s" width="1600" height="900" fetchpriority="high" decoding="async"><figcaption>%s</figcaption></figure>' % (img, esc(h['alt']), cap))
-    out.append('<div class="tldr"><b>Kurz gesagt</b><ul>%s</ul></div>' % ''.join('<li>%s</li>' % inline(k) for k in a['key_takeaways']))
+    out.append('<div class="tldr"><b>Kurz gesagt</b><ul>%s</ul></div>' % _tl)
     tocs = ''.join('<a href="#%s">%s</a>' % (i, esc(t)) for i, t in toc)
     extra_toc = '<a href="#quellen">Quellen</a>' + ('<a href="#faq">Häufige Fragen</a>' if a.get('faq') else '')
     out.append('<div class="art"><aside class="toc" aria-label="Inhalt"><b>Inhalt</b>%s%s</aside><div class="body" itemprop="articleBody">%s' % (tocs, extra_toc, body))
@@ -266,8 +286,11 @@ def article_page(a, shell_top, shell_bottom, arts):
         if isinstance(lim, str): lim = [x for x in lim.split('\n') if x.strip()]
         if lim: m += '<h3>Grenzen</h3>' + (('<p>%s</p>' % inline(lim[0])) if isinstance(a.get('limitations'), str) and len(lim) == 1 else '<ul>%s</ul>' % ''.join('<li>%s</li>' % inline(l) for l in lim))
         out.append(m)
+    def _bk(i):
+        ids = CITE['ids'].get(i + 1, [])
+        return ''.join(' <a class="bk" href="#%s" aria-label="Zurück zur Textstelle %d von Quelle %d">\u21a9%s</a>' % (c, k + 1, i + 1, (str(k + 1) if len(ids) > 1 else '')) for k, c in enumerate(ids[:6]))
     out.append('<h2 id="quellen">Quellen</h2><ol class="refs">%s</ol>' % ''.join(
-        '<li id="q%d"><a href="%s" rel="noopener">%s</a>, %s%s</li>' % (i + 1, esc(x['url']), esc(x['title']), esc(x['publisher']), (' (abgerufen %s)' % esc(x['accessed'])) if x.get('accessed') else '') for i, x in enumerate(a['sources'])))
+        '<li id="q%d"><a href="%s" rel="noopener">%s</a>, %s%s%s</li>' % (i + 1, esc(x['url']), esc(x['title']), esc(x['publisher']), (' (abgerufen %s)' % esc(x['accessed'])) if x.get('accessed') else '', _bk(i)) for i, x in enumerate(a['sources'])))
     out.append(share_block(url, a['title'], 'kfb'))
     out.append('</div></div></article>')
     if a.get('faq'):
@@ -343,6 +366,7 @@ def slugify(t):
     return re.sub(r'[^a-z0-9]+', '-', t).strip('-')
 
 def glossary_page(shell_top, shell_bottom, now):
+    CITE['n'] = 0
     terms = sorted(json.load(open('content/glossary.json', encoding='utf-8')), key=lambda x: x['term'].lower())
     ids = {x['term']: slugify(x['term']) for x in terms}
     def art_title(path):
