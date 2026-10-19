@@ -562,4 +562,7 @@ def main():
     open('llms.txt', 'w', encoding='utf-8').write(ll)
     print('built %d article(s), %d section page(s); news-sitemap: %d; search-index: %d' % (len(arts), len(sections), len(recent), n_search))
 
-if __name__ == '__main__': main()
+if __name__ == '__main__':
+    main()
+    from portraits import render
+    render('kfb', '.')

@@ -1,0 +1,605 @@
+{
+  "schema_version": 1,
+  "reviewed": "2026-10-19",
+  "sources": {
+    "openai": {
+      "title": "OpenAI: About",
+      "url": "https://openai.com/about/",
+      "accessed": "2026-10-19"
+    },
+    "anthropic": {
+      "title": "Anthropic: Company",
+      "url": "https://www.anthropic.com/company",
+      "accessed": "2026-10-19"
+    },
+    "google": {
+      "title": "Google DeepMind: About",
+      "url": "https://deepmind.google/about/",
+      "accessed": "2026-10-19"
+    },
+    "mistral": {
+      "title": "Mistral: About",
+      "url": "https://mistral.ai/about/",
+      "accessed": "2026-10-19"
+    },
+    "nvidia": {
+      "title": "NVIDIA: About",
+      "url": "https://www.nvidia.com/en-us/about-nvidia/",
+      "accessed": "2026-10-19"
+    },
+    "meta": {
+      "title": "Meta: Introducing Muse Spark",
+      "url": "https://ai.meta.com/blog/introducing-muse-spark-msl/",
+      "accessed": "2026-10-19"
+    },
+    "astra": {
+      "title": "OpenAI: GPT-6 Astra API-Modell",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra",
+      "accessed": "2026-10-19"
+    },
+    "claude": {
+      "title": "Anthropic: Models overview",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview",
+      "accessed": "2026-10-19"
+    },
+    "gemini": {
+      "title": "Google DeepMind: Gemini 4 Argon Model Card",
+      "url": "https://deepmind.google/models/model-cards/gemini-4-argon/",
+      "accessed": "2026-10-19"
+    },
+    "small": {
+      "title": "Mistral Small 4, v26.03",
+      "url": "https://docs.mistral.ai/models/mistral-small-4-0-26-03",
+      "accessed": "2026-10-19"
+    },
+    "large": {
+      "title": "Mistral Large 3, v25.12",
+      "url": "https://docs.mistral.ai/models/mistral-large-3-25-12",
+      "accessed": "2026-10-19"
+    },
+    "nemotron": {
+      "title": "NVIDIA: Nemotron 3.5 Super VL Modellkarte",
+      "url": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard",
+      "accessed": "2026-10-19"
+    },
+    "swe": {
+      "title": "SWE-bench Verified: Methode",
+      "url": "https://www.swebench.com/verified",
+      "accessed": "2026-10-19"
+    },
+    "gpqa": {
+      "title": "GPQA: Originalrepository",
+      "url": "https://github.com/idavidrein/gpqa",
+      "accessed": "2026-10-19"
+    },
+    "gpqa-data": {
+      "title": "GPQA: Dataset Card",
+      "url": "https://huggingface.co/datasets/Idavidrein/gpqa",
+      "accessed": "2026-10-19"
+    },
+    "mmlu": {
+      "title": "MMLU-Pro: Originalrepository",
+      "url": "https://github.com/tiger-ai-lab/mmlu-pro",
+      "accessed": "2026-10-19"
+    },
+    "terminal": {
+      "title": "Terminal-Bench 2.1: Originalrepository",
+      "url": "https://github.com/harbor-framework/terminal-bench-2-1",
+      "accessed": "2026-10-19"
+    },
+    "mistral-catalog": {
+      "title": "Mistral: Models Overview",
+      "url": "https://docs.mistral.ai/models",
+      "accessed": "2026-10-19"
+    }
+  },
+  "companies": [
+    {
+      "slug": "openai",
+      "name": "OpenAI",
+      "initials": "OA",
+      "summary": "Entwickelt KI-Modelle und stellt sie über Anwendungen und eine API bereit.",
+      "detail": "KI-Forschung und Bereitstellung von Modellen.",
+      "limits": "Ein Produkt wie ChatGPT ist nicht dasselbe wie eine bestimmte API-Modellversion.",
+      "sources": [
+        "openai"
+      ],
+      "facts": [
+        {
+          "label": "Einordnung",
+          "value": "KI-Forschung und Bereitstellung von Modellen.",
+          "source": "openai"
+        }
+      ]
+    },
+    {
+      "slug": "anthropic",
+      "name": "Anthropic",
+      "initials": "AN",
+      "summary": "Entwickelt die Claude-Modellfamilie mit einem Schwerpunkt auf KI-Sicherheit.",
+      "detail": "KI-Sicherheitsforschung und Entwicklung von Claude.",
+      "limits": "Die Beschreibung des Unternehmens ist eine Selbstdarstellung, kein unabhängiges Sicherheitsurteil.",
+      "sources": [
+        "anthropic"
+      ],
+      "facts": [
+        {
+          "label": "Einordnung",
+          "value": "KI-Sicherheitsforschung und Entwicklung von Claude.",
+          "source": "anthropic"
+        }
+      ]
+    },
+    {
+      "slug": "google-deepmind",
+      "name": "Google DeepMind",
+      "initials": "GD",
+      "summary": "Googles KI-Forschungseinheit entwickelt unter anderem die Gemini-Modelle.",
+      "detail": "Forschung und Modellentwicklung; entstanden aus Google Brain und DeepMind.",
+      "limits": "Die Verfügbarkeit eines Modells im Produkt und in einer API kann unterschiedlich sein.",
+      "sources": [
+        "google"
+      ],
+      "facts": [
+        {
+          "label": "Einordnung",
+          "value": "Forschung und Modellentwicklung; entstanden aus Google Brain und DeepMind.",
+          "source": "google"
+        }
+      ]
+    },
+    {
+      "slug": "mistral-ai",
+      "name": "Mistral AI",
+      "initials": "MI",
+      "summary": "Entwickelt KI-Modelle und bietet Werkzeuge für ihren Einsatz an.",
+      "detail": "Modelle, Entwicklerwerkzeuge, Anwendungen und Recheninfrastruktur.",
+      "limits": "Nicht jedes Modell in einem API-Katalog wurde vom Betreiber des Katalogs entwickelt.",
+      "sources": [
+        "mistral"
+      ],
+      "facts": [
+        {
+          "label": "Einordnung",
+          "value": "Modelle, Entwicklerwerkzeuge, Anwendungen und Recheninfrastruktur.",
+          "source": "mistral"
+        }
+      ]
+    },
+    {
+      "slug": "nvidia",
+      "name": "NVIDIA",
+      "initials": "NV",
+      "summary": "Entwickelt Chips, Systeme, Software und KI-Modelle wie Nemotron.",
+      "detail": "Beschleunigtes Rechnen und Infrastruktur für KI.",
+      "limits": "Hardwareanbieter, Modell und gehosteter API-Dienst sind getrennte Ebenen mit eigenen Bedingungen.",
+      "sources": [
+        "nvidia"
+      ],
+      "facts": [
+        {
+          "label": "Einordnung",
+          "value": "Beschleunigtes Rechnen und Infrastruktur für KI.",
+          "source": "nvidia"
+        }
+      ]
+    },
+    {
+      "slug": "meta",
+      "name": "Meta",
+      "initials": "ME",
+      "summary": "Entwickelt KI-Modelle für Meta AI, darunter die Muse-Modellfamilie.",
+      "detail": "Meta Superintelligence Labs entwickelt Muse Spark für Meta AI.",
+      "limits": "Muse Spark und ähnlich benannte spätere Releases dürfen nicht als dieselbe Modellversion behandelt werden.",
+      "sources": [
+        "meta"
+      ],
+      "facts": [
+        {
+          "label": "Einordnung",
+          "value": "Meta Superintelligence Labs entwickelt Muse Spark für Meta AI.",
+          "source": "meta"
+        }
+      ]
+    }
+  ],
+  "models": [
+    {
+      "slug": "gpt-6-astra",
+      "name": "GPT-6 Astra",
+      "company": "openai",
+      "initials": "GA",
+      "summary": "Ein Modell für anspruchsvolle Denk-, Programmier- und Dokumentaufgaben.",
+      "detail": "Die API-Dokumentation nennt Text- und Bildeingaben sowie Textausgaben. Der Reasoning-Aufwand ist einstellbar. Die Einordnung als besonders leistungsfähig stammt vom Anbieter.",
+      "access": "OpenAI API; Modell-ID gpt-6-astra.",
+      "license": "Gehosteter API-Zugang; keine Gewichtslizenz aus dieser Quelle abgeleitet.",
+      "limits": "Kontextfenster, maximale Eingabe und maximale Ausgabe sind unterschiedliche Grenzen. Tool-Unterstützung ist zusätzlich vom verwendeten API-Endpunkt abhängig.",
+      "sources": [
+        "astra"
+      ],
+      "facts": [
+        {
+          "label": "API-ID",
+          "value": "gpt-6-astra",
+          "source": "astra"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild → Text",
+          "source": "astra"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "1.050.000 Token",
+          "source": "astra"
+        },
+        {
+          "label": "Maximale Eingabe",
+          "value": "922.000 Token",
+          "source": "astra"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "value": "128.000 Token",
+          "source": "astra"
+        }
+      ]
+    },
+    {
+      "slug": "claude-opus-5",
+      "name": "Claude Opus 5",
+      "company": "anthropic",
+      "initials": "CO",
+      "summary": "Claude-Modell für komplexe Programmier- und Unternehmensaufgaben.",
+      "detail": "Anthropic führt Opus 5 als Modell mit adaptivem Thinking. Text und Bilder können eingegeben werden, die Ausgabe erfolgt als Text.",
+      "access": "Claude API; Modell-ID claude-opus-5.",
+      "license": "Gehosteter Zugang; Nutzungsbedingungen des gewählten Anbieters prüfen.",
+      "limits": "Herstellerpositionierung ersetzt keinen eigenen Praxistest. Verfügbarkeit und Bedingungen können sich je Plattform unterscheiden.",
+      "sources": [
+        "claude"
+      ],
+      "facts": [
+        {
+          "label": "API-ID",
+          "value": "claude-opus-5",
+          "source": "claude"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild → Text",
+          "source": "claude"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "1 Mio. Token",
+          "source": "claude"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "value": "128.000 Token",
+          "source": "claude"
+        },
+        {
+          "label": "Thinking",
+          "value": "Adaptiv",
+          "source": "claude"
+        }
+      ]
+    },
+    {
+      "slug": "claude-sonnet-5",
+      "name": "Claude Sonnet 5",
+      "company": "anthropic",
+      "initials": "CS",
+      "summary": "Claude-Modell, das laut Anbieter Geschwindigkeit und Leistungsfähigkeit verbindet.",
+      "detail": "Sonnet 5 unterstützt Text- und Bildeingaben, Textausgabe und adaptives Thinking. Relative Geschwindigkeitsangaben gelten innerhalb der Anbieterauswahl, nicht als allgemeine Messwerte.",
+      "access": "Claude API; Modell-ID claude-sonnet-5.",
+      "license": "Gehosteter Zugang; Nutzungsbedingungen des gewählten Anbieters prüfen.",
+      "limits": "Für die eigene Aufgabe sind Tests mit festem Prompt und dokumentierter Konfiguration nötig.",
+      "sources": [
+        "claude"
+      ],
+      "facts": [
+        {
+          "label": "API-ID",
+          "value": "claude-sonnet-5",
+          "source": "claude"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild → Text",
+          "source": "claude"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "1 Mio. Token",
+          "source": "claude"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "value": "128.000 Token",
+          "source": "claude"
+        },
+        {
+          "label": "Thinking",
+          "value": "Adaptiv",
+          "source": "claude"
+        }
+      ]
+    },
+    {
+      "slug": "gemini-4-argon",
+      "name": "Gemini 4 Argon",
+      "company": "google-deepmind",
+      "initials": "G4",
+      "summary": "Multimodales Reasoning-Modell für komplexe technische und berufliche Aufgaben.",
+      "detail": "Die Modellkarte beschreibt eine sparse Mixture-of-Experts-Transformer-Architektur. Eingaben können Text, Bilder, Audio und Video enthalten; ausgegeben wird Text.",
+      "access": "Offizielle Modellkarte und dort verlinkte Bezugswege; API-Verfügbarkeit vor Einsatz prüfen.",
+      "license": "Keine offene Gewichtslizenz aus der Modellkarte abgeleitet.",
+      "limits": "Die Modellkarte nennt Halluzinationen sowie mögliche Langsamkeit oder Timeouts. Ein großes Kontextfenster garantiert kein fehlerfreies Erinnern.",
+      "sources": [
+        "gemini"
+      ],
+      "facts": [
+        {
+          "label": "Stand der Modellkarte",
+          "value": "13. Oktober 2026",
+          "source": "gemini"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild, Audio, Video → Text",
+          "source": "gemini"
+        },
+        {
+          "label": "Kontext gesamt",
+          "value": "Bis 1 Mio. Token, Eingabe und Ausgabe zusammen",
+          "source": "gemini"
+        },
+        {
+          "label": "Architektur",
+          "value": "Sparse Mixture of Experts, Transformer",
+          "source": "gemini"
+        }
+      ]
+    },
+    {
+      "slug": "mistral-small-4",
+      "name": "Mistral Small 4",
+      "company": "mistral-ai",
+      "initials": "MS",
+      "summary": "Ein hybrides Modell für Anweisungen, Reasoning und Programmieren.",
+      "detail": "Mistral nennt für die Version 26.03 eine Parameterbilanz mit deutlich weniger aktiven als gesamten Parametern. Aktive Parameter sind kein direkter Qualitätsmaßstab.",
+      "access": "Mistral API; dokumentierte ID mistral-small-2603+1.",
+      "license": "Apache 2.0 laut offizieller Modellseite; die konkrete Gewichtsdatei und deren Lizenz vor Download prüfen.",
+      "limits": "Die Bezeichnung Small beschreibt eine Produktpositionierung, nicht den tatsächlichen Speicherbedarf auf beliebiger Hardware.",
+      "sources": [
+        "small"
+      ],
+      "facts": [
+        {
+          "label": "Version",
+          "value": "26.03 / mistral-small-2603+1",
+          "source": "small"
+        },
+        {
+          "label": "Veröffentlicht",
+          "value": "16. März 2026",
+          "source": "small"
+        },
+        {
+          "label": "Parameter gesamt / aktiv",
+          "value": "119 Mrd. / 6,5 Mrd.",
+          "source": "small"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "256.000 Token",
+          "source": "small"
+        },
+        {
+          "label": "Lizenzangabe",
+          "value": "Apache 2.0",
+          "source": "small"
+        }
+      ]
+    },
+    {
+      "slug": "mistral-large-3",
+      "name": "Mistral Large 3",
+      "company": "mistral-ai",
+      "initials": "ML",
+      "summary": "Ein multimodales Open-Weight-Modell mit Mixture-of-Experts-Architektur.",
+      "detail": "Mistral beschreibt eine granulare Mixture-of-Experts-Architektur. Die Zahl aktiver Parameter unterscheidet sich von der Gesamtzahl und ist nicht mit einem Benchmark-Ergebnis gleichzusetzen.",
+      "access": "Mistral API; dokumentierte ID mistral-large-2512+1.",
+      "license": "Open Weight; Katalog nennt Apache 2.0. Lizenz des konkreten Artefakts vor eigener Bereitstellung prüfen.",
+      "limits": "Dieses Portrait behandelt Large 3, nicht das ebenfalls im Katalog geführte Large 4. Es ist keine Liste der jeweils neuesten Modelle.",
+      "sources": [
+        "large",
+        "mistral-catalog"
+      ],
+      "facts": [
+        {
+          "label": "Version",
+          "value": "25.12 / mistral-large-2512+1",
+          "source": "large"
+        },
+        {
+          "label": "Veröffentlicht",
+          "value": "2. Dezember 2025",
+          "source": "large"
+        },
+        {
+          "label": "Parameter gesamt / aktiv",
+          "value": "675 Mrd. / 41 Mrd.",
+          "source": "large"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "256.000 Token",
+          "source": "large"
+        }
+      ]
+    },
+    {
+      "slug": "nemotron-3-5-super-vl-nvfp4",
+      "name": "Nemotron 3.5 Super VL NVFP4",
+      "company": "nvidia",
+      "initials": "N3",
+      "summary": "Ein Modell für Text, Bilder und Video mit quantisierten Gewichten.",
+      "detail": "Die Modellkarte beschreibt Mamba-2-, MoE- und Attention-Schichten plus C-RADIO-Vision-Encoder. Dieses Portrait bezieht sich auf die NVFP4-Variante, nicht pauschal auf BF16 oder die gesamte Nemotron-Familie.",
+      "access": "NVIDIA-gehostete API und verlinkte Modellgewichte.",
+      "license": "OpenMDW-1.1 für das Modell; der API-Testdienst hat eigene NVIDIA-Trialbedingungen.",
+      "limits": "Benchmark-Werte sind Herstellerangaben. Präzision, Agentensystem und Testaufbau verändern die Ergebnisse; es wurden hier keine eigenen Tests durchgeführt.",
+      "sources": [
+        "nemotron"
+      ],
+      "facts": [
+        {
+          "label": "Version",
+          "value": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4",
+          "source": "nemotron"
+        },
+        {
+          "label": "Veröffentlicht",
+          "value": "15. Oktober 2026",
+          "source": "nemotron"
+        },
+        {
+          "label": "Parameter gesamt / aktiv",
+          "value": "120 Mrd. / 12 Mrd.",
+          "source": "nemotron"
+        },
+        {
+          "label": "Kontextfenster",
+          "value": "Bis 1 Mio. Token",
+          "source": "nemotron"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "value": "Text, Bild, Video → Text",
+          "source": "nemotron"
+        },
+        {
+          "label": "Gewichtspräzision",
+          "value": "NVFP4, gemischte Präzision",
+          "source": "nemotron"
+        }
+      ]
+    },
+    {
+      "slug": "muse-spark",
+      "name": "Muse Spark",
+      "company": "meta",
+      "initials": "MS",
+      "summary": "Multimodales Reasoning-Modell, das Meta AI antreibt.",
+      "detail": "Meta beschreibt Tool-Nutzung, visuelles Chain-of-Thought und Multi-Agent-Orchestrierung. Dieses Portrait behandelt die Ankündigung vom April 2026 und nicht ein späteres Modell mit dem Zusatz Open.",
+      "access": "Meta AI und Meta-AI-App; die Ankündigung nennt eine private API-Vorschau für ausgewählte Nutzer.",
+      "license": "Keine öffentliche Gewichtslizenz aus dieser Ankündigung abgeleitet.",
+      "limits": "Die Verfügbarkeit der damaligen privaten API-Vorschau ist keine Zusage eines heute frei buchbaren API-Zugangs.",
+      "sources": [
+        "meta"
+      ],
+      "facts": [
+        {
+          "label": "Veröffentlichung der Quelle",
+          "value": "8. April 2026",
+          "source": "meta"
+        },
+        {
+          "label": "Entwickler",
+          "value": "Meta Superintelligence Labs",
+          "source": "meta"
+        },
+        {
+          "label": "Einordnung",
+          "value": "Nativ multimodales Reasoning-Modell",
+          "source": "meta"
+        }
+      ]
+    }
+  ],
+  "benchmarks": [
+    {
+      "slug": "swe-bench-verified",
+      "name": "SWE-bench Verified",
+      "initials": "B",
+      "summary": "Prüft, ob ein KI-System echte Softwareprobleme durch Codeänderungen lösen kann.",
+      "detail": "Die Verified-Auswahl enthält 500 von Menschen geprüfte Aufgaben. Das komplette Leaderboard vergleicht Agentensysteme; die Bash-only-Auswahl nutzt mini-SWE-agent für einheitlichere Modellvergleiche.",
+      "metric": "Anteil gelöster Aufgaben (% Resolved).",
+      "limits": "Modell, Agent, Toolzugang, Budget und Scaffold-Version gehören zum Ergebnis. mini-SWE-agent 1.x und 2.x sind laut Betreiber nicht notwendigerweise vergleichbar.",
+      "sources": [
+        "swe"
+      ]
+    },
+    {
+      "slug": "gpqa",
+      "name": "GPQA",
+      "initials": "B",
+      "summary": "Schwierige Multiple-Choice-Fragen aus Biologie, Physik und Chemie.",
+      "detail": "Die Fragen wurden von Fachleuten geschrieben und geprüft. Main, Extended und Diamond sind unterschiedliche Auswahlen; ein Wert ohne Split ist unvollständig.",
+      "metric": "Anteil korrekt beantworteter Fragen; Split und Prompting nennen.",
+      "limits": "Kein allgemeiner Intelligenztest. Fragenwissen und naturwissenschaftliches Reasoning sind nur ein Ausschnitt. Keine Originalfragen auf dieser Seite, um Testkontamination zu vermeiden.",
+      "sources": [
+        "gpqa",
+        "gpqa-data"
+      ]
+    },
+    {
+      "slug": "mmlu-pro",
+      "name": "MMLU-Pro",
+      "initials": "B",
+      "summary": "Prüft akademisches Wissen und Reasoning über mehrere Fachgebiete.",
+      "detail": "MMLU-Pro erweitert den ursprünglichen MMLU-Ansatz um schwierigere, reasoning-orientierte Aufgaben und mehr Antwortoptionen. Das Originalrepository umfasst Auswertungscode und Methodik.",
+      "metric": "Overall Accuracy; Fachgebietsauswertung und Prompting dokumentieren.",
+      "limits": "MMLU, MMLU-Pro und MMLU-ProX sind verschiedene Tests. Zahlen aus diesen Tests dürfen nicht in eine Rangliste zusammengeschoben werden.",
+      "sources": [
+        "mmlu"
+      ]
+    },
+    {
+      "slug": "terminal-bench-2-1",
+      "name": "Terminal-Bench 2.1",
+      "initials": "B",
+      "summary": "Misst, ob Agenten komplexe Aufgaben in einer Terminalumgebung erledigen.",
+      "detail": "Version 2.1 überarbeitet Aufgaben aus 2.0, unter anderem Fehler, Zeitlimits und Robustheit der Bewertung. Der Test misst ein Agentensystem, nicht nur ein isoliertes Sprachmodell.",
+      "metric": "Aufgaben-Erfolg im jeweiligen Agenten- und Laufzeitaufbau.",
+      "limits": "Version 2.0, 2.1 und spätere Versionen getrennt führen. Agent, Tools, Reasoning-Aufwand, Ressourcen und Zahl der Wiederholungen beeinflussen den Wert.",
+      "sources": [
+        "terminal"
+      ]
+    }
+  ],
+  "scores": [
+    {
+      "model": "nemotron-3-5-super-vl-nvfp4",
+      "benchmark": "gpqa",
+      "variant": "Diamond",
+      "value": "89,90",
+      "metric": "% laut Herstellertabelle",
+      "source": "nemotron",
+      "reported_by": "NVIDIA",
+      "setup": "NVFP4; Prompt, Agent, Budget und Wiederholungen in dieser Tabellenzeile nicht vollständig spezifiziert. Nicht für direkte Modellranglisten geeignet."
+    },
+    {
+      "model": "nemotron-3-5-super-vl-nvfp4",
+      "benchmark": "swe-bench-verified",
+      "variant": "Verified",
+      "value": "71,07",
+      "metric": "% laut Herstellertabelle",
+      "source": "nemotron",
+      "reported_by": "NVIDIA",
+      "setup": "NVFP4; Prompt, Agent, Budget und Wiederholungen in dieser Tabellenzeile nicht vollständig spezifiziert. Nicht für direkte Modellranglisten geeignet."
+    },
+    {
+      "model": "nemotron-3-5-super-vl-nvfp4",
+      "benchmark": "terminal-bench-2-1",
+      "variant": "2.1",
+      "value": "60,80",
+      "metric": "% laut Herstellertabelle",
+      "source": "nemotron",
+      "reported_by": "NVIDIA",
+      "setup": "NVFP4; Prompt, Agent, Budget und Wiederholungen in dieser Tabellenzeile nicht vollständig spezifiziert. Nicht für direkte Modellranglisten geeignet."
+    }
+  ]
+}
