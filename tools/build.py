@@ -571,6 +571,8 @@ if __name__ == '__main__':
     from portraits import render
     render('kfb', '.')
     import footer; footer.main('.')
+    from news_pages import build as build_news_pages
+    build_news_pages()
     # Final isolated pass: advertising pages, consent UI and activation gates (no third-party code by default).
     import subprocess, sys
     subprocess.check_call([sys.executable, str(__import__('pathlib').Path(__file__).with_name('monetization.py')), '.'])
