@@ -18,4 +18,18 @@ class PortraitDataTests(unittest.TestCase):
   for k in ('models','companies'):
    for x in self.d[k]:
     for f in x['facts']:self.assertIn(f['source'],self.d['sources'])
+class PortraitLogoTests(unittest.TestCase):
+ def test_manifest_files_and_model_mapping(self):
+  manifest=json.loads((ROOT/'content/portrait-logos/manifest.json').read_text())
+  for key,asset in manifest.items():
+   self.assertTrue((ROOT/'content/portrait-logos'/asset['file']).is_file())
+   self.assertTrue(asset['source'].startswith('https://'))
+   self.assertTrue(asset['license'])
+  d=json.loads((ROOT/'content/portraits.json').read_text())
+  self.assertEqual(sum('logo' in x for x in d['companies']),6)
+  self.assertEqual(sum('logo' in x for x in d['models']),5)
+  for x in d['companies']+d['models']:
+   if 'logo' in x:self.assertIn(x['logo']['asset'],manifest)
+ def test_no_model_logo_means_monogram(self):
+  self.assertIn('p-avatar',m.portrait_mark({'initials':'GA'}))
 if __name__=='__main__':unittest.main()

@@ -1,0 +1,87 @@
+{
+  "anthropic": {
+    "file": "anthropic.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Anthropic_logo.svg",
+    "license": "PD-textlogo laut Commons; Markenrechte bleiben bestehen",
+    "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
+    "checked": "2026-10-19",
+    "sha256": "c89653a9edd5cb712368cde82196cd50914fb9e28a77cb5723a7f71a60ac5fc0"
+  },
+  "claude": {
+    "file": "claude.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Claude_AI_logo.svg",
+    "license": "PD-textlogo laut Commons; Markenrechte bleiben bestehen",
+    "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
+    "checked": "2026-10-19",
+    "sha256": "8d4e347d58a52ba1a21f29fb19c94a955b4bf3b8e956ce4eea5794fdbaa72b80"
+  },
+  "google-deepmind": {
+    "file": "google-deepmind.png",
+    "source": "https://commons.wikimedia.org/wiki/File:Google_DeepMind_logo.png",
+    "license": "PD-textlogo laut Commons; Markenrechte bleiben bestehen",
+    "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
+    "checked": "2026-10-19",
+    "sha256": "d5536fb52bf918bb53db53d8eca1aaf8d1c51d317f959f85e6e4b4d1a43825fb"
+  },
+  "gemini": {
+    "file": "gemini.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Google_Gemini_logo_2025.svg",
+    "license": "PD-textlogo laut Commons; Markenrechte bleiben bestehen",
+    "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
+    "checked": "2026-10-19",
+    "sha256": "61dc0083657d5620d6bff22f11cdc9d99d96bd5fc7d1200405f025f343da982a"
+  },
+  "meta": {
+    "file": "meta.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:Meta_Platforms_Inc._logo.svg",
+    "license": "PD-textlogo laut Commons; Markenrechte bleiben bestehen",
+    "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
+    "checked": "2026-10-19",
+    "sha256": "b536f39ac80d6b93477ce158e9e0f963504a407da8c35caf5ded3ac072b49176"
+  },
+  "openai": {
+    "file": "openai.svg",
+    "source": "https://openai.com/brand/",
+    "download": "https://cdn.openai.com/brand/OpenAI-Logos-2025.zip",
+    "license": "Offizielle Brand-Guidelines, keine freie Lizenz",
+    "risk": "Redaktionelle Markennennung; Bedingungen, Abstand und fehlende Partnerschaft beachten",
+    "checked": "2026-10-19",
+    "sha256": "f5a8c4c38b81972f2ede620b06ac5c51fa7cd16a35a3b8361deffaa3202a351e"
+  },
+  "mistral-small": {
+    "file": "mistral-small.svg",
+    "source": "https://mistral.ai/brand/",
+    "download": "https://mistral.ai/cms-media/api/media/file/Icon-Model-Small.svg",
+    "license": "Offizielle Brand-Guidelines, keine freie Lizenz",
+    "risk": "Redaktionelle Markennennung; Bedingungen, Abstand und fehlende Partnerschaft beachten",
+    "checked": "2026-10-19",
+    "sha256": "78b9493bad8d43470522c0e69b7d0ddbf7763f4f78fd5636f2da78e8e0ae1cf1"
+  },
+  "mistral-large": {
+    "file": "mistral-large.svg",
+    "source": "https://mistral.ai/brand/",
+    "download": "https://mistral.ai/cms-media/api/media/file/Icon-Model-Large%203.svg",
+    "license": "Offizielle Brand-Guidelines, keine freie Lizenz",
+    "risk": "Redaktionelle Markennennung; Bedingungen, Abstand und fehlende Partnerschaft beachten",
+    "checked": "2026-10-19",
+    "sha256": "cececa5007973898768d2c3c8add43b32f7af91c8c13d3e816471a980129d973"
+  },
+  "nvidia": {
+    "file": "nvidia.svg",
+    "source": "https://commons.wikimedia.org/wiki/File:NVIDIA_logo.svg",
+    "download": "https://raw.githubusercontent.com/NVIDIA/bionemo-framework/main/docs/docs/assets/images/logo-white.svg",
+    "license": "Apache-2.0; Copyright NVIDIA Corporation. Lizenzdatei beigelegt.",
+    "risk": "Apache erteilt keine allgemeine Markenlizenz; weiße Wortmarke auf dunkler Fläche",
+    "checked": "2026-10-19",
+    "sha256": "a21940b345eaf72edd680c5f250a10980c654dfbfb21c6c049d6dbca899bd323"
+  },
+  "mistral-ai": {
+    "file": "mistral-ai.svg",
+    "source": "https://mistral.ai/brand/",
+    "download": "https://mistral.ai/brand/",
+    "license": "Offizielle Brand-Guidelines, keine freie Lizenz",
+    "risk": "Unverändertes Inline-SVG der offiziellen Brand-Seite; Weißraum, keine Umfärbung oder Rahmen. Markenrechte beachten.",
+    "checked": "2026-10-19",
+    "sha256": "4af90f5941c959b554b4f3eb82c5633044ad06fdf2d8daa837eea0357fbd7e22"
+  }
+}

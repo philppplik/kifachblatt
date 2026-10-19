@@ -110,7 +110,11 @@
           "value": "KI-Forschung und Bereitstellung von Modellen.",
           "source": "openai"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "openai",
+        "label": "OpenAI-Logo"
+      }
     },
     {
       "slug": "anthropic",
@@ -128,7 +132,11 @@
           "value": "KI-Sicherheitsforschung und Entwicklung von Claude.",
           "source": "anthropic"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "anthropic",
+        "label": "Anthropic-Logo"
+      }
     },
     {
       "slug": "google-deepmind",
@@ -146,7 +154,11 @@
           "value": "Forschung und Modellentwicklung; entstanden aus Google Brain und DeepMind.",
           "source": "google"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "google-deepmind",
+        "label": "Google DeepMind-Logo"
+      }
     },
     {
       "slug": "mistral-ai",
@@ -164,7 +176,11 @@
           "value": "Modelle, Entwicklerwerkzeuge, Anwendungen und Recheninfrastruktur.",
           "source": "mistral"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "mistral-ai",
+        "label": "Mistral AI-Logo"
+      }
     },
     {
       "slug": "nvidia",
@@ -182,7 +198,11 @@
           "value": "Beschleunigtes Rechnen und Infrastruktur für KI.",
           "source": "nvidia"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "nvidia",
+        "label": "NVIDIA-Logo"
+      }
     },
     {
       "slug": "meta",
@@ -200,7 +220,11 @@
           "value": "Meta Superintelligence Labs entwickelt Muse Spark für Meta AI.",
           "source": "meta"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "meta",
+        "label": "Meta-Logo"
+      }
     }
   ],
   "models": [
@@ -284,7 +308,11 @@
           "value": "Adaptiv",
           "source": "claude"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Opus-5-Logo"
+      }
     },
     {
       "slug": "claude-sonnet-5",
@@ -325,7 +353,11 @@
           "value": "Adaptiv",
           "source": "claude"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Sonnet-5-Logo"
+      }
     },
     {
       "slug": "gemini-4-argon",
@@ -361,7 +393,11 @@
           "value": "Sparse Mixture of Experts, Transformer",
           "source": "gemini"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "gemini",
+        "label": "Gemini-Familienlogo, kein eigenes Argon-Logo"
+      }
     },
     {
       "slug": "mistral-small-4",
@@ -402,7 +438,11 @@
           "value": "Apache 2.0",
           "source": "small"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "mistral-small",
+        "label": "Offizielles Mistral-Small-4-Modellmotiv"
+      }
     },
     {
       "slug": "mistral-large-3",
@@ -439,7 +479,11 @@
           "value": "256.000 Token",
           "source": "large"
         }
-      ]
+      ],
+      "logo": {
+        "asset": "mistral-large",
+        "label": "Offizielles Mistral-Large-3-Modellmotiv"
+      }
     },
     {
       "slug": "nemotron-3-5-super-vl-nvfp4",
