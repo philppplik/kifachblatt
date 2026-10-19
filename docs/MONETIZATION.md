@@ -7,7 +7,7 @@ Status: preparation only, no deployed tracking, no connected provider/account, n
 - `/werben/`: advertiser formats and mailto requests to the explicitly supplied public address. No form/backend or submission. No prices, reach, endorsements or existing partners asserted.
 - `/werbung/`: editorial separation and labels. Use `Anzeige` first. `Gesponsert`/`Affiliate` supplement it. Commission explanation belongs immediately next to each affiliate link.
 - `/cookies/`, `/datenschutz/`: accurate off-state disclosures, 180-day local consent record, revocation entry in every normal footer.
-- Desktop privacy panel; mobile bottom drawer. Essential service fixed; statistics/advertising disabled while unavailable. Close/Escape never consent. Reject and accept have equal treatment. No focus trap because this is a non-modal settings region.
+- Desktop privacy panel; mobile bottom drawer. Essential service fixed; statistics/advertising disabled while unavailable. No close button, Escape or backdrop dismissal: the visitor chooses reject, accept or save (no choice = no optional cookies/tags; the panel does not block reading). Reject and accept have equal treatment. No focus trap because this is a non-modal settings region.
 - Unbooked spots render nothing. V1 direct placement: maximum one campaign, after editorial content, no popups/autoplay/sticky ads. No dummy ad creative, buyer logo, price or performance.
 - Print editions deliberately excluded from the new UI.
 

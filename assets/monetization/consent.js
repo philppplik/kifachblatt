@@ -10,10 +10,22 @@
   /* AdSense deliberately has no loader. A certified TCF CMP integration is a separate release. */
   var adReady = false, loaded = false;
   stats.disabled = !analyticsReady && !cfg.metrics.enabled; ads.disabled = !adReady;
-  try {
-    state = JSON.parse(localStorage.getItem(key));
-    if (!state || state.revision !== cfg.consentRevision || typeof state.at !== 'number' || Date.now() - state.at > age || state.at > Date.now()) state = null;
-  } catch (_) { state = null; }
+  /* The choice is kept in localStorage and mirrored in one first-party cookie (same name with underscores),
+     so it survives reloads, other pages and browsers that block either store. Written only after an active click. */
+  var cookieName = key.replace(/-/g, '_');
+  function readCookie() {
+    var m = document.cookie.match(new RegExp('(?:^|; )' + cookieName + '=([^;]*)'));
+    if (!m) return null;
+    try { return JSON.parse(decodeURIComponent(m[1])); } catch (_) { return null; }
+  }
+  function writeCookie(s) {
+    var d = location.hostname.match(/^(?:www\.)?([a-z0-9-]+\.de)$/i);
+    document.cookie = cookieName + '=' + encodeURIComponent(JSON.stringify(s)) + '; Max-Age=' + Math.floor(age / 1000) + '; Path=/; SameSite=Lax' + (location.protocol === 'https:' ? '; Secure' : '') + (d ? '; Domain=' + d[1] : '');
+    return readCookie() !== null;
+  }
+  function valid(s) { return s && s.revision === cfg.consentRevision && typeof s.at === 'number' && Date.now() - s.at <= age && s.at <= Date.now() ? s : null; }
+  try { state = valid(JSON.parse(localStorage.getItem(key))); } catch (_) { state = null; }
+  if (!state) state = valid(readCookie());
   function permitted() { return !!(state && state.statistics === true); }
   function gtag() { window.dataLayer.push(arguments); }
   function loadAnalytics() {
@@ -46,8 +58,10 @@
   function save(accept) {
     var hadStats = permitted();
     state = {revision:cfg.consentRevision,at:Date.now(),statistics:accept && !stats.disabled && stats.checked,advertising:false};
-    try { localStorage.setItem(key,JSON.stringify(state)); document.getElementById('kfb-consent-status').textContent='Auswahl gespeichert.'; }
-    catch (_) { document.getElementById('kfb-consent-status').textContent='Auswahl gilt nur für diese Seite, da der Browser sie nicht speichern konnte.'; }
+    var stored = false;
+    try { localStorage.setItem(key,JSON.stringify(state)); stored = true; } catch (_) {}
+    if (writeCookie(state)) stored = true;
+    document.getElementById('kfb-consent-status').textContent = stored ? 'Auswahl gespeichert.' : 'Auswahl gilt nur für diese Seite, da der Browser sie nicht speichern konnte.';
     close();
     if (hadStats && !state.statistics) {
       if (loaded) { window['ga-disable-' + cfg.analytics.measurementId] = true; gtag('consent','update',{analytics_storage:'denied'}); }
@@ -61,8 +75,7 @@
   panel.querySelector('[data-consent="reject"]').addEventListener('click',function () { stats.checked=false; save(false); });
   panel.querySelector('[data-consent="save"]').addEventListener('click',function () { save(true); });
   panel.querySelector('[data-consent="all"]').addEventListener('click',function () { stats.checked=!stats.disabled; save(true); });
-  panel.querySelector('[data-consent="close"]').addEventListener('click',close);
-  panel.addEventListener('keydown',function (e) { if (e.key === 'Escape') close(); });
+  /* No close button, Escape or backdrop dismissal: a visitor decides with reject, accept or save. */
   /* No server, identifier, query string, referrer or external request in this event seam. */
   function metric(name, id) {
     if (!cfg.metrics.enabled || !permitted() || !/^[a-z0-9-]{1,80}$/.test(id)) return;

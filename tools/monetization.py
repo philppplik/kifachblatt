@@ -63,9 +63,9 @@ SITE = {'key': 'kfb',
             '<a href="/cookies">Cookies &amp; Einstellungen</a>.</p>',
  'cookies': '<h1>Cookies &amp; Einstellungen</h1><p>Statistik- und Werbedienste sind derzeit ausgeschaltet. Ohne Einwilligung werden sie nicht geladen. Du kannst die Datenschutzeinstellungen '
             'jederzeit über die gleichnamige Schaltfläche im Footer öffnen, deine Auswahl ändern oder eine Einwilligung zurücknehmen. Ablehnen schränkt Lesen und Suchen nicht ein.</p>\n'
-            '<h2>Gespeicherte Auswahl</h2><p>Wir speichern deine Datenschutzauswahl im lokalen Speicher deines Browsers unter <strong>kfb-consent-v1</strong>. Der Eintrag enthält die gewählten '
+            '<h2>Gespeicherte Auswahl</h2><p>Wir speichern deine Datenschutzauswahl im lokalen Speicher deines Browsers (Eintrag <strong>kfb-consent-v1</strong>) und zusätzlich in einem technisch notwendigen First-Party-Cookie <strong>kfb_consent_v1</strong> (Pfad /, 180 Tage, SameSite=Lax, erst nach deinem Klick gesetzt). Der Eintrag enthält die gewählten '
             'Kategorien, die Version des Hinweises und den Zeitpunkt der Auswahl. Er wird nicht an einen Statistik- oder Werbedienst übertragen. Nach spätestens 180 Tagen oder bei einer neuen '
-            'Version fragen wir erneut. Ist der lokale Speicher gesperrt, gilt deine Auswahl nur für den aktuellen Seitenaufruf.</p><p>Diese Speicherung dient ausschließlich dazu, deine ausdrücklich '
+            'Version fragen wir erneut. Sind lokaler Speicher und Cookies gesperrt, gilt deine Auswahl nur für den aktuellen Seitenaufruf.</p><p>Diese Speicherung dient ausschließlich dazu, deine ausdrücklich '
             'gewählte Einstellung zu beachten. Rechtsgrundlagen: § 25 Abs. 2 Nr. 2 TDDDG und Art. 6 Abs. 1 lit. f DSGVO. Keine nutzerübergreifende Kennung und kein Tracking-Profil. Du kannst den '
             'Eintrag jederzeit in den Website-Daten deines Browsers löschen.</p>\n'
             '<h2>Statistik: derzeit aus</h2><p>Es ist noch kein Statistikdienst aktiviert. Es werden keine Analytics-Cookies und keine Analytics-Anfragen gesendet. Die vorbereitete Statistikoption '
@@ -82,17 +82,17 @@ SITE = {'key': 'kfb',
            'intro': 'Du entscheidest über Statistik und Werbung. Ohne Zustimmung bleibt beides aus.',
            'q': 'Wofür dürfen Daten genutzt werden?',
            'nec': 'Seite und Datenschutzauswahl. Kein Tracking.',
-           'foot': 'Jederzeit im Footer änderbar. Schließen erteilt keine Einwilligung.'},
+           'foot': 'Ohne Auswahl bleiben Statistik und Werbung aus. Jederzeit im Footer änderbar.'},
  'footer_anchor': '<a href="/datenschutz">Datenschutz</a>',
  'footer_links': '<a href="/werben">Werben &amp; Kooperationen</a><a href="/werbung">Werbung &amp; Affiliate</a><a href="/cookies">Cookies &amp; Einstellungen</a><button type="button" '
                  'class="@@p@@-consent-open" data-@@p@@-consent-open>Datenschutzeinstellungen</button><span id="@@p@@-consent-status" class="@@p@@-sr" role="status"></span>',
  'privacy_replacements': [('<h2>Kurzfassung</h2><p>Diese Website setzt keine Cookies, nutzt keine Analyse- oder Werbedienste, bindet keine externen Schriftarten und keine Social-Media-Plugins ein. '
                            'Es gibt kein Formular und keine Registrierung.</p>',
                            '<h2>Kurzfassung</h2><p>Diese Website nutzt derzeit keine Analyse- oder Werbedienste, bindet keine externen Schriftarten und keine Social-Media-Plugins ein. Deine '
-                           'Datenschutzauswahl wird ausschließlich im lokalen Speicher deines Browsers gespeichert, nicht als Tracking-Cookie. Alle optionalen Dienste sind ausgeschaltet. Es gibt '
+                           'Datenschutzauswahl wird ausschließlich im lokalen Speicher deines Browsers und in einem technisch notwendigen First-Party-Cookie gespeichert, nicht als Tracking-Cookie. Alle optionalen Dienste sind ausgeschaltet. Es gibt '
                            'kein Formular und keine Registrierung.</p><h2>Datenschutzauswahl und optionale Dienste</h2><p>Die Datenschutzeinstellungen im Footer lassen sich jederzeit öffnen. Deine '
                            'Auswahl wird unter <strong>kfb-consent-v1</strong> mit Kategorien, Zeitpunkt und Hinweisversion bis zu 180 Tage lokal im Browser gespeichert. Zweck ist ausschließlich die '
-                           'Beachtung deiner Auswahl, nicht Reichweitenmessung. Rechtsgrundlagen sind § 25 Abs. 2 Nr. 2 TDDDG und Art. 6 Abs. 1 lit. f DSGVO. Bei gesperrtem Speicher gilt die Auswahl '
+                           'Beachtung deiner Auswahl, nicht Reichweitenmessung. Rechtsgrundlagen sind § 25 Abs. 2 Nr. 2 TDDDG und Art. 6 Abs. 1 lit. f DSGVO. Bei gesperrtem Speicher und gesperrten Cookies gilt die Auswahl '
                            'nur für den aktuellen Seitenaufruf. Details: <a href="/cookies">Cookies &amp; Einstellungen</a>.</p><p>Statistik und externe Werbung werden erst nach gesonderter '
                            'Einrichtung, ergänzten Datenschutzhinweisen und deiner freiwilligen Einwilligung aktiviert (Art. 6 Abs. 1 lit. a DSGVO; soweit erforderlich § 25 Abs. 1 TDDDG). Ein '
                            'Widerruf ist jederzeit möglich und wirkt für die Zukunft. Derzeit sind Google Analytics, Google AdSense und Affiliate-Netzwerke nicht eingebunden; es werden weder '
@@ -134,7 +134,6 @@ def validate(cfg):
 def u(name): return SITE['urls'][name]
 
 PANEL = '''<section id="@@p@@-consent" class="@@p@@-consent" role="region" aria-labelledby="@@p@@-consent-title" hidden>
-<button type="button" class="@@p@@-consent-close" data-consent="close" aria-label="Einstellungen schließen, ohne Auswahl zu ändern">Schließen</button>
 <h2 id="@@p@@-consent-title">%(h)s</h2>
 <p>%(intro)s</p>
 <p><strong>Aktueller Stand:</strong> Statistik und Werbung sind noch nicht aktiviert.</p>
@@ -142,7 +141,7 @@ PANEL = '''<section id="@@p@@-consent" class="@@p@@-consent" role="region" aria-
 <label><input type="checkbox" checked disabled><span><strong>Notwendig</strong><small>%(nec)s</small></span></label>
 <label><input type="checkbox" id="@@p@@-statistics"><span><strong>Statistik</strong><small>Seitenaufrufe und Interaktionen. Derzeit aus.</small></span></label>
 <label><input type="checkbox" id="@@p@@-advertising"><span><strong>Werbung</strong><small>AdSense und Werbedienste. Derzeit aus.</small></span></label>
-</fieldset><div class="@@p@@-consent-actions"><button type="button" data-consent="reject">Alle ablehnen</button><button type="button" data-consent="all">Alle verfügbaren erlauben</button><button type="button" data-consent="save">Auswahl speichern</button></div>
+</fieldset><div class="@@p@@-consent-actions"><button type="button" data-consent="reject">Alle ablehnen</button><button type="button" data-consent="all">Alle verfügbaren akzeptieren</button><button type="button" data-consent="save">Auswahl speichern</button></div>
 <p><a href="%(ds)s">Datenschutz</a> · <a href="%(ck)s">Cookies &amp; Einstellungen</a> · <a href="%(im)s">Impressum</a></p><p class="@@p@@-muted">%(foot)s</p></section>'''.replace('@@p@@', P) % dict(SITE['panel'], ds=u('datenschutz'), ck=u('cookies'), im=u('impressum'))
 
 def mailto(kind):
@@ -215,7 +214,11 @@ def main(out):
         rel = f.relative_to(out)
         if rel.parts[0] in SKIP_DIRS or any(x.startswith('.') for x in rel.parts): continue
         t = f.read_text()
-        if 'id="%s-monetization-config"' % P in t and 'id="%s-consent"' % P in t: continue
+        if 'id="%s-monetization-config"' % P in t and 'id="%s-consent"' % P in t:
+            # Already processed (static pages are committed): refresh the panel markup only.
+            n = re.sub(r'<section id="%s-consent".*?</section>' % P, lambda m: PANEL, t, count=1, flags=re.S)
+            if n != t: f.write_text(n)
+            continue
         if '</body>' not in t or '<footer' not in t: continue
         t = t.replace('</head>', '<link rel="stylesheet" href="/assets/monetization/consent.css"></head>', 1)
         fi = t.find('<footer')
