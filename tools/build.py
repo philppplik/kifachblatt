@@ -580,3 +580,8 @@ if __name__ == '__main__':
 if __name__ == "__main__":
     from share_iconify import patch
     patch(".")
+
+# Static in-article daily-report CTA, after all article renderers and consent passes.
+if __name__ == '__main__':
+    from report_breaker import main as add_report_breakers
+    add_report_breakers('.')
