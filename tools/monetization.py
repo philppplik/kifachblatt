@@ -116,6 +116,8 @@ def validate(cfg):
     if cfg['analytics']['enabled']:
         if cfg['analytics']['provider'] != 'ga4' or not re.fullmatch(r'G-[A-Z0-9]+', cfg['analytics']['measurementId']):
             raise ValueError('An approved GA4 property ID is required')
+        if cfg['analytics'].get('eventRetentionMonths') != 2 or cfg['analytics'].get('cookieLifetimeDays') != 180 or cfg['analytics'].get('resetRetentionOnActivity') is not False: raise ValueError('Reviewed short GA4 profile required')
+        if not cfg['analytics'].get('activationApproved'): raise ValueError('Owner activation approval required')
         if not cfg['analytics'].get('privacyReviewed'):
             raise ValueError('Update privacy/cookies, processor agreement, retention and settings before activation')
     if cfg['metrics']['enabled'] and not cfg['analytics']['enabled']:
@@ -184,11 +186,28 @@ def patch_privacy(out):
         t = t.replace(old, new, 1)
     f.write_text(t)
 
+GA4_DETAILS = '<h3>Anbieter und Zweck</h3><p>Google Analytics 4 ist ein Dienst von Google. Vertragspartner nach den deutschen Google-Analytics-Nutzungsbedingungen ist Google Ireland Limited, Gordon House, Barrow Street, Dublin 4, Irland; Google LLC, 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA, und weitere Auftragsverarbeiter können an der Verarbeitung beteiligt sein. Zweck ist die statistische Auswertung von Seitenaufrufen, Nutzung und gekennzeichneten Werbeplatzierungen. Werbung, Google Signals, User-ID, personalisierte Anzeigen und Verknüpfungen mit Google Ads sind nicht Teil dieser Konfiguration.</p>\n<h3>Einwilligung und Daten</h3><p>Rechtsgrundlagen sind deine freiwillige Einwilligung nach Art. 6 Abs. 1 lit. a DSGVO und für das Speichern beziehungsweise Auslesen auf deinem Gerät § 25 Abs. 1 TDDDG. Ohne Statistik-Einwilligung laden wir den Google-Tag nicht und senden auch keine cookielosen Ablehnungs-Pings (Basic Consent Mode). Lesen und Suche bleiben möglich. Bei Einwilligung können Seitenpfad, Seitentitel, Zeitpunkte, technische Browser-/Geräteinformationen, grobe Standortinformationen und eine pseudonyme Cookie-Kennung verarbeitet werden. Beim Verbindungsaufbau wird deine IP-Adresse an Google übermittelt; Google beschreibt für GA4, dass einzelne IP-Adressen nicht protokolliert oder gespeichert werden. Das ist keine Zusage vollständiger Anonymität.</p>\n<p>Die ausdrücklich gesendeten Seitenereignisse enthalten keine URL-Suchparameter oder Referrer. Es werden keine Namen oder E-Mail-Adressen als Ereignisparameter gesendet. Enhanced Measurement ist in der Property ausgeschaltet, damit keine zusätzlichen Formular-, Such- oder Outbound-Link-Daten automatisch erfasst werden. Platzierungsereignisse enthalten nur Ereignisart, Spot-ID und Seitenpfad; keine vollständige Ziel-URL.</p>\n<h3>Cookies und Speicherdauer</h3><p>GA4 kann die First-Party-Cookies _ga und _ga_&lt;Kennung&gt; verwenden. Wir begrenzen ihre Laufzeit auf 180 Tage und verlängern sie nicht mit jedem Besuch; Browser können sie früher löschen. Die eingestellte Property-Aufbewahrung für nutzer- und ereignisbezogene Daten beträgt zwei Monate, ohne Zurücksetzen bei neuer Aktivität. Diese Einstellung betrifft nicht automatisch alle bereits aggregierten Standardberichte. Google weist darauf hin, dass Änderungen der Aufbewahrung bis zu 24 Stunden brauchen können.</p>\n<h3>Drittlandübermittlung und Auftragsverarbeitung</h3><p>Eine Verarbeitung in den USA und anderen Ländern außerhalb des EWR ist möglich. Für dieses Analytics-Konto wurden am 19. Oktober 2026 die Google Ads Data Processing Terms als Vereinbarung zur Auftragsverarbeitung nach Art. 28 DSGVO akzeptiert. Google LLC ist im offiziellen Register als aktiver Teilnehmer des EU-US Data Privacy Framework aufgeführt (geprüft am 19. Oktober 2026). Für davon erfasste Übermittlungen in die USA dient der entsprechende Angemessenheitsbeschluss als Grundlage. Soweit erforderlich, sehen Googles Datenverarbeitungsbedingungen ergänzend Standardvertragsklauseln vor. Andere Drittländer können ein anderes Datenschutzniveau haben; Statistik-Einwilligung beseitigt dieses Risiko nicht.</p>\n<h3>Widerruf</h3><p>Öffne jederzeit „Datenschutzeinstellungen“ im Footer und wähle „Alle ablehnen“ oder deaktiviere Statistik. Der Widerruf gilt für die Zukunft. Weitere Statistik-Ereignisse werden gestoppt, bekannte GA-Cookies auf dieser Domain soweit technisch zugänglich entfernt und die Seite ohne Tag neu geladen. Bereits rechtmäßig verarbeitete Daten werden dadurch nicht automatisch rückwirkend gelöscht. Für Auskunft oder Löschung kontaktiere philipp.l.paulik@gmail.com.</p>\n<p>Weitere Informationen: <a href="https://policies.google.com/privacy?hl=de" rel="noopener">Google-Datenschutzerklärung</a>, <a href="https://support.google.com/analytics/answer/11397207" rel="noopener">GA4-Cookies</a>, <a href="https://support.google.com/analytics/answer/7667196" rel="noopener">Datenaufbewahrung</a>, <a href="https://privacy.google.com/businesses/processorterms/" rel="noopener">Google-Datenverarbeitungsbedingungen</a>, <a href="https://www.dataprivacyframework.gov/participant/5780" rel="noopener">DPF-Registereintrag Google LLC</a>, <a href="https://www.google.com/analytics/terms/de.html" rel="noopener">Analytics-Nutzungsbedingungen</a>.</p>'
+
+def active_wording(t):
+    t=t.replace('Statistik und Werbung sind derzeit deaktiviert.','Google Analytics 4 nur nach Statistik-Einwilligung; Werbung bleibt aus.')
+    t=t.replace('Statistik und Werbung sind noch nicht aktiviert.','Google Analytics 4 ist nur mit Statistik-Einwilligung verfügbar. Werbung bleibt aus.')
+    t=t.replace('Aktuell sind keine Werbe- oder Statistikdienste aktiviert.','Google Analytics 4 wird nur nach Statistik-Einwilligung geladen. Externe Werbung bleibt aus.')
+    t=t.replace('Statistik und externe Werbung sind derzeit nicht aktiv. Sie würden erst nach gesonderter Einrichtung, ergänzten Datenschutzhinweisen und Ihrer freiwilligen Einwilligung aktiviert (Art. 6 Abs. 1 lit. a DSGVO; soweit erforderlich § 25 Abs. 1 TDDDG).','Google Analytics 4 wird nur mit freiwilliger Statistik-Einwilligung eingesetzt (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG). Externe Werbung bleibt aus.')
+    t=t.replace('Derzeit sind Google Analytics, Google AdSense und Affiliate-Netzwerke nicht eingebunden; es werden weder Google-Tags noch ein Tag Manager vorgeladen.','Google Analytics 4 lädt nur nach Statistik-Einwilligung. Google AdSense und Affiliate-Netzwerke bleiben aus. Ohne Einwilligung gibt es keine Google-Tags oder Ablehnungs-Pings; ein Tag Manager wird nicht verwendet.')
+    t=t.replace('Statistik und externe Werbung sind derzeit ausgeschaltet.','Google Analytics 4 ist nur mit Statistik-Einwilligung verfügbar. Externe Werbung bleibt ausgeschaltet.')
+    t=t.replace('Statistik: derzeit aus','Statistik mit Einwilligung')
+    t=t.replace('Stand: 19. Oktober 2026, Vorbereitung ohne aktive Statistik- oder Werbedienste.','Stand: 19. Oktober 2026. Statistik nur mit Einwilligung; Werbung aus.')
+    t=t.replace('Statistik- und Werbedienste sind derzeit ausgeschaltet.', 'Google Analytics 4 ist nur mit Statistik-Einwilligung verfügbar. Externe Werbung bleibt aus.')
+    t=re.sub(r'Es ist noch kein Statistikdienst aktiviert\..*?Optionale Statistik erfordert eine eigene freiwillige Einwilligung\.', 'Google Analytics 4 lädt nur mit freiwilliger Statistik-Einwilligung. Ohne Zustimmung gibt es keine Analytics-Cookies und keine Statistik-Anfragen. Details stehen im GA4-Abschnitt dieser Seite.', t, flags=re.S)
+    t=re.sub(r'Statistik und externe Werbung werden erst nach gesonderter Einrichtung,.*?§ 25 Abs. 1 TDDDG\)\.', 'Google Analytics 4 lädt nur nach freiwilliger Statistik-Einwilligung (Art. 6 Abs. 1 lit. a DSGVO und § 25 Abs. 1 TDDDG). Externe Werbung bleibt aus.',t,flags=re.S)
+    t=t.replace('Diese Website nutzt derzeit keine Analyse- oder Werbedienste', 'Diese Website nutzt Google Analytics 4 nur mit Statistik-Einwilligung, aber keine externen Werbedienste')
+    t=t.replace('Alle optionalen Dienste sind ausgeschaltet.', 'Ohne Statistik-Einwilligung bleibt Google Analytics 4 aus. Werbung bleibt immer aus.')
+    return t
+
 def main(out):
     out = pathlib.Path(out).resolve()
     cfg = validate(json.loads((ROOT / 'content/monetization.json').read_text()))
-    if cfg['analytics']['enabled'] or cfg['metrics']['enabled']:
-        raise ValueError('Activation is a separate reviewed release: replace off-state privacy text and banner provider disclosure first')
+    active = cfg['analytics']['enabled']
     asset = out / 'assets/monetization'; asset.mkdir(parents=True, exist_ok=True)
     for name in ('consent.css', 'consent.js'): shutil.copy(ROOT / 'tools/monetization' / name, asset / name)
     shell = page_path(out, 'impressum').read_text()
@@ -201,7 +220,10 @@ def main(out):
     build_page(out, shell, 'cookies', SITE['titles']['cookies'], SITE['descs']['cookies'], SITE['cookies'], P + '-doc')
     patch_privacy(out)
     config = '<script type="application/json" id="%s-monetization-config">' % P + json.dumps(cfg, ensure_ascii=True).replace('<', '\\u003c') + '</script>'
-    extra = PANEL + config + '<script src="/assets/monetization/consent.js" defer></script>'
+    panel = PANEL
+    if active:
+        panel = panel.replace('Seitenaufrufe und Interaktionen. Derzeit aus.', 'Google Analytics 4 (Google Ireland / Google LLC): Seitenaufrufe und Interaktionen, Cookies bis 180 Tage; USA-Übermittlung möglich. Nur nach Zustimmung.')
+    extra = panel + config + '<script src="/assets/monetization/consent.js" defer></script>'
     spot = ''
     for s in cfg['spots']:
         label = 'Anzeige · ' + ('Affiliate' if s['kind'] == 'affiliate' else 'Gesponsert')
@@ -213,18 +235,25 @@ def main(out):
         rel = f.relative_to(out)
         if rel.parts[0] in SKIP_DIRS or any(x.startswith('.') for x in rel.parts): continue
         t = f.read_text()
-        if 'id="%s-monetization-config"' % P in t and 'id="%s-consent"' % P in t:
-            # Already processed (static pages are committed): refresh the panel markup only.
-            n = re.sub(r'<section id="%s-consent".*?</section>' % P, lambda m: PANEL, t, count=1, flags=re.S)
-            if n != t: f.write_text(n)
-            continue
+        t = re.sub(r'<section id="%s-consent".*?</section>' % P, '', t, flags=re.S)
+        t = re.sub(r'<script type="application/json" id="%s-monetization-config">.*?</script><script src="/assets/monetization/consent.js" defer></script>' % P, '', t, flags=re.S)
         if '</body>' not in t or '<footer' not in t: continue
+        t = t.replace('<link rel="stylesheet" href="/assets/monetization/consent.css">', '')
         t = t.replace('</head>', '<link rel="stylesheet" href="/assets/monetization/consent.css"></head>', 1)
         fi = t.find('<footer')
         if '/werben' not in t[fi:] and footer_anchor in t[fi:]:
             t = t[:fi] + t[fi:].replace(footer_anchor, footer_anchor + links, 1)
         if spot and rel.name == 'index.html' and (len(rel.parts) == 1 or rel.parts[0] in SITE['spot_dirs']):
             at = t.find('<footer'); t = t[:at] + SITE['spot_wrap'] % spot + t[at:]
+        if active:
+            t = active_wording(t)
+            if f in (page_path(out,'cookies'),page_path(out,'datenschutz')):
+                t = re.sub(r'<section id="ga4-disclosure">.*?</section>', '', t, flags=re.S)
+                end = '</div></div></main>' if P=='kfb' else '</div><footer'
+                disclosure = '<section id="ga4-disclosure"><h2>Google Analytics 4: Statistik mit Einwilligung</h2>'+GA4_DETAILS+'</section>'
+                if P=='kfb': t=t.replace('</div></div></main>',disclosure+'</div></div></main>',1)
+                else:
+                    fi=t.find('<footer'); close=t.rfind('</div>',0,fi); t=t[:close]+disclosure+t[close:]
         t = t.replace('</body>', extra + '</body>', 1); f.write_text(t)
     p = out / 'sitemap.xml'
     if p.exists():
@@ -233,6 +262,6 @@ def main(out):
             loc = SITE['base'] + u(n)
             if '<loc>' + loc + '</loc>' not in xml: add += '<url><loc>%s</loc></url>' % loc
         if add: p.write_text(xml.replace('</urlset>', add + '</urlset>'))
-    print('Monetization: inert configuration, consent UI and advertiser pages generated')
+    print('Monetization: consent-gated GA4 available; advertising off')
 
 if __name__ == '__main__': main(sys.argv[1])

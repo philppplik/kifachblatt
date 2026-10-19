@@ -1,8 +1,21 @@
 {
   "version": 1,
-  "consentRevision": "2026-10-preparation-1",
-  "analytics": {"enabled": false, "provider": "none", "measurementId": ""},
-  "advertising": {"enabled": false},
-  "metrics": {"enabled": false},
+  "consentRevision": "2026-10-ga4-live-1",
+  "analytics": {
+    "enabled": true,
+    "provider": "ga4",
+    "measurementId": "G-75G1VNDHJW",
+    "activationApproved": true,
+    "privacyReviewed": true,
+    "eventRetentionMonths": 2,
+    "cookieLifetimeDays": 180,
+    "resetRetentionOnActivity": false
+  },
+  "advertising": {
+    "enabled": false
+  },
+  "metrics": {
+    "enabled": false
+  },
   "spots": []
 }

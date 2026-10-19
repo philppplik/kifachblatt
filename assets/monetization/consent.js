@@ -26,7 +26,7 @@
   function valid(s) { return s && s.revision === cfg.consentRevision && typeof s.at === 'number' && Date.now() - s.at <= age && s.at <= Date.now() ? s : null; }
   try { state = valid(JSON.parse(localStorage.getItem(key))); } catch (_) { state = null; }
   if (!state) state = valid(readCookie());
-  function permitted() { return !!(state && state.statistics === true); }
+  function permitted() { return !!(valid(state) && state.statistics === true); }
   function gtag() { window.dataLayer.push(arguments); }
   function loadAnalytics() {
     if (!permitted() || !analyticsReady || loaded) return;
@@ -34,7 +34,7 @@
     gtag('consent','default',{analytics_storage:'denied',ad_storage:'denied',ad_user_data:'denied',ad_personalization:'denied'});
     gtag('consent','update',{analytics_storage:'granted'});
     gtag('js',new Date());
-    gtag('config',cfg.analytics.measurementId,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false});
+    gtag('config',cfg.analytics.measurementId,{send_page_view:false,allow_google_signals:false,allow_ad_personalization_signals:false,cookie_expires:180*86400,cookie_update:false,page_location:location.origin+location.pathname,page_referrer:''});
     gtag('event','page_view',{page_location:location.origin + location.pathname,page_referrer:'',page_title:document.title});
     var script = document.createElement('script'); script.async = true;
     script.src = 'https://www.googletagmanager.com/gtag/js?id=' + encodeURIComponent(cfg.analytics.measurementId);
@@ -64,7 +64,7 @@
     document.getElementById('kfb-consent-status').textContent = stored ? 'Auswahl gespeichert.' : 'Auswahl gilt nur für diese Seite, da der Browser sie nicht speichern konnte.';
     close();
     if (hadStats && !state.statistics) {
-      if (loaded) { window['ga-disable-' + cfg.analytics.measurementId] = true; gtag('consent','update',{analytics_storage:'denied'}); }
+      if (loaded) { window['ga-disable-' + cfg.analytics.measurementId] = true; }
       eraseAnalyticsCookies();
       /* Full reload removes every previously loaded provider and pending handler. */
       location.reload(); return;
@@ -97,6 +97,8 @@
     },{threshold:[0,0.5]});
     observer.observe(spot);
   });
+  window.addEventListener('storage',function(e){if(e.key===key){if(loaded)window['ga-disable-'+cfg.analytics.measurementId]=true;location.reload();}});
+  document.addEventListener('visibilitychange',function(){if(!document.hidden && state && !permitted() && loaded){window['ga-disable-'+cfg.analytics.measurementId]=true;location.reload();}});
   loadAnalytics();
   if (!state) open();
 }());

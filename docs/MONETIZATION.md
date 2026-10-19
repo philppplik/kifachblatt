@@ -65,3 +65,18 @@ The owner reviews legal/business matters. These pages document the actual inacti
 ## Site notes (KI Fachblatt)
 
 Pages are committed static HTML. `tools/monetization.py .` is idempotent and runs at the end of `tools/build.py` (after portraits), so regenerated pages (for example berichte.html) keep footer link, panel and script. It edits datenschutz.html in place (marker `kfb-consent-v1`). Portrait, model and benchmark texts are declared not for sale on /werbung.
+
+
+## Owner-approved GA4 activation, 2026-10-19
+
+Supersedes off-state preparation above. Owner requested all three sites on GA4 at 15:17, then asked to finish. Account 363019915 already has accepted Data Processing Terms (19 October 2026) and approved Primary contact. Property 559586961, stream 16159228686, measurement ID G-75G1VNDHJW. New separate property; no old property deleted. Germany time zone, EUR, News category, smallest size bucket, traffic objective.
+
+Verified after fresh navigation: event/user retention 2 months, reset on activity OFF (Google may take 24h to apply); Signals OFF, user-provided data OFF, granular device/location OFF, ads personalization 0/307. Enhanced Measurement OFF in finished stream, confirmed after complete reload. Creation-time toggle is not reliable; final stream state was checked. IP addresses reach Google on connection, but Google's GA4 policy says individual IPs are not logged/stored; no anonymity claim.
+
+Basic consent: no Google tag/request/ping until statistics consent, ads storage/user-data/personalization remain denied. Cookie lifetime 180 days with no refresh. Query/referrer omitted in config and explicit page_view. Consent expiry checked for new events/foreground return; cross-tab storage changes reload. Withdrawal disables collection, clears accessible GA cookies and reloads without emitting a denied ping. Existing necessary first-party consent-cookie fallback remains. Advertising and promotion metrics remain OFF. New consent revision invalidates old off-state selections.
+
+QA: NODE_PATH=/tmp/node_modules node tools/monetization/test-ga4.cjs (set CHROME executable in test if needed). 48 assertions on 1440/390/320: no requests before consent or after rejection, exact intended tag after explicit consent, flags/redaction/cookie duration, withdrawal/cookie deletion, updated disclosure, width. ALL HTTPS intercepted, no synthetic events sent to real Google. Run against built site (FA) or repository static pages (KFB).
+
+Deployment is separate. After publication verify initial/reject/accept/withdraw network and actual page_view collect, then check GA4 real-time. Patch is not proof of ingestion or a live dashboard. Consent counts are not total visitors. Legal disclosure is a factual configuration review, not a compliance certificate.
+
+Sources checked 2026-10-19: https://www.google.com/analytics/terms/de.html (Google Ireland), https://privacy.google.com/businesses/processorterms/ (accepted terms), https://www.dataprivacyframework.gov/participant/5780 (Google LLC Active), https://policies.google.com/privacy/frameworks?hl=de (transfer basis), https://support.google.com/analytics/answer/7667196 (retention), https://support.google.com/analytics/answer/10000067?hl=en (Basic Consent).
