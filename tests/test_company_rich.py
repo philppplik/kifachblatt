@@ -7,7 +7,7 @@ class RichTests(unittest.TestCase):
  def test_all_three_profiles(self):
   d=json.loads((ROOT/'content/portraits.json').read_text())
   for x in d['companies'][:3]:
-   h=c.render(x,d,ROOT.name=='kfb');self.assertEqual(h.count('class="co-block"'),4);self.assertIn('role="img"',h);self.assertIn('co-layers-text',h);self.assertIn('Snapshot abgerufen',h)
+   h=c.render(x,d,ROOT.name=='kfb');self.assertEqual(h.count('class="co-block"'),len(x['rich']['sections'])+len(x['rich'].get('offerings',[])));self.assertIn('role="img"',h);self.assertIn('co-layers-text',h);self.assertIn('Snapshot abgerufen',h)
  def test_all_portraits_archived(self):
   current=json.loads((ROOT/'content/portraits.json').read_text());self.assertTrue(any(json.loads(p.read_text())==current for p in (ROOT/'content/portrait-snapshots/editorial').glob('*.json')))
  def test_append_only(self):

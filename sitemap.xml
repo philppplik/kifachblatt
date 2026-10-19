@@ -37,6 +37,8 @@
 
 
 
+
+
 <url><loc>https://kifachblatt.de/nemotron-3-5-super-lightning-analyse</loc><lastmod>2026-10-19T08:11:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/nemotron-3-5-super-lightning-analyse.jpg</image:loc><image:title>Nemotron 3.5: Was 99,62 Prozent Quantisierungserhalt bedeuten</image:title><image:caption>Punktdiagramm: NVFP4-Wert in Prozent des BF16-Werts für 36 Benchmarks, Median 99,4 Prozent; vier Zeilen unter 95 Prozent sind orange markiert.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/beam-501b-reflection-offenes-modell-analyse</loc><lastmod>2026-10-19T08:10:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/beam-501b-reflection-offenes-modell-analyse.jpg</image:loc><image:title>Beam 501B: Reflections offenes Modell im Nachrechnen</image:title><image:caption>Balkendiagramm: Von 501,3 Milliarden Parametern von Beam sind 477,8 Milliarden inaktive Experten, 15,4 Milliarden aktive Experten und 8,0 Milliarden übrige Parameter.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/muse-spark-open-offene-gewichte-analyse</loc><lastmod>2026-10-18T20:11:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/muse-spark-open-offene-gewichte-analyse.jpg</image:loc><image:title>Muse Spark Open: Was die offenen Gewichte technisch bedeuten</image:title><image:caption>Raster aus durchsichtigen Würfeln, von denen acht golden leuchten und über feine Linien mit einem Punkt verbunden sind: Sinnbild für acht aktive Experten aus 256 in einem Mixture-of-Experts-Modell</image:caption></image:image></url>

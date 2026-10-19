@@ -151,6 +151,46 @@
       "title": "Claude Fable 5.1: offizielle Modell-Dokumentation",
       "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview",
       "accessed": "2026-10-19"
+    },
+    "nvidia-nemotron-rich": {
+      "title": "NVIDIA: Nemotron, Einsatzwege und Lizenzabgrenzung",
+      "url": "https://www.nvidia.com/en-us/ai-data-science/foundation-models/nemotron/",
+      "accessed": "2026-10-19"
+    },
+    "mistral-about-rich": {
+      "title": "Mistral: Gründung, Gründer und Entwicklung",
+      "url": "https://mistral.ai/about",
+      "accessed": "2026-10-19"
+    },
+    "mistral-products-rich": {
+      "title": "Mistral: Produktübersicht",
+      "url": "https://mistral.ai/products",
+      "accessed": "2026-10-19"
+    },
+    "mistral-brand-rich": {
+      "title": "Mistral: Brand assets und Nutzungsregeln",
+      "url": "https://mistral.ai/brand/",
+      "accessed": "2026-10-19"
+    },
+    "meta-developer-rich": {
+      "title": "Meta: Entwicklerplattform und Muse",
+      "url": "https://www.llama.com/",
+      "accessed": "2026-10-19"
+    },
+    "meta-llama-rich": {
+      "title": "Meta: Llama-Modellfamilien und Richtlinien",
+      "url": "https://dev.meta.ai/llama",
+      "accessed": "2026-10-19"
+    },
+    "meta-license-rich": {
+      "title": "Meta: Llama 4 Community License Agreement",
+      "url": "https://dev.meta.ai/llama/llama4/license",
+      "accessed": "2026-10-19"
+    },
+    "meta-llama2-rich": {
+      "title": "Meta: Llama 2 Community License",
+      "url": "https://ai.meta.com/llama/license/",
+      "accessed": "2026-10-19"
     }
   },
   "companies": [
@@ -371,6 +411,16 @@
             "Produkte, APIs und Varianten unterscheiden",
             "Der Gemini-Katalog unterscheidet etwa Flash, Live und TTS sowie stabile und Preview-Endpunkte. Zugang und Funktionsumfang müssen am konkret gewählten Endpunkt geprüft werden. Forschungsfortschritt oder ein großer Kontext sind keine Garantie für fehlerfreie Antworten.",
             "google-catalog-rich"
+          ],
+          [
+            "API-Versionen sind eine Betriebsentscheidung",
+            "Die Gemini-Dokumentation unterscheidet Stable, Preview, Latest und Experimental. Ein Alias und eine fest versionierte Modell-ID haben unterschiedliche Folgen für reproduzierbare Tests und Migration. Modelländerungen und Abschaltungen müssen am jeweiligen Endpunkt geprüft werden.",
+            "google-catalog-rich"
+          ],
+          [
+            "Wissenschaftliche Erfolge richtig zuordnen",
+            "Die About-Seite nennt unter anderem AlphaGo, AlphaStar und AlphaFold. Spiele, Proteinstrukturen und generative Assistenz sind verschiedene Aufgaben. Eine Leistung bei einer dieser Aufgaben belegt nicht automatisch Zuverlässigkeit oder Sicherheit bei einer anderen.",
+            "google"
           ]
         ],
         "milestones": [
@@ -405,7 +455,47 @@
           ]
         ],
         "repo": "googleapis",
-        "primary": "google"
+        "primary": "google",
+        "offerings": [
+          [
+            "Gemini",
+            "Modellfamilie mit aufgabenspezifischen API-Varianten.",
+            "google-catalog-rich"
+          ],
+          [
+            "Wissenschaftliche KI",
+            "Beispiel AlphaFold: Proteinstrukturvorhersage.",
+            "google"
+          ],
+          [
+            "Forschung und Werkzeuge",
+            "Transformer, JAX und TensorFlow als unterschiedliche Beiträge.",
+            "google"
+          ]
+        ],
+        "checks": [
+          "Google DeepMind nicht mit dem gesamten Alphabet-Konzern gleichsetzen.",
+          "Konkrete Gemini-Modell-ID, Modalitäten und Version dokumentieren.",
+          "Stable, Preview, Latest und Experimental bewusst unterscheiden.",
+          "Modellpreise, Datenbedingungen und Region am gewählten Dienst prüfen."
+        ],
+        "faq": [
+          [
+            "Ist Google DeepMind dasselbe wie ganz Google?",
+            "Nein. Dieses Portrait behandelt die 2023 zusammengeführte KI-Forschungseinheit. Konzernzahlen von Google oder Alphabet werden ihr nicht zugerechnet.",
+            "google-merge"
+          ],
+          [
+            "Warum sind Gemini und AlphaFold nicht vergleichbar?",
+            "Sie adressieren unterschiedliche Aufgaben. AlphaFold wird mit Proteinstrukturen verbunden, Gemini ist eine generative Modellfamilie. Daraus entsteht keine gemeinsame Leistungsrangliste.",
+            "google"
+          ],
+          [
+            "Warum ist die API-Version wichtig?",
+            "Die Dokumentation trennt stabile, Preview-, Latest- und experimentelle Modelle. Verfügbarkeit und Verhalten müssen am tatsächlich verwendeten Endpunkt geprüft werden.",
+            "google-catalog-rich"
+          ]
+        ]
       }
     },
     {
@@ -416,7 +506,11 @@
       "detail": "Modelle, Entwicklerwerkzeuge, Anwendungen und Recheninfrastruktur.",
       "limits": "Nicht jedes Modell in einem API-Katalog wurde vom Betreiber des Katalogs entwickelt.",
       "sources": [
-        "mistral"
+        "mistral",
+        "mistral-about-rich",
+        "mistral-catalog",
+        "mistral-products-rich",
+        "mistral-brand-rich"
       ],
       "facts": [
         {
@@ -428,6 +522,116 @@
       "logo": {
         "asset": "mistral-ai",
         "label": "Mistral AI-Logo"
+      },
+      "rich": {
+        "eyebrow": "Europäisches KI-Unternehmen · Modelle · Anwendungen",
+        "headline": "Modelle, Werkzeuge und Kontrolle über den Betrieb.",
+        "intro": "Mistral entwickelt KI-Modelle und verbindet sie mit Anwendungen und Entwicklerwerkzeugen. Die offizielle Unternehmensgeschichte verortet den Start im April 2023. Offenheit ist Teil der Positionierung, aber keine pauschale Lizenz für jedes Modell oder jeden Dienst.",
+        "repo": "mistralai",
+        "primary": "mistral-about-rich",
+        "layers": [
+          [
+            "Modellfamilien",
+            "Allgemeine und spezialisierte Modelle"
+          ],
+          [
+            "Entwicklung",
+            "APIs, Werkzeuge und Anwendungen"
+          ],
+          [
+            "Betrieb und Kontrolle",
+            "Zugang und Bedingungen je Angebot"
+          ]
+        ],
+        "milestones": [
+          [
+            "April 2023",
+            "Start des Unternehmens laut eigener Geschichte.",
+            "mistral-about-rich"
+          ],
+          [
+            "27.09.2023",
+            "Mistral 7B in der offiziellen Zeitleiste.",
+            "mistral-about-rich"
+          ],
+          [
+            "26.02.2024",
+            "Mistral Large in der offiziellen Zeitleiste.",
+            "mistral-about-rich"
+          ]
+        ],
+        "sections": [
+          [
+            "Gründer und Aufgaben",
+            "Die About-Seite nennt Arthur Mensch als Mitgründer und CEO, Guillaume Lample als Mitgründer und Chief Science Officer sowie Timothee Lacroix als Mitgründer und CTO. Diese Rollen sind ein datierter Quellenstand, keine Garantie für eine unveränderte künftige Führung.",
+            "mistral-about-rich"
+          ],
+          [
+            "Mehr als ein universelles Sprachmodell",
+            "Der Modellkatalog unterscheidet allgemeine Modelle und spezialisierte Angebote. Dazu gehören unter anderem Code-, Dokument- und Sprachaufgaben. Ein OCR-Modell ist deshalb kein austauschbarer Ersatz für ein allgemeines Dialogmodell; die konkrete Modell-ID und Aufgabe zählen.",
+            "mistral-catalog"
+          ],
+          [
+            "Vom Modell zur Anwendung",
+            "Die Produktübersicht führt neben Modellen auch Studio und Vibe-Angebote auf. Eine Endnutzeranwendung, ein Entwicklungswerkzeug und ein API-Modell haben unterschiedliche Funktionen und Vertragsbedingungen. Das Unternehmensportrait ist keine vollständige Preisliste aller Produkte.",
+            "mistral-products-rich"
+          ],
+          [
+            "Offenheit pro Modell prüfen",
+            "Der Katalog nennt Modelle, Versionen und auslaufende Angebote. Ob Gewichte verfügbar sind, welche Lizenz gilt und welche Funktionen die API unterstützt, ist pro Modell zu prüfen. Die Positionierung als offenes KI-Unternehmen ersetzt diese Einzelprüfung nicht.",
+            "mistral-catalog"
+          ],
+          [
+            "Lebenszyklus gehört zur Integration",
+            "Die Dokumentation führt auch abgekündigte Modelle und empfohlene Nachfolger. Eine erfolgreiche frühere Integration beweist deshalb nicht, dass derselbe Endpunkt dauerhaft verfügbar bleibt. Modell-ID, Versionsstand, Migrationspfad und Tests gehören in den Betriebsplan.",
+            "mistral-catalog"
+          ],
+          [
+            "Marke ist keine freie Lizenz",
+            "Die Brand-Seite erklärt Namen, Logos und Icons zu Eigentum von Mistral. Sie fordert unter anderem unveränderte Proportionen, Freiraum und die aktuelle offizielle Fassung. Die lokale Darstellung dient nur der redaktionellen Identifikation, nicht als Partnerschaftszeichen.",
+            "mistral-brand-rich"
+          ]
+        ],
+        "offerings": [
+          [
+            "Modelle",
+            "Aufgaben, Versionen und Verfügbarkeit im offiziellen Katalog.",
+            "mistral-catalog"
+          ],
+          [
+            "Studio und Vibe",
+            "Entwicklung und Anwendungen getrennt von Modellgewichten betrachten.",
+            "mistral-products-rich"
+          ],
+          [
+            "Spezialisierung",
+            "Code, Dokumente und Sprache statt einer einzigen Leistungszahl.",
+            "mistral-catalog"
+          ]
+        ],
+        "checks": [
+          "Zielaufgabe und konkrete Modellversion vor der Integration festlegen.",
+          "Gewichtslizenz, API-Bedingungen und Anwendungstarif getrennt prüfen.",
+          "Auslaufdatum und Nachfolgemodell im Katalog kontrollieren.",
+          "Für sensible Daten Hosting, Verarbeitung und Vertragsgrundlage selbst prüfen."
+        ],
+        "faq": [
+          [
+            "Wann entstand Mistral?",
+            "Die offizielle About-Seite nennt April 2023 als Start und führt später im selben Jahr Mistral 7B in ihrer Zeitleiste auf.",
+            "mistral-about-rich"
+          ],
+          [
+            "Sind alle Mistral-Angebote automatisch Open Source?",
+            "Eine solche Pauschalaussage folgt nicht aus der Unternehmenspositionierung. Modelllizenz, Gewichtszugang, API und Produktbedingungen sind getrennt zu prüfen.",
+            "mistral-catalog"
+          ],
+          [
+            "Darf das Logo beliebig verändert werden?",
+            "Nein. Die offiziellen Brand-Regeln untersagen unter anderem Strecken, Verformen, Drehen und Änderungen am Aufbau. Eine frei verwendbare Markenlizenz wird hier nicht behauptet.",
+            "mistral-brand-rich"
+          ]
+        ]
       }
     },
     {
@@ -438,7 +642,8 @@
       "detail": "Beschleunigtes Rechnen und Infrastruktur für KI.",
       "limits": "Hardwareanbieter, Modell und gehosteter API-Dienst sind getrennte Ebenen mit eigenen Bedingungen.",
       "sources": [
-        "nvidia"
+        "nvidia",
+        "nvidia-nemotron-rich"
       ],
       "facts": [
         {
@@ -450,6 +655,105 @@
       "logo": {
         "asset": "nvidia",
         "label": "NVIDIA-Logo"
+      },
+      "rich": {
+        "eyebrow": "Beschleunigte Rechner · Nemotron · NeMo · NIM",
+        "headline": "Nicht nur die GPU unter dem Modell.",
+        "intro": "NVIDIA entwickelt Chips, Systeme und Software für KI. Für die Praxis gehören die Rechenplattform, konkrete Nemotron-Modelle und die Bereitstellung als Dienst auseinandergehalten. Ein Modellname bezeichnet weder eine GPU noch automatisch einen kostenlosen Produktionsdienst.",
+        "repo": "nvidia",
+        "primary": "nvidia",
+        "layers": [
+          [
+            "Rechenplattform",
+            "Chips, Systeme und Software"
+          ],
+          [
+            "Modelle und Anpassung",
+            "Nemotron und NeMo"
+          ],
+          [
+            "Bereitstellung",
+            "NIM und Inferenzanbieter"
+          ]
+        ],
+        "sections": [
+          [
+            "Was NVIDIA im KI-Stack macht",
+            "Die Unternehmensseite beschreibt NVIDIA als Anbieter von Chips, Systemen und Software für beschleunigtes Rechnen und KI. Daneben nennt sie unter anderem Grafik, industrielle Digitalisierung und Gesundheit. Dieses Portrait behandelt den KI-Ausschnitt, keine vollständige Konzernanalyse.",
+            "nvidia"
+          ],
+          [
+            "Nemotron ist eine Modellfamilie",
+            "NVIDIA ordnet unter Nemotron unterschiedliche Aufgaben ein: Reasoning, visuelles Verständnis, Retrieval und Safety. Varianten für Sprache und multimodale Verarbeitung haben andere Aufgaben als ein reines Textmodell. Aus dem Familiennamen darf man keine einheitlichen Fähigkeiten aller Varianten ableiten.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NeMo: anpassen statt nur aufrufen",
+            "NeMo wird als Werkzeugangebot zum Aufbau und zur Anpassung generativer KI beschrieben. Datenaufbereitung, Anpassung und Retrieval sind andere Schritte als der eigentliche Inferenzaufruf. Für ein Projekt müssen Modell, Datenpipeline und Auswertung getrennt dokumentiert werden.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NIM: ein anderer Betriebsweg",
+            "NIM bezeichnet optimierte Microservices zur Bereitstellung. NVIDIA unterscheidet in den Nemotron-FAQ den Download und Eigenbetrieb von Modellen vom Betrieb als NIM mit NVIDIA-AI-Enterprise-Lizenz. Ein frei erhältliches Modellgewicht macht nicht jeden zugehörigen Service kostenlos.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Offene Gewichte sind nicht die Gesamtrechnung",
+            "NVIDIA beschreibt verfügbare Gewichte, Trainingsdaten und Verfahren sowie kommerzielle Nutzungsrechte unter der jeweiligen Modelllizenz. Für einen konkreten Download bleibt dessen Lizenz maßgeblich. Rechenleistung, Hosting, Datenhaltung und Betrieb sind damit nicht bezahlt.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Leistungsversprechen richtig lesen",
+            "Aussagen wie hohe Genauigkeit oder hoher Durchsatz auf der Anbieterwebsite sind Herstellerpositionierungen. Ohne dieselbe Aufgabe, Hardware, Präzision, Batchgröße und Latenzgrenze werden daraus keine unabhängigen Modellvergleiche. Unser Repository-Ausschnitt unten ist ebenfalls kein Leistungsbenchmark.",
+            "nvidia-nemotron-rich"
+          ]
+        ],
+        "milestones": [],
+        "offerings": [
+          [
+            "Nemotron",
+            "Modellfamilie für verschiedene KI-Aufgaben.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NeMo",
+            "Werkzeuge zum Anpassen und Entwickeln.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NIM",
+            "Optimierte Bereitstellung als Microservice.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Blueprints",
+            "Referenzabläufe für Anwendungen und Agenten.",
+            "nvidia-nemotron-rich"
+          ]
+        ],
+        "checks": [
+          "Exakte Nemotron-Variante, Quantisierung und Kontextgrenzen aus deren Modellkarte wählen.",
+          "Eigenbetrieb, NIM und externen Inferenzanbieter separat kalkulieren.",
+          "GPU-Speicher, Latenz und Durchsatz mit der eigenen Aufgabe messen.",
+          "Modelllizenz, Servicevertrag und Code-Lizenz nicht gleichsetzen."
+        ],
+        "faq": [
+          [
+            "Ist NVIDIA nur ein Hardwareanbieter?",
+            "Nein. Die geprüften Seiten nennen Chips und Systeme, aber auch Modelle, Werkzeuge und KI-Services. Welche Ebene benötigt wird, hängt vom Projekt ab.",
+            "nvidia"
+          ],
+          [
+            "Kann man Nemotron kostenlos einsetzen?",
+            "NVIDIA beschreibt herunterladbare Modelle für den Eigenbetrieb. Die konkrete Modelllizenz bleibt maßgeblich; Rechen- und Betriebskosten verschwinden nicht. NIM wird als eigener lizenzierter Betriebsweg beschrieben.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Sind Nemotron, NeMo und NIM dasselbe?",
+            "Nein. Nemotron ist eine Modellfamilie, NeMo dient Entwicklung und Anpassung, NIM der optimierten Bereitstellung.",
+            "nvidia-nemotron-rich"
+          ]
+        ]
       }
     },
     {
@@ -460,7 +764,11 @@
       "detail": "Meta Superintelligence Labs entwickelt Muse Spark für Meta AI.",
       "limits": "Muse Spark und ähnlich benannte spätere Releases dürfen nicht als dieselbe Modellversion behandelt werden.",
       "sources": [
-        "meta"
+        "meta",
+        "meta-developer-rich",
+        "meta-llama-rich",
+        "meta-license-rich",
+        "meta-llama2-rich"
       ],
       "facts": [
         {
@@ -472,6 +780,116 @@
       "logo": {
         "asset": "meta",
         "label": "Meta-Logo"
+      },
+      "rich": {
+        "eyebrow": "Muse · Llama · Entwicklerplattform",
+        "headline": "Zwei Modellwelten, keine pauschale Offenheitszusage.",
+        "intro": "Meta verbindet KI-Forschung und Produkte mit einem Entwicklerangebot. Zum geprüften Stand stehen auf der Entwicklerplattform Muse-Angebote neben den dokumentierten Llama-Familien. Die Zugangs- und Lizenzregeln einer Familie gelten nicht automatisch für die andere.",
+        "repo": "meta-llama",
+        "primary": "meta-developer-rich",
+        "layers": [
+          [
+            "Meta",
+            "Anbieter und KI-Entwicklung"
+          ],
+          [
+            "Modellfamilien",
+            "Muse und Llama unterscheiden"
+          ],
+          [
+            "Nutzung",
+            "API, Download und Regeln je Modell"
+          ]
+        ],
+        "milestones": [
+          [
+            "18.07.2023",
+            "Llama 2: Versionsdatum der Community License.",
+            "meta-llama2-rich"
+          ],
+          [
+            "05.04.2025",
+            "Llama 4: Datum der Community License.",
+            "meta-license-rich"
+          ],
+          [
+            "08.04.2026",
+            "Muse Spark vorgestellt.",
+            "meta"
+          ]
+        ],
+        "sections": [
+          [
+            "Was die Entwicklerplattform zeigt",
+            "Die Plattform bewirbt Muse Spark, Muse Code und Meta Model API. Sie verlinkt daneben Llama und Schutzwerkzeuge. Das ist ein Angebotsüberblick und keine Zusage, dass jedes Produkt überall oder in jedem Konto verfügbar ist.",
+            "meta-developer-rich"
+          ],
+          [
+            "Muse ist nicht automatisch Llama",
+            "Der Vorstellungsbeitrag beschreibt Muse Spark als Modell von Meta Superintelligence Labs. Seine Verfügbarkeit und der dort beschriebene Zugang dürfen nicht aus den Llama-Lizenzen abgeleitet werden. Für einen Einsatz ist die Dokumentation des tatsächlich gewählten Muse-Angebots maßgeblich.",
+            "meta"
+          ],
+          [
+            "Llama ist eine Familie mit Versionen",
+            "Die offizielle Übersicht trennt Llama 2, Llama 3 mit Unterversionen und Llama 4. Sie bietet für die Versionen eigene Lizenz- und Nutzungsrichtlinien. Eine einzelne Llama-Angabe ohne Versionsnummer reicht daher weder als technischer Steckbrief noch als Lizenzprüfung.",
+            "meta-llama-rich"
+          ],
+          [
+            "Community License ist nicht grenzenlos",
+            "Die Llama-4-Lizenz nennt unter anderem Pflichten bei Weitergabe, eine Acceptable Use Policy und zusätzliche kommerzielle Bedingungen für sehr große Anbieter. Bei mehr als 700 Millionen monatlich aktiven Nutzern der Produkte des Lizenznehmers oder verbundener Unternehmen im maßgeblichen Zeitraum verlangt sie eine gesonderte Lizenz von Meta. Das ist keine grenzenlose Standardfreigabe.",
+            "meta-license-rich"
+          ],
+          [
+            "SDK-Lizenz und Modellrechte unterscheiden",
+            "Das unten gezeigte Repository ist ein Entwicklerprojekt und ein begrenzter Ökosystem-Ausschnitt. Eine permissive Code-Lizenz eines SDK hebt weder die Community License eines Modells noch die Bedingungen eines gehosteten Dienstes auf.",
+            "meta-license-rich"
+          ],
+          [
+            "Keine Modellrangliste aus Plattformwerbung",
+            "Die Muse-Plattform macht Aussagen zu Coding, Agenten und multimodalen Aufgaben. Das sind Herstellerbeschreibungen. Unser Portrait übernimmt daraus keine unabhängigen Bestwerte, keine Sicherheitsgarantie und keine Aussage über die Qualität jeder einzelnen Modellversion.",
+            "meta-developer-rich"
+          ]
+        ],
+        "offerings": [
+          [
+            "Muse / Meta Model API",
+            "Aktuellen Zugang und Bedingungen am gewählten Angebot prüfen.",
+            "meta-developer-rich"
+          ],
+          [
+            "Llama",
+            "Versionierte Modellfamilien mit eigenen Richtlinien.",
+            "meta-llama-rich"
+          ],
+          [
+            "Llama Protections",
+            "Sicherheitswerkzeuge, kein Nachweis völliger Sicherheit.",
+            "meta-llama-rich"
+          ]
+        ],
+        "checks": [
+          "Muse, Llama und die Endnutzeranwendung nicht gleichsetzen.",
+          "Modellversion und regionale Zugangsbedingungen prüfen.",
+          "Lizenztext, Acceptable Use Policy und Weitergabepflichten lesen.",
+          "SDK-Code, Modellgewichte und Dienstvertrag separat dokumentieren."
+        ],
+        "faq": [
+          [
+            "Sind alle Meta-Modelle offen nutzbar?",
+            "Nein, eine einheitliche Lizenz lässt sich aus dem Anbieter nicht ableiten. Die Plattform trennt Angebote; Llama-Versionen besitzen eigene Lizenzen und Nutzungsrichtlinien.",
+            "meta-llama-rich"
+          ],
+          [
+            "Ist Muse Spark dasselbe wie Llama?",
+            "Nein. Der Vorstellungsbeitrag und die Entwicklerplattform führen Muse als eigenes Angebot. Llama-Lizenzen sind kein Beleg für Muse-Zugriff oder offene Muse-Gewichte.",
+            "meta"
+          ],
+          [
+            "Welche Bedingungen nennt die Llama-4-Lizenz?",
+            "Sie nennt unter anderem Weitergabepflichten, eine Acceptable Use Policy und zusätzliche kommerzielle Bedingungen bei mehr als 700 Millionen monatlich aktiven Nutzern im definierten Zeitraum. Für den konkreten Einsatz den vollständigen Lizenztext prüfen.",
+            "meta-license-rich"
+          ]
+        ]
       }
     }
   ],
