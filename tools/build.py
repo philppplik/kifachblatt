@@ -205,7 +205,7 @@ def jsonld(a):
     credit = h.get('credit') or ('Illustration: KI-generiert' if h.get('ai_generated') else '')
     image = {'@type': 'ImageObject', '@id': url + '#image', 'url': img_url, 'contentUrl': img_url, 'width': 1600, 'height': 900,
              'caption': h['caption'], 'description': h['alt'], 'creator': {'@id': PERSON} if not h.get('ai_generated') else {'@id': ORG},
-             'creditText': credit, 'license': BASE + '/redaktion#bildrechte', 'acquireLicensePage': BASE + '/redaktion#bildrechte'}
+             'creditText': credit, 'copyrightNotice': '© %s KI Fachblatt (Philipp Paulik)' % a['published'][:4], 'license': BASE + '/redaktion#bilder-und-bildrechte', 'acquireLicensePage': BASE + '/redaktion#bilder-und-bildrechte'}
     if h.get('ai_generated'):
         image['digitalSourceType'] = 'http://cv.iptc.org/newscodes/digitalsourcetype/trainedAlgorithmicMedia'
     body_text = ' '.join(re.sub(r'<[^>]+>', '', x.get('x', '')) for x in a['body'] if x['t'] in ('p',))
