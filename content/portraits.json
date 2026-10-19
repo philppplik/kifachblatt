@@ -91,6 +91,51 @@
       "title": "Mistral: Models Overview",
       "url": "https://docs.mistral.ai/models",
       "accessed": "2026-10-19"
+    },
+    "openai-structure": {
+      "title": "OpenAI: veröffentlichte Unternehmensstruktur",
+      "url": "https://openai.com/our-structure/",
+      "accessed": "2026-10-19"
+    },
+    "anthropic-trust": {
+      "title": "Anthropic: The Long-Term Benefit Trust",
+      "url": "https://www.anthropic.com/news/the-long-term-benefit-trust",
+      "accessed": "2026-10-19"
+    },
+    "google-merge": {
+      "title": "Google: Announcing Google DeepMind, 20.04.2023",
+      "url": "https://deepmind.google/blog/announcing-google-deepmind/",
+      "accessed": "2026-10-19"
+    },
+    "openai-catalog-rich": {
+      "title": "OpenAI: Modellkatalog",
+      "url": "https://developers.openai.com/api/docs/models",
+      "accessed": "2026-10-19"
+    },
+    "anthropic-catalog-rich": {
+      "title": "Anthropic: Modellkatalog",
+      "url": "https://platform.claude.com/docs/en/models/overview",
+      "accessed": "2026-10-19"
+    },
+    "google-catalog-rich": {
+      "title": "Google: Gemini-Modellkatalog",
+      "url": "https://ai.google.dev/gemini-api/docs/models",
+      "accessed": "2026-10-19"
+    },
+    "github-openai": {
+      "title": "Offizielles Entwickler-Repository: openai/openai-python",
+      "url": "https://github.com/openai/openai-python",
+      "accessed": "2026-10-19"
+    },
+    "github-anthropic": {
+      "title": "Offizielles Entwickler-Repository: anthropics/anthropic-sdk-python",
+      "url": "https://github.com/anthropics/anthropic-sdk-python",
+      "accessed": "2026-10-19"
+    },
+    "github-google": {
+      "title": "Offizielles Entwickler-Repository: googleapis/python-genai",
+      "url": "https://github.com/googleapis/python-genai",
+      "accessed": "2026-10-19"
     }
   },
   "companies": [
@@ -102,7 +147,10 @@
       "detail": "KI-Forschung und Bereitstellung von Modellen.",
       "limits": "Ein Produkt wie ChatGPT ist nicht dasselbe wie eine bestimmte API-Modellversion.",
       "sources": [
-        "openai"
+        "openai",
+        "openai-structure",
+        "openai-catalog-rich",
+        "github-openai"
       ],
       "facts": [
         {
@@ -114,6 +162,66 @@
       "logo": {
         "asset": "openai",
         "label": "OpenAI-Logo"
+      },
+      "rich": {
+        "eyebrow": "Forschung · Anwendungen · API",
+        "headline": "Von der Forschung zur Plattform.",
+        "intro": "OpenAI verbindet Modellentwicklung mit Anwendungen und einer Entwicklerplattform. Für die Einordnung sind drei Ebenen wichtig: die Organisation, ein Produkt wie ChatGPT und eine konkrete API-Modellversion. Sie sind nicht austauschbar.",
+        "sections": [
+          [
+            "Organisation & Kontrolle",
+            "OpenAI beschreibt sich als Forschungs- und Bereitstellungsunternehmen. Die gemeinnützige OpenAI Foundation kontrolliert die OpenAI Group PBC. Gemeinnützige Kontrolle und kommerzieller Geschäftsbetrieb sind damit zwei Teile der veröffentlichten Struktur.",
+            "openai-structure"
+          ],
+          [
+            "Produkte sind keine Modellversionen",
+            "ChatGPT bezeichnet eine Anwendung. Der API-Katalog benennt dagegen einzelne Modelle und deren Fähigkeiten. Ein anderer Produktname, ein größeres Kontextfenster oder eine neue Oberfläche beweisen für sich keine bessere Qualität bei einer konkreten Aufgabe.",
+            "openai-catalog-rich"
+          ],
+          [
+            "Worauf Entwickler achten sollten",
+            "Die offizielle Python-Bibliothek erschließt die API aus Python-Anwendungen. Die Lizenz des SDK-Codes gilt nicht automatisch für Modellgewichte, API-Nutzung, Trainingsdaten oder erzeugte Inhalte. Endpunkt, Modell-ID und Konfiguration gehören zur Dokumentation eines reproduzierbaren Einsatzes.",
+            "github-openai"
+          ],
+          [
+            "Was die Struktur nicht beweist",
+            "Das erklärte Ziel, dass allgemeine KI der Menschheit zugutekommen soll, ist eine Selbstbeschreibung. Es ersetzt keine unabhängige Bewertung von Sicherheit, wirtschaftlicher Wirkung oder Zuverlässigkeit eines einzelnen Modells.",
+            "openai"
+          ]
+        ],
+        "milestones": [
+          [
+            "2015",
+            "Als gemeinnützige Organisation gegründet.",
+            "openai-structure"
+          ],
+          [
+            "2019",
+            "Kommerzielle Tochtergesellschaft für Forschung und Bereitstellung geschaffen.",
+            "openai-structure"
+          ],
+          [
+            "28.10.2025",
+            "Aktualisierte Struktur: Foundation kontrolliert Group PBC.",
+            "openai-structure"
+          ]
+        ],
+        "layers": [
+          [
+            "OpenAI Foundation",
+            "Kontrolle & Mission"
+          ],
+          [
+            "OpenAI Group PBC",
+            "Kommerzieller Betrieb"
+          ],
+          [
+            "Anwendungen & API",
+            "Nutzung konkreter Modelle"
+          ]
+        ],
+        "repo": "openai",
+        "primary": "openai-structure"
       }
     },
     {
@@ -124,7 +232,10 @@
       "detail": "KI-Sicherheitsforschung und Entwicklung von Claude.",
       "limits": "Die Beschreibung des Unternehmens ist eine Selbstdarstellung, kein unabhängiges Sicherheitsurteil.",
       "sources": [
-        "anthropic"
+        "anthropic",
+        "anthropic-trust",
+        "anthropic-catalog-rich",
+        "github-anthropic"
       ],
       "facts": [
         {
@@ -136,6 +247,66 @@
       "logo": {
         "asset": "anthropic",
         "label": "Anthropic-Logo"
+      },
+      "rich": {
+        "eyebrow": "Claude · Sicherheitsforschung · Governance",
+        "headline": "Modelle entwickeln. Sicherheit untersuchen.",
+        "intro": "Anthropic entwickelt Claude und forscht zur Zuverlässigkeit, Interpretierbarkeit und Steuerbarkeit von KI. Diese Ziele sind der Maßstab, den das Unternehmen selbst formuliert, keine hier gemessenen Sicherheitswerte.",
+        "sections": [
+          [
+            "Ein Unternehmen mit Public-Benefit-Zweck",
+            "Anthropic ist nach eigener Darstellung eine Public Benefit Corporation. Die Unternehmensseite beschreibt einen Verwaltungsrat, der durch Anteilseigner und den Long-Term Benefit Trust gewählt wird. Das ist eine Governance-Struktur, keine Zertifizierung der Modelle.",
+            "anthropic"
+          ],
+          [
+            "Der Long-Term Benefit Trust",
+            "Der LTBT soll langfristige öffentliche Interessen in der Unternehmensaufsicht verankern. Die ursprüngliche Veröffentlichung vom September 2023 beschreibt einen schrittweisen Einfluss auf die Besetzung des Boards. Einzelne damalige Trustees sind nicht automatisch die heutige Besetzung.",
+            "anthropic-trust"
+          ],
+          [
+            "Claude als Modellfamilie",
+            "Der aktuelle Modellkatalog unterscheidet Varianten nach Aufgaben und Aufwand. Adaptive Thinking-Einstellungen, Kontextgrenzen und API-IDs sind modellspezifisch. Eine Eigenschaft einer Claude-Version darf nicht auf die ganze Familie übertragen werden.",
+            "anthropic-catalog-rich"
+          ],
+          [
+            "Forschung, Produkt und Prüfung trennen",
+            "Anthropic nennt unter anderem Interpretierbarkeit, menschliches Feedback und gesellschaftliche Auswirkungen als Forschungsfelder. Ein öffentlicher Forschungsanspruch ist nicht dasselbe wie ein unabhängiger Nachweis, dass ein Produkt für jeden Einsatz sicher ist.",
+            "anthropic"
+          ]
+        ],
+        "milestones": [
+          [
+            "2023",
+            "Die offizielle Python-SDK-Lizenz trägt das Copyright von Anthropic, PBC.",
+            "github-anthropic"
+          ],
+          [
+            "19.09.2023",
+            "Der Long-Term Benefit Trust wird öffentlich erläutert.",
+            "anthropic-trust"
+          ],
+          [
+            "19.10.2026",
+            "Unternehmensseite und aktueller Claude-Katalog für dieses Portrait geprüft.",
+            "anthropic-catalog-rich"
+          ]
+        ],
+        "layers": [
+          [
+            "Public Benefit Corporation",
+            "Unternehmenszweck"
+          ],
+          [
+            "Board & LTBT",
+            "Veröffentlichte Aufsicht"
+          ],
+          [
+            "Claude & Entwickler-API",
+            "Produkte und Modellvarianten"
+          ]
+        ],
+        "repo": "anthropics",
+        "primary": "anthropic"
       }
     },
     {
@@ -146,7 +317,9 @@
       "detail": "Forschung und Modellentwicklung; entstanden aus Google Brain und DeepMind.",
       "limits": "Die Verfügbarkeit eines Modells im Produkt und in einer API kann unterschiedlich sein.",
       "sources": [
-        "google"
+        "google",
+        "google-catalog-rich",
+        "google-merge"
       ],
       "facts": [
         {
@@ -158,6 +331,66 @@
       "logo": {
         "asset": "google-deepmind",
         "label": "Google DeepMind-Logo"
+      },
+      "rich": {
+        "eyebrow": "Google Brain + DeepMind · Gemini · Wissenschaft",
+        "headline": "Forschung mit zwei Wurzeln.",
+        "intro": "Google DeepMind bündelt die Arbeit von DeepMind und Google Brain. Das Portrait behandelt diese KI-Forschungseinheit, nicht die gesamten Finanz-, Personal- oder Nutzerzahlen von Google beziehungsweise Alphabet.",
+        "sections": [
+          [
+            "Zwei Forschungslinien, ein Team",
+            "DeepMind startete 2010, Google Brain 2011. Im April 2023 kündigte Google an, beide Teams in Google DeepMind zusammenzuführen. Die heutige Unternehmensseite nennt Demis Hassabis als CEO.",
+            "google"
+          ],
+          [
+            "Mehr als ein Chatmodell",
+            "Die Forschung umfasst unter anderem Sprachmodelle, Lernverfahren, Robotik und wissenschaftliche Anwendungen. AlphaFold steht für Proteinstrukturvorhersage, Gemini für eine Modellfamilie. Solche Projekte haben unterschiedliche Aufgaben und sind keine einheitliche Rangliste.",
+            "google"
+          ],
+          [
+            "Der Weg von Forschung zu Entwicklern",
+            "Google Brain entwickelte unter anderem die Transformer-Architektur und Open-Source-Werkzeuge wie TensorFlow und JAX mit. Die Gemini-API macht konkrete Modelle zugänglich; Googles Gen-AI-Python-SDK ist dafür ein Entwicklerwerkzeug, kein Modell selbst.",
+            "google"
+          ],
+          [
+            "Produkte, APIs und Varianten unterscheiden",
+            "Der Gemini-Katalog unterscheidet etwa Flash, Live und TTS sowie stabile und Preview-Endpunkte. Zugang und Funktionsumfang müssen am konkret gewählten Endpunkt geprüft werden. Forschungsfortschritt oder ein großer Kontext sind keine Garantie für fehlerfreie Antworten.",
+            "google-catalog-rich"
+          ]
+        ],
+        "milestones": [
+          [
+            "2010",
+            "DeepMind startet.",
+            "google"
+          ],
+          [
+            "2011",
+            "Google Brain entsteht bei X.",
+            "google"
+          ],
+          [
+            "20.04.2023",
+            "Zusammenführung als Google DeepMind angekündigt.",
+            "google-merge"
+          ]
+        ],
+        "layers": [
+          [
+            "DeepMind + Google Brain",
+            "Forschungswurzeln"
+          ],
+          [
+            "Google DeepMind",
+            "Gemeinsame KI-Forschung"
+          ],
+          [
+            "Gemini & wissenschaftliche Systeme",
+            "Unterschiedliche Anwendungen"
+          ]
+        ],
+        "repo": "googleapis",
+        "primary": "google"
       }
     },
     {

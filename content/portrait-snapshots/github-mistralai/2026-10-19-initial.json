@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-10-19T13:28:52+00:00",
+  "source": "https://api.github.com/repos/mistralai/client-python",
+  "data": {
+    "full_name": "mistralai/client-python",
+    "html_url": "https://github.com/mistralai/client-python",
+    "stargazers_count": 774,
+    "forks_count": 209,
+    "pushed_at": "2026-10-09T09:41:14Z",
+    "archived": false,
+    "language": "Python",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    }
+  }
+}

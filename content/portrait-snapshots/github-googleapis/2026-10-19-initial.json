@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-10-19T13:28:52+00:00",
+  "source": "https://api.github.com/repos/googleapis/python-genai",
+  "data": {
+    "full_name": "googleapis/python-genai",
+    "html_url": "https://github.com/googleapis/python-genai",
+    "stargazers_count": 4033,
+    "forks_count": 1040,
+    "pushed_at": "2026-10-19T06:17:55Z",
+    "archived": false,
+    "language": "Python",
+    "license": {
+      "key": "apache-2.0",
+      "name": "Apache License 2.0",
+      "spdx_id": "Apache-2.0",
+      "url": "https://api.github.com/licenses/apache-2.0",
+      "node_id": "MDc6TGljZW5zZTI="
+    }
+  }
+}

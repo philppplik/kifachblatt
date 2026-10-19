@@ -43,6 +43,9 @@ def logo_note(x):
  return '<p class="p-source">%s · <a href="%s">Logo-Quelle / Rechtehinweis</a>. Marken gehören ihren jeweiligen Inhabern. Redaktionelle Identifikation, keine Partnerschaft oder Empfehlung durch den Markeninhaber.</p>'%(E(logo['label']),E(asset['source']))
 def render(site,out):
  d=json.loads((ROOT/'content/portraits.json').read_text());validate(d)
+ from portrait_snapshots import archive
+ archive(d)
+ from company_rich import render as rich_company, CSS as COMPANY_CSS, ecosystem
  out=Path(out);technical=site=='kfb';base='https://kifachblatt.de' if technical else 'https://intelligenz-welt.de';brand='KI Fachblatt' if technical else 'Intelligenz Welt';wrap='wrap' if technical else 'w'
  groups=['companies','models']+(['benchmarks'] if technical else [])
  def path(group,slug=''):
@@ -57,7 +60,7 @@ def render(site,out):
   if template.startswith('<script>',i):i=template.index('</script>',i)+9
   shell_top=template[template.index('<body>'):i];foot=template[template.index('<footer',i):]
  tokens=':root{--p-bg:var(--bg);--p-fg:var(--ink);--p-muted:var(--mute);--p-line:var(--line);--p-ac:var(--amber);--p-soft:var(--bg2)}' if technical else ':root{--p-bg:var(--bg);--p-fg:var(--fg);--p-muted:var(--mut);--p-line:var(--line);--p-ac:var(--ac);--p-soft:var(--soft)}'
- (out/'assets').mkdir(exist_ok=True);shutil.rmtree(out/'assets/portrait-logos',ignore_errors=True);shutil.copytree(ROOT/'content/portrait-logos',out/'assets/portrait-logos',dirs_exist_ok=True);(out/'assets/portraits.css').write_text(tokens+CSS);(out/'assets/portraits.js').write_text(FILTER_JS)
+ (out/'assets').mkdir(exist_ok=True);shutil.rmtree(out/'assets/portrait-logos',ignore_errors=True);shutil.copytree(ROOT/'content/portrait-logos',out/'assets/portrait-logos',dirs_exist_ok=True);(out/'assets/portraits.css').write_text(tokens+CSS+COMPANY_CSS);(out/'assets/portraits.js').write_text(FILTER_JS)
  def tabs(group=''):
   return '<nav class="p-tabs" aria-label="Portrait-Bereiche">'+''.join('<a href="%s"%s>%s</a>'%(path(g),' aria-current="page"' if g==group else '',KINDS[g][0]) for g in groups)+'</nav>'
  def refs(keys):
@@ -112,9 +115,11 @@ def render(site,out):
      keys.append(f['source']);body+='<div><dt>'+E(f['label'])+'</dt><dd>'+E(f['value'])+'</dd></div>'
     body+='</dl><p class="p-source">Angaben laut den unten verlinkten Primärquellen.</p></section>'
    body+=refs(keys)+'</aside></div>'
+   if g in ('models','companies') and not x.get('rich'):body+=ecosystem(x,d)
+   if g=='companies' and x.get('rich'):body=body.split('<div class="p-layout">')[0]+rich_company(x,d,technical)+refs(list(dict.fromkeys(keys)))
    crumb='<nav class="p-breadcrumb" aria-label="Brotkrumen"><a href="/">Start</a> / <a href="%s">%s</a> / %s</nav>'%(path(g),label,E(x['name']))
    page(p,x['name']+' im Portrait',x['summary'],crumb+tabs(g)+portrait_mark(x,True)+logo_note(x)+body,{'@context':'https://schema.org','@type':'Article','headline':x['name']+' im Portrait','description':x['summary'],'datePublished':'2026-10-19','dateModified':d['reviewed'],'author':{'@type':'Person','name':'Philipp Paulik'},'citation':[d['sources'][k]['url'] for k in dict.fromkeys(keys)],'mainEntityOfPage':base+p});urls.append(base+p)
-   docs.append({'t':x['name']+' im Portrait','u':p,'k':label,'d':x['summary'],'g':x.get('company','')+' '+label,'x':' '.join([x['detail'],x['limits']]+[f['value'] for f in x.get('facts',[])]),'ts':0,'dt':'19.10.2026'})
+   docs.append({'t':x['name']+' im Portrait','u':p,'k':label,'d':x['summary'],'g':x.get('company','')+' '+label,'x':' '.join([x['detail'],x['limits']]+([x['rich']['intro']]+[a[1] for a in x['rich']['sections']] if x.get('rich') else [])+[f['value'] for f in x.get('facts',[])]),'ts':0,'dt':'19.10.2026'})
  (out/'portrait-search.json').write_text(json.dumps(docs,ensure_ascii=False))
  # Search is rebuilt earlier in both sites. Merge with deduplication, retaining existing search results.
  sp=out/'search-index.json'

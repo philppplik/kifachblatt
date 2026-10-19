@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-10-19T13:28:52+00:00",
+  "source": "https://api.github.com/repos/meta-llama/llama-api-python",
+  "data": {
+    "full_name": "meta-llama/llama-api-python",
+    "html_url": "https://github.com/meta-llama/llama-api-python",
+    "stargazers_count": 64,
+    "forks_count": 46,
+    "pushed_at": "2026-05-12T19:09:27Z",
+    "archived": false,
+    "language": "Python",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    }
+  }
+}

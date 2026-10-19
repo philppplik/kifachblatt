@@ -1,0 +1,18 @@
+# Daten und dauerhafte lokale Snapshots
+
+Stand: 19.10.2026. Keine neuen Dependencies, Keys, Kosten oder externen Leserbrowser-Abfragen.
+
+## Unternehmensporträts
+OpenAI, Anthropic und Google DeepMind: eigene redaktionelle Zusammenfassungen mit Primärquellen pro Abschnitt, Entwicklungsschritten und einem selbst gezeichneten SVG-Orientierungsbild. Keine fremden Fotos, Diagrammkopien, Zitate, Umsatz-, Mitarbeiter-, Marktanteils- oder Sicherheitsversprechen. Google DeepMind ist nicht gleich Google/Alphabet insgesamt. Unternehmensselbstdarstellung bleibt als solche erkennbar.
+
+Quellen: https://openai.com/about/ ; https://openai.com/our-structure/ ; https://www.anthropic.com/company ; https://www.anthropic.com/news/the-long-term-benefit-trust ; https://deepmind.google/about/ ; https://deepmind.google/blog/announcing-google-deepmind/ . Aktuelle Modellkataloge sind im Datenmodell zusätzlich verlinkt. Historische Aussagen werden nicht als heutige Board-Besetzung übernommen.
+
+## Freie Quellen statt pauschalem API-Versprechen
+GitHub REST API für öffentliche Repositories ist ohne Authentifizierung nutzbar, derzeit 60 Requests je Stunde/IP. Sechs Repository-Metadaten-Snapshots (Stars, Forks, letztes Push-Datum, Sprache, Archivstatus und Lizenz-ID). Keine Profil-/Nutzerdatensammlung. GitHub-Repository-Metadaten sind Primärdaten über diese Repositories, keine Unternehmens- oder Modellleistungsstatistik. Kein Ranking der Unternehmen anhand dieser Zahlen. Ein SDK darf mit Lizenz nicht automatisch kostenlose Modellnutzung suggerieren.
+
+Prüfung: https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api und Abschnitt H unter https://docs.github.com/en/site-policy/github-terms/github-terms-of-service . Übermäßige Requests, Token-Sharing und Datensammlung für Spam untersagt. Der begrenzte Abruf nutzt keine Credentials, bezahlt nichts und stoppt bei Fehlern/Throttling. Code-Lizenzen anhand der Repository-Lizenzdateien geprüft und lokal beigefügt: OpenAI/Google/Mistral Apache-2.0, Anthropic/Meta MIT. NVIDIA-NeMo/Speech (Weiterleitung von NVIDIA/NeMo) meldet Apache-2.0; bestehender Apache-Lizenztext liegt im Logo-/Datenbestand. Code-Lizenzen sind keine umfassende GitHub-Daten- oder Markenlizenz. Fakten werden mit Attribution angezeigt; keine README-Volltexte oder personenbezogenen Profile veröffentlicht.
+
+## Alle Portraits dauerhaft speichern
+Jeder Portrait-Build sichert das gesamte redaktionelle Datenmodell aller Unternehmens-, Modell- und Benchmark-Porträts nach content/portrait-snapshots/editorial/YYYY-MM-DD-HASH.json. Bestehende Dateien werden niemals überschrieben, gelöscht oder rotiert. Unveränderte Inhalte am selben Tag deduplizieren über den Inhalts-Hash. Quellen-URLs und Abrufdaten bleiben in diesem Snapshot. API-Antworten werden als reduzierte strukturierte Fakten gespeichert; kein fremder Volltext wird unbegründet gespiegelt. Die Erstaufnahme wird auf beiden Websites identisch mitkopiert, keine doppelte API-Abfrage.
+
+Manuelle Auffrischung: python3 tools/portrait_snapshots.py --refresh-github . Maximal sechs Requests, neue unveränderliche Snapshots. Kein automatischer Abruf beim regulären Build, keine neue Zeitplanung. Anschließend normal bauen und neue Snapshots mit git add content/portrait-snapshots aufnehmen/committen. Alte Snapshots bleiben erhalten, auch wenn ein Abruf scheitert oder ein späterer Stand abweicht. Die HTML-Auswahl nimmt den neuesten Snapshot nach Zeitstempel. Nicht alle Modellanbieter haben eine kostenfreie unbeschränkte Modell-Metadaten-API: offizielle Dokumentationen bleiben deshalb maßgeblich für modellspezifische Specs. Bei Modellen ist das API-Repository nur klar benannter Anbieter-Kontext, niemals behaupteter Modellquellcode.

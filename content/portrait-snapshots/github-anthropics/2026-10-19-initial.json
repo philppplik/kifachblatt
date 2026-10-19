@@ -1,0 +1,20 @@
+{
+  "retrieved_at": "2026-10-19T13:28:52+00:00",
+  "source": "https://api.github.com/repos/anthropics/anthropic-sdk-python",
+  "data": {
+    "full_name": "anthropics/anthropic-sdk-python",
+    "html_url": "https://github.com/anthropics/anthropic-sdk-python",
+    "stargazers_count": 3977,
+    "forks_count": 890,
+    "pushed_at": "2026-10-15T19:45:15Z",
+    "archived": false,
+    "language": "Python",
+    "license": {
+      "key": "mit",
+      "name": "MIT License",
+      "spdx_id": "MIT",
+      "url": "https://api.github.com/licenses/mit",
+      "node_id": "MDc6TGljZW5zZTEz"
+    }
+  }
+}
