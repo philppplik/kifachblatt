@@ -38,7 +38,7 @@ def age_days(m, now):
 # --- Portrait logos (offline, embedded). Only assets listed in content/portrait-logos/manifest.json, verified by SHA256. ---
 LOGOS, USED = {}, set()
 # HF organisation -> company asset. Only unambiguous organisation/company pairs; everything else stays a monogram.
-HF_ORG_LOGO = {'nvidia': 'nvidia', 'mistralai': 'mistral-ai', 'openai': 'openai', 'anthropic': 'anthropic'}
+HF_ORG_LOGO = {'nvidia': 'nvidia', 'mistralai': 'mistral-ai', 'openai': 'openai', 'anthropic': 'anthropic', 'google': 'google-deepmind', 'facebook': 'meta', 'meta-models': 'meta'}
 DARK = {'nvidia'}  # white wordmark, needs the dark plate
 
 

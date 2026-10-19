@@ -25,3 +25,7 @@ Stand: 19.10.2026. Keine Rechtsberatung oder abschließende Freigabe. Lokal geho
 Wikimedia PD-Einstufungen ersetzen keine Prüfung der Schutzschwelle im deutschen Recht und keine Markenprüfung. OpenAI-/Mistral-Guidelines sind keine freie CC-Lizenz. Keine pauschale Aussage "rechtssicher".
 
 Dateiherkunft, Abrufdatum und SHA256 stehen in content/portrait-logos/manifest.json. NVIDIA Apache-2.0 Lizenztext liegt bei; daraus wird keine Markenlizenz abgeleitet.
+
+## Tagesbericht: bestätigtes HF-Organisationsmapping, 19.10.2026
+
+Für Ranking-Badges sind nur diese zusätzlichen HF-Handles zugeordnet: `google` -> vorhandenes `google-deepmind`-Unternehmenslogo; `facebook` und `meta-models` -> vorhandenes `meta`-Unternehmenslogo. Das sind Org-Badges, keine angeblichen Modelllogos. Bestehende lokale Assets samt Hash/Quellen/Rechtehinweisen werden unverändert eingebettet. Keine weiteren ähnlich benannten Handles pauschal zugeordnet. Unbekannte Handles behalten ihr Monogramm. Quelle/Rechte: vorhandenes Logo-Manifest, Google-DeepMind- bzw. Meta-Logo aus Wikimedia Commons; Markenrechte bleiben bestehen und keine Partnerschaft wird behauptet.

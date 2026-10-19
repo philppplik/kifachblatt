@@ -52,7 +52,7 @@ class LogoTest(unittest.TestCase):
 
     def test_org_badge_allowlist_and_model_vs_company(self):
         V.load_logos(self.ROOT)
-        self.assertIn('<img', V.org_badge('nvidia')); self.assertNotIn('<img', V.org_badge('google')); self.assertNotIn('<img', V.org_badge('meta-models'))
+        self.assertIn('<img', V.org_badge('nvidia')); self.assertIn('<img', V.org_badge('google')); self.assertIn('<img', V.org_badge('meta-models'))
         p = {'models': [{'slug': 'x', 'name': 'GPT-6 Astra', 'company': 'openai', 'initials': 'GA'}], 'companies': [{'slug': 'openai', 'name': 'OpenAI'}]}
         self.assertNotIn('<img', V.portrait_cards(p))  # company logo is never used as a model logo
         self.assertEqual(V.logo_credits() == '' or 'Marken' in V.logo_credits(), True)
