@@ -2,6 +2,7 @@
 import json, os, re, sys, urllib.request, datetime
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from report_core import esc, DAYS, render, to_pdf, logo_inline, lnk, dom, srclist
+import report_visuals as V
 
 HF = 'https://huggingface.co/api/models?sort=trendingScore&limit=20&expand[]=likes&expand[]=downloads&expand[]=pipeline_tag&expand[]=createdAt&expand[]=trendingScore&expand[]=library_name'
 HF_PUBLIC = 'https://huggingface.co/models?sort=trending'
@@ -17,14 +18,26 @@ def fetch_models():
 def build(arts, now, base, root='.'):
     day = DAYS[now.weekday()] + ', ' + now.strftime('%d.%m.%Y'); stamp = now.strftime('%d.%m.%Y, %H:%M') + ' Uhr'
     models = fetch_models()
+    try:
+        portraits = json.load(open(os.path.join(root, 'content', 'portraits.json'), encoding='utf-8'))
+    except (OSError, ValueError):
+        portraits = {}
     if models:
-        rows = ''.join('<tr><td class="l">%d</td><td class="l w"><b>%s</b></td><td class="l">%s</td><td>%s</td><td>%s</td><td>%s</td><td class="l">%s</td></tr>' % (
-            i + 1, lnk('https://huggingface.co/' + m['id'], m['id']), esc(m.get('pipeline_tag') or '–'), nf(m.get('likes')), nf(m.get('downloads')), nf(m.get('trendingScore')), esc((m.get('createdAt') or '')[:10])) for i, m in enumerate(models))
-        tbl = '<table><thead><tr><th class="l">#</th><th class="l">Modell</th><th class="l">Aufgabe</th><th>Likes</th><th>Downloads</th><th>Trend-Score</th><th class="l">Erstellt</th></tr></thead><tbody>%s</tbody></table>' % rows
-        note = '<div class="note"><b>So lesen:</b> Reihenfolge nach dem Feld <i>trendingScore</i> der Hugging-Face-API, Stand %s. Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung und kein Benchmark-Ergebnis. „Aufgabe“ ist das Feld <i>pipeline_tag</i>. Quelle: huggingface.co (öffentliche API, ohne Schlüssel).</div>' % esc(stamp)
+        tbl = V.table(models, now, nf)
+        note = '<div class="note"><b>So lesen:</b> Reihenfolge nach dem Feld <i>trendingScore</i> der Hugging-Face-API, Stand %s. Likes, Downloads und Trend-Score sind Zähler der API, keine Qualitätsbewertung und kein Benchmark-Ergebnis. Die Diagramme zeigen nur diese Zähler.</div>' % esc(stamp)
+        tasks = __import__('collections').Counter(m.get('pipeline_tag') or 'unknown' for m in models)
+        p1 = ('<style>%s</style>%s<h2>Trend-Ranking <small>Top 10 nach Trend-Score · Stand %s</small></h2>%s'
+              '<div class="two"><div><h2>Aufgaben im Ranking</h2>%s</div><div><h2>Alter der Modelle</h2>%s<h2>Wer vorn liegt</h2>%s</div></div>') % (
+            V.CSS, V.kpis(models, now), esc(stamp), V.trend_bars(models), V.donut(tasks), V.age_buckets(models, now), V.org_bars(models))
+        p1b = '<h2>Beachtung und Nutzung <small>Likes gegen Downloads, logarithmisch</small></h2>%s<p class="foot">Jeder Punkt ist ein Modell, die Größe zeigt den Trend-Score. Hohe Downloads bei wenigen Likes und umgekehrt sind normal und sagen nichts über Qualität.</p><h2>Alle 20 Modelle <small>Top 20 laut Hugging-Face-API · Stand %s</small></h2>%s%s' % (V.scatter(models), esc(stamp), tbl, note)
     else:
-        tbl = '<p class="mut">Die Hugging-Face-API war zum Erstellungszeitpunkt nicht erreichbar. Die Modellliste fehlt in dieser Ausgabe.</p>'; note = ''
-    p1 = '<h2>Trending-Modelle <small>Top 20 laut Hugging-Face-API · Stand %s</small></h2>%s%s' % (esc(stamp), tbl, note)
+        p1 = '<style>%s</style><h2>Trending-Modelle</h2><p class="mut">Die Hugging-Face-API war zum Erstellungszeitpunkt nicht erreichbar. Die Modellliste fehlt in dieser Ausgabe.</p>' % V.CSS
+        p1b = ''
+    p3 = ''
+    if portraits.get('models'):
+        p3 = ('<h2>Aus dem KI-Verzeichnis <small>Modelle mit Quellen auf kifachblatt.de/ki-modelle</small></h2>%s'
+              '<h2>Benchmark-Angaben der Hersteller</h2>%s<p class="foot">Quellen und Prüfdatum (%s) je Eintrag unter <a href="%s/ki-modelle">kifachblatt.de/ki-modelle</a> und <a href="%s/benchmarks">kifachblatt.de/benchmarks</a>.</p>') % (
+            V.portrait_cards(portraits), V.score_cards(portraits), esc(portraits.get('reviewed', '')), base, base)
     two = sorted(arts, key=lambda a: a['_pub'], reverse=True)[:2]
     cl = lambda t: re.sub(r'\s*\[\d+(?:[,–-]\s*\d+)*\]', '', t)
     ablk = ''
@@ -38,11 +51,11 @@ def build(arts, now, base, root='.'):
 <div><h3>Verantwortlich nach § 18 Abs. 2 MStV</h3><p>Philipp Paulik, Anschrift wie links</p><h3>Redaktion</h3><p>KI Fachblatt, Redaktion Philipp Paulik</p></div></div>
 <h3>Redaktionsschluss</h3><p>Diese Ausgabe wurde am %s automatisch erstellt. Später veröffentlichte Beiträge und Zählerstände sind nicht berücksichtigt.</p>
 <h3>Hinweis zu KI</h3><p>Die Inhalte des KI Fachblatts werden mit Unterstützung von KI erstellt und redaktionell geprüft (siehe kifachblatt.de/transparenz). Dieser Bericht wird automatisch aus öffentlichen Daten und den veröffentlichten Beiträgen zusammengestellt. Trotz Prüfung können Fehler nicht ausgeschlossen werden.</p>
-<h3>Datenquellen</h3><p>Modellliste: Hugging Face, öffentliche API (huggingface.co/api/models, Sortierung trendingScore), Stand %s. Analysen: eigene Beiträge des KI Fachblatts.</p>
+<h3>Datenquellen</h3><p>Modellliste: Hugging Face, öffentliche API (huggingface.co/api/models, Sortierung trendingScore), Stand %s. Analysen und KI-Verzeichnis: eigene Beiträge und Quellenprüfung des KI Fachblatts. Diagramme: eigene Darstellung der API-Zähler. Es werden keine fremden Logos oder Profilbilder verwendet, Organisationen erscheinen als Kürzel. Beitragsbilder sind KI-generiert und gekennzeichnet.</p>
 <p class="foot">© %d KI Fachblatt · Philipp Paulik · Stand %s</p>''' % (esc(stamp), esc(stamp), now.year, esc(stamp))
     logo = logo_inline(os.path.join(root, 'assets', 'logo.svg'))
     htm = render('KI Fachblatt', 'KI-Tagesbericht', now.strftime('%d.%m.%Y'), '#7040cd', '#3d2380', '#f5f1fc', '#dcd0f3', logo,
-                 'KI-Tagesbericht', day + ' · Trending-Modelle und die Analysen des Tages', [p1, p2], last)
+                 'KI-Tagesbericht', day + ' · Trending-Modelle und die Analysen des Tages', [x for x in (p1, p1b, p3, p2) if x], last)
     os.makedirs(os.path.join(root, 'berichte'), exist_ok=True)
     open(os.path.join(root, 'berichte', 'tagesbericht.html'), 'w', encoding='utf-8').write(htm)
     dated = os.path.join(root, 'berichte', 'ki-tagesbericht-%s.pdf' % now.strftime('%Y-%m-%d'))
