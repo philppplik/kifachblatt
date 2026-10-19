@@ -585,3 +585,8 @@ if __name__ == "__main__":
 if __name__ == '__main__':
     from report_breaker import main as add_report_breakers
     add_report_breakers('.')
+
+# Final author/directory pass, after portraits, footer, consent and share patches.
+if __name__ == '__main__':
+    from author_rich import main as rich_authors
+    rich_authors('kfb','.')

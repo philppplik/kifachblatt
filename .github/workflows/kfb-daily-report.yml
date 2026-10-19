@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "Philipp Paulik"
           git config user.email "philipp.paulik@users.noreply.github.com"
-          git add -A berichte berichte.html report-archive assets/report-preview data news licensed-news.css index.html
+          git add -A berichte berichte.html report-archive assets/report-preview redakteur redakteur.html sitemap.xml data news licensed-news.css index.html
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "KI-Tagesbericht $(date -u +%F)"
           git push
