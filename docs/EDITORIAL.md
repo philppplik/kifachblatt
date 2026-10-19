@@ -7,6 +7,8 @@ Build: `python3 tools/build.py` (stdlib only). It validates every article, then 
 `<slug>.html`, `thema/<section>.html`, `redaktion.html`, `assets/articles/*`, the article table in
 `index.html`, `sitemap.xml` (incl. image entries, namespace sitemap-image/1.1), `news-sitemap.xml`
 (articles of the last 48 h, news and analysis only), `feed.xml`, `llms.txt` and `robots.txt`.
+It also builds the site search: `suche.html` plus `search-index.json` (all articles incl. the hand-written
+ones, glossary terms, main pages; `tools/search.js` is the client, umlaut- and typo-tolerant, fully local).
 Articles with a future `published` date are skipped (scheduled).
 
 Required fields: slug, title, dek, section, type (news|analysis|explainer), published, modified

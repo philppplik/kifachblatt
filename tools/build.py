@@ -227,7 +227,7 @@ def jsonld(a):
 
 def head(title, desc, canon, extra='', og_type='website', image=None, ld=None, robots='index,follow,max-image-preview:large,max-snippet:-1'):
     image = image or 'https://kifachblatt.de/assets/kifachblatt-og.png'
-    return ('<!doctype html>\n<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<script>document.documentElement.className="js";if(/\\.html$/.test(location.pathname))history.replaceState(null,"",location.pathname.replace(/\\.html$/,""))</script>\n'
+    return ('<!doctype html>\n<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">\n<script>document.documentElement.className="js";if(/\\.html$/.test(location.pathname))history.replaceState(null,"",location.pathname.replace(/\\.html$/,"")+location.search+location.hash)</script>\n'
             '<title>%s</title>\n<meta name="description" content="%s">\n<link rel="canonical" href="%s">\n<meta name="robots" content="%s">\n<meta name="theme-color" content="#100f0d">\n'
             '<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">\n<link rel="alternate" type="application/rss+xml" title="KI Fachblatt" href="/feed.xml">\n'
             '<meta property="og:type" content="%s"><meta property="og:site_name" content="KI Fachblatt"><meta property="og:locale" content="de_DE">\n'
@@ -320,6 +320,8 @@ def patch_footer_and_bylines():
         if 'class="burger"' not in t:
             t = navre.sub(lambda m: BURGER_BTN + '<nav class="main" id="menu" aria-label="Hauptnavigation">' + m.group(1) + '</nav>' + BURGER_JS, t, count=1)
         t = t.replace('mit KI-Unterstützung erstellt · <time', 'mit KI-Unterstützung erstellt, redaktionell verantwortet (<a href="/transparenz">so arbeiten wir</a>) · <time')
+        if 'href="/suche"' not in t:
+            t = re.sub(r'(<nav class="main" id="menu" aria-label="Hauptnavigation">(?:(?!</nav>).)*?)(<a href="/ueber")', lambda m: m.group(1) + '<a href="/suche">Suche</a>' + m.group(2), t, count=1, flags=re.S)
         if t != o: open(f, 'w', encoding='utf-8').write(t)
 
 def patch_static_shares():
@@ -373,6 +375,74 @@ def glossary_page(shell_top, shell_bottom, now):
     desc = 'Das KI-Glossar des KI Fachblatts erklärt %d Begriffe zu Sprachmodellen, Agenten, RAG und Evaluation: mit Definition, Praxishinweis, Quellen und Links zu Artikeln.' % len(terms)
     return simple_page(title, desc, BASE + '/glossar', inner, shell_top, shell_bottom, ld=json.dumps(setld, ensure_ascii=False).replace('</', '<\\/'))
 
+
+SEARCH_PAGES = [
+    ('Glossar: KI-Begriffe, kurz erklärt', '/glossar', 'Seite', 'Das KI-Glossar erklärt Begriffe zu Sprachmodellen, Agenten, RAG und Evaluation.'),
+    ('KI-Tagesbericht als PDF', '/berichte', 'Seite', 'Tägliche Ausgabe als PDF: Trending-Modelle, die Analysen des Tages, Impressum.'),
+    ('Über das Magazin', '/ueber', 'Seite', 'Das KI Fachblatt ist ein deutschsprachiges Fachmagazin über künstliche Intelligenz von Philipp Paulik.'),
+]
+
+def legacy_article_docs(gen_slugs):
+    docs = []
+    for f in sorted(glob.glob('*.html')):
+        slug = f[:-5]
+        if slug in gen_slugs or slug in ('index', 'suche', '404'):
+            continue
+        t = open(f, encoding='utf-8').read()
+        if '<div class="body"' not in t or '<div class="art-head">' not in t:
+            continue
+        m = re.search(r'<h1[^>]*>(.*?)</h1>', t, re.S)
+        if not m:
+            continue
+        title = html.unescape(re.sub(r'<[^>]+>', '', m.group(1))).strip()
+        k = re.search(r'<div class="kicker">([^<]*)</div>', t)
+        d = re.search(r'<meta name="description" content="([^"]*)"', t)
+        tm = re.search(r'<time datetime="([^"]+)"', t)
+        i = t.find('<div class="body"'); j = t.find('</article>', i)
+        text = html.unescape(re.sub(r'\s+', ' ', re.sub(r'<[^>]+>', ' ', t[i:j if j > 0 else i + 30000]))).strip()
+        dt = tm.group(1) if tm else ''
+        try:
+            pub = parse_dt(dt); ts = int(pub.timestamp()); ds = de_date(pub, False)
+        except Exception:
+            ts, ds = 0, ''
+        docs.append({'t': title, 'u': '/' + slug, 'k': k.group(1).strip() if k else 'Beitrag',
+                     'd': html.unescape(d.group(1)) if d else '', 'g': '', 'x': text[:6000], 'ts': ts, 'dt': ds})
+    return docs
+
+def article_doc(a):
+    parts = list(a.get('key_takeaways', []))
+    for b in a['body']:
+        if b.get('x'): parts.append(b['x'])
+        parts.extend(b.get('items', []) or [])
+        for r in b.get('rows', []) or []: parts.extend(str(c) for c in r)
+    for q in a.get('faq', []) or []: parts += [q.get('q', ''), q.get('a', '')]
+    text = re.sub(r'[*_`]', '', re.sub(r'\[\^(\d+)\]', r'[\1]', re.sub(r'\[([^\]]+)\]\((https?://[^)\s]+|/[^)\s]*)\)', r'\1', ' '.join(parts))))
+    return {'t': a['title'], 'u': '/' + a['slug'], 'k': SECTIONS[a['section']], 'd': a['dek'],
+            'g': ' '.join(a.get('tags', [])), 'x': text[:6000], 'ts': int(a['_pub'].timestamp()), 'dt': de_date(a['_pub'], False)}
+
+def glossary_docs():
+    try:
+        terms = json.load(open('content/glossary.json', encoding='utf-8'))
+    except Exception:
+        return []
+    return [{'t': x['term'], 'u': '/glossar#' + slugify(x['term']), 'k': 'Glossar',
+             'd': re.sub(r'[*_`]', '', x.get('definition', '')), 'g': ' '.join(x.get('aka', [])),
+             'x': re.sub(r'[*_`]', '', x.get('usage', '')), 'ts': 0, 'dt': ''} for x in terms]
+
+def build_search(arts, shell_top, shell_bottom, now):
+    docs = [article_doc(a) for a in arts] + legacy_article_docs({a['slug'] for a in arts}) + glossary_docs()
+    docs += [{'t': t, 'u': u, 'k': k, 'd': d, 'g': '', 'x': '', 'ts': 0, 'dt': ''} for t, u, k, d in SEARCH_PAGES]
+    json.dump({'generated': now.isoformat(timespec='seconds'), 'docs': docs}, open('search-index.json', 'w', encoding='utf-8'), ensure_ascii=False, separators=(',', ':'))
+    js = open(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'search.js'), encoding='utf-8').read()
+    inner = ('<div class="legal"><div class="kicker">Suche</div><h1>Beiträge durchsuchen</h1>'
+             '<p>Alle Beiträge und Glossar-Begriffe des KI Fachblatts. Die Suche läuft lokal in deinem Browser, ohne Tracking. Umlaute und kleine Tippfehler sind egal.</p>'
+             '<form class="searchbox" role="search" action="/suche" method="get"><label for="sq">Suchbegriff</label><div class="searchrow"><input id="sq" name="q" type="search" placeholder="Agenten, Kosten, RAG …" autocomplete="off"><button class="btn" type="submit">Suchen</button></div></form>'
+             '<p id="sstatus" class="searchstatus" role="status"></p><ul id="sresults" class="searchresults"></ul>'
+             '<noscript><p>Für die Suche wird JavaScript benötigt. Alle Beiträge stehen in der <a href="/#themen">Artikelübersicht der Startseite</a>.</p></noscript></div>'
+             '<script>' + js + '</script>')
+    open('suche.html', 'w', encoding='utf-8').write(simple_page('Suche | KI Fachblatt', 'Alle Beiträge und Glossar-Begriffe des KI Fachblatts durchsuchen: lokal im Browser, ohne Tracking.', BASE + '/suche', inner, shell_top, shell_bottom))
+    return len(docs)
+
 def main():
     global generated_before
     os.chdir(os.path.join(os.path.dirname(os.path.abspath(__file__)), '..'))
@@ -400,6 +470,7 @@ def main():
     for k in sections:
         open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
     open('glossar.html', 'w', encoding='utf-8').write(glossary_page(shell_top, shell_bottom, now))
+    n_search = build_search(arts, shell_top, shell_bottom, now)
 
     ok, hf = kreport.build(arts, now, BASE)
     stand = now.strftime('%d.%m.%Y, %H:%M') + ' Uhr'
@@ -430,12 +501,13 @@ def main():
     else: open('index.html', 'w', encoding='utf-8').write(new)
     # sitemap
     sm = open('sitemap.xml', encoding='utf-8').read()
-    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages) + ['berichte'])]
+    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages) + ['berichte', 'suche'])]
     gen = []
     for a in arts:
         gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title><image:caption>%s</image:caption></image:image></url>' % (BASE, a['slug'], a['modified'], BASE, a['slug'], esc(a['title']), esc(a['hero']['alt'])))
     for k in sections: gen.append('<url><loc>%s/thema/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, max(a['modified'] for a in arts if a['section'] == k)))
     gen.append('<url><loc>%s/berichte</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
+    gen.append('<url><loc>%s/suche</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
     for k in pages: gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, now.date().isoformat()))
     open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(static + gen) + '</urlset>\n')
     # news sitemap (last 2 days)
@@ -459,6 +531,6 @@ def main():
     if '<!--GEN-->' in ll: ll = re.sub(r'<!--GEN-->.*?<!--/GEN-->', lambda m: '<!--GEN-->\n' + lines + '<!--/GEN-->', ll, flags=re.S)
     else: ll = ll.replace('## Beiträge\n\n', '## Beiträge\n\n<!--GEN-->\n' + lines + '<!--/GEN-->\n', 1)
     open('llms.txt', 'w', encoding='utf-8').write(ll)
-    print('built %d article(s), %d section page(s); news-sitemap: %d' % (len(arts), len(sections), len(recent)))
+    print('built %d article(s), %d section page(s); news-sitemap: %d; search-index: %d' % (len(arts), len(sections), len(recent), n_search))
 
 if __name__ == '__main__': main()
