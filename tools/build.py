@@ -570,3 +570,7 @@ if __name__ == '__main__':
     # Final isolated pass: advertising pages, consent UI and activation gates (no third-party code by default).
     import subprocess, sys
     subprocess.check_call([sys.executable, str(__import__('pathlib').Path(__file__).with_name('monetization.py')), '.'])
+
+if __name__ == "__main__":
+    from share_iconify import patch
+    patch(".")

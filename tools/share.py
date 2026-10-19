@@ -1,3 +1,6 @@
+import json as _json
+from pathlib import Path as _Path
+_LOGOS = _json.loads((_Path(__file__).parent / "share-icons/logos.json").read_text())
 import urllib.parse as _up
 def share_block(url, title, brand, top=False):
     q = _up.quote
@@ -5,11 +8,11 @@ def share_block(url, title, brand, top=False):
     def svg(inner): return '<svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false">%s</svg>' % inner
     def tx(s, size=13): return svg('<text x="12" y="16.5" text-anchor="middle" font-family="Arial,Helvetica,sans-serif" font-weight="700" font-size="%d" fill="currentColor">%s</text>' % (size, s))
     links = [
-        ('X', 'Auf X teilen', 'https://twitter.com/intent/tweet?url=%s&text=%s' % (u, t), svg('<path d="M5 4l14 16M19 4L5 20" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" fill="none"/>')),
-        ('LinkedIn', 'Auf LinkedIn teilen', 'https://www.linkedin.com/sharing/share-offsite/?url=%s' % u, tx('in')),
-        ('WhatsApp', 'Per WhatsApp teilen', 'https://wa.me/?text=%s%%20%s' % (t, u), svg('<path d="M12 3.5a8.5 8.5 0 0 0-7.3 12.8L3.5 20.5l4.3-1.1A8.5 8.5 0 1 0 12 3.5z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M9 8.5c0 3.5 2.7 6.5 6.5 6.5l1-1.8-2-1-1 .8c-1-.4-1.9-1.300-2.300-2.300l.8-1-1-2z" fill="currentColor"/>')),
-        ('Facebook', 'Auf Facebook teilen', 'https://www.facebook.com/sharer/sharer.php?u=%s' % u, tx('f', 16)),
-        ('Reddit', 'Auf Reddit teilen', 'https://www.reddit.com/submit?url=%s&title=%s' % (u, t), tx('R', 14)),
+        ('X', 'Auf X teilen', 'https://twitter.com/intent/tweet?url=%s&text=%s' % (u, t), _LOGOS['X']),
+        ('LinkedIn', 'Auf LinkedIn teilen', 'https://www.linkedin.com/sharing/share-offsite/?url=%s' % u, _LOGOS['LinkedIn']),
+        ('WhatsApp', 'Per WhatsApp teilen', 'https://wa.me/?text=%s%%20%s' % (t, u), _LOGOS['WhatsApp']),
+        ('Facebook', 'Auf Facebook teilen', 'https://www.facebook.com/sharer/sharer.php?u=%s' % u, _LOGOS['Facebook']),
+        ('Reddit', 'Auf Reddit teilen', 'https://www.reddit.com/submit?url=%s&title=%s' % (u, t), _LOGOS['Reddit']),
         ('E-Mail', 'Per E-Mail teilen', 'mailto:?subject=%s&body=%s' % (t, u), svg('<rect x="3.5" y="6" width="17" height="12" rx="2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M4 7.500l8 6 8-6" fill="none" stroke="currentColor" stroke-width="1.8"/>')),
     ]
     items = ''.join('<li><a class="sh-b" href="%s" target="_blank" rel="noopener noreferrer nofollow" aria-label="%s (öffnet in neuem Tab)" title="%s">%s<span>%s</span></a></li>' % (h.replace('&', '&amp;'), lab, lab, ic, nm) for nm, lab, h, ic in links)
