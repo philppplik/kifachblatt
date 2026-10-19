@@ -1,0 +1,8 @@
+{
+  "version": 1,
+  "consentRevision": "2026-10-preparation-1",
+  "analytics": {"enabled": false, "provider": "none", "measurementId": ""},
+  "advertising": {"enabled": false},
+  "metrics": {"enabled": false},
+  "spots": []
+}
