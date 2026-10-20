@@ -1,0 +1,155 @@
+{
+ "slug": "mitarbeiter-mitnehmen",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Mitarbeiter mitnehmen: KI-Einführung, die nicht scheitert",
+ "dek": "Technik ist der leichte Teil: Wie du Belegschaft, Führung und Betriebsrat bei der KI-Einführung mitnimmst – mit Schulung, Regeln und Freigaben.",
+ "published": "2026-10-19T07:15:00+02:00",
+ "modified": "2026-10-20T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Change Management",
+  "Schulung",
+  "KI-Richtlinie",
+  "Schatten-KI",
+  "Betriebsrat",
+  "Führung"
+ ],
+ "key_takeaways": [
+  "72 % der Beschäftigten weltweit nutzen generative KI regelmäßig, aber nur 36 % fühlen sich ausreichend vorbereitet – und 54 % würden im Zweifel unerlaubte Werkzeuge nutzen [1]. Wer nichts anbietet, bekommt keine Enthaltsamkeit, sondern Schatten-KI.",
+  "Im Feldexperiment mit 776 Fachkräften bei Procter & Gamble erreichte ein einzelner Mensch mit KI das Niveau eines Zweierteams ohne KI [2]. Der Gewinn entsteht durch Befähigung, nicht durch Austausch – und genau dafür braucht es Schulung und Begleitung.",
+  "Mit Führungsunterstützung steigt die positive Einstellung zu KI sprunghaft (Freude an der Arbeit: 55 % gegenüber 15 % ohne Unterstützung [1]). Eine kurze schriftliche Nutzungsrichtlinie, benannte Ansprechpartner und frühe Einbindung des Betriebsrats sind die wirksamsten Bausteine."
+ ],
+ "hero": {
+  "alt": "Eine Treppe mit vier Stufen, beschriftet mit Informieren, Schulen, Freigeben und Begleiten. Auf der obersten Stufe steht eine stilisierte Menschengruppe.",
+  "caption": "Vier Stufen der Mitnahme: Erst erklären, dann befähigen, dann erlauben, dann im Alltag begleiten. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Die bitterste Art, an KI zu scheitern, sieht so aus: Das Werkzeug ist gekauft, die Lizenzen laufen – und niemand benutzt es. Oder schlimmer: Alle benutzen etwas, nur nicht das Genehmigte. Beide Muster sind messbar. In der BCG-Studie „AI at Work 2025“ mit über 10.000 Befragten gaben 72 % der Beschäftigten an, generative KI regelmäßig zu nutzen – aber nur 36 % fühlen sich ausreichend darauf vorbereitet, und nur ein Viertel der Angestellten ohne Führungsverantwortung bekommt klare Unterstützung von Vorgesetzten [1]. Die Folge: 54 % würden im Zweifel auch ohne Zustimmung des Arbeitgebers KI-Werkzeuge nutzen [1]. Die Technikfrage ist längst eine Führungsfrage."
+  },
+  {
+   "t": "h2",
+   "x": "Warum Schatten-KI ein Führungsproblem ist"
+  },
+  {
+   "t": "p",
+   "x": "Wenn Beschäftigte Kundenadressen in ein privates Chatbot-Fenster tippen, ist das ein Datenschutzrisiko. Aber es ist auch eine Information: Die Leute haben den Nutzen längst verstanden, sie holen ihn sich nur auf dem einzigen offenen Weg. Auch der NANDA-Bericht beschreibt diese Schattenwirtschaft: Während nur 40 % der befragten Unternehmen ein offizielles Abo gekauft hatten, berichteten Beschäftigte aus über 90 % der Unternehmen von regelmäßiger privater Nutzung im Job [3]. Die richtige Antwort ist daher nicht das Verbotsschild, sondern das legale Angebot: ein genehmigtes Werkzeug, klare Datenregeln und eine Stelle, die Fragen beantwortet. Was dabei rechtlich zu beachten ist, skizziert der geplante Artikel zu [DSGVO und KI](/dsgvo-und-ki)."
+  },
+  {
+   "t": "h2",
+   "x": "Was Schulung wirklich bringt"
+  },
+  {
+   "t": "p",
+   "x": "Das stärkste Argument für Befähigung kommt aus einem Feldexperiment: Forschende um Fabrizio Dell'Acqua und Karim Lakhani ließen 776 Fachkräfte bei Procter & Gamble an echten Produktideen arbeiten – zufällig zugeteilt, allein oder zu zweit, mit oder ohne KI. Ergebnis: Einzelpersonen mit KI erreichten die Leistung von Zweierteams ohne KI. Die KI brach außerdem fachliche Silos auf – Entwickler lieferten plötzlich markttauglichere, Kaufmannsleute technischere Vorschläge – und die Teilnehmenden berichteten positivere Gefühle bei der Arbeit [2]. Die Konsequenz: Der Hebel liegt nicht darin, Köpfe durch Software zu ersetzen, sondern darin, Köpfe zu verstärken. Und Verstärkung braucht Übung."
+  },
+  {
+   "t": "p",
+   "x": "Die BCG-Zahlen zeigen die andere Seite: Wo Führungskräfte den KI-Einsatz aktiv begleiten, berichten 55 % der Beschäftigten Freude an der Arbeit – ohne diese Unterstützung nur 15 %. Bei den wahrgenommenen Karrierechancen ist der Abstand ähnlich groß: 62 % zu 13 % [1]. Zugleich sorgt sich fast jeder Zweite (46 %) in besonders KI-affinen Unternehmen um den eigenen Job [1]. Wer die Veränderung nicht erklärt, bekommt Widerstand oder Angst – beides bremst mehr als jede Schnittstelle."
+  },
+  {
+   "t": "h2",
+   "x": "Die vier Stufen der Mitnahme"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Informieren:** Offen sagen, was geplant ist und warum. Auch sagen, was *nicht* geplant ist – etwa wenn keine Stellen abgebaut werden sollen. Transparenz ist die einzige bekannte Gegenmaßnahme gegen Gerüchte.",
+    "**Schulen:** Nicht mit Produktschulungen, sondern mit den eigenen Aufgaben der Leute: Wie sieht ein guter [Prompt](/glossar#prompt) für *unser* Angebotsschreiben aus? Wo irrt das Modell bei *unseren* Texten? Zwei bis drei kurze Formate mit echten Beispielen schlagen jeden eintägigen KI-Grundkurs.",
+    "**Freigeben:** Ein genehmigtes Werkzeug mit klaren Regeln schaffen. Eine einseitige schriftliche Richtlinie reicht für den Start: welche Werkzeuge, welche Daten dürfen hinein (keine personenbezogenen Daten, keine Geschäftsgeheimnisse ohne Freigabe), wo liegt die Verantwortung für das Ergebnis (beim Menschen, Stichwort [Human-in-the-Loop](/glossar#human-in-the-loop)).",
+    "**Begleiten:** Nach dem Start bleiben: Ansprechpartner benennen, Erfahrungen einsammeln, Regeln nachschärfen. KI-Einführung ist kein Projekt mit Enddatum, sondern eine neue Betriebsroutine."
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Praxisregel",
+   "x": "Erfolgsanzeiger ist nicht die Zahl geschulter Köpfe, sondern die Zahl genehmigter, wiederkehrender Anwendungen. Fünf ehrliche Use-Cases mit gemessener Zeitersparnis sind mehr wert als fünfzig Kurszertifikate. Wie du Anwendungsfälle findest und bewertest, steht in [Use-Cases finden und priorisieren](/use-cases-priorisieren)."
+  },
+  {
+   "t": "h2",
+   "x": "Betriebsrat und Regeln früh einbinden"
+  },
+  {
+   "t": "p",
+   "x": "In Deutschland gibt es eine institutionelle Abkürzung, die viele übersehen: den Betriebsrat. Wo es ihn gibt, hat er bei der Einführung technischer Einrichtungen, die Verhalten oder Leistung der Beschäftigten überwachen können, mitzubestimmen [4]. KI-Werkzeuge können genau das leisten – etwa wenn sie Arbeitsmengen oder Antwortzeiten protokollieren. Die Einbindung ist dabei nicht nur Pflichtfrage, sondern Qualitätsgewinn: Der Betriebsrat vertritt genau die Bedenken, die sonst als stiller Widerstand im Projekt landen. Wer ihn früh an den Tisch holt, kauft Legitimität und bessere Regeln. Diese Einordnung ist keine Rechtsberatung; die Details hängen von Betrieb und Werkzeug ab."
+  },
+  {
+   "t": "p",
+   "x": "Dasselbe gilt für die Nutzungsrichtlinie: Sie muss nicht perfekt sein, sondern vorhanden, verständlich und vollstreckbar. Drei Abschnitte genügen für den Anfang: erlaubte Werkzeuge und Daten, verbotene Eingaben, Verantwortung und Kennzeichnung von KI-Ergebnissen. Und sie sollte als Betriebsvereinbarung oder Anweisung festgehalten werden, damit sie für alle gleich gilt."
+  },
+  {
+   "t": "h2",
+   "x": "Führung vorleben, Erfolge zeigen"
+  },
+  {
+   "t": "p",
+   "x": "Die Microsoft-Studie Work Trend Index 2025, für die 31.000 Beschäftigte in 31 Ländern befragt wurden, zeigt: 47 % der Führungskräfte setzen beim KI-Ausbau auf Schulung der vorhandenen Belegschaft – vor jeder anderen Maßnahme, inklusive Einstellungen [5]. Der Befund passt zur Praxis kleiner Betriebe: Das wirksamste Signal ist eine Chefin, die selbst zeigt, wie sie das Werkzeug nutzt – und ehrlich sagt, wo es bei ihr versagt hat. Dazu gehören sichtbare kleine Erfolge: die erste Woche, in der die Protokolle automatisch vorbereitet waren; der erste Kunde, der schneller eine Antwort bekam. Solche Geschichten tragen weiter als jede Strategiepräsentation."
+  },
+  {
+   "t": "p",
+   "x": "Und ein Punkt wird gern vergessen: Die Mitnahme endet nicht bei den eigenen Leuten. Wer KI in Kundenkontakten einsetzt – Antwortentwürfe, Analyse, Bewertung – sollte intern klären, was nach außen kommuniziert wird, und KI-Ergebnisse dort kennzeichnen, wo es erwartet oder gefordert wird. Die Redaktion selbst arbeitet nach genau diesem Prinzip; unsere Regeln stehen öffentlich auf der Seite [Transparenz](/transparenz)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was tun gegen die Angst, KI ersetze Arbeitsplätze?",
+   "a": "Offen ansprechen, was geplant ist – und was nicht. Die BCG-Daten zeigen, dass gerade in KI-affinen Unternehmen 46 % der Beschäftigten um ihren Job fürchten. Gleichzeitig zeigt das P&G-Experiment: KI verstärkt einzelne Menschen so stark, dass sie Zweierteams erreichen. Wer Befähigung statt Austausch vorlebt und das glaubwürdig zusagt, nimmt der Angst die Spitze."
+  },
+  {
+   "q": "Was gehört in eine KI-Nutzungsrichtlinie?",
+   "a": "Vier Dinge: die Liste erlaubter Werkzeuge, die Datenregeln (was darf eingegeben werden, was nie), die Verantwortung für Ergebnisse (Mensch prüft und haftet) und die Kennzeichnung von KI-Ergebnissen nach außen. Eine Seite reicht für den Start. Wichtig ist, dass die Regel für alle gleich gilt und es eine Ansprechperson für Zweifelsfälle gibt."
+  },
+  {
+   "q": "Muss der Betriebsrat bei jeder KI-Einführung beteiligt werden?",
+   "a": "Wo ein Betriebsrat existiert, hat er bei technischen Einrichtungen mitzubestimmen, die Verhalten oder Leistung überwachen können (§ 87 BetrVG). Viele KI-Werkzeuge protokollieren Nutzung und können darunter fallen. Die sichere Praxis ist, ihn früh einzubinden – das ist keine Rechtsberatung, im Zweifel hilft arbeitsrechtlicher Rat."
+  },
+  {
+   "q": "Wie messe ich, ob die Mitnahme funktioniert?",
+   "a": "An drei Signalen: aktive Nutzung der genehmigten Werkzeuge statt Schatten-KI, Zahl und Qualität der aus der Belegschaft kommenden Anwendungsfälle, und gemessene Zeitersparnis in den Pilotprozessen. Die reinen Schulungszahlen sagen dagegen fast nichts aus."
+  }
+ ],
+ "sources": [
+  {
+   "title": "BCG-Studie zeigt: Zwei Drittel der Deutschen nutzen KI am Arbeitsplatz (AI at Work 2025)",
+   "publisher": "Boston Consulting Group, Pressemitteilung, 26. Juni 2025",
+   "url": "https://www.bcg.com/press/26june2025-bcg-studie-zeigt-zwei-drittel-der-deutschen-nutzen-ki-am-arbeitsplatz",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "The Cybernetic Teammate: A Field Experiment on Generative AI Reshaping Teamwork and Expertise (NBER Working Paper 33641)",
+   "publisher": "National Bureau of Economic Research, 2025",
+   "url": "https://www.nber.org/papers/w33641",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "The GenAI Divide: State of AI in Business 2025",
+   "publisher": "MIT Project NANDA, Juli 2025",
+   "url": "https://21464181.fs1.hubspotusercontent-na1.net/hubfs/21464181/v0.1_State_of_AI_in_Business_2025_Report.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "§ 87 BetrVG: Erzwingbare Mitbestimmung",
+   "publisher": "Bundesministerium der Justiz, gesetze-im-internet.de",
+   "url": "https://www.gesetze-im-internet.de/betrvg/__87.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "2025: The Year the Frontier Firm Is Born (Work Trend Index)",
+   "publisher": "Microsoft, April 2025",
+   "url": "https://www.microsoft.com/en-us/worklab/work-trend-index/2025-the-year-the-frontier-firm-is-born",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die BCG-Pressemitteilung zur Studie AI at Work 2025, die Abstract-Seite des NBER Working Papers 33641 (Feldexperiment, 776 Teilnehmende), der vollständige NANDA-Bericht als PDF (Schatten-KI-Zahlen), der Gesetzestext des § 87 BetrVG auf gesetze-im-internet.de und der Work-Trend-Index-Bericht 2025 von Microsoft. Die vier Stufen der Mitnahme und die Richtlinien-Empfehlungen sind eine eigene didaktische Zusammenstellung der Redaktion.",
+ "limitations": "Das P&G-Experiment untersuchte Produktentwicklungs-Aufgaben bei einem Weltkonzern; die Übertragbarkeit auf kleine Betriebe und andere Aufgabenarten ist plausibel, aber nicht bewiesen. BCG- und Microsoft-Zahlen stammen aus Umfragen und spiegeln Selbsteinschätzungen; Microsoft vermarktet zugleich eigene KI-Produkte. Die Bemerkungen zum Betriebsrat sind eine vereinfachte Einordnung und keine Rechtsberatung – die Mitbestimmung hängt vom konkreten Werkzeug und Betrieb ab.",
+ "related": [
+  "use-cases-priorisieren",
+  "build-vs-buy",
+  "ki-recruiting"
+ ]
+}

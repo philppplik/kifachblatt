@@ -1,0 +1,219 @@
+{
+ "slug": "build-vs-buy",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Build vs. Buy bei KI: SaaS, API oder selbst hosten?",
+ "dek": "Fertigabo, API-Anbindung oder eigener Server? Die drei Beschaffungswege für KI: Was sie kosten, wo die versteckten Posten stecken, wann sich was rechnet.",
+ "published": "2026-10-19T06:45:00+02:00",
+ "modified": "2026-10-20T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Build vs Buy",
+  "TCO",
+  "SaaS",
+  "API",
+  "Self-Hosting",
+  "KMU"
+ ],
+ "key_takeaways": [
+  "Es gibt drei Wege, KI in den Betrieb zu holen: Fertiglösung pro Nutzer (SaaS), Modell-API mit eigener Anbindung, oder selbst gehostete [offene Gewichte](/glossar#offene-gewichte). Sie unterscheiden sich vor allem darin, *wer* die Komplexität trägt und *wie* gezahlt wird.",
+  "Extern eingekaufte Lösungen erreichten in der NANDA-Auswertung doppelt so oft die Produktion wie interne Eigenentwicklungen [1]. Eigenbau gewinnt dort, wo Datenschutz, Volumen oder ein Alleinstellungsmerkmal die Kontrolle erzwingen.",
+  "Der Kaufpreis ist der kleinste Teil der [TCO](/glossar#tco): Anbindung, Pflege, Kontrolle der Ergebnisse und Schulung kosten oft mehr als Lizenzen oder Tokens. Rechne immer mit Vollkosten, nicht mit dem Preis auf der Website."
+ ],
+ "hero": {
+  "alt": "Drei nebeneinander stehende Säulen mit den Beschriftungen SaaS-Abo, API-Anbindung und Self-Hosting. Darüber eine Waage, die Kaufen und Bauen gegeneinander abwägt.",
+  "caption": "Drei Wege, KI zu beschaffen: Die Waage kippt je nach Volumen, Datenlage und eigenem Know-how. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer im Betrieb KI einführen will, steht vor einer Einkaufsentscheidung mit drei Grundformen: das **Abo** eines fertigen Werkzeugs pro Mitarbeiterin, die **API** eines Modell-Anbieters mit eigener Anbindung an die eigenen Abläufe, oder das **Selbst-Hosten** offener Modelle auf eigener oder gemieteter Hardware. Alle drei führen zum Ziel – aber sie verteilen Kosten, Kontrolle und Arbeit völlig unterschiedlich. Diese Seite hilft bei der Einordnung, mit aktuellen Preisen und einer durchgerechneten Beispielrechnung."
+  },
+  {
+   "t": "h2",
+   "x": "Die drei Wege im Überblick"
+  },
+  {
+   "t": "table",
+   "caption": "Beschaffungswege für KI im Betrieb (Redaktion, Preise Stand Oktober 2026)",
+   "head": [
+    "Kriterium",
+    "SaaS-Abo",
+    "API-Anbindung",
+    "Self-Hosting"
+   ],
+   "rows": [
+    [
+     "Zahlen für",
+     "Nutzung pro Person und Monat",
+     "Verbrauchte Tokens",
+     "Hardware und Betrieb"
+    ],
+    [
+     "Beispielpreis",
+     "ChatGPT Business: 20 US-$ pro Nutzer/Monat bei Jahreszahlung, 25 US-$ monatlich [2]",
+     "Claude Sonnet 5: 2/10 US-$ je Mio. Ein-/Ausgabe-Tokens [3]; GPT-5.6-Terra: 2/12 US-$ [4]",
+     "Server oder GPU-Miete plus Arbeitszeit, kein Token-Preis"
+    ],
+    [
+     "Anlaufzeit",
+     "Stunden bis Tage",
+     "Wochen (Entwicklung)",
+     "Wochen bis Monate"
+    ],
+    [
+     "Datenkontrolle",
+     "Vertrag (kein Training mit Geschäftsdaten je nach Tarif [2])",
+     "Vertrag und API-Einstellungen",
+     "maximal, Daten bleiben im Haus"
+    ],
+    [
+     "Komplexität trägt",
+     "der Anbieter",
+     "geteilt",
+     "du selbst"
+    ],
+    [
+     "Skaliert mit",
+     "Kopfzahl",
+     "Nutzungsvolumen",
+     "Hardware-Ausbau"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Preislage hat sich in kurzer Zeit stark verschoben: Die Kosten für eine Anfrage an ein Modell auf dem Niveau von GPT-3.5 fielen laut Stanford AI Index von 20 US-$ pro Million Tokens im November 2022 auf 0,07 US-$ im Oktober 2024 – ein Rückgang um den Faktor 280 in etwa 18 Monaten [5]. Was 2023 nach teurem Eigenbau aussah, ist heute oft ein API-Standardgeschäft. Die Richtung bleibt: Verbrauchspreise fallen, Abos bleiben stabil, Hardware wird relativ gesehen nicht schneller billiger als das Personal, das sie betreut."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Gesamtkosten wirklich enthalten"
+  },
+  {
+   "t": "p",
+   "x": "Die [Total Cost of Ownership](/glossar#tco) (TCO) umfassen alle Kosten über die Lebensdauer – Anschaffung, Betrieb und die leicht vergessenen indirekten Posten [6]. Bei KI lauern vier typische blinde Flecken:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Anbindung:** Das Abo ist gekauft, aber die Belegschaft arbeitet in Outlook, SAP und dem Ticketsystem. Jede Brücke dorthin kostet Einrichtung und Pflege – beim SaaS-Weg als Zusatzmodul, beim API-Weg als Entwicklungszeit.",
+    "**Ergebniskontrolle:** KI-Ausgaben müssen geprüft werden. Diese Arbeitszeit gehört in die Rechnung, egal welcher Weg gewählt wird. Sie wächst mit der Kritikalität der Aufgabe, nicht mit dem Preis des Modells.",
+    "**Pflege und Änderungen:** Prompts, Wissensdaten und Schnittstellen veralten. Ein internes Werkzeug braucht einen benannten Pfleger, sonst verkommt es zum teuren Relikt.",
+    "**Ausfall- und Wechselkosten:** Ein Anbieter ändert Preise, Modelle oder Konditionen. Beim Self-Hosting trägst du Updates und Sicherheit selbst, dafür kann dir niemand den Dienst abdrehen."
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Merksatz",
+   "x": "Die Website nennt den Lizenz- oder Token-Preis. Die Rechnung bekommst du für alles drumherum. Erst Vollkosten gegen Vollkosten machen die drei Wege vergleichbar."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Daten zur Kauf-oder-Bauen-Frage sagen"
+  },
+  {
+   "t": "p",
+   "x": "Die bislang umfangreichste Auswertung kommt vom MIT-Projekt NANDA: Externe Partnerschaften und eingekaufte Lösungen erreichten etwa doppelt so häufig die Produktion wie interne Eigenentwicklungen [1]. Das deckt sich mit dem Trichter der Studie: Von 60 % der Organisationen, die Enterprise-KI prüften, kamen nur 20 % ins Pilotstadium und etwa 5 % in Produktion [1]. Die Lehre daraus ist nicht „niemals bauen“, sondern: Bauen ist der härtere Weg und braucht einen triftigen Grund."
+  },
+  {
+   "t": "p",
+   "x": "Triftige Gründe gibt es drei. Erstens **Datenhoheit**: Dürfen bestimmte Daten das Haus nicht verlassen (Gesundheit, Personal, streng vertrauliche Konstruktion), bleibt oft nur der eigene Betrieb – siehe [Lokale Modelle](/lokale-modelle). Zweitens **Volumen**: Bei sehr hohen, planbaren Lasten kann eigene Hardware günstiger werden als Token-Preise – allerdings erst ab einer Größenordnung, die kleine und mittlere Betriebe selten erreichen, und erst nach Abzug von Abschreibung, Strom und Betreuung. Drittens **Produktkern**: Ist KI Teil des eigenen Angebots an Kunden, ist Kontrolle über Modell, Kosten und Qualität ein Wettbewerbsvorteil und kein Luxus."
+  },
+  {
+   "t": "h2",
+   "x": "Beispielrechnung: 25 Büroarbeitsplätze"
+  },
+  {
+   "t": "p",
+   "x": "Eine eigene Beispielrechnung mit klar markierten Annahmen (kein Angebot, keine Beratung): Ein Betrieb mit 25 Bürokräften will Textarbeit beschleunigen. **Weg A – SaaS:** 25 Nutzer mal 25 US-$ (monatliche Zahlung, ChatGPT Business [2]) = 625 US-$ im Monat, rund 7.500 US-$ im Jahr, plus Einführung und Regeln. **Weg B – API:** Annahme 30 Aufgaben pro Person und Arbeitstag mit je 1.500 Eingabe- und 600 Ausgabe-Tokens. Bei GPT-5.6-Terra (2 US-$ Eingabe, 12 US-$ Ausgabe je Million Tokens [4]) kostet eine Aufgabe etwa 1,0 US-Cent. Das sind rund 170 US-$ im Monat für 22 Arbeitstage – dazu kommen aber Entwicklung der Anbindung (einmalig, hier mit 80 Stunden angesetzt) und laufende Pflege von geschätzt zwei Tagen im Monat. Bei internen Stundensätzen von 60 € liegt Weg B im Jahr eins bei etwa 14.000 €, im zweiten Jahr bei etwa 13.500 € – teurer als das Abo, solange das Volumen klein ist. **Weg C – Self-Hosting** kommt bei dieser Größe gar nicht erst in die engere Wahl: Hardware, Miete oder GPU-Server plus Betreuung liegen oberhalb beider Alternativen, bevor die erste Anfrage läuft."
+  },
+  {
+   "t": "p",
+   "x": "Die Rechnung kippt, wenn das Volumen wächst (zehnfache Aufgabenzahl: API kostet rund 1.700 US-$ im Monat, das Abo bleibt bei 625 US-$ – dafür kann die API-Lösung tief in Abläufe integriert werden, was das Abo nicht leistet) oder wenn Datenhoheit verlangt wird. Sie kippt auch, wenn der Nutzen nicht in Textarbeit, sondern in automatisierten Prozessen liegt, für die es kein Fertigprodukt gibt. Genau diese Kipp-Punkte zu kennen, ist wichtiger als jede einzelne Zahl. Wie du Token-Preise in [Kosten pro gelöster Aufgabe](/glossar#kosten-pro-geloester-aufgabe) umrechnest, zeigt [KI-Kosten und ROI kalkulieren](/ki-kosten-roi)."
+  },
+  {
+   "t": "h2",
+   "x": "Entscheidungsleitfaden in fünf Fragen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Gibt es ein Fertigprodukt, das die Aufgabe zu 80 % abdeckt?** Dann kaufen und mit dem Rest leben oder ergänzen. Fast immer der richtige Start.",
+    "**Dürfen die Daten den eigenen Verantwortungsbereich verlassen?** Wenn nein, bleibt nur Self-Hosting oder ein Anbieter mit passendem Vertrag – Details im geplanten Artikel [Anbieter-Check](/anbieter-check).",
+    "**Ist das Volumen hoch und stabil?** Erst dann lohnt der Vergleich von Token-Kosten mit eigenem Betrieb ernsthaft.",
+    "**Haben wir dauerhaft jemanden, der das Werkzeug pflegt?** Ohne benannte Pflege ist jede Eigenlösung eine Leiche auf Zeit.",
+    "**Ist das Thema Teil unseres eigenen Produkts?** Dann ist Bauen strategisch – und die höhere Misserfolgsquote interner Projekte [1] muss durch enge Piloten und sauberes Messen ausgeglichen werden."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Eine Zwischenlösung gewinnt an Bedeutung: **Kaufen, dann erweitern.** Viele Abos erlauben eigene Wissensablagen oder Anbindungen. Damit startest du schnell und baust nur das nach, was sich bewährt hat. Das ist auch die Antwort auf die hohe Fluktuation am Markt: Wer klein kauft und misst, kann wechseln, wenn Preise oder Qualität springen."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen API-Nutzung und SaaS-Abo?",
+   "a": "Beim Abo zahlst du pro Person und Monat für ein fertiges Werkzeug mit Oberfläche. Bei der API zahlst du pro verbrauchter Token-Menge und bekommst dafür nur das Modell – Oberfläche, Anbindung und Abläufe baust oder kaufst du separat. Das Abo skaliert mit der Kopfzahl, die API mit dem Volumen."
+  },
+  {
+   "q": "Ab wann lohnt sich Self-Hosting?",
+   "a": "In drei Fällen: wenn Daten aus rechtlichen Gründen im Haus bleiben müssen, wenn das Volumen so hoch und stabil ist, dass eigene Hardware die Token-Kosten schlägt, oder wenn KI Teil des eigenen Produkts ist. Für die meisten kleinen und mittleren Betriebe trifft aktuell keiner der drei Fälle zu – Details stehen in [Lokale Modelle](/lokale-modelle)."
+  },
+  {
+   "q": "Warum scheitern interne KI-Entwicklungen so oft?",
+   "a": "Die NANDA-Auswertung nennt vor allem starre Abläufe ohne Lernschleife, zu breit angelegte Projekte und fehlende Anpassung an den Arbeitskontext. Extern eingekaufte Lösungen kamen etwa doppelt so häufig in Produktion. Eigenbau braucht deshalb eng umrissene Aufgaben, echte Nutzer im Team und harte Abbruchkriterien."
+  },
+  {
+   "q": "Fallen die Preise weiter? Kann ich mit der Entscheidung warten?",
+   "a": "Verbrauchspreise sind zuletzt stark gefallen – für ein GPT-3.5-Niveau um den Faktor 280 zwischen November 2022 und Oktober 2024. Trotzdem ist Warten selten die beste Strategie: Der größte Hebel liegt nicht im Token-Preis, sondern in gelernten Abläufen. Klein starten, Vollkosten messen, bei Preissprüngen wechseln – das schlägt das Abwarten."
+  }
+ ],
+ "sources": [
+  {
+   "title": "The GenAI Divide: State of AI in Business 2025",
+   "publisher": "MIT Project NANDA, Juli 2025",
+   "url": "https://21464181.fs1.hubspotusercontent-na1.net/hubfs/21464181/v0.1_State_of_AI_in_Business_2025_Report.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Business Pricing (ChatGPT Business und Enterprise)",
+   "publisher": "OpenAI, abgerufen am 20. Oktober 2026",
+   "url": "https://openai.com/business/chatgpt-pricing/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Model pricing (Claude-Modelle)",
+   "publisher": "Anthropic Docs, abgerufen am 20. Oktober 2026",
+   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "API Pricing (GPT-Modelle)",
+   "publisher": "OpenAI Developers, abgerufen am 20. Oktober 2026",
+   "url": "https://developers.openai.com/api/docs/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "AI Index 2025: State of AI in 10 Charts",
+   "publisher": "Stanford HAI, April 2025",
+   "url": "https://hai.stanford.edu/news/ai-index-2025-state-of-ai-in-10-charts",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "What is total cost of ownership (TCO)?",
+   "publisher": "IBM Think, 2025",
+   "url": "https://www.ibm.com/think/topics/total-cost-of-ownership",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Preisseiten von OpenAI (Business-Tarife und API) und Anthropic (API), die AI-Index-Zusammenfassung der Stanford HAI, die TCO-Definitonsseite von IBM Think und der vollständige NANDA-Bericht als PDF. Die Beispielrechnung mit 25 Arbeitsplätzen ist eine eigene Rechnung der Redaktion mit explizit genannten Annahmen (Aufgabenzahl, Token-Mengen, Stundensatz); sie ist ein Rechenbeispiel und keine Kostenberatung.",
+ "limitations": "Preise für Abos, APIs und Hardware ändern sich häufig; alle genannten Preise beziehen sich auf den 20. Oktober 2026 und können zum Lesezeitpunkt überholt sein. Die Beispielrechnung hängt stark an den Annahmen zu Aufgabenzahl und Token-Verbrauch – andere Nutzungsprofile liefern andere Ergebnisse. Der NANDA-Bericht hat Preprint-Charakter; die Verdopplung der Erfolgsquote externer Lösungen ist ein Vergleich über seine Stichprobe, kein Naturgesetz. Steuer- und bilanzielle Aspekte (Abschreibung, Betriebsausgaben) wurden bewusst ausgeklammert.",
+ "related": [
+  "use-cases-priorisieren",
+  "ki-kosten-roi",
+  "lokale-modelle"
+ ]
+}

@@ -1,0 +1,220 @@
+{
+ "slug": "ki-kosten-roi",
+ "lang": "de",
+ "section": "methode",
+ "type": "explainer",
+ "title": "KI-Kosten und ROI kalkulieren: rechnen statt schätzen",
+ "dek": "Was kostet eine gelöste Aufgabe wirklich? Von Token-Preisen über versteckte Posten zur KI-Kostenrechnung – mit aktuellen Preisen und eigener Beispielrechnung.",
+ "published": "2026-10-19T07:00:00+02:00",
+ "modified": "2026-10-20T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "ROI",
+  "Kostenrechnung",
+  "API-Preise",
+  "TCO",
+  "Kosten pro Aufgabe",
+  "Controlling"
+ ],
+ "key_takeaways": [
+  "Token-Preise sind der Einstieg, nicht die Rechnung: Eine Support-Antwort kostet bei aktuellen Modellen wenige Cent an API-Gebühren [1][2] – die Kontrollzeit und die Quote der verworfenen Ergebnisse entscheiden, ob sich der Einsatz trägt.",
+  "Die tragende Kennzahl ist nicht der Preis pro Million Tokens, sondern die [Kosten pro gelöster Aufgabe](/glossar#kosten-pro-geloester-aufgabe): API-Kosten durch die Rate der akzeptierten Ergebnisse teilen, dann Prüf- und Betriebskosten addieren.",
+  "Der [ROI](/glossar#roi) rechnet sich gegen die Vollkosten: (eingesparte Kosten − Gesamtkosten) geteilt durch Gesamtkosten. 37 Mrd. US-$ gaben Unternehmen 2025 für generative KI aus [3] – doch nur etwa 5 % der Pilotprojekte zeigen messbaren Ertrag [4]. Rechnen schlägt hoffen."
+ ],
+ "hero": {
+  "alt": "Ein Balkendiagramm vergleicht die API-Preise mehrerer Modelle: Eingabe- und Ausgabe-Preis pro Million Tokens für GPT-5.6-Luna, GPT-5.6-Terra, GPT-5.6-Sol, Claude Haiku 4.5, Claude Sonnet 5 und Claude Opus 5.",
+  "caption": "API-Preise im Oktober 2026: Der Faktor zwischen günstigstem und teuerstem Modell in dieser Auswahl liegt bei 25 (Eingabe) beziehungsweise 21 (Ausgabe) [1][2]. Eigene Grafik mit Herstellerpreisen.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Unternehmen haben 2025 rund 37 Mrd. US-$ für generative KI ausgegeben, nach 11,5 Mrd. im Vorjahr [3]. Gleichzeitig zeigt die Auswertung des MIT-Projekts NANDA, dass nur etwa 5 % der Pilotprojekte einen messbaren Effekt auf Gewinn oder Kosten erzielen [4]. Zwischen diesen beiden Zahlen liegt eine Lücke, die sich mit einem Werkzeug schließen lässt: einer ehrlichen Kostenrechnung. Diese Seite führt Schritt für Schritt vom Token-Preis zur Kosten-pro-Aufgabe-Rechnung und zur ROI-Formel – mit aktuellen Preisen und einer eigenen Beispielrechnung."
+  },
+  {
+   "t": "h2",
+   "x": "Stufe 1: Token-Preise richtig lesen"
+  },
+  {
+   "t": "p",
+   "x": "API-Preise werden pro Million [Tokens](/glossar#token) angegeben, getrennt nach Eingabe (dein Prompt, Dokumente, Verlauf) und Ausgabe (die Antwort des Modells). Die Ausgabe ist fast immer deutlich teurer: Bei Claude Sonnet 5 kostet die Million Ausgabe-Tokens das Fünffache der Eingabe [2], bei GPT-5.6-Terra das Sechsfache [1]. Wer viele lange Dokumente einspeist und kurze Antworten erwartet, rechnet anders als jemand, der lange Texte generieren lässt. Zwei Rabatte sind zu kennen: Wiederkehrender Kontext kann über [Prompt-Caching](/glossar#prompt-caching) um den Faktor 10 billiger werden (bei Terra: 0,20 statt 2 US-$ je Million [1]), und zeitunkritische Aufgaben sind als Stapelverarbeitung (Batch) oft zum halben Preis zu haben [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "API-Preise aktueller Modelle (US-$ je Million Tokens)",
+   "alt": "Säulendiagramm mit Eingabe- und Ausgabepreisen: GPT-5.6-Luna 0,20 und 1,20; GPT-5.6-Terra 2 und 12; GPT-5.6-Sol 4 und 20; Claude Haiku 4.5 1 und 5; Claude Sonnet 5 2 und 10; Claude Opus 5 5 und 25 US-Dollar.",
+   "caption": "Standardpreise der Hersteller, kurzer Kontext, Stand 20. Oktober 2026. Die Spanne zwischen dem günstigsten und teuersten Modell beträgt Faktor 25 bei der Eingabe und rund Faktor 21 bei der Ausgabe (eigene Rechnung) [1][2].",
+   "labels": [
+    "GPT-5.6-Luna",
+    "GPT-5.6-Terra",
+    "GPT-5.6-Sol",
+    "Claude Haiku 4.5",
+    "Claude Sonnet 5",
+    "Claude Opus 5"
+   ],
+   "series": [
+    {
+     "name": "Eingabe",
+     "values": [
+      0.2,
+      2,
+      4,
+      1,
+      2,
+      5
+     ]
+    },
+    {
+     "name": "Ausgabe",
+     "values": [
+      1.2,
+      12,
+      20,
+      5,
+      10,
+      25
+     ]
+    }
+   ],
+   "unit": " $",
+   "source": "OpenAI API Pricing [1], Anthropic Pricing [2]"
+  },
+  {
+   "t": "p",
+   "x": "Der Preisabstand ist kein Qualitätsurteil, aber eine Einladung zum Vergleichen: Für einfache, klar umrissene Aufgaben reicht oft ein günstigeres Modell; für Aufgaben mit hohen Fehlerfolgen kann ein teureres Modell die billigere Gesamtrechnung liefern, weil weniger Ergebnisse verworfen werden. Welches Modell für deine Aufgabe das beste Preis-Leistungs-Verhältnis hat, prüfst du am besten mit einer eigenen kleinen Testmenge – das Verfahren beschreibt [Evals statt Bauchgefühl](/evals-statt-bauchgefuehl), und [API-Preise vergleichen](/api-preise-vergleichen) geht tiefer auf [Blended Prices](/glossar#blended-price) und versteckte Posten ein."
+  },
+  {
+   "t": "h2",
+   "x": "Stufe 2: Von Tokens zur Aufgabe"
+  },
+  {
+   "t": "p",
+   "x": "Ein Token-Preis allein sagt nichts über deine Kosten. Übersetze ihn in drei Schritten: **Erstens** die Token-Menge einer typischen Aufgabe messen (bei den Anbietern im Nutzungs-Dashboard oder mit zehn Testläufen). **Zweitens** die Quote der akzeptablen Ergebnisse bestimmen: Wie viele Ausgaben kannst du unverändert oder nach kleiner Korrektur verwenden? **Drittens** beides verbinden – die Kosten pro gelöster Aufgabe sind die API-Kosten je Versuch geteilt durch die Akzeptanzquote, plus die Prüfzeit."
+  },
+  {
+   "t": "p",
+   "x": "Eigene Beispielrechnung mit Annahmen: Eine eingehende Kundenanfrage soll zusammengefasst und mit einem Antwortentwurf versehen werden. Ein Durchlauf verbraucht 2.000 Eingabe- und 800 Ausgabe-Tokens. Bei GPT-5.6-Terra [1] kostet das 0,004 + 0,0096 = rund 0,014 US-$. Akzeptanzquote nach Prüfung: 85 %. Die Kosten pro *brauchbarer* Antwort liegen damit bei rund 0,016 US-$ an Gebühren. Die menschliche Prüfung dauert 2 Minuten; bei 45 € internem Stundensatz sind das 1,50 €. Ein vollständig manuell geschriebener Entwurf braucht 15 Minuten, also 11,25 €. Ergebnis: Die KI-Strecke kostet pro Antwort rund 1,50 € plus Centbeträge statt 11,25 € – solange die Prüfzeit niedrig bleibt und die Quote hoch. Fällt die Akzeptanz auf 40 %, steigen nicht nur die Gebühren je brauchbarer Antwort, sondern vor allem die Prüf- und Nacharbeitszeit: Die Rechnung kippt über die Arbeitszeit, nicht über die Tokens."
+  },
+  {
+   "t": "callout",
+   "title": "Faustformel",
+   "x": "Kosten pro gelöster Aufgabe = (API-Kosten je Versuch ÷ Akzeptanzquote) + Prüfzeit in Geld. Die Akzeptanzquote ist der stille Multiplikator – sie macht aus einem günstigen Modell ein teures, wenn sie niedrig ist."
+  },
+  {
+   "t": "h2",
+   "x": "Stufe 3: Vollkosten zusammensetzen"
+  },
+  {
+   "t": "p",
+   "x": "Für die Monats- und Jahresrechnung gehören auf die Kostenseite außer den API-Gebühren: Abos und Lizenzen, Einrichtung und Anbindung, laufende Pflege, Schulung, die Prüfzeiten und eine Reserve für Fehler und Nacharbeit. Das ist die TCO-Logik – die [Gesamtbetriebskosten](/glossar#tco) statt des Listenpreises [5]. Auf der Nutzenseite stehen eingesparte Arbeitszeit (bewertet mit echten Stundensätzen), schnellere Durchlaufzeiten (wenn sie Umsatz oder Zufriedenheit messbar verändern) und vermiedene Fehlerkosten. Fixe und variable Teile zu trennen lohnt sich: Die [Grenzkosten](/glossar#grenzkosten) einer zusätzlichen Aufgabe sind bei KI oft nur Cents – die Einrichtung ist der Batzen."
+  },
+  {
+   "t": "h2",
+   "x": "Stufe 4: ROI rechnen und ehrlich bleiben"
+  },
+  {
+   "t": "p",
+   "x": "Der Return on Investment ist eine einfache Formel: (Ertrag − Kosten) geteilt durch Kosten [6]. Auf das Beispiel oben angewendet: Spart die KI-Strecke pro Antwort rund 9,75 € an Arbeitszeit und werden monatlich 500 Anfragen bearbeitet, stehen etwa 4.875 € Ersparnis gegen vielleicht 800 € Vollkosten (Lizenz, Pflege, Prüfung) – ein monatlicher ROI von gut 500 %. Diese Zahl ist ehrlich, *wenn* die 15 Minuten Handarbeit real eingespart werden und die eingesparte Zeit anderweitig genutzt wird. Genau hier scheitern viele ROI-Rechnungen in der Praxis: Sie verbuchen Zeitersparnisse, die niemand freisetzt. Die NANDA-Zahlen [4] mahnen dasselbe aus der anderen Richtung: Wer weder Startwert noch Zielwert misst, kann den Ertrag nicht belegen."
+  },
+  {
+   "t": "table",
+   "caption": "Die vier Ebenen der KI-Kostenrechnung (Redaktion)",
+   "head": [
+    "Ebene",
+    "Frage",
+    "Kennzahl"
+   ],
+   "rows": [
+    [
+     "Modell",
+     "Was kostet die Million Tokens?",
+     "Eingabe-/Ausgabepreis [1][2]"
+    ],
+    [
+     "Aufgabe",
+     "Was kostet ein Versuch, was ein brauchbares Ergebnis?",
+     "Kosten pro gelöster Aufgabe"
+    ],
+    [
+     "Prozess",
+     "Was kostet der ganze Ablauf inklusive Prüfung und Pflege?",
+     "Vollkosten (TCO)"
+    ],
+    [
+     "Unternehmen",
+     "Was bleibt nach Abzug aller Kosten?",
+     "ROI, Amortisationsdauer"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zwei ehrliche Verzierungen gehören dazu. Erstens: Rechne konservativ – halbiere geschätzte Zeitersparnisse, bevor du sie ins Budget gibst. Zweitens: Lege die Amortisationsdauer offen (Einmalkosten geteilt durch monatlichen Überschuss). Ein Projekt, das sich nach vier Monaten trägt, ist ein anderes Gespräch als eines, das erst nach drei Jahren die schwarze Null sieht."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Warum ist der Preis pro Million Tokens irreführend?",
+   "a": "Weil Modelle unterschiedlich viele Tokens für dieselbe Aufgabe brauchen, unterschiedlich oft brauchbare Ergebnisse liefern und die Ausgabe anders bepreisen als die Eingabe. Entscheidend ist die Rechnung pro gelöster Aufgabe inklusive Akzeptanzquote und Prüfzeit – ein doppelt so teures Modell kann die halbe Gesamtrechnung haben, wenn es doppelt so oft sitzt."
+  },
+  {
+   "q": "Wie messe ich die Akzeptanzquote?",
+   "a": "Mit einer kleinen Stichprobe: 30 bis 50 echte Aufgaben mit KI bearbeiten, jede Ausgabe von einem Menschen als \"direkt verwendbar\", \"nach Korrektur verwendbar\" oder \"verworfen\" markieren. Der Anteil der ersten beiden Gruppen ist die Quote. Das ist dieselbe Idee wie bei Evals, nur auf deine konkrete Aufgabe angewendet."
+  },
+  {
+   "q": "Lohnt sich Prompt-Caching oder Batch-Verarbeitung?",
+   "a": "Caching lohnt sich, wenn ein großer Teil der Eingabe bei jeder Anfrage gleich bleibt – etwa eine Wissensdatenbank oder ein langer System-Prompt; die gespeicherte Eingabe kostet bei aktuellen Preisen etwa ein Zehntel. Batch lohnt sich für Aufgaben ohne Echtzeitbedarf, etwa nächtliche Klassifizierungen, und halbiert typischerweise den Preis."
+  },
+  {
+   "q": "Wie realistisch sind ROI-Versprechen von Anbietern?",
+   "a": "Mit Vorsicht zu genießen. Die NANDA-Auswertung von 2025 fand messbaren Ertrag nur bei etwa 5 % der untersuchten Pilotprojekte. Das heißt nicht, dass KI sich nicht lohnt – sondern dass der Ertrag an Auswahl, Vorbereitung und Messung hängt. Eine eigene kleine Rechnung mit echten Startwerten schlägt jede Hersteller-Folie."
+  }
+ ],
+ "sources": [
+  {
+   "title": "API Pricing (GPT-Modelle)",
+   "publisher": "OpenAI Developers, abgerufen am 20. Oktober 2026",
+   "url": "https://developers.openai.com/api/docs/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Model pricing (Claude-Modelle)",
+   "publisher": "Anthropic Docs, abgerufen am 20. Oktober 2026",
+   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "2025: The State of Generative AI in the Enterprise",
+   "publisher": "Menlo Ventures, 9. Dezember 2025",
+   "url": "https://menlovc.com/perspective/2025-the-state-of-generative-ai-in-the-enterprise/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "The GenAI Divide: State of AI in Business 2025",
+   "publisher": "MIT Project NANDA, Juli 2025",
+   "url": "https://21464181.fs1.hubspotusercontent-na1.net/hubfs/21464181/v0.1_State_of_AI_in_Business_2025_Report.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "What is total cost of ownership (TCO)?",
+   "publisher": "IBM Think, 2025",
+   "url": "https://www.ibm.com/think/topics/total-cost-of-ownership",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "What Is Return on Investment (ROI) and How to Calculate It",
+   "publisher": "Investopedia",
+   "url": "https://www.investopedia.com/terms/r/returnoninvestment.asp",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Preisseiten von OpenAI und Anthropic, der Menlo-Ventures-Report (Ausgabensummen), der vollständige NANDA-Bericht als PDF, die TCO-Seite von IBM Think und der ROI-Grundlagenartikel von Investopedia. Alle Rechnungen in diesem Artikel (Cent-Kosten je Antwort, Prüfzeit-Bewertung, ROI-Beispiel, Preisfaktoren) sind eigene Rechnungen der Redaktion mit den im Text genannten Annahmen; die Token-Mengen und Akzeptanzquoten sind Beispielwerte, keine Messung an einem echten System.",
+ "limitations": "API-Preise ändern sich häufig; alle Preise gelten für den 20. Oktober 2026. Die Beispielrechnung hängt an den angenommenen Token-Mengen, der Akzeptanzquote und dem Stundensatz – sie zeigt das Verfahren, nicht dein Ergebnis. Arbeitszeitersparnis ist nur dann ein Ertrag, wenn die Zeit tatsächlich freigesetzt und anderweitig genutzt wird; diese Annahme prüft keine Studie für dich ab. Die Menlo-Ventures-Ausgabenzahlen sind Schätzungen eines Investors, die NANDA-Zahlen haben Preprint-Charakter.",
+ "related": [
+  "build-vs-buy",
+  "use-cases-priorisieren",
+  "evals-statt-bauchgefuehl"
+ ]
+}

@@ -2669,5 +2669,55 @@
     "url": "https://github.com/zilliztech/GPTCache"
    }
   ]
+ },
+ {
+  "term": "TCO",
+  "aka": [
+   "Total Cost of Ownership",
+   "Gesamtbetriebskosten"
+  ],
+  "letter": "T",
+  "definition": "Rechnung über alle Kosten eines Produkts oder Diensts über seine gesamte Lebensdauer: Anschaffung, Betrieb und indirekte Posten wie Einarbeitung, Anbindung und Pflege. Bei KI-Projekten ist der Listenpreis für Lizenzen oder Tokens meist der kleinste Teil dieser Rechnung.",
+  "usage": "Ein Chatbot-Abo für 25 Euro pro Nutzer sieht günstig aus, bis Anbindung an die eigenen Systeme, Prüfzeiten und Pflege dazukommen. Erst der TCO-Vergleich aller Wege macht SaaS, API und Selbst-Hosting vergleichbar.",
+  "related": [
+   "/build-vs-buy",
+   "/ki-kosten-roi"
+  ],
+  "see_also": [
+   "ROI",
+   "Grenzkosten",
+   "Kosten pro gelöster Aufgabe"
+  ],
+  "sources": [
+   {
+    "title": "IBM Think: What is total cost of ownership (TCO)?",
+    "url": "https://www.ibm.com/think/topics/total-cost-of-ownership"
+   }
+  ]
+ },
+ {
+  "term": "ROI",
+  "aka": [
+   "Return on Investment",
+   "Kapitalrendite"
+  ],
+  "letter": "R",
+  "definition": "Kennzahl für den Ertrag einer Investition: (Ertrag minus Kosten) geteilt durch die Kosten. Ein ROI von 100 % bedeutet, dass neben den Kosten zusätzlich der volle Einsatz zurückgekommen ist. Bei KI-Projekten scheitert die Rechnung oft daran, dass geschätzte Zeitersparnisse nie tatsächlich freigesetzt werden.",
+  "usage": "Spart ein KI-Werkzeug monatlich 5.000 Euro Arbeitszeit bei 1.000 Euro Vollkosten, liegt der monatliche ROI bei 400 %. Ehrlich ist die Zahl nur, wenn die eingesparte Zeit auch anderweitig genutzt wird.",
+  "related": [
+   "/ki-kosten-roi",
+   "/use-cases-priorisieren"
+  ],
+  "see_also": [
+   "TCO",
+   "Kosten pro gelöster Aufgabe",
+   "Grenzkosten"
+  ],
+  "sources": [
+   {
+    "title": "Investopedia: What Is Return on Investment (ROI) and How to Calculate It",
+    "url": "https://www.investopedia.com/terms/r/returnoninvestment.asp"
+   }
+  ]
  }
 ]
