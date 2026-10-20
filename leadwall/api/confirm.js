@@ -7,7 +7,7 @@ module.exports = async (req, res) => {
   if (!id) return L.redirect(res, L.SITE + '/tagesbericht-bestaetigt?e=1');
   const rec = await L.store.get(id);
   if (!rec) return L.redirect(res, L.SITE + '/tagesbericht-bestaetigt?e=1');
-  if (!rec.confirmedAt) { rec.confirmedAt = new Date().toISOString(); rec.confirmIp = L.ip(req); rec.unsubscribedAt = null; await L.store.put(id, rec); }
+  if (!rec.confirmedAt) { rec.confirmedAt = new Date().toISOString(); rec.confirmIp = L.ip(req); rec.unsubscribedAt = null; await L.store.put(id, rec); await L.addToSegment(rec.email); }
   const dl = L.token('dl', id, 0);
   L.redirect(res, L.SITE + '/tagesbericht-bestaetigt#k=' + dl); // fragment: not sent to servers or logs
 };

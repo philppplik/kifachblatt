@@ -16,7 +16,8 @@ test('DOI flow: no PDF before confirm, log filled, unsubscribe works', async () 
   r = rs(); await conf(mk('GET', '/api/confirm?t=' + encodeURIComponent(t)), r); assert.match(r.headers.location, /tagesbericht-bestaetigt#k=/);
   rec = await L.store.get(id); assert.ok(rec.confirmedAt && rec.confirmIp);
   const k = r.headers.location.split('#k=')[1];
-  r = rs(); await pdf(mk('GET', '/api/pdf?k=' + k), r); assert.match(r.headers.location, /berichte\/ki-tagesbericht\.pdf$/);
+  global.__reports = { [new Date().toISOString().slice(0,10)]: Buffer.from('%PDF-test') };
+  r = rs(); await pdf(mk('GET', '/api/pdf?k=' + k), r); assert.equal(r.statusCode, 200); assert.equal(r.headers['content-type'], 'application/pdf'); assert.equal(String(r.body), '%PDF-test');
   r = rs(); await un(mk('GET', '/api/unsub?t=' + encodeURIComponent(L.token('unsub', id, 0))), r); assert.match(r.headers.location, /abmelden\?ok=1/);
   r = rs(); await pdf(mk('GET', '/api/pdf?k=' + k), r); assert.match(r.headers.location, /tagesbericht-anmelden/);
 });

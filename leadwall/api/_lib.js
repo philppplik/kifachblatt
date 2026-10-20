@@ -79,4 +79,25 @@ const redirect = (res, url) => { res.statusCode = 303; res.setHeader('location',
 const ip = (req) => String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || (req.socket && req.socket.remoteAddress) || '';
 const readBody = async (req) => { if (req.body) return typeof req.body === 'string' ? JSON.parse(req.body) : req.body; let d = ''; for await (const c of req) d += c; return d ? JSON.parse(d) : {}; };
 
-module.exports = { TEXT_VERSION, SITE, API, idOf, norm, validEmail, token, verify, store, sendMail, cors, json, redirect, ip, readBody };
+// Report PDFs live in Vercel Blob under an unguessable, deterministic path (date + HMAC). Never linked publicly;
+// /api/pdf streams them after the subscriber token check, so the Blob URL is not exposed.
+const reportPath = (date) => 'reports/ki-tagesbericht-' + date + '-' + sign('report:' + date).slice(0, 24) + '.pdf';
+async function fetchReport(date) {
+  if (process.env.LW_STORE === 'memory') return (global.__reports || {})[date] || null;
+  const r = await fetch(process.env.BLOB_BASE_URL + '/' + reportPath(date));
+  return r.ok ? Buffer.from(await r.arrayBuffer()) : null;
+}
+async function latestReport() {
+  for (let i = 0; i < 8; i++) {
+    const d = new Date(Date.now() - i * 864e5).toISOString().slice(0, 10);
+    const b = await fetchReport(d); if (b) return { date: d, buf: b };
+  }
+  return null;
+}
+async function addToSegment(email) {
+  if (!process.env.SEGMENT_ID || process.env.LW_MAIL === 'dry') return;
+  const h = { authorization: 'Bearer ' + process.env.RESEND_API_KEY, 'content-type': 'application/json' };
+  let r = await fetch('https://api.resend.com/contacts', { method: 'POST', headers: h, body: JSON.stringify({ email, unsubscribed: false, segments: [{ id: process.env.SEGMENT_ID }] }) });
+  if (!r.ok) await fetch('https://api.resend.com/contacts/' + encodeURIComponent(email) + '/segments/' + process.env.SEGMENT_ID, { method: 'POST', headers: h });
+}
+module.exports = { reportPath, fetchReport, latestReport, addToSegment, TEXT_VERSION, SITE, API, idOf, norm, validEmail, token, verify, store, sendMail, cors, json, redirect, ip, readBody };

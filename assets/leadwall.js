@@ -6,9 +6,8 @@
   function set(k){try{localStorage.setItem(KEY,JSON.stringify({k:k,exp:Date.now()+DAYS*864e5}))}catch(e){}}
   var path=location.pathname.replace(/\.html$/,'');
   // 1) Report breakers: remembered subscribers go straight to the PDF, everyone else to the sign-up page.
-  document.querySelectorAll('.report-breaker a.rb-button, .report-breaker a.rb-mock').forEach(function(a){
+  document.querySelectorAll('a[href="/tagesbericht-anmelden"]:not(.lw-go)').forEach(function(a){
     var k=get();a.href=(k&&API)?API+'/api/pdf?k='+encodeURIComponent(k):'/tagesbericht-anmelden';
-    if(!k)a.removeAttribute('download');
   });
   // 2) Sign-up form
   var f=document.getElementById('lw-form');

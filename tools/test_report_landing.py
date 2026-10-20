@@ -10,10 +10,10 @@ class LandingTests(unittest.TestCase):
     s=r.build(t,t,key,['2026-10-19'],'current.pdf','report-')
     self.assertIn('data-brand="'+key+'"',s)
     self.assertEqual(s.count('class="rl-button"'),2)
-    self.assertIn('/berichte/report-2026-10-19.pdf',s)
+    self.assertIn('/tagesbericht-anmelden',s);self.assertNotIn('/berichte/report-2026-10-19.pdf',s)
     self.assertEqual(s.count('<details>'),6)
     self.assertNotIn('<form',s);self.assertNotIn('<script',s);self.assertNotIn('<iframe',s)
-    self.assertIn('Ohne Anmeldung',s);self.assertIn('Ohne E-Mail',s)
+    self.assertIn('Ohne Konto',s);self.assertIn('Nur E-Mail',s)
     self.assertTrue((Path(t)/'assets/report-preview/landing.css').is_file())
  def test_breaker_thumb_from_supplied_snapshot(self):
   with tempfile.TemporaryDirectory() as t,patch.object(r.shutil,'which',return_value=None):
