@@ -1,0 +1,217 @@
+{
+ "slug": "literaturrecherche-ki",
+ "lang": "de",
+ "section": "methode",
+ "type": "explainer",
+ "title": "Literaturrecherche mit KI: Werkzeuge, Abdeckung, Blindgänger",
+ "dek": "KI-Werkzeuge durchsuchen Hunderte Millionen Papers und fassen Studien zusammen. Was sie leisten, was sie kosten und wo sie täuschen.",
+ "published": "2026-10-18T09:00:00+02:00",
+ "modified": "2026-10-20T09:58:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Literatur",
+  "Recherche",
+  "Wissenschaft",
+  "Semantic Scholar",
+  "Scopus",
+  "Werkzeuge"
+ ],
+ "key_takeaways": [
+  "Die Abdeckung ist enorm: Semantic Scholar indexiert nach eigenen Angaben über 200 Millionen Papers und ist kostenlos [1], Consensus wirbt mit über 400 Millionen [4].",
+  "Spezialisierte Werkzeuge antworten aus der Literaturdatenbank heraus und verweisen auf die Quellen; Scopus AI sagt ausdrücklich, wenn die Evidenz nicht reicht [3].",
+  "Allgemeine Chat-Assistenten dagegen erfinden Literatur: In einer Studie waren 18 bis 55 Prozent der von GPT-3.5 und GPT-4 genannten Referenzen komplett frei erfunden [6].",
+  "Jede gefundene Quelle braucht drei Checks: Existiert sie (DOI aufrufen), sagt sie das Behauptete (Abstract lesen), ist sie noch gültig (Retraction-Check, etwa über die offene Retraction-Watch-Datenbank bei Crossref [7])."
+ ],
+ "hero": {
+  "alt": "Säulendiagramm der Datenbankgrößen: Consensus wirbt mit über 400 Millionen Papers, Semantic Scholar indexiert über 200 Millionen.",
+  "caption": "Die Abdeckung der Recherche-Datenbanken nach Selbstauskunft der Anbieter; die Zählweisen sind nicht einheitlich und die Werte nicht 1:1 vergleichbar. Eigene Darstellung nach [1][4].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Die klassische Literaturrecherche beginnt in einer Datenbank mit einem Stichwort und endet mit vierzig offenen Tabs. KI-Recherchewerkzeuge versprechen, diesen Weg abzukürzen: Frage in ganzen Sätzen stellen, Antwort mit Quellenangaben bekommen. Das funktioniert inzwischen gut genug, um Stunden zu sparen. Es funktioniert aber nur, wenn man versteht, welche Werkzeuge wirklich in der Literatur suchen und welche sie bloß simulieren."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Eine Recherche-Datenbank mit KI-Oberfläche ist wie ein Bibliothekar, der wirklich jedes Regal kennt: Er bringt Ihnen echte Bücher und zeigt die Signatur. Ein allgemeiner Chat-Assistent dagegen ist wie ein belesener Gesprächspartner am Stammtisch: Er kennt die Literaturgefilde aus dem Gedächtnis, nennt Titel und Jahre mit voller Überzeugung, aber ob es das Buch gibt, müssen Sie selbst im Katalog prüfen."
+  },
+  {
+   "t": "h2",
+   "x": "Zwei Werkzeugtypen, ein wichtiger Unterschied"
+  },
+  {
+   "t": "p",
+   "x": "Der erste Typ sind Literaturdatenbanken mit KI-Schicht: Sie suchen in einem echten, gepflegten Korpus aus Verlagsdaten, Crawls und Partnerschaften und setzen die KI zum Finden, Einordnen und Zusammenfassen ein. Der zweite Typ sind allgemeine Chat-Assistenten, die aus ihrem Trainingswissen antworten. Nur der erste Typ liefert überprüfbare Treffer; der zweite liefert plausible Beschreibungen von Treffern. Der Unterschied entscheidet, ob eine Recherche belastbar ist."
+  },
+  {
+   "t": "h2",
+   "x": "Die Datenbasis: wer wie viel abdeckt"
+  },
+  {
+   "t": "p",
+   "x": "Semantic Scholar, ein Projekt des gemeinnützigen Allen Institute for AI, indexiert nach eigenen Angaben über 200 Millionen wissenschaftliche Papers aus Verlagskooperationen, Datenlieferanten und Web-Crawls und stellt Suche, APIs und Datensätze kostenlos bereit [1]. OpenAlex ist ein offener Katalog der weltweiten Forschung mit dokumentierter API und freiem Datenzugang, geeignet auch für eigene Auswertungen und systematische Reviews [2]. Scopus AI von Elsevier arbeitet auf dem kuratierten, peer-reviewten Bestand von Scopus und erzeugt zu einer Frage Themenzusammenfassungen mit Referenzen; jede Antwort nennt die genutzten Quellen samt Relevanz-Konfidenz, und bei dünner Evidenzlage soll das System das ausdrücklich sagen und Alternativfragen vorschlagen [3]."
+  },
+  {
+   "t": "p",
+   "x": "Auf dieser Basis setzen KI-Aufsätze wie Consensus und Elicit. Consensus bewirbt eine Suche über mehr als 400 Millionen wissenschaftliche Papers, mit Zusammenfassungen, einem „Consensus Meter“ für Ja- und Nein-Fragen und Studien-Steckbriefen [4]. Elicit kombiniert Literatursuche mit strukturierter Datenextraktion aus Papers und gibt für diesen Schritt eine eigene Validierung an: 99,4 Prozent Extraktionsgenauigkeit in der hauseigenen Prüfung [5]. Solche Herstellerangaben sind Angaben der Anbieter, keine unabhängigen Messungen, aber sie zeigen die Richtung: Die Werkzeuge konkurrieren über Nachprüfbarkeit."
+  },
+  {
+   "t": "p",
+   "x": "Für den Zugang gilt eine grobe Dreiteilung: Semantic Scholar und OpenAlex sind dauerhaft kostenlos und offen [1][2], Consensus und Elicit arbeiten mit kostenlosen Kontingenten und Bezahlstufen [4][5], Scopus AI läuft über institutionelle Lizenzen, also typischerweise über die Hochschulbibliothek [3]. Für Studierende und Forschende heißt das: Ein Großteil der beschriebenen Arbeitsschritte ist ohne Budget möglich; die Frage, welche Datenbanken die eigene Einrichtung lizenziert hat, beantwortet die Bibliothek."
+  },
+  {
+   "t": "p",
+   "x": "Ein Beispiel zeigt, wie weit die Angebote inzwischen gehen: Scopus AI baut zu einer Frage nicht nur eine belegte Zusammenfassung, sondern schlägt Vertiefungsfragen vor, listet grundlegende Arbeiten des Feldes, erzeugt Konzeptlandkarten aus den Abstracts und bietet einen Deep-Research-Modus, der eigenständig einen Rechercheplan erstellt und als Bericht ausliefert [3]. Das ist nützlich für den Einstieg in ein fremdes Gebiet. Es ersetzt aber nicht die Bewertung der einzelnen Studie, denn schon die Auswahl, was zusammengefasst wird, ist eine redaktionelle Entscheidung des Systems."
+  },
+  {
+   "t": "table",
+   "caption": "Fünf Werkzeuge im Vergleich; Abdeckung und Genauigkeitswerte sind Herstellerangaben, der Zugang kann sich ändern (Stand: 20. Oktober 2026) [1][2][3][4][5]",
+   "head": [
+    "Werkzeug",
+    "Datenbasis",
+    "Zugang",
+    "Stärke"
+   ],
+   "rows": [
+    [
+     "Semantic Scholar",
+     "Über 200 Mio. Papers",
+     "Kostenlos",
+     "Offene Suche, APIs und Datensätze"
+    ],
+    [
+     "OpenAlex",
+     "Offener Forschungskatalog",
+     "Kostenlos",
+     "Dokumentierte API für eigene Auswertungen"
+    ],
+    [
+     "Scopus AI",
+     "Kuratierter Peer-Review-Bestand",
+     "Institutionslizenz",
+     "Belegte Zusammenfassungen mit Relevanz-Konfidenz"
+    ],
+    [
+     "Consensus",
+     "Über 400 Mio. Papers (Anbieterangabe)",
+     "Freemium",
+     "Consensus Meter, Studien-Steckbriefe"
+    ],
+    [
+     "Elicit",
+     "Literaturdatenbank plus Extraktion",
+     "Freemium",
+     "Strukturierte Datenextraktion aus Papers"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Die Blindgänger: erfundene Literatur und unsichtbare Lücken"
+  },
+  {
+   "t": "p",
+   "x": "Das größte Risiko bleibt die erfundene Referenz. Walters und Wilder ließen GPT-3.5 und GPT-4 kurze Literaturübersichten erstellen und prüften alle 636 genannten Quellen: Bei GPT-3.5 waren 55 Prozent komplett erfunden, bei GPT-4 immerhin 18 Prozent [6]. Die Titel klingen echt, die Journalnamen existieren, oft stimmen sogar die Autorennamen annähernd. Genau deshalb ist die Gefahr in der Literaturrecherche größer als in jeder anderen KI-Anwendung: Eine erfundene Quelle im Literaturverzeichnis ist schlimmer als keine Quelle."
+  },
+  {
+   "t": "p",
+   "x": "Der zweite Blindgänger ist subtiler: Auch echte Treffer können falsch gewichtet sein. Datenbanken decken Verlagsliteratur gut ab, graue Literatur, Preprints ohne Indexierung, deutschsprachige Fachartikel und sehr neue Beiträge schlechter. Wer nur über eine KI-Oberfläche sucht, sieht die Lücken des Korpus nicht. Und schließlich das Aktualitätsproblem: Eine zurückgezogene Studie bleibt in vielen Systemen als normaler Treffer sichtbar. Die Retraction-Watch-Datenbank, seit 2023 im Besitz von Crossref und komplett offen, erlaubt den Gegencheck, ob eine Arbeit zurückgezogen wurde [7]."
+  },
+  {
+   "t": "h2",
+   "x": "Ein Workflow, der trägt"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Breit starten, spezialisiert vertiefen.** Erste Orientierung über eine KI-Oberfläche wie Consensus oder Scopus AI; die Begriffe und Kernarbeiten dort einsammeln, nicht die Formulierungen.",
+    "**Jede Quelle einzeln verifizieren.** Titel und DOI aufrufen, Abstract lesen. Erst wenn die Quelle existiert und das Behauptete sagt, kommt sie in die eigene Sammlung. Zur Erinnerung: 18 bis 55 Prozent Erfundenes sind der Ausgangspunkt, nicht der Ausnahmefall [6].",
+    "**Retraction-Check machen.** Für jede zentrale Quelle prüfen, ob sie zurückgezogen wurde, etwa über die offene Retraction-Watch-Datenbank [7].",
+    "**Korpuslücken bewusst schließen.** Deutschsprachige und fachspezifische Datenbanken, Bibliothekskataloge und die Referenzlisten der Kernpapers von Hand ergänzen.",
+    "**Recherche dokumentieren.** Suchbegriffe, Datenbanken, Datum und Auswahlkriterien festhalten, damit die Recherche nachvollziehbar und wiederholbar bleibt."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Grenzen, die bleiben"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Zusammenfassungen verkürzen Studienlage.** Eine KI-Antwort über „den Stand der Forschung“ gewichtet unsichtbar; welche Studien ein- und welche ausgeblendet wurden, ist nicht transparent.",
+    "**Herstellerangaben sind keine Audits.** Werte wie die 99,4 Prozent von Elicit stammen aus der eigenen Validierung des Anbieters [5].",
+    "**Kostenlose Zugänge sind begrenzt.** Umfang und Funktionen der freien Kontingente ändern sich laufend; Stand prüfen.",
+    "**Kein Ersatz fürs Lesen.** Wer eine Quelle zitiert, muss sie gelesen haben, mindestens Abstract und die zitierte Stelle; die KI-Zusammenfassung zählt nicht als Lektüre."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Richtig eingesetzt, verändern diese Werkzeuge die Recherche: Die Erschließung eines Themas dauert Stunden statt Tage. Die Verantwortung für die Quellenlage bleibt beim Forschenden, und der Preis für die Geschwindigkeit ist Pflichtprogramm: verifizieren, gegenprüfen, dokumentieren. Wie man die gefundenen Quellen korrekt prüft und zitiert, zeigt der nächste Artikel; warum Sprachmodelle überhaupt Quellen erfinden, erklärt der Text über <a href=\"/halluzinationen\">Halluzinationen</a> und das Glossar unter <a href=\"/glossar#halluzination\">Halluzination</a> und <a href=\"/glossar#grounding\">Grounding</a>."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Sind KI-Recherchewerkzeuge kostenlos?",
+   "a": "Teilweise. Semantic Scholar ist komplett kostenlos und offen [1], OpenAlex ebenfalls [2]. Consensus und Elicit haben kostenlose Kontingente mit Bezahlstufen, Scopus AI ist ein kostenpflichtiges Produkt über Institutionen [3][4][5]. Die Konditionen ändern sich regelmäßig, also aktuell prüfen."
+  },
+  {
+   "q": "Kann ich ChatGPT für die Literaturrecherche nutzen?",
+   "a": "Zur Begriffsfindung und Strukturierung ja, zur Quellenbeschaffung nein. In der Zitationsstudie von Walters und Wilder waren 18 bis 55 Prozent der von GPT-4 beziehungsweise GPT-3.5 genannten Referenzen komplett erfunden [6]. Für die eigentliche Suche gehören Werkzeuge mit echter Datenbankanbindung her."
+  },
+  {
+   "q": "Woran erkenne ich eine erfundene Quelle?",
+   "a": "Am sichersten durch den Versuch, sie zu öffnen: DOI oder Titel in einer Datenbank suchen. Typische Warnsignale sind exakt passende, aber auffindbar nirgends existierende Titel, Jahrgänge ohne Treffer und Autorenkombinationen, die in keinem anderen Kontext auftauchen [6]."
+  },
+  {
+   "q": "Wie prüfe ich, ob eine Studie zurückgezogen wurde?",
+   "a": "Über die Retraction-Watch-Datenbank, die seit 2023 zu Crossref gehört und komplett offen ist [7]. Viele Bibliothekssysteme und Verlagsseiten kennzeichnen Retractions ebenfalls, aber nicht zuverlässig alle; der eigene Check lohnt bei jeder zentralen Quelle."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026: die Anbieterseiten von Semantic Scholar, Consensus, Elicit und Scopus AI, das OpenAlex-Hilfezentrum, die Ankündigung von Retraction Watch zur Übernahme durch Crossref sowie die Zitationsstudie von Walters und Wilder in Scientific Reports. Abdeckungszahlen und Genauigkeitswerte sind Herstellerangaben und als solche gekennzeichnet; das Diagramm stellt die Selbstauskünfte zweier Anbieter gegenüber, ohne die Zählweisen gleichzusetzen. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Abdeckung und Funktionen der Werkzeuge ändern sich laufend; alle Zahlen sind Selbstauskünfte der Anbieter mit Stand vom 20. Oktober 2026. Die Zitationsstudie stammt aus 2023 und bezieht sich auf GPT-3.5 und GPT-4; neuere Modelle können besser abschneiden, das Grundproblem bleibt. Fachspezifische Datenbanken (etwa PubMed, Juris, FIS) wurden nicht getestet.",
+ "related": [
+  "quellen-pruefen-zitieren",
+  "datenanalyse-ki-assistenten",
+  "ki-deklaration-wissenschaft"
+ ],
+ "sources": [
+  {
+   "title": "About Semantic Scholar",
+   "publisher": "Semantic Scholar (Allen Institute for AI)",
+   "url": "https://www.semanticscholar.org/about"
+  },
+  {
+   "title": "OpenAlex Help Center",
+   "publisher": "OpenAlex",
+   "url": "https://docs.openalex.org/"
+  },
+  {
+   "title": "Scopus AI",
+   "publisher": "Elsevier",
+   "url": "https://www.elsevier.com/products/scopus/scopus-ai"
+  },
+  {
+   "title": "Consensus: KI-Suche über wissenschaftliche Literatur",
+   "publisher": "Consensus",
+   "url": "https://consensus.app/"
+  },
+  {
+   "title": "Elicit: AI for research",
+   "publisher": "Elicit",
+   "url": "https://elicit.com/"
+  },
+  {
+   "title": "Fabrication and errors in the bibliographic citations generated by ChatGPT (Walters & Wilder)",
+   "publisher": "Scientific Reports / Nature Portfolio (2023)",
+   "url": "https://www.nature.com/articles/s41598-023-41032-5"
+  },
+  {
+   "title": "The Retraction Watch Database becomes completely open (Übernahme durch Crossref)",
+   "publisher": "Retraction Watch (2023)",
+   "url": "https://retractionwatch.com/the-retraction-watch-database/"
+  }
+ ]
+}

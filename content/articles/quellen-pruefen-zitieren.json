@@ -1,0 +1,187 @@
+{
+ "slug": "quellen-pruefen-zitieren",
+ "lang": "de",
+ "section": "methode",
+ "type": "explainer",
+ "title": "Quellen prüfen und korrekt zitieren bei KI-Unterstützung",
+ "dek": "KI liefert Quellenlisten in Sekunden, aber nicht jede Quelle existiert. So prüfen Sie Verweise und zitieren KI-Chats korrekt nach APA und MLA.",
+ "published": "2026-10-18T10:00:00+02:00",
+ "modified": "2026-10-20T10:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Zitieren",
+  "Quellenkritik",
+  "APA",
+  "MLA",
+  "Wissenschaftliches Arbeiten"
+ ],
+ "key_takeaways": [
+  "Jede von einer KI genannte Quelle braucht zwei Prüfungen: Existiert sie, und sagt sie das Behauptete. Beides lässt sich nur am Original klären, nicht am KI-Text.",
+  "Das MLA empfiehlt ausdrücklich, die von einem KI-Werkzeug verlinkten Quellen direkt zu konsultieren und zu zitieren, statt die KI-Antwort zu zitieren, weil Werkzeuge Quellen erfinden oder falsch zusammenfassen können [2].",
+  "Wer eine KI-Antwort selbst zitiert, nutzt die aktuellen Formate: APA (Firma als Urheber, Datum, Chattitel plus „[Generative AI chat]“, Modell, Share-URL) [1] oder MLA (Prompt als Titel, Werkzeug als Container, Modell als Version, Datum, stabile URL) [2].",
+  "Ein DOI ist der robusteste Existenzbeweis: Über doi.org lässt er sich direkt auflösen und führt auch dann zum Ziel, wenn die Verlagsseite umgezogen ist [4]."
+ ],
+ "hero": {
+  "alt": "Gegenüberstellung der Zitierformate: APA nennt die Firma als Urheber, den Chattitel mit Klammerzusatz, das Modell und die Share-URL; MLA nutzt den Prompt als Titel, das Werkzeug als Container, das Modell als Version und bevorzugt eine stabile URL.",
+  "caption": "Ein KI-Chat in APA und MLA: dieselben Bausteine, andere Reihenfolge. Eigene Darstellung nach [1][2].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Die KI hat geliefert: zehn Quellen zum Thema, alle mit Autoren, Jahr und Titel, dazu saubere Einordnungen. Jetzt beginnt die eigentliche Arbeit. Denn eine Quellenangabe ist ein Versprechen: Der Titel existiert, und er belegt genau die Aussage, neben der er steht. Beides kann eine KI nicht garantieren, also müssen Sie es prüfen. Der Aufwand ist kleiner als gedacht, wenn man ihn systematisch angeht."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Eine Quellenangabe ist wie eine Zeugenaussage vor Gericht: Zählt nur, was der Zeuge selbst gesehen hat. Die KI ist in diesem Bild die Bekannte, die erzählt, was ein Zeuge angeblich gesagt hat, mal stimmt es, mal hat sie den Zeugen erfunden. Bevor Sie sich auf die Aussage berufen, laden Sie den Zeugen selbst vor: Originalquelle öffnen, Stelle lesen."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 1: Existiert die Quelle?"
+  },
+  {
+   "t": "p",
+   "x": "Der schnellste Test ist der Versuch, die Quelle zu öffnen. Gibt es einen DOI, genügt das Kürzel hinter „doi.org/“: Der DOI ist ein persistenter Bezeichner, er löst auch dann noch auf, wenn die Verlagsseite umzieht; Präfix und Suffix sind durch einen Schrägstrich getrennt, die Präfixe beginnen immer mit „10.“ [4]. Kein Treffer über DOI, Titel und Autor in einer Literaturdatenbank? Dann ist die Quelle mit hoher Wahrscheinlichkeit erfunden. Das ist kein Randphänomen: Sprachmodelle generieren plausibel klingende Referenzen, und auch die Stil-Experten des MLA warnen davor, dass KI-Werkzeuge Quellen erfinden oder vorhandene falsch zusammenfassen [2]."
+  },
+  {
+   "t": "p",
+   "x": "Warum die Modelle das tun, ist kein Mysterium: Sie erzeugen wahrscheinliche Textfolgen, und eine Referenz mit bekanntem Journal, plausiblen Autoren und passendem Jahr ist eine sehr wahrscheinliche Textfolge. Ob hinter ihr ein echtes Paper steht, prüft das Modell nicht. Der Hintergrund ist im Artikel über <a href=\"/halluzinationen\">Halluzinationen</a> beschrieben."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 2: Sagt die Quelle das Behauptete?"
+  },
+  {
+   "t": "p",
+   "x": "Eine existierende Quelle kann trotzdem falsch zitiert sein: Das Modell fasst zusammen, was die Studie nie behauptet hat, oder überträgt einen Nebenbefund zur Kernaussage. Deshalb gilt die zweite Regel: Mindestens Abstract und die konkret zitierte Stelle im Original lesen. Das MLA formuliert es als Grundsatz: Wer die von einer KI verlinkten Sekundärquellen nicht selbst konsultiert, müsse sie als Sekundärquellen kenntlich machen; empfohlen wird, die Quellen direkt zu konsultieren und zu zitieren statt der KI-Antwort [2]. Was die KI liefert, ist ein Recherchehinweis, kein Beleg."
+  },
+  {
+   "t": "p",
+   "x": "In der Praxis genügt eine kurze Routine pro Quelle: Abstract öffnen, die Behauptung im eigenen Text danebenlegen, Frage beantworten: Belegt die Studie genau das, mit dieser Stichprobe und dieser Einschränkung? Bei Übersichtsarbeiten zusätzlich klären, ob die Aussage aus der Übersicht oder aus einer darin zitierten Primärstudie stammt; im zweiten Fall wird die Primärstudie zitiert. Fünf Minuten pro Quelle sind realistisch, und sie sind der Unterschied zwischen Literaturverzeichnis und Lückentext."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 3: Die KI-Nutzung selbst korrekt zitieren"
+  },
+  {
+   "t": "p",
+   "x": "Manchmal soll die KI-Antwort selbst ins Literaturverzeichnis, etwa wenn man ihre Aussagen analysiert oder einen generierten Text diskutiert. Beide großen Stile haben dafür 2025 aktualisierte Regeln. APA (Blogpost vom 9. September 2025) formatiert einen Chat nach dem Schema Urheber, Datum, Titel, Quelle: Urheber ist die Firma hinter dem Werkzeug, niemals die KI selbst, denn sie kann keine Verantwortung für ein Werk übernehmen; das Datum ist das Versionsdatum des Chats; der Titel ist der Chattitel in Kursivschrift mit dem Klammerzusatz „[Generative AI chat]“; die Quelle nennt das Modell und die Share-URL des Chats [1]. Ein Beispiel aus dem APA-Blog: „OpenAI. (2025, August 21). High school grammar concepts [Generative AI chat]. ChatGPT. https://chatgpt.com/share/…“ [1]."
+  },
+  {
+   "t": "p",
+   "x": "Das MLA (aktualisierte Fassung vom 13. August 2025) baut den Eintrag anders: Der Prompt steht als Titel in Anführungszeichen, das Werkzeug als Container, das Modell mit Namen oder Nummer im Element „Version“, dazu Datum und Link. Bevorzugt wird eine stabile, teilbare URL des Gesprächs; nur wenn das Werkzeug keine anbietet, genügt der allgemeine Link zum Werkzeug [2]. Auch hier gilt: Die KI wird nicht als Autorin geführt. Zwei praktische Hinweise des MLA: Den Chattitel vor dem Teilen im Werkzeug aussagekräftig benennen, und bei KI-generierten Abbildungen den Prompt in die Bildunterschrift aufnehmen [2]."
+  },
+  {
+   "t": "table",
+   "caption": "Die aktuellen Formate für KI-Chats im Überblick; die Beispiele zeigen die Logik, im Einzelfall zählen die offiziellen Anleitungen [1][2]",
+   "head": [
+    "Baustein",
+    "APA (Stand 2025)",
+    "MLA (Stand 2025)"
+   ],
+   "rows": [
+    [
+     "Urheber",
+     "Firma hinter dem Werkzeug",
+     "Entfällt (Prompt wird Titel)"
+    ],
+    [
+     "Titel",
+     "Chattitel, kursiv, + „[Generative AI chat]“",
+     "Prompt in Anführungszeichen"
+    ],
+    [
+     "Modell",
+     "In der Quellenangabe",
+     "Im Element „Version“"
+    ],
+    [
+     "Link",
+     "Share-URL des Chats",
+     "Stabile URL bevorzugt, sonst Werkzeug-Link"
+    ],
+    [
+     "KI als Autorin?",
+     "Nein",
+     "Nein"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Für das konkrete Werkzeug ChatGPT hält APA zusätzlich eine eigene Anleitung bereit, die dasselbe Schema mit Beispielen durchspielt und erläutert, wie die Share-Funktion des Werkzeugs den stabilen Link erzeugt [3]. Grundsatz in beiden Stilen bleibt: Nachvollziehbarkeit schlägt Eleganz. Ein Eintrag, der Leserinnen zur exakt gleichen Konversation führt, ist besser als ein formal perfekter, der ins Leere zeigt."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 4: Verwaltung, damit nichts verloren geht"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Literaturverwaltung von Anfang an.** Zotero ist ein freier, quelloffener Recherche-Assistent, der Quellen sammelt, organisiert und zitiert [5]. Wer Quellen erst beim Schreiben sucht, verliert sie.",
+    "**Share-Links sichern.** Die teilbare URL eines KI-Chats anlegen und mit Datum ablegen; Chats lassen sich nachträglich ändern, der Link zeigt den Stand zum Sicherungszeitpunkt [1][2].",
+    "**Prompts dokumentieren.** Für Reproduzierbarkeit und für die MLA-Titelzeile gehört der Wortlaut des Prompts in die Arbeitsnotizen.",
+    "**Prüfstatus markieren.** In der Literaturverwaltung unterscheiden: gefunden, existiert, gelesen, verwendbar. Die KI-Liste wandert als „gefunden“ ein, mehr nicht.",
+    "**Hausregeln der Einrichtung prüfen.** Was erlaubt und zu deklarieren ist, legen Hochschule, Betreuer und Verlag fest; die Stilfragen kommen danach [1]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Quellenarbeit mit KI ist keine Abkürzung, sondern eine Umdisposition: Weniger Zeit für die Suche, mehr für die Prüfung. Wer den Dreischritt Existenz, Aussage, korrekte Zitierform verinnerlicht, kann die Geschwindigkeit der Werkzeuge nutzen, ohne sein Literaturverzeichnis zu gefährden. Wie die Suche selbst abläuft und wo die typischen Blindgänger liegen, beschreibt der Artikel über <a href=\"/literaturrecherche-ki\">Literaturrecherche mit KI</a>; was in Abschlussarbeiten deklariert werden muss, steht in <a href=\"/ki-deklaration-wissenschaft\">KI-Nutzung deklarieren</a>; Grundlagen liefert das Glossar, etwa unter <a href=\"/glossar#halluzination\">Halluzination</a>."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Muss ich eine KI zitieren, wenn sie mir nur bei der Suche geholfen hat?",
+   "a": "Eine reine Hilfestellung bei der Suche ist kein zitierfähiger Inhalt; zitiert werden die gefundenen und gelesenen Quellen. Zitierpflichtig wird die KI, wenn Sie ihre Antworten als solche verwenden, also Aussagen, Texte oder Analysen des Modells selbst behandeln. Ob und wie die Nutzung zusätzlich deklariert werden muss, regeln Hochschule oder Verlag [1]."
+  },
+  {
+   "q": "Wie zitiere ich einen ChatGPT-Chat nach APA?",
+   "a": "Nach dem aktuellen APA-Schema: Firma als Urheber, dann das Datum des Chats, der Chattitel in Kursivschrift mit dem Klammerzusatz „[Generative AI chat]“, danach Modell und Share-URL. Beispiel: OpenAI. (2025, August 21). High school grammar concepts [Generative AI chat]. ChatGPT. Share-URL [1]."
+  },
+  {
+   "q": "Was ist der Unterschied zwischen APA und MLA bei KI-Quellen?",
+   "a": "APA führt die Firma als Urheber und den Chattitel als Titel; MLA nutzt den Prompt als Titel, das Werkzeug als Container und das Modell im Versionselement. Beide verlangen möglichst eine stabile, teilbare URL des Gesprächs und beide schließen die KI als Autorin aus [1][2]."
+  },
+  {
+   "q": "Die KI hat eine Quelle genannt, die es nicht gibt. Was nun?",
+   "a": "Streichen. Eine nicht auffindbare Quelle darf nicht ins Verzeichnis, auch nicht mit Vorbehalt. Prüfen Sie vorher über den DOI (Präfix „10.“, Auflösung über doi.org) und über Literaturdatenbanken [4]; bleibt die Suche erfolglos, war die Referenz eine Halluzination, wie sie auch das MLA beschreibt [2]."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026: der aktualisierte APA-Blogpost zum Zitieren generativer KI (9. September 2025) und die APA-Seite zum Zitieren von ChatGPT, die aktualisierte MLA-Anleitung (13. August 2025), die Informationen der DOI Foundation auf doi.org und die Zotero-Website. Formatbeispiele stammen aus den offiziellen Anleitungen; die Gegenüberstellung ist eine eigene Zusammenfassung. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Zitierregeln für KI-Werkzeuge werden laufend weiterentwickelt; verbindlich sind die jeweils aktuellen Fassungen der Stil-Anleitungen und die Vorgaben der eigenen Hochschule oder des Verlags. Deutsche Zitierweisen (etwa DIN 1505) und fachspezifische Regeln behandelt dieser Artikel nicht. Stand: 20. Oktober 2026.",
+ "related": [
+  "literaturrecherche-ki",
+  "ki-deklaration-wissenschaft",
+  "datenanalyse-ki-assistenten"
+ ],
+ "sources": [
+  {
+   "title": "Citing generative AI in APA Style: Reference formats",
+   "publisher": "APA Style Blog (2025)",
+   "url": "https://apastyle.apa.org/blog/cite-generative-ai-references"
+  },
+  {
+   "title": "How do I cite generative AI in MLA style? (Updated and Revised)",
+   "publisher": "MLA Style Center (2025)",
+   "url": "https://style.mla.org/citing-generative-ai-updated/"
+  },
+  {
+   "title": "How to cite ChatGPT (APA)",
+   "publisher": "APA Style Blog (2025)",
+   "url": "https://apastyle.apa.org/blog/how-to-cite-chatgpt"
+  },
+  {
+   "title": "DOI Foundation: DOI auflösen",
+   "publisher": "doi.org",
+   "url": "https://www.doi.org/"
+  },
+  {
+   "title": "Zotero: Your personal research assistant",
+   "publisher": "Zotero",
+   "url": "https://www.zotero.org/"
+  }
+ ]
+}

@@ -1,0 +1,192 @@
+{
+ "slug": "ki-deklaration-wissenschaft",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "KI-Nutzung in wissenschaftlichen Arbeiten deklarieren",
+ "dek": "COPE, ICMJE, Nature und Science sind sich einig: KI ist nie Autorin, die Nutzung wird offengelegt. Was wohin gehört und was verboten ist.",
+ "published": "2026-10-18T12:00:00+02:00",
+ "modified": "2026-10-20T10:05:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Deklaration",
+  "Publikation",
+  "COPE",
+  "ICMJE",
+  "Wissenschaftsethik"
+ ],
+ "key_takeaways": [
+  "Kein großes Regelwerk lässt KI als Autorin zu: COPE, ICMJE, Nature und Science begründen das gleich, nämlich damit, dass ein Werkzeug keine Verantwortung für Genauigkeit, Integrität und Originalität übernehmen kann [1][2][3][4].",
+  "Die Deklaration hat feste Orte: Schreibhilfe gehört in die Danksagung, KI in Datenerhebung, Analyse oder Abbildungen in den Methodenteil, und bei der Einreichung zusätzlich ins Begleitschreiben [2][4].",
+  "Nature Portfolio sortiert KI-Nutzung in ein Ampel-Modell: assistierend (grün), bewertend (amber, nur mit menschlicher Aufsicht und Offenlegung), verboten (rot, etwa wenn KI das wissenschaftliche Urteil ersetzt) [3].",
+  "Vertraulichkeit gilt auch für Gutachter: Bei den Science-Journals dürfen Begutachtende keine Manuskriptteile in ein Sprachmodell eingeben [4]."
+ ],
+ "hero": {
+  "alt": "Drei Spalten im Ampel-Modell von Nature Portfolio: grün für assistierende Nutzung, amber für bewertende Nutzung mit Auflagen, rot für verbotene Nutzung wie KI-Autorschaft.",
+  "caption": "Das Risiko-Framework von Nature Portfolio für KI in Forschung und Publikation, vereinfacht dargestellt. Eigene Darstellung nach [3].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "An fast jeder Hochschule läuft derzeit dieselbe Debatte: Ein Kapitel klingt auffällig glatt, ein Literaturverzeichnis enthält Quellen, die niemand findet, und die Frage im Prüfungsgespräch lautet, was davon eigentlich KI war. Der Konflikt entsteht selten durch die Nutzung selbst. Er entsteht durch das Verschweigen. Genau dafür haben die großen Regelwerke des wissenschaftlichen Publizierens inzwischen klare Antworten, und sie sind sich bemerkenswert ähnlich."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Eine KI-Deklaration funktioniert wie die Angabe von Interessenkonflikten in einer Publikation: Sie ist kein Schuldeingeständnis, sondern eine Vertrauensbedingung. Sie sagt nicht „ich habe geschummelt“, sondern „so ist dieser Text entstanden, und ich stehe für jeden Satz davon gerade“. Wer deklariert, bleibt Autorin. Wer verschweigt und auffliegt, hat ein Problem, das größer ist als jede Schreibhilfe."
+  },
+  {
+   "t": "h2",
+   "x": "Der Konsens der Regelwerke"
+  },
+  {
+   "t": "p",
+   "x": "Das Committee on Publication Ethics (COPE) hat die Grundfrage schon 2023 beantwortet: KI-Werkzeuge können nicht als Autoren einer Publikation gelistet werden. Wer KI beim Schreiben, bei Abbildungen oder bei Datenerhebung und -analyse einsetzt, muss offenlegen, wie und welches Werkzeug genutzt wurde, im Methodenteil oder einer vergleichbaren Stelle; die Autoren tragen die volle Verantwortung für den gesamten Inhalt, auch für die Teile, die ein Werkzeug erzeugt hat [1]."
+  },
+  {
+   "t": "p",
+   "x": "Das ICMJE, dessen Empfehlungen für medizinische Journals weltweit gelten, konkretisiert den Vorgang: Die Nutzung von KI-gestützten Technologien ist bei der Einreichung anzuzeigen und sowohl im Begleitschreiben als auch an der passenden Stelle des Manuskripts zu beschreiben, bei Schreibhilfe in der Danksagung, bei Datenerhebung, Analyse oder Abbildungserstellung im Methodenteil. Chatbots erfüllen die Autorschaftskriterien nicht, weil sie keine Verantwortung übernehmen können; die Autoren müssen das Ergebnis sorgfältig prüfen und überarbeiten, weil KI-Ausgaben souverän klingen und trotzdem falsch, lückenhaft oder verzerrt sein können [2]."
+  },
+  {
+   "t": "p",
+   "x": "Die Science-Journals ziehen dieselbe Linie und schließen eine wichtige Lücke: Auch für Gutachtende gilt Vertraulichkeit. Begutachtende dürfen keinerlei Teile eines Manuskripts in ein Sprachmodell eingeben, weil das die Vertraulichkeit des Begutachtungsverfahrens bricht; sie dürfen KI höchstens nutzen, um ihre eigenen Formulierungen zu überarbeiten, und auch das nur unter Bedingungen und mit Offenlegung [4]."
+  },
+  {
+   "t": "p",
+   "x": "Hinter dem einheitlichen Votum steht die Autorschaftsdefinition selbst. Das ICMJE verknüpft Autorschaft mit vier Kriterien, darunter die Verantwortung für die eigenen Beiträge und die Bereitschaft, für die Integrität des gesamten Werks einzustehen [2]. Ein Sprachmodell kann keines davon erfüllen: Es kann keinen Fehler zugeben, keine Korrektur verantworten, keine Interessenkonflikte offenlegen. Wer ein Werkzeug trotzdem in die Autorenzeile schreibt, verwässert genau die Stelle, an der Verantwortung zugeordnet wird."
+  },
+  {
+   "t": "h2",
+   "x": "Das Ampel-Modell von Nature Portfolio"
+  },
+  {
+   "t": "p",
+   "x": "Am anschaulichsten ordnet Nature Portfolio die Nutzung: Ein Risiko-Framework mit drei Stufen gilt dort für Autoren, Gutachter und Redaktionen gleichermaßen. Grün ist die assistierende Nutzung, etwa sprachliche Hilfe, bei der das wissenschaftliche Urteil beim Menschen bleibt; Offenlegung stärkt hier das Vertrauen. Amber ist die bewertende oder interpretierende Nutzung: erlaubt nur mit menschlicher Aufsicht, Verifizierung und deklarierter Verantwortung. Rot ist verboten: KI, die das wissenschaftliche Urteil ersetzt, undurchsichtig arbeitet, nicht verifizierbare Ergebnisse liefert oder Vertraulichkeit verletzt, einschließlich der Übertragung von Autorschaft oder Verantwortung auf ein System [3]. Zwei Grundsätze tragen das Modell: Verantwortung ist nicht übertragbar, und Manuskripte, Gutachten und sensible Daten gehören nicht in ungesicherte öffentliche KI-Systeme [3]."
+  },
+  {
+   "t": "table",
+   "caption": "Die vier Regelwerke im Vergleich; Stand der Lektüre 20. Oktober 2026 [1][2][3][4]",
+   "head": [
+    "Regelwerk",
+    "KI als Autorin?",
+    "Wo deklarieren?",
+    "Besonderheit"
+   ],
+   "rows": [
+    [
+     "COPE (2023)",
+     "Nein",
+     "Methodenteil o. ä.",
+     "Volle Verantwortung auch für KI-Teile"
+    ],
+    [
+     "ICMJE",
+     "Nein",
+     "Begleitschreiben + Danksagung oder Methoden",
+     "Ort richtet sich nach der Nutzungsart"
+    ],
+    [
+     "Nature Portfolio",
+     "Nein",
+     "Nach Nutzungsart; Ampel-Framework",
+     "Grün/amber/rot; Vertraulichkeit verpflichtend"
+    ],
+    [
+     "Science Journals",
+     "Nein",
+     "Begleitschreiben + Methoden oder Danksagung",
+     "KI-Bilder nur mit Erlaubnis; Gutachter-Verbot für LLM-Uploads"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "In der Praxis genügt ein klarer, nüchterner Satz pro Nutzungsart, etwa: „Für die sprachliche Überarbeitung des Manuskripts wurde <Werkzeug, Version> verwendet; die Autorinnen und Autoren haben das Ergebnis vollständig geprüft und übernehmen die Verantwortung für den Inhalt.“ Diese Form folgt der Logik der Regelwerke: Werkzeug nennen, Zweck nennen, menschliche Verantwortung bestätigen [1][2][4]."
+  },
+  {
+   "t": "h2",
+   "x": "Wohin die Deklaration gehört"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Schreibhilfe: Danksagung.** Wer KI zum Glätten, Kürzen oder Übersetzen eigener Texte genutzt hat, beschreibt das im Abschnitt Acknowledgments [2].",
+    "**Methodische Nutzung: Methodenteil.** KI in Datenerhebung, Analyse, Code oder Abbildungen gehört in Materials and Methods: welches Werkzeug, welche Version, wofür [1][2].",
+    "**Einreichung: Begleitschreiben.** ICMJE und Science verlangen die Nutzung zusätzlich im Cover Letter [2][4].",
+    "**KI-Aussagen als Untersuchungsgegenstand: Zitat.** Wer KI-Ausgaben selbst zitiert, nutzt die Zitierformate der Stile; die Regeln dazu fasst der Artikel <a href=\"/quellen-pruefen-zitieren\">Quellen prüfen und zitieren</a> zusammen.",
+    "**Hausintern: Prüfungsordnung zuerst.** Für Studien- und Abschlussarbeiten gelten die Regeln der Hochschule; die Journal-Standards sind die sinnvolle Orientierung, wo die eigene Einrichtung noch nichts festgelegt hat."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Was verboten ist oder schnell kippt"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Autorschaft und Mitautorschaft für KI.** Einig sind sich alle vier Regelwerke; auch das Zitieren von KI als Autorin ist ausgeschlossen [1][2][4].",
+    "**KI-generierte Bilder ohne Freigabe.** Die Science-Journals erlauben KI-generierte Bilder und Multimedia nur mit ausdrücklicher Genehmigung der Redaktion [4].",
+    "**Verschwiegene Nutzung.** Unzureichende oder fehlende Offenlegung kann zur Ablehnung führen; die Verantwortung bleibt ohnehin beim Autor [1][4].",
+    "**Vertrauliches in öffentliche Systeme.** Manuskripte, Gutachten und sensible Daten gehören nicht in ungesicherte KI-Werkzeuge, weder von Autoren noch von Gutachtern [3][4].",
+    "**Ungeprüfte Übernahme.** KI-Ausgaben können falsch, lückenhaft oder verzerrt sein; Autoren müssen sie prüfen und Plagiate ausschließen, auch in KI-erzeugtem Text [2]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Deklaration ist kein bürokratischer Ballast, sondern der Mechanismus, der KI-Nutzung und wissenschaftliche Integrität versöhnt: Sie macht den Unterschied sichtbar zwischen Werkzeuggebrauch und Täuschung. Wer sauber deklariert, kann jeden Einsatz verteidigen. Wie die zugrunde liegenden Werkzeuge für <a href=\"/literaturrecherche-ki\">Literaturrecherche</a> und <a href=\"/datenanalyse-ki-assistenten\">Datenanalyse</a> funktionieren und wo ihre Grenzen liegen, behandeln die vorangegangenen Artikel dieses Lernpfads; Begriffe wie <a href=\"/glossar#halluzination\">Halluzination</a> und <a href=\"/glossar#sycophancy\">Sycophancy</a> erklärt das Glossar."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Darf ich KI beim Schreiben meiner Abschlussarbeit nutzen?",
+   "a": "Das entscheidet die Prüfungsordnung Ihrer Hochschule, nicht ein allgemeiner Standard. Die wissenschaftlichen Regelwerke geben die Richtung vor: Nutzung ist erlaubt, Autorschaft bleibt menschlich, und die Nutzung wird offengelegt, Schreibhilfe in der Danksagung, methodische Nutzung im Methodenteil [1][2]. Fragen Sie im Zweifel die Betreuung, bevor Sie schreiben, nicht danach."
+  },
+  {
+   "q": "Kann KI als Mitautorin genannt werden?",
+   "a": "Nein. COPE, ICMJE, Nature und Science schließen das aus, weil ein Werkzeug keine Verantwortung für Genauigkeit, Integrität und Originalität übernehmen kann [1][2][3][4]. Auch das Zitieren einer KI als Autorin ist unzulässig; die Verantwortung für jeden Satz bleibt bei den menschlichen Autoren."
+  },
+  {
+   "q": "Wohin kommt die Deklaration konkret?",
+   "a": "Das hängt von der Nutzung ab: Schreibhilfe in die Danksagung, KI in Datenerhebung, Analyse oder Abbildungserstellung in den Methodenteil, und bei Journal-Einreichungen zusätzlich ins Begleitschreiben [2][4]. Benennen Sie Werkzeug, Version und Verwendungszweck."
+  },
+  {
+   "q": "Was ist das Ampel-Modell von Nature?",
+   "a": "Nature Portfolio sortiert KI-Nutzung in drei Risikostufen: grün für assistierende Nutzung mit menschlichem Urteil, amber für bewertende Nutzung nur mit Aufsicht, Verifizierung und Offenlegung, rot für verbotene Nutzung, etwa wenn KI das wissenschaftliche Urteil ersetzt oder Vertraulichkeit verletzt [3]."
+  },
+  {
+   "q": "Gelten die Regeln auch für Gutachter?",
+   "a": "Ja. Bei den Science-Journals dürfen Begutachtende keine Manuskriptteile in Sprachmodelle eingeben, weil das die Vertraulichkeit bricht; sprachliche Überarbeitung des eigenen Gutachtens ist nur unter Bedingungen und mit Offenlegung erlaubt [4]. Nature verlangt denselben Schutz für Manuskripte und Gutachten [3]."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026: die COPE-Positionsbestimmung „Authorship and AI tools“, die ICMJE-Empfehlungen zur Rolle von Autoren und Beitragenden, die KI-Richtlinie von Nature Portfolio und die Editorial Policies der Science-Journals (jeweils Volltext). Die Gegenüberstellung in Tabelle und Grafik ist eine eigene Zusammenfassung dieser Regelwerke. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Regelwerke werden laufend aktualisiert; verbindlich sind die jeweils aktuellen Fassungen und, für Studierende, die Prüfungsordnung der eigenen Hochschule. Die Ampel-Einteilung stammt von Nature Portfolio und gilt nicht automatisch für andere Verlage. Dieser Text ersetzt keine Rechtsberatung. Stand: 20. Oktober 2026.",
+ "related": [
+  "quellen-pruefen-zitieren",
+  "datenanalyse-ki-assistenten",
+  "literaturrecherche-ki"
+ ],
+ "sources": [
+  {
+   "title": "Authorship and AI tools (COPE Position)",
+   "publisher": "Committee on Publication Ethics (2023)",
+   "url": "https://publicationethics.org/cope-position-statements/ai-author"
+  },
+  {
+   "title": "Defining the Role of Authors and Contributors",
+   "publisher": "ICMJE Recommendations",
+   "url": "https://www.icmje.org/recommendations/browse/roles-and-responsibilities/defining-the-role-of-authors-and-contributors.html"
+  },
+  {
+   "title": "Artificial Intelligence (AI) – Editorial Policies",
+   "publisher": "Nature Portfolio",
+   "url": "https://www.nature.com/nature-portfolio/editorial-policies/ai"
+  },
+  {
+   "title": "Science Journals: Editorial Policies",
+   "publisher": "Science / AAAS",
+   "url": "https://www.science.org/content/page/science-journals-editorial-policies"
+  }
+ ]
+}
