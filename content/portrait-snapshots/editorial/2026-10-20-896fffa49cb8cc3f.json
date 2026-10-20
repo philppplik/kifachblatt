@@ -1,0 +1,1589 @@
+{
+  "benchmarks": [
+    {
+      "detail": "Die Verified-Auswahl enthält 500 von Menschen geprüfte Aufgaben. Das komplette Leaderboard vergleicht Agentensysteme; die Bash-only-Auswahl nutzt mini-SWE-agent für einheitlichere Modellvergleiche.",
+      "initials": "B",
+      "limits": "Modell, Agent, Toolzugang, Budget und Scaffold-Version gehören zum Ergebnis. mini-SWE-agent 1.x und 2.x sind laut Betreiber nicht notwendigerweise vergleichbar.",
+      "metric": "Anteil gelöster Aufgaben (% Resolved).",
+      "name": "SWE-bench Verified",
+      "slug": "swe-bench-verified",
+      "sources": [
+        "swe"
+      ],
+      "summary": "Prüft, ob ein KI-System echte Softwareprobleme durch Codeänderungen lösen kann."
+    },
+    {
+      "detail": "Die Fragen wurden von Fachleuten geschrieben und geprüft. Main, Extended und Diamond sind unterschiedliche Auswahlen; ein Wert ohne Split ist unvollständig.",
+      "initials": "B",
+      "limits": "Kein allgemeiner Intelligenztest. Fragenwissen und naturwissenschaftliches Reasoning sind nur ein Ausschnitt. Keine Originalfragen auf dieser Seite, um Testkontamination zu vermeiden.",
+      "metric": "Anteil korrekt beantworteter Fragen; Split und Prompting nennen.",
+      "name": "GPQA",
+      "slug": "gpqa",
+      "sources": [
+        "gpqa",
+        "gpqa-data"
+      ],
+      "summary": "Schwierige Multiple-Choice-Fragen aus Biologie, Physik und Chemie."
+    },
+    {
+      "detail": "MMLU-Pro erweitert den ursprünglichen MMLU-Ansatz um schwierigere, reasoning-orientierte Aufgaben und mehr Antwortoptionen. Das Originalrepository umfasst Auswertungscode und Methodik.",
+      "initials": "B",
+      "limits": "MMLU, MMLU-Pro und MMLU-ProX sind verschiedene Tests. Zahlen aus diesen Tests dürfen nicht in eine Rangliste zusammengeschoben werden.",
+      "metric": "Overall Accuracy; Fachgebietsauswertung und Prompting dokumentieren.",
+      "name": "MMLU-Pro",
+      "slug": "mmlu-pro",
+      "sources": [
+        "mmlu"
+      ],
+      "summary": "Prüft akademisches Wissen und Reasoning über mehrere Fachgebiete."
+    },
+    {
+      "detail": "Version 2.1 überarbeitet Aufgaben aus 2.0, unter anderem Fehler, Zeitlimits und Robustheit der Bewertung. Der Test misst ein Agentensystem, nicht nur ein isoliertes Sprachmodell.",
+      "initials": "B",
+      "limits": "Version 2.0, 2.1 und spätere Versionen getrennt führen. Agent, Tools, Reasoning-Aufwand, Ressourcen und Zahl der Wiederholungen beeinflussen den Wert.",
+      "metric": "Aufgaben-Erfolg im jeweiligen Agenten- und Laufzeitaufbau.",
+      "name": "Terminal-Bench 2.1",
+      "slug": "terminal-bench-2-1",
+      "sources": [
+        "terminal"
+      ],
+      "summary": "Misst, ob Agenten komplexe Aufgaben in einer Terminalumgebung erledigen."
+    }
+  ],
+  "companies": [
+    {
+      "detail": "KI-Forschung und Bereitstellung von Modellen.",
+      "facts": [
+        {
+          "label": "Einordnung",
+          "source": "openai",
+          "value": "KI-Forschung und Bereitstellung von Modellen."
+        }
+      ],
+      "initials": "OA",
+      "limits": "Ein Produkt wie ChatGPT ist nicht dasselbe wie eine bestimmte API-Modellversion.",
+      "logo": {
+        "asset": "openai",
+        "label": "OpenAI-Logo"
+      },
+      "name": "OpenAI",
+      "rich": {
+        "eyebrow": "Forschung · Anwendungen · API",
+        "headline": "Von der Forschung zur Plattform.",
+        "intro": "OpenAI verbindet Modellentwicklung mit Anwendungen und einer Entwicklerplattform. Für die Einordnung sind drei Ebenen wichtig: die Organisation, ein Produkt wie ChatGPT und eine konkrete API-Modellversion. Sie sind nicht austauschbar.",
+        "layers": [
+          [
+            "OpenAI Foundation",
+            "Kontrolle & Mission"
+          ],
+          [
+            "OpenAI Group PBC",
+            "Kommerzieller Betrieb"
+          ],
+          [
+            "Anwendungen & API",
+            "Nutzung konkreter Modelle"
+          ]
+        ],
+        "milestones": [
+          [
+            "2015",
+            "Als gemeinnützige Organisation gegründet.",
+            "openai-structure"
+          ],
+          [
+            "2019",
+            "Kommerzielle Tochtergesellschaft für Forschung und Bereitstellung geschaffen.",
+            "openai-structure"
+          ],
+          [
+            "28.10.2025",
+            "Aktualisierte Struktur: Foundation kontrolliert Group PBC.",
+            "openai-structure"
+          ]
+        ],
+        "primary": "openai-structure",
+        "repo": "openai",
+        "sections": [
+          [
+            "Organisation & Kontrolle",
+            "OpenAI beschreibt sich als Forschungs- und Bereitstellungsunternehmen. Die gemeinnützige OpenAI Foundation kontrolliert die OpenAI Group PBC. Gemeinnützige Kontrolle und kommerzieller Geschäftsbetrieb sind damit zwei Teile der veröffentlichten Struktur.",
+            "openai-structure"
+          ],
+          [
+            "Produkte sind keine Modellversionen",
+            "ChatGPT bezeichnet eine Anwendung. Der API-Katalog benennt dagegen einzelne Modelle und deren Fähigkeiten. Ein anderer Produktname, ein größeres Kontextfenster oder eine neue Oberfläche beweisen für sich keine bessere Qualität bei einer konkreten Aufgabe.",
+            "openai-catalog-rich"
+          ],
+          [
+            "Worauf Entwickler achten sollten",
+            "Die offizielle Python-Bibliothek erschließt die API aus Python-Anwendungen. Die Lizenz des SDK-Codes gilt nicht automatisch für Modellgewichte, API-Nutzung, Trainingsdaten oder erzeugte Inhalte. Endpunkt, Modell-ID und Konfiguration gehören zur Dokumentation eines reproduzierbaren Einsatzes.",
+            "github-openai"
+          ],
+          [
+            "Was die Struktur nicht beweist",
+            "Das erklärte Ziel, dass allgemeine KI der Menschheit zugutekommen soll, ist eine Selbstbeschreibung. Es ersetzt keine unabhängige Bewertung von Sicherheit, wirtschaftlicher Wirkung oder Zuverlässigkeit eines einzelnen Modells.",
+            "openai"
+          ]
+        ]
+      },
+      "slug": "openai",
+      "sources": [
+        "openai",
+        "openai-structure",
+        "openai-catalog-rich",
+        "github-openai"
+      ],
+      "summary": "Entwickelt KI-Modelle und stellt sie über Anwendungen und eine API bereit."
+    },
+    {
+      "detail": "KI-Sicherheitsforschung und Entwicklung von Claude.",
+      "facts": [
+        {
+          "label": "Einordnung",
+          "source": "anthropic",
+          "value": "KI-Sicherheitsforschung und Entwicklung von Claude."
+        }
+      ],
+      "initials": "AN",
+      "limits": "Die Beschreibung des Unternehmens ist eine Selbstdarstellung, kein unabhängiges Sicherheitsurteil.",
+      "logo": {
+        "asset": "anthropic",
+        "label": "Anthropic-Logo"
+      },
+      "name": "Anthropic",
+      "rich": {
+        "eyebrow": "Claude · Sicherheitsforschung · Governance",
+        "headline": "Modelle entwickeln. Sicherheit untersuchen.",
+        "intro": "Anthropic entwickelt Claude und forscht zur Zuverlässigkeit, Interpretierbarkeit und Steuerbarkeit von KI. Diese Ziele sind der Maßstab, den das Unternehmen selbst formuliert, keine hier gemessenen Sicherheitswerte.",
+        "layers": [
+          [
+            "Public Benefit Corporation",
+            "Unternehmenszweck"
+          ],
+          [
+            "Board & LTBT",
+            "Veröffentlichte Aufsicht"
+          ],
+          [
+            "Claude & Entwickler-API",
+            "Produkte und Modellvarianten"
+          ]
+        ],
+        "milestones": [
+          [
+            "2023",
+            "Die offizielle Python-SDK-Lizenz trägt das Copyright von Anthropic, PBC.",
+            "github-anthropic"
+          ],
+          [
+            "19.09.2023",
+            "Der Long-Term Benefit Trust wird öffentlich erläutert.",
+            "anthropic-trust"
+          ],
+          [
+            "19.10.2026",
+            "Unternehmensseite und aktueller Claude-Katalog für dieses Portrait geprüft.",
+            "anthropic-catalog-rich"
+          ]
+        ],
+        "primary": "anthropic",
+        "repo": "anthropics",
+        "sections": [
+          [
+            "Ein Unternehmen mit Public-Benefit-Zweck",
+            "Anthropic ist nach eigener Darstellung eine Public Benefit Corporation. Die Unternehmensseite beschreibt einen Verwaltungsrat, der durch Anteilseigner und den Long-Term Benefit Trust gewählt wird. Das ist eine Governance-Struktur, keine Zertifizierung der Modelle.",
+            "anthropic"
+          ],
+          [
+            "Der Long-Term Benefit Trust",
+            "Der LTBT soll langfristige öffentliche Interessen in der Unternehmensaufsicht verankern. Die ursprüngliche Veröffentlichung vom September 2023 beschreibt einen schrittweisen Einfluss auf die Besetzung des Boards. Einzelne damalige Trustees sind nicht automatisch die heutige Besetzung.",
+            "anthropic-trust"
+          ],
+          [
+            "Claude als Modellfamilie",
+            "Der aktuelle Modellkatalog unterscheidet Varianten nach Aufgaben und Aufwand. Adaptive Thinking-Einstellungen, Kontextgrenzen und API-IDs sind modellspezifisch. Eine Eigenschaft einer Claude-Version darf nicht auf die ganze Familie übertragen werden.",
+            "anthropic-catalog-rich"
+          ],
+          [
+            "Forschung, Produkt und Prüfung trennen",
+            "Anthropic nennt unter anderem Interpretierbarkeit, menschliches Feedback und gesellschaftliche Auswirkungen als Forschungsfelder. Ein öffentlicher Forschungsanspruch ist nicht dasselbe wie ein unabhängiger Nachweis, dass ein Produkt für jeden Einsatz sicher ist.",
+            "anthropic"
+          ]
+        ]
+      },
+      "slug": "anthropic",
+      "sources": [
+        "anthropic",
+        "anthropic-trust",
+        "anthropic-catalog-rich",
+        "github-anthropic"
+      ],
+      "summary": "Entwickelt die Claude-Modellfamilie mit einem Schwerpunkt auf KI-Sicherheit."
+    },
+    {
+      "detail": "Forschung und Modellentwicklung; entstanden aus Google Brain und DeepMind.",
+      "facts": [
+        {
+          "label": "Einordnung",
+          "source": "google",
+          "value": "Forschung und Modellentwicklung; entstanden aus Google Brain und DeepMind."
+        }
+      ],
+      "initials": "GD",
+      "limits": "Die Verfügbarkeit eines Modells im Produkt und in einer API kann unterschiedlich sein.",
+      "logo": {
+        "asset": "google-deepmind",
+        "label": "Google DeepMind-Logo"
+      },
+      "name": "Google DeepMind",
+      "rich": {
+        "checks": [
+          "Google DeepMind nicht mit dem gesamten Alphabet-Konzern gleichsetzen.",
+          "Konkrete Gemini-Modell-ID, Modalitäten und Version dokumentieren.",
+          "Stable, Preview, Latest und Experimental bewusst unterscheiden.",
+          "Modellpreise, Datenbedingungen und Region am gewählten Dienst prüfen."
+        ],
+        "eyebrow": "Google Brain + DeepMind · Gemini · Wissenschaft",
+        "faq": [
+          [
+            "Ist Google DeepMind dasselbe wie ganz Google?",
+            "Nein. Dieses Portrait behandelt die 2023 zusammengeführte KI-Forschungseinheit. Konzernzahlen von Google oder Alphabet werden ihr nicht zugerechnet.",
+            "google-merge"
+          ],
+          [
+            "Warum sind Gemini und AlphaFold nicht vergleichbar?",
+            "Sie adressieren unterschiedliche Aufgaben. AlphaFold wird mit Proteinstrukturen verbunden, Gemini ist eine generative Modellfamilie. Daraus entsteht keine gemeinsame Leistungsrangliste.",
+            "google"
+          ],
+          [
+            "Warum ist die API-Version wichtig?",
+            "Die Dokumentation trennt stabile, Preview-, Latest- und experimentelle Modelle. Verfügbarkeit und Verhalten müssen am tatsächlich verwendeten Endpunkt geprüft werden.",
+            "google-catalog-rich"
+          ]
+        ],
+        "headline": "Forschung mit zwei Wurzeln.",
+        "intro": "Google DeepMind bündelt die Arbeit von DeepMind und Google Brain. Das Portrait behandelt diese KI-Forschungseinheit, nicht die gesamten Finanz-, Personal- oder Nutzerzahlen von Google beziehungsweise Alphabet.",
+        "layers": [
+          [
+            "DeepMind + Google Brain",
+            "Forschungswurzeln"
+          ],
+          [
+            "Google DeepMind",
+            "Gemeinsame KI-Forschung"
+          ],
+          [
+            "Gemini & wissenschaftliche Systeme",
+            "Unterschiedliche Anwendungen"
+          ]
+        ],
+        "milestones": [
+          [
+            "2010",
+            "DeepMind startet.",
+            "google"
+          ],
+          [
+            "2011",
+            "Google Brain entsteht bei X.",
+            "google"
+          ],
+          [
+            "20.04.2023",
+            "Zusammenführung als Google DeepMind angekündigt.",
+            "google-merge"
+          ]
+        ],
+        "offerings": [
+          [
+            "Gemini",
+            "Modellfamilie mit aufgabenspezifischen API-Varianten.",
+            "google-catalog-rich"
+          ],
+          [
+            "Wissenschaftliche KI",
+            "Beispiel AlphaFold: Proteinstrukturvorhersage.",
+            "google"
+          ],
+          [
+            "Forschung und Werkzeuge",
+            "Transformer, JAX und TensorFlow als unterschiedliche Beiträge.",
+            "google"
+          ]
+        ],
+        "primary": "google",
+        "repo": "googleapis",
+        "sections": [
+          [
+            "Zwei Forschungslinien, ein Team",
+            "DeepMind startete 2010, Google Brain 2011. Im April 2023 kündigte Google an, beide Teams in Google DeepMind zusammenzuführen. Die heutige Unternehmensseite nennt Demis Hassabis als CEO.",
+            "google"
+          ],
+          [
+            "Mehr als ein Chatmodell",
+            "Die Forschung umfasst unter anderem Sprachmodelle, Lernverfahren, Robotik und wissenschaftliche Anwendungen. AlphaFold steht für Proteinstrukturvorhersage, Gemini für eine Modellfamilie. Solche Projekte haben unterschiedliche Aufgaben und sind keine einheitliche Rangliste.",
+            "google"
+          ],
+          [
+            "Der Weg von Forschung zu Entwicklern",
+            "Google Brain entwickelte unter anderem die Transformer-Architektur und Open-Source-Werkzeuge wie TensorFlow und JAX mit. Die Gemini-API macht konkrete Modelle zugänglich; Googles Gen-AI-Python-SDK ist dafür ein Entwicklerwerkzeug, kein Modell selbst.",
+            "google"
+          ],
+          [
+            "Produkte, APIs und Varianten unterscheiden",
+            "Der Gemini-Katalog unterscheidet etwa Flash, Live und TTS sowie stabile und Preview-Endpunkte. Zugang und Funktionsumfang müssen am konkret gewählten Endpunkt geprüft werden. Forschungsfortschritt oder ein großer Kontext sind keine Garantie für fehlerfreie Antworten.",
+            "google-catalog-rich"
+          ],
+          [
+            "API-Versionen sind eine Betriebsentscheidung",
+            "Die Gemini-Dokumentation unterscheidet Stable, Preview, Latest und Experimental. Ein Alias und eine fest versionierte Modell-ID haben unterschiedliche Folgen für reproduzierbare Tests und Migration. Modelländerungen und Abschaltungen müssen am jeweiligen Endpunkt geprüft werden.",
+            "google-catalog-rich"
+          ],
+          [
+            "Wissenschaftliche Erfolge richtig zuordnen",
+            "Die About-Seite nennt unter anderem AlphaGo, AlphaStar und AlphaFold. Spiele, Proteinstrukturen und generative Assistenz sind verschiedene Aufgaben. Eine Leistung bei einer dieser Aufgaben belegt nicht automatisch Zuverlässigkeit oder Sicherheit bei einer anderen.",
+            "google"
+          ]
+        ]
+      },
+      "slug": "google-deepmind",
+      "sources": [
+        "google",
+        "google-catalog-rich",
+        "google-merge"
+      ],
+      "summary": "Googles KI-Forschungseinheit entwickelt unter anderem die Gemini-Modelle."
+    },
+    {
+      "detail": "Modelle, Entwicklerwerkzeuge, Anwendungen und Recheninfrastruktur.",
+      "facts": [
+        {
+          "label": "Einordnung",
+          "source": "mistral",
+          "value": "Modelle, Entwicklerwerkzeuge, Anwendungen und Recheninfrastruktur."
+        }
+      ],
+      "initials": "MI",
+      "limits": "Nicht jedes Modell in einem API-Katalog wurde vom Betreiber des Katalogs entwickelt.",
+      "logo": {
+        "asset": "mistral-ai",
+        "label": "Mistral AI-Logo"
+      },
+      "name": "Mistral AI",
+      "rich": {
+        "checks": [
+          "Zielaufgabe und konkrete Modellversion vor der Integration festlegen.",
+          "Gewichtslizenz, API-Bedingungen und Anwendungstarif getrennt prüfen.",
+          "Auslaufdatum und Nachfolgemodell im Katalog kontrollieren.",
+          "Für sensible Daten Hosting, Verarbeitung und Vertragsgrundlage selbst prüfen."
+        ],
+        "eyebrow": "Europäisches KI-Unternehmen · Modelle · Anwendungen",
+        "faq": [
+          [
+            "Wann entstand Mistral?",
+            "Die offizielle About-Seite nennt April 2023 als Start und führt später im selben Jahr Mistral 7B in ihrer Zeitleiste auf.",
+            "mistral-about-rich"
+          ],
+          [
+            "Sind alle Mistral-Angebote automatisch Open Source?",
+            "Eine solche Pauschalaussage folgt nicht aus der Unternehmenspositionierung. Modelllizenz, Gewichtszugang, API und Produktbedingungen sind getrennt zu prüfen.",
+            "mistral-catalog"
+          ],
+          [
+            "Darf das Logo beliebig verändert werden?",
+            "Nein. Die offiziellen Brand-Regeln untersagen unter anderem Strecken, Verformen, Drehen und Änderungen am Aufbau. Eine frei verwendbare Markenlizenz wird hier nicht behauptet.",
+            "mistral-brand-rich"
+          ]
+        ],
+        "headline": "Modelle, Werkzeuge und Kontrolle über den Betrieb.",
+        "intro": "Mistral entwickelt KI-Modelle und verbindet sie mit Anwendungen und Entwicklerwerkzeugen. Die offizielle Unternehmensgeschichte verortet den Start im April 2023. Offenheit ist Teil der Positionierung, aber keine pauschale Lizenz für jedes Modell oder jeden Dienst.",
+        "layers": [
+          [
+            "Modellfamilien",
+            "Allgemeine und spezialisierte Modelle"
+          ],
+          [
+            "Entwicklung",
+            "APIs, Werkzeuge und Anwendungen"
+          ],
+          [
+            "Betrieb und Kontrolle",
+            "Zugang und Bedingungen je Angebot"
+          ]
+        ],
+        "milestones": [
+          [
+            "April 2023",
+            "Start des Unternehmens laut eigener Geschichte.",
+            "mistral-about-rich"
+          ],
+          [
+            "27.09.2023",
+            "Mistral 7B in der offiziellen Zeitleiste.",
+            "mistral-about-rich"
+          ],
+          [
+            "26.02.2024",
+            "Mistral Large in der offiziellen Zeitleiste.",
+            "mistral-about-rich"
+          ]
+        ],
+        "offerings": [
+          [
+            "Modelle",
+            "Aufgaben, Versionen und Verfügbarkeit im offiziellen Katalog.",
+            "mistral-catalog"
+          ],
+          [
+            "Studio und Vibe",
+            "Entwicklung und Anwendungen getrennt von Modellgewichten betrachten.",
+            "mistral-products-rich"
+          ],
+          [
+            "Spezialisierung",
+            "Code, Dokumente und Sprache statt einer einzigen Leistungszahl.",
+            "mistral-catalog"
+          ]
+        ],
+        "primary": "mistral-about-rich",
+        "repo": "mistralai",
+        "sections": [
+          [
+            "Gründer und Aufgaben",
+            "Die About-Seite nennt Arthur Mensch als Mitgründer und CEO, Guillaume Lample als Mitgründer und Chief Science Officer sowie Timothee Lacroix als Mitgründer und CTO. Diese Rollen sind ein datierter Quellenstand, keine Garantie für eine unveränderte künftige Führung.",
+            "mistral-about-rich"
+          ],
+          [
+            "Mehr als ein universelles Sprachmodell",
+            "Der Modellkatalog unterscheidet allgemeine Modelle und spezialisierte Angebote. Dazu gehören unter anderem Code-, Dokument- und Sprachaufgaben. Ein OCR-Modell ist deshalb kein austauschbarer Ersatz für ein allgemeines Dialogmodell; die konkrete Modell-ID und Aufgabe zählen.",
+            "mistral-catalog"
+          ],
+          [
+            "Vom Modell zur Anwendung",
+            "Die Produktübersicht führt neben Modellen auch Studio und Vibe-Angebote auf. Eine Endnutzeranwendung, ein Entwicklungswerkzeug und ein API-Modell haben unterschiedliche Funktionen und Vertragsbedingungen. Das Unternehmensportrait ist keine vollständige Preisliste aller Produkte.",
+            "mistral-products-rich"
+          ],
+          [
+            "Offenheit pro Modell prüfen",
+            "Der Katalog nennt Modelle, Versionen und auslaufende Angebote. Ob Gewichte verfügbar sind, welche Lizenz gilt und welche Funktionen die API unterstützt, ist pro Modell zu prüfen. Die Positionierung als offenes KI-Unternehmen ersetzt diese Einzelprüfung nicht.",
+            "mistral-catalog"
+          ],
+          [
+            "Lebenszyklus gehört zur Integration",
+            "Die Dokumentation führt auch abgekündigte Modelle und empfohlene Nachfolger. Eine erfolgreiche frühere Integration beweist deshalb nicht, dass derselbe Endpunkt dauerhaft verfügbar bleibt. Modell-ID, Versionsstand, Migrationspfad und Tests gehören in den Betriebsplan.",
+            "mistral-catalog"
+          ],
+          [
+            "Marke ist keine freie Lizenz",
+            "Die Brand-Seite erklärt Namen, Logos und Icons zu Eigentum von Mistral. Sie fordert unter anderem unveränderte Proportionen, Freiraum und die aktuelle offizielle Fassung. Die lokale Darstellung dient nur der redaktionellen Identifikation, nicht als Partnerschaftszeichen.",
+            "mistral-brand-rich"
+          ]
+        ]
+      },
+      "slug": "mistral-ai",
+      "sources": [
+        "mistral",
+        "mistral-about-rich",
+        "mistral-catalog",
+        "mistral-products-rich",
+        "mistral-brand-rich"
+      ],
+      "summary": "Entwickelt KI-Modelle und bietet Werkzeuge für ihren Einsatz an."
+    },
+    {
+      "detail": "Beschleunigtes Rechnen und Infrastruktur für KI.",
+      "facts": [
+        {
+          "label": "Einordnung",
+          "source": "nvidia",
+          "value": "Beschleunigtes Rechnen und Infrastruktur für KI."
+        }
+      ],
+      "initials": "NV",
+      "limits": "Hardwareanbieter, Modell und gehosteter API-Dienst sind getrennte Ebenen mit eigenen Bedingungen.",
+      "logo": {
+        "asset": "nvidia",
+        "label": "NVIDIA-Logo"
+      },
+      "name": "NVIDIA",
+      "rich": {
+        "checks": [
+          "Exakte Nemotron-Variante, Quantisierung und Kontextgrenzen aus deren Modellkarte wählen.",
+          "Eigenbetrieb, NIM und externen Inferenzanbieter separat kalkulieren.",
+          "GPU-Speicher, Latenz und Durchsatz mit der eigenen Aufgabe messen.",
+          "Modelllizenz, Servicevertrag und Code-Lizenz nicht gleichsetzen."
+        ],
+        "eyebrow": "Beschleunigte Rechner · Nemotron · NeMo · NIM",
+        "faq": [
+          [
+            "Ist NVIDIA nur ein Hardwareanbieter?",
+            "Nein. Die geprüften Seiten nennen Chips und Systeme, aber auch Modelle, Werkzeuge und KI-Services. Welche Ebene benötigt wird, hängt vom Projekt ab.",
+            "nvidia"
+          ],
+          [
+            "Kann man Nemotron kostenlos einsetzen?",
+            "NVIDIA beschreibt herunterladbare Modelle für den Eigenbetrieb. Die konkrete Modelllizenz bleibt maßgeblich; Rechen- und Betriebskosten verschwinden nicht. NIM wird als eigener lizenzierter Betriebsweg beschrieben.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Sind Nemotron, NeMo und NIM dasselbe?",
+            "Nein. Nemotron ist eine Modellfamilie, NeMo dient Entwicklung und Anpassung, NIM der optimierten Bereitstellung.",
+            "nvidia-nemotron-rich"
+          ]
+        ],
+        "headline": "Nicht nur die GPU unter dem Modell.",
+        "intro": "NVIDIA entwickelt Chips, Systeme und Software für KI. Für die Praxis gehören die Rechenplattform, konkrete Nemotron-Modelle und die Bereitstellung als Dienst auseinandergehalten. Ein Modellname bezeichnet weder eine GPU noch automatisch einen kostenlosen Produktionsdienst.",
+        "layers": [
+          [
+            "Rechenplattform",
+            "Chips, Systeme und Software"
+          ],
+          [
+            "Modelle und Anpassung",
+            "Nemotron und NeMo"
+          ],
+          [
+            "Bereitstellung",
+            "NIM und Inferenzanbieter"
+          ]
+        ],
+        "milestones": [],
+        "offerings": [
+          [
+            "Nemotron",
+            "Modellfamilie für verschiedene KI-Aufgaben.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NeMo",
+            "Werkzeuge zum Anpassen und Entwickeln.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NIM",
+            "Optimierte Bereitstellung als Microservice.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Blueprints",
+            "Referenzabläufe für Anwendungen und Agenten.",
+            "nvidia-nemotron-rich"
+          ]
+        ],
+        "primary": "nvidia",
+        "repo": "nvidia",
+        "sections": [
+          [
+            "Was NVIDIA im KI-Stack macht",
+            "Die Unternehmensseite beschreibt NVIDIA als Anbieter von Chips, Systemen und Software für beschleunigtes Rechnen und KI. Daneben nennt sie unter anderem Grafik, industrielle Digitalisierung und Gesundheit. Dieses Portrait behandelt den KI-Ausschnitt, keine vollständige Konzernanalyse.",
+            "nvidia"
+          ],
+          [
+            "Nemotron ist eine Modellfamilie",
+            "NVIDIA ordnet unter Nemotron unterschiedliche Aufgaben ein: Reasoning, visuelles Verständnis, Retrieval und Safety. Varianten für Sprache und multimodale Verarbeitung haben andere Aufgaben als ein reines Textmodell. Aus dem Familiennamen darf man keine einheitlichen Fähigkeiten aller Varianten ableiten.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NeMo: anpassen statt nur aufrufen",
+            "NeMo wird als Werkzeugangebot zum Aufbau und zur Anpassung generativer KI beschrieben. Datenaufbereitung, Anpassung und Retrieval sind andere Schritte als der eigentliche Inferenzaufruf. Für ein Projekt müssen Modell, Datenpipeline und Auswertung getrennt dokumentiert werden.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "NIM: ein anderer Betriebsweg",
+            "NIM bezeichnet optimierte Microservices zur Bereitstellung. NVIDIA unterscheidet in den Nemotron-FAQ den Download und Eigenbetrieb von Modellen vom Betrieb als NIM mit NVIDIA-AI-Enterprise-Lizenz. Ein frei erhältliches Modellgewicht macht nicht jeden zugehörigen Service kostenlos.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Offene Gewichte sind nicht die Gesamtrechnung",
+            "NVIDIA beschreibt verfügbare Gewichte, Trainingsdaten und Verfahren sowie kommerzielle Nutzungsrechte unter der jeweiligen Modelllizenz. Für einen konkreten Download bleibt dessen Lizenz maßgeblich. Rechenleistung, Hosting, Datenhaltung und Betrieb sind damit nicht bezahlt.",
+            "nvidia-nemotron-rich"
+          ],
+          [
+            "Leistungsversprechen richtig lesen",
+            "Aussagen wie hohe Genauigkeit oder hoher Durchsatz auf der Anbieterwebsite sind Herstellerpositionierungen. Ohne dieselbe Aufgabe, Hardware, Präzision, Batchgröße und Latenzgrenze werden daraus keine unabhängigen Modellvergleiche. Unser Repository-Ausschnitt unten ist ebenfalls kein Leistungsbenchmark.",
+            "nvidia-nemotron-rich"
+          ]
+        ]
+      },
+      "slug": "nvidia",
+      "sources": [
+        "nvidia",
+        "nvidia-nemotron-rich"
+      ],
+      "summary": "Entwickelt Chips, Systeme, Software und KI-Modelle wie Nemotron."
+    },
+    {
+      "detail": "Meta Superintelligence Labs entwickelt Muse Spark für Meta AI.",
+      "facts": [
+        {
+          "label": "Einordnung",
+          "source": "meta",
+          "value": "Meta Superintelligence Labs entwickelt Muse Spark für Meta AI."
+        }
+      ],
+      "initials": "ME",
+      "limits": "Muse Spark und ähnlich benannte spätere Releases dürfen nicht als dieselbe Modellversion behandelt werden.",
+      "logo": {
+        "asset": "meta",
+        "label": "Meta-Logo"
+      },
+      "name": "Meta",
+      "rich": {
+        "checks": [
+          "Muse, Llama und die Endnutzeranwendung nicht gleichsetzen.",
+          "Modellversion und regionale Zugangsbedingungen prüfen.",
+          "Lizenztext, Acceptable Use Policy und Weitergabepflichten lesen.",
+          "SDK-Code, Modellgewichte und Dienstvertrag separat dokumentieren."
+        ],
+        "eyebrow": "Muse · Llama · Entwicklerplattform",
+        "faq": [
+          [
+            "Sind alle Meta-Modelle offen nutzbar?",
+            "Nein, eine einheitliche Lizenz lässt sich aus dem Anbieter nicht ableiten. Die Plattform trennt Angebote; Llama-Versionen besitzen eigene Lizenzen und Nutzungsrichtlinien.",
+            "meta-llama-rich"
+          ],
+          [
+            "Ist Muse Spark dasselbe wie Llama?",
+            "Nein. Der Vorstellungsbeitrag und die Entwicklerplattform führen Muse als eigenes Angebot. Llama-Lizenzen sind kein Beleg für Muse-Zugriff oder offene Muse-Gewichte.",
+            "meta"
+          ],
+          [
+            "Welche Bedingungen nennt die Llama-4-Lizenz?",
+            "Sie nennt unter anderem Weitergabepflichten, eine Acceptable Use Policy und zusätzliche kommerzielle Bedingungen bei mehr als 700 Millionen monatlich aktiven Nutzern im definierten Zeitraum. Für den konkreten Einsatz den vollständigen Lizenztext prüfen.",
+            "meta-license-rich"
+          ]
+        ],
+        "headline": "Zwei Modellwelten, keine pauschale Offenheitszusage.",
+        "intro": "Meta verbindet KI-Forschung und Produkte mit einem Entwicklerangebot. Zum geprüften Stand stehen auf der Entwicklerplattform Muse-Angebote neben den dokumentierten Llama-Familien. Die Zugangs- und Lizenzregeln einer Familie gelten nicht automatisch für die andere.",
+        "layers": [
+          [
+            "Meta",
+            "Anbieter und KI-Entwicklung"
+          ],
+          [
+            "Modellfamilien",
+            "Muse und Llama unterscheiden"
+          ],
+          [
+            "Nutzung",
+            "API, Download und Regeln je Modell"
+          ]
+        ],
+        "milestones": [
+          [
+            "18.07.2023",
+            "Llama 2: Versionsdatum der Community License.",
+            "meta-llama2-rich"
+          ],
+          [
+            "05.04.2025",
+            "Llama 4: Datum der Community License.",
+            "meta-license-rich"
+          ],
+          [
+            "08.04.2026",
+            "Muse Spark vorgestellt.",
+            "meta"
+          ]
+        ],
+        "offerings": [
+          [
+            "Muse / Meta Model API",
+            "Aktuellen Zugang und Bedingungen am gewählten Angebot prüfen.",
+            "meta-developer-rich"
+          ],
+          [
+            "Llama",
+            "Versionierte Modellfamilien mit eigenen Richtlinien.",
+            "meta-llama-rich"
+          ],
+          [
+            "Llama Protections",
+            "Sicherheitswerkzeuge, kein Nachweis völliger Sicherheit.",
+            "meta-llama-rich"
+          ]
+        ],
+        "primary": "meta-developer-rich",
+        "repo": "meta-llama",
+        "sections": [
+          [
+            "Was die Entwicklerplattform zeigt",
+            "Die Plattform bewirbt Muse Spark, Muse Code und Meta Model API. Sie verlinkt daneben Llama und Schutzwerkzeuge. Das ist ein Angebotsüberblick und keine Zusage, dass jedes Produkt überall oder in jedem Konto verfügbar ist.",
+            "meta-developer-rich"
+          ],
+          [
+            "Muse ist nicht automatisch Llama",
+            "Der Vorstellungsbeitrag beschreibt Muse Spark als Modell von Meta Superintelligence Labs. Seine Verfügbarkeit und der dort beschriebene Zugang dürfen nicht aus den Llama-Lizenzen abgeleitet werden. Für einen Einsatz ist die Dokumentation des tatsächlich gewählten Muse-Angebots maßgeblich.",
+            "meta"
+          ],
+          [
+            "Llama ist eine Familie mit Versionen",
+            "Die offizielle Übersicht trennt Llama 2, Llama 3 mit Unterversionen und Llama 4. Sie bietet für die Versionen eigene Lizenz- und Nutzungsrichtlinien. Eine einzelne Llama-Angabe ohne Versionsnummer reicht daher weder als technischer Steckbrief noch als Lizenzprüfung.",
+            "meta-llama-rich"
+          ],
+          [
+            "Community License ist nicht grenzenlos",
+            "Die Llama-4-Lizenz nennt unter anderem Pflichten bei Weitergabe, eine Acceptable Use Policy und zusätzliche kommerzielle Bedingungen für sehr große Anbieter. Bei mehr als 700 Millionen monatlich aktiven Nutzern der Produkte des Lizenznehmers oder verbundener Unternehmen im maßgeblichen Zeitraum verlangt sie eine gesonderte Lizenz von Meta. Das ist keine grenzenlose Standardfreigabe.",
+            "meta-license-rich"
+          ],
+          [
+            "SDK-Lizenz und Modellrechte unterscheiden",
+            "Das unten gezeigte Repository ist ein Entwicklerprojekt und ein begrenzter Ökosystem-Ausschnitt. Eine permissive Code-Lizenz eines SDK hebt weder die Community License eines Modells noch die Bedingungen eines gehosteten Dienstes auf.",
+            "meta-license-rich"
+          ],
+          [
+            "Keine Modellrangliste aus Plattformwerbung",
+            "Die Muse-Plattform macht Aussagen zu Coding, Agenten und multimodalen Aufgaben. Das sind Herstellerbeschreibungen. Unser Portrait übernimmt daraus keine unabhängigen Bestwerte, keine Sicherheitsgarantie und keine Aussage über die Qualität jeder einzelnen Modellversion.",
+            "meta-developer-rich"
+          ]
+        ]
+      },
+      "slug": "meta",
+      "sources": [
+        "meta",
+        "meta-developer-rich",
+        "meta-llama-rich",
+        "meta-license-rich",
+        "meta-llama2-rich"
+      ],
+      "summary": "Entwickelt KI-Modelle für Meta AI, darunter die Muse-Modellfamilie."
+    }
+  ],
+  "models": [
+    {
+      "access": "OpenAI API; Modell-ID gpt-6-astra.",
+      "company": "openai",
+      "detail": "Die API-Dokumentation nennt Text- und Bildeingaben sowie Textausgaben. Der Reasoning-Aufwand ist einstellbar. Die Einordnung als besonders leistungsfähig stammt vom Anbieter.",
+      "facts": [
+        {
+          "label": "API-ID",
+          "source": "astra",
+          "value": "gpt-6-astra"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "astra",
+          "value": "Text, Bild → Text"
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "astra",
+          "value": "1.050.000 Token"
+        },
+        {
+          "label": "Maximale Eingabe",
+          "source": "astra",
+          "value": "922.000 Token"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "source": "astra",
+          "value": "128.000 Token"
+        }
+      ],
+      "initials": "GA",
+      "license": "Gehosteter API-Zugang; keine Gewichtslizenz aus dieser Quelle abgeleitet.",
+      "limits": "Kontextfenster, maximale Eingabe und maximale Ausgabe sind unterschiedliche Grenzen. Tool-Unterstützung ist zusätzlich vom verwendeten API-Endpunkt abhängig.",
+      "name": "GPT-6 Astra",
+      "rich_model": {
+        "answer": "GPT-6 Astra ist ein OpenAI-Modell für komplexes Reasoning, Programmieren, Recherche und Dokumentarbeit. Es verarbeitet Text und Bilder und erzeugt Text. Im API-Steckbrief stehen 1.050.000 Token Kontext und maximal 128.000 Ausgabe-Token.",
+        "api": "gpt-6-astra",
+        "context": 1050000,
+        "date": null,
+        "faq": [
+          [
+            "Was ist GPT-6 Astra?",
+            "Ein OpenAI-Modell für komplexes Reasoning, Code, Recherche und Dokumente. Die offizielle Modell-ID ist gpt-6-astra; ChatGPT bezeichnet dagegen eine Anwendung."
+          ],
+          [
+            "Wie groß ist das Kontextfenster von GPT-6 Astra?",
+            "1.050.000 Token laut API-Dokumentation. Separat nennt OpenAI maximal 922.000 Eingabe-Token und 128.000 Ausgabe-Token. Kontext und Ausgabe sind nicht dasselbe."
+          ],
+          [
+            "Was kostet GPT-6 Astra über die API?",
+            "Standard-Texttoken kosten laut Quelle 10 USD je Million Eingabe-Token und 50 USD je Million Ausgabe-Token. Lange Prompts, Caching, Verarbeitungsmodus und Werkzeuge verändern die Rechnung. Stand: 19.10.2026."
+          ],
+          [
+            "Kann GPT-6 Astra Bilder und Audio verarbeiten?",
+            "Die Modellseite nennt Text und Bilder als Eingaben und Text als Ausgabe. Ein Sprach- oder Videodienst darf daraus nicht pauschal abgeleitet werden."
+          ],
+          [
+            "Ist GPT-6 Astra ein Open-Weight-Modell?",
+            "Die geprüfte Quelle dokumentiert gehosteten API-Zugang und keine offene Gewichtslizenz. Ein öffentliches SDK ist nicht gleichbedeutend mit offenen Modellgewichten."
+          ]
+        ],
+        "headline": "Reasoning, Werkzeuge und Dokumente richtig einordnen.",
+        "input": 10,
+        "maxout": 128000,
+        "migration": [
+          "Modell-ID gpt-6-astra und den tatsächlich verwendeten API-Endpunkt festhalten.",
+          "Reasoning-Aufwand explizit setzen und Ergebnisqualität mit festen Aufgaben prüfen.",
+          "Lange Prompts, Cache und Werkzeugkosten getrennt im Budget erfassen."
+        ],
+        "name": "GPT-6 Astra",
+        "output": 50,
+        "practical": "Astra richtet sich laut OpenAI an anspruchsvolle Aufgaben. Ob es im eigenen Projekt passt, hängt von Ergebnisqualität, Antwortzeit, Kosten und dem verwendeten Werkzeugablauf ab, nicht allein von der Größe des Kontextfensters.",
+        "pricing_note": "Standard-Texttoken in USD je 1 Mio. Token: Eingabe 10, Ausgabe 50; Cache-Read 1 und Cache-Write 12,50. Bei Prompts über 272.000 Eingabe-Token nennt OpenAI 2-fache Eingabe-/Cache-Raten und 1,5-fache Ausgaberaten für die vollständige Anfrage. Batch/Flex: 50 % der Standardraten; Fast: 2-fache zutreffende Raten. Werkzeuge können zusätzliche Gebühren auslösen. Keine Abopreise, keine Steuer- oder Gesamtkostenzusage.",
+        "sections": [
+          [
+            "Eingaben und Ausgaben",
+            "Text und Bilder können als Eingabe dienen, die Ausgabe ist Text. Audio, Live-Sprachdialog und Videoerzeugung sind in diesem Steckbrief nicht als native Ausgabe ausgewiesen."
+          ],
+          [
+            "Reasoning-Aufwand steuern",
+            "Die dokumentierten Stufen lauten low, medium, high, xhigh und max. Mehr Aufwand ist eine Konfiguration, keine Qualitätsgarantie. Für Vergleiche sollten Aufwand, Prompt, Werkzeuge und Budget konstant dokumentiert werden."
+          ],
+          [
+            "Werkzeuge über die Responses API",
+            "Die Modellseite listet unter anderem Websuche, Dateisuche, Code Interpreter, Computer Use und Funktionsaufrufe. Modellunterstützung ersetzt keine Freischaltung, sichere Werkzeugkonfiguration oder Prüfung von Ergebnissen."
+          ],
+          [
+            "Zugang ist nicht dasselbe wie ein Abo",
+            "Die hier genannten Preise gelten für API-Texttoken. Sie beschreiben keine ChatGPT-Abogebühr und keine pauschale Lizenz für Modellgewichte. Die tatsächlichen Limits hängen vom Nutzungstier ab."
+          ]
+        ],
+        "source": "astra-rich",
+        "technical": "Die Modellseite nennt 922.000 Token als maximale Eingabe und 128.000 als maximale Ausgabe. Das Kontextfenster ist keine Zusage, dass jede Information darin korrekt gefunden oder verwendet wird. Reasoning beansprucht ebenfalls Token; Grenzen des Endpunkts bleiben zu prüfen.",
+        "url": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+      },
+      "slug": "gpt-6-astra",
+      "sources": [
+        "astra",
+        "astra-rich"
+      ],
+      "summary": "GPT-6 Astra ist ein OpenAI-Modell für komplexes Reasoning, Programmieren, Recherche und Dokumentarbeit."
+    },
+    {
+      "access": "Claude API; Modell-ID claude-opus-5.",
+      "company": "anthropic",
+      "detail": "Anthropic führt Opus 5 als Modell mit adaptivem Thinking. Text und Bilder können eingegeben werden, die Ausgabe erfolgt als Text.",
+      "facts": [
+        {
+          "label": "API-ID",
+          "source": "claude",
+          "value": "claude-opus-5"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "claude",
+          "value": "Text, Bild → Text"
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "claude",
+          "value": "1 Mio. Token"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "source": "claude",
+          "value": "128.000 Token"
+        },
+        {
+          "label": "Thinking",
+          "source": "claude",
+          "value": "Adaptiv"
+        }
+      ],
+      "initials": "CO",
+      "license": "Gehosteter Zugang; Nutzungsbedingungen des gewählten Anbieters prüfen.",
+      "limits": "Herstellerpositionierung ersetzt keinen eigenen Praxistest. Verfügbarkeit und Bedingungen können sich je Plattform unterscheiden.",
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Opus-5-Logo"
+      },
+      "name": "Claude Opus 5",
+      "slug": "claude-opus-5",
+      "sources": [
+        "claude"
+      ],
+      "summary": "Claude-Modell für komplexe Programmier- und Unternehmensaufgaben."
+    },
+    {
+      "access": "Claude API; Modell-ID claude-sonnet-5.",
+      "company": "anthropic",
+      "detail": "Sonnet 5 unterstützt Text- und Bildeingaben, Textausgabe und adaptives Thinking. Relative Geschwindigkeitsangaben gelten innerhalb der Anbieterauswahl, nicht als allgemeine Messwerte.",
+      "facts": [
+        {
+          "label": "API-ID",
+          "source": "claude",
+          "value": "claude-sonnet-5"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "claude",
+          "value": "Text, Bild → Text"
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "claude",
+          "value": "1 Mio. Token"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "source": "claude",
+          "value": "128.000 Token"
+        },
+        {
+          "label": "Thinking",
+          "source": "claude",
+          "value": "Adaptiv"
+        }
+      ],
+      "initials": "CS",
+      "license": "Gehosteter Zugang; Nutzungsbedingungen des gewählten Anbieters prüfen.",
+      "limits": "Für die eigene Aufgabe sind Tests mit festem Prompt und dokumentierter Konfiguration nötig.",
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Sonnet-5-Logo"
+      },
+      "name": "Claude Sonnet 5",
+      "slug": "claude-sonnet-5",
+      "sources": [
+        "claude"
+      ],
+      "summary": "Claude-Modell, das laut Anbieter Geschwindigkeit und Leistungsfähigkeit verbindet."
+    },
+    {
+      "access": "Offizielle Modellkarte und dort verlinkte Bezugswege; API-Verfügbarkeit vor Einsatz prüfen.",
+      "company": "google-deepmind",
+      "detail": "Die Modellkarte beschreibt eine sparse Mixture-of-Experts-Transformer-Architektur. Eingaben können Text, Bilder, Audio und Video enthalten; ausgegeben wird Text.",
+      "facts": [
+        {
+          "label": "Stand der Modellkarte",
+          "source": "gemini",
+          "value": "13. Oktober 2026"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "gemini",
+          "value": "Text, Bild, Audio, Video → Text"
+        },
+        {
+          "label": "Kontext gesamt",
+          "source": "gemini",
+          "value": "Bis 1 Mio. Token, Eingabe und Ausgabe zusammen"
+        },
+        {
+          "label": "Architektur",
+          "source": "gemini",
+          "value": "Sparse Mixture of Experts, Transformer"
+        }
+      ],
+      "initials": "G4",
+      "license": "Keine offene Gewichtslizenz aus der Modellkarte abgeleitet.",
+      "limits": "Die Modellkarte nennt Halluzinationen sowie mögliche Langsamkeit oder Timeouts. Ein großes Kontextfenster garantiert kein fehlerfreies Erinnern.",
+      "logo": {
+        "asset": "gemini",
+        "label": "Gemini-Familienlogo, kein eigenes Argon-Logo"
+      },
+      "name": "Gemini 4 Argon",
+      "slug": "gemini-4-argon",
+      "sources": [
+        "gemini"
+      ],
+      "summary": "Multimodales Reasoning-Modell für komplexe technische und berufliche Aufgaben."
+    },
+    {
+      "access": "Mistral API; dokumentierte ID mistral-small-2603+1.",
+      "company": "mistral-ai",
+      "detail": "Mistral nennt für die Version 26.03 eine Parameterbilanz mit deutlich weniger aktiven als gesamten Parametern. Aktive Parameter sind kein direkter Qualitätsmaßstab.",
+      "facts": [
+        {
+          "label": "Version",
+          "source": "small",
+          "value": "26.03 / mistral-small-2603+1"
+        },
+        {
+          "label": "Veröffentlicht",
+          "source": "small",
+          "value": "16. März 2026"
+        },
+        {
+          "label": "Parameter gesamt / aktiv",
+          "source": "small",
+          "value": "119 Mrd. / 6,5 Mrd."
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "small",
+          "value": "256.000 Token"
+        },
+        {
+          "label": "Lizenzangabe",
+          "source": "small",
+          "value": "Apache 2.0"
+        }
+      ],
+      "initials": "MS",
+      "license": "Apache 2.0 laut offizieller Modellseite; die konkrete Gewichtsdatei und deren Lizenz vor Download prüfen.",
+      "limits": "Die Bezeichnung Small beschreibt eine Produktpositionierung, nicht den tatsächlichen Speicherbedarf auf beliebiger Hardware.",
+      "logo": {
+        "asset": "mistral-small",
+        "label": "Offizielles Mistral-Small-4-Modellmotiv"
+      },
+      "name": "Mistral Small 4",
+      "slug": "mistral-small-4",
+      "sources": [
+        "small"
+      ],
+      "summary": "Ein hybrides Modell für Anweisungen, Reasoning und Programmieren."
+    },
+    {
+      "access": "Mistral API; dokumentierte ID mistral-large-2512+1.",
+      "company": "mistral-ai",
+      "detail": "Mistral beschreibt eine granulare Mixture-of-Experts-Architektur. Die Zahl aktiver Parameter unterscheidet sich von der Gesamtzahl und ist nicht mit einem Benchmark-Ergebnis gleichzusetzen.",
+      "facts": [
+        {
+          "label": "Version",
+          "source": "large",
+          "value": "25.12 / mistral-large-2512+1"
+        },
+        {
+          "label": "Veröffentlicht",
+          "source": "large",
+          "value": "2. Dezember 2025"
+        },
+        {
+          "label": "Parameter gesamt / aktiv",
+          "source": "large",
+          "value": "675 Mrd. / 41 Mrd."
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "large",
+          "value": "256.000 Token"
+        }
+      ],
+      "initials": "ML",
+      "license": "Open Weight; Katalog nennt Apache 2.0. Lizenz des konkreten Artefakts vor eigener Bereitstellung prüfen.",
+      "limits": "Dieses Portrait behandelt Large 3, nicht das ebenfalls im Katalog geführte Large 4. Es ist keine Liste der jeweils neuesten Modelle.",
+      "logo": {
+        "asset": "mistral-large",
+        "label": "Offizielles Mistral-Large-3-Modellmotiv"
+      },
+      "name": "Mistral Large 3",
+      "slug": "mistral-large-3",
+      "sources": [
+        "large",
+        "mistral-catalog"
+      ],
+      "summary": "Ein multimodales Open-Weight-Modell mit Mixture-of-Experts-Architektur."
+    },
+    {
+      "access": "NVIDIA-gehostete API und verlinkte Modellgewichte.",
+      "company": "nvidia",
+      "detail": "Die Modellkarte beschreibt Mamba-2-, MoE- und Attention-Schichten plus C-RADIO-Vision-Encoder. Dieses Portrait bezieht sich auf die NVFP4-Variante, nicht pauschal auf BF16 oder die gesamte Nemotron-Familie.",
+      "facts": [
+        {
+          "label": "Version",
+          "source": "nemotron",
+          "value": "NVIDIA-Nemotron-3.5-Super-VL-120B-A12B-NVFP4"
+        },
+        {
+          "label": "Veröffentlicht",
+          "source": "nemotron",
+          "value": "15. Oktober 2026"
+        },
+        {
+          "label": "Parameter gesamt / aktiv",
+          "source": "nemotron",
+          "value": "120 Mrd. / 12 Mrd."
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "nemotron",
+          "value": "Bis 1 Mio. Token"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "nemotron",
+          "value": "Text, Bild, Video → Text"
+        },
+        {
+          "label": "Gewichtspräzision",
+          "source": "nemotron",
+          "value": "NVFP4, gemischte Präzision"
+        }
+      ],
+      "initials": "N3",
+      "license": "OpenMDW-1.1 für das Modell; der API-Testdienst hat eigene NVIDIA-Trialbedingungen.",
+      "limits": "Benchmark-Werte sind Herstellerangaben. Präzision, Agentensystem und Testaufbau verändern die Ergebnisse; es wurden hier keine eigenen Tests durchgeführt.",
+      "name": "Nemotron 3.5 Super VL NVFP4",
+      "slug": "nemotron-3-5-super-vl-nvfp4",
+      "sources": [
+        "nemotron"
+      ],
+      "summary": "Ein Modell für Text, Bilder und Video mit quantisierten Gewichten."
+    },
+    {
+      "access": "Meta AI und Meta-AI-App; die Ankündigung nennt eine private API-Vorschau für ausgewählte Nutzer.",
+      "company": "meta",
+      "detail": "Meta beschreibt Tool-Nutzung, visuelles Chain-of-Thought und Multi-Agent-Orchestrierung. Dieses Portrait behandelt die Ankündigung vom April 2026 und nicht ein späteres Modell mit dem Zusatz Open.",
+      "facts": [
+        {
+          "label": "Veröffentlichung der Quelle",
+          "source": "meta",
+          "value": "8. April 2026"
+        },
+        {
+          "label": "Entwickler",
+          "source": "meta",
+          "value": "Meta Superintelligence Labs"
+        },
+        {
+          "label": "Einordnung",
+          "source": "meta",
+          "value": "Nativ multimodales Reasoning-Modell"
+        }
+      ],
+      "initials": "MS",
+      "license": "Keine öffentliche Gewichtslizenz aus dieser Ankündigung abgeleitet.",
+      "limits": "Die Verfügbarkeit der damaligen privaten API-Vorschau ist keine Zusage eines heute frei buchbaren API-Zugangs.",
+      "name": "Muse Spark",
+      "slug": "muse-spark",
+      "sources": [
+        "meta"
+      ],
+      "summary": "Multimodales Reasoning-Modell, das Meta AI antreibt."
+    },
+    {
+      "access": "Im offiziellen API-Katalog geführt. Konkrete Freischaltung und regionale Verfügbarkeit im eigenen Anbieterkonto prüfen.",
+      "company": "anthropic",
+      "detail": "Der aktuelle Anthropic-Katalog nennt Text- und Bildeingaben, Textausgabe sowie Werkzeugnutzung. Die Aufgabenbeschreibung ist Herstellerpositionierung; tatsächliche Latenz hängt unter anderem von Promptlänge und Thinking-Aufwand ab.",
+      "facts": [
+        {
+          "label": "Claude-API-ID",
+          "source": "opus-rich",
+          "value": "claude-opus-5-5"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "opus-rich",
+          "value": "Text, Bild → Text"
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "opus-rich",
+          "value": "1 Mio. Token"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "source": "opus-rich",
+          "value": "128.000 Token (synchron)"
+        },
+        {
+          "label": "Thinking",
+          "source": "opus-rich",
+          "value": "Adaptiv, immer aktiv"
+        }
+      ],
+      "initials": "CO",
+      "license": "Gehosteter API-Zugang; keine offene Gewichtslizenz aus dieser Quelle abgeleitet.",
+      "limits": "Herstellerbeschreibung, kein eigener Leistungstest. Eignung mit eigenen Aufgaben prüfen; Modellname und Version beim Einsatz festhalten.",
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Modelllogo"
+      },
+      "name": "Claude Opus 5.5",
+      "rich_model": {
+        "answer": "Claude Opus 5.5 ist ein Anthropic-Modell für länger laufende Programmier- und Wissensaufgaben mit Agenten. Es unterstützt Text- und Bildeingaben sowie Textausgabe. Die Quelle nennt 1 Mio. Token Kontext und maximal 128.000 Ausgabe-Token bei synchronen Anfragen.",
+        "api": "claude-opus-5-5",
+        "context": 1000000,
+        "date": "22. September 2026",
+        "faq": [
+          [
+            "Was ist Claude Opus 5.5?",
+            "Ein Anthropic-Modell für länger laufende agentische Programmier- und Wissensarbeit, veröffentlicht am 22. September 2026. Die Claude-API-ID lautet claude-opus-5-5."
+          ],
+          [
+            "Was kostet Claude Opus 5.5?",
+            "Die Basispreise betragen 4 USD je Million Eingabe-Token und 20 USD je Million Ausgabe-Token. Cache, Batch und Fast Mode haben eigene Bedingungen. Stand: 19.10.2026."
+          ],
+          [
+            "Wie groß ist das Kontextfenster von Opus 5.5?",
+            "Die offizielle Dokumentation nennt 1 Mio. Token Kontext und 128.000 maximale Ausgabe-Token synchron. Bis 300.000 Ausgabe-Token gelten nur für Message Batches mit dem angegebenen Beta-Header."
+          ],
+          [
+            "Kann man Thinking bei Opus 5.5 deaktivieren?",
+            "Nein. Laut Dokumentation ist Adaptive Thinking immer aktiv. Der Aufwand ist steuerbar und steht standardmäßig auf medium."
+          ],
+          [
+            "Ist Opus 5.5 besser als Fable 5.1?",
+            "Das lässt sich aus Kontext und Listenpreis nicht ableiten. Anthropic empfiehlt Opus als Startpunkt und Fable für anspruchsvollere Langzeitaufgaben, wenn eigene Evaluationen mit Opus bei höherem Aufwand nicht reichen. Das ist keine unabhängige Rangliste."
+          ]
+        ],
+        "headline": "Agentische Arbeit mit konkreten API-Grenzen.",
+        "input": 4,
+        "maxout": 128000,
+        "migration": [
+          "Nicht versuchen, Thinking abzuschalten oder Werkzeugnutzung zu erzwingen.",
+          "Fortschrittsmeldungen und display-Einstellung im echten Streaming-Client testen.",
+          "Synchrones Ausgabelimit nicht mit dem Batch-Beta-Limit verwechseln."
+        ],
+        "name": "Claude Opus 5.5",
+        "output": 20,
+        "practical": "Anthropic empfiehlt Opus 5.5 als Ausgangspunkt für die meisten Aufgaben. Das ist Anbieterberatung, kein hier ermitteltes Urteil. Prüfe einen kompletten Arbeitsablauf: Werkzeugaufrufe, Zwischenmeldungen, Ergebnis und Kosten.",
+        "pricing_note": "Basispreise in USD je 1 Mio. Token: Eingabe 4, Ausgabe 20. Cache-Write 5 Min.: 5; Cache-Write 1 Std.: 8; Cache-Read: 0,20. Batch-API nennt 50 % Rabatt auf Eingabe und Ausgabe. Fast Mode und Plattformbedingungen separat prüfen; kein Claude-Abopreis, keine Gesamtkostenzusage.",
+        "sections": [
+          [
+            "Aufgabe und Modalitäten",
+            "Opus 5.5 ist für länger laufende Agenten-, Code- und Wissensarbeit positioniert. Text und Bilder gehen hinein, Text kommt heraus. Ein API-Modell ist nicht die vollständige Claude-Anwendung."
+          ],
+          [
+            "Thinking lässt sich nicht ausschalten",
+            "Adaptive Thinking bleibt bei Opus 5.5 aktiv. Die Tiefe wird über den Aufwand gesteuert, standardmäßig medium. Ein Upgrade ist deshalb nicht bloß der Austausch einer Modell-ID."
+          ],
+          [
+            "Werkzeugschleifen und Fortschrittsmeldungen",
+            "Erzwungene Werkzeugnutzung führt laut Dokumentation zu einem Fehler. Text zwischen Werkzeugaufrufen kann in Thinking-Blöcken stecken und bei der Standardanzeige leer bleiben. Anwendungen müssen ihre Streaming- und display-Einstellung prüfen."
+          ],
+          [
+            "Kontext und Batch-Ausgabe unterscheiden",
+            "Synchron sind bis 128.000 Ausgabe-Token dokumentiert. Für Message Batches nennt die Quelle bis 300.000 mit dem Beta-Header output-300k-2026-03-24. Diese Beta-Grenze ist kein Standardlimit jeder Anfrage."
+          ]
+        ],
+        "source": "opus-rich",
+        "technical": "Adaptive Thinking ist immer aktiv; der Standardaufwand ist medium. Erzwungene Werkzeugnutzung wird laut Migrationshinweisen abgewiesen. Thinking-Blöcke sind an Modell und Gespräch gebunden; Änderungen früherer Gesprächsrunden können diese Bindung beeinflussen.",
+        "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview"
+      },
+      "slug": "claude-opus-5-5",
+      "sources": [
+        "opus-rich"
+      ],
+      "summary": "Claude Opus 5.5 ist ein Anthropic-Modell für länger laufende Programmier- und Wissensaufgaben mit Agenten."
+    },
+    {
+      "access": "Im offiziellen API-Katalog geführt. Konkrete Freischaltung und regionale Verfügbarkeit im eigenen Anbieterkonto prüfen.",
+      "company": "anthropic",
+      "detail": "Der aktuelle Anthropic-Katalog nennt Text- und Bildeingaben, Textausgabe sowie Werkzeugnutzung. Die Aufgabenbeschreibung ist Herstellerpositionierung; tatsächliche Latenz hängt unter anderem von Promptlänge und Thinking-Aufwand ab.",
+      "facts": [
+        {
+          "label": "Claude-API-ID",
+          "source": "fable-rich",
+          "value": "claude-fable-5-1"
+        },
+        {
+          "label": "Eingabe → Ausgabe",
+          "source": "fable-rich",
+          "value": "Text, Bild → Text"
+        },
+        {
+          "label": "Kontextfenster",
+          "source": "fable-rich",
+          "value": "1 Mio. Token"
+        },
+        {
+          "label": "Maximale Ausgabe",
+          "source": "fable-rich",
+          "value": "128.000 Token (synchron)"
+        },
+        {
+          "label": "Thinking",
+          "source": "fable-rich",
+          "value": "Adaptiv, immer aktiv"
+        }
+      ],
+      "initials": "CF",
+      "license": "Gehosteter API-Zugang; keine offene Gewichtslizenz aus dieser Quelle abgeleitet.",
+      "limits": "Herstellerbeschreibung, kein eigener Leistungstest. Eignung mit eigenen Aufgaben prüfen; Modellname und Version beim Einsatz festhalten.",
+      "logo": {
+        "asset": "claude",
+        "label": "Claude-Familienlogo, kein eigenes Modelllogo"
+      },
+      "name": "Claude Fable 5.1",
+      "rich_model": {
+        "answer": "Claude Fable 5.1 ist ein Anthropic-Modell für anspruchsvolles Reasoning und länger laufende Agentenarbeit. Es verarbeitet Text und Bilder und erzeugt Text. Die Quelle nennt 1 Mio. Token Kontext, maximal 128.000 Ausgabe-Token und dauerhaft aktives Adaptive Thinking.",
+        "api": "claude-fable-5-1",
+        "context": 1000000,
+        "date": "1. September 2026",
+        "faq": [
+          [
+            "Was ist Claude Fable 5.1?",
+            "Ein Anthropic-Modell für anspruchsvolles Reasoning und lange Agentenaufgaben. Die Veröffentlichung datiert auf den 1. September 2026; die API-ID lautet claude-fable-5-1."
+          ],
+          [
+            "Was kostet Claude Fable 5.1?",
+            "Die API-Basispreise liegen bei 10 USD je Million Eingabe-Token und 50 USD je Million Ausgabe-Token. Cache-Reads kosten 0,25 USD je Million Token; weitere Cache- und Batch-Bedingungen beachten. Stand: 19.10.2026."
+          ],
+          [
+            "Wie viel Kontext unterstützt Fable 5.1?",
+            "Die offizielle Modellseite nennt 1 Mio. Token Kontext und maximal 128.000 Ausgabe-Token. Das Kontextfenster ist keine Garantie, jede enthaltene Information korrekt zu verwenden."
+          ],
+          [
+            "Was unterscheidet Fable 5.1 und Opus 5.5?",
+            "Beide nennen 1 Mio. Token Kontext und 128.000 maximale Ausgabe-Token. Fable startet mit Aufwand high und höheren Basispreisen; Opus mit medium. Anthropic empfiehlt den Wechsel anhand eigener Aufgaben-Evaluationen, nicht pauschal."
+          ],
+          [
+            "Ist Claude Fable 5.1 dasselbe wie Mythos 5.1?",
+            "Nein. Anthropic nennt gleiche Fähigkeiten und Spezifikationen, aber Mythos ist nur für entsprechend verifizierte Organisationen zugänglich. Die Modellnamen und Zugangsbedingungen bleiben verschieden."
+          ]
+        ],
+        "headline": "Reasoning über lange Arbeitsabläufe.",
+        "input": 10,
+        "maxout": 128000,
+        "migration": [
+          "Thinking-Blöcke nicht zwischen beliebigen Modellversionen wiederverwenden.",
+          "Frühere Gesprächsrunden nicht unbemerkt bearbeiten, wenn Thinking erhalten bleiben soll.",
+          "Beta-Funktionen gezielt aktivieren und erzwungene Werkzeugnutzung entfernen."
+        ],
+        "name": "Claude Fable 5.1",
+        "output": 50,
+        "practical": "Anthropic empfiehlt Fable 5.1 für anspruchsvolle mehrstufige Aufgaben oder wenn eigene Evaluationen mit Opus 5.5 bei höherem Aufwand nicht ausreichen. Ein höherer Preis ist kein Beweis, dass Fable für jede Aufgabe die bessere Wahl ist.",
+        "pricing_note": "Basispreise in USD je 1 Mio. Token: Eingabe 10, Ausgabe 50. Cache-Write 5 Min.: 12,50; Cache-Write 1 Std.: 20; Cache-Read: 0,25. Batch-API nennt 50 % Rabatt auf Eingabe und Ausgabe. Zugang, Plattform und weitere Gebühren prüfen; kein Claude-Abopreis und keine vollständige Kostenschätzung.",
+        "sections": [
+          [
+            "Reasoning und lange Aufgaben",
+            "Die offizielle Beschreibung nennt Agentenprogrammierung, mehrstufige Recherche sowie Dokument-, Tabellen- und Präsentationsarbeit. Das sind Einsatzfelder laut Anbieter, keine von uns gemessenen Erfolgsquoten."
+          ],
+          [
+            "Thinking und Gesprächsverlauf",
+            "Adaptive Thinking ist immer aktiv; standardmäßig gilt high. Für die Wiederverwendung von Thinking-Blöcken gelten Modell- und Gesprächsgrenzen. Ein Verlauf sollte deshalb nicht unbemerkt zwischen unterschiedlichen Modellen gewechselt werden."
+          ],
+          [
+            "Fable ist nicht einfach Mythos",
+            "Anthropic beschreibt Mythos 5.1 mit denselben Fähigkeiten und Spezifikationen, aber mit Zugang nur für verifizierte Organisationen über entsprechende Programme. Ein Fable-Zugang beweist keinen Mythos-Zugang."
+          ],
+          [
+            "Neue Funktionen können Beta sein",
+            "Pro Nachricht gesetzter Aufwand, rundenbezogene Systemnachrichten und lesbare Fortschrittsmeldungen zwischen Werkzeugaufrufen werden als Beta beschrieben. Eine Beta darf nicht als dauerhaft unveränderte API zugesagt werden."
+          ]
+        ],
+        "source": "fable-rich",
+        "technical": "Der Standardaufwand lautet high. Erzwungene Werkzeugnutzung führt laut Quelle zu einem Fehler. Thinking-Blöcke von Fable 5.1 sind nur mit Fable 5.1 und Mythos 5.1 wiederverwendbar; das Bearbeiten früherer Gesprächsrunden macht sie ungültig.",
+        "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview"
+      },
+      "slug": "claude-fable-5-1",
+      "sources": [
+        "fable-rich"
+      ],
+      "summary": "Claude Fable 5.1 ist ein Anthropic-Modell für anspruchsvolles Reasoning und länger laufende Agentenarbeit."
+    }
+  ],
+  "reviewed": "2026-10-19",
+  "schema_version": 1,
+  "scores": [
+    {
+      "benchmark": "gpqa",
+      "metric": "% laut Herstellertabelle",
+      "model": "nemotron-3-5-super-vl-nvfp4",
+      "reported_by": "NVIDIA",
+      "setup": "NVFP4; Prompt, Agent, Budget und Wiederholungen in dieser Tabellenzeile nicht vollständig spezifiziert. Nicht für direkte Modellranglisten geeignet.",
+      "source": "nemotron",
+      "value": "89,90",
+      "variant": "Diamond"
+    },
+    {
+      "benchmark": "swe-bench-verified",
+      "metric": "% laut Herstellertabelle",
+      "model": "nemotron-3-5-super-vl-nvfp4",
+      "reported_by": "NVIDIA",
+      "setup": "NVFP4; Prompt, Agent, Budget und Wiederholungen in dieser Tabellenzeile nicht vollständig spezifiziert. Nicht für direkte Modellranglisten geeignet.",
+      "source": "nemotron",
+      "value": "71,07",
+      "variant": "Verified"
+    },
+    {
+      "benchmark": "terminal-bench-2-1",
+      "metric": "% laut Herstellertabelle",
+      "model": "nemotron-3-5-super-vl-nvfp4",
+      "reported_by": "NVIDIA",
+      "setup": "NVFP4; Prompt, Agent, Budget und Wiederholungen in dieser Tabellenzeile nicht vollständig spezifiziert. Nicht für direkte Modellranglisten geeignet.",
+      "source": "nemotron",
+      "value": "60,80",
+      "variant": "2.1"
+    }
+  ],
+  "sources": {
+    "anthropic": {
+      "accessed": "2026-10-19",
+      "title": "Anthropic: Company",
+      "url": "https://www.anthropic.com/company"
+    },
+    "anthropic-catalog-rich": {
+      "accessed": "2026-10-19",
+      "title": "Anthropic: Modellkatalog",
+      "url": "https://platform.claude.com/docs/en/models/overview"
+    },
+    "anthropic-trust": {
+      "accessed": "2026-10-19",
+      "title": "Anthropic: The Long-Term Benefit Trust",
+      "url": "https://www.anthropic.com/news/the-long-term-benefit-trust"
+    },
+    "astra": {
+      "accessed": "2026-10-19",
+      "title": "OpenAI: GPT-6 Astra API-Modell",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+    },
+    "astra-rich": {
+      "accessed": "2026-10-19",
+      "title": "GPT-6 Astra: offizielle Modell-Dokumentation",
+      "url": "https://developers.openai.com/api/docs/models/gpt-6-astra"
+    },
+    "claude": {
+      "accessed": "2026-10-19",
+      "title": "Anthropic: Models overview",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/models/overview"
+    },
+    "fable-rich": {
+      "accessed": "2026-10-19",
+      "title": "Claude Fable 5.1: offizielle Modell-Dokumentation",
+      "url": "https://platform.claude.com/docs/en/models/fable-5-1/overview"
+    },
+    "gemini": {
+      "accessed": "2026-10-19",
+      "title": "Google DeepMind: Gemini 4 Argon Model Card",
+      "url": "https://deepmind.google/models/model-cards/gemini-4-argon/"
+    },
+    "github-anthropic": {
+      "accessed": "2026-10-19",
+      "title": "Offizielles Entwickler-Repository: anthropics/anthropic-sdk-python",
+      "url": "https://github.com/anthropics/anthropic-sdk-python"
+    },
+    "github-google": {
+      "accessed": "2026-10-19",
+      "title": "Offizielles Entwickler-Repository: googleapis/python-genai",
+      "url": "https://github.com/googleapis/python-genai"
+    },
+    "github-openai": {
+      "accessed": "2026-10-19",
+      "title": "Offizielles Entwickler-Repository: openai/openai-python",
+      "url": "https://github.com/openai/openai-python"
+    },
+    "google": {
+      "accessed": "2026-10-19",
+      "title": "Google DeepMind: About",
+      "url": "https://deepmind.google/about/"
+    },
+    "google-catalog-rich": {
+      "accessed": "2026-10-19",
+      "title": "Google: Gemini-Modellkatalog",
+      "url": "https://ai.google.dev/gemini-api/docs/models"
+    },
+    "google-merge": {
+      "accessed": "2026-10-19",
+      "title": "Google: Announcing Google DeepMind, 20.04.2023",
+      "url": "https://deepmind.google/blog/announcing-google-deepmind/"
+    },
+    "gpqa": {
+      "accessed": "2026-10-19",
+      "title": "GPQA: Originalrepository",
+      "url": "https://github.com/idavidrein/gpqa"
+    },
+    "gpqa-data": {
+      "accessed": "2026-10-19",
+      "title": "GPQA: Dataset Card",
+      "url": "https://huggingface.co/datasets/Idavidrein/gpqa"
+    },
+    "large": {
+      "accessed": "2026-10-19",
+      "title": "Mistral Large 3, v25.12",
+      "url": "https://docs.mistral.ai/models/mistral-large-3-25-12"
+    },
+    "meta": {
+      "accessed": "2026-10-19",
+      "title": "Meta: Introducing Muse Spark",
+      "url": "https://ai.meta.com/blog/introducing-muse-spark-msl/"
+    },
+    "meta-developer-rich": {
+      "accessed": "2026-10-19",
+      "title": "Meta: Entwicklerplattform und Muse",
+      "url": "https://www.llama.com/"
+    },
+    "meta-license-rich": {
+      "accessed": "2026-10-19",
+      "title": "Meta: Llama 4 Community License Agreement",
+      "url": "https://dev.meta.ai/llama/llama4/license"
+    },
+    "meta-llama-rich": {
+      "accessed": "2026-10-19",
+      "title": "Meta: Llama-Modellfamilien und Richtlinien",
+      "url": "https://dev.meta.ai/llama"
+    },
+    "meta-llama2-rich": {
+      "accessed": "2026-10-19",
+      "title": "Meta: Llama 2 Community License",
+      "url": "https://ai.meta.com/llama/license/"
+    },
+    "mistral": {
+      "accessed": "2026-10-19",
+      "title": "Mistral: About",
+      "url": "https://mistral.ai/about/"
+    },
+    "mistral-about-rich": {
+      "accessed": "2026-10-19",
+      "title": "Mistral: Gründung, Gründer und Entwicklung",
+      "url": "https://mistral.ai/about"
+    },
+    "mistral-brand-rich": {
+      "accessed": "2026-10-19",
+      "title": "Mistral: Brand assets und Nutzungsregeln",
+      "url": "https://mistral.ai/brand/"
+    },
+    "mistral-catalog": {
+      "accessed": "2026-10-19",
+      "title": "Mistral: Models Overview",
+      "url": "https://docs.mistral.ai/models"
+    },
+    "mistral-products-rich": {
+      "accessed": "2026-10-19",
+      "title": "Mistral: Produktübersicht",
+      "url": "https://mistral.ai/products"
+    },
+    "mmlu": {
+      "accessed": "2026-10-19",
+      "title": "MMLU-Pro: Originalrepository",
+      "url": "https://github.com/tiger-ai-lab/mmlu-pro"
+    },
+    "nemotron": {
+      "accessed": "2026-10-19",
+      "title": "NVIDIA: Nemotron 3.5 Super VL Modellkarte",
+      "url": "https://build.nvidia.com/nvidia/nemotron-3.5-super-vl-120b-a12b/modelcard"
+    },
+    "nvidia": {
+      "accessed": "2026-10-19",
+      "title": "NVIDIA: About",
+      "url": "https://www.nvidia.com/en-us/about-nvidia/"
+    },
+    "nvidia-nemotron-rich": {
+      "accessed": "2026-10-19",
+      "title": "NVIDIA: Nemotron, Einsatzwege und Lizenzabgrenzung",
+      "url": "https://www.nvidia.com/en-us/ai-data-science/foundation-models/nemotron/"
+    },
+    "openai": {
+      "accessed": "2026-10-19",
+      "title": "OpenAI: About",
+      "url": "https://openai.com/about/"
+    },
+    "openai-catalog-rich": {
+      "accessed": "2026-10-19",
+      "title": "OpenAI: Modellkatalog",
+      "url": "https://developers.openai.com/api/docs/models"
+    },
+    "openai-structure": {
+      "accessed": "2026-10-19",
+      "title": "OpenAI: veröffentlichte Unternehmensstruktur",
+      "url": "https://openai.com/our-structure/"
+    },
+    "opus-rich": {
+      "accessed": "2026-10-19",
+      "title": "Claude Opus 5.5: offizielle Modell-Dokumentation",
+      "url": "https://platform.claude.com/docs/en/models/opus-5-5/overview"
+    },
+    "small": {
+      "accessed": "2026-10-19",
+      "title": "Mistral Small 4, v26.03",
+      "url": "https://docs.mistral.ai/models/mistral-small-4-0-26-03"
+    },
+    "swe": {
+      "accessed": "2026-10-19",
+      "title": "SWE-bench Verified: Methode",
+      "url": "https://www.swebench.com/verified"
+    },
+    "terminal": {
+      "accessed": "2026-10-19",
+      "title": "Terminal-Bench 2.1: Originalrepository",
+      "url": "https://github.com/harbor-framework/terminal-bench-2-1"
+    }
+  }
+}

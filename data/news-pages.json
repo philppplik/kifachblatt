@@ -1,5 +1,53 @@
 [
   {
+    "title": "Kanzler Merz hofft auf Nvidia als Wachstumsbeschleuniger",
+    "url": "https://www.heise.de/news/Kanzler-Merz-hofft-auf-Nvidia-als-Wachstumsbeschleuniger-11493401.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792446600.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Der Gipfel „Invest in Germany“ startete in Berlin mit einer Plauderei zwischen Bundeskanzler und Nvidia-CEO. Beide wollen Industriedaten für KI nutzbar machen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-20T06:14:05.287088+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "China will Export von KI- und Solartechnik beschränken",
+    "url": "https://www.heise.de/news/China-will-Export-von-KI-und-Solartechnik-beschraenken-11487798.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792427700.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "China plant, den Export von Schlüsseltechnologien wie KI und Solartechnik zu beschränken. Eine Registrierungspflicht gilt schon seit letzter Woche.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-20T06:14:05.287212+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "ISO/IEC 27090 soll KI-Systeme sicher machen",
+    "url": "https://www.heise.de/news/ISO-IEC-27090-soll-KI-Systeme-sicher-machen-11492332.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792424400.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nach vier Jahren liegt die Norm ISO/IEC 27090 vor. Der Leitfaden beschreibt KI-spezifische Angriffe samt Gegenmaßnahmen und ergänzt ISO 27001.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-20T06:14:05.287265+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Markt im Wandel: Unternehmen wechseln Modelle immer häufiger",
+    "url": "https://www.heise.de/news/Vercel-Index-Open-Weight-Modellnutzung-erstmalig-ueber-70-Prozent-11488361.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792419480.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Laut Vercels AI Gateway Index verarbeiten Open-Weight-Modelle mittlerweile über 70 Prozent aller Token. Die Wechselbereitschaft steigt.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-20T06:14:05.287333+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "KI-Update kompakt: Urheberrecht, Apple Intelligence, KI-Geschmack, RTX Spark",
     "url": "https://www.heise.de/news/KI-Update-kompakt-Urheberrecht-Apple-Intelligence-KI-Geschmack-RTX-Spark-11492021.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792414800.0,
