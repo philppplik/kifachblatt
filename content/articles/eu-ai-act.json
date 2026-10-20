@@ -1,0 +1,209 @@
+{
+ "slug": "eu-ai-act",
+ "lang": "de",
+ "section": "recht",
+ "type": "explainer",
+ "title": "EU AI Act: Risikoklassen, Pflichten und Fristen im Überblick",
+ "dek": "Die KI-Verordnung gilt gestaffelt, der Omnibus hat Hochrisiko-Fristen verschoben. Was seit 2026 gilt, was 2027 kommt und wer in Deutschland kontrolliert.",
+ "published": "2026-10-18T20:15:00+02:00",
+ "modified": "2026-10-18T20:15:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "EU AI Act",
+  "KI-Verordnung",
+  "Hochrisiko",
+  "Transparenz",
+  "Bußgelder"
+ ],
+ "key_takeaways": [
+  "Die KI-Verordnung (EU) 2024/1689 regelt KI nach Risiko: verbotene Praktiken, Hochrisiko-Systeme mit strengen Pflichten, Systeme mit Transparenzpflichten und der unregulierte Rest [1].",
+  "Verbotene Praktiken und KI-Kompetenz gelten seit Februar 2025, Regeln für Modelle mit allgemeinem Verwendungszweck seit August 2025, die Transparenzpflichten nach Artikel 50 seit dem 2. August 2026 [1][3].",
+  "Der KI-Omnibus (in Kraft seit 27. Juli 2026) hat die Hochrisiko-Pflichten verschoben: Anhang-III-Systeme gelten erst ab dem 2. Dezember 2027, KI in regulierten Produkten ab dem 2. August 2028 [2].",
+  "Verstöße gegen die Verbote kosten bis zu 35 Millionen Euro oder 7 Prozent des weltweiten Jahresumsatzes; die meisten anderen Verstöße bis zu 15 Millionen oder 3 Prozent [5].",
+  "In Deutschland überwachen Bundesnetzagentur und BaFin als Marktüberwachungsbehörden; die BaFin kontrolliert KI-Systeme im Finanzsektor bereits bei Verboten und Transparenz [4]."
+ ],
+ "hero": {
+  "alt": "Grafik: Vierstufige Risikopyramide von verboten über Hochrisiko und begrenztes Risiko bis minimal, mit dem Hinweis, dass Pflichten nach oben zunehmen.",
+  "caption": "Die vier Risikostufen der KI-Verordnung: Je höher die Stufe, desto mehr Pflichten. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Keine Rechtsberatung",
+   "x": "Dieser Beitrag ordnet ein und ersetzt keine Rechtsberatung. Stand: 20. Oktober 2026 - wichtig, weil der KI-Omnibus im Juli 2026 mehrere Fristen verschoben hat. Maßgeblich ist die Verordnung im jeweils aktuellen Wortlaut."
+  },
+  {
+   "t": "p",
+   "x": "Die KI-Verordnung der EU - offiziell Verordnung (EU) 2024/1689, im Sprachgebrauch AI Act - ist das erste umfassende KI-Gesetz der Welt. Sie ist am 1. August 2024 in Kraft getreten und gilt nicht an einem Stichtag, sondern in Etappen [1]. Ihr Grundprinzip: Nicht die Technik wird reguliert, sondern das Risiko ihrer Anwendung. Wer das einmal verstanden hat, kann jedes System in wenigen Minuten grob einordnen."
+  },
+  {
+   "t": "h2",
+   "x": "Die vier Risikostufen"
+  },
+  {
+   "t": "p",
+   "x": "Die Verordnung sortiert KI-Systeme in vier Stufen [1]. Stufe eins ist das **unannehmbare Risiko**: neun Praktiken sind verboten, darunter schädliche Manipulation, Social Scoring, die ungezielte Gesichtserkennung aus dem Netz, Emotionserkennung am Arbeitsplatz und in Bildungseinrichtungen sowie - seit dem Omnibus - Systeme, die nicht einvernehmliche sexuelle Deepfakes erzeugen [1][2]. Stufe zwei ist das **Hochrisiko**: KI etwa in der Personalauswahl, bei der Kreditwürdigkeitsprüfung, in kritischen Infrastrukturen oder im Strafverfolgungsbereich. Hier greifen Pflichten zu Risikomanagement, Datenqualität, Dokumentation, menschlicher Aufsicht und Konformitätsbewertung. Stufe drei betrifft Systeme mit **Transparenzpflichten**: Chatbots müssen offenlegen, dass man mit einer KI spricht; synthetische Inhalte müssen maschinenlesbar als künstlich gekennzeichnet sein (Artikel 50). Stufe vier ist das **minimale Risiko** - Spamfilter, Suchvorschläge, der größte Teil des Alltags - und bleibt weitgehend frei [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Der Fahrplan - mit den Omnibus-Verschiebungen"
+  },
+  {
+   "t": "table",
+   "caption": "Die Anwendungstermine der KI-Verordnung im Überblick, inklusive der Änderungen durch den KI-Omnibus [1][2][3]",
+   "head": [
+    "Datum",
+    "Was gilt ab dann"
+   ],
+   "rows": [
+    [
+     "1. August 2024",
+     "Inkrafttreten der Verordnung"
+    ],
+    [
+     "2. Februar 2025",
+     "Verbotene Praktiken (Art. 5) und Pflicht zur KI-Kompetenz (Art. 4)"
+    ],
+    [
+     "2. August 2025",
+     "Pflichten für Modelle mit allgemeinem Verwendungszweck (GPAI), Governance auf EU-Ebene"
+    ],
+    [
+     "2. August 2026",
+     "Transparenzpflichten (Art. 50); Beginn der Durchsetzung durch Behörden"
+    ],
+    [
+     "2. Dezember 2026",
+     "Neue Verbote (nicht einvernehmliche Deepfakes); Ende der Übergangsfrist für die maschinenlesbare Kennzeichnung älterer Systeme (Art. 50 Abs. 2)"
+    ],
+    [
+     "2. Dezember 2027",
+     "Hochrisiko-Systeme nach Anhang III (z. B. Personalauswahl, Kreditscoring) - durch den Omnibus verschoben"
+    ],
+    [
+     "2. August 2028",
+     "Hochrisiko-KI in regulierten Produkten nach Anhang I (Maschinen, Spielzeug, Aufzüge) - durch den Omnibus verschoben"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Der KI-Omnibus ist das entscheidende Update dieses Jahres: Am 19. November 2025 als Teil des digitalen Omnibuspakets vorgeschlagen, nach politischer Einigung vom 7. Mai 2026 am 27. Juli 2026 in Kraft getreten. Er verschiebt die Hochrisiko-Fristen auf Dezember 2027 beziehungsweise August 2028, weitet Erleichterungen von KMU auf kleine Midcap-Unternehmen aus, erweitert den Zugang zu Reallaboren und ergänzt das Verbot von Nudifizierungs-Apps [2]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "alt": "Balkendiagramm: Die Höchstbußgelder betragen 35 Millionen Euro für Verstöße gegen die Verbote, 15 Millionen für die meisten anderen Pflichtverstöße und 7,5 Millionen für falsche Auskünfte gegenüber Behörden.",
+   "caption": "Höchstbußgelder nach Artikel 99; alternativ Prozent des weltweiten Jahresumsatzes (7 / 3 / 1 Prozent), jeweils der höhere Wert [5].",
+   "title": "Bußgelder der KI-Verordnung (Höchstbeträge in Mio. Euro)",
+   "labels": [
+    "Verbotene Praktiken (Art. 5)",
+    "Sonstige Pflichtverstöße",
+    "Falsche Auskunft an Behörden"
+   ],
+   "series": [
+    {
+     "name": "Höchstbetrag",
+     "values": [
+      35,
+      15,
+      7.5
+     ]
+    }
+   ],
+   "unit": " Mio. €",
+   "source": "Art. 99 der KI-Verordnung, konsolidierte Fassung [5]"
+  },
+  {
+   "t": "h2",
+   "x": "Was Unternehmen heute konkret betrifft"
+  },
+  {
+   "t": "p",
+   "x": "Für die meisten Betriebe sind im Herbst 2026 vier Punkte relevant. Erstens die **KI-Kompetenz** (Art. 4): Wer KI einsetzt, muss für ausreichendes Wissen im Team sorgen - das gilt schon seit Februar 2025 und wird etwa von der BaFin aktiv abgefragt [4]. Zweitens die **Transparenz**: Wer Chatbots betreibt oder KI-Inhalte veröffentlicht, muss das seit dem 2. August 2026 kenntlich machen; für ältere Generativ-Systeme läuft die Übergangsfrist bis zum 2. Dezember 2026 [3]. Drittens das **Inventar**: Ohne Überblick, welche KI-Systeme im Haus laufen, lässt sich keine Risikoklasse bestimmen. Viertens die **Vorbereitung auf 2027**: Wer Systeme in Anhang-III-Feldern wie Personal oder Kredit einsetzt, sollte die Hochrisiko-Pflichten jetzt aufsetzen - Dezember 2027 klingt fern, ist aber ein enger Projektplan [2]."
+  },
+  {
+   "t": "p",
+   "x": "In Deutschland regelt das KI-Marktüberwachungs- und Innovationsförderungsgesetz (KI-MIG) die Zuständigkeiten. Die BaFin ist Marktüberwachungsbehörde für KI-Systeme im Finanzsektor: Sie überwacht schon heute verbotene Praktiken, die Transparenzpflichten nach Artikel 50 und die KI-Kompetenz nach Artikel 4; ab dem 2. Dezember 2027 kommen die Hochrisiko-Anforderungen für Kreditscoring und Risikobewertung in Lebens- und Krankenversicherungen dazu [4]."
+  },
+  {
+   "t": "h2",
+   "x": "Und die Modell-Anbieter?"
+  },
+  {
+   "t": "p",
+   "x": "Für Anbieter von Modellen mit allgemeinem Verwendungszweck gelten seit August 2025 eigene Pflichten: technische Dokumentation, eine Urheberrechtsstrategie und eine öffentliche, ausreichend detaillierte Zusammenfassung der Trainingsinhalte [1]. Das KI-Büro der Kommission kann Dokumente anfordern, Modelle bewerten und Bußgelder verhängen [1]. Für Nutzer solcher Modelle heißt das: Die Hausaufgaben der Anbieter ersetzen nicht die eigenen - als Betreiber (deployer) bleibt die Verantwortung für den konkreten Einsatz."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Der AI Act ist kein Verbotsgesetz, sondern ein Sortierwerkzeug: Wer sein System der richtigen Stufe zuordnet, kennt seine Pflichten. 2026 ist das Jahr der Transparenz, 2027 das Jahr des Hochrisikos. Wer parallel mit personenbezogenen Daten arbeitet, findet die zweite Regelwerksebene im Beitrag zur [DSGVO und KI](/dsgvo-und-ki) und bei generativen Inhalten den Beitrag zum [Urheberrecht bei KI-Medien](/urheberrecht-ki-medien)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Gilt der AI Act auch, wenn ich im Büro nur ChatGPT nutze?",
+   "a": "Ja, als Betreiber hast du Pflichten: KI-Kompetenz der Mitarbeitenden (Art. 4, seit Februar 2025), keine verbotenen Praktiken und - beim Veröffentlichen von KI-Inhalten - die Kennzeichnung nach Art. 50. Die volle Hochrisiko-Regelung trifft nur bestimmte Anwendungsfälle wie Personalauswahl [1][4]."
+  },
+  {
+   "q": "Was hat der KI-Omnibus geändert?",
+   "a": "Der am 27. Juli 2026 in Kraft getretene Omnibus verschiebt die Hochrisiko-Pflichten: Anhang-III-Systeme gelten ab dem 2. Dezember 2027 statt August 2026, KI in regulierten Produkten ab dem 2. August 2028. Außerdem wurden KMU-Erleichterungen auf kleine Midcaps ausgeweitet und ein Verbot von Nudifizierungs-Apps ergänzt [2]."
+  },
+  {
+   "q": "Wie hoch sind die Bußgelder?",
+   "a": "Bis zu 35 Millionen Euro oder 7 Prozent des weltweiten Jahresumsatzes für Verstöße gegen die verbotenen Praktiken, bis zu 15 Millionen oder 3 Prozent für die meisten anderen Verstöße und bis zu 7,5 Millionen oder 1 Prozent für falsche Auskünfte gegenüber Behörden - jeweils der höhere Wert [5]."
+  },
+  {
+   "q": "Muss ich KI-generierte Bilder und Texte kennzeichnen?",
+   "a": "Anbieter generativer Systeme müssen Ausgaben maschinenlesbar als künstlich markieren (Art. 50 Abs. 2). Betreiber müssen Deepfakes und bestimmte KI-Texte von öffentlichem Interesse offenlegen. Details und die Praxis der Kennzeichnung erklärt der Beitrag zum [Urheberrecht und zur Kennzeichnung bei KI-Medien](/urheberrecht-ki-medien)."
+  }
+ ],
+ "sources": [
+  {
+   "title": "AI Act (Regulatory framework for AI)",
+   "publisher": "Europäische Kommission - Shaping Europe's digital future",
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "AI Omnibus tritt in Kraft",
+   "publisher": "Europäische Kommission - Shaping Europe's digital future",
+   "url": "https://digital-strategy.ec.europa.eu/de/news/ai-omnibus-enters-force",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Zeitplan für die Umsetzung des EU-KI-Gesetzes",
+   "publisher": "AI Act Service Desk (Europäische Kommission)",
+   "url": "https://ai-act-service-desk.ec.europa.eu/de/ai-act/timeline/zeitplan-fuer-die-umsetzung-des-eu-ki-gesetzes",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "KI-Marktüberwachung",
+   "publisher": "Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)",
+   "url": "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/ki-marktueberwachung/ki-marktueberwachung_node.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Article 99: Penalties - Regulation (EU) 2024/1689",
+   "publisher": "EU Artificial Intelligence Act Explorer",
+   "url": "https://artificialintelligenceact.eu/article/99/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Grundlage sind die Verordnung (EU) 2024/1689 in der durch den KI-Omnibus geänderten Fassung, der Zeitplan des AI Act Service Desk, die Verlautbarungen der Europäischen Kommission zum Omnibus und die Veröffentlichung der BaFin zur KI-Marktüberwachung. Alle Quellen wurden am 20. Oktober 2026 geöffnet; Fristen und Bußgelder sind wörtlich aus den Quellen übernommen.",
+ "limitations": [
+  "Der KI-Omnibus ist jung; Auslegung, Durchführungsakte und nationale Umsetzung entwickeln sich weiter.",
+  "Dieser Beitrag deckt das Unionsrecht ab; sektorale Spezialregeln und Mitgliedstaaten-Detailrecht (außer dem deutschen KI-MIG im Überblick) sind nicht Gegenstand.",
+  "Keine Rechtsberatung - bei konkreten Systemen hilft nur die Prüfung im Einzelfall."
+ ],
+ "related": [
+  "dsgvo-und-ki",
+  "urheberrecht-ki-medien",
+  "ki-compliance-finanzen"
+ ]
+}

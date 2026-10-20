@@ -1,0 +1,196 @@
+{
+ "slug": "ki-compliance-finanzen",
+ "lang": "de",
+ "section": "recht",
+ "type": "explainer",
+ "title": "KI-Compliance in Finanzprozessen: DORA, GoBD und Nachvollziehbarkeit",
+ "dek": "Drei Regelwerksebenen für KI in Banken und Controlling: DORA, die KI-Verordnung mit BaFin-Aufsicht und GoBD - plus ein Betriebsmodell, das trägt.",
+ "published": "2026-10-20T08:05:00+02:00",
+ "modified": "2026-10-20T08:05:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Compliance",
+  "DORA",
+  "GoBD",
+  "BaFin",
+  "Finanzprozesse"
+ ],
+ "key_takeaways": [
+  "DORA gilt seit dem 17. Januar 2025 und macht KI-Systeme zu regulierten IKT-Assets: Risikomanagement, Vorfallsmeldung, Tests und ein Register der Drittanbieter sind Pflicht [1].",
+  "Die BaFin ist Marktüberwachungsbehörde für KI im Finanzsektor: Sie kontrolliert verbotene Praktiken, Transparenzpflichten und KI-Kompetenz - Hochrisiko-Anforderungen für Kreditscoring und Versicherungspricing folgen ab dem 2. Dezember 2027 [2].",
+  "Die ESMA stellt klar: MiFID-II-Pflichten wie Organisationsanforderungen und Kundeninteresse gelten unverändert, wenn KI im Einsatz ist - die Verantwortung bleibt beim Unternehmen [3].",
+  "Die GoBD verlangen für jeden Zahlenprozess Nachvollziehbarkeit: unveränderte Belege, dokumentierte Verfahren, nachvollziehbare Korrekturen [5].",
+  "Das Betriebsmodell, das alle Ebenen bedient: Inventar, Risikoklasse, menschliche Freigabe, Protokoll, Incident-Weg - in dieser Reihenfolge."
+ ],
+ "hero": {
+  "alt": "Grafik: Vier gestaffelte Schichten mit den Aufschriften DORA, KI-Verordnung, GoBD und Vier-Augen-Prinzip als Pflichtenstapel für Finanzprozesse.",
+  "caption": "KI in Finanzprozessen steht auf vier Pflichtenschichten - das Inventar macht sie handhabbar. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Keine Rechts- und keine Anlageberatung",
+   "x": "Dieser Beitrag ordnet Pflichten ein und ersetzt weder Rechtsberatung noch aufsichtsrechtliche Begleitung. Stand: 20. Oktober 2026 - die Hochrisiko-Fristen der KI-Verordnung wurden per Omnibus verschoben, siehe unten."
+  },
+  {
+   "t": "p",
+   "x": "Eine KI-Auswertung im Controlling ist nirgends so schnell eine Regulierungsfrage wie im Finanzbereich. Drei Ebenen greifen gleichzeitig: die IT-Resilienz (DORA), das KI-Recht (KI-Verordnung mit nationaler Marktüberwachung) und die Buchführungspflichten (GoBD). Wer sie einzeln betrachtet, doppelt Arbeit; wer sie als Schichten liest, sieht: Alle drei verlangen am Ende dasselbe - wissen, was läuft, und belegen können, dass es unter Kontrolle ist."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 1: DORA - KI ist ein IKT-Asset"
+  },
+  {
+   "t": "p",
+   "x": "Die Verordnung über digitale operationale Resilienz (DORA, (EU) 2022/2554) gilt seit dem 17. Januar 2025 für nahezu den gesamten Finanzsektor: Banken, Versicherer, Wertpapierfirmen, Zahlungsinstitute und mehr. Sie verlangt einen dokumentierten IKT-Risikomanagementrahmen, Klassifizierung und Meldung schwerwiegender Vorfälle, regelmäßiges Testen - bis hin zu bedrohungsorientierten Penetrationstests - und das Management des Drittparteienrisikos mit vertraglichen Mindestinhalten [1]."
+  },
+  {
+   "t": "p",
+   "x": "Jedes KI-System im Haus - vom Dokumentenleser bis zur Prognose - ist ein IKT-Asset im Sinne dieser Pflichten. Praktisch heißt das: Das KI-Inventar gehört in dasselbe Register wie die übrigen IKT-Assets; der KI-Anbieter ist ein IKT-Drittdienstleister mit DORA-Vertragsanforderungen; ein KI-Ausfall oder -Fehlverhalten kann ein meldepflichtiger Vorfall sein. Die BaFin empfiehlt ausdrücklich, sich am DORA-Inventar zu orientieren, wenn es um den Überblick über KI-Systeme geht [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 2: Die KI-Verordnung und die BaFin"
+  },
+  {
+   "t": "p",
+   "x": "Deutschland hat mit dem KI-Marktüberwachungs- und Innovationsförderungsgesetz (KI-MIG) die Zuständigkeiten verteilt: Für KI-Systeme im Finanzsektor ist die BaFin Marktüberwachungsbehörde. Sie überwacht bereits heute, ob Systeme verbotene Praktiken nach Artikel 5 enthalten, ob die Transparenzpflichten nach Artikel 50 eingehalten werden und ob Unternehmen die KI-Kompetenz ihrer Mitarbeitenden nach Artikel 4 fördern [2]."
+  },
+  {
+   "t": "p",
+   "x": "Ab dem 2. Dezember 2027 - verschoben durch den KI-Omnibus, siehe [EU AI Act](/eu-ai-act) - kommen die Hochrisiko-Anforderungen für zwei Finanz-Anwendungen aus Anhang III hinzu: KI zur Kreditwürdigkeitsprüfung und Bonitätsbewertung natürlicher Personen (ausgenommen Betrugserkennung) sowie KI zur Risikobewertung und Preisbildung in Lebens- und Krankenversicherungen [2]. Wer solche Systeme einsetzt, sollte Risikomanagement, Datenqualität, Dokumentation und menschliche Aufsicht jetzt aufbauen - nicht im Herbst 2027."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 3: Sektorale Pflichten und GoBD"
+  },
+  {
+   "t": "p",
+   "x": "Die ESMA hat für Wertpapierdienstleister früh klargestellt: Wer KI gegenüber Privatkunden einsetzt, bleibt den MiFID-II-Pflichten verpflichtet - Organisationsanforderungen, Verhaltensregeln, bestmögliches Kundeninteresse. Als Risiken nennt sie algorithmische Verzerrungen, intransparente Entscheidungen, übermäßiges Vertrauen in KI und Datenschutzfragen; die Verantwortung trägt das Unternehmen, nicht das Modell [3]. Die BaFin hat mit ihrem Prinzipienpapier zu Big Data und KI dieselbe Linie für algorithmische Entscheidungsprozesse formuliert: Datenqualität, Nachvollziehbarkeit und Kontrolle sind die Prüfpunkte [4]."
+  },
+  {
+   "t": "p",
+   "x": "Für alle Zahlenprozesse gilt zudem das Handwerkszeug der GoBD: Belege bleiben unverändert, Verfahren sind dokumentiert, jede Buchung ist zum Beleg zurückverfolgbar - die Anpassungen von 2025 zur E-Rechnung machen den strukturierten Datenteil zur maßgeblichen Quelle [5]. Eine KI-Extraktion ist dabei ein Verarbeitungsschritt mit Protokoll, nie der Beleg selbst; Details stehen im Beitrag zur [Dokumentenanalyse](/dokumentenanalyse-ki)."
+  },
+  {
+   "t": "table",
+   "caption": "Die drei Regelwerksebenen und ihre Kernpflicht für KI im Finanzbereich",
+   "head": [
+    "Regelwerk",
+    "Gilt seit",
+    "Kernpflicht bei KI"
+   ],
+   "rows": [
+    [
+     "DORA (EU 2022/2554)",
+     "17. Januar 2025",
+     "KI als IKT-Asset: Risikomanagement, Vorfälle, Tests, Drittanbieter-Register [1]"
+    ],
+    [
+     "KI-Verordnung + KI-MIG",
+     "gestaffelt seit 2024",
+     "Verbote, Transparenz, KI-Kompetenz jetzt; Hochrisiko (Kredit, Versicherung) ab 2.12.2027 [2]"
+    ],
+    [
+     "MiFID II / ESMA",
+     "bestehend",
+     "Organisations- und Verhaltenspflichten gelten auch mit KI; Verantwortung bleibt [3]"
+    ],
+    [
+     "GoBD",
+     "bestehend, Änderung 2025",
+     "Nachvollziehbarkeit: Original, Verfahrensdoku, Rückverfolgbarkeit [5]"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Das Betriebsmodell, das alle Ebenen bedient"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Inventar: Jedes KI-System mit Zweck, Daten, Anbieter und Owner erfassen - idealerweise im DORA-Register mit.",
+    "Risikoklasse: AI-Act-Einordnung je System (verboten, hochriskant, transparenzpflichtig, minimal) dokumentieren.",
+    "Freigabe: [Human-in-the-Loop](/glossar#human-in-the-loop) mit echter Entscheidungsmacht - wer nur abnickt, beaufsichtigt nicht.",
+    "Protokoll: Eingaben, Modellversionen, Prüfschritte und Korrekturen so führen, dass eine Prüfung sie in einem Jahr noch lesen kann.",
+    "Incident-Weg: Fehlverhalten klassifizieren, Eskalation und Meldewege vor dem Ernstfall festlegen (DORA-Rhythmus)."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Diese fünf Schritte sind bewusst unspektakulär. Aufsichtsrecht belohnt keine Eleganz, sondern Belege: ein aktuelles Inventar, eine nachvollziehbare Freigabe, ein Protokoll. Wer sie hat, kann jedes neue KI-Werkzeug in Stunden statt Monaten einordnen."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "KI-Compliance im Finanzbereich ist kein neues Regelwerk, sondern drei bestehende, die jetzt zusammenwirken: DORA organisiert die Technik, die KI-Verordnung die Anwendung, die GoBD die Zahl. Wer das Inventar ernst nimmt, erledigt 80 Prozent der Arbeit einmal - und nicht bei jedem Audit neu. Die technischen Grundlagen der Zahlenprozesse stehen in den Beiträgen zum [Rechnen mit LLMs](/rechnen-mit-llms) und zu [Marktdaten und Sentiment](/marktdaten-sentiment-ki)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Gilt DORA auch für kleine Finanzdienstleister?",
+   "a": "DORA gilt für ein breites Spektrum beaufsichtigter Finanzunternehmen, mit Erleichterungen für Kleinstunternehmen - etwa beim Testprogramm [1]. Ob dein Unternehmen im vollen Umfang fällt, hängt von der Aufsichtskategorie ab; der KI-Teil (Inventar, Drittanbieter) ist in jedem Fall der richtige Einstieg."
+  },
+  {
+   "q": "Muss eine einfache KI-Auswertung im Controlling schon allen Pflichten genügen?",
+   "a": "Sie muss den Pflichten genügen, die ihre Rolle trägt: Gehört sie zu einem regulierten Prozess, zählen DORA-Inventar, GoBD-Nachvollziehbarkeit und - je nach Einsatz - die KI-Verordnung. Eine reine Analyse ohne Personenbezug und ohne regulierte Entscheidung ist weit entfernt vom Hochrisiko - aber sie gehört trotzdem ins Inventar [1][2][5]."
+  },
+  {
+   "q": "Wer haftet, wenn die KI eine falsche Zahl liefert?",
+   "a": "Das Unternehmen. Die ESMA formuliert es für Wertpapierdienste so: Pflichten und Verantwortung bleiben beim Unternehmen, unabhängig davon, ob ein KI-System beteiligt war [3]. Deshalb sind Freigabe und Protokoll keine Formsache, sondern der Haftungspuffer."
+  },
+  {
+   "q": "Was kommt 2027 auf Finanzunternehmen zu?",
+   "a": "Ab dem 2. Dezember 2027 gelten die Hochrisiko-Anforderungen der KI-Verordnung für Kreditwürdigkeitsprüfung und Bonitätsbewertung natürlicher Personen sowie für Risikobewertung und Preisbildung in Lebens- und Krankenversicherungen; die BaFin wird sie im Finanzsektor überwachen [2]."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Digitale operationale Resilienz im Finanzsektor (Zusammenfassung der Verordnung (EU) 2022/2554)",
+   "publisher": "EUR-Lex",
+   "url": "https://eur-lex.europa.eu/DE/legal-content/summary/digital-operational-resilience-for-the-financial-sector.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "KI-Marktüberwachung",
+   "publisher": "Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)",
+   "url": "https://www.bafin.de/DE/unternehmen-maerkte/aufsicht/alle-unternehmen/ki-marktueberwachung/ki-marktueberwachung_node.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "ESMA provides guidance to firms using artificial intelligence in investment services",
+   "publisher": "European Securities and Markets Authority (ESMA)",
+   "url": "https://www.esma.europa.eu/press-news/esma-news/esma-provides-guidance-firms-using-artificial-intelligence-investment-services",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Big Data und künstliche Intelligenz: Prinzipien für den Einsatz von Algorithmen in Entscheidungsprozessen",
+   "publisher": "BaFin",
+   "url": "https://www.bafin.de/SharedDocs/Downloads/DE/Aufsichtsrecht/dl_Prinzipienpapier_BDAI.pdf?__blob=publicationFile&v=1",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "GoBD; 2. Änderung aufgrund verschiedener gesetzlicher Änderungen (BMF-Schreiben vom 14. Juli 2025)",
+   "publisher": "Bundesministerium der Finanzen",
+   "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html?__blob=publicationFile&v=12",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Ausgewertet wurden die EUR-Lex-Zusammenfassung von DORA, die BaFin-Veröffentlichung zur KI-Marktüberwachung, die ESMA-Stellungnahme zu KI in Wertpapierdiensten, das BaFin-Prinzipienpapier zu Big Data und KI sowie das BMF-Schreiben zur GoBD-Änderung 2025. Alle Quellen wurden am 20. Oktober 2026 geöffnet; das Fünf-Schritte-Modell ist eine redaktionelle Verdichtung der Pflichten, keine behördliche Vorgabe.",
+ "limitations": [
+  "Dieser Beitrag behandelt EU- und deutsches Aufsichtsrecht im Überblick; sektorale Details (Versicherung, Zahlungsdienste, Wertpapier) und Landesrecht sind nicht erschöpfend dargestellt.",
+  "Die Hochrisiko-Fristen beruhen auf dem KI-Omnibus vom Juli 2026; weitere Änderungen sind möglich.",
+  "Keine Rechts- und keine Anlageberatung."
+ ],
+ "related": [
+  "eu-ai-act",
+  "dsgvo-und-ki",
+  "dokumentenanalyse-ki"
+ ]
+}

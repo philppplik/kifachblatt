@@ -1,0 +1,194 @@
+{
+ "slug": "anbieter-check",
+ "lang": "de",
+ "section": "datenschutz",
+ "type": "explainer",
+ "title": "KI-Anbieter prüfen: Auftragsverarbeitung, Datenflüsse, Nachweise",
+ "dek": "Sechs Prüfschritte für jeden KI-Dienst: AV-Vertrag nach Art. 28, Serverstandorte, Drittlandtransfer, Zertifizierungen, Löschung und Exit-Plan.",
+ "published": "2026-10-19T09:00:00+02:00",
+ "modified": "2026-10-19T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Auftragsverarbeitung",
+  "Anbieterprüfung",
+  "EU-US Data Privacy Framework",
+  "C5",
+  "ISO 27001"
+ ],
+ "key_takeaways": [
+  "Ohne Vertrag nach Artikel 28 DSGVO darf ein KI-Dienst keine personenbezogenen Firmendaten verarbeiten - der Vertrag regelt Weisungen, Vertraulichkeit, Sicherheit und Unterauftragnehmer [1].",
+  "Trainingsnutzung ist die entscheidende Weiche: Verwendet der Anbieter Kundendaten für eigene Modelle, wird er für diesen Zweck selbst verantwortlich - das gehört in die Prüfung und meist auf Aus.",
+  "Für Transfers in die USA trägt derzeit das EU-US Data Privacy Framework; das Gericht der EU hat die Angemessenheitsentscheidung 2025 bestätigt, die Rechtssache liegt aber nun dem EuGH zur Revision vor [2][3].",
+  "Unabhängige Nachweise wie der C5:2026-Kriterienkatalog des BSI oder ISO/IEC 27001 machen Sicherheitsversprechen vergleichbar - sie ersetzen nicht die Vertragsprüfung, ordnen sie aber ein [4].",
+  "Der Check gehört ins Verarbeitungsverzeichnis und endet nicht bei der Unterschrift: Unterauftragslisten, Löschwege und Exit-Szenario gehören zur laufenden Pflicht."
+ ],
+ "hero": {
+  "alt": "Grafik: Eine Checkliste mit fünf Punkten - AV-Vertrag, Serverstandort, Drittlandtransfer, C5 und ISO 27001, Trainingsnutzung - vier abgehakt, einer durchgestrichen.",
+  "caption": "Der Anbieter-Check als Liste: Vertrag, Datenflüsse, Nachweise - und die Trainingsfrage auf Aus. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Keine Rechtsberatung",
+   "x": "Dieser Beitrag ordnet ein und ersetzt keine Beratung im Einzelfall. Stand: 20. Oktober 2026 - insbesondere die Rechtslage zu Transfers in die USA entwickelt sich weiter (Revision beim EuGH anhängig) [3]."
+  },
+  {
+   "t": "p",
+   "x": "Der teuerste KI-Fehler entsteht selten im Modell - er entsteht beim Onboarding: Ein Team nutzt einen Dienst produktiv, bevor jemand Vertrag, Datenfluss und Trainingsbedingungen gelesen hat. Dieser Beitrag ist die Checkliste dagegen: sechs Prüfschritte, die sich an einem Nachmittag durch einen soliden Anbieter arbeiten lassen und die bei jedem neuen Werkzeug wiederholt werden."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 1: Rollen klären - wer ist wer?"
+  },
+  {
+   "t": "p",
+   "x": "Dein Unternehmen bestimmt Zweck und Mittel der Verarbeitung und ist damit Verantwortlicher. Der KI-Anbieter, der in deinem Auftrag Daten verarbeitet, ist [Auftragsverarbeiter](/glossar#auftragsverarbeitung). Artikel 28 DSGVO verlangt dafür einen Vertrag, der Gegenstand, Dauer, Art und Zweck der Verarbeitung festlegt - und den Auftragsverarbeiter unter anderem zu verarbeiten nur auf dokumentierte Weisung, zur Vertraulichkeit, zu den Sicherheitsmaßnahmen nach Artikel 32 und zu Regeln für Unterauftragnehmer verpflichtet [1]. Die Analogie: Du gibst deine Buchhaltung an ein externes Büro - mit Vertrag, Weisungen und dem Recht, die Unterlagen zurückzufordern. Genau das ist der AV-Vertrag, nur digital."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 2: Die Trainingsfrage stellen"
+  },
+  {
+   "t": "p",
+   "x": "Die wichtigste einzelne Weiche: Nutzt der Anbieter deine Eingaben, um seine Modelle zu verbessern? Dann verarbeitet er Daten für eigene Zwecke und ist dafür selbst Verantwortlicher - dein AV-Vertrag deckt diesen Teil nicht. Seriöse Business- und API-Angebote trennen das sauber: keine Trainingsnutzung von Kundendaten, klar dokumentierte Speicherfristen. Kostenlose Consumer-Werkzeuge sind hier fast immer das falsche Werkzeug für Firmendaten. Die Frage gehört schriftlich beantwortet - AGB-Zusicherung oder Vertragsklausel, nicht Vertriebsaussage."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 3: Datenflüsse und Standorte"
+  },
+  {
+   "t": "p",
+   "x": "Wo läuft das Modell, wo werden Prompts gespeichert, wer sind die Unterauftragnehmer? Eine belastbare Antwort besteht aus drei Dokumenten: der Liste der Verarbeitungsorte, der Unterauftragsliste mit Benachrichtigungsregel und den Speicher- und Löschfristen. Wer keine Unterauftragsliste offenlegt, kann keine Einwilligung nach Artikel 28 Absatz 2 DSGVO sauber organisieren [1]. Praktisch hilft eine Skizze: Datenquelle - Dienst - Unterauftragnehmer - Speicher. Jede Linie ist eine Rechtsfrage."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 4: Drittlandtransfer bewerten"
+  },
+  {
+   "t": "p",
+   "x": "Gehen Daten in ein Land ohne Angemessenheitsbeschluss, braucht es Garantien wie Standardvertragsklauseln plus einer Bewertung des Übertragungsrisikos. Für die USA gilt derzeit der Angemessenheitsbeschluss zum EU-US Data Privacy Framework vom 10. Juli 2023: Daten dürfen an zertifizierte US-Unternehmen fließen [2]. Das Gericht der Europäischen Union hat die Entscheidung am 3. September 2025 bestätigt und die Klage von Philippe Latombe abgewiesen - die Unabhängigkeit der amerikanischen Datenaufsicht (DPRC) und die nachträgliche gerichtliche Kontrolle der Nachrichtendienste genügten demnach den Anforderungen [3]. Allerdings: Latombe hat am 31. Oktober 2025 Revision eingelegt (Rs. C-703/25 P); das letzte Wort hat der EuGH noch nicht gesprochen [3]. Konservative Praxis: DPF-Zertifizierung des Anbieters prüfen, zusätzlich dokumentieren, welche Daten überhaupt fließen - und bei hochsensiblen Daten den europäischen oder [lokalen Betrieb](/lokale-modelle) erwägen."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 5: Nachweise statt Versprechen"
+  },
+  {
+   "t": "p",
+   "x": "Sicherheit lässt sich nicht erfragen, sondern nur belegen. Drei Anker haben sich bewährt: der C5-Kriterienkatalog des BSI, der seit 2016 der wichtigste deutsche Cloud-Sicherheitsstandard ist und 2026 als C5:2026 neu aufgelegt wurde - jetzt mit Themen wie Confidential Computing und Post-Quanten-Kryptographie, geprüft von Wirtschaftsprüfern [4]. Die ISO/IEC 27001 als internationaler Managementstandard, die der C5:2026 ausdrücklich berücksichtigt [4]. Und Prüfberichte nach SOC 2, soweit vorhanden. Kein Testat ersetzt die Vertragsprüfung - aber ein Anbieter ohne jede unabhängige Prüfung ist eine Antwort für sich."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 6: Organisation dahinter"
+  },
+  {
+   "t": "p",
+   "x": "Der Check endet nicht bei der Unterschrift. Der Dienst gehört ins Verarbeitungsverzeichnis; bei riskanten Einsätzen kommt die Folgenabschätzung vorab. Löschwege werden einmal getestet, nicht vermutet. Und ein Exit-Plan beantwortet die Frage: Wie kommen Daten und Einstellungen wieder heraus, wenn der Dienst wechselt? Wer das beim sechsten Anbieter fragt, lernt die Antwort beim ersten."
+  },
+  {
+   "t": "table",
+   "caption": "Die sechs Prüfschritte mit Dokument und Alarmsignal",
+   "head": [
+    "Prüfschritt",
+    "Beleg",
+    "Alarmsignal"
+   ],
+   "rows": [
+    [
+     "Rollen und AV-Vertrag",
+     "Vertrag nach Art. 28 DSGVO",
+     "Nur AGB-Verweis, keine Weisungsregel"
+    ],
+    [
+     "Trainingsnutzung",
+     "Schriftliche Zusage: keine Kundendaten im Training",
+     "Formulierung „zur Produktverbesserung“"
+    ],
+    [
+     "Datenflüsse",
+     "Standortliste, Unterauftragsliste, Löschfristen",
+     "Keine Unterauftragsliste verfügbar"
+    ],
+    [
+     "Drittlandtransfer",
+     "DPF-Zertifizierung oder SCCs plus Risikobewertung",
+     "Transfer ohne jede Grundlage [2][3]"
+    ],
+    [
+     "Sicherheitsnachweise",
+     "C5, ISO 27001, SOC 2",
+     "Selbstauskunft ohne unabhängige Prüfung [4]"
+    ],
+    [
+     "Organisation",
+     "Verzeichniseintrag, DSFA, Exit-Plan",
+     "Kein Owner für den Dienst im Haus"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Der Anbieter-Check ist kein Misstrauensvotum, sondern Handwerk: Sechs Schritte, je ein Nachweis, ein Eintrag ins Verzeichnis. Was danach im Betrieb zählt - Rechte klein halten, Zugriffe kontrollieren - steht im Beitrag zur [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme), die Datenschutz-Grundlagen im Beitrag zur [DSGVO und KI](/dsgvo-und-ki)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Brauche ich für ChatGPT & Co. wirklich einen AV-Vertrag?",
+   "a": "Sobald personenbezogene Daten verarbeitet werden, ja: Artikel 28 DSGVO verlangt einen Vertrag, der Weisungen, Vertraulichkeit, Sicherheit und Unterauftragnehmer regelt [1]. Business- und API-Produkte bieten solche Verträge standardmäßig; kostenlose Consumer-Versionen oft nicht."
+  },
+  {
+   "q": "Sind US-Anbieter nach dem Latombe-Urteil wieder unproblematisch?",
+   "a": "Das Gericht der EU hat den Angemessenheitsbeschluss zum EU-US Data Privacy Framework am 3. September 2025 bestätigt [3]. Gegen das Urteil wurde am 31. Oktober 2025 Revision zum EuGH eingelegt - die Entscheidung steht noch aus. Bis dahin gilt: DPF-Zertifizierung prüfen, Datenflüsse dokumentieren, bei sensiblen Daten Alternativen in der EU erwägen [2][3]."
+  },
+  {
+   "q": "Was ist C5 und warum ist es relevant?",
+   "a": "Der Cloud Computing Compliance Criteria Catalogue des BSI ist der wichtigste deutsche Prüfstandard für Cloud-Sicherheit, seit 2016 im Einsatz und 2026 als C5:2026 neu aufgelegt. Wirtschaftsprüfer testieren, dass ein Anbieter die Kriterien erfüllt - das macht Sicherheitsversprechen vergleichbar [4]."
+  },
+  {
+   "q": "Reicht es, wenn der Anbieter DSGVO-konform auf seiner Website behauptet?",
+   "a": "Nein. Entscheidend sind der AV-Vertrag, die dokumentierte Trainingsnutzung, Standort- und Unterauftragslisten sowie unabhängige Nachweise. Eine Behauptung ohne Beleg ist im Prüfverfahren keine Antwort - und vor der Aufsicht erst recht nicht [1]."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Art. 28 DSGVO - Auftragsverarbeiter",
+   "publisher": "dsgvo-gesetz.de",
+   "url": "https://dsgvo-gesetz.de/art-28-dsgvo/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "EU-US data transfers (Adequacy decision on the EU-US Data Privacy Framework)",
+   "publisher": "Europäische Kommission",
+   "url": "https://commission.europa.eu/law/law-topic/data-protection/international-dimension-data-protection/eu-us-data-transfers_en",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Press release No 106/25: Judgment in Case T-553/23, Latombe v Commission (mit Hinweis auf die Revision C-703/25 P)",
+   "publisher": "Gerichtshof der Europäischen Union",
+   "url": "https://curia.europa.eu/site/upload/docs/application/pdf/2025-09/cp250106en.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Sicheres Cloud-Computing: BSI veröffentlicht C5:2026",
+   "publisher": "Bundesamt für Sicherheit in der Informationstechnik (BSI)",
+   "url": "https://www.bsi.bund.de/DE/Service-Navi/Presse/Pressemitteilungen/Presse2026/260407_C5_Cloud_Computing.html",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Der Beitrag wertet den Gesetzestext des Art. 28 DSGVO, die Angemessenheitsentscheidung der Kommission, die Pressemitteilung des Gerichts der EU zum Urteil T-553/23 vom 3. September 2025 inklusive des eingelegten Revisionsverfahrens C-703/25 P und die BSI-Veröffentlichung zu C5:2026 aus. Alle Quellen wurden am 20. Oktober 2026 geöffnet. Die Checkliste ist eine redaktionelle Verdichtung, keine behördliche Vorgabe.",
+ "limitations": [
+  "Das Revisionsverfahren C-703/25 P zum EU-US Data Privacy Framework ist anhängig; die Bewertung des Drittlandtransfers kann sich ändern [3].",
+  "Branchenspezifische Anforderungen (Gesundheit, Finanzen, öffentliche Hand) gehen über diese allgemeine Checkliste hinaus.",
+  "Keine Rechtsberatung."
+ ],
+ "related": [
+  "dsgvo-und-ki",
+  "eu-ai-act",
+  "sicherheit-fuer-agenten-systeme"
+ ]
+}

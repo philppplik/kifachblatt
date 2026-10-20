@@ -1,0 +1,154 @@
+{
+ "slug": "marktdaten-sentiment-ki",
+ "lang": "de",
+ "section": "methode",
+ "type": "explainer",
+ "title": "Marktdaten und Sentiment mit KI auswerten: Methodik und Grenzen",
+ "dek": "Was FinBERT und BloombergGPT leisten, was die ChatGPT-Kursstudie wirklich zeigt, wo die Methodik kippt und wie Betrüger mit KI-Versprechen arbeiten.",
+ "published": "2026-10-20T07:15:00+02:00",
+ "modified": "2026-10-20T07:15:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Sentiment-Analyse",
+  "FinBERT",
+  "BloombergGPT",
+  "Marktdaten",
+  "Anlagebetrug"
+ ],
+ "key_takeaways": [
+  "Domänenmodelle schlagen Universalmodelle: FinBERT übertraf bei Finanz-Sentiment die damaligen Referenzmethoden - schon mit kleinem Trainingsset, weil Finanzsprache ihre eigenen Regeln hat [1].",
+  "BloombergGPT zeigte 2023 den industriellen Weg: 50 Milliarden Parameter, trainiert auf 363 Milliarden Finanz-Tokens, mit deutlichen Vorsprüngen bei Finanzaufgaben [2].",
+  "Die vielzitierte ChatGPT-Kursstudie fand statistische Zusammenhänge zwischen Schlagzeilen-Scores und Tagesrenditen - ein Backtest-Befund, keine Anlagestrategie [3].",
+  "Methodik entscheidet: Look-ahead-Bias, Prompt-Empfindlichkeit, Kosten und verfallende Effekte machen aus scheinbarer Treffsicherheit schnell Scheingenauigkeit.",
+  "Betrüger verkaufen dasselbe Versprechen fertig verpackt: Die BaFin warnt vor hunderten fast identischer Websites, die automatisierten KI-Handel ab 250 Euro anbieten - ohne Erlaubnis, ohne Impressum [4]."
+ ],
+ "hero": {
+  "alt": "Grafik: Grüne und rote Sentiment-Balken über Wochentagen mit einer überlagerten Kurslinie und dem Hinweis Sentiment ist nicht gleich Kurs.",
+  "caption": "Stimmung aus Texten lässt sich messen - ein Kursversprechen ist das nicht. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Keine Anlageberatung",
+   "x": "Dieser Beitrag erklärt Methoden und ihre Grenzen. Er enthält keine Empfehlung zum Kauf oder Verkauf von Wertpapieren und keine Bewertung konkreter Anlagen. Stand: 20. Oktober 2026."
+  },
+  {
+   "t": "p",
+   "x": "Was bedeutet es, wenn tausend Schlagzeilen über ein Unternehmen in einer Stunde gelesen und in eine Zahl übersetzt werden? Genau das versprechen Sentiment-Verfahren: aus Text eine Stimmung, aus Stimmung ein Signal. Die Werkzeuge dafür sind in wenigen Jahren erheblich besser geworden - und mit ihnen die Marketinggeschichten. Dieser Beitrag trennt den Stand der Forschung von der Verkaufsfolie."
+  },
+  {
+   "t": "h2",
+   "x": "Warum Finanzsprache eigene Modelle brauchte"
+  },
+  {
+   "t": "p",
+   "x": "„Die Verbindlichkeiten wurden reduziert“ klingt allgemeinsprachlich neutral - im Finanzkontext ist es eine gute Nachricht. Genau an solchen Stellen scheitern Universalmodelle. FinBERT, 2019 als angepasstes BERT-Modell vorgestellt, adressierte genau das: Vortrainiertes Sprachverständnis plus Finanzdomäne, und schon mit kleinem Trainingsset und nur teilweise nachtrainierten Schichten übertraf es die damaligen Referenzmethoden auf zwei Finanz-Sentiment-Datensätzen in jeder gemessenen Metrik [1]."
+  },
+  {
+   "t": "p",
+   "x": "Bloomberg trieb die Idee 2023 auf industrielles Niveau: BloombergGPT, ein Modell mit 50 Milliarden Parametern, trainiert auf einem 363 Milliarden Tokens großen Finanzdatensatz aus Blombergs Quellen plus 345 Milliarden allgemeinen Tokens. Ergebnis: deutliche Vorsprünge bei Finanzaufgaben, ohne Einbußen bei allgemeinen Benchmarks [2]. Beide Arbeiten tragen dieselbe Botschaft: Domänendaten schlagen allgemeine Größe - ein Muster, das auch beim [Rechnen mit LLMs](/rechnen-mit-llms) auftaucht."
+  },
+  {
+   "t": "h2",
+   "x": "Die ChatGPT-Kursstudie - und was sie nicht sagt"
+  },
+  {
+   "t": "p",
+   "x": "Lopez-Lira und Tang ließen ChatGPT Schlagzeilen bewerten und fanden: Die Scores sagten in ihrer Stichprobe tägliche Aktienrenditen signifikant voraus, stärker als traditionelle Methoden, ausgeprägter bei kleineren Titeln und nach negativen Nachrichten [3]. Das ist ein seriöser, spannender Befund - und er wird im Verkaufsgespräch regelmäßig überlesen. Denn die Studie misst einen statistischen Zusammenhang im Rückblick. Sie sagt nichts über Kosten, Ausführung, Kapazität oder darüber, wie lange ein solcher Effekt besteht, sobald ihn alle handeln. Aus „signifikant im Sample“ wird in Werbesprache „sagt Kurse voraus“ - das ist kein Unterschied im Detail, sondern der Unterschied zwischen Forschung und Behauptung."
+  },
+  {
+   "t": "h2",
+   "x": "Die vier Methodik-Fallen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Look-ahead-Bias: Die Schlagzeile darf nur mit Informationen bewertet werden, die zu ihrem Zeitpunkt existierten - Modelle mit späterem Trainingsstand kennen die Zukunft schon.",
+    "Prompt-Empfindlichkeit: Dieselbe Schlagzeile, andere Formulierung, anderer Score. Ohne festgeschriebene Prompts und Wiederholungsläufe ist ein Sentiment-Wert ein Zufallsprodukt.",
+    "Kosten und Umsetzung: Tägliche Signale bedeuten täglichen Handel; Gebühren und Spread können einen statistischen Vorteil vollständig aufzehren.",
+    "Verfall: Signale, die publik werden, werden gehandelt - und verschwinden. Ein Backtest von 2023 beschreibt nicht den Markt von 2026."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Ein seriöses eigenes Protokoll nimmt deshalb immer denselben Weg: feste Prompts, zeitlich getrennte Testdaten, Vergleich gegen eine einfache Baseline, Kosten eingerechnet, Ergebnis mit [Konfidenzintervall](/glossar#konfidenzintervall) statt Punktzahl. Die allgemeine Vorgehensweise steht ausführlich im Beitrag [Evals statt Bauchgefühl](/evals-statt-bauchgefuehl)."
+  },
+  {
+   "t": "h2",
+   "x": "Die dunkle Seite: KI als Betrugsmasche"
+  },
+  {
+   "t": "p",
+   "x": "Dasselbe Versprechen - KI liest den Markt - verkaufen Betrüger als fertiges Produkt. Die BaFin warnt vor einer Reihe von mehr als 700 nahezu identischen Websites: Sie werben mit automatisiertem Handel mittels künstlicher Intelligenz ab einer Einstiegsinvestition von 250 Euro, haben kein Impressum, und die Betreiber werden nicht von der BaFin beaufsichtigt - sie bieten Finanzdienstleistungen ohne Erlaubnis an [4]. Die Warnung wurde zuletzt im September 2026 aktualisiert, die Masche läuft also weiter [4]."
+  },
+  {
+   "t": "p",
+   "x": "Die Erkennungszeichen sind stabil: garantierte oder implizierte Renditen, ein kleiner Einstiegsbetrag, Druck zum schnellen Handeln, kein Impressum, keine Aufsicht. Wer solch ein Angebot prüft, prüft zuerst die Erlaubnis in der BaFin-Unternehmensdatenbank - erst dann die Technik."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Sentiment-Analyse mit KI ist ein echtes Werkzeug mit echten Forschungsbelegen - und zugleich das Lieblingsthema von Leuten, die dir etwas verkaufen wollen. Der Unterschied liegt nicht im Modell, sondern in der Methodik: Wer Prompts, Daten und Kosten offenlegt, redet über Forschung. Wer Renditen zeigt, redet über Verkauf. Für die Pflichtseite solcher Prozesse in Unternehmen lohnt der Beitrag zur [KI-Compliance in Finanzprozessen](/ki-compliance-finanzen)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Kann KI Aktienkurse vorhersagen?",
+   "a": "Nein - nicht im Sinne eines verlässlichen Vorsprungs. Studien finden statistische Zusammenhänge zwischen Text-Scores und kurzfristigen Renditen in historischen Daten [3]. Das ist Forschung über Informationsverarbeitung, keine Handelsanleitung: Kosten, Verfall und Methodik-Fallen stehen zwischen Befund und Strategie."
+  },
+  {
+   "q": "Was ist der Unterschied zwischen FinBERT und einem Chatbot?",
+   "a": "FinBERT ist ein spezialisiertes Klassifikationsmodell: Es ordnet Finanztexte als positiv, negativ oder neutral ein, mehr nicht - und das auf Domänenniveau [1]. Ein Chatbot ist ein allgemeines Generierungsmodell; es kann Sentiment schätzen, aber ohne feste Prompts und Kontrolle schwanken die Scores. BloombergGPT zeigte den dritten Weg: ein großes Modell gezielt auf Finanzdaten trainiert [2]."
+  },
+  {
+   "q": "Ist der Einsatz von KI für Marktanalysen erlaubt?",
+   "a": "Die Analyse selbst ist unproblematisch. Reguliert wird, was daraus folgt: Wer für andere Anlageempfehlungen abgibt oder Finanzdienstleistungen erbringt, braucht eine Erlaubnis - genau daran scheitern die betrügerischen Plattformen, vor denen die BaFin warnt [4]."
+  },
+  {
+   "q": "Woran erkenne ich einen KI-Anlagebetrug?",
+   "a": "An einem stabilen Muster: automatischer KI-Handel ab kleinen Beträgen (typisch 250 Euro), Renditeversprechen, Zeitdruck, kein Impressum, keine Aufsicht. Die BaFin zählt allein in einer Reihe über 700 fast identische Websites dieses Musters [4]. Vor jeder Einzahlung die Erlaubnis in der BaFin-Datenbank prüfen."
+  }
+ ],
+ "sources": [
+  {
+   "title": "FinBERT: Financial Sentiment Analysis with Pre-trained Language Models (Araci, 2019)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/1908.10063",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "BloombergGPT: A Large Language Model for Finance (Wu et al., 2023)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2303.17564",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Can ChatGPT Forecast Stock Price Movements? Return Predictability and Large Language Models (Lopez-Lira, Tang)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2304.07619",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "BaFin warnt vor Plattformreihe - Investieren mit KI (03.06.2025, aktualisiert 22.09.2026)",
+   "publisher": "Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)",
+   "url": "https://www.bafin.de/SharedDocs/Veroeffentlichungen/DE/Verbrauchermitteilung/unerlaubte/2025/meldung_2025_06_03_Investieren_mit_KI.html",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Ausgewertet wurden die Abstracts und Kennzahlen von FinBERT, BloombergGPT und der ChatGPT-Kursstudie von Lopez-Lira und Tang sowie die aktuelle BaFin-Verbraucherwarnung. Alle Quellen wurden am 20. Oktober 2026 geöffnet. Die Methodik-Fallen und das Prüfprotokoll sind redaktionelle Ableitungen aus den zitierten Arbeiten und etablierter Evaluationspraxis.",
+ "limitations": [
+  "Die zitierten Studien arbeiten mit historischen Daten und Modellen ihrer Zeit; Ergebnisse lassen sich nicht ohne Weiteres auf heutige Modelle und Märkte übertragen.",
+  "Wir haben keine eigene Backtest-Reihe durchgeführt.",
+  "Keine Anlageberatung: Dieser Beitrag bewertet Methoden, nicht Anlagen."
+ ],
+ "related": [
+  "rechnen-mit-llms",
+  "ki-compliance-finanzen",
+  "dokumentenanalyse-ki"
+ ]
+}

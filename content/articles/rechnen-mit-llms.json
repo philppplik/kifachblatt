@@ -1,0 +1,167 @@
+{
+ "slug": "rechnen-mit-llms",
+ "lang": "de",
+ "section": "verlaesslichkeit",
+ "type": "explainer",
+ "title": "Rechnen mit LLMs: Warum Modelle bei Zahlen stolpern und was hilft",
+ "dek": "Sprachmodelle raten Ziffern statt zu rechnen. Was Studien zu Multiplikation und Textaufgaben zeigen und wie Werkzeugnutzung das Problem löst.",
+ "published": "2026-10-19T19:30:00+02:00",
+ "modified": "2026-10-19T19:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "LLM",
+  "Arithmetik",
+  "Verifikation",
+  "Function Calling",
+  "Halluzination"
+ ],
+ "key_takeaways": [
+  "Sprachmodelle verarbeiten Zahlen als Tokens, nicht als Werte: Sie sagen die wahrscheinlichste nächste Ziffer voraus - Rechnen im mathematischen Sinn findet nicht statt.",
+  "Studien zeigen ein verblüffendes Muster: Die erste Ziffer einer Multiplikation erraten Modelle oft souverän, an der letzten Ziffer scheitern sie - obwohl sie rechnerisch einfacher ist [1].",
+  "Spezialisierung funktioniert: Ein gezielt trainiertes 2-Milliarden-Parameter-Modell erreicht bei mehrstelliger Arithmetik fast 100 Prozent - GPT-4 lag im selben Vergleich bei 4,3 Prozent [2].",
+  "Für Textaufgaben wurde mit GSM8K ein eigener Prüfstand geschaffen; Fortschritt kommt dort aus schrittweisem Vorgehen und Verifikation, nicht aus bloßer Modellgröße [3].",
+  "Die Arbeitsregel für Zahlenprozesse: Das Modell stellt die Rechnung auf, ein Werkzeug rechnet, eine zweite Rechnung prüft - verlasse dich nie auf eine Zahl, die nur ein Modell gesehen hat."
+ ],
+ "hero": {
+  "alt": "Grafik: Eine falsche durchgestrichene Multiplikation 47 mal 83 gleich 3911 neben der richtigen 3921 und einem Taschenrechner-Symbol als Werkzeug.",
+  "caption": "Das Modell liefert plausible Ziffern statt Rechenschritte - das Werkzeug liefert das Ergebnis. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Bitte einmal kurz mitrechnen: Was ist 47 mal 83? Die meisten Menschen brauchen dafür Zettel oder einen Moment - ein Sprachmodell antwortet sofort. Manchmal mit 3.921, manchmal mit einer anderen, ebenso sicher klingenden Zahl. Der Grund: Das Modell hat nicht gerechnet. Es hat geantwortet. Dieser Beitrag erklärt, warum das so ist, was die Forschung dazu gemessen hat und wie du in Zahlenprozessen trotzdem zuverlässig arbeitest."
+  },
+  {
+   "t": "h2",
+   "x": "Warum Sprachmodelle nicht rechnen"
+  },
+  {
+   "t": "p",
+   "x": "Ein Sprachmodell zerlegt Text in [Tokens](/glossar#token) und sagt das wahrscheinlichste nächste voraus. Für Sprache ist das eine Stärke. Für Arithmetik ist es ein Konstruktionsfehler: Multiplikation verlangt Zwischenschritte - Überträge, Stellenwerte, merken und weiterrechnen. Ein Modell ohne Rechenwerkzeug kennt diese Schritte nur als Textmuster. Es hat aus Billionen von Beispielen gelernt, wie korrekte Rechnungen aussehen, und gibt Ziffern wieder, die dazu passen. Bei geübten Mustern - kleine Zahlen, runde Beträge - wirkt das wie Können. Bei ungeübten bricht es zusammen, ohne dass das Modell davor warnt."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Studien gemessen haben"
+  },
+  {
+   "t": "p",
+   "x": "Ein Team der Universität Tokio hat das asymmetrische Fehlerbild präzise beschrieben: Modelle sagen die **erste** Ziffer einer mehrstelligen Multiplikation häufig korrekt und selbstbewusst voraus, obwohl dafür eigentlich alle Rechenschritte nötig wären. Gleichzeitig scheitern sie an der **letzten** Ziffer - rechnerisch eine einfache Einstellig-mal-Einstellig-Aufgabe. Konditioniert man das Modell auf die korrekten höherwertigen Ziffern, steigt die Treffsicherheit für die letzte Ziffer deutlich, im Experiment bei 5-mal-5-stelligen Aufgaben um über 230 Prozent bei Llama 2-13B und um 150 Prozent bei Mistral-7B [1]. Die Autoren deuten das als Hinweis auf unvollständig gelernte Rechenwege: Das Modell „weiß“ Teile der Multiplikation, setzt sie aber nicht zuverlässig zusammen [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "alt": "Säulendiagramm: GPT-4 erreicht bei mehrstelliger Multiplikation nur 4,3 Prozent Genauigkeit, ein spezialisiertes Modell mit zwei Milliarden Parametern fast 100 Prozent.",
+   "caption": "Genauigkeit bei mehrstelliger Multiplikation nach den Angaben des MathGLM-Papers: Spezialisiertes Training schlägt allgemeine Modellgröße deutlich [2].",
+   "title": "Mehrstellige Multiplikation: allgemeines Modell vs. spezialisiertes Modell",
+   "labels": [
+    "GPT-4 (allgemein)",
+    "Spezialisiertes 2B-Modell"
+   ],
+   "series": [
+    {
+     "name": "Genauigkeit",
+     "values": [
+      4.3,
+      99.9
+     ]
+    }
+   ],
+   "unit": " %",
+   "y_label": "Genauigkeit",
+   "max": 100,
+   "source": "Yang et al. 2023, MathGLM [2]"
+  },
+  {
+   "t": "p",
+   "x": "Das zweite Ergebnis kommt aus der entgegengesetzten Richtung: Die Autoren von MathGLM zeigen, dass ein Modell mit nur zwei Milliarden Parametern mehrstellige Arithmetik nahezu fehlerfrei beherrscht, wenn es gezielt darauf trainiert wird - GPT-4 lag in ihrem Vergleich bei mehrstelliger Multiplikation bei 4,3 Prozent [2]. Die Lehre aus beiden Studien ist dieselbe: Arithmetik ist für allgemeine Sprachmodelle keine Nebensache, die mit der Größe kommt, sondern eine Fähigkeit, die man gezielt einbaut - oder auslagert."
+  },
+  {
+   "t": "p",
+   "x": "Für Textaufgaben - „Lisa hat drei Äpfel mehr als …“ - hat OpenAI schon 2021 mit GSM8K einen eigenen Prüfstand aus achteinhalbtausend Schulaufgaben geschaffen und gezeigt, dass Verifikatoren die Lösungsquote deutlich heben: Ein separates Modell bewertet viele Lösungswege und wählt den besten [3]. Das Muster hält bis heute: Fortschritt bei Mathematik kommt aus schrittweisem Vorgehen, Prüfern und Werkzeugen - nicht aus bloßem Größenwachstum."
+  },
+  {
+   "t": "h2",
+   "x": "Was das für Zahlenprozesse bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "In Controlling und Buchhaltung ist die Gefahr nicht die sichtbar falsche Zahl, sondern die plausible: eine Summe, die um 190 Euro daneben liegt, eine Umsatzsteuer, die 19 statt 7 Prozent annimmt, ein Durchschnitt über die falsche Gruppe. Weil das Modell seine Antwort nicht mit „ungefähr“ markiert, unterscheidet sich eine erfundene Zahl von einer gerechneten nur durch ihre Herkunft. Genau deshalb gilt in Zahlenprozessen eine härtere Regel als in Textprozessen: Keine Zahl aus dem Modell gilt, bevor sie nicht aus Quelldaten nachgerechnet ist."
+  },
+  {
+   "t": "h2",
+   "x": "Die vier Arbeitsregeln"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Modell formuliert, Werkzeug rechnet: Lass das Modell die Formel, den Code oder die Abfrage aufstellen - und führe sie mit einem Rechenwerkzeug aus. Über [Function Calling](/glossar#function-calling) ist das heute Standard.",
+    "Quelldaten statt Gedächtnis: Übergib die Zahlen als Daten (Tabelle, JSON), nicht als Fließtext; je klarer die Struktur, desto weniger Raum für Zahlendreher.",
+    "Gegenrechnung einbauen: Summen aus Positionen prüfen, Anteile gegen Gesamtwerte, Plausibilitätskorridore definieren - Regeln sind billiger als Fehler.",
+    "Zweitmeinung bei Tragweite: Bei Zahlen, die in Buchung, Meldung oder Entscheidung gehen, gilt das Vier-Augen-Prinzip - ein Mensch oder ein zweites, unabhängiges Verfahren prüft nach."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Eine ehrliche Fußnote gehört dazu: Temperatur auf null drehen macht Antworten gleichförmiger, nicht richtiger - die [Temperatur](/glossar#temperatur) steuert die Streuung, nicht die Arithmetik. Und schrittweises Vorgehen (chain of thought) hebt die Trefferquote, beseitigt den Grundfehler aber nicht: Auch eine schöne Rechenkette kann am Ende eine falsche, überzeugend präsentierte Zahl tragen - das ist die Zahlenvariante der [Halluzination](/glossar#halluzination)."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Sprachmodelle sind Analphabeten der Arithmetik mit perfekter Aussprache: Sie lesen Rechnungen flüssig vor, ohne zu rechnen. Wer das akzeptiert und die Rechenarbeit an Werkzeuge delegiert, bekommt das Beste aus beiden Welten - das Modell als Übersetzer zwischen Problem und Formel, das Werkzeug als unbestechlichen Rechner. Wie diese Arbeitsteilung bei Belegen aussieht, zeigt der Beitrag zur [Dokumentenanalyse](/dokumentenanalyse-ki); für die Auswertung von Marktdaten gelten zusätzliche Warnungen im Beitrag zu [Marktdaten und Sentiment](/marktdaten-sentiment-ki)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Warum rechnet ChatGPT dann doch oft richtig?",
+   "a": "Weil moderne Systeme Rechenwerkzeuge eingebaut haben oder Rechenschritte ausformulieren - und weil geübte Muster (kleine Zahlen, typische Aufgaben) aus dem Training reproduziert werden. Ohne Werkzeug bleibt es ein Musterabgleich: bei ungeübten Zahlen fällt die Genauigkeit drastisch, bei GPT-4 im MathGLM-Vergleich auf 4,3 Prozent [2]."
+  },
+  {
+   "q": "Hilft Temperatur 0 gegen Rechenfehler?",
+   "a": "Nein. Temperatur steuert die Zufälligkeit der Auswahl, nicht die Richtigkeit: Eine deterministisch erzeugte falsche Zahl ist immer noch falsch. Gegen Rechenfehler helfen Werkzeugnutzung, strukturierte Eingaben und die Gegenrechnung per Regel."
+  },
+  {
+   "q": "Reicht schrittweises Rechnen (Chain of Thought) als Absicherung?",
+   "a": "Es verbessert die Trefferquote deutlich, ist aber keine Garantie: Die Rechenkette selbst kann Fehler enthalten und trotzdem souverän wirken. Die Forschung zeigt zudem, dass Modelle Teile der Multiplikation nur unvollständig gelernt haben [1]. Für belastbare Ergebnisse führt kein Weg an der unabhängigen Nachrechnung vorbei."
+  },
+  {
+   "q": "Welche Aufgaben kann ich einem Modell bei Zahlen dann überhaupt geben?",
+   "a": "Alles Übersetzende: Formeln aufstellen, Code für Auswertungen schreiben, Tabellen strukturieren, Abweichungen in Worte fassen. Die eigentliche Berechnung gehört an das Werkzeug - und die Freigabe einer tragenden Zahl an einen Menschen oder ein zweites Verfahren."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Language Models Do Hard Arithmetic Tasks Easily and Hardly Do Easy Arithmetic Tasks (Gambardella, Iwasawa, Matsuo)",
+   "publisher": "ACL Anthology (ACL 2024)",
+   "url": "https://aclanthology.org/2024.acl-short.8/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "GPT Can Solve Mathematical Problems Without a Calculator (MathGLM)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2309.03241",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Training Verifiers to Solve Math Word Problems (GSM8K)",
+   "publisher": "arXiv (OpenAI)",
+   "url": "https://arxiv.org/abs/2110.14168",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Grundlage sind drei Forschungsarbeiten: die ACL-2024-Studie zum asymmetrischen Fehlerbild bei Multiplikation, das MathGLM-Paper zu spezialisiertem Arithmetik-Training und die GSM8K-Arbeit zu Verifikatoren bei Textaufgaben. Alle Abstracts und Kennzahlen wurden am 20. Oktober 2026 an den verlinkten Quellen geprüft. Die Arbeitsregeln sind eine redaktionelle Ableitung aus diesen Befunden.",
+ "limitations": [
+  "Die zitierten Messwerte stammen aus den Papers und beziehen sich auf die dort getesteten Modelle und Aufgaben; aktuelle Modelle schneiden anders ab, das Grundmuster (Muster statt Rechenwerk) bleibt bestehen.",
+  "Wir haben für diesen Beitrag keine eigene Testreihe durchgeführt; die Arbeitsregeln beruhen auf den zitierten Befunden und etablierter Praxis.",
+  "Aussagen über konkrete Produkte und deren Werkzeugverhalten ändern sich mit jeder Version."
+ ],
+ "related": [
+  "dokumentenanalyse-ki",
+  "marktdaten-sentiment-ki",
+  "modelle-und-agenten-evaluieren"
+ ]
+}

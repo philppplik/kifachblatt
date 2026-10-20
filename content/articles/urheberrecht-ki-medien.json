@@ -1,0 +1,173 @@
+{
+ "slug": "urheberrecht-ki-medien",
+ "lang": "de",
+ "section": "recht",
+ "type": "explainer",
+ "title": "Urheberrecht bei KI-Medien: Training, Nutzung, Kennzeichnung",
+ "dek": "Wann KI-Training legal ist, wem KI-Bilder gehören, was der Nutzungsvorbehalt bewirkt und welche Kennzeichnungspflichten seit August 2026 gelten.",
+ "published": "2026-10-19T08:10:00+02:00",
+ "modified": "2026-10-19T08:10:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Urheberrecht",
+  "Text und Data Mining",
+  "Kennzeichnung",
+  "Deepfake",
+  "KI-Bilder"
+ ],
+ "key_takeaways": [
+  "Vervielfältigungen fürs Training sind über die Text-und-Data-Mining-Schranke (§ 44b UrhG) erlaubt - es sei denn, der Rechteinhaber hat sich die Nutzung maschinenlesbar vorbehalten [1].",
+  "Das Hanseatische OLG hat 2025 bestätigt: Ein Nutzungsvorbehalt im Fließtext einer Website ist nicht maschinenlesbar und damit wirkungslos; die Entscheidung ist nicht rechtskräftig, die Revision wurde zugelassen [3].",
+  "Rein KI-erzeugte Inhalte genießen nach der Einschätzung des BMJ keinen Urheberrechtsschutz - Schutz entsteht nur, wenn der Mensch die konkrete Formgestaltung steuert [2].",
+  "Seit dem 2. August 2026 gilt Artikel 50 der KI-Verordnung: Anbieter müssen KI-Ausgaben maschinenlesbar markieren, Betreiber müssen Deepfakes offenlegen [4].",
+  "Praktisch heißt das: Quellen und Prompts dokumentieren, Ausgaben auf erkennbare Fremdwerke prüfen, KI-Inhalte kennzeichnen - so wie es diese Redaktion selbst macht."
+ ],
+ "hero": {
+  "alt": "Grafik: Eine Balkenwaage, links eine Schale mit Paragraf 44b Text und Data Mining, rechts eine Schale mit einem KI-Modell, das Inhalte generiert.",
+  "caption": "Das Urheberrecht wiegt zwischen Text und Data Mining einerseits und den Rechten an KI-Erzeugnissen andererseits. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Keine Rechtsberatung",
+   "x": "Dieser Beitrag ordnet die Rechtslage ein und ersetzt keine Beratung im Einzelfall. Stand: 20. Oktober 2026. Die Rechtsprechung ist in Bewegung - die zentrale deutsche Entscheidung zum KI-Training ist nicht rechtskräftig [3]."
+  },
+  {
+   "t": "p",
+   "x": "Drei Fragen bestimmen das Urheberrecht rund um KI-Medien: Durfte das Modell mit diesen Inhalten trainiert werden (Input)? Wer hat Rechte am Ergebnis (Output)? Und was muss gekennzeichnet werden (Transparenz)? Wer die drei getrennt beantwortet, vermeidet die häufigsten Fehler - von der ungeprüften Übernahme KI-generierter Bilder bis zur falschen Annahme, maschinell Erzeugtes gehöre automatisch einem selbst."
+  },
+  {
+   "t": "h2",
+   "x": "Input: Was beim Training erlaubt ist"
+  },
+  {
+   "t": "p",
+   "x": "Deutschland hat die europäische Text-und-Data-Mining-Schranke in § 44b UrhG umgesetzt: Vervielfältigungen rechtmäßig zugänglicher Werke für die automatisierte Analyse sind zulässig - aber nur, wenn der Rechteinhaber sich die Nutzung nicht vorbehalten hat. Bei online zugänglichen Werken ist dieser Nutzungsvorbehalt (Opt-out) nur wirksam, wenn er maschinenlesbar erfolgt [1]. Maschinenlesbar heißt: technisch standardisiert und automatisiert auswertbar, etwa über robots.txt, Meta-Tags oder spezielle Header - nicht ein Satz im Impressum."
+  },
+  {
+   "t": "p",
+   "x": "Genau darum ging es vor dem Hanseatischen Oberlandesgericht: Ein Fotograf klagte gegen einen Verein, der seine Fotografie für einen Bild-Text-Datensatz heruntergeladen hatte, mit dem generative KI-Modelle trainiert werden können. Das OLG wies die Berufung am 10. Dezember 2025 zurück: Die Schranke des § 44b UrhG greife, und der auf der Website der Bildagentur stehende Vorbehalt sei nicht maschinenlesbar gewesen. Das Gericht sah die Erstellung des Datensatzes zusätzlich als wissenschaftliche Forschung nach § 60d UrhG an. Die Entscheidung ist nicht rechtskräftig - die Revision zum Bundesgerichtshof wurde zugelassen [3]."
+  },
+  {
+   "t": "p",
+   "x": "Das Bundesjustizministerium fasst die Lage so zusammen: KI-Diensteanbieter und Nutzer müssen sich beim Training an die geltenden Gesetze halten; Rechteinhaber, die ein Training ihrer Online-Texte verhindern wollen, können einen Opt-out-Vorbehalt erklären - dann darf nicht trainiert werden [2]. Die KI-Verordnung ergänzt das auf EU-Ebene: Anbieter von Modellen mit allgemeinem Verwendungszweck brauchen eine Strategie zur Einhaltung des Urheberrechts und müssen eine ausreichend detaillierte Zusammenfassung des Trainingsmaterials veröffentlichen [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Output: Wem gehört ein KI-Bild?"
+  },
+  {
+   "t": "p",
+   "x": "Urheberrechtlich geschützt ist nur die persönliche geistige Schöpfung eines Menschen. Nach der Einschätzung des BMJ genießen rein KI-basierte Inhalte daher keinen Urheberrechtsschutz: Die Arbeitsweise der KI entzieht sich der Kontrolle des Nutzers, und der erzeugte Inhalt hat keinen Urheber im rechtlichen Sinn [2]. Ein Schutz des Nutzers komme allenfalls in Betracht, wenn die Software nur ein Hilfsmittel war und der Mensch die konkrete Formgestaltung in der Hand behielt - Prompt für Prompt gesteuert, ausgewählt, überarbeitet [2]."
+  },
+  {
+   "t": "p",
+   "x": "Die Analogie: Die Kamera liefert das Bild, aber der Fotograf wählt Motiv, Ausschnitt und Moment - deshalb ist das Foto geschützt. Ein einzelner Prompt ohne gestalterische Kontrolle ist dagegen eher wie die Bestellung beim Zufallsgenerator. Zwischen diesen Polen entscheidet der Einzelfall. Praktisch heißt das: Wer Schutz will, dokumentiert seinen Gestaltungsanteil - Entwürfe, Iterationen, Auswahl."
+  },
+  {
+   "t": "h2",
+   "x": "Fremdwerke im Output: die unterschätzte Seite"
+  },
+  {
+   "t": "p",
+   "x": "Bei der Nutzung des generierten Ergebnisses ist zu prüfen, ob vorbestehende Werke darin erkennbar sind. Vervielfältigung, Verbreitung oder öffentliche Wiedergabe geschützter Inhalte ohne Zustimmung ist grundsätzlich unzulässig - erst wenn die benutzten Werke im Ergebnis nicht mehr erkennbar sind, kann es frei verwendet werden [2]. Gegen unrechtmäßige Verwendung stehen Rechteinhabern Unterlassungs- und Schadensersatzansprüche zu. Für Redaktionen bedeutet das: KI-Bilder vor Veröffentlichung sichten - erkennbare Logos, Figuren oder Kunstwerke sind ein Ausschlusskriterium."
+  },
+  {
+   "t": "h2",
+   "x": "Kennzeichnung: Was Artikel 50 verlangt"
+  },
+  {
+   "t": "p",
+   "x": "Seit dem 2. August 2026 gilt die Transparenzregel der KI-Verordnung: Anbieter von Systemen, die synthetische Audio-, Bild-, Video- oder Textinhalte erzeugen, müssen dafür sorgen, dass die Ausgaben maschinenlesbar als künstlich erzeugt oder manipuliert markiert sind - wirksam, interoperabel und robust, soweit technisch machbar [4]. Betreiber müssen Deepfakes offenlegen, also als künstlich erzeugt kennzeichnen; KI-Texte, die der öffentlichen Information dienen, sind ebenfalls zu kennzeichnen, es sei denn, ein Mensch hat sie redaktionell geprüft und trägt die Verantwortung [4]. Für die technische Umsetzung hat die Kommission einen freiwilligen Verhaltenskodex zur Markierung und Kennzeichnung KI-generierter Inhalte vorgelegt, der auch Icons für Bild, Audio und Text vorsieht [5]."
+  },
+  {
+   "t": "p",
+   "x": "Diese Redaktion praktiziert das selbst: KI-generierte Illustrationen tragen den Hinweis „KI-generiert“ im Bild, eigene Grafiken und Rechnungen sind als solche ausgewiesen - Details auf der Seite zur [Transparenz](/transparenz). Beim Text haften wir nach demselben Prinzip: Jeder Beitrag ist von Menschen geprüft und verantwortet."
+  },
+  {
+   "t": "h2",
+   "x": "Deepfakes: Persönlichkeitsrecht vor Urheberrecht"
+  },
+  {
+   "t": "p",
+   "x": "Stimme und Bildnis einer Person sind nicht urheberrechtlich schutzfähig - anspruchsberechtigt ist allenfalls der Urheber des Ausgangsmaterials. Aber Deepfakes können das allgemeine Persönlichkeitsrecht verletzen, das nach der Rechtsprechung des Bundesverfassungsgerichts auch vor der Verbreitung eines manipulierten Bildes schützt, das den Anschein eines authentischen Abbilds erweckt. Dann drohen Unterlassungs-, Beseitigungs- und bei schweren Verletzungen Geldentschädigungsansprüche [2]. Und seit dem Omnibus ist das Erzeugen nicht einvernehmlicher intimer Deepfakes in der EU ausdrücklich verboten [4]."
+  },
+  {
+   "t": "h2",
+   "x": "Checkliste für die Veröffentlichung"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Herkunft klären: Welches Modell, welche Quellen, welche Prompts - kurz dokumentieren.",
+    "Output sichten: Keine erkennbaren Fremdwerke, Logos oder Personen im Ergebnis.",
+    "Gestaltungsanteil sichern: Auswahl und Bearbeitung festhalten, wenn Schutz gewünscht ist.",
+    "Kennzeichnen: KI-generierte Inhalte sichtbar (und wo möglich maschinenlesbar) markieren.",
+    "Bei fremden Inhalten fürs eigene Training: Opt-out prüfen, nur maschinenlesbare Vorbehalte zählen [1][3]."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Wem gehört ein KI-generiertes Bild?",
+   "a": "Rein KI-erzeugte Inhalte haben nach Einschätzung des Bundesjustizministeriums keinen Urheber - es entsteht kein Urheberrecht. Schutz entsteht nur, wenn ein Mensch die konkrete Formgestaltung steuert, etwa durch gezielte Iteration, Auswahl und Bearbeitung. Ohne Urheberrecht kann aber jeder das Bild nutzen - auch Wettbewerber [2]."
+  },
+  {
+   "q": "Darf ich fremde Webseiteninhalte zum Trainieren eines Modells nutzen?",
+   "a": "Grundsätzlich ja über die TDM-Schranke (§ 44b UrhG) - es sei denn, der Rechteinhaber hat einen wirksamen, maschinenlesbaren Nutzungsvorbehalt erklärt. Ob ein Vorbehalt maschinenlesbar genug ist, entscheidet der Einzelfall; das OLG Hamburg hat Fließtext auf einer Website als nicht ausreichend bewertet, die Entscheidung ist aber nicht rechtskräftig [1][3]."
+  },
+  {
+   "q": "Muss ich KI-generierte Inhalte kennzeichnen?",
+   "a": "Seit dem 2. August 2026 ja: Anbieter müssen KI-Ausgaben maschinenlesbar markieren (Art. 50 Abs. 2), Betreiber müssen Deepfakes und bestimmte KI-Texte zur öffentlichen Information offenlegen. KI-Texte unter redaktioneller Verantwortung eines Menschen sind von der Offenlegung ausgenommen [4]."
+  },
+  {
+   "q": "Was passiert, wenn ein KI-Bild einem geschützten Werk ähnelt?",
+   "a": "Sind vorbestehende Werke im Output erkennbar, kann die Veröffentlichung eine Urheberrechtsverletzung sein - mit Unterlassungs- und Schadensersatzansprüchen. Deshalb gehört die Sichtprüfung vor der Veröffentlichung zur Pflicht. Erst wenn benutzte Werke nicht mehr erkennbar sind, darf das Ergebnis frei verwendet werden [2]."
+  }
+ ],
+ "sources": [
+  {
+   "title": "§ 44b UrhG - Text und Data Mining",
+   "publisher": "gesetze-im-internet.de (Bundesministerium der Justiz)",
+   "url": "https://www.gesetze-im-internet.de/urhg/__44b.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Künstliche Intelligenz und Urheberrecht - Fragen und Antworten",
+   "publisher": "Bundesministerium der Justiz",
+   "url": "https://www.bmjv.de/SharedDocs/Downloads/DE/Themen/Nav_Themen/240305_FAQ_KI_Urheberrecht.pdf?__blob=publicationFile&v=2",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "KI und Urheberrecht: Hanseatisches Oberlandesgericht weist Berufung zurück (Az. 5 U 104/24)",
+   "publisher": "Hanseatisches Oberlandesgericht, Gerichtspressestelle",
+   "url": "https://justiz.hamburg.de/resource/blob/1126574/2495057737fed4883eec42dce4d2430b/ki-und-urheberrecht-hanseatisches-oberlandesgericht-weist-berufung-zurueck-data.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Article 50: Transparency Obligations - Regulation (EU) 2024/1689",
+   "publisher": "EU Artificial Intelligence Act Explorer",
+   "url": "https://artificialintelligenceact.eu/article/50/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "AI Act (Verhaltenskodex zur Kennzeichnung KI-generierter Inhalte)",
+   "publisher": "Europäische Kommission - Shaping Europe's digital future",
+   "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Ausgewertet wurden der Gesetzestext des § 44b UrhG, das FAQ des Bundesjustizministeriums, die Pressemitteilung des Hanseatischen OLG zur Berufungsentscheidung vom 10. Dezember 2025 und Artikel 50 der KI-Verordnung in der aktuellen Fassung. Alle Quellen wurden am 20. Oktober 2026 geöffnet; die Einordnung ist redaktionell, nicht rechtsverbindlich.",
+ "limitations": [
+  "Die OLG-Entscheidung zum KI-Training ist nicht rechtskräftig; die Revision zum BGH wurde zugelassen [3].",
+  "Fragen des US-amerikanischen Rechts (fair use) und anderer Rechtsordnungen sind nicht Gegenstand.",
+  "Keine Rechtsberatung - die Gestaltung im Einzelfall gehört in anwaltliche Prüfung."
+ ],
+ "related": [
+  "eu-ai-act",
+  "dsgvo-und-ki",
+  "anbieter-check"
+ ]
+}

@@ -2858,5 +2858,101 @@
     "url": "https://arxiv.org/abs/2401.08281"
    }
   ]
+ },
+ {
+  "term": "DSGVO",
+  "aka": [
+   "Datenschutz-Grundverordnung",
+   "GDPR"
+  ],
+  "letter": "D",
+  "definition": "Die europäische Datenschutz-Grundverordnung (EU 2016/679) ist das zentrale Gesetz für den Umgang mit personenbezogenen Daten in der EU. Sie gilt seit 2018 und legt fest, wann personenbezogene Daten verarbeitet werden dürfen, welche Rechte Betroffene haben und welche Pflichten Unternehmen tragen. Für KI-Projekte ist sie immer dann relevant, wenn Texte, Bilder oder Daten mit Personenbezug in KI-Systeme einfließen.",
+  "usage": "Arbeitnehmer-Praxis: Bevor ein Dokument, ein Kundenname oder eine E-Mail in ein KI-Tool wandert, prüfen, ob personenbezogene Daten betroffen sind - und ob dafür eine Rechtsgrundlage und ggf. ein Auftragsverarbeitungsvertrag mit dem Anbieter besteht.",
+  "related": [
+   "/dsgvo-und-ki",
+   "/anbieter-check"
+  ],
+  "see_also": [
+   "Auftragsverarbeitung",
+   "EU AI Act"
+  ],
+  "sources": [
+   {
+    "title": "Art. 6 DSGVO - Rechtmäßigkeit der Verarbeitung",
+    "publisher": "dsgvo-gesetz.de",
+    "url": "https://dsgvo-gesetz.de/art-6-dsgvo/"
+   }
+  ]
+ },
+ {
+  "term": "EU AI Act",
+  "aka": [
+   "KI-Verordnung",
+   "AI Act",
+   "KI-VO"
+  ],
+  "letter": "E",
+  "definition": "Die KI-Verordnung der EU ((EU) 2024/1689) ist das weltweit erste umfassende KI-Gesetz. Sie sortiert KI-Systeme nach Risiko: verbotene Praktiken (z. B. soziales Scoring), Hochrisiko-Systeme mit strengen Pflichten (z. B. Kreditscoring), transparenzpflichtige Systeme (z. B. Chatbots und generative KI) und minimales Risiko. Die Pflichten treten gestaffelt in Kraft, zentrale Transparenzpflichten gelten seit August 2026.",
+  "usage": "Arbeitnehmer-Praxis: Für die meisten Büro-KI-Anwendungen (Textzusammenfassung, Ideenfindung) gelten vor allem Transparenzpflichten - etwa, KI-generierte Inhalte zu kennzeichnen. Kritisch wird es bei Entscheidungen über Menschen (Bewerbungen, Kredite).",
+  "related": [
+   "/eu-ai-act",
+   "/ki-compliance-finanzen"
+  ],
+  "see_also": [
+   "DSGVO",
+   "Human-in-the-Loop"
+  ],
+  "sources": [
+   {
+    "title": "Regulatory framework for AI",
+    "publisher": "Europäische Kommission",
+    "url": "https://digital-strategy.ec.europa.eu/en/policies/regulatory-framework-ai"
+   }
+  ]
+ },
+ {
+  "term": "Auftragsverarbeitung",
+  "aka": [
+   "Auftragsverarbeitungsvertrag",
+   "AVV",
+   "Art. 28 DSGVO"
+  ],
+  "letter": "A",
+  "definition": "Verarbeitet ein Dienstleister personenbezogene Daten im Auftrag eines Unternehmens (z. B. ein KI-Anbieter, der hochgeladene Dokumente verarbeitet), liegt Auftragsverarbeitung vor. Dafür schreibt Art. 28 DSGVO einen Vertrag vor, der Gegenstand, Dauer, Zweck, Datenkategorien und Pflichten des Auftragnehmers festlegt - etwa, Daten nur nach Weisung zu nutzen und nicht fürs eigene Modelltraining.",
+  "usage": "Arbeitnehmer-Praxis: Ein KI-Tool ohne AVV darf im Unternehmen keine personenbezogenen Daten verarbeiten - das prüft der Datenschutzbeauftragte. Ein AVV schließt auch ein, dass eingegebene Daten nicht fürs Modelltraining genutzt werden.",
+  "related": [
+   "/dsgvo-und-ki",
+   "/anbieter-check"
+  ],
+  "see_also": [
+   "DSGVO"
+  ],
+  "sources": [
+   {
+    "title": "Art. 28 DSGVO - Auftragsverarbeiter",
+    "publisher": "dsgvo-gesetz.de",
+    "url": "https://dsgvo-gesetz.de/art-28-dsgvo/"
+   }
+  ]
+ },
+ {
+  "term": "Urheberrecht",
+  "aka": [
+   "UrhG"
+  ],
+  "letter": "U",
+  "definition": "Das Urheberrecht (UrhG) schützt Werke der Literatur, Wissenschaft und Kunst - auch Texte, Bilder und Musik. Für KI ist es an zwei Stellen relevant: beim Training (in der EU erlaubt das Text- und Data-Mining, § 44b UrhG, mit Widerspruchsmöglichkeit der Rechteinhaber) und bei der Ausgabe (KI-generierte Inhalte, die geschützte Werke nachahmen, können Rechte verletzen).",
+  "usage": "Arbeitnehmer-Praxis: KI-generierte Bilder und Texte vor der Veröffentlichung prüfen - besonders wenn ein Prompt gezielt Stile, Charaktere oder Werke nachbildet. Geschützte Logos und Marken nicht ohne Erlaubnis in Ausgaben übernehmen.",
+  "related": [
+   "/urheberrecht-ki-medien"
+  ],
+  "see_also": [],
+  "sources": [
+   {
+    "title": "§ 44b UrhG - Vervielfältigungen zum Text und Data Mining",
+    "publisher": "Gesetze im Internet",
+    "url": "https://www.gesetze-im-internet.de/urhg/__44b.html"
+   }
+  ]
  }
 ]

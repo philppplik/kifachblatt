@@ -1,0 +1,189 @@
+{
+ "slug": "dokumentenanalyse-ki",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Dokumentenanalyse mit KI: Rechnungen und Verträge richtig auslesen",
+ "dek": "Wie KI Belege in strukturierte Daten übersetzt, warum die E-Rechnung die Arbeit erleichtert und welche Prüfung die GoBD verlangt.",
+ "published": "2026-10-19T18:40:00+02:00",
+ "modified": "2026-10-19T18:40:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Dokumentenanalyse",
+  "E-Rechnung",
+  "GoBD",
+  "Extraktion",
+  "Buchhaltung"
+ ],
+ "key_takeaways": [
+  "Dokumentenanalyse ist der stärkste KI-Anwendungsfall im Finanzbereich, weil Lesen die Stärke von Sprachmodellen ist - Rechnen ist es nicht.",
+  "Seit dem 1. Januar 2025 müssen Unternehmen im B2B-Bereich E-Rechnungen empfangen können; der strukturierte XML-Teil ist rechtlich der maßgebliche Beleg, Übergangsfristen laufen bis Ende 2027 beziehungsweise 2028 [1][2].",
+  "Benchmarks wie DocBench zeigen: Selbst führende Dokumenten-Lesesysteme bleiben fehleranfällig - jede Extraktion braucht eine Prüfstufe [3].",
+  "Die GoBD verlangen Nachvollziehbarkeit: Das Original bleibt unverändert aufbewahrt, jede KI-Extraktion ist ein Arbeitsschritt mit Protokoll, nicht der Beleg selbst [1].",
+  "Das tragende Muster: Maschine extrahiert, Regeln validieren, Menschen prüfen die Ausreißer - mit Schwellenwerten statt Blindvertrauen."
+ ],
+ "hero": {
+  "alt": "Grafik: Ein gescannter Rechnungsbeleg mit Lupe wird per Pfeil in ein strukturiertes JSON-Dokument mit geprüften Feldern übersetzt.",
+  "caption": "Vom Beleg zum geprüften Datensatz: KI extrahiert, Regeln validieren, Menschen prüfen. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Rechnungen lesen, Verträge durchsuchen, Berichte verdichten: Kaum ein Büroprozess passt so gut zu Sprachmodellen wie die Dokumentenanalyse. Der Grund ist strukturell: Modelle sind darauf trainiert, Text zu verstehen und umzuformen - und genau das ist der Schritt vom Beleg zum Buchungssatz. Dieser Beitrag zeigt, wie eine belastbare Pipeline aussieht, was die E-Rechnung verändert und wo die Prüfpflichten der GoBD liegen."
+  },
+  {
+   "t": "h2",
+   "x": "Der Kontext: Die E-Rechnung wird zum Datenlieferanten"
+  },
+  {
+   "t": "p",
+   "x": "Seit dem 1. Januar 2025 gilt in Deutschland für Umsätze zwischen inländischen Unternehmern die E-Rechnung: Empfangen können müssen sie alle, ausstellen dürfen viele noch nach alten Formaten - Übergangsregelungen erlauben sonstige Rechnungen bis Ende 2026, bei einem Vorjahresumsatz bis 800.000 Euro sogar bis Ende 2027, und EDI-Verfahren laufen ebenfalls bis Ende 2027 aus [2]. Die GoBD wurden 2025 entsprechend angepasst: Entscheidend ist der strukturierte Datenteil (etwa die XML-Datei einer ZUGFeRD-Rechnung); der menschenlesbare PDF-Teil muss nur aufbewahrt werden, wenn er zusätzliche steuerlich relevante Informationen enthält [1]."
+  },
+  {
+   "t": "p",
+   "x": "Für die Dokumentenanalyse ist das eine Zeitenwende: Der strukturierte Teil liefert die Felder frei Haus - die KI verschiebt sich vom Erkennen auf das Verstehen. Was bleibt, sind die schwierigen Fälle: Scans, Fotos, E-Mail-Text, Verträge, Mahnungen, alles ohne XML."
+  },
+  {
+   "t": "h2",
+   "x": "Wie eine belastbare Pipeline aussieht"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Erfassen: Beleg eingehend als Datei - E-Rechnung mit XML, Scan als PDF, Foto vom Handy.",
+    "Parsen: Datei in Text und Layout übersetzen; bei E-Rechnungen zuerst den strukturierten Teil lesen.",
+    "Extrahieren: Das Modell zieht Felder - Nummer, Datum, Beträge, Positionen - als strukturierte Ausgabe, idealerweise mit JSON-Schema.",
+    "Validieren: Regeln prüfen, was das Modell liefert: Summen stimmen, USt-IdNr. hat das richtige Format, Datum liegt im Geschäftsjahr.",
+    "Verbuchen und Ablegen: Erst nach bestandener Prüfung geht es ins System; Original und Extraktion werden zusammen abgelegt."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Arbeitsteilung ist der Punkt: Die KI liest, die Regeln rechnen, der Mensch entscheidet im Zweifel. Ein Beispiel für den Extraktionsschritt mit Schema:"
+  },
+  {
+   "t": "code",
+   "lang": "json",
+   "x": "{\n  \"rechnungsnummer\": \"2026-1187\",\n  \"datum\": \"2026-10-14\",\n  \"lieferant\": \"Muster GmbH\",\n  \"netto\": 1000.00,\n  \"mwst\": 190.00,\n  \"brutto\": 1190.00,\n  \"positionen\": [\n    {\"text\": \"Beratung Oktober\", \"betrag\": 1000.00}\n  ],\n  \"konfidenz\": 0.93\n}"
+  },
+  {
+   "t": "h2",
+   "x": "Warum jede Extraktion eine Prüfstufe braucht"
+  },
+  {
+   "t": "p",
+   "x": "Die Forschung ist eindeutig: Auch die besten Dokumenten-Lesesysteme scheitern regelmäßig an echten Dateien. Der Benchmark DocBench wurde 2024 genau dafür gebaut, weil es für Systeme, die rohe Dateien samt Fragen verarbeiten, keinen Maßstab gab - Dateiparsing, Metadaten, multimodale Inhalte und lange Kontexte sind eigene Fehlerquellen [3]. Hinzu kommt die bekannte Grundeigenschaft von Sprachmodellen: Sie ergänzen Plausibles statt „weiß nicht“ zu sagen - die Anatomie dieser [Halluzinationen](/halluzinationen) steht im eigenen Beitrag."
+  },
+  {
+   "t": "p",
+   "x": "Typische Fehler in der Praxis: vertauschte Ziffern bei Beträgen, ein Datum aus dem Falzjahr, eine erfundene Position, ein Betrag in der falschen Währung. Alle vier fängt keine Plausibilitätsprüfung von allein - aber drei von vier fängt eine einfache Regel: Positionen aufsummieren und mit dem Gesamtbetrag vergleichen; das kostet zwei Zeilen Code und filtert den Großteil der teuren Fehler. Mehr zur Rechenschwäche der Modelle selbst im Beitrag [Rechnen mit LLMs](/rechnen-mit-llms)."
+  },
+  {
+   "t": "h2",
+   "x": "Was die GoBD dazu sagen"
+  },
+  {
+   "t": "p",
+   "x": "Die Grundsätze zur ordnungsmäßigen Führung und Aufbewahrung von Büchern (GoBD) verlangen Nachvollziehbarkeit und Unveränderbarkeit: Belege bleiben in ihrer ursprünglichen Form aufbewahrt, Verfahren werden dokumentiert, jede Buchung muss sich bis zum Beleg zurückverfolgen lassen. Mit der Änderung von Juli 2025 ist klargestellt: Bei E-Rechnungen genügt die Aufbewahrung des strukturierten Teils, sofern keine zusätzlichen steuerlich relevanten Angaben im Bildteil stecken, und der strukturierte Datensatz darf nicht durch Formatumwandlung gelöscht werden [1]."
+  },
+  {
+   "t": "p",
+   "x": "Übersetzt auf die KI-Pipeline heißt das: Das Original ist der Beleg, nie die Extraktion. Die KI-Ausgabe ist ein Arbeitsergebnis mit Zeitstempel und Versionsbezug - was korrigiert wurde, wird als Korrektur geführt. Eine kurze Verfahrensdokumentation (welches Modell, welche Regeln, welche Stichproben) macht aus dem Bauchgefühl „das läuft schon“ einen prüfbaren Prozess."
+  },
+  {
+   "t": "table",
+   "caption": "Fehlerbilder und die passende Kontrolle",
+   "head": [
+    "Fehlerbild",
+    "Beispiel",
+    "Kontrolle"
+   ],
+   "rows": [
+    [
+     "Zahlendreher",
+     "1.190 € statt 1.910 €",
+     "Positionen gegen Gesamtbetrag rechnen"
+    ],
+    [
+     "Erfundenes Feld",
+     "Skonto, das nicht auf dem Beleg steht",
+     "Pflichtfelder nur aus Quelltext belegen"
+    ],
+    [
+     "Falsches Datum",
+     "Leistungs- statt Rechnungsdatum",
+     "Regel: welches Feld zählt, je Belegart"
+    ],
+    [
+     "Fehlende Position",
+     "Nur erste Seite gelesen",
+     "Seitenzahl gegen Positionsliste prüfen"
+    ],
+    [
+     "Währungsfehler",
+     "USD-Betrag als Euro gebucht",
+     "Währungsfeld pflicht, Umrechnung separat"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Dokumentenanalyse mit KI ist fertig für den Alltag - unter einer Bedingung: Die Prüfstufe ist Teil des Systems, nicht ein Versprechen im Prospekt. Mit E-Rechnung, Schema-Extraktion und Regelwerk sinkt der Restaufwand auf die Ausreißer, die ohnehin ein Mensch sehen will. Wer danach die Zahlen weiter auswertet, liest im nächsten Schritt, warum [Sprachmodelle beim Rechnen stolpern](/rechnen-mit-llms) und welche Compliance-Pflichten in [Finanzprozessen](/ki-compliance-finanzen) gelten."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ersetzt KI meine Buchhaltungssoftware?",
+   "a": "Nein. KI übernimmt den Leseschritt - Felder erkennen, Texte zuordnen, Abweichungen finden. Buchen, aufbewahren und melden bleibt Aufgabe der Software und des Prozesses dahinter, der sich an den GoBD orientiert [1]."
+  },
+  {
+   "q": "Ist eine KI-Extraktion GoBD-konform?",
+   "a": "Die Extraktion ist ein Verarbeitungsschritt, kein Beleg. Konform ist der Prozess, wenn das Original unverändert aufbewahrt wird, die Verfahrensweise dokumentiert ist und jede Buchung zum Beleg zurückverfolgbar bleibt. Bei E-Rechnungen ist der strukturierte XML-Teil maßgeblich [1][2]."
+  },
+  {
+   "q": "Ab wann muss ich E-Rechnungen verarbeiten können?",
+   "a": "Empfangen können musst du sie seit dem 1. Januar 2025. Für das Ausstellen gelten Übergangsfristen: sonstige Formate bis Ende 2026, bei Vorjahresumsatz bis 800.000 Euro bis Ende 2027; EDI-Verfahren laufen ebenfalls bis Ende 2027 [2]."
+  },
+  {
+   "q": "Wie gut sind KI-Systeme beim Dokumentenlesen wirklich?",
+   "a": "Gut genug für den Produktiveinsatz, aber nicht fehlerfrei: Der DocBench-Benchmark zeigt, dass Dateiparsing, Metadaten und lange Dokumente eigene Fehlerquellen bleiben [3]. Deshalb gehören Validierungsregeln und Stichproben in jede Pipeline."
+  }
+ ],
+ "sources": [
+  {
+   "title": "GoBD; 2. Änderung aufgrund verschiedener gesetzlicher Änderungen (BMF-Schreiben vom 14. Juli 2025)",
+   "publisher": "Bundesministerium der Finanzen",
+   "url": "https://www.bundesfinanzministerium.de/Content/DE/Downloads/BMF_Schreiben/Weitere_Steuerthemen/Abgabenordnung/2025-07-14-GoBD-2-aenderung.html?__blob=publicationFile&v=12",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Fragen und Antworten zur Einführung der obligatorischen E-Rechnung zum 1. Januar 2025 (Stand: März 2026)",
+   "publisher": "Bundesministerium der Finanzen",
+   "url": "https://www.bundesfinanzministerium.de/Content/DE/FAQ/e-rechnung.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "DocBench: A Benchmark for Evaluating LLM-based Document Reading Systems",
+   "publisher": "arXiv (Shanghai Jiao Tong University / Tencent AI Lab)",
+   "url": "https://arxiv.org/abs/2407.10701",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Der Beitrag stützt sich auf das BMF-Schreiben zur zweiten GoBD-Änderung vom 14. Juli 2025, die BMF-FAQ zur E-Rechnung (Stand März 2026) und den DocBench-Benchmark aus der Forschung. Alle Quellen wurden am 20. Oktober 2026 geöffnet. Die beschriebene Pipeline und das Fehlerbild-Tableau sind redaktionelle Modelle aus der Praxis, keine behördliche Vorgabe.",
+ "limitations": [
+  "Konkrete Genauigkeitswerte hängen von Modell, Belegart und Layout ab - der Beitrag nennt bewusst keine Prozentzahlen ohne eigene Messung.",
+  "Steuerliche Detailfragen (Verfahrensdokumentation im Einzelfall, Aufbewahrungsfristen je Belegart) gehören in die Beratung.",
+  "Keine Rechts- oder Steuerberatung."
+ ],
+ "related": [
+  "rechnen-mit-llms",
+  "ki-compliance-finanzen",
+  "llm-quantisierung-verfahren-grundlagen"
+ ]
+}

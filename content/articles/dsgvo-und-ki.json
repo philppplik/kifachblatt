@@ -1,0 +1,220 @@
+{
+ "slug": "dsgvo-und-ki",
+ "lang": "de",
+ "section": "datenschutz",
+ "type": "explainer",
+ "title": "DSGVO und KI: Was mit personenbezogenen Daten erlaubt ist",
+ "dek": "Personenbezogene Daten in Prompts, Training und Betrieb: Was die DSGVO verlangt, wie der EDSA KI-Modelle einordnet und welche Regeln im Alltag tragen.",
+ "published": "2026-10-18T19:30:00+02:00",
+ "modified": "2026-10-18T19:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "DSGVO",
+  "Datenschutz",
+  "KI-Modelle",
+  "Auftragsverarbeitung",
+  "EDSA"
+ ],
+ "key_takeaways": [
+  "Sobald Namen, Adressen oder andere personenbezogene Daten in einem Prompt, einer Wissensdatenbank oder einem Trainingssatz landen, gilt die DSGVO - auch beim bloßen Ausprobieren eines Chatbots.",
+  "Der Europäische Datenschutzausschuss (EDSA) bewertet KI-Modelle einzeln: Ein Modell gilt nur dann als anonym, wenn weder die Identifizierung der Trainingspersonen noch die gezielte Abfrage ihrer Daten wahrscheinlich ist [1].",
+  "Berechtigtes Interesse kann eine Rechtsgrundlage fürs Training und den Betrieb sein - aber nur nach einer Abwägung in drei Schritten, mit dokumentierten Abhilfemaßnahmen [1].",
+  "Der Hamburger Datenschutzbeauftragte vertritt die These, dass ein Sprachmodell selbst keine personenbezogenen Daten speichert; Betroffenenrechte beziehen sich dann auf Ein- und Ausgaben des KI-Systems [3].",
+  "Praktisch tragen drei Gewohnheiten: keine besonderen Kategorien (Gesundheit, Religion) in Prompts, ein sauberer Auftragsverarbeitungsvertrag mit jedem Anbieter und Transparenz gegenüber Betroffenen."
+ ],
+ "hero": {
+  "alt": "Grafik: Drei Datenströme mit Namen, IBAN und Gehaltsdaten laufen auf ein gezeichnetes Schloss zu, darunter der Satz: Verarbeitung nur mit Grundlage.",
+  "caption": "Personenbezogene Daten dürfen nur mit Rechtsgrundlage in KI-Systeme fließen. Eigene Grafik (Redaktion).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Keine Rechtsberatung",
+   "x": "Dieser Beitrag ordnet die Rechtslage ein und ersetzt keine Beratung im Einzelfall. Stand: 20. Oktober 2026. Maßgeblich sind Gesetzestexte, Behörden und Gerichte - alle Quellen sind am Ende verlinkt."
+  },
+  {
+   "t": "p",
+   "x": "Ein Alltagsfall: Eine Mitarbeiterin kopiert eine Kundenbeschwerde in einen Chatbot, um eine Antwort zu formulieren. In der Beschwerde stehen Name, Vertragsnummer und ein Krankheitsgrund. Genau in diesem Moment ist die [DSGVO](/glossar#dsgvo) mitten im KI-Alltag angekommen. Dieser Beitrag erklärt, was dann gilt - für Prompts, fürs Training und für den laufenden Betrieb."
+  },
+  {
+   "t": "h2",
+   "x": "Die drei Begriffe, die alles tragen"
+  },
+  {
+   "t": "p",
+   "x": "Personenbezogene Daten sind alle Angaben, die sich auf eine identifizierte oder identifizierbare Person beziehen: Name, E-Mail, IBAN, aber auch eine Kundennummer, wenn sie sich einer Person zuordnen lässt. Verarbeitung ist praktisch alles, was damit passiert - erheben, speichern, übermitteln, auswerten. Und jede Verarbeitung braucht eine Rechtsgrundlage nach Artikel 6 DSGVO: Einwilligung, Vertrag, rechtliche Pflicht, lebenswichtige Interessen, öffentliche Aufgabe oder das berechtigte Interesse [4]."
+  },
+  {
+   "t": "p",
+   "x": "Wichtig ist außerdem die Rollenfrage: Der Verantwortliche bestimmt Zweck und Mittel der Verarbeitung - beim Firmen-Chatbot ist das dein Unternehmen. Der KI-Anbieter ist in der Regel [Auftragsverarbeiter](/glossar#auftragsverarbeitung) und braucht dafür einen Vertrag nach Artikel 28 DSGVO. Nutzt der Anbieter deine Daten dagegen für eigene Zwecke, etwa zum Trainieren seiner Modelle, wird er für diesen Teil selbst verantwortlich - und genau das prüfen Datenschützer zuerst."
+  },
+  {
+   "t": "h2",
+   "x": "Wo personenbezogene Daten in KI-Systemen auftauchen"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Prompts und Chats: Alles, was Nutzer eingeben, wird verarbeitet - inklusive der Kundendaten, die jemand unbedacht hineinkopiert.",
+    "Wissensdatenbanken und RAG: Wer Akten, Tickets oder Personalunterlagen an ein Sprachmodell anschließt, baut eine Verarbeitung personenbezogener Daten mit Zweck und Löschkonzept.",
+    "Training und Feinabstimmung: Trainingsdaten mit Personenbezug machen das Training selbst zu einer Verarbeitung, die eine Grundlage braucht.",
+    "Ausgaben und Protokolle: Antworten können Personendaten enthalten oder erfinden; Logs beim Anbieter sind ebenfalls Verarbeitung."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Analogie, die im Umgang hilft: Ein KI-Dienst ist wie ein externes Dienstleistungsbüro. Was du dorthin schickst, verlässt deinen Schreibtisch. Du würdest dem Büro keine Patientenakte ohne Vertrag und Anweisung schicken - beim Chatbot gelten dieselben Regeln, nur schneller und per Mausklick."
+  },
+  {
+   "t": "h2",
+   "x": "Was der EDSA zu KI-Modellen gesagt hat"
+  },
+  {
+   "t": "p",
+   "x": "Im Dezember 2024 hat der Europäische Datenschutzausschuss (EDSA) auf Bitte der irischen Aufsichtsbehörde eine Stellungnahme verabschiedet, die drei Kernfragen beantwortet [1]. Erstens: Ob ein KI-Modell als anonym gilt, entscheiden die Aufsichtsbehörden von Fall zu Fall. Dafür muss es sehr unwahrscheinlich sein, dass Trainingspersonen direkt oder indirekt identifiziert werden und dass ihre Daten durch Abfragen aus dem Modell herausgeholt werden können. Zweitens: Das berechtigte Interesse als Rechtsgrundlage fürs Training und den Betrieb ist möglich, aber nur mit einem Drei-Stufen-Test - das Interesse muss rechtmäßig sein, die Verarbeitung erforderlich und die Abwägung muss zugunsten des Verantwortlichen ausgehen. Drittens: Wurde ein Modell mit unrechtmäßig verarbeiteten Daten trainiert, kann das die Rechtmäßigkeit des späteren Einsatzes beeinträchtigen - es sei denn, das Modell wurde ordnungsgemäß anonymisiert [1]."
+  },
+  {
+   "t": "p",
+   "x": "Der EDSA nennt für die Abwägung Kriterien, die sich direkt als Checkliste lesen lassen: Waren die Daten öffentlich zugänglich? Wie ist das Verhältnis zwischen Betroffenen und Verantwortlichem? In welchem Kontext wurden die Daten erhoben, und konnten die Personen diese Nutzung vernünftigerweise erwarten? Je weiter die Antwort vom Erwartbaren abweicht, desto schwerer trägt das berechtigte Interesse [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Hamburger These - und ihr praktischer Nutzen"
+  },
+  {
+   "t": "p",
+   "x": "Der Hamburgische Beauftragte für Datenschutz hat 2024 ein Diskussionspapier vorgelegt, das in der Fachwelt viel beachtet wurde. Seine drei Thesen: Das bloße Speichern eines Sprachmodells ist keine Verarbeitung, weil im Modell keine personenbezogenen Daten gespeichert sind. Betroffenenrechte wie Auskunft oder Löschung können sich daher nicht auf das Modell selbst beziehen, wohl aber auf Ein- und Ausgaben des KI-Systems. Und Verstöße in der Trainingsphase berühren nach dieser Sicht nicht die Rechtmäßigkeit des späteren Betriebs [3]."
+  },
+  {
+   "t": "p",
+   "x": "Das deckt sich nicht vollständig mit der EDSA-Stellungnahme, die den Blick stärker auf das Modell als Ganzes richtet und die Folgen unrechtmäßigen Trainings ernster nimmt [1]. Für die Praxis heißt das: Die Rechtslage ist in Bewegung, Behörden argumentieren unterschiedlich. Wer konservativ arbeitet, orientiert sich an der strengeren Lesart - sie ist in beiden Welten zulässig."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Datenschutzkonferenz von Unternehmen erwartet"
+  },
+  {
+   "t": "p",
+   "x": "Die Orientierungshilfe der Datenschutzkonferenz (DSK) von Mai 2024 bringt die Anforderungen auf den Boden: Verantwortliche müssen die Rechtmäßigkeit jeder KI-Verarbeitung sicherstellen, Transparenzpflichten erfüllen, Betroffenenrechte ermöglichen und die Datensicherheit gewährleisten [2]. Bei besonders riskanten Verarbeitungen - etwa systematischer und umfangreicher Auswertung - kommt eine Datenschutz-Folgenabschätzung dazu. Die DSK betont, dass die Grundsätze der DSGVO technologieneutral gelten: KI ändert die Werkzeuge, nicht die Pflichten [2]."
+  },
+  {
+   "t": "table",
+   "caption": "Typische Situationen und die übliche Einordnung (vereinfacht, ohne Einzelfallprüfung)",
+   "head": [
+    "Situation",
+    "Regelfall",
+    "Was zu prüfen ist"
+   ],
+   "rows": [
+    [
+     "Kundendaten im Chatbot-Prompt",
+     "Verarbeitung durch Verantwortlichen + Anbieter als Auftragsverarbeiter",
+     "AV-Vertrag, Datenminimierung, keine besonderen Kategorien"
+    ],
+    [
+     "KI schreibt Antwort mit Personendaten",
+     "Verarbeitung, Fehler möglich",
+     "Richtigkeit prüfen, [Halluzination](/glossar#halluzination) beachten"
+    ],
+    [
+     "Eigenes Modell mit Kundendaten trainieren",
+     "Verarbeitung zu neuem Zweck",
+     "Rechtsgrundlage, Zweckbindung, Löschkonzept"
+    ],
+    [
+     "Öffentliche Daten scrapen fürs Training",
+     "Verarbeitung trotz öffentlicher Quelle",
+     "Erwartbarkeit, Abwägung nach EDSA-Kriterien [1]"
+    ],
+    [
+     "Lokales Modell ohne Cloud",
+     "Verarbeitung bleibt, Drittlandtransfer entfällt",
+     "Sicherheit, Rechte der Betroffenen, Doku"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Fünf Gewohnheiten, die im Alltag tragen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Datenminimierung zuerst: Namen, IDs und besondere Kategorien (Gesundheit, Religion, Gewerkschaft) gehören nicht in Prompts. Pseudonymisieren ist oft in zwei Minuten erledigt.",
+    "AV-Vertrag vor dem ersten Produktiveinsatz: Ohne Vertrag nach Artikel 28 DSGVO kein Firmen-Chatbot - Details im [Anbieter-Check](/anbieter-check).",
+    "Transparenz aktiv machen: Betroffene müssen wissen, dass und wie ihre Daten in KI-Systemen verarbeitet werden - Datenschutzerklärung und Hinweise aktualisieren.",
+    "Lösch- und Auskunftswege testen: Wer eine Anfrage nicht beantworten kann, weil Prompts und Logs nicht zugeordnet werden, hat ein Prozessproblem.",
+    "Verzeichnis und Folgenabschätzung pflegen: Die KI-Nutzung gehört ins Verarbeitungsverzeichnis; bei hohem Risiko kommt die DSFA vor dem Start, nicht danach."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer diese fünf Punkte belegt, steht in jeder Behördenanfrage besser da als mit technischer Perfektion ohne Papier. Datenschutz ist hier weniger eine Frage des Modells als eine der Organisation."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Die DSGVO verbietet KI nicht - sie verlangt das, was sie immer verlangt: eine Grundlage, einen Zweck, Transparenz und Sicherheit. Neu ist, dass der EDSA mit seiner Stellungnahme [1] und Aufsichtsbehörden wie Hamburg [3] die Begriffe auf Sprachmodelle übersetzen. Wer die fünf Gewohnheiten oben lebt, kann heute schon sauber arbeiten, während die Rechtsprechung die offenen Fragen klärt. Für die europäische Risiko-Ebene oberhalb der DSGVO lohnt der Blick in den Beitrag zum [EU AI Act](/eu-ai-act)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Darf ich Kundennamen in einen Chatbot eingeben?",
+   "a": "Grundsätzlich gilt die DSGVO: Es braucht eine Rechtsgrundlage, einen Auftragsverarbeitungsvertrag mit dem Anbieter und Datenminimierung. Besondere Kategorien wie Gesundheitsdaten gehören nicht in Prompts. In der Praxis ist Pseudonymisieren (Kunde A statt Name) oft der einfachste saubere Weg."
+  },
+  {
+   "q": "Ist ein Sprachmodell anonym im Sinne der DSGVO?",
+   "a": "Nicht automatisch. Nach dem EDSA entscheiden die Aufsichtsbehörden im Einzelfall: Ein Modell gilt nur als anonym, wenn es sehr unwahrscheinlich ist, Trainingspersonen zu identifizieren oder ihre Daten per Abfrage aus dem Modell zu gewinnen [1]. Die Hamburger Aufsicht geht weiter und sieht im Modell selbst keine personenbezogenen Daten gespeichert [3]."
+  },
+  {
+   "q": "Gilt die DSGVO auch für ein lokales Modell auf dem eigenen Rechner?",
+   "a": "Ja. Die DSGVO knüpft an die Verarbeitung personenbezogener Daten an, nicht an die Cloud. Ein lokales Modell vermeidet Drittlandtransfer und Auftragsverarbeiter, aber Rechtsgrundlage, Transparenz, Sicherheit und Betroffenenrechte bleiben. Mehr dazu im Beitrag zu [lokalen Modellen](/lokale-modelle)."
+  },
+  {
+   "q": "Muss die KI-Nutzung ins Verzeichnis der Verarbeitungstätigkeiten?",
+   "a": "Ja, wenn dein Unternehmen KI-Systeme einsetzt, in denen personenbezogene Daten verarbeitet werden, gehört das als Verarbeitungstätigkeit ins Verzeichnis (Art. 30 DSGVO). Bei besonders riskanten Verarbeitungen ist zusätzlich vorab eine Datenschutz-Folgenabschätzung fällig [2]."
+  }
+ ],
+ "sources": [
+  {
+   "title": "EDPB opinion on AI models: GDPR principles support responsible AI (Stellungnahme 28/2024)",
+   "publisher": "Europäischer Datenschutzausschuss (EDSA)",
+   "url": "https://www.edpb.europa.eu/news/edpb-opinion-on-ai-models-gdpr-principles-support-responsible-ai_en",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "DSK-Orientierungshilfe: Künstliche Intelligenz und Datenschutz (Stand: 6. Mai 2024)",
+   "publisher": "Datenschutzkonferenz / LfD Brandenburg",
+   "url": "https://www.lda.brandenburg.de/lda/de/datenschutz/institutionen-und-dokumente/orientierungshilfen-und-anwendungshinweise-der-dsk/dsk-orientierungshilfe-kuenstliche-intelligenz-und-datenschutz/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Discussion Paper: Large Language Models and Personal Data",
+   "publisher": "Der Hamburgische Beauftragte für Datenschutz und Informationsfreiheit",
+   "url": "https://datenschutz-hamburg.de/fileadmin/user_upload/HmbBfDI/Datenschutz/Informationen/240715_Discussion_Paper_Hamburg_DPA_KI_Models.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Art. 6 DSGVO - Rechtmäßigkeit der Verarbeitung",
+   "publisher": "dsgvo-gesetz.de",
+   "url": "https://dsgvo-gesetz.de/art-6-dsgvo/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Ausgewertet wurden Primärquellen: die Stellungnahme 28/2024 des EDSA, die Orientierungshilfe der Datenschutzkonferenz, das Diskussionspapier der Hamburger Aufsichtsbehörde und der Gesetzestext der DSGVO. Alle Dokumente wurden am 20. Oktober 2026 geöffnet und im Wortlaut geprüft; die Einordnungen sind redaktionelle Zusammenfassungen, keine Rechtsberatung.",
+ "limitations": [
+  "Die Rechtsprechung zu KI-Modellen und DSGVO ist im Fluss; Aufsichtsbehörden vertreten teils unterschiedliche Positionen (EDSA vs. Hamburg).",
+  "Mitgliedstaatliche Spezialregeln (etwa Beschäftigtendatenschutz) und Branchenrecht sind nicht Gegenstand dieses Beitrags.",
+  "Dieser Beitrag ersetzt keine Beratung im Einzelfall."
+ ],
+ "related": [
+  "eu-ai-act",
+  "anbieter-check",
+  "sicherheit-fuer-agenten-systeme"
+ ]
+}

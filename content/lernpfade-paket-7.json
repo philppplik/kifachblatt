@@ -1,0 +1,206 @@
+{
+ "title": "Lernpfade Paket 7: Recht & Finanzen",
+ "intro": "Zwei Wege durch das KI Fachblatt für alle, die KI im Unternehmen rechtssicher einführen oder in Zahlenprozessen einsetzen wollen. Jeder Pfad ist eine Reihenfolge von Seiten, die aufeinander aufbauen. Wähle den Pfad, der zu deiner Frage passt, und hake Schritt für Schritt ab.",
+ "paket": 7,
+ "kapitel": "Recht & Finanzen",
+ "paths": [
+  {
+   "id": "recht-datenschutz",
+   "name": "Recht & Datenschutz: KI compliant nutzen",
+   "frage": "Ich will KI im Unternehmen einsetzen, ohne Datenschutz und Haftung aus dem Blick zu verlieren.",
+   "intro": "Für Datenschutzbeauftragte, Juristen, Compliance und Geschäftsführer. Du lernst die Grundpflichten aus DSGVO und KI-Verordnung, prüfst Anbieter systematisch und ordnest Dokumentationspflichten ein. Keine Rechtsberatung: Jede Seite nennt Quellen und ihren Stand.",
+   "zielgruppe": "Datenschutzbeauftragte, Juristen, Compliance, Geschäftsführer",
+   "level": "Entscheider/Praktiker",
+   "zeit": "ca. 2,5 Stunden",
+   "voraussetzungen": "Grundverständnis DSGVO hilfreich",
+   "lernziel": "DSGVO- und AI-Act-Grundpflichten kennen, Anbieter prüfen, Dokumentationspflichten einordnen.",
+   "steps": [
+    {
+     "slug": "dsgvo-und-ki",
+     "warum": "Die Basis: Wann Prompts und Trainingsdaten personenbezogene Daten enthalten und was die Aufsichtsbehörden dazu sagen."
+    },
+    {
+     "slug": "eu-ai-act",
+     "warum": "Das Risikomodell der KI-Verordnung: verboten, hochriskant, transparenzpflichtig - mit den Fristen, die jetzt gelten."
+    },
+    {
+     "slug": "anbieter-check",
+     "warum": "Vom Gesetz zum Einkauf: Auftragsverarbeitung, Datenflüsse und Zertifizierungen als Prüfliste für jeden KI-Anbieter."
+    },
+    {
+     "slug": "lokale-modelle",
+     "warum": "Die technische Ausweichroute: Wann ein Modell auf eigener Hardware Datenschutzprobleme schon am Ursprung löst."
+    },
+    {
+     "slug": "urheberrecht-ki-medien",
+     "warum": "Was bei KI-generierten Texten und Bildern zu beachten ist: Training, Ausgabe, Kennzeichnung."
+    },
+    {
+     "slug": "sicherheit-fuer-agenten-systeme",
+     "warum": "Zugriffsrechte als Haftungsfrage: Warum ein Agent mit weiten Rechten ein Compliance-Risiko ist."
+    },
+    {
+     "slug": "transparenz",
+     "warum": "Das Praxisbeispiel: Wie diese Redaktion selbst KI-Nutzung, Quellen und Verantwortung offenlegt."
+    }
+   ],
+   "terms": [
+    "DSGVO",
+    "EU AI Act",
+    "Auftragsverarbeitung",
+    "Urheberrecht",
+    "Lizenz (bei Modellen)",
+    "Offene Gewichte",
+    "Data Poisoning",
+    "Modell-Extraktion"
+   ],
+   "abschluss_check": {
+    "praxisfaelle": [
+     {
+      "fall": "Eine Kollegin fügt Kundennamen und Vertragsdaten in die US-Cloud-API eines KI-Anbieters ein. Was prüfst du zuerst?",
+      "einordnung": "Personenbezogene Daten in einem Drittland-Transfer: Rechtsgrundlage (Art. 6 DSGVO), Auftragsverarbeitungsvertrag (Art. 28) und das EU-US Data Privacy Framework mit dem laufenden Rechtsstreit prüfen. Siehe /dsgvo-und-ki und /anbieter-check."
+     },
+     {
+      "fall": "Der Vertrieb will ein KI-Tool einsetzen, das Gesprächsmitschnitte zusammenfasst und Stimmungen bewertet. Welche KI-Verordnungspunkte fallen an?",
+      "einordnung": "Emotionserkennung am Arbeitsplatz ist nach Art. 5 verboten (mit engen Ausnahmen); reine Zusammenfassung wäre zulässig, aber transparenz- und datenschutzpflichtig. Siehe /eu-ai-act."
+     },
+     {
+      "fall": "Ein Mitarbeiter erstellt mit Bild-KI Werbemotive im Stil einer bekannten Marke. Welche Risiken bestehen?",
+      "einordnung": "Stil- und Werknähe kann Urheber- und Markenrechte berühren; Ausgaben vor Veröffentlichung prüfen, geschützte Logos nicht ohne Erlaubnis. Siehe /urheberrecht-ki-medien."
+     },
+     {
+      "fall": "Ein Agent-System soll eigenständig E-Mails beantworten und Termine buchen. Was ist aus Compliance-Sicht zu regeln?",
+      "einordnung": "Zugriffsrechte minimal fassen, Aktionen protokollieren, menschliche Freigabe für Versand festlegen - Zugriffsrechte sind eine Haftungsfrage. Siehe /sicherheit-fuer-agenten-systeme."
+     },
+     {
+      "fall": "Die GF fragt, ob ein lokales Modell die Datenschutzprüfung überflüssig macht. Was antwortest du?",
+      "einordnung": "Nein, aber es vereinfacht sie: Keine Drittland-Übertragung und kein Auftragsverarbeiter beim Betrieb, trotzdem bleiben Rechtsgrundlage, Löschkonzepte und Dokumentation nötig. Siehe /lokale-modelle und /dsgvo-und-ki."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Seit wann gelten die zentralen Transparenzpflichten (Art. 50) der KI-Verordnung?",
+      "antwort": "Seit dem 2. August 2026 (mit Übergang für Bestandssysteme bis 2. Dezember 2026).",
+      "quelle": "/eu-ai-act"
+     },
+     {
+      "frage": "Welcher Vertrag ist Pflicht, wenn ein KI-Anbieter personenbezogene Daten für dein Unternehmen verarbeitet?",
+      "antwort": "Ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO.",
+      "quelle": "/dsgvo-und-ki"
+     },
+     {
+      "frage": "Was erlaubt § 44b UrhG - und unter welcher Bedingung?",
+      "antwort": "Text und Data Mining, also Vervielfältigungen für Analysen wie KI-Training - solange Rechteinhaber nicht wirksam widersprochen haben (Opt-out).",
+      "quelle": "/urheberrecht-ki-medien"
+     },
+     {
+      "frage": "Nenne drei Punkte des Anbieter-Checks vor dem KI-Einkauf.",
+      "antwort": "Auftragsverarbeitung und Datenflüsse (wohin gehen die Daten, wird trainiert?), Zertifizierungen (z. B. C5), Drittland-Transfer und Modell-/Exit-Fragen.",
+      "quelle": "/anbieter-check"
+     },
+     {
+      "frage": "Ab wann gelten die Hochrisiko-Anforderungen für Kreditscoring und Versicherungspricing (Anhang III) nach dem KI-Omnibus?",
+      "antwort": "Ab dem 2. Dezember 2027.",
+      "quelle": "/eu-ai-act"
+     },
+     {
+      "frage": "Warum ist die Kennzeichnung KI-generierter Inhalte auch außerhalb gesetzlicher Pflichten sinnvoll?",
+      "antwort": "Sie schafft Vertrauen und Transparenz gegenüber Lesern und Kunden - und ist ab August 2026 für viele synthetische Inhalte ohnehin Pflicht (Art. 50).",
+      "quelle": "/eu-ai-act"
+     }
+    ]
+   }
+  },
+  {
+   "id": "finanzen-controlling",
+   "name": "Finanzen & Controlling: KI in Zahlenprozessen",
+   "frage": "Ich will KI für Belege, Auswertungen und Prognosen nutzen - ohne Fehlern und Prüfungsrisiken.",
+   "intro": "Für Controller, Buchhaltung und Finanzverantwortliche. Du lernst, KI für Dokumenten- und Datenanalyse einzusetzen, die Rechengrenzen von Sprachmodellen zu respektieren und die Prüf- und Compliance-Anforderungen zu erfüllen. Keine Anlageberatung, keine Produktempfehlung.",
+   "zielgruppe": "Controller, Buchhaltung, Finanzverantwortliche",
+   "level": "Praktiker/Entscheider",
+   "zeit": "ca. 2 Stunden",
+   "voraussetzungen": "kaufmännische Grundkenntnisse",
+   "lernziel": "KI für Dokumenten- und Datenanalyse einsetzen, Rechengrenzen von LLMs kennen, Prüf- und Compliance-Anforderungen erfüllen.",
+   "steps": [
+    {
+     "slug": "tokens-und-kosten",
+     "warum": "Die Grundeinheit: Warum Modelle in Tokens rechnen und was das für Kontextlänge und Kosten großer Belegstapel bedeutet."
+    },
+    {
+     "slug": "dokumentenanalyse-ki",
+     "warum": "Der Kernfall: Rechnungen, Verträge und Berichte mit KI lesen - inklusive Grenzen bei Tabellen und Prüfstrategie."
+    },
+    {
+     "slug": "rechnen-mit-llms",
+     "warum": "Die wichtigste Grenze: Sprachmodelle rechnen schlecht - wann Werkzeuge und Verifikation Pflicht sind."
+    },
+    {
+     "slug": "halluzinationen",
+     "warum": "Warum ein Modell überzeugend falsche Zahlen nennt und welche Arbeitsweisen das abfangen."
+    },
+    {
+     "slug": "marktdaten-sentiment-ki",
+     "warum": "Was KI-Auswertungen von Markt- und Stimmungsdaten leisten - und wo die Methodik endet."
+    },
+    {
+     "slug": "ki-compliance-finanzen",
+     "warum": "Der Pflichtenrahmen: DORA, KI-Verordnung und GoBD als Schichten - plus ein Betriebsmodell, das trägt."
+    }
+   ],
+   "terms": [
+    "Konfidenzintervall",
+    "Grounding",
+    "Halluzination",
+    "Temperatur"
+   ],
+   "abschluss_check": {
+    "praxisfaelle": [
+     {
+      "fall": "Die KI fasst eine Gewinn- und Verlustrechnung zusammen und nennt ein Umsatzwachstum von 23 Prozent. Die Quelldatei zeigt 17 Prozent. Was ist passiert und was tust du?",
+      "einordnung": "Klassische Zahlenhalluzination: Das Modell hat plausibel klingend ergänzt statt gelesen. Regel: Jede Zahl aus der Ausgabe gegen das Quelldokument prüfen, Berechnungen nie dem Modell überlassen. Siehe /halluzinationen und /dokumentenanalyse-ki."
+     },
+     {
+      "fall": "Ein Kollege lässt das Modell 47 Rechnungspositionen summieren und übernimmt das Ergebnis. Welches Risiko trägt das?",
+      "einordnung": "LLMs sind bei mehrstelliger Arithmetik unzuverlässig; Studien zeigen hohe Fehlerraten trotz hoher Selbstsicherheit. Summen gehören in ein Werkzeug (Tabellenkalkulation, Code), das Modell liest nur. Siehe /rechnen-mit-llms."
+     },
+     {
+      "fall": "Ein KI-Sentiment-Report empfiehlt, wegen negativer Schlagzeilen einen Lieferanten zu wechseln. Wie bewertest du das?",
+      "einordnung": "Sentiment-Modelle liefern Stimmungsindikatoren, keine Entscheidungsgrundlagen; Stichprobe, Zeitraum und Verzerrungen der Quellen prüfen und den Befund als eines von mehreren Signalen behandeln. Siehe /marktdaten-sentiment-ki."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Warum darf ein LLM im Controlling keine Summen bilden?",
+      "antwort": "Sprachmodelle erzeugen Text statistisch und rechnen nicht verlässlich; Fehler bei mehrstelliger Arithmetik sind dokumentiert. Berechnungen gehören in prüfbare Werkzeuge.",
+      "quelle": "/rechnen-mit-llms"
+     },
+     {
+      "frage": "Was verlangt DORA von einem Finanzunternehmen, das KI einsetzt?",
+      "antwort": "KI-Systeme als IKT-Assets im Register führen, Risikomanagement und Tests, Vorfälle klassifizieren und melden, Drittanbieter vertraglich regeln - gilt seit dem 17. Januar 2025.",
+      "quelle": "/ki-compliance-finanzen"
+     },
+     {
+      "frage": "Welche GoBD-Grundsätze gelten, wenn KI Belegdaten extrahiert?",
+      "antwort": "Nachvollziehbarkeit: Der Originalbeleg bleibt unverändert maßgeblich, das Verfahren ist dokumentiert, jede Buchung ist zum Beleg rückverfolgbar - die KI-Extraktion ist ein protokollierter Verarbeitungsschritt.",
+      "quelle": "/dokumentenanalyse-ki"
+     },
+     {
+      "frage": "Was bedeutet Halluzination bei Zahlen - und welches Gegenmittel hilft am meisten?",
+      "antwort": "Das Modell nennt plausibel klingende, aber falsche Werte. Am wirksamsten: Grounding (Quelltext im Kontext), Zahl-für-Zahl-Abgleich gegen das Original und niedrige Temperatur.",
+      "quelle": "/halluzinationen"
+     },
+     {
+      "frage": "Ab wann wird Kreditscoring per KI hochriskant-reguliert - und von wem überwacht?",
+      "antwort": "Ab dem 2. Dezember 2027 (Anhang III nach dem KI-Omnibus); im Finanzsektor ist die BaFin Marktüberwachungsbehörde.",
+      "quelle": "/ki-compliance-finanzen"
+     },
+     {
+      "frage": "Warum sind Token-Kosten bei der Belegverarbeitung eine Planungsgröße?",
+      "antwort": "Kontextlänge und Preis hängen an Tokens: Große Dokumentenstapel erzeugen erhebliche Eingabemengen; wer Tokens schätzt, kann Kosten und sinnvolle Stapelgrößen vorab kalkulieren.",
+      "quelle": "/tokens-und-kosten"
+     }
+    ]
+   }
+  }
+ ]
+}
