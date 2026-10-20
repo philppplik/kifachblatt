@@ -45,6 +45,12 @@
 
 
 
+
+
+
+
+
+
 <url><loc>https://kifachblatt.de/llm-quantisierung-verfahren-grundlagen</loc><lastmod>2026-10-20T08:11:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/llm-quantisierung-verfahren-grundlagen.jpg</image:loc><image:title>Quantisierung von Sprachmodellen: Verfahren, Zahlen, Grenzen</image:title><image:caption>Liniendiagramm mit logarithmischer Achse: Der Speicherbedarf von Modellen mit 7, 13, 70, 175 und 405 Milliarden Parametern fällt von FP16 über 8 und 4 Bit bis 1,58 Bit auf etwa ein Zehntel.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/minimax-m3-1-flash-analyse</loc><lastmod>2026-10-20T08:10:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/minimax-m3-1-flash-analyse.jpg</image:loc><image:title>MiniMax M3.1 Flash: Agenten-Modell im Kosten- und Benchmark-Check</image:title><image:caption>Balkendiagramm: MiniMax M3.1 Flash kostet 0,15 Dollar pro Million Eingabetokens, 0,015 Dollar für gecachte Eingabe und 0,60 Dollar pro Million Ausgabetokens; daneben der imputierte Vorgängerpreis von 0,50 und 2,00 Dollar.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/nemotron-3-5-super-lightning-analyse</loc><lastmod>2026-10-19T08:11:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/nemotron-3-5-super-lightning-analyse.jpg</image:loc><image:title>Nemotron 3.5: Was 99,62 Prozent Quantisierungserhalt bedeuten</image:title><image:caption>Punktdiagramm: NVFP4-Wert in Prozent des BF16-Werts für 36 Benchmarks, Median 99,4 Prozent; vier Zeilen unter 95 Prozent sind orange markiert.</image:caption></image:image></url>

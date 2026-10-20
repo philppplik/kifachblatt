@@ -1286,6 +1286,10 @@
      "Reasoning-Aufwand explizit setzen und Ergebnisqualität mit festen Aufgaben prüfen.",
      "Lange Prompts, Cache und Werkzeugkosten getrennt im Budget erfassen."
     ]
+   },
+   "logo": {
+    "asset": "openai",
+    "label": "OpenAI-Logo (Unternehmenslogo; ein separates GPT-6-Astra-Logo liegt nicht vor)"
    }
   },
   {
