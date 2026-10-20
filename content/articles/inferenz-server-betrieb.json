@@ -1,0 +1,180 @@
+{
+ "slug": "inferenz-server-betrieb",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Inferenz-Server im Betrieb: Batching, Durchsatz, TTFT/TPOT",
+ "dek": "Continuous Batching, PagedAttention und die Kennzahlen TTFT und TPOT: Wie ein Inferenz-Server viele Anfragen zugleich beantwortet und wo die Grenzen liegen.",
+ "published": "2026-10-20T05:30:00+02:00",
+ "modified": "2026-10-20T05:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Inferenz",
+  "vLLM",
+  "Continuous Batching",
+  "PagedAttention",
+  "TTFT",
+  "TPOT",
+  "Betrieb"
+ ],
+ "key_takeaways": [
+  "Ein [Inferenz-Server](/glossar#inferenz-server) gewinnt seinen Durchsatz aus dem Batching: Viele Anfragen teilen sich dieselben Modellgewichte im Speicher.",
+  "Orca führte das Scheduling auf Iterationsebene ein (Continuous Batching): Neue Anfragen steigen ein, sobald ein Platz frei wird, statt auf den kompletten Batch zu warten [2].",
+  "PagedAttention verwaltet den [KV-Cache](/glossar#kv-cache) wie virtuellen Speicher; vLLM erreichte damit das Zwei- bis Vierfache des Durchsatzes damaliger Systeme bei gleicher Verzögerung [1].",
+  "Die beiden Kennzahlen sind [TTFT](/glossar#time-to-first-token) für die gefühlte Reaktionszeit und [TPOT](/glossar#time-per-output-token) für die Schreibgeschwindigkeit; beide hängen am GPU-Speicher, nicht an der Rechenleistung."
+ ],
+ "hero": {
+  "alt": "Zeitleiste mit Anfragen als horizontalen Balken: Beim klassischen Batch warten alle auf den längsten Lauf, beim Continuous Batching rücken neue Anfragen lückenlos nach; die Leerzeiten verschwinden.",
+  "caption": "Klassisches Batching oben, Continuous Batching unten: Frei werdende Plätze werden sofort neu belegt. Eigene Darstellung nach [2].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein Modell herunterladen und lokal aufrufen ist das eine; es als Dienst für Dutzende gleichzeitige Nutzer betreiben das andere. Dieser Text erklärt, was ein [Inferenz-Server](/glossar#inferenz-server) leistet, welche zwei Ideen (Continuous Batching und PagedAttention) den Betrieb ökonomisch gemacht haben und wie man die Kennzahlen [TTFT](/glossar#time-to-first-token) und [TPOT](/glossar#time-per-output-token) liest. Er baut auf [Inferenz und Kosten verstehen](/inferenz-und-kosten-verstehen) auf."
+  },
+  {
+   "t": "h2",
+   "x": "Warum Serving eine eigene Disziplin ist"
+  },
+  {
+   "t": "p",
+   "x": "Beim Training zählt der Gesamtdurchsatz über Stunden. Beim Servieren zählen zwei Dinge zugleich: wie schnell die einzelne Antwort erscheint und wie viele Antworten das System pro Sekunde insgesamt liefert. Das Nadelöhr ist in beiden Fällen der GPU-Speicher, genauer die [Speicherbandbreite](/glossar#speicherbandbreite-grenze): Beim Generieren muss für jedes neue Token das gesamte Modell einmal aus dem Speicher gelesen werden. Die Gewichte einmal zu laden und möglichst viele Anfragen daran teilhaben zu lassen, ist deshalb die Grundidee des [Batching](/glossar#batching)."
+  },
+  {
+   "t": "h2",
+   "x": "Continuous Batching: der Batch, der nie wartet"
+  },
+  {
+   "t": "p",
+   "x": "Klassisches Batching sammelt Anfragen zu einem Batch und rechnet ihn zu Ende: Eine kurze Anfrage wartet auf die längste im Batch, und Neueingänge warten auf den kompletten Durchlauf. Das Orca-System (OSDI 2022) brach dieses Muster mit **Scheduling auf Iterationsebene**: Nach jedem einzelnen Token-Schritt darf der Scheduler die Zusammensetzung ändern; fertige Anfragen verlassen den Batch sofort, neue rücken nach. Ergänzend führte Orca das selektive Batching ein, das die Mischung nur auf die Operationen anwendet, die davon profitieren [2]. Diese zweite Idee ist heute unter dem Namen [Continuous Batching](/glossar#continuous-batching) Standard in allen ernsthaften Servern."
+  },
+  {
+   "t": "h2",
+   "x": "PagedAttention: der KV-Cache wird Speicherverwaltung"
+  },
+  {
+   "t": "p",
+   "x": "Der zweite Engpass ist der [KV-Cache](/glossar#kv-cache): Für jedes bereits gesehene Token hält das Modell Zwischenergebnisse im Speicher, pro Anfrage und wachsend mit jeder Antwort. Reserviert man pro Anfrage einen großen zusammenhängenden Block, entsteht Verschnitt. PagedAttention überträgt die Idee des virtuellen Speichers aus Betriebssystemen auf diesen Cache: kleine Seiten statt großer Blöcke, geteilte Seiten bei gemeinsamen Präfixen. Das vLLM-System darum herum erreichte im Paper das Zwei- bis Vierfache des Durchsatzes der damaligen Systeme FasterTransformer und Orca bei vergleichbarer Verzögerung, mit nahezu null Verschnitt im KV-Cache [1]. Die Dokumentation von vLLM beschreibt den aktuellen Stand des Open-Source-Servers, der daraus hervorging [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Kennzahlen: TTFT, TPOT, Durchsatz"
+  },
+  {
+   "t": "p",
+   "x": "Zwei Zeiten beschreiben das Nutzererlebnis. Die **Time to First Token** ist die Wartezeit bis zum ersten Zeichen der Antwort; sie hängt vor allem an der Prompt-Phase, in der die Eingabe parallel verarbeitet wird. Die **Time per Output Token** ist das Tempo danach; sie hängt an der sequentiellen Generierungsphase und damit an der Speicherbandbreite. Für den Betreiber kommt der **Durchsatz** in Token pro Sekunde über alle Anfragen hinzu. vLLM exportiert diese Größen als Prometheus-Metriken, etwa Histogramme für TTFT und die Zeit zwischen Token sowie die Auslastung des KV-Cache in Prozent [3][6]. Der Grundkonflikt: Mehr gleichzeitige Anfragen (größerer Batch) steigern den Durchsatz, aber ab einem Punkt verschlechtern sie TTFT und TPOT für alle."
+  },
+  {
+   "t": "h2",
+   "x": "Prefix-Caching: gemeinsame Anfänge nicht doppelt rechnen"
+  },
+  {
+   "t": "p",
+   "x": "Viele Anfragen teilen lange identische Anfänge: denselben System-Prompt, dieselben Beispieldokumente. SGLang führte mit RadixAttention eine baumbasierte Wiederverwendung solcher Präfixe ein und berichtete auf den untersuchten Arbeitslasten, darunter mehrstufige Agentenläufe und JSON-Ausgaben, bis zu 6,4-mal höheren Durchsatz als damalige Systeme [4]. In der Praxis heißt das: Wer seine Prompts so ordnet, dass der stabile Teil vorne steht, spart Rechenzeit; Details dazu im Glossar unter [Prompt-Caching](/glossar#prompt-caching)."
+  },
+  {
+   "t": "h2",
+   "x": "Werkzeuglandschaft und Kapazitätsplanung"
+  },
+  {
+   "t": "table",
+   "caption": "Drei verbreitete Open-Source-Inferenz-Server (Stand Oktober 2026, redaktionelle Einordnung nach [3][4][5])",
+   "head": [
+    "Server",
+    "Kernidee",
+    "Typische Stärke"
+   ],
+   "rows": [
+    [
+     "vLLM",
+     "PagedAttention, Continuous Batching",
+     "breite Hardware- und Modellunterstützung, Prometheus-Metriken"
+    ],
+    [
+     "SGLang",
+     "RadixAttention, strukturierte Ausgaben",
+     "komplexe Programme, Agenten, JSON-Zwang"
+    ],
+    [
+     "HF TGI",
+     "Text Generation Inference",
+     "Hugging-Face-Integration, Streaming"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Für die Kapazität zählt eine einfache Rechnung. **Eigene Rechnung:** Llama 3 70B in FP16 braucht 140 GB für die Gewichte; auf vier 80-GB-GPUs bleiben nach Gewichten und Laufzeitreserve grob 150 GB für KV-Cache. Der Cache liegt bei 320 KiB pro Token und Anfrage (Herleitung in [Inferenz und Kosten verstehen](/inferenz-und-kosten-verstehen) aus den Architekturangaben [6]). 150 GB geteilt durch 320 KiB ergeben rund 470.000 Token Spielraum: etwa 58 gleichzeitige Unterhaltungen mit je 8.000 Token Kontext. Sollen es mehr werden, helfen kleinere Kontexte, Quantisierung oder mehr GPUs. Die Rechnung zeigt zugleich, warum der KV-Cache und nicht die Rechenleistung die Kapazität bestimmt."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen TTFT und TPOT?",
+   "a": "TTFT (Time to First Token) ist die Wartezeit bis zum ersten Zeichen der Antwort und hängt an der parallelen Verarbeitung der Eingabe. TPOT (Time per Output Token) ist das Tempo, mit dem danach Token für Token erscheint, und hängt an der Speicherbandbreite. Für Nutzer fühlt sich TTFT als Reaktionszeit an, TPOT als Schreibgeschwindigkeit."
+  },
+  {
+   "q": "Warum steigt die Wartezeit, wenn viele Anfragen gleichzeitig laufen?",
+   "a": "Weil sich alle Anfragen die GPU und besonders deren Speicherbandbreite teilen. Ein größerer Batch erhöht den Gesamtdurchsatz, aber jede einzelne Anfrage wartet länger auf ihren Rechenschritt. Der Betreiber wählt mit der maximalen Batchgröße den Punkt auf diesem Kompromiss."
+  },
+  {
+   "q": "Was bringt Continuous Batching konkret?",
+   "a": "Fertige Anfragen verlassen den Batch sofort, neue steigen laufend ein, statt auf den kompletten Durchlauf zu warten. Kurze und lange Anfragen blockieren sich nicht mehr gegenseitig, und die GPU liegt nicht brach, während die letzte lange Antwort geschrieben wird."
+  },
+  {
+   "q": "Wann lohnt sich Prefix-Caching?",
+   "a": "Sobald viele Anfragen denselben Anfang teilen: ein fester System-Prompt, Standardbeispiele oder gemeinsame Dokumententeile. Der stabile Teil muss dafür am Anfang des Prompts stehen; der Server rechnet ihn dann nur einmal und verwendet das Ergebnis wieder."
+  },
+  {
+   "q": "Welchen Server soll ich nehmen: vLLM, SGLang oder TGI?",
+   "a": "Für den Einstieg ist vLLM der breiteste und am besten dokumentierte Weg. SGLang lohnt sich bei mehrstufigen Programmen und erzwungenen Ausgabeformaten, TGI bei enger Hugging-Face-Anbindung. Alle drei sind quelloffen; die Entscheidung sollte ein eigener Lasttest mit den eigenen Prompt-Längen treffen."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Kwon u. a.: Efficient Memory Management for Large Language Model Serving with PagedAttention",
+   "publisher": "arXiv:2309.06180 (SOSP 2023)",
+   "url": "https://arxiv.org/abs/2309.06180",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Yu u. a.: Orca: A Distributed Serving System for Transformer-Based Generative Models",
+   "publisher": "USENIX OSDI 2022",
+   "url": "https://www.usenix.org/conference/osdi22/presentation/yu",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "vLLM-Dokumentation",
+   "publisher": "docs.vllm.ai",
+   "url": "https://docs.vllm.ai/en/latest/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Zheng u. a.: SGLang: Efficient Execution of Structured Language Model Programs",
+   "publisher": "arXiv:2312.07104 (NeurIPS 2024)",
+   "url": "https://arxiv.org/abs/2312.07104",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Text Generation Inference (TGI)",
+   "publisher": "Hugging Face Dokumentation",
+   "url": "https://huggingface.co/docs/text-generation-inference/index",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "The Llama 3 Herd of Models (Architektur-Tabelle)",
+   "publisher": "arXiv:2407.21783 (Meta, 2024)",
+   "url": "https://arxiv.org/pdf/2407.21783",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Abstracts und Systembeschreibungen der Papers zu vLLM, Orca und SGLang, die Dokumentationen von vLLM (einschließlich der Metrik-Referenz) und von Hugging Face TGI sowie die Architektur-Tabelle des Llama-3-Berichts. Die Kapazitätsrechnung wurde mit den dortigen Angaben selbst nachgerechnet und ist als eigene Rechnung gekennzeichnet; der KV-Cache-Wert von 320 KiB pro Token ist mit der bestehenden Seite [Inferenz und Kosten verstehen](/inferenz-und-kosten-verstehen) abgeglichen.",
+ "limitations": "Durchsatz-Faktoren (2 bis 4 mal für vLLM, bis 6,4 mal für SGLang) stammen aus den Papers und deren Hardware und Arbeitslasten; sie übertragen sich nicht eins zu eins auf eigene Fälle. Die Kapazitätsrechnung ist eine Überschlagsrechnung ohne Aktivierungen, Fragmentierung und Laufzeitreserve im Detail. Die Werkzeugtabelle erhebt keinen Anspruch auf Vollständigkeit und bewertet keine kommerziellen Angebote.",
+ "related": [
+  "inferenz-und-kosten-verstehen",
+  "lokale-modelle",
+  "llm-betrieb-monitoring",
+  "llm-quantisierung-verfahren-grundlagen"
+ ]
+}

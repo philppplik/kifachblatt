@@ -1,0 +1,153 @@
+{
+ "slug": "llm-betrieb-monitoring",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "LLM-Betrieb überwachen: Rate-Limits, Kostenkontrolle, Alarme",
+ "dek": "Welche Metriken ein LLM-Dienst wirklich braucht: TTFT und Warteschlange aus dem Server, Rate-Limits lesen, Token-Budgets einziehen und Alarme, die nicht nerven.",
+ "published": "2026-10-20T06:00:00+02:00",
+ "modified": "2026-10-20T06:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Monitoring",
+  "Observability",
+  "Rate-Limits",
+  "Kostenkontrolle",
+  "OpenTelemetry",
+  "Prometheus",
+  "Betrieb"
+ ],
+ "key_takeaways": [
+  "Vier Ebenen gehören überwacht: Nutzung, Qualität, [Latenz](/glossar#latenz) und Kosten. Ohne alle vier fliegt ein LLM-Dienst blind.",
+  "Inferenz-Server wie vLLM liefern die nötigen Metriken fertig als Prometheus-Endpunkt: TTFT-Histogramm, Zeit zwischen Token, wartende Anfragen, KV-Cache-Auslastung [1].",
+  "Rate-Limits sind keine Fehler, sondern Verkehrsampeln: OpenAI misst in Anfragen und Token pro Minute und Tag; wer sie liest, drosselt und stapelt, statt abzustürzen [2].",
+  "Kostenkontrolle heißt Token-Buchhaltung pro Funktion und Team plus Budget-Alarme; das Zielmaß ist nicht der Preis pro Token, sondern die [Kosten pro gelöster Aufgabe](/glossar#kosten-pro-geloester-aufgabe)."
+ ],
+ "hero": {
+  "alt": "Vier übereinander gestapelte Messinstrumente mit Zeigern: Nutzung, Qualität, Latenz, Kosten; der Kostenzeiger steht im gelben Bereich und löst einen Alarm aus.",
+  "caption": "Die vier Ebenen der LLM-Überwachung. Erst zusammen zeigen sie, ob der Dienst gesund ist. Eigene Darstellung.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein LLM-Dienst, der nur dann auffällt, wenn sich Nutzer beschweren, ist schon zu spät dran. Dieser Text beschreibt das Überwachungsgerüst für den Betrieb: welche Metriken der Server selbst liefert, wie man [Rate-Limits](/glossar#rate-limit) liest statt sie zu erleiden, wie Token-Buchhaltung die Kosten zähmbar macht und welche Alarme sich bewährt haben. Er ergänzt [Inferenz-Server im Betrieb](/inferenz-server-betrieb) und wird im Lernpfad zu Kosten und ROI weiterverwendet."
+  },
+  {
+   "t": "h2",
+   "x": "Vier Ebenen: was überhaupt beobachtet werden muss"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Nutzung:** Anfragen pro Minute, aktive Nutzer, Verteilung auf Funktionen. Ohne sie fehlt jede Grundlage für Kapazität und Abrechnung.",
+    "**Qualität:** Antwortlängen, Fehlerquoten, Ergebnisse der eigenen Prüfmenge nach jedem Modellwechsel (siehe [Evals](/evals-statt-bauchgefuehl)).",
+    "**Latenz:** [Time to First Token](/glossar#time-to-first-token) und [Time per Output Token](/glossar#time-per-output-token) als Verteilungen, nicht als Mittelwerte.",
+    "**Kosten:** verbrauchte Token je Funktion, Team und Modell, erkannt anhand der Abrechnung des Anbieters oder der eigenen Zählung."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Metriken aus dem Server: der vLLM-Endpunkt"
+  },
+  {
+   "t": "p",
+   "x": "Selbst gehostete Server liefern ihre Messwerte fertig. vLLM stellt einen Prometheus-Endpunkt bereit; die Metrik-Referenz listet unter anderem das Histogramm der Zeit bis zum ersten Token, die Verteilung der Zeit zwischen Ausgabetoken, die Zahl laufender und wartender Anfragen sowie die Auslastung des [KV-Cache](/glossar#kv-cache) in Prozent [1]. Prometheus ist das übliche Sammelsystem für solche Zeitreihen: Es ruft die Endpunkte in Intervallen ab und speichert die Werte [3]; Grafana stellt sie als Tafeln dar und verschickt Alarme [4]. Die zwei wichtigsten Frühindikatoren sind die Warteschlange (steigt sie, läuft der Dienst in einen Stau) und die KV-Cache-Auslastung (läuft sie gegen 100 Prozent, beginnt das System, Anfragen abzuweisen oder neu zu berechnen)."
+  },
+  {
+   "t": "h2",
+   "x": "Rate-Limits lesen statt erleiden"
+  },
+  {
+   "t": "p",
+   "x": "Bei gehosteten APIs ersetzt das [Rate-Limit](/glossar#rate-limit) den eigenen Speicher als Grenze. OpenAI misst Limits in Anfragen pro Minute und Tag (RPM, RPD), Token pro Minute und Tag (TPM, TPD) sowie für Bilder in Stück pro Minute; welche Stufe gilt, hängt vom Nutzungslevel der Organisation ab, das mit dem bisherigen Umsatz automatisch steigt [2]. Die Dokumentation nennt den wichtigsten Trick gleich mit: Wer an der Anfragen-Grenze klemmt, aber Token-Reserve hat, bündelt mehrere Aufgaben in eine Anfrage [2]. Im eigenen Code gehören drei Dinge: das Zurücknehmen des Tempos mit wachsenden Wartezeiten (Backoff), eine Warteschlange statt sofortiger Wiederholung und eine Alarmierung, wenn die Dauerlast dauerhaft nahe der Grenze liegt; denn dann ist es Zeit für die nächste Nutzungsstufe oder einen zweiten Anbieter."
+  },
+  {
+   "t": "h2",
+   "x": "Kostenkontrolle: Token-Buchhaltung"
+  },
+  {
+   "t": "p",
+   "x": "Die Abrechnung erfolgt über Token, das [Blended-Price](/glossar#blended-price)-Konzept der Seite gewichtet Ein- und Ausgabe unterschiedlich. Damit Kosten steuerbar werden, zählt man den Verbrauch je Funktion (welche Anwendung) und je Aufruftyp (teures Modell oder günstiges), und setzt Budgets mit Alarmstufen, etwa 50, 80 und 100 Prozent des Monatsrahmens. Für eigene Installationen gilt Entsprechendes in GPU-Stunden. Das ehrliche Zielmaß ist nicht der Preis pro Million Token, sondern die [Kosten pro gelöster Aufgabe](/glossar#kosten-pro-geloester-aufgabe): Ein billiges Modell, das jede dritte Aufgabe falsch löst und wiederholt werden muss, ist am Ende teurer als ein teures mit einer richtigen Antwort."
+  },
+  {
+   "t": "h2",
+   "x": "Traces mit OpenTelemetry"
+  },
+  {
+   "t": "p",
+   "x": "Metriken sagen, dass etwas langsam ist; Traces sagen, wo. OpenTelemetry ist der herstelleroffene Standard für solche Spuren, und die GenAI-Arbeitsgruppe definiert seit 2025 eigene Konventionen dafür: Spans für Chat-Aufrufe, [Embeddings](/glossar#embedding) und [Werkzeugaufrufe](/glossar#werkzeugaufruf), inklusive Attribute für Modellname und Tokenverbrauch [5]. Wer seine Anwendung danach instrumentiert, kann jede teure oder langsame Anfrage bis zum einzelnen Modellaufruf zurückverfolgen, unabhängig davon, welcher Beobachtungsdienst die Daten am Ende anzeigt."
+  },
+  {
+   "t": "h2",
+   "x": "Alarme, die nicht nerven"
+  },
+  {
+   "t": "p",
+   "x": "Gute Alarme feuern auf Zustände mit Handlungsbedarf, nicht auf jede Zacke. Bewährt haben sich vier: die Warteschlange wächst über einige Minuten (Kapazität voll), der Anteil fehlgeschlagener Anfragen überschreitet eine Schwelle (Anbieter- oder Konfigurationsproblem), das Budget-Tempo prognostiziert ein Überschreiten vor Monatsende (Kosten) und die Prüfmenge nach einem Modellwechsel fällt unter ihre Mindestquote (Qualität). Alles andere landet in Tafeln zur regelmäßigen Durchsicht, nicht im Pager."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Welche drei Metriken genügen für den Anfang?",
+   "a": "Die Warteschlangen-Länge beziehungsweise Zahl wartender Anfragen, die Verteilung der Zeit bis zum ersten Token und der Tokenverbrauch pro Tag. Sie decken Kapazität, Erlebnis und Kosten ab und sind aus vLLM beziehungsweise der Abrechnung des Anbieters direkt zu bekommen."
+  },
+  {
+   "q": "Was tue ich bei einem Rate-Limit-Fehler (HTTP 429)?",
+   "a": "Nicht sofort erneut senden: Die Anfrage in eine Warteschlange legen und mit wachsenden Wartezeiten wiederholen. Parallel prüfen, welche Grenze getroffen wurde (Anfragen oder Token pro Minute); bei Token-Reserve lohnt das Bündeln mehrerer Aufgaben in einer Anfrage, wie die OpenAI-Dokumentation selbst empfiehlt."
+  },
+  {
+   "q": "Wie verhindere ich Kostenüberraschungen?",
+   "a": "Tokenverbrauch pro Funktion und Team aufzeichnen, Budgets mit gestuften Alarmen (etwa 50, 80, 100 Prozent) und beim Anbieter harte Ausgabenlimits, wo angeboten. Entscheidend ist die Messgröße: Kosten pro gelöster Aufgabe, nicht Preis pro Token."
+  },
+  {
+   "q": "Brauche ich OpenTelemetry, oder reichen die Anbieter-Dashboards?",
+   "a": "Die Anbieter-Dashboards zeigen nur deren Teilstrecke. Sobald eine Anfrage durch Suche, mehrere Modelle und Werkzeuge läuft, braucht es Ende-zu-Ende-Spuren in der eigenen Anwendung; die GenAI-Konventionen von OpenTelemetry liefern das Vokabular dafür, herstellerneutral."
+  },
+  {
+   "q": "Woran erkenne ich, dass mein selbst gehosteter Server voll ist?",
+   "a": "An zwei Frühindikatoren: Die Zahl wartender Anfragen steigt dauerhaft statt nur in Spitzen, und die KV-Cache-Auslastung läuft gegen 100 Prozent. Beides liefert der vLLM-Metrik-Endpunkt fertig; ab dann helfen nur mehr Kapazität, kürzere Kontexte oder Quantisierung."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Production Metrics",
+   "publisher": "vLLM-Dokumentation",
+   "url": "https://docs.vllm.ai/en/latest/usage/metrics.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Rate limits",
+   "publisher": "OpenAI API-Dokumentation",
+   "url": "https://platform.openai.com/docs/guides/rate-limits",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Overview",
+   "publisher": "Prometheus-Dokumentation",
+   "url": "https://prometheus.io/docs/introduction/overview/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Grafana-Dokumentation",
+   "publisher": "Grafana Labs",
+   "url": "https://grafana.com/docs/grafana/latest/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "OpenTelemetry GenAI Semantic Conventions",
+   "publisher": "OpenTelemetry (GitHub)",
+   "url": "https://github.com/open-telemetry/semantic-conventions-genai",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Metrik-Referenz von vLLM (Metriknamen und Typen dort nachgeschlagen), der Rate-Limit-Leitfaden von OpenAI (Limit-Arten und Nutzungsstufen), die Überblicksseiten von Prometheus und Grafana sowie das Repositorium der OpenTelemetry-GenAI-Konventionen. Hinweise auf eigene Rechnungen sind als solche markiert; konkrete Schwellenwerte für Alarme sind redaktionelle Erfahrungswerte, keine Norm.",
+ "limitations": "Limit-Arten und Nutzungsstufen von OpenAI können sich ändern; vor dem Vertrauen auf konkrete Werte die jeweils aktuelle Dokumentation prüfen. Die GenAI-Konventionen von OpenTelemetry befinden sich in aktiver Weiterentwicklung; Attributnamen können sich zwischen Versionen ändern. Andere Anbieter und Server haben abweichende Metriknamen; die Konzepte übertragen sich, die Bezeichnungen nicht.",
+ "related": [
+  "inferenz-server-betrieb",
+  "inferenz-und-kosten-verstehen",
+  "tokens-und-kosten",
+  "ki-dienste-absichern"
+ ]
+}

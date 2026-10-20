@@ -1,0 +1,154 @@
+{
+ "slug": "ki-dienste-absichern",
+ "lang": "de",
+ "section": "verlaesslichkeit",
+ "type": "explainer",
+ "title": "Eigene KI-Dienste absichern: Zugriff, Datenflüsse, Updates",
+ "dek": "OWASP Top 10 für LLM-Anwendungen, Zugriff mit kleinsten Rechten, saubere Datenflüsse, geprüfte Modelle aus der Lieferkette und ein Patch-Rhythmus, der hält.",
+ "published": "2026-10-20T06:30:00+02:00",
+ "modified": "2026-10-20T06:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Sicherheit",
+  "OWASP",
+  "Betrieb",
+  "Supply Chain",
+  "Netzwerk",
+  "Härtung"
+ ],
+ "key_takeaways": [
+  "Die OWASP Top 10 für LLM-Anwendungen (2025) sind das gemeinsame Vokabular: Prompt Injection, Offenlegung sensibler Daten und Lieferkette stehen ganz oben [1].",
+  "Ein KI-Dienst ist ein ganz normaler Dienst plus ein Modell: API-Schlüssel, kleinste Rechte, Netzsegmentierung und Protokollierung gelten unverändert.",
+  "Modelle sind Code aus der Lieferkette: Formate wie Safetensors statt Pickle und Signaturprüfung nach Sigstore verhindern, dass eine Gewichtsdatei beim Laden Befehle ausführt [3][4].",
+  "Der NIST AI Risk Management Framework ordnet die Maßnahmen in vier Funktionen: Govern, Map, Measure, Manage [2]."
+ ],
+ "hero": {
+  "alt": "Vier Schilde in einer Reihe über einer stilisierten Anwendung: Zugriff, Datenflüsse, Lieferkette, Updates; ein roter Pfeil (Angriff) prallt am ersten Schild ab.",
+  "caption": "Verteidigung in Schichten: Kein einzelner Schutz reicht, erst die Kette aus Zugriff, Datenflüssen, Lieferkette und Betrieb trägt. Eigene Darstellung.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer ein Sprachmodell als Dienst betreibt, betreibt einen Internetdienst mit einem sehr gutgläubigen Mitarbeiter in der Mitte. Dieser Text sammelt die Absicherung an vier Fronten: Zugriff, Datenflüsse, Lieferkette und Updates. Er ergänzt [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme), das die Angriffe im Detail erklärt; hier geht es um den Betrieb. Die Nummern der OWASP-Liste verweisen auf die Ausgabe 2025 [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Das Vokabular: OWASP Top 10 für LLM-Anwendungen"
+  },
+  {
+   "t": "p",
+   "x": "Das OWASP-Projekt für generative KI pflegt eine Risikoliste, die zur gemeinsamen Sprache zwischen Entwicklung und Betrieb geworden ist. Die Ausgabe 2025 führt an erster Stelle [Prompt Injection](/glossar#prompt-injection) (LLM01), gefolgt von der Offenlegung sensibler Informationen (LLM02), der Lieferkette (LLM03), Daten- und Modellvergiftung ([Data Poisoning](/glossar#data-poisoning), LLM04) und unzureichender Behandlung der Ausgaben (LLM05); dahinter folgen zu weit gehende Handlungsmacht (LLM06), Verlust des System-Prompts (LLM07), Schwächen bei Vektoren und [Embeddings](/glossar#embedding) (LLM08), Fehlinformation (LLM09) und unbegrenzter Verbrauch (LLM10) [1]. Die folgenden vier Abschnitte ordnen die Gegenmaßnahmen genau diesen Risiken zu."
+  },
+  {
+   "t": "h2",
+   "x": "Zugriff: Schlüssel, Rollen, Netz"
+  },
+  {
+   "t": "p",
+   "x": "Drei Regeln tragen die halbe Last. Erstens: API-Schlüssel liegen in einem Tresor (Secret Store), niemals im Code oder in Prompts; jede Anwendung bekommt einen eigenen, widerrufbaren Schlüssel. Zweitens: kleinste Rechte. Der Dienst, der nur Antworten generieren soll, bekommt keine Schreibrechte auf Datenbanken; ein Agent mit Werkzeugen bekommt genau die Werkzeuge, die seine Aufgabe braucht. Drittens: Netzsegmentierung. Der Inferenz-Server muss nicht mit dem Internet sprechen; unter Kubernetes begrenzen Network Policies den erlaubten Verkehr deklarativ auf das Nötige, etwa nur den Eingang vom API-Gateway und keinen Ausgang nach außen [5]. Jeder Zugriff wird protokolliert, denn ohne Protokoll gibt es später keine Aufklärung."
+  },
+  {
+   "t": "h2",
+   "x": "Datenflüsse: was darf wohin"
+  },
+  {
+   "t": "p",
+   "x": "Die unbequeme Wahrheit von LLM01 und LLM02: Alles, was in den Kontext des Modells gelangt, kann das Modell wieder verlassen. Daraus folgen vier Praxisregeln. Erstens sind Eingaben und eingebettete Dokumente unvertrauenswürdig; Anweisungen daraus dürfen keine Rechte erweitern. Zweitens werden Ausgaben behandelt wie Benutzereingaben in einer Webanwendung: validiert und eingeschränkt, bevor sie eine Datenbankabfrage, einen Systemaufruf oder eine Antwort an Dritte auslösen (LLM05). Drittens hält man personenbezogene und vertrauliche Daten aus Prompts heraus, wo es geht, und dokumentiert den Rest als Datenfluss. Viertens werden RAG-Quellen kuratiert: Wer Schreibzugriff auf den Index hat, steuert faktisch die Antworten (LLM08) [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Lieferkette: Modelle sind Code"
+  },
+  {
+   "t": "p",
+   "x": "Eine Gewichtsdatei ist kein passiver Datenblock, wenn das Ladeformat Code erlaubt: Das verbreitete Pickle-Format kann beim Entpacken beliebige Befehle ausführen. Safetensors wurde genau dagegen gebaut, ein reines Datenformat ohne Ausführungsmöglichkeit, und ist inzwischen der Standard auf Hugging Face [3]. Zweiter Baustein ist die Herkunft: Das Projekt Model Transparency von Sigstore signiert Modelldateien kryptografisch, sodass Betreiber prüfen können, dass ein Modell unverändert von der erwarteten Quelle stammt [4]. Dazu gehören gepinnte Versionen von Modellen und Abhängigkeiten sowie ein Blick in Modellkarte und Lizenz vor dem Einsatz (LLM03). Bei trainierten Fremddaten zählt [Data Poisoning](/glossar#data-poisoning) (LLM04): Wer fremde Datensätze nachtrainiert, prüft deren Herkunft [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Updates und Betrieb: der ruhige Rhythmus"
+  },
+  {
+   "t": "p",
+   "x": "KI-Dienste altern schnell: Server-Software, Modellversionen und Angriffsmuster ändern sich monatlich. Drei Gewohnheiten halten den Dienst gesund: ein fester Patch-Rhythmus für Server und Abhängigkeiten mit vorherigem Test gegen die eigene Prüfmenge, eine Inventarliste aller Modelle und Versionen (ohne sie ist kein gezieltes Reagieren möglich) und Verbrauchsbegrenzungen gegen LLM10, also Quoten pro Schlüssel und Kostenalarme, wie in [LLM-Betrieb überwachen](/llm-betrieb-monitoring) beschrieben [1]. Als Ordnungsrahmen für all das dient der AI Risk Management Framework des NIST: Die Funktion Govern legt Verantwortung und Regeln fest, Map kartiert die Systeme und Risiken, Measure misst sie, Manage behandelt sie [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Checkliste für den eigenen Dienst"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Schlüssel im Tresor, ein Schlüssel je Anwendung, Rotation und Widerruf getestet.",
+    "Kleinste Rechte für Modell, Werkzeuge und Netz; Network Policies oder Firewall-Regeln schriftlich fixiert [5].",
+    "Eingaben, Dokumente und Ausgaben des Modells als unvertrauenswürdig behandelt; keine Rechtevergabe aus Modelltext heraus [1].",
+    "Modelle nur als Safetensors aus geprüfter Quelle, Signatur oder Hash verifiziert, Versionen gepinnt [3][4].",
+    "Quoten, Kostenalarme und Protokollierung aktiv; Patch-Rhythmus und Inventarliste festgelegt [1][2].",
+    "Prüfmenge läuft nach jedem Modell- oder Server-Wechsel, bevor der Verkehr umgeschaltet wird."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Womit fange ich an, wenn bisher gar nichts abgesichert ist?",
+   "a": "Mit der Inventarliste: welche Modelle, welche Schlüssel, welche Datenflüsse. Dann die drei Sofortmaßnahmen: Schlüssel in einen Tresor umziehen, Schreibrechte des Dienstes kappen, Ausgang ins Internet per Netzregel sperren. Erst danach die feineren Punkte der OWASP-Liste."
+  },
+  {
+   "q": "Warum ist das Pickle-Format ein Problem?",
+   "a": "Pickle ist Pythons allgemeines Verpackungsformat und kann beim Entpacken beliebigen Code ausführen. Eine präparierte Gewichtsdatei würde also schon beim Laden Schadcode starten. Safetensors ist ein reines Datenformat ohne diese Eigenschaft und deshalb der sichere Standard für den Austausch von Gewichten."
+  },
+  {
+   "q": "Schützt ein System-Prompt meine Anwendung vor Prompt Injection?",
+   "a": "Nein. Ein System-Prompt ist eine Bitte an das Modell, keine Barriere; die OWASP-Liste führt Prompt Injection 2025 an erster Stelle und den Verlust des System-Prompts als eigenes Risiko. Schutz entsteht durch begrenzte Rechte, unvertrauenswürdige Behandlung aller Inhalte und Kontrolle der Ausgaben, nicht durch Formulierungen."
+  },
+  {
+   "q": "Gelten die OWASP-Risiken auch bei einem lokalen Modell ohne Agenten?",
+   "a": "Großteils ja. Prompt Injection wirkt über jeden eingebetteten Text, Datenflüsse und Lieferkette betreffen jeden Betrieb, und unbegrenzter Verbrauch kostet auch ohne Agenten Geld. Entfallen tun vor allem die Risiken, die aus Handlungsmacht entstehen (LLM06); sie kommen mit Werkzeugen und Agenten zurück."
+  },
+  {
+   "q": "Was verlangt der NIST AI RMF konkret von mir?",
+   "a": "Der Rahmen ist freiwillig und kein Gesetz. Praktisch ist er eine Ordnungsstruktur: Govern klärt Verantwortung und Regeln, Map beschreibt Systeme und ihre Risiken, Measure misst sie mit Prüfungen, Manage behandelt und überwacht sie. Die vier Funktionen eignen sich als Gliederung für ein eigenes Sicherheitskonzept, auch ohne formale Zertifizierung."
+  }
+ ],
+ "sources": [
+  {
+   "title": "OWASP Top 10 for LLM Applications 2025",
+   "publisher": "OWASP Gen AI Security Project",
+   "url": "https://genai.owasp.org/llm-top-10/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Artificial Intelligence Risk Management Framework (AI RMF 1.0, NIST AI 100-1)",
+   "publisher": "NIST",
+   "url": "https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.100-1.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "safetensors (README)",
+   "publisher": "Hugging Face, GitHub",
+   "url": "https://github.com/huggingface/safetensors",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Model Transparency: Signatur für ML-Modelle (README)",
+   "publisher": "Sigstore, GitHub",
+   "url": "https://github.com/sigstore/model-transparency",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Network Policies",
+   "publisher": "Kubernetes-Dokumentation",
+   "url": "https://kubernetes.io/docs/concepts/services-networking/network-policies/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die OWASP-Top-10-Seite für LLM-Anwendungen (Ausgabe 2025, Listenpunkte dort nachgeschlagen), der NIST AI RMF 1.0 als PDF (Funktionen und Aufbau), die READMEs von Safetensors und Sigstore Model Transparency sowie die Kubernetes-Dokumentation zu Network Policies. Dieser Text behandelt technische Absicherung, keine Rechtsfragen; für DSGVO und EU AI Act siehe den Rechts-Lernpfad.",
+ "limitations": "Der Text ist eine Einordnung und Checkliste, keine Härtungsanleitung für eine konkrete Installation; Netz-, Cloud- und Teamstrukturen unterscheiden sich zu stark für allgemeine Befehle. Die OWASP-Liste wird laufend fortgeschrieben, Nummern und Titel beziehen sich auf die Ausgabe 2025. Der NIST-Rahmen ist freiwillig und ersetzt keine gesetzlichen Pflichten; dieser Text ist keine Rechtsberatung.",
+ "related": [
+  "sicherheit-fuer-agenten-systeme",
+  "inferenz-server-betrieb",
+  "llm-betrieb-monitoring",
+  "lokale-modelle"
+ ]
+}
