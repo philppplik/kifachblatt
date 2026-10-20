@@ -18,7 +18,7 @@ class BreakerTests(unittest.TestCase):
    self.assertNotIn(x,m.box()+m.CSS)
  def test_mockup_image_lazy_with_alt(self):
   b=m.box()
-  self.assertIn('class="rb-mock"',b)
+  self.assertIn('class="rb-mock rb-mocks"',b)
   self.assertIn('loading="lazy"',b)
   self.assertIn('decoding="async"',b)
   self.assertIn('alt="',b)

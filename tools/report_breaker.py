@@ -27,11 +27,19 @@ CSS = """<style id="report-breaker-style">
 .report-breaker a.rb-mock:focus-visible{outline:3px solid #7040cd;outline-offset:6px}
 @media(max-width:640px){.report-breaker{gap:18px}.report-breaker a.rb-mock{margin-right:12px}.report-breaker a.rb-mock img{width:124px}}
 @media(max-width:480px){.report-breaker{flex-direction:column;align-items:stretch;padding:20px 18px;margin:28px 0}.report-breaker .rb-title{font-size:21px}.report-breaker a.rb-button{width:100%}.report-breaker a.rb-mock{align-self:center;margin:4px 0 2px;transform:rotate(2.5deg)}.report-breaker a.rb-mock img{width:132px}}
+.report-breaker a.rb-mock img.rb-p2{display:none}
+@media(max-width:480px){.report-breaker a.rb-mock.rb-mocks{order:-1;display:flex;justify-content:center;align-items:flex-start;align-self:center;margin:0 0 4px;transform:none}.report-breaker a.rb-mock.rb-mocks:hover{transform:none}.report-breaker a.rb-mock img.rb-p1{width:112px;position:relative;z-index:1;transform:rotate(-3.5deg);transform-origin:bottom right}.report-breaker a.rb-mock img.rb-p2{display:block;width:112px;margin:18px 0 0 -40px;transform:rotate(4deg)}}
 @media print{.report-breaker{display:none}}
 </style>"""
 
 # Compact thumbnail rendered by the report build; the full page-1.jpg is the fallback.
 PREVIEW = ('page-1.jpg', 707, 1000)
+PREVIEW2 = None
+
+def second():
+    if not PREVIEW2: return ''
+    n, w, h = PREVIEW2
+    return '<img class="rb-p2" src="/assets/report-preview/'+n+'" width="'+str(w)+'" height="'+str(h)+'" alt="'+MOCK_ALT.replace('Erste','Zweite').replace('der ersten','der zweiten')+'" loading="lazy" decoding="async">'
 
 def box():
     name, w, h = PREVIEW
@@ -42,7 +50,7 @@ def box():
        '<p class="rb-copy">Modelle und KI-Artikel kompakt in der aktuellen Tagesausgabe.</p>'
        '<a class="rb-button" href="'+PDF+'">Tagesbericht gratis herunterladen <span aria-hidden="true">↓</span></a>'
        '<small>PDF · Kostenlos, ohne Anmeldung und ohne E-Mail. Ein Angebot von KI Fachblatt.</small></div>'
-       '<a class="rb-mock" href="'+PDF+'" aria-label="'+MOCK_ARIA+'"><img src="/assets/report-preview/'+name+'" width="'+str(w)+'" height="'+str(h)+'" alt="'+MOCK_ALT+'" loading="lazy" decoding="async"></a></aside>')
+       '<a class="rb-mock rb-mocks" href="'+PDF+'" aria-label="'+MOCK_ARIA+'"><img class="rb-p1" src="/assets/report-preview/'+name+'" width="'+str(w)+'" height="'+str(h)+'" alt="'+MOCK_ALT+'" loading="lazy" decoding="async">'+second()+'</a></aside>')
 
 STYLE_RE = re.compile(r'<style id="report-breaker-style">.*?</style>', re.S)
 BOX_RE = re.compile(r'<aside class="report-breaker".*?</aside>', re.S)
@@ -85,7 +93,7 @@ def inject_body(text):
     return text[:pos]+box()+text[pos:]
 
 def patch(html):
-    if 'rb-mock' in html: return html
+    if 'rb-mocks' in html: return html
     if 'class="report-breaker"' in html: return upgrade(html)
     match=re.search(r'<div class="body"[^>]*>',html)
     if not match: return html
@@ -109,6 +117,9 @@ def main(out):
     root=Path(out)
     if (root/'assets/report-preview/breaker-thumb.jpg').is_file():
         PREVIEW=('breaker-thumb.jpg',297,420)
+    global PREVIEW2
+    if (root/'assets/report-preview/breaker-thumb2.jpg').is_file(): PREVIEW2=('breaker-thumb2.jpg',297,420)
+    elif (root/'assets/report-preview/page-2.jpg').is_file(): PREVIEW2=('page-2.jpg',707,1000)
     candidates=sorted(root.glob('artikel/*/index.html')) if BRAND!='kfb' else sorted(root.glob('*.html'))
     changed=0
     for path in candidates:
