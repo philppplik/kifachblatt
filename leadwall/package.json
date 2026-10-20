@@ -1,0 +1,1 @@
+{ "name": "kifb-leadwall", "private": true, "version": "1.0.0", "engines": { "node": ">=20" }, "scripts": { "test": "node --test test/flow.test.js" } }
