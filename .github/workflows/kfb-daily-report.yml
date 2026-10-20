@@ -24,7 +24,6 @@ jobs:
           python3 tools/build.py
       - name: Gate PDFs (upload to private Blob, remove from public site)
         env:
-          BLOB_READ_WRITE_TOKEN: ${{ secrets.BLOB_READ_WRITE_TOKEN }}
           LW_SECRET: ${{ secrets.LW_SECRET }}
         run: python3 tools/gate_reports.py
       - name: Commit and push
