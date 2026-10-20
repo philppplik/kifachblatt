@@ -1,0 +1,189 @@
+{
+ "paket": 8,
+ "kapitel": "ML & Hosting",
+ "stand": "2026-10-20",
+ "hinweis": "Format wie content/lernpfade.json (id, name, frage, intro, steps, terms), ergänzt um level, zielgruppe, zeit, voraussetzungen, lernziel und check. Der Integrator merged in content/lernpfade.json; die check-Blöcke brauchen eine Erweiterung von tools/lernpfade.py (Aufgaben/Quiz als aufklappbare details-Elemente, siehe Konzept Kap. 5 Punkt 4).",
+ "paths": [
+  {
+   "id": "data-ml",
+   "name": "Data & ML: von null zum ersten eigenen Modell",
+   "level": "Praktiker",
+   "zielgruppe": "Quereinsteiger in ML, Data-Analysten, Studierende",
+   "zeit": "ca. 3 Stunden",
+   "voraussetzungen": "Grundkenntnisse Programmieren (Python hilfreich)",
+   "frage": "Ich will verstehen, wie Modelle lernen, und selbst einen ersten Adapter trainieren.",
+   "intro": "Von den Grundbegriffen des maschinellen Lernens über Embeddings bis zum ersten eigenen LoRA-Fine-Tuning: mit eigener Rechnung, echten Werkzeugen und einer Prüfmenge am Ende.",
+   "lernziel": "ML-Grundbegriffe sicher anwenden, Embeddings verstehen, ein erstes LoRA-Fine-Tuning nachvollziehen.",
+   "steps": [
+    {
+     "slug": "wie-ein-sprachmodell-lernt",
+     "warum": "Die vier Lernstufen eines Sprachmodells: Von Pretraining bis RLVR, damit die Begriffe der Modellkarten kein Neuschnee sind."
+    },
+    {
+     "slug": "ml-grundbegriffe",
+     "warum": "Daten, Overfitting, Generalisierung: das Handwerkszeug, um jede Lernkurve und Benchmark-Zahl richtig zu lesen."
+    },
+    {
+     "slug": "embeddings-verstehen",
+     "warum": "Bedeutung wird Geometrie: Wie Vektoren Texte auffindbar machen und woran man Embedding-Modelle erkennt."
+    },
+    {
+     "slug": "llm-quantisierung-verfahren-grundlagen",
+     "warum": "Wie große Modelle auf kleinere Hardware passen: die Zahlen hinter 4 Bit, bevor du selbst trainierst."
+    },
+    {
+     "slug": "fine-tuning-wann",
+     "warum": "Die Entscheidung vor dem Training: Prompting, RAG oder Fine-Tuning, mit Kostenrechnung und Entscheidungsregel."
+    },
+    {
+     "slug": "lora-fine-tuning-anleitung",
+     "warum": "Der praktische Kern: LoRA verstehen, die Parameter selbst nachrechnen und den ersten Adapter mit PEFT und TRL trainieren."
+    },
+    {
+     "slug": "evals-statt-bauchgefuehl",
+     "warum": "Der Abschluss jedes Trainings: eine eigene Prüfmenge entscheidet, ob der Adapter besser ist als das Basismodell."
+    }
+   ],
+   "terms": [
+    "LoRA",
+    "QLoRA",
+    "Adapter",
+    "Checkpoint",
+    "Overfitting"
+   ],
+   "check": {
+    "aufgaben": [
+     {
+      "frage": "Entscheidungsmatrix anwenden: Ein Team will, dass das Modell interne Abkürzungen und den Firmen-Tonfall sicher beherrscht. Prompting, RAG oder Fine-Tuning?",
+      "antwort": "Verhalten, kein Wissen: erst Prompting mit Beispielen ausschöpfen; wenn das Format und der Ton trotz guter Prompts instabil bleiben, ein kleines LoRA-Fine-Tuning. RAG löst dieses Problem nicht."
+     },
+     {
+      "frage": "Entscheidungsmatrix anwenden: Der Kundensupport soll Antworten aus 4.000 Handbuchseiten geben, die monatlich aktualisiert werden. Prompting, RAG oder Fine-Tuning?",
+      "antwort": "RAG: großes, veränderliches, belegpflichtiges Wissen gehört in den Kontext, nicht in die Gewichte."
+     },
+     {
+      "frage": "Entscheidungsmatrix anwenden: Das Modell soll Antworten immer als valides JSON in einem festen Schema liefern, Prompts mit Beispielen helfen nur teilweise. Prompting, RAG oder Fine-Tuning?",
+      "antwort": "Fine-Tuning: ein festes Ausgabeformat ist der Lehrbuchfall; vorher trotzdem eine Prüfmenge bauen und gegen das Basismodell messen."
+     },
+     {
+      "frage": "Entscheidungsmatrix anwenden: Ein Anwalt möchte, dass das Modell die aktuelle Rechtsprechung seit diesem Quartal kennt. Prompting, RAG oder Fine-Tuning?",
+      "antwort": "RAG beziehungsweise Werkzeug-Anbindung: aktuelles Wissen einzutrainieren friert es ein und lässt keine Quellenangabe zu."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Der Trainingsfehler fällt weiter, der Validierungsfehler steigt. Was liegt vor?",
+      "antwort": "Overfitting: Das Modell lernt die Trainingsdaten auswendig statt zu generalisieren."
+     },
+     {
+      "frage": "Wofür sind Testdaten reserviert?",
+      "antwort": "Für die einmalige, ehrliche Abschlussmessung. Wer sie zum Nachjustieren nutzt, macht sie zu Validierungsdaten."
+     },
+     {
+      "frage": "Was misst die Kosinus-Ähnlichkeit?",
+      "antwort": "Den Winkel zwischen zwei Vektoren; Werte nahe 1 bedeuten gleiche Bedeutungsrichtung, unabhängig von der Vektorlänge."
+     },
+     {
+      "frage": "Warum braucht man bei Millionen von Embeddings approximative Suche?",
+      "antwort": "Die exakte Suche vergleicht jede Anfrage mit jedem Vektor und wird zu langsam; Indexe wie HNSW tauschen einen kleinen Recall-Verlust gegen logarithmisch wachsende Suchzeit."
+     },
+     {
+      "frage": "Wie viele Parameter trainiert LoRA mit r=16 auf den q- und v-Projektionen eines 8B-Modells mit 32 Schichten ungefähr?",
+      "antwort": "Rund 6,8 Millionen, etwa 0,085 Prozent der 8 Milliarden Gesamtparameter (Herleitung im LoRA-Artikel)."
+     },
+     {
+      "frage": "Was ist der Unterschied zwischen LoRA und QLoRA?",
+      "antwort": "QLoRA legt das Basismodell zusätzlich in 4 Bit ab und trainiert den Adapter darüber; das senkt den Speicherbedarf so weit, dass 65-Milliarden-Modelle auf einer 48-GB-GPU trainierbar waren."
+     }
+    ]
+   }
+  },
+  {
+   "id": "hosting",
+   "name": "IT-Admin & DevOps: LLMs selbst hosten",
+   "level": "Fortgeschritten",
+   "zielgruppe": "Admins, DevOps, IT-Leiter",
+   "zeit": "ca. 3 Stunden",
+   "voraussetzungen": "Linux-/Server-Grundlagen, GPU-Basiswissen hilfreich",
+   "frage": "Ich will LLM-Inferenz im eigenen Betrieb: Server, Durchsatz, Überwachung, Absicherung.",
+   "intro": "Vom lokalen Modell zum belastbaren Dienst: wie Inferenz-Server Durchsatz gewinnen, welche Kennzahlen den Betrieb tragen, wie man überwacht und absichert.",
+   "lernziel": "LLM-Inferenz im eigenen Betrieb: Server, Durchsatz, Überwachung, Absicherung.",
+   "steps": [
+    {
+     "slug": "lokale-modelle",
+     "warum": "Die Grundfrage: Wann sich der eigene Rechner gegenüber der API lohnt; Datenschutz und Kontrolle gegen Leistung abwägen."
+    },
+    {
+     "slug": "llm-quantisierung-verfahren-grundlagen",
+     "warum": "Das Speicher-Vokabular des Betriebs: Was 8, 4 oder 1,58 Bit für Hardware und Qualität bedeuten."
+    },
+    {
+     "slug": "inferenz-und-kosten-verstehen",
+     "warum": "Prompt-Phase, Generierungsphase, KV-Cache: die Mechanik, an der später Durchsatz und Kapazität hängen."
+    },
+    {
+     "slug": "inferenz-server-betrieb",
+     "warum": "Der Kern: Continuous Batching, PagedAttention, TTFT/TPOT und eine Kapazitätsrechnung für die eigene GPU-Ausstattung."
+    },
+    {
+     "slug": "llm-betrieb-monitoring",
+     "warum": "Der Dienst ist live: Metriken aus vLLM, Rate-Limits lesen, Token-Buchhaltung und Alarme, die nicht nerven."
+    },
+    {
+     "slug": "ki-dienste-absichern",
+     "warum": "Vier Fronten: Zugriff, Datenflüsse, Lieferkette und Updates, geordnet nach den OWASP Top 10 für LLM-Anwendungen."
+    },
+    {
+     "slug": "nemotron-3-5-super-lightning-analyse",
+     "warum": "Das Praxisbeispiel: eine echte Analyse eines Modells, das genau für diesen effizienten Betrieb gebaut wird."
+    }
+   ],
+   "terms": [
+    "Continuous Batching",
+    "PagedAttention",
+    "Inferenz-Server",
+    "Speicherbandbreite-Grenze",
+    "Time to First Token",
+    "Time per Output Token"
+   ],
+   "check": {
+    "aufgaben": [
+     {
+      "frage": "Kapazitätsrechnung: Ein 70B-Modell in FP16 (140 GB Gewichte) soll auf vier 80-GB-GPUs laufen. Der KV-Cache braucht 320 KiB pro Token und Anfrage. Wie viele Unterhaltungen mit je 8.000 Token Kontext passen ungefähr gleichzeitig auf den Server, wenn nach Gewichten und Reserve rund 150 GB frei bleiben?",
+      "antwort": "150 GB geteilt durch 320 KiB ergeben rund 470.000 Token Spielraum; geteilt durch 8.000 Token pro Unterhaltung bleiben etwa 58 gleichzeitige Unterhaltungen. (Eigene Rechnung, Herleitung im Artikel Inferenz-Server im Betrieb.)"
+     },
+     {
+      "frage": "Die Warteschlange wächst seit einer Stunde, die KV-Cache-Auslastung liegt bei 98 Prozent. Was sind die drei sinnvollen Hebel?",
+      "antwort": "Mehr Kapazität (GPU), kürzere Kontexte oder stärkere Quantisierung; kurzfristig hilft nur Drosseln oder Ablehnen weiterer Anfragen."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Was ist der Unterschied zwischen TTFT und TPOT?",
+      "antwort": "TTFT ist die Wartezeit bis zum ersten Token (Prompt-Phase), TPOT das Tempo pro Ausgabetoken danach (Generierungsphase)."
+     },
+     {
+      "frage": "Welches Problem löst Continuous Batching?",
+      "antwort": "Beim klassischen Batch warten kurze Anfragen auf die längste und neue auf den kompletten Durchlauf; Continuous Batching lässt fertige Anfragen sofort aussteigen und neue einsteigen."
+     },
+     {
+      "frage": "Was verwaltet PagedAttention und nach welchem Vorbild?",
+      "antwort": "Den KV-Cache, nach dem Vorbild virtueller Speicherseiten in Betriebssystemen; das senkt Verschnitt und erhöht den Durchsatz."
+     },
+     {
+      "frage": "Ein API-Aufruf antwortet mit HTTP 429. Was ist die richtige Reaktion im eigenen Code?",
+      "antwort": "Warteschlange und Wiederholung mit wachsenden Wartezeiten (Backoff); parallel prüfen, ob die Anfragen- oder die Token-Grenze getroffen ist, bei Token-Reserve Aufgaben bündeln."
+     },
+     {
+      "frage": "Warum ist Pickle als Modellformat ein Sicherheitsrisiko, und was ist die Alternative?",
+      "antwort": "Pickle kann beim Entpacken beliebigen Code ausführen; Safetensors ist ein reines Datenformat ohne Ausführungsmöglichkeit, ergänzt um Signaturprüfung der Quelle."
+     },
+     {
+      "frage": "Welche vier Funktionen bilden den Kern des NIST AI Risk Management Framework?",
+      "antwort": "Govern, Map, Measure, Manage."
+     }
+    ]
+   }
+  }
+ ]
+}
