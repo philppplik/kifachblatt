@@ -36,7 +36,7 @@ def render(c,d,technical):
   for value,label in [(n(r['stargazers_count']),'GitHub-Stars'),(n(r['forks_count']),'Forks'),(r['license']['spdx_id'] if r['license'] else 'Nicht erkannt','Repository-Lizenz laut API')]:out+='<div class="co-stat"><strong>'+E(value)+'</strong><span>'+E(label)+'</span></div>'
   out+='</div><p class="co-foot">Letzter Push laut API: '+E(r['pushed_at'])+' · Snapshot abgerufen: '+E(snap['retrieved_at'])+'. Kein Aktualisierungsversprechen und keine Aussage über ein Release. <a href="'+E(snap['source'])+'">GitHub-API-Primärquelle</a>. Lokal versionierter Datenstand; kein externer Abruf beim Lesen. Die Repository-Lizenz ist keine Lizenz für Modelle oder den GitHub-Dienst.</p>'
  models=[m for m in d['models'] if m['company']==c['slug']]
- out+='<h2>Modelle im lokalen Verzeichnis</h2><div class="co-models">'+''.join('<a href="/ki-modelle/'+m['slug']+('' if technical else '/')+'">'+E(m['name'])+' ↗</a>' for m in models)+'</div><p class="co-foot">Kuratierter Bestand dieser Website. Anzahl und Auswahl sind keine vollständige Produktliste des Anbieters. Unternehmensangaben sind Primärquellen-Selbstauskünfte, keine unabhängigen Audits. Quellenstand: 19.10.2026.</p></section>'
+ out+='<h2>Modelle im lokalen Verzeichnis</h2><div class="co-models">'+''.join('<a href="/ki-modelle/'+m['slug']+('' if technical else '/')+'">'+E(m['name'])+' ↗</a>' for m in models)+'</div><p class="co-foot">Kuratierter Bestand dieser Website. Anzahl und Auswahl sind keine vollständige Produktliste des Anbieters. Unternehmensangaben sind Primärquellen-Selbstauskünfte, keine unabhängigen Audits. Quellenstand: 20.10.2026.</p></section>'
  return out
 
 def ecosystem(x,d):
