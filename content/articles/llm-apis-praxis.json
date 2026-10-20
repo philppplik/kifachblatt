@@ -1,0 +1,251 @@
+{
+ "slug": "llm-apis-praxis",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "LLM-APIs in der Praxis: Parameter, Streaming, Structured Output",
+ "dek": "Wie ein API-Aufruf an ein Sprachmodell aufgebaut ist, welche Parameter das Verhalten steuern, wie Streaming funktioniert und wann Structured Output Pflicht ist.",
+ "published": "2026-10-15T09:00:00+02:00",
+ "modified": "2026-10-15T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "LLM-API",
+  "Parameter",
+  "Streaming",
+  "Structured Output",
+  "JSON Schema",
+  "Temperatur"
+ ],
+ "key_takeaways": [
+  "Alle großen LLM-APIs folgen demselben Muster: Du schickst eine Liste von Nachrichten mit Rollen und bekommst eine Antwort-Nachricht zurück; wer das einmal verstanden hat, kann Anbieter wechseln, ohne neu zu lernen [1][3].",
+  "max_tokens ist ein Kosten- und Sicherheitsdeckel, kein Qualitätsregler: Es begrenzt nur, wie lang die Antwort maximal wird, und bei Anthropic ist es Pflicht [3].",
+  "Streaming kommt über Server-Sent Events in kleinen Deltas; Token-Verbrauch kommt bei OpenAI nur im letzten Chunk mit, wenn du stream_options.include_usage setzt, und kann bei einem Verbindungsabbruch ganz fehlen [1].",
+  "Structured Outputs mit striktem JSON Schema garantieren seit gpt-4o-2024-08-06 schema-konforme Antworten; der ältere JSON mode garantiert nur gültiges JSON und braucht das Wort JSON im Kontext, sonst bricht die API mit einem Fehler ab [2].",
+  "Ein Beispielrequest mit 3.000 Input- und 800 Output-Tokens kostet bei GPT-5.6 Terra nach Preisliste etwa 1,6 Cent; 1.000 solcher Aufrufe also rund 15,60 US-Dollar (eigene Rechnung, Stand 20.10.2026) [5]."
+ ],
+ "hero": {
+  "alt": "Diagramm: Eine Anfrage mit System-, User- und Assistant-Nachricht läuft zu einem Sprachmodell, dessen Antwort als gestreamte Token-Häppchen zurückfließt; daneben ein JSON-Schema als Schablone für die Ausgabe.",
+  "caption": "Nachrichten rein, Tokens als Stream zurück, dazu ein Schema als Schablone. Eigene Grafik der Redaktion.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer mit Sprachmodellen Software baut, ruft sie nicht mehr im Chatfenster auf, sondern über eine HTTP-API. Die gute Nachricht vorweg: Die drei großen Anbieter OpenAI, Anthropic und Google haben ihre Schnittstellen inzwischen so ähnlich strukturiert, dass das Grundmuster überall dasselbe ist. Du schickst eine Liste von Nachrichten mit Rollen, dazu ein paar Steuerparameter, und bekommst Text, ein strukturiertes Objekt oder einen [Werkzeugaufruf](/glossar#werkzeugaufruf) zurück. Dieser Artikel geht das Muster Stück für Stück durch: Aufbau eines Requests, die Parameter, die wirklich etwas verändern, Streaming für schnelle Oberflächen und Structured Output für alles, was ein Programm weiterverarbeiten muss."
+  },
+  {
+   "t": "h2",
+   "x": "Der erste Aufruf: Rollen, Nachrichten, Antwort"
+  },
+  {
+   "t": "p",
+   "x": "Der Kern jeder Anfrage ist das messages-Array. Jede Nachricht hat eine Rolle und Inhalt. Die Rolle system (bei OpenAI in neueren Modellen auch developer) trägt die Daueranweisung: Ton, Regeln, Ausgabeformat. user ist die Eingabe der Nutzerin oder des Nutzers, assistant die bisherigen Antworten des Modells. Die Konversation wird bei jedem Aufruf komplett mitgeschickt; die API ist zustandslos und merkt sich nichts. Wer \"den Chat\" speichert, bist du. [1][3]"
+  },
+  {
+   "t": "p",
+   "x": "Das hat zwei praktische Folgen. Erstens wächst die Rechnung mit der Gesprächslänge, denn jeder Aufruf bezahlt die gesamte Historie erneut als Input-Tokens (Details in [Tokens, Kontext, Kosten](/tokens-und-kosten)). Zweitens kannst du die Historie frei redigieren: kürzen, zusammenfassen, Fehler entfernen. Der [System-Prompt](/glossar#system-prompt) bleibt dabei der stabilste Anker; Anthropic empfiehlt, langsame, wiederverwendete Inhalte wie Systemanweisungen und Werkzeugdefinitionen vorne zu halten, weil sie sich so im Prompt-Cache wiederfinden (mehr dazu in [Kosten- und Latenz-Tuning](/kosten-latenz-tuning))."
+  },
+  {
+   "t": "code",
+   "lang": "python",
+   "x": "from anthropic import Anthropic\n\nclient = Anthropic()\n\nresponse = client.messages.create(\n    model=\"claude-opus-5\",\n    max_tokens=1024,\n    system=\"Antworte sachlich und kurz.\",\n    messages=[\n        {\"role\": \"user\", \"content\": \"Erkläre Rekursion in zwei Sätzen.\"}\n    ],\n)\nprint(response.content)"
+  },
+  {
+   "t": "p",
+   "x": "Das Beispiel zeigt die Anthropic Messages API; bei OpenAI heißt der entsprechende Endpunkt Chat Completions beziehungsweise die neuere Responses API, das Schema ist aber deckungsgleich: Modellname, Nachrichtenliste, Limit für die Antwortlänge. [1][3]"
+  },
+  {
+   "t": "h2",
+   "x": "Die Parameter, die wirklich etwas verändern"
+  },
+  {
+   "t": "p",
+   "x": "Die Referenzen der Anbieter listen Dutzende Felder. In der Praxis stellst du an vier Schrauben: max_tokens, Temperatur, top_p und Stopp-Sequenzen. Alles andere ist Feintuning oder Spezialfall. Nicht jedes Modell akzeptiert jeden Parameter; was für dein Modell gilt, steht in der jeweiligen Referenz. [1][3]"
+  },
+  {
+   "t": "table",
+   "caption": "Die vier zentralen Sampling- und Limit-Parameter und ihre Wirkung in der Praxis.",
+   "head": [
+    "Parameter",
+    "Wirkung",
+    "Praxiswert"
+   ],
+   "rows": [
+    [
+     "max_tokens",
+     "Obergrenze für die Länge der Antwort; das Modell darf früher stoppen",
+     "Knappe Antworten: 300-800. Bei Anthropic Pflichtfeld [3]"
+    ],
+    [
+     "temperature",
+     "Streut die Token-Auswahl; 0 ist fast deterministisch, hohe Werte variieren stark",
+     "Faktenarbeit 0-0,3; Brainstorming 0,7-1,0"
+    ],
+    [
+     "top_p",
+     "Begrenzt die Auswahl auf die wahrscheinlichsten Tokens, deren Masse p erreicht",
+     "Entweder temperature oder top_p drehen, nicht beide"
+    ],
+    [
+     "stop",
+     "Liste von Zeichenketten, bei denen die Ausgabe sofort endet",
+     "Rollenmarken wie \"User:\" in Chat-Protokollen"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die [Temperatur](/glossar#temperatur) ist der meistmissverstandene Regler. Sie ändert nicht, was das Modell weiß, sondern wie es aus seinen Möglichkeiten auswählt: Bei Temperatur 0 greift es fast immer zum wahrscheinlichsten nächsten Token, die Antwort wird reproduzierbar und nüchtern. Für Extraktion, Klassifikation und Code ist das der richtige Startpunkt. Kreatives Umformulieren verträgt höhere Werte. Wichtig: Auch Temperatur 0 macht aus einer falschen Tatsache keine richtige; der Regler steuert Stilistik und Variation, nicht Wahrheit."
+  },
+  {
+   "t": "p",
+   "x": "Anthropic bietet zusätzlich top_k an, und seit den Reasoning-Modellen gibt es bei mehreren Anbietern Parameter für sichtbare Denkbudgets: In der Messages API heißt das Feld thinking mit einem budget_tokens-Wert, der mindestens 1.024 Tokens umfassen und unter max_tokens liegen muss; das Denkbudget zählt auf das Ausgabelimit. [3]"
+  },
+  {
+   "t": "h2",
+   "x": "Streaming: Antworten in Häppchen"
+  },
+  {
+   "t": "p",
+   "x": "Ohne Streaming wartet deine Anwendung, bis die komplette Antwort fertig ist; bei einer 800-Token-Antwort sind das spürbar viele Sekunden. Mit stream: true liefert die API die Antwort als Server-Sent Events: Das Modell schickt jedes Token-Häppchen (delta) sobald es erzeugt ist, und die Oberfläche kann schon rendern, während hinten noch gerechnet wird. Anthropic arbeitet mit derselben Technik, ebenfalls als SSE-Stream. [1][3]"
+  },
+  {
+   "t": "p",
+   "x": "Gefühlt macht das die Anwendung deutlich schneller, gemessen wird sie es nicht: Die Gesamtdauer bis zum letzten Token bleibt gleich. Was sinkt, ist die wahrgenommene Wartezeit bis zum ersten sichtbaren Zeichen, im Englischen [Time to First Token](/glossar#time-to-first-token). Für Chat-Oberflächen ist Streaming deshalb Standard, für Hintergrundjobs meist überflüssig."
+  },
+  {
+   "t": "p",
+   "x": "Zwei Details übersehen viele beim ersten Mal. Erstens der Verbrauch: Bei OpenAI enthält der Stream nur dann Token-Statistik, wenn du stream_options mit include_usage: true setzt; dann kommt ein letzter Chunk, dessen choices-Liste leer ist und der die usage-Werte trägt. Wird die Verbindung vorher abgebrochen, fehlt dieser Abschluss-Chunk und damit die Abrechnungsgrundlage im Stream; du musst die Tokens dann selbst schätzen oder die Antwort verwerfen. [1] Zweitens das Parsen: Wer Streaming nutzt, sollte die Deltas nur aneinanderhängen und nicht zwischendurch als fertigen Text behandeln; ein Wort kann über zwei Chunks geteilt sein."
+  },
+  {
+   "t": "h2",
+   "x": "Structured Output: Schema statt Hoffnung"
+  },
+  {
+   "t": "p",
+   "x": "Sobald ein Programm die Antwort weiterverarbeitet, reicht Fließtext nicht mehr. Der naive Weg ist \"antworte als JSON\" im Prompt; das funktioniert oft, aber nicht garantiert: Das Modell kann Kommentare drumherum setzen, ein Feld vergessen oder einen Enum-Wert erfinden. Genau dagegen ist Structured Output gebaut. OpenAI beschreibt den Nutzen so: Die Antwort folgt immer dem gelieferten JSON Schema, ohne dass du fehlerhafte Antworten validieren und wiederholen musst, und sicherheitsbedingte Ablehnungen werden programmatisch erkennbar. [2]"
+  },
+  {
+   "t": "p",
+   "x": "Technisch gibt es bei OpenAI zwei Einhängepunkte: Structured Outputs als Ausgabeformat über text.format mit type json_schema und strict: true, oder als Function-Calling-Schema, wenn das Modell ein Werkzeug mit genau diesen Argumenten aufrufen soll. Die Faustregel der Dokumentation: Soll das Modell mit deinem System reden (Funktionen, Daten, Aktionen), nimm Function Calling; soll es dem Nutzer strukturiert antworten, nimm das response_format beziehungsweise text.format. [2] Unterstützt wird das strikte Schema seit den Modell-Snapshots gpt-4o-2024-08-06 und gpt-4o-mini-2024-07-18 sowie allen neueren Modellen. [2]"
+  },
+  {
+   "t": "p",
+   "x": "Die anderen Anbieter lösen dasselbe Problem mit eigenen Namen. Bei Anthropic ist der etablierte Weg ein Werkzeug mit input_schema: Du definierst ein JSON Schema als Werkzeugeingabe und lässt das Modell dieses Werkzeug \"aufrufen\"; das Ergebnis ist schema-konformes JSON. [3] Google bietet Structured Outputs in der Gemini API direkt als Ausgabeformat an; dort lassen sich strukturierte Antworten auch streamen, und die gestreamten Chunks sind gültige partielle JSON-Strings, die aneinandergehängt das finale Objekt ergeben. [4]"
+  },
+  {
+   "t": "h2",
+   "x": "JSON mode: der ältere, schwächere Bruder"
+  },
+  {
+   "t": "p",
+   "x": "Vor Structured Outputs gab es den JSON mode (text.format mit type json_object). Er garantiert nur, dass die Ausgabe syntaktisch gültiges JSON ist; ob sie zu deinem Schema passt, bleibt offen. Zwei Fallstricke aus der Dokumentation sind es wert, wörtlich gewusst zu werden: Im JSON mode musst du das Modell irgendwo im Kontext zur JSON-Ausgabe anweisen, sonst kann es endlos Leerraum erzeugen; die API bricht deshalb mit einem Fehler ab, wenn die Zeichenkette \"JSON\" nirgends im Kontext vorkommt. Und deine Anwendung muss Randfälle abfangen, in denen die Ausgabe kein vollständiges JSON-Objekt wird, etwa weil max_tokens zuschlägt. [2]"
+  },
+  {
+   "t": "callout",
+   "title": "Faustregel",
+   "x": "Neues Projekt, strukturierte Ausgabe nötig? Immer Structured Outputs mit striktem Schema, nie JSON mode. Der JSON mode bleibt für Altmodelle und für Fälle, in denen wirklich nur \"irgendein JSON\" gebraucht wird. [2]"
+  },
+  {
+   "t": "h2",
+   "x": "Eigene Rechnung: Was ein Request kostet"
+  },
+  {
+   "t": "p",
+   "x": "API-Preise werden pro Million Tokens getrennt nach Input und Output ausgewiesen. Nach der OpenAI-Preisliste vom 20. Oktober 2026 kostet das Mittelklasse-Modell GPT-5.6 Terra 2,00 US-Dollar pro Million Input-Tokens und 12,00 US-Dollar pro Million Output-Tokens; zwischengespeicherter (gecachter) Input liegt bei 0,20 US-Dollar. Das Flaggschiff GPT-5.6 Sol liegt bei 5,00 beziehungsweise 30,00 US-Dollar, das Spar-Modell GPT-5.6 Luna bei 0,20 beziehungsweise 1,20 US-Dollar. [5]"
+  },
+  {
+   "t": "p",
+   "x": "Eigene Rechnung dazu: Ein typischer Extraktions-Request mit 3.000 Input- und 800 Output-Tokens kostet bei Terra 3.000 × 2,00 $ / 1.000.000 + 800 × 12,00 $ / 1.000.000 = 0,0060 $ + 0,0096 $ = 0,0156 $, also etwa 1,6 Cent. Tausend solcher Aufrufe pro Tag summieren sich auf rund 15,60 $ täglich, knapp 470 $ im Monat. Dieselbe Rechnung mit Luna läge bei etwa 1,16 $ pro Tag. Der Hebel \"Modellwahl\" ist damit größer als jede Prompt-Kürzung; wie du außerdem mit Caching und Batch weitere 50 bis 90 Prozent holst, rechnen wir in [Kosten- und Latenz-Tuning](/kosten-latenz-tuning) durch. [5]"
+  },
+  {
+   "t": "h2",
+   "x": "Typische Fehler am Anfang"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Historie ungeprüft mitwachsen lassen: Jeder Aufruf bezahlt die ganze Konversation erneut; alte Ballast-Nachrichten kosten jedes Mal mit.",
+    "Temperatur hochdrehen, um \"bessere\" Antworten zu bekommen: Der Regler ändert die Variation, nicht die Korrektheit; für Faktenarbeit ist 0 bis 0,3 der richtige Bereich.",
+    "Fließtext parsen statt Structured Output: Ein Regex auf Prosa bricht beim ersten Kommentar des Modells; ein striktes Schema nicht. [2]",
+    "Streaming ohne include_usage: Ohne den Abschluss-Chunk fehlt dir die Token-Abrechnung, und bei Abbruch stehst du ohne Verbrauchsdaten da. [1]",
+    "max_tokens als Qualitätsziel lesen: Das Limit begrenzt nur die Länge; eine abgeschnittene Antwort sieht aus wie eine schlechte, ist aber eine unvollständige."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Der letzte Punkt verdient ein eigenes Warnwort: Eine bei max_tokens abgeschnittene JSON-Antwort ist exakt der Randfall, den die OpenAI-Dokumentation für den JSON mode nennt. Prüfe im Antwortobjekt den Stop-Grund; bei OpenAI heißt das Feld finish_reason, ein Wert wie length signalisiert den abgebrochenen Fall. [1]"
+  },
+  {
+   "t": "h2",
+   "x": "Wie es weitergeht"
+  },
+  {
+   "t": "p",
+   "x": "Mit Request-Aufbau, Parametern, Streaming und Structured Output deckst du den Normalbetrieb ab. Der nächste Schritt ist, das Modell Dinge tun zu lassen: [Function Calling und Werkzeugaufrufe](/function-calling-praxis) erklärt die Schleife aus Werkzeugdefinition, Aufruf und Rückgabe. Wer danach Kosten und Geschwindigkeit drücken will, findet in [Kosten- und Latenz-Tuning](/kosten-latenz-tuning) die Rechnungen zu Prompt-Caching, Batch API und Modellwahl. Und wenn deine Anwendung mit eigenem Wissen antworten soll, führt [RAG selbst bauen](/rag-selbst-bauen) durch Embeddings, Index und belegte Antworten."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Brauche ich für jede Anfrage einen System-Prompt?",
+   "a": "Nein, Pflicht ist er nicht, aber er ist der richtige Ort für Dauerregeln wie Ton, Sprache und Ausgabeformat. Ohne System-Prompt steuert allein die Nutzernachricht das Verhalten, und die wechselt von Anfrage zu Anfrage. Praktisch: Alles, was für jede Anfrage gleich bleiben soll, gehört in den System-Prompt; alles Fallbezogene in die User-Nachricht."
+  },
+  {
+   "q": "Welche Temperatur ist die richtige?",
+   "a": "Für Faktenarbeit, Extraktion und Code: 0 bis 0,3, damit das Modell reproduzierbar das Wahrscheinlichste ausgibt. Für Umformulierungen und Ideen: 0,7 bis 1,0. Die Temperatur verändert die Streuung der Token-Auswahl, nicht den Wahrheitsgehalt; eine falsche Tatsache bleibt bei jeder Temperatur falsch."
+  },
+  {
+   "q": "Was ist der Unterschied zwischen JSON mode und Structured Outputs?",
+   "a": "JSON mode garantiert nur syntaktisch gültiges JSON und verlangt das Wort JSON im Kontext, sonst bricht die API mit einem Fehler ab. Structured Outputs mit striktem JSON Schema garantieren zusätzlich, dass die Antwort deinem Schema folgt, inklusive Pflichtfelder und Enum-Werte. Die OpenAI-Dokumentation empfiehlt, wo immer möglich Structured Outputs zu nutzen. [2]"
+  },
+  {
+   "q": "Wie bekomme ich beim Streaming den Token-Verbrauch?",
+   "a": "Bei OpenAI mit stream_options: {\"include_usage\": true}; der letzte Chunk trägt dann die usage-Werte und hat eine leere choices-Liste. Wird die Verbindung vorher abgebrochen, fehlt dieser Chunk, und du musst den Verbrauch schätzen. Anthropic meldet Verbrauchswerte ebenfalls im Stream-Verlauf. [1][3]"
+  },
+  {
+   "q": "Kann ich den Anbieter später wechseln?",
+   "a": "Ja, das Grundmuster (Nachrichtenliste mit Rollen, Modellname, max_tokens, optionales Streaming) ist bei OpenAI, Anthropic und Google deckungsgleich. Was sich unterscheidet, sind Feldnamen im Detail, Werkzeug-Mechanismen und Zusatzfeatures wie Denkbudgets. Eine dünne Abstraktionsschicht um Modellname und Client reicht für den Wechsel meist aus. [1][3][4]"
+  }
+ ],
+ "sources": [
+  {
+   "title": "Create chat completion (API Reference)",
+   "publisher": "OpenAI Platform Docs",
+   "url": "https://platform.openai.com/docs/api-reference/chat/create",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Structured model outputs",
+   "publisher": "OpenAI Platform Docs",
+   "url": "https://platform.openai.com/docs/guides/structured-outputs",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Messages (API Reference)",
+   "publisher": "Anthropic Docs",
+   "url": "https://docs.anthropic.com/en/api/messages",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Structured outputs",
+   "publisher": "Google AI for Developers",
+   "url": "https://ai.google.dev/gemini-api/docs/structured-output",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "OpenAI API Pricing",
+   "publisher": "OpenAI",
+   "url": "https://openai.com/api/pricing/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die API-Referenz zu OpenAI Chat Completions, der OpenAI-Leitfaden zu Structured Outputs, die Anthropic-Referenz zur Messages API, die Google-Dokumentation zu Structured Outputs in der Gemini API und die OpenAI-Preisliste. Die Kostenrechnung ist eine eigene Überschlagsrechnung auf Basis der dort genannten Preise und als solche gekennzeichnet. Parameter-Tabellen geben Praxiswerte der Redaktion wieder, keine Herstellervorgaben. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "APIs und Preise ändern sich schnell; alle Produkt-, Feld- und Preisangaben beziehen sich auf den 20. Oktober 2026 und können kurzfristig überholt sein. Die Referenzen der Anbieter unterscheiden teilweise zwischen Modellgenerationen; was für ein konkretes Modell gilt, steht nur in der jeweils aktuellen Referenz. Wir haben die beschriebenen Aufrufe nicht jede Kombination aus Anbieter und Modell selbst durchgespielt. Praxiswerte in der Tabelle sind redaktionelle Erfahrungswerte, keine Messergebnisse.",
+ "related": [
+  "tokens-und-kosten",
+  "inferenz-und-kosten-verstehen",
+  "function-calling-praxis",
+  "kosten-latenz-tuning"
+ ]
+}
