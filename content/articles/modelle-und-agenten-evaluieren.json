@@ -1,0 +1,329 @@
+{
+ "slug": "modelle-und-agenten-evaluieren",
+ "lang": "de",
+ "section": "evals",
+ "type": "explainer",
+ "title": "Modelle und Agenten richtig evaluieren",
+ "dek": "Welche Benchmark-Typen es gibt, wie Kontamination Ergebnisse verfälscht, was pass^k über Verlässlichkeit sagt und wie du Zahlen richtig liest.",
+ "published": "2026-10-20T09:00:00+02:00",
+ "modified": "2026-10-20T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Evaluation",
+  "Benchmarks",
+  "Kontamination",
+  "pass^k",
+  "Agenten",
+  "LLM-as-a-Judge"
+ ],
+ "key_takeaways": [
+  "Ein Benchmark-Wert sagt nur etwas über die Aufgaben, die darin stecken. Wer einen Typ wählt, der nicht zur eigenen Aufgabe passt, liest Zahlen ohne Aussagekraft.",
+  "Kontamination heißt: Testaufgaben waren schon im Trainingsmaterial. Das Modell wirkt dann besser, als es ist [2]. Neue, laufend ergänzte Aufgaben wie bei LiveCodeBench begrenzen das Problem [3].",
+  "pass@k fragt, ob mindestens ein Versuch klappt, pass^k, ob alle k Versuche klappen [1]. Bei 80 % Erfolg je Versuch sind es nach 8 Versuchen rechnerisch nur noch 16,8 % (eigene Rechnung).",
+  "Bei Agenten zählt der Endzustand der Welt, nicht der schöne Text: τ-Bench vergleicht die Datenbank nach dem Gespräch mit dem Sollzustand [1].",
+  "Prüfmodelle (LLM-as-a-Judge) sind schnell, aber nicht neutral: Sie bevorzugen laut Studie bestimmte Positionen, lange Antworten und die eigene Modellfamilie [4]."
+ ],
+ "hero": {
+  "alt": "Liniendiagramm für 1 bis 8 Versuche bei 80 Prozent Erfolgsquote je Versuch: pass@k steigt auf nahezu 100 Prozent, pass^k fällt auf 16,8 Prozent.",
+  "caption": "pass@k und pass^k bei 80 % Erfolg je Versuch, Versuche als unabhängig angenommen. Eigene Rechnung nach den Definitionen in [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Zwei Modelle, zwei Zahlen: 71 gegen 74 Prozent. Welches ist besser? Die ehrliche Antwort lautet fast immer: Das hängt davon ab, was gemessen wurde, wie oft, womit und ob das Modell die Aufgaben schon kannte. Evaluation ist die Kunst, diese vier Fragen zu stellen, bevor man einer Zahl glaubt."
+  },
+  {
+   "t": "p",
+   "x": "Diese Seite gibt dir die Werkzeuge dafür: eine Landkarte der Benchmark-Typen, ein Verständnis von Kontamination, den Unterschied zwischen pass@k und pass^k und eine Checkliste für den Alltag. Begriffe wie [Benchmark](/glossar#benchmark), [Evals](/glossar#evals) und [Pass-Rate](/glossar#pass-rate) sind im Glossar erklärt."
+  },
+  {
+   "t": "h2",
+   "x": "Benchmark-Typen: Wissen testen ist etwas anderes als Arbeit testen"
+  },
+  {
+   "t": "p",
+   "x": "Ein Benchmark ist eine Prüfung mit festen Aufgaben. Wie bei Schulprüfungen unterscheiden sich die Formate stark. Eine Multiple-Choice-Klausur zeigt, was jemand weiß. Sie zeigt nicht, ob er ein Projekt zu Ende bringt. Bei KI-Modellen ist es genauso. Die zehn Portraits des KI Fachblatts lassen sich grob so einordnen (Einordnung der Redaktion anhand der Portrait-Beschreibungen):"
+  },
+  {
+   "t": "table",
+   "caption": "Benchmark-Typen mit Beispielen aus den Portraits des KI Fachblatts",
+   "head": [
+    "Typ",
+    "Was geprüft wird",
+    "Beispiele"
+   ],
+   "rows": [
+    [
+     "Wissen und Denken",
+     "Fragen mit vorgegebenen Antworten, meist aus Fachgebieten",
+     "[MMLU-Pro](/benchmarks/mmlu-pro), [GPQA](/benchmarks/gpqa), [Humanity's Last Exam](/benchmarks/humanitys-last-exam)"
+    ],
+    [
+     "Software",
+     "Echte Programmierprobleme lösen, im Terminal arbeiten",
+     "[SWE-bench Verified](/benchmarks/swe-bench-verified), [Terminal-Bench 2.1](/benchmarks/terminal-bench-2-1)"
+    ],
+    [
+     "Web und Computer",
+     "Im Netz suchen, echte Programme am Rechner bedienen",
+     "[BrowseComp](/benchmarks/browsecomp), [OSWorld](/benchmarks/osworld)"
+    ],
+    [
+     "Ganze Projekte",
+     "Daten vorbereiten, Modelle trainieren, Experimente auswerten",
+     "[MLE-bench](/benchmarks/mle-bench)"
+    ],
+    [
+     "Dialog mit Regeln",
+     "Mit einem simulierten Nutzer sprechen und Vorgaben einhalten",
+     "[τ²-Bench](/benchmarks/tau2-bench)"
+    ],
+    [
+     "Sicherheit",
+     "Eine beschriebene Schwachstelle mit einem Angriffsskript nachstellen",
+     "[CyberGym](/benchmarks/cybergym)"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Daraus folgt eine einfache Regel: Wähle den Benchmark-Typ, der deiner Aufgabe ähnelt. Für einen Support-Bot sagt ein Wissenstest wenig, ein Test wie τ²-Bench mehr. Für einen Coding-Agenten helfen Wissensfragen kaum, Aufgaben aus echten Repositories schon. Und für dein eigenes Produkt zählt am Ende eine eigene Testmenge, wie sie [Evals: Testen statt Bauchgefühl](/evals-statt-bauchgefuehl) beschreibt."
+  },
+  {
+   "t": "callout",
+   "title": "Merke",
+   "x": "Ein Benchmark ist ein Stellvertreter. Er misst, was in seinen Aufgaben steckt, und sonst nichts."
+  },
+  {
+   "t": "h2",
+   "x": "Kontamination: Wenn die Klausur im Lernstoff steckte"
+  },
+  {
+   "t": "p",
+   "x": "Stell dir vor, die Aufgaben der Abschlussprüfung hätten vorher im Lernheft gestanden. Das Ergebnis wäre glänzend und sagte kaum etwas über das Können. Genau das meint [Kontamination](/glossar#kontamination) bei Sprachmodellen: Das Modell hat Informationen aus dem Test schon beim Training aufgenommen, und die Messung wird ungenau [2]."
+  },
+  {
+   "t": "p",
+   "x": "Das Problem ist schwer zu sehen. Trainiert wird auf riesigen Mengen Text, und wo Benchmark-Aufgaben samt Lösungen öffentlich im Netz stehen, können sie ins Trainingsmaterial gelangen. Eine Übersichtsarbeit zu dem Thema beschreibt die Folgen und diskutiert Alternativen zu klassischen, festen Tests [2]."
+  },
+  {
+   "t": "h3",
+   "x": "Was dagegen hilft"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Frische Aufgaben:** LiveCodeBench sammelt laufend neue Aufgaben aus Programmierwettbewerben. Zum Zeitpunkt der Veröffentlichung umfasste es 400 Aufgaben, die zwischen Mai 2023 und Mai 2024 erschienen sind [3]. Wer ein Modell nur an Aufgaben misst, die nach dessen Trainingsende erschienen, begrenzt das Risiko.",
+    "**Eigene, nicht veröffentlichte Tests:** Eine Testmenge, die nie im Netz stand, kann nicht im Training gelandet sein.",
+    "**Nachsehen, nicht nur glauben:** Hersteller-Zahlen sind Herstellerangaben. Unabhängige Messungen und Hinweise auf mögliche Kontamination gehören zur Einordnung dazu."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Streuung: Wie sicher ist die Zahl überhaupt?"
+  },
+  {
+   "t": "p",
+   "x": "Jede Messung hat Rauschen. Bei einem Test mit 100 Aufgaben und 70 gelösten ist der wahre Wert nicht exakt 70 Prozent. Das 95-Prozent-[Wilson-Intervall](/glossar#wilson-intervall) reicht in diesem Fall von etwa 60,4 bis 78,1 Prozent (eigene Rechnung). Bei 1.000 Aufgaben und ebenfalls 70 Prozent schrumpft es auf etwa 67,1 bis 72,8 Prozent. Das ist der Grund, warum zwei Modelle mit 71 und 74 Prozent auf einem kleinen Test oft gar nicht unterscheidbar sind. Mehr dazu unter [Konfidenzintervall](/glossar#konfidenzintervall)."
+  },
+  {
+   "t": "table",
+   "caption": "95-%-Wilson-Intervall bei 70 % Trefferquote (eigene Rechnung)",
+   "head": [
+    "Aufgaben im Test",
+    "Untere Grenze",
+    "Obere Grenze"
+   ],
+   "rows": [
+    [
+     "50",
+     "56,2 %",
+     "80,9 %"
+    ],
+    [
+     "100",
+     "60,4 %",
+     "78,1 %"
+    ],
+    [
+     "500",
+     "65,8 %",
+     "73,9 %"
+    ],
+    [
+     "1.000",
+     "67,1 %",
+     "72,8 %"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "pass@k und pass^k: Einmal klappen oder immer klappen?"
+  },
+  {
+   "t": "p",
+   "x": "Sprachmodelle antworten nicht jedes Mal gleich. Wer dieselbe Aufgabe mehrfach stellt, bekommt manchmal Erfolg, manchmal nicht. Zwei Kennzahlen beschreiben das, und sie sagen fast das Gegenteil:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**pass@k** ist die Chance, dass mindestens einer von k Versuchen gelingt [1]. Das passt, wenn man Lösungen automatisch prüfen kann, etwa mit Unit-Tests, und einfach mehrfach probiert.",
+    "**pass^k** ist die Chance, dass alle k Versuche gelingen, gemittelt über die Aufgaben [1]. Das passt, wenn jeder einzelne Lauf stimmen muss, zum Beispiel im Kundendienst."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Analogie: Ein Basketballspieler trifft 80 Prozent seiner Freiwürfe. Bei einem einzigen Wurf ist das stark. Wenn aber acht Würfe in Folge sitzen müssen, gelingt das bei unabhängigen Würfen nur in 0,8^8 = 16,8 Prozent der Fälle. Bei einem Agenten, der acht Kundenanfragen fehlerfrei bearbeiten soll, gilt dieselbe Mathematik (eigene Rechnung, vereinfacht: gleiche Erfolgsquote bei jedem Versuch)."
+  },
+  {
+   "t": "chart",
+   "kind": "line",
+   "title": "Erfolg bei 80 % Quote je Versuch: pass@k gegen pass^k",
+   "alt": "Bei k=1 sind beide Werte 80 Prozent. Bei k=8 liegt pass@k bei fast 100 Prozent und pass^k bei 16,8 Prozent.",
+   "caption": "Eigene Rechnung mit den Definitionen aus [1]: pass@k = 1 - (1 - p)^k und pass^k = p^k, bei gleicher Erfolgsquote p = 0,8 und unabhängigen Versuchen.",
+   "source": "Eigene Rechnung nach [1]",
+   "unit": " %",
+   "x_label": "Versuche k",
+   "labels": [
+    "1",
+    "2",
+    "4",
+    "8"
+   ],
+   "series": [
+    {
+     "name": "pass@k (mindestens einer klappt)",
+     "values": [
+      80,
+      96,
+      99.84,
+      100
+     ]
+    },
+    {
+     "name": "pass^k (alle klappen)",
+     "values": [
+      80,
+      64,
+      41,
+      16.8
+     ]
+    }
+   ],
+   "max": 100,
+   "min": 0
+  },
+  {
+   "t": "p",
+   "x": "Das ist keine Theorie. Die τ-Bench-Autoren fanden 2024, dass selbst ein starkes Modell (GPT-4o mit Funktionsaufrufen) im Einzelhandels-Szenario bei über 60 Prozent Aufgabenerfolg lag, bei pass^8 aber unter 25 Prozent [1]. Diese Zahlen betreffen ein älteres Modell. Sie zeigen aber das Muster: Hoher Durchschnitt heißt nicht verlässlich. Das aktuelle Folgeprojekt steht im Portrait zu [τ²-Bench](/benchmarks/tau2-bench)."
+  },
+  {
+   "t": "h2",
+   "x": "Agenten evaluieren: Der Endzustand zählt"
+  },
+  {
+   "t": "p",
+   "x": "Ein Chatbot wird an seinem Text gemessen, ein Agent an seinen Taten. Hat er die Buchung wirklich geändert? Die Datei wirklich repariert? τ-Bench löst das, indem es nach jedem Gespräch den Zustand der Datenbank mit dem erwarteten Zielzustand vergleicht. Wie der Nutzer die Bitte formuliert, darf variieren, solange das Ergebnis stimmt [1]. Diese Idee lässt sich auf eigene Agenten übertragen: Prüfe, was sich in der Welt verändert hat, und nicht, wie überzeugend die Antwort klingt. Grundlagen zu Agenten findest du unter [Was ein KI-Agent wirklich ist](/was-ist-ein-ki-agent), den [Agent-Loop](/glossar#agent-loop) im Glossar."
+  },
+  {
+   "t": "p",
+   "x": "Für Agenten kommen weitere Fragen dazu:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Was kostet eine gelöste Aufgabe?** Ein Agent, der doppelt so oft gewinnt, aber zehnmal so viele Tokens verbrennt, ist nicht automatisch besser. Siehe [Kosten pro gelöster Aufgabe](/glossar#kosten-pro-geloester-aufgabe).",
+    "**Wie lang darf die Aufgabe sein?** Manche Tests prüfen kurze Aufträge, andere ganze Projekte, siehe [MLE-bench](/benchmarks/mle-bench) oder [Terminal-Bench 2.1](/benchmarks/terminal-bench-2-1). Ein Wert aus kurzen Aufgaben lässt sich nicht auf lange übertragen.",
+    "**Welcher Aufbau steckt dahinter?** τ-Bench vergleicht Modelle und Methoden [1]. Dasselbe Modell kann mit anderem Prompt oder anderen Werkzeugen anders abschneiden. Vergleiche daher nur Zahlen mit gleichem Aufbau.",
+    "**Wurde auch die Sicherheit geprüft?** Ob ein Agent Aufgaben löst, ist eine andere Frage als ob er sich austricksen lässt. Dazu siehe [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme)."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Wenn ein Modell das Modell bewertet"
+  },
+  {
+   "t": "p",
+   "x": "Offene Antworten wie Zusammenfassungen lassen sich schwer automatisch prüfen. Deshalb setzen viele ein zweites Modell als Prüfer ein, kurz LLM-as-a-Judge. Die Studie hinter MT-Bench und Chatbot Arena fand, dass starke Prüfmodelle wie GPT-4 mit menschlichen Bewertungen zu über 80 Prozent übereinstimmten, so oft wie Menschen untereinander [4]. Dieselbe Arbeit nennt typische Schwächen: Positionsbias (die erste Antwort wird bevorzugt), Wortreichtum (lange Antworten gewinnen) und Eigenlob (das Modell mag die eigene Modellfamilie) [4]. Praktisch heißt das: Reihenfolge der Antworten mischen, Kriterien vorgeben und regelmäßig Stichproben selbst lesen."
+  },
+  {
+   "t": "h2",
+   "x": "Checkliste: Eine Benchmark-Zahl lesen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Welcher Typ?** Passt die Art der Aufgaben zu meiner Aufgabe?",
+    "**Wer hat gemessen?** Hersteller, unabhängige Stelle oder ich selbst?",
+    "**Wie viele Aufgaben und wie oft?** Gibt es ein Intervall oder mehrere Läufe?",
+    "**Kontamination möglich?** Stammen die Aufgaben aus der Zeit vor dem Modelltraining?",
+    "**Welcher Aufbau?** Gleicher Prompt, gleiche Werkzeuge, gleiche Versuchszahl bei allen Modellen?",
+    "**Pass@k oder pass^k?** Reicht ein Erfolg, oder muss es jedes Mal klappen?",
+    "**Was kostet es?** Zeit, Tokens, Geld pro gelöster Aufgabe."
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Eigene Testmenge schlägt fremde Tabelle",
+   "x": "Öffentliche Benchmarks helfen bei der Vorauswahl. Entscheiden solltest du mit 30 bis 50 eigenen Fällen aus deinem Alltag, wie in [Evals: Testen statt Bauchgefühl](/evals-statt-bauchgefuehl) beschrieben. Die Zahl ist eine praktische Faustregel der Redaktion, keine belegte Grenze."
+  },
+  {
+   "t": "p",
+   "x": "Wie diese Seite in einen größeren Weg passt, zeigen die [Lernpfade](/lernpfade) für Einsteiger, Praktiker und Entscheider."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen pass@k und pass^k?",
+   "a": "pass@k ist die Chance, dass mindestens einer von k Versuchen gelingt. pass^k ist die Chance, dass alle k Versuche gelingen. Die erste Zahl steigt mit k, die zweite fällt. Beide Definitionen stammen aus dem τ-Bench-Paper."
+  },
+  {
+   "q": "Was ist Kontamination bei Benchmarks?",
+   "a": "Kontamination liegt vor, wenn Informationen aus dem Test schon im Trainingsmaterial eines Modells steckten. Das Modell schneidet dann besser ab, als es seinem echten Können entspricht."
+  },
+  {
+   "q": "Kann ich einem Benchmark-Ergebnis des Herstellers trauen?",
+   "a": "Als Hinweis ja, als Beleg nur eingeschränkt. Prüfe, ob die Zahl unabhängig bestätigt wurde, mit welchem Aufbau sie entstand und ob sie zu deiner Aufgabe passt."
+  },
+  {
+   "q": "Wie viele Testaufgaben brauche ich für eine eigene Bewertung?",
+   "a": "Für einen ersten Vergleich reichen oft 30 bis 50 echte Fälle. Je kleiner der Unterschied zwischen zwei Modellen, desto mehr Aufgaben brauchst du, um ihn von Zufall zu trennen."
+  }
+ ],
+ "sources": [
+  {
+   "title": "τ-bench: A Benchmark for Tool-Agent-User Interaction in Real-World Domains",
+   "publisher": "arXiv:2406.12045 (Yao u. a., Sierra)",
+   "url": "https://arxiv.org/abs/2406.12045",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Benchmark Data Contamination of Large Language Models: A Survey",
+   "publisher": "arXiv:2406.04244 (Xu u. a.)",
+   "url": "https://arxiv.org/abs/2406.04244",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "LiveCodeBench: Holistic and Contamination Free Evaluation of Large Language Models for Code",
+   "publisher": "arXiv:2403.07974 (Jain u. a.)",
+   "url": "https://arxiv.org/abs/2403.07974",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Judging LLM-as-a-Judge with MT-Bench and Chatbot Arena",
+   "publisher": "arXiv:2306.05685 (Zheng u. a., NeurIPS 2023)",
+   "url": "https://arxiv.org/abs/2306.05685",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die arXiv-Seiten der vier genannten Arbeiten, beim τ-bench-Paper einschließlich des Volltexts mit Definition von pass^k und den Ergebnissen. Die Einordnung der zehn Benchmarks in Typen beruht auf den Beschreibungen in den Portraits des KI Fachblatts. Die Rechnungen zu pass^k und zum Wilson-Intervall stammen von der Redaktion (Wilson-Score, z = 1,96).",
+ "limitations": "Die τ-bench-Zahlen betreffen Modelle von 2024 und sind nicht auf aktuelle Modelle übertragbar. Die pass^k-Rechnung nimmt gleiche Erfolgsquote und unabhängige Versuche an; reale Aufgaben sind unterschiedlich schwer. Ob einzelne aktuelle Modelle kontaminiert sind, wurde nicht untersucht. Die Angaben zu LLM-as-a-Judge stammen aus einer Studie von 2023 mit damaligen Modellen.",
+ "related": [
+  "evals-statt-bauchgefuehl",
+  "sicherheit-fuer-agenten-systeme",
+  "was-ist-ein-ki-agent"
+ ]
+}

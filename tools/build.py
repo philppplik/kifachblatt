@@ -407,6 +407,7 @@ def glossary_page(shell_top, shell_bottom, now):
 
 SEARCH_PAGES = [
     ('Glossar: KI-Begriffe, kurz erklärt', '/glossar', 'Seite', 'Das KI-Glossar erklärt Begriffe zu Sprachmodellen, Agenten, RAG und Evaluation.'),
+    ('Lernpfade: KI verstehen in drei Etappen', '/lernpfade', 'Seite', 'Drei Lernpfade für Einsteiger, Praktiker und Entscheider mit Seiten in sinnvoller Reihenfolge.'),
     ('KI-Tagesbericht als PDF', '/berichte', 'Seite', 'Tägliche Ausgabe als PDF: Trending-Modelle, die Analysen des Tages, Impressum.'),
     ('Über das Magazin', '/ueber', 'Seite', 'Das KI Fachblatt ist ein deutschsprachiges Fachmagazin über künstliche Intelligenz von Philipp Paulik.'),
 ]
@@ -500,6 +501,10 @@ def main():
     for k in sections:
         open('thema/%s.html' % k, 'w', encoding='utf-8').write(simple_page('%s | KI Fachblatt' % SECTIONS[k], 'Alle Beiträge des KI Fachblatts zum Thema %s.' % SECTIONS[k], '%s/thema/%s' % (BASE, k), section_html(k, arts), shell_top, shell_bottom))
     open('glossar.html', 'w', encoding='utf-8').write(glossary_page(shell_top, shell_bottom, now))
+    import lernpfade
+    lernpfade.build(simple_page, shell_top, shell_bottom, errors)
+    if errors:
+        print('BUILD FAILED:'); [print(' -', e) for e in errors]; sys.exit(1)
     n_search = build_search(arts, shell_top, shell_bottom, now)
 
     from daily_archive import sync, archive_html
@@ -534,12 +539,13 @@ def main():
     render_home(arts)
     # sitemap
     sm = open('sitemap.xml', encoding='utf-8').read()
-    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages) + ['berichte', 'suche'])]
+    static = [m for m in re.findall(r'<url>.*?</url>', sm, re.S) if not any('<loc>%s/%s</loc>' % (BASE, x) in m for x in [a['slug'] for a in arts] + ['thema/' + k for k in sections] + list(pages) + ['berichte', 'suche', 'lernpfade'])]
     gen = []
     for a in arts:
         gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title><image:caption>%s</image:caption></image:image></url>' % (BASE, a['slug'], a['modified'], BASE, a['slug'], esc(a['title']), esc(a['hero']['alt'])))
     for k in sections: gen.append('<url><loc>%s/thema/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, max(a['modified'] for a in arts if a['section'] == k)))
     gen.append('<url><loc>%s/berichte</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
+    gen.append('<url><loc>%s/lernpfade</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
     gen.append('<url><loc>%s/suche</loc><lastmod>%s</lastmod></url>' % (BASE, now.date().isoformat()))
     for k in pages: gen.append('<url><loc>%s/%s</loc><lastmod>%s</lastmod></url>' % (BASE, k, now.date().isoformat()))
     open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(static + gen) + '</urlset>\n')
