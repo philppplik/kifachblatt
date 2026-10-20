@@ -2,34 +2,137 @@
  "title": "Lernpfade: KI verstehen in drei Etappen",
  "intro": "Drei Wege durch das KI Fachblatt, je nachdem, wo du stehst. Jeder Pfad ist eine Reihenfolge von Seiten, die aufeinander aufbauen. Du musst nicht alles lesen: Wähle den Pfad, der zu deiner Frage passt, und hake Schritt für Schritt ab.",
  "paths": [
-  {"id": "einsteiger", "name": "Einsteiger", "frage": "Ich will verstehen, was KI kann und was nicht.",
+  {
+   "id": "einsteiger",
+   "name": "Einsteiger",
+   "frage": "Ich will verstehen, was KI kann und was nicht.",
    "intro": "Kein Vorwissen nötig. Du lernst, womit Sprachmodelle rechnen, warum sie sich irren und was ein Agent anders macht als ein Chatbot.",
    "steps": [
-    {"slug": "tokens-und-kosten", "warum": "Der Grundbaustein: Modelle lesen und schreiben in kleinen Textstücken, und danach richten sich Länge und Preis."},
-    {"slug": "halluzinationen", "warum": "Warum ein Modell überzeugend falsche Dinge sagt und was dagegen hilft."},
-    {"slug": "was-ist-ein-ki-agent", "warum": "Vom Chatbot zum Helfer, der selbst Werkzeuge benutzt."},
-    {"slug": "evals-statt-bauchgefuehl", "warum": "Wie man Modelle fair vergleicht, ohne sich auf den Eindruck zu verlassen."},
-    {"slug": "benchmarks", "warum": "Die Portraits zu zehn bekannten Prüfungen für KI-Modelle, zum Stöbern."}],
-   "terms": ["Sprachmodell (LLM)", "Token", "Prompt", "Halluzination", "Agent", "Benchmark"]},
-  {"id": "praktiker", "name": "Praktiker", "frage": "Ich baue oder nutze KI im Arbeitsalltag.",
+    {
+     "slug": "tokens-und-kosten",
+     "warum": "Der Grundbaustein: Modelle lesen und schreiben in kleinen Textstücken, und danach richten sich Länge und Preis."
+    },
+    {
+     "slug": "wie-ein-sprachmodell-lernt",
+     "warum": "Von Pretraining bis RLVR: Wie aus Rohtext ein Assistent wird und was die Begriffe in Modellkarten bedeuten."
+    },
+    {
+     "slug": "halluzinationen",
+     "warum": "Warum ein Modell überzeugend falsche Dinge sagt und was dagegen hilft."
+    },
+    {
+     "slug": "was-ist-ein-ki-agent",
+     "warum": "Vom Chatbot zum Helfer, der selbst Werkzeuge benutzt."
+    },
+    {
+     "slug": "evals-statt-bauchgefuehl",
+     "warum": "Wie man Modelle fair vergleicht, ohne sich auf den Eindruck zu verlassen."
+    },
+    {
+     "slug": "benchmarks",
+     "warum": "Die Portraits zu zehn bekannten Prüfungen für KI-Modelle, zum Stöbern."
+    }
+   ],
+   "terms": [
+    "Sprachmodell (LLM)",
+    "Token",
+    "Prompt",
+    "Halluzination",
+    "Agent",
+    "Benchmark"
+   ]
+  },
+  {
+   "id": "praktiker",
+   "name": "Praktiker",
+   "frage": "Ich baue oder nutze KI im Arbeitsalltag.",
    "intro": "Du setzt Modelle ein und willst wissen, was trägt: welche Technik wofür taugt, wie du Qualität misst und wie du Agenten absicherst.",
    "steps": [
-    {"slug": "rag-oder-langer-kontext", "warum": "Wie das Modell an dein Wissen kommt: Index mit Suche oder alles in den Prompt."},
-    {"slug": "lokale-modelle", "warum": "Wann sich ein Modell auf dem eigenen Rechner lohnt."},
-    {"slug": "llm-quantisierung-verfahren-grundlagen", "warum": "Wie große Modelle auf kleinere Hardware passen und was das an Qualität kosten kann."},
-    {"slug": "evals-statt-bauchgefuehl", "warum": "Eine eigene Testmenge in einer Stunde bauen."},
-    {"slug": "modelle-und-agenten-evaluieren", "warum": "Benchmark-Typen, Kontamination und pass^k: Zahlen richtig lesen und Agenten fair prüfen."},
-    {"slug": "sicherheit-fuer-agenten-systeme", "warum": "Prompt Injection verstehen und Agenten mit kleinen Rechten und Sandbox bauen."}],
-   "terms": ["Function Calling", "Agent-Loop", "Werkzeugaufruf", "Guardrails", "Prompt Injection", "Pass-Rate"]},
-  {"id": "entscheider", "name": "Entscheider", "frage": "Ich entscheide über Einsatz, Budget und Risiko.",
+    {
+     "slug": "wie-ein-sprachmodell-lernt",
+     "warum": "Von Pretraining bis RLVR: Wie aus Rohtext ein Assistent wird und was die Begriffe in Modellkarten bedeuten."
+    },
+    {
+     "slug": "rag-oder-langer-kontext",
+     "warum": "Wie das Modell an dein Wissen kommt: Index mit Suche oder alles in den Prompt."
+    },
+    {
+     "slug": "lokale-modelle",
+     "warum": "Wann sich ein Modell auf dem eigenen Rechner lohnt."
+    },
+    {
+     "slug": "llm-quantisierung-verfahren-grundlagen",
+     "warum": "Wie große Modelle auf kleinere Hardware passen und was das an Qualität kosten kann."
+    },
+    {
+     "slug": "inferenz-und-kosten-verstehen",
+     "warum": "Was beim Antworten passiert, warum der KV-Cache so viel Speicher braucht und woraus ein API-Preis entsteht."
+    },
+    {
+     "slug": "evals-statt-bauchgefuehl",
+     "warum": "Eine eigene Testmenge in einer Stunde bauen."
+    },
+    {
+     "slug": "modelle-und-agenten-evaluieren",
+     "warum": "Benchmark-Typen, Kontamination und pass^k: Zahlen richtig lesen und Agenten fair prüfen."
+    },
+    {
+     "slug": "sicherheit-fuer-agenten-systeme",
+     "warum": "Prompt Injection verstehen und Agenten mit kleinen Rechten und Sandbox bauen."
+    }
+   ],
+   "terms": [
+    "Function Calling",
+    "Agent-Loop",
+    "Werkzeugaufruf",
+    "Guardrails",
+    "Prompt Injection",
+    "Pass-Rate"
+   ]
+  },
+  {
+   "id": "entscheider",
+   "name": "Entscheider",
+   "frage": "Ich entscheide über Einsatz, Budget und Risiko.",
    "intro": "Du musst nicht jede Technik verstehen, aber die richtigen Fragen stellen: Was kostet es, wie gut ist es wirklich und was kann schiefgehen?",
    "steps": [
-    {"slug": "tokens-und-kosten", "warum": "Woraus sich Kosten zusammensetzen und wo sie sinken."},
-    {"slug": "modelle-und-agenten-evaluieren", "warum": "Eine Checkliste, um Herstellerzahlen einzuordnen, bevor du ihnen Budget gibst."},
-    {"slug": "sicherheit-fuer-agenten-systeme", "warum": "Die Risiken von Agenten mit echten Rechten und die Fragen, die dein Team beantworten sollte."},
-    {"slug": "lokale-modelle", "warum": "Datenschutz und Kontrolle gegen Leistung abwägen."},
-    {"slug": "ki-modelle", "warum": "Portraits konkreter Modelle mit Aufgaben, Zugang und Grenzen."},
-    {"slug": "unternehmen", "warum": "Wer die Modelle entwickelt und welche Schwerpunkte die Anbieter setzen."}],
-   "terms": ["Kosten pro gelöster Aufgabe", "Foundation-Model-Risiken", "Offene Gewichte", "Lizenz (bei Modellen)", "Human-in-the-Loop", "Red Teaming"]}
+    {
+     "slug": "tokens-und-kosten",
+     "warum": "Woraus sich Kosten zusammensetzen und wo sie sinken."
+    },
+    {
+     "slug": "inferenz-und-kosten-verstehen",
+     "warum": "Was beim Antworten passiert, warum der KV-Cache so viel Speicher braucht und woraus ein API-Preis entsteht."
+    },
+    {
+     "slug": "modelle-und-agenten-evaluieren",
+     "warum": "Eine Checkliste, um Herstellerzahlen einzuordnen, bevor du ihnen Budget gibst."
+    },
+    {
+     "slug": "sicherheit-fuer-agenten-systeme",
+     "warum": "Die Risiken von Agenten mit echten Rechten und die Fragen, die dein Team beantworten sollte."
+    },
+    {
+     "slug": "lokale-modelle",
+     "warum": "Datenschutz und Kontrolle gegen Leistung abwägen."
+    },
+    {
+     "slug": "ki-modelle",
+     "warum": "Portraits konkreter Modelle mit Aufgaben, Zugang und Grenzen."
+    },
+    {
+     "slug": "unternehmen",
+     "warum": "Wer die Modelle entwickelt und welche Schwerpunkte die Anbieter setzen."
+    }
+   ],
+   "terms": [
+    "Kosten pro gelöster Aufgabe",
+    "Foundation-Model-Risiken",
+    "Offene Gewichte",
+    "Lizenz (bei Modellen)",
+    "Human-in-the-Loop",
+    "Red Teaming"
+   ]
+  }
  ]
 }
