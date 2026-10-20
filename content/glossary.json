@@ -2322,5 +2322,352 @@
     "url": "https://arxiv.org/abs/2312.06674"
    }
   ]
+ },
+ {
+  "term": "Supervised Fine-Tuning",
+  "aka": [
+   "SFT"
+  ],
+  "letter": "S",
+  "definition": "Nachtraining mit von Menschen geprüften Beispieldialogen: Das Modell lernt, wie gute Antworten aussehen und sich an Anweisungen zu halten.",
+  "usage": "Erster Schritt nach dem Vortraining, bevor Verfahren wie RLHF das Verhalten weiter polieren.",
+  "related": [],
+  "see_also": [
+   "Fine-Tuning",
+   "Pretraining (Vortraining)",
+   "Instruction Tuning",
+   "RLHF"
+  ],
+  "sources": [
+   {
+    "title": "Ouyang et al.: Training language models to follow instructions with human feedback",
+    "url": "https://arxiv.org/abs/2203.02155"
+   }
+  ]
+ },
+ {
+  "term": "RLVR",
+  "aka": [
+   "Reinforcement Learning with Verifiable Rewards"
+  ],
+  "letter": "R",
+  "definition": "Bestärkendes Lernen, bei dem die Belohnung maschinell prüfbar ist: Der Code läuft, die Mathe-Antwort stimmt. Kein menschlicher Bewerter nötig.",
+  "usage": "DeepSeek-R1 trainierte so mathematisches und logisches Reasoning mit automatisch geprüften Antworten.",
+  "related": [],
+  "see_also": [
+   "RLHF",
+   "Reasoning-Modell",
+   "Test-Time Compute"
+  ],
+  "sources": [
+   {
+    "title": "DeepSeek-AI: DeepSeek-R1: Incentivizing Reasoning Capability in LLMs via Reinforcement Learning",
+    "url": "https://arxiv.org/abs/2501.12948"
+   }
+  ]
+ },
+ {
+  "term": "Synthetische Daten",
+  "aka": [],
+  "letter": "S",
+  "definition": "Trainingsdaten, die von Modellen erzeugt statt von Menschen gesammelt werden. Billig und in großer Menge, aber Qualität und Vielfalt müssen kontrolliert werden.",
+  "usage": "Das Phi-Modell wurde großteils auf modellgeschriebenen Lehrbuchtexten trainiert und schlug deutlich größere Modelle.",
+  "related": [],
+  "see_also": [
+   "Pretraining (Vortraining)",
+   "Datenkuratierung",
+   "Destillation"
+  ],
+  "sources": [
+   {
+    "title": "Gunasekar et al.: Textbooks Are All You Need",
+    "url": "https://arxiv.org/abs/2306.11644"
+   }
+  ]
+ },
+ {
+  "term": "Datenkuratierung",
+  "aka": [
+   "Data Curation"
+  ],
+  "letter": "D",
+  "definition": "Auswahl, Filterung und Gewichtung der Trainingsdaten. Oft der größte Qualitätshebel, wichtiger als die reine Datenmenge.",
+  "usage": "Das DataComp-Projekt zeigte: Wer denselben Rechenaufwand in bessere Datenauswahl steckt, gewinnt mehr als mit mehr Daten.",
+  "related": [],
+  "see_also": [
+   "Synthetische Daten",
+   "Pretraining (Vortraining)"
+  ],
+  "sources": [
+   {
+    "title": "Gadre et al.: DataComp: In search of the next generation of multimodal datasets",
+    "url": "https://arxiv.org/abs/2304.14108"
+   }
+  ]
+ },
+ {
+  "term": "Catastrophic Forgetting",
+  "aka": [
+   "Katastrophales Vergessen"
+  ],
+  "letter": "C",
+  "definition": "Wenn ein Modell bei neuem Training alte Fähigkeiten verliert, weil die neuen Gewichte die alten überschreiben.",
+  "usage": "Ein Modell, das auf Medizin nachgeschult wird, kann danach im Programmieren schlechter werden.",
+  "related": [],
+  "see_also": [
+   "Fine-Tuning",
+   "Supervised Fine-Tuning"
+  ],
+  "sources": [
+   {
+    "title": "Kirkpatrick et al.: Overcoming catastrophic forgetting in neural networks",
+    "url": "https://arxiv.org/abs/1612.00796"
+   }
+  ]
+ },
+ {
+  "term": "Checkpoint",
+  "aka": [
+   "Modellstand"
+  ],
+  "letter": "C",
+  "definition": "Gespeicherter Zwischenstand der Gewichte während oder nach dem Training. Grundlage für Vergleiche, Wiederanlauf und Veröffentlichung.",
+  "usage": "Das OLMo-Projekt veröffentlicht alle Zwischenstände, damit Forschung den Trainingsverlauf nachvollziehen kann.",
+  "related": [],
+  "see_also": [
+   "Pretraining (Vortraining)",
+   "Offene Gewichte"
+  ],
+  "sources": [
+   {
+    "title": "Groeneveld et al.: OLMo: Accelerating the Science of Language Models",
+    "url": "https://arxiv.org/abs/2402.00838"
+   }
+  ]
+ },
+ {
+  "term": "Overfitting",
+  "aka": [
+   "Überanpassung"
+  ],
+  "letter": "O",
+  "definition": "Das Modell lernt die Trainingsdaten auswendig statt das dahinterliegende Muster. Es glänzt im Training und versagt bei neuen Fällen.",
+  "usage": "Erkennbar daran, dass der Fehler auf Prüfdaten steigt, während er auf Trainingsdaten weiter fällt.",
+  "related": [],
+  "see_also": [
+   "Datenkuratierung",
+   "Evals"
+  ],
+  "sources": [
+   {
+    "title": "scikit-learn: Underfitting vs. Overfitting",
+    "url": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html"
+   }
+  ]
+ },
+ {
+  "term": "Pruning",
+  "aka": [
+   "Beschneidung"
+  ],
+  "letter": "P",
+  "definition": "Entfernt unwichtige Gewichte aus einem trainierten Netz, um es kleiner und schneller zu machen, ohne viel Qualität zu verlieren.",
+  "usage": "Die Lottery-Ticket-Hypothese zeigte, dass große Netze deutlich kleinere, genauso gute Teilnetze enthalten.",
+  "related": [],
+  "see_also": [
+   "Quantisierung",
+   "Destillation",
+   "Inferenz"
+  ],
+  "sources": [
+   {
+    "title": "Frankle & Carbin: The Lottery Ticket Hypothesis",
+    "url": "https://arxiv.org/abs/1803.03635"
+   }
+  ]
+ },
+ {
+  "term": "Continuous Batching",
+  "aka": [],
+  "letter": "C",
+  "definition": "Warteschlangen-Technik für Inferenz-Server: Neue Anfragen rücken sofort in laufende Berechnungen nach, statt auf den nächsten Stapel zu warten.",
+  "usage": "Der vLLM-Server erreicht damit ein Vielfaches des Durchsatzes klassischer Stapelverarbeitung.",
+  "related": [],
+  "see_also": [
+   "Batching",
+   "Durchsatz",
+   "PagedAttention",
+   "Inferenz-Server"
+  ],
+  "sources": [
+   {
+    "title": "Kwon et al.: Efficient Memory Management for Large Language Model Serving with PagedAttention",
+    "url": "https://arxiv.org/abs/2309.06180"
+   }
+  ]
+ },
+ {
+  "term": "Time to First Token",
+  "aka": [
+   "TTFT"
+  ],
+  "letter": "T",
+  "definition": "Zeit vom Absenden der Anfrage bis zum ersten sichtbaren Token der Antwort. Prägt, ob sich ein System reaktionsschnell anfühlt.",
+  "usage": "Bei Support-Chats zählt TTFT mehr als die Gesamtdauer: Nutzer sehen sofort, dass etwas passiert.",
+  "related": [],
+  "see_also": [
+   "Latenz",
+   "Durchsatz",
+   "Inferenz"
+  ],
+  "sources": [
+   {
+    "title": "Ray Project: LLMPerf, Benchmarks für LLM-Inferenz",
+    "url": "https://github.com/ray-project/llmperf"
+   }
+  ]
+ },
+ {
+  "term": "Time per Output Token",
+  "aka": [
+   "TPOT",
+   "Inter-Token-Latenz"
+  ],
+  "letter": "T",
+  "definition": "Durchschnittliche Zeit pro weiterem Antwort-Token nach dem ersten. Bestimmt, wie flüssig der Text erscheint.",
+  "usage": "Hohe TPOT wirkt wie langsame Tippgeschwindigkeit, auch wenn die Antwort insgesamt schnell fertig wäre.",
+  "related": [],
+  "see_also": [
+   "Latenz",
+   "Time to First Token",
+   "Durchsatz"
+  ],
+  "sources": [
+   {
+    "title": "Ray Project: LLMPerf, Benchmarks für LLM-Inferenz",
+    "url": "https://github.com/ray-project/llmperf"
+   }
+  ]
+ },
+ {
+  "term": "Data Poisoning",
+  "aka": [
+   "Datenvergiftung"
+  ],
+  "letter": "D",
+  "definition": "Angriff, bei dem präparierte Inhalte in Trainingsdaten geschleust werden, um dem Modell Fehler, Hintertüren oder Voreingenommenheit einzupflanzen.",
+  "usage": "OWASP führt Datenvergiftung unter den Top-Risiken für LLM-Anwendungen, etwa über präparierte Webseiten.",
+  "related": [],
+  "see_also": [
+   "Red Teaming",
+   "Guardrails",
+   "Jailbreak"
+  ],
+  "sources": [
+   {
+    "title": "OWASP: Top 10 for Large Language Model Applications",
+    "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+   }
+  ]
+ },
+ {
+  "term": "Modell-Extraktion",
+  "aka": [
+   "Model Stealing"
+  ],
+  "letter": "M",
+  "definition": "Angriff, bei dem ein fremdes Modell allein über gezielte Anfragen an seine Schnittstelle nachgebaut wird.",
+  "usage": "Forschende kopierten so frühe kommerzielle ML-Dienste funktional, ohne je die Gewichte zu sehen.",
+  "related": [],
+  "see_also": [
+   "Data Poisoning",
+   "Guardrails"
+  ],
+  "sources": [
+   {
+    "title": "Tramèr et al.: Stealing Machine Learning Models via Prediction APIs",
+    "url": "https://arxiv.org/abs/1609.02943"
+   }
+  ]
+ },
+ {
+  "term": "Watermarking (bei KI-Text)",
+  "aka": [
+   "Wasserzeichen"
+  ],
+  "letter": "W",
+  "definition": "Statistische Signatur im erzeugten Text, die maschinell nachweisbar macht, dass er von einem bestimmten Modell stammt, ohne den Text sichtbar zu verändern.",
+  "usage": "Die Token-Auswahl wird so gesteuert, dass ein Prüfer mit geheimem Schlüssel KI-Text erkennt.",
+  "related": [],
+  "see_also": [
+   "Alignment",
+   "Guardrails"
+  ],
+  "sources": [
+   {
+    "title": "Kirchenbauer et al.: A Watermark for Large Language Models",
+    "url": "https://arxiv.org/abs/2301.10226"
+   }
+  ]
+ },
+ {
+  "term": "Sandboxing",
+  "aka": [
+   "Sandbox"
+  ],
+  "letter": "S",
+  "definition": "Ausführung von modellgeneriertem Code oder Agentenaktionen in einer abgeschotteten Umgebung ohne Zugriff auf echte Daten und Systeme.",
+  "usage": "Ein Coding-Agent testet Skripte in einer Wegwerf-Umgebung, bevor etwas auf dem echten System läuft.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Guardrails",
+   "Prompt Injection"
+  ],
+  "sources": [
+   {
+    "title": "OWASP: Top 10 for Large Language Model Applications",
+    "url": "https://owasp.org/www-project-top-10-for-large-language-model-applications/"
+   }
+  ]
+ },
+ {
+  "term": "Rate Limit",
+  "aka": [
+   "Anfragelimit"
+  ],
+  "letter": "R",
+  "definition": "Obergrenze des Anbieters: Wie viele Anfragen oder Token pro Minute ein Konto senden darf. Begrenzt Tempo und Kosten einer Anwendung.",
+  "usage": "Bei Massenverarbeitung bestimmt das Rate Limit, wie lange ein Stapel Anfragen braucht.",
+  "related": [],
+  "see_also": [
+   "Durchsatz",
+   "Grenzkosten"
+  ],
+  "sources": [
+   {
+    "title": "OpenAI: Rate limits (API-Dokumentation)",
+    "url": "https://platform.openai.com/docs/guides/rate-limits"
+   }
+  ]
+ },
+ {
+  "term": "Semantisches Caching",
+  "aka": [],
+  "letter": "S",
+  "definition": "Antwort-Zwischenspeicher, der nicht nur identische, sondern sinngemäß gleiche Anfragen wiedererkennt und mit der gespeicherten Antwort bedient.",
+  "usage": "Wiederholte Kundenfragen kosten so keine neuen Modellaufrufe mehr.",
+  "related": [],
+  "see_also": [
+   "Prompt-Caching",
+   "Grenzkosten",
+   "Latenz"
+  ],
+  "sources": [
+   {
+    "title": "Zilliz: GPTCache, semantischer Cache für LLM-Anwendungen",
+    "url": "https://github.com/zilliztech/GPTCache"
+   }
+  ]
  }
 ]
