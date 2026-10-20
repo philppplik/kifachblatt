@@ -1,0 +1,157 @@
+{
+ "title": "Lernpfade Paket 4: Kreativ & Multimodal",
+ "intro": "Zwei Lernpfade aus Paket 4 des Lernpfad-Konzepts (20.10.2026): Kreative (Bild-, Audio- und Video-KI) und Multimodale KI. Format wie content/lernpfade.json, ergänzt um Konzept-Felder (Level, Zielgruppe, Dauer, Lernziel, Abschluss-Check).",
+ "paths": [
+  {
+   "id": "kreative",
+   "name": "Kreative: Bild-, Audio- und Video-KI",
+   "frage": "Ich gestalte Medien und will generative KI sauber und rechtssicher einsetzen.",
+   "intro": "Für Designer, Mediengestalter und Content-Produzenten: Du lernst, wie Bild-, Audio- und Video-Modelle arbeiten, wie du sie gezielt steuerst und wie du Ergebnisse prüfst, kennzeichnest und veröffentlichst.",
+   "level": "Einsteiger bis Praktiker",
+   "zielgruppe": "Designer, Mediengestalter, Content-Produzenten",
+   "dauer": "ca. 2 Stunden",
+   "voraussetzungen": "keine",
+   "lernziel": "Generative Medienmodelle verstehen, sauber prompten, rechtlich und kennzeichnungskorrekt veröffentlichen.",
+   "steps": [
+    {
+     "slug": "wie-bildmodelle-lernen",
+     "warum": "Das Fundament: Diffusion, Latentraum und Bild-Tokenizer - danach verstehst du, warum die Werkzeuge sich so verhalten, wie sie es tun."
+    },
+    {
+     "slug": "bild-ki-praxis",
+     "warum": "Das Handwerk: Prompts, Referenzen, Workflows und die Prüfliste für typische Bildfehler."
+    },
+    {
+     "slug": "audio-sprach-ki",
+     "warum": "Transkription, Vertonung und der heikle Sonderfall Stimmklon: was geht, was nur mit Einwilligung."
+    },
+    {
+     "slug": "video-ki",
+     "warum": "Der aktuelle Werkzeugmarkt nach dem Sora-Aus und der Shot-Workflow, mit dem aus Einzelclips ein Film wird."
+    },
+    {
+     "slug": "urheberrecht-ki-medien",
+     "warum": "Kennzeichnung, Urheberrecht und AI Act für KI-Medien: die Rechtsseite des Veröffentlichens (mit Stand-Datum, keine Rechtsberatung)."
+    },
+    {
+     "slug": "halluzinationen",
+     "warum": "Artefakte in Bildern sind das visuelle Gegenstück zu Halluzinationen bei Text: plausibel, aber falsch - und darum prüfbar."
+    }
+   ],
+   "terms": [
+    "Diffusionsmodell",
+    "Text-to-Image-Modell",
+    "Text-to-Video-Modell",
+    "Multimodal",
+    "Bild-Tokenizer",
+    "Text-to-Speech",
+    "Speech-to-Text"
+   ],
+   "check": {
+    "praxis": [
+     "Ordne fünf beschriebene Bild-Artefakte der richtigen Fehlerstelle zu (Hände, Text im Bild, Physik, Markenlogos, Stilkonflikt) und nenne je ein Gegenmittel aus der Prüfliste in \"Bild-KI in der Praxis\".",
+     "Ein Kollege will die Stimme einer bekannten Moderatorin für ein Erklärvideo klonen, \"die merkt das schon nicht\". Welche zwei Dinge sind vorher zwingend zu klären?",
+     "Du brauchst einen 60-sekündigen Werbeclip. Erkläre, warum du nicht einen Prompt für den ganzen Film schreibst, sondern in Shots denkst."
+    ],
+    "quiz": [
+     {
+      "q": "Ein Bildmodell rendert im Logo-Schriftzug zwei Buchstaben falsch. Was ist die wahrscheinlichste Ursache?",
+      "a": "Text ist hochfrequent und regelbasiert; die Bildstatistik trifft exakte Muster schlechter als grobe Formen (plus Decoder-Verlust im Latentraum)."
+     },
+     {
+      "q": "Was unterscheidet STT von TTS?",
+      "a": "STT wandelt gesprochene Sprache in Text um (erkennen), TTS erzeugt aus Text gesprochene Sprache (erzeugen)."
+     },
+     {
+      "q": "Welche Voraussetzung gilt vor jedem Stimmklon?",
+      "a": "Die dokumentierte Einwilligung der sprechenden Person; Anbieter verlangen zusätzlich Berechtigungsnachweise."
+     },
+     {
+      "q": "Nenne zwei derzeit führende Video-KI-Werkzeuge nach dem Sora-Aus (Stand Oktober 2026).",
+      "a": "Z. B. Google Veo 3.1, Runway Gen-4.5 oder Kling 3.0."
+     },
+     {
+      "q": "Welche zwei Kennzeichnungs-Ebenen gehören in jeden Veröffentlichungs-Workflow?",
+      "a": "Sichtbare Markierung für Leser (\"KI-generiert\") und maschinenlesbare Herkunftsnachweise (C2PA/Content Credentials)."
+     },
+     {
+      "q": "Warum sind Referenzbilder wichtiger als längere Prompts für konsistente Serien?",
+      "a": "Referenzen verankern Stil und Motiv direkt in der Bildstatistik; Prompt-Text gewichtet nur und verwässert mit jedem Baustein."
+     }
+    ]
+   }
+  },
+  {
+   "id": "multimodal",
+   "name": "Multimodale KI: Text, Bild, Audio, Video in einem Modell",
+   "frage": "Ich will verstehen, wie ein Modell mehrere Medientypen verarbeitet - und das richtige für meine Aufgabe wählen.",
+   "intro": "Für technikinteressierte Leser, Entwickler und Kreative: Vom gemeinsamen Token-Trick über kontrastive und generative Architekturen bis zur Modellwahl nach Aufgabe.",
+   "level": "Einsteiger bis Praktiker",
+   "zielgruppe": "technikinteressierte Leser, Entwickler, Kreative",
+   "dauer": "ca. 2 Stunden",
+   "voraussetzungen": "keine",
+   "lernziel": "Verstehen, wie Modelle mehrere Medientypen verarbeiten, und die richtige Modellklasse je Aufgabe wählen.",
+   "steps": [
+    {
+     "slug": "multimodale-modelle",
+     "warum": "Der Architektur-Überblick: Wie Bild, Audio und Video zu Tokens werden und warum ein Transformer alle verarbeiten kann."
+    },
+    {
+     "slug": "bildverstaendnis-praxis",
+     "warum": "Die wichtigste Anwendung: Dokumente, Screenshots und Diagramme lesen lassen - inklusive der Pflicht zur Verifikation."
+    },
+    {
+     "slug": "audio-sprach-ki",
+     "warum": "Sprache als Ein- und Ausgabe: Erkennen, Erzeugen und die Regeln für Stimmklone."
+    },
+    {
+     "slug": "video-ki",
+     "warum": "Die zeitliche Dimension: Video-Diffusion, Werkzeugmarkt und Shot-Workflow."
+    },
+    {
+     "slug": "ki-modelle",
+     "warum": "Die Porträts aktueller multimodaler Modelle zum Vertiefen und Vergleichen."
+    },
+    {
+     "slug": "benchmarks/osworld",
+     "warum": "Computer Use als Grenzfall des Bildverständnisses: Modelle, die Oberflächen lesen und bedienen - und wie man das misst."
+    }
+   ],
+   "terms": [
+    "Vision-Language-Modell",
+    "Multimodal",
+    "Bild-Tokenizer",
+    "Audio-Language-Modell",
+    "Computer Use"
+   ],
+   "check": {
+    "praxis": [
+     "Ordne fünf Aufgaben der richtigen Modellklasse zu (VLM, Text-to-Image, Text-to-Video, Audio-Language, Computer Use): (1) Diagramm erklären lassen, (2) Werbe-Shot aus Text erzeugen, (3) Rechnung aus Foto auslesen, (4) Sprachassistent mit eigener Stimme, (5) Formular automatisch im Browser ausfüllen.",
+     "Ein Modell liest aus einem Liniendiagramm einen Umsatzanstieg ab. Beschreibe, warum du den Wert nicht ungeprüft übernimmst und wie du stattdessen vorgehst."
+    ],
+    "quiz": [
+     {
+      "q": "Was ist der verbindende Mechanismus aller multimodalen Modelle?",
+      "a": "Tokenisierung: Text, Bild, Audio und Video werden in Symbole oder Vektoren zerlegt, die ein gemeinsamer Transformer verarbeitet."
+     },
+     {
+      "q": "Was unterscheidet CLIP von einem Vision-Language-Modell wie LLaVA?",
+      "a": "CLIP ordnet Bild und Text nur einander zu (verstehen ohne Erzeugen); ein VLM beantwortet Fragen zu Bildern in freiem Text."
+     },
+     {
+      "q": "Warum hinken Audio- und Videofähigkeiten den Bildfähigkeiten hinterher?",
+      "a": "Beschriftete Trainingspaare sind der Engpass: Bild-Text-Paare existieren milliardenfach, gut beschriebene Audio- und Video-Daten sind rarer und teurer."
+     },
+     {
+      "q": "Nenne zwei dokumentierte Schwächen aktueller Vision-Modelle.",
+      "a": "Z. B. präzises räumliches Ablesen (Achsen, Zählen) und das Verwechseln ähnlicher Objekte - deshalb Verifikationspflicht."
+     },
+     {
+      "q": "Welche Modellklasse wählst du, um eine Rechnung aus einem Foto auszulesen?",
+      "a": "Ein Vision-Language-Modell (Bildverständnis); für die reine Massenextraktion fester Felder bleiben OCR-Pipelines eine Alternative."
+     }
+    ]
+   }
+  }
+ ]
+}

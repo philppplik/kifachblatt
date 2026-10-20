@@ -1,0 +1,224 @@
+{
+ "slug": "video-ki",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Video-KI: Stand der Technik, Werkzeuge, Grenzen",
+ "dek": "Videomodelle nach dem Sora-Aus: Was Veo 3.1, Runway Gen-4.5 und Kling 3.0 können, wie Video-Diffusion funktioniert und woran die Clips bis heute scheitern.",
+ "published": "2026-10-16T09:30:00+02:00",
+ "modified": "2026-10-20T07:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Video-KI",
+  "Text-to-Video",
+  "Veo",
+  "Runway",
+  "Kling",
+  "Diffusion"
+ ],
+ "key_takeaways": [
+  "OpenAI hat Sora im März 2026 eingestellt; das Feld führen nun unter anderem Google Veo 3.1, Runway Gen-4.5 und Kling 3.0 an (Stand: 20. Oktober 2026).",
+  "Video-Modelle sind im Kern Diffusionsmodelle über Raum und Zeit: Sie entrauschen nicht ein Bild, sondern eine Sequenz von Bildern zugleich.",
+  "Stärken: kurze Clips, Stimmungen, Werbemotive, Bild-zu-Video-Animation. Schwächen: Physik, Kontinuität über Schnitte, Text, lange Handlungsbögen.",
+  "Praxis-Workflow: Storyboard in Einzelshots denken, pro Shot mehrere Varianten erzeugen, im Schnittprogramm erst zum Film fügen - nicht einen ganzen Film am Stück erwarten.",
+  "Kennzeichnungspflichten und Urheberfragen sind bei Bewegtbild besonders sensibel (Täuschungspotenzial); sichtbare Labels und Content Credentials gehören zum Standard-Workflow."
+ ],
+ "hero": {
+  "alt": "Schematischer Filmstreifen mit fünf Einzelbildern: Aus Punktgewolk verdichtet sich von Bild zu Bild eine geometrische Figur; darunter Pfeile für die Zeitachse.",
+  "caption": "Video-Diffusion schematisch: Eine Bildsequenz wird über die Zeitachse gemeinsam entrauscht. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Video-KI ist das jüngste und beweglichste Feld der generativen Medienmodelle - im wörtlichen und im Markt-Sinn. Wer 2024 oder 2025 mit Sora experimentiert hat, muss heute umdenken: OpenAI hat die Video-Plattform im März 2026 eingestellt, inklusive eines mit Disney vereinbarten Großdeals [1][2]. Diese Seite sortiert den Stand Oktober 2026: welche Werkzeuge tragen, wie die Technik funktioniert und wo die Grenzen liegen. Wie Bildmodelle grundsätzlich lernen, erklärt [Wie Bildmodelle lernen](/wie-bildmodelle-lernen)."
+  },
+  {
+   "t": "h2",
+   "x": "Der Markt nach dem Sora-Aus"
+  },
+  {
+   "t": "p",
+   "x": "Am 24. März 2026 berichteten Agenturen übereinstimmend, dass OpenAI Sora abschaltet [1][2]. Für Anwender ändert das die Landkarte: Die meistgenannten Alternativen sind derzeit Googles Veo 3.1 [3], Runways Gen-4.5 [4] und Kling 3.0 des chinesischen Anbieters Kuaishou [5]."
+  },
+  {
+   "t": "table",
+   "caption": "Verbreitete Video-KI-Werkzeuge, Stand 20. Oktober 2026. Quellen: Herstellerseiten [3][4][5].",
+   "head": [
+    "Werkzeug",
+    "Anbieter",
+    "Charakteristik"
+   ],
+   "rows": [
+    [
+     "Veo 3.1",
+     "Google DeepMind",
+     "Text- und Bild-zu-Video, starker Fokus auf physikalische Plausibilität und Audio [3]"
+    ],
+    [
+     "Runway Gen-4.5",
+     "Runway",
+     "Kreativ-Werkzeugkasten für Filmschaffende, Text-zu-Video mit Editor-Workflow [4]"
+    ],
+    [
+     "Kling 3.0",
+     "Kuaishou",
+     "Text- und Bild-zu-Video, lange Clips, große Nutzerbasis in Asien [5]"
+    ]
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Stand beachten",
+   "x": "Versionen und Verfügbarkeit ändern sich in Wochenfrist. Diese Tabelle bildet den 20. Oktober 2026 ab; vor Entscheidungen die Herstellerseiten prüfen."
+  },
+  {
+   "t": "h2",
+   "x": "Wie Video-Modelle arbeiten"
+  },
+  {
+   "t": "p",
+   "x": "Die meisten Video-Modelle sind [Diffusionsmodelle](/glossar#diffusionsmodell) mit einer zusätzlichen Dimension: Statt ein einzelnes Bild zu entrauschen, entrauschen sie einen Block aus vielen Einzelbildern (Frames) gleichzeitig - über Raum und Zeit. Ein [Text-to-Video-Modell](/glossar#text-to-video-modell) bekommt den Prompt als Steuerung, wie beim Bildmodell über Text-Einbettungen; bei Bild-zu-Video kommt ein Startbild als weitere Bedingung dazu. Die technischen Grundlagen (Rauschen, Entrauschen, Latentraum) sind dieselben wie bei Bildmodellen [6]."
+  },
+  {
+   "t": "p",
+   "x": "Die Zeitdimension ist auch der Grund, warum Video so viel schwerer ist als Bild: Das Modell muss nicht nur plausible Pixel liefern, sondern plausible Veränderung - Bewegung, Perspektivwechsel, das Fortbestehen von Objekten. Eine Analogie: Ein Bildmodell malt ein überzeugendes Standbild, ein Videomodell muss zusätzlich Regie führen."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Werkzeuge heute können"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Kurze Clips aus Text: einige Sekunden bis hin zu rund einer Minute je nach Modell und Einstellung, in sozialen Formaten und in HD.",
+    "Bild-zu-Video: Ein vorhandenes Bild (etwa ein generiertes Standbild) wird animiert - der zuverlässigste Weg zu optischer Konsistenz.",
+    "Stimmungen und Stil: Lichtstimmungen, Kamerafahrten und Kunststile sind die größte Stärke; Werbe- und Social-Motive sind die häufigste Anwendung.",
+    "Zunehmend Audio: Modelle wie Veo 3.1 erzeugen Tonspuren (Geräusche, teils Dialoge) direkt mit [3]."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Woran sie scheitern"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Physik: Flüssigkeiten, Stoffe, Kollisionen und Schwerkraft wirken bei genauem Hinsehen oft falsch - das Modell ahmt Bewegungsstatistik nach, es simuliert nicht.",
+    "Kontinuität: Objekte und Personen verändern sich über die Zeit (Kleidung, Anzahl der Finger, Hintergrunddetails), besonders über Schnitte hinweg.",
+    "Text und Logos: Wie bei Bildmodellen ist gerenderte Schrift unzuverlässig; Markenzeichen gehören nicht in generierte Clips.",
+    "Lange Bögen: Narrative mit Anfang und Ende, Dialoge mit Timing und konsistente Figuren über viele Einstellungen sind weiterhin Handarbeit im Schnitt."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Der Praxis-Workflow"
+  },
+  {
+   "t": "p",
+   "x": "Wer heute mit Video-KI arbeitet, denkt in Einstellungen, nicht in Filmen:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Storyboard: Den Clip in Einzelshots von wenigen Sekunden zerlegen; pro Shot ein Prompt.",
+    "Stil-Anker: Ein Referenzbild oder einen festen Prompt-Baustein für alle Shots nutzen, damit die Optik zusammenpasst.",
+    "Varianten: Pro Shot mehrere Generierungen; die Trefferquote pro Shot ist gut, die für eine ganze Sequenz nicht.",
+    "Schnitt: Die Einzelclips im Schnittprogramm zum Film fügen; Text, Grafik und Ton dort ergänzen, nicht im Prompt."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Preislich arbeiten fast alle Anbieter mit Abos oder Credits pro Sekunde; wegen der schnellen Änderungen verlinken wir statt Zahlen die Herstellerseiten [3][4][5]. Eigene Rechnung lohnt sich trotzdem: Überschlage die erzeugten Sekunden Rohmaterial pro fertiger Sekunde Film - Erfahrungswerte der Branche sprechen von einem Vielfachen des Endprodukts."
+  },
+  {
+   "t": "h2",
+   "x": "Recht und Kennzeichnung"
+  },
+  {
+   "t": "p",
+   "x": "Bei bewegtem Bild mit Ton ist das Täuschungspotenzial besonders hoch (Stichwort Deepfakes). Zwei Regeln gehören deshalb in jeden Workflow: sichtbare Kennzeichnung (\"KI-generiert\") und maschinenlesbare Herkunftsnachweise nach C2PA, wo die Werkzeuge sie einbetten [7]. Rechtsfragen - von Urheberrecht an Stil und Ausgabe bis zu Persönlichkeitsrechten abgebildeter Menschen - behandeln wir einzeln auf [Urheberrecht und Kennzeichnung bei KI-Medien](/urheberrecht-ki-medien); dort wie hier gilt: keine Rechtsberatung, Stand beachten."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Video-KI ist kein Film-Automat, sondern ein sehr starkes Werkzeug für kurze, stimmungsvolle Einstellungen. Der Sora-Ausstieg von OpenAI zeigt zugleich, wie jung und volatil dieser Markt ist: Werkzeugentscheidungen sollten kurze Bindungsfristen und exportierbare Ergebnisse haben. Für den Überblick über den gesamten Medienmix empfiehlt sich der Lernpfad [Kreative: Bild-, Audio- und Video-KI](/lernpfade)."
+  }
+ ],
+ "method": "Grundlage sind Berichte von Reuters und BBC zur Sora-Einstellung (März 2026) sowie die Produkt- und Dokumentationsseiten von Google DeepMind, Runway und Kuaishou, alle abgerufen am 20. Oktober 2026. Die Funktionsweise der Video-Diffusion folgt der Beschreibung der Bild-Diffusion in [6]. Der Workflow ist redaktionelle Praxiserfahrung, keine Messung.",
+ "limitations": [
+  "Wir haben die genannten Modelle nicht systematisch selbst vermessen; Fähigkeitsangaben stützen sich auf Herstellerangaben und Berichterstattung.",
+  "Preise, Limits und Verfügbarkeit ändern sich laufend und werden bewusst nicht genannt.",
+  "Rechtliche Hinweise sind Einordnung, keine Rechtsberatung."
+ ],
+ "faq": [
+  {
+   "q": "Gibt es Sora noch?",
+   "a": "Nein. OpenAI hat die Video-Plattform Sora im März 2026 eingestellt; auch ein vereinbartes Geschäft mit Disney wurde abgesagt [1][2]. Aktuelle Alternativen sind etwa Google Veo 3.1, Runway Gen-4.5 und Kling 3.0 [3][4][5]."
+  },
+  {
+   "q": "Wie lang können KI-Videos sein?",
+   "a": "Die Werkzeuge liefern je nach Modell und Einstellung Clips von wenigen Sekunden bis zu rund einer Minute. Längere Filme entstehen im Schnitt aus vielen Einzelshots - der Versuch, einen ganzen Film in einem Prompt zu erzeugen, scheitert an Kontinuität."
+  },
+  {
+   "q": "Warum sehen Hände und Physik in KI-Videos oft falsch aus?",
+   "a": "Die Modelle lernen Bewegungsstatistik, keine Physiksimulation. Sie reproduzieren, wie Bewegung typischerweise aussieht, nicht, wie sie funktioniert - Details wie Hände, Flüssigkeiten und Kollisionen sind dafür die härtesten Fälle."
+  },
+  {
+   "q": "Muss ich KI-Videos kennzeichnen?",
+   "a": "Aus Transparenzgründen ja - sichtbar und wo möglich maschinenlesbar (C2PA) [7]. Zur Rechtslage siehe [Urheberrecht und Kennzeichnung bei KI-Medien](/urheberrecht-ki-medien); keine Rechtsberatung."
+  }
+ ],
+ "related": [
+  "wie-bildmodelle-lernen",
+  "audio-sprach-ki"
+ ],
+ "sources": [
+  {
+   "title": "OpenAI drops AI video tool Sora, startling Disney, sources say",
+   "publisher": "Reuters",
+   "url": "https://www.reuters.com/technology/openai-set-discontinue-sora-video-platform-app-wsj-reports-2026-03-24/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Sora: OpenAI closes AI video app and cancels $1bn Disney deal",
+   "publisher": "BBC News",
+   "url": "https://www.bbc.com/news/articles/c3w3e467ewqo",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Veo 3.1",
+   "publisher": "Google DeepMind",
+   "url": "https://deepmind.google/models/veo/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Runway Gen-4.5: State-of-the-Art AI Video Generation",
+   "publisher": "Runway",
+   "url": "https://runway.com/research/introducing-runway-gen-4.5",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Kling AI Launches 3.0 Model",
+   "publisher": "Kuaishou Technology (Investor Relations)",
+   "url": "https://ir.kuaishou.com/news-releases/news-release-details/kling-ai-launches-30-model-ushering-era-where-everyone-can-be/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "High-Resolution Image Synthesis with Latent Diffusion Models (Rombach et al., 2022)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2112.10752",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Coalition for Content Provenance and Authenticity (C2PA)",
+   "publisher": "C2PA",
+   "url": "https://c2pa.org/",
+   "accessed": "2026-10-20"
+  }
+ ]
+}

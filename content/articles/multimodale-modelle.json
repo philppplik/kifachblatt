@@ -1,0 +1,211 @@
+{
+ "slug": "multimodale-modelle",
+ "lang": "de",
+ "section": "architektur",
+ "type": "explainer",
+ "title": "Multimodale Modelle verstehen: Tokenizer für Bild, Audio, Video",
+ "dek": "Ein Modell, viele Sinne: Wie Text, Bild, Audio und Video als Tokens im selben Modell landen, welche Architekturen das tragen und was das für die Wahl heißt.",
+ "published": "2026-10-17T08:30:00+02:00",
+ "modified": "2026-10-20T07:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Multimodal",
+  "Vision-Language-Modell",
+  "Tokenizer",
+  "CLIP",
+  "Architektur",
+  "Grundlagen"
+ ],
+ "key_takeaways": [
+  "Multimodal heißt: Ein Modell verarbeitet mehrere Medientypen - Text, Bild, Audio, Video - in einem gemeinsamen Rechenwerk.",
+  "Der verbindende Trick ist die Tokenisierung: Bilder, Töne und Filme werden wie Wörter in diskrete oder vektorielle Symbole zerlegt, die ein Transformer verarbeiten kann.",
+  "Zwei Architektur-Familien prägen das Feld: kontrastive Modelle wie CLIP (verstehen, erzeugen nicht) und generative Modelle, die Bild und Text in einem Fluss lesen und schreiben.",
+  "Die Datenlage entscheidet: Beschriftete Bild-Text-Paare sind im Netz reichlich, sauber beschriebene Audio- und Video-Daten deutlich seltener - daran hängen die Fähigkeiten.",
+  "Für die Modellwahl zählt die Aufgabe: Lesen und Verstehen (VLM), Erzeugen (Text-to-Image/-Video) oder Beides (Any-to-Any) sind unterschiedliche Klassen."
+ ],
+ "hero": {
+  "alt": "Diagramm: Drei Eingangsspalten - Textzeilen, ein gerastertes Bild und eine Audiowelle - laufen durch jeweils einen Tokenizer-Kasten und münden in einen gemeinsamen Strom von Token, der in einen Transformer-Kasten führt.",
+  "caption": "Multimodalität schematisch: Alle Medien werden tokenisiert und landen in einem gemeinsamen Modell. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Sprachmodelle verarbeiten Text. [Multimodale](/glossar#multimodal) Modelle verarbeiten zusätzlich Bilder, Audio oder Video - als Eingabe (ein Foto beschreiben), als Ausgabe (ein Bild erzeugen) oder in beide Richtungen. Diese Seite erklärt den gemeinsamen Mechanismus, der das möglich macht, die beiden Architektur-Familien dahinter und was das für die Auswahl eines Modells bedeutet. Vertiefungen: [Wie Bildmodelle lernen](/wie-bildmodelle-lernen), [Audio- und Sprach-KI](/audio-sprach-ki), [Video-KI](/video-ki)."
+  },
+  {
+   "t": "h2",
+   "x": "Der verbindende Trick: Alles wird Token"
+  },
+  {
+   "t": "p",
+   "x": "Textmodelle zerlegen Sätze mit einem [Tokenizer](/glossar#tokenizer) in [Tokens](/glossar#token) - Zahlen aus einem festen Vokabular. Multimodale Modelle wenden dieselbe Idee auf andere Medien an:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Bild: Ein [Bild-Tokenizer](/glossar#bild-tokenizer) (etwa ein VQ-VAE [4]) zerlegt ein Bild in Kacheln und ersetzt jede durch den passenden Eintrag aus einem gelernten Codebuch - das Bild wird zur Symbolsequenz. Alternativ schneiden [Vision-Transformer](/glossar#vision-transformer) das Bild in Patches und betten jede Patch als Vektor ein, ohne diskrete Symbole.",
+    "Audio: Die Wellenform wird in Spektrogramme übersetzt (Frequenz über Zeit) und patchweise eingebettet; manche Modelle lernen zusätzlich diskrete Audio-Tokens, um Sprache auch erzeugen zu können ([Audio-Language-Modell](/glossar#audio-language-modell)).",
+    "Video: Ein Film ist eine Sequenz von Bildern plus Zeit; Video-Tokenizer zerlegen Blöcke aus Raum und Zeit in Tokens."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Danach läuft alles durch denselben Apparat: ein [Transformer](/glossar#transformer), der Aufmerksamkeit über die Token-Sequenz rechnet - egal, ob ein Token für ein Wort, eine Bildkachel oder ein Audio-Stück steht. Das ist die eigentliche Multimodalität: nicht viele Modelle nebeneinander, sondern ein gemeinsamer Raum."
+  },
+  {
+   "t": "h2",
+   "x": "Familie 1: Kontrastive Modelle wie CLIP"
+  },
+  {
+   "t": "p",
+   "x": "Der erste Durchbruch beim Verbinden von Bild und Text war CLIP (OpenAI, 2021): Zwei Encoder - einer für Bilder, einer für Text - wurden auf rund 400 Millionen Bild-Text-Paaren so trainiert, dass zusammengehörende Paare im [Embedding](/glossar#embedding)-Raum nahe beieinander liegen und unpassende weit weg ([kontrastives Lernen](/glossar#kontrastives-lernen)) [1]. CLIP erzeugt nichts, aber es \"versteht\" Ähnlichkeit zwischen Text und Bild - und wurde damit zum Baustein für Suche, Klassifikation ohne Training (Zero-Shot) und zur Steuerung von Bildgeneratoren (siehe [Wie Bildmodelle lernen](/wie-bildmodelle-lernen))."
+  },
+  {
+   "t": "h2",
+   "x": "Familie 2: Generative multimodale Modelle"
+  },
+  {
+   "t": "p",
+   "x": "Die zweite Familie kann nicht nur zuordnen, sondern antworten: Diese Modelle lesen Bild und Text in einem gemeinsamen Fluss und erzeugen Text (oder Medien) als Ausgabe. Zwei Entwicklungslinien sind prägend:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Angeschlossenes Sehen: Modelle wie LLaVA koppeln einen vortrainierten Bild-Encoder über eine Übersetzungsschicht an ein Sprachmodell und trainieren dann mit Bild-Instruktionsdaten nach (Visual Instruction Tuning) [4].",
+    "Nativ multimodal: Modelle wie Googles Gemini werden von Beginn an gemeinsam auf Text, Bild, Audio und Video trainiert; der Technical Report beschreibt eine einzige Architektur für alle Modalitäten [2]. GPT-4V(ision) war OpenAIs erster breiter Schritt in Richtung Bildverstehen im Chat; die System Card dokumentiert Stärken und Risiken [3]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Der Unterschied ist praktisch relevant: Angebaute Sehfähigkeit erbt Stärken und Schwächen des Sprachmodells und des Bild-Encoders getrennt; natives Training verspricht tiefere Wechselwirkungen - etwa ein Diagramm nicht nur zu beschreiben, sondern mit dem Text darüber zu schlussfolgern."
+  },
+  {
+   "t": "h2",
+   "x": "Warum die Datenlage die Fähigkeiten bestimmt"
+  },
+  {
+   "t": "p",
+   "x": "Multimodale Fähigkeiten hängen an beschrifteten Paaren. Bild-Text-Paare existieren im Netz in Milliardenhöhe (Foto plus Beschreibung) - deshalb sind Bildmodelle so weit. Sauber transkribierte Audio- und Video-Daten sind seltener und teurer; entsprechend holen Audio- und Videofähigkeiten erst auf. Auch [synthetische Daten](/glossar#synthetische-daten) spielen eine wachsende Rolle: Modelle beschriften Medien für das Training anderer Modelle [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Was heute geht - und wo die Grenzen liegen"
+  },
+  {
+   "t": "p",
+   "x": "Die System Card zu GPT-4V ist ein ehrlicher Lagebericht der Kategorie: Stark sind die Modelle beim Beschreiben und Einordnen von Bildinhalten, beim Lesen von Text in Bildern und beim Beantworten alltagstauglicher Fragen zu Fotos und Screenshots. Zu den dokumentierten Schwächen gehören räumliches Schlussfolgern, präzises Zählen, medizinische oder sonstige risikoreiche Deutungen und die Verwechslung ähnlicher Objekte [3]. Diese Muster gelten bis heute für die ganze Modellklasse - Details zur praktischen Nutzung in [Bildverständnis in der Praxis](/bildverstaendnis-praxis)."
+  },
+  {
+   "t": "h2",
+   "x": "Modellklassen richtig wählen"
+  },
+  {
+   "t": "p",
+   "x": "Für die Auswahl zählt die Richtung der Aufgabe:"
+  },
+  {
+   "t": "table",
+   "caption": "Modellklassen nach Ein- und Ausgabe (redaktionelle Einordnung).",
+   "head": [
+    "Aufgabe",
+    "Klasse",
+    "Beispiel"
+   ],
+   "rows": [
+    [
+     "Bilder lesen, beschreiben, befragen",
+     "Vision-Language-Modell (VLM)",
+     "Diagramm erklären lassen"
+    ],
+    [
+     "Bilder aus Text erzeugen",
+     "Text-to-Image-Modell",
+     "Hero-Grafik aus Prompt"
+    ],
+    [
+     "Clips aus Text oder Bild erzeugen",
+     "Text-to-Video-Modell",
+     "Werbe-Shot"
+    ],
+    [
+     "Sprache hören und sprechen",
+     "Audio-Language-Modell",
+     "Sprachassistent mit Stimme"
+    ],
+    [
+     "Alles in beide Richtungen",
+     "Any-to-Any",
+     "Foto zeigen, Kommentar hören"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Konkrete Modelle und ihre Porträts sammelt der Hub [KI-Modelle](/ki-modelle); für Aufgaben am Computer-Bildschirm (Klicks, Formulare) ist die eigene Klasse [Computer Use](/glossar#computer-use) relevant, gemessen etwa in [OSWorld](/benchmarks/osworld)."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Multimodalität ist kein Extra-Feature, sondern die Richtung der gesamten Modellentwicklung: ein Transformer, viele Token-Arten. Wer verstanden hat, dass Bild, Ton und Film nur weitere Alphabete für denselben Apparat sind, kann Modellankündigungen souverän einordnen - und wählt für die eigene Aufgabe die richtige Klasse statt des lautesten Namens."
+  }
+ ],
+ "method": "Grundlage sind die Originalarbeiten zu CLIP und LLaVA, der Gemini Technical Report und die GPT-4V(ision) System Card, alle abgerufen am 20. Oktober 2026. Architektur-Beschreibungen sind vereinfachte Zusammenfassungen dieser Quellen; die Klassen-Tabelle ist eine redaktionelle Einordnung.",
+ "limitations": [
+  "Hersteller veröffentlichen zu aktuellen Modellen nur noch begrenzt Architektur-Details; wo keine Primärquelle existiert, sagen wir das nicht zu.",
+  "Die Beschreibung von Video- und Audio-Tokenizern ist stark vereinfacht; Verfahren unterscheiden sich je nach Modell.",
+  "Keine eigenen Messungen; Fähigkeitsaussagen folgen den zitierten Dokumenten."
+ ],
+ "faq": [
+  {
+   "q": "Was bedeutet multimodal genau?",
+   "a": "Ein Modell verarbeitet mehr als einen Medientyp - etwa Text und Bild - in einem gemeinsamen Rechenwerk. Eingabe, Ausgabe oder beides können nicht-textuell sein."
+  },
+  {
+   "q": "Sehen diese Modelle wirklich?",
+   "a": "Sie verarbeiten Bildmerkmale zu Antworten, aber ohne menschliche Wahrnehmung: kein räumliches Vorstellungsvermögen, keine Aufmerksamkeit wie ein Betrachter. Die System Cards dokumentieren typische Fehler wie falsches Zählen und verwechselte Objekte [3]."
+  },
+  {
+   "q": "Was ist der Unterschied zwischen CLIP und einem VLM?",
+   "a": "CLIP ordnet Bild und Text einander zu (verstehen ohne Erzeugen) [1]. Ein Vision-Language-Modell wie LLaVA oder GPT-4V beantwortet Fragen zu Bildern in freiem Text (verstehen und antworten) [3][4]."
+  },
+  {
+   "q": "Warum hinken Audio und Video hinter Bild hinterher?",
+   "a": "Weil beschriftete Trainingspaare der Engpass sind: Bild-Text-Paare gibt es milliardenfach frei im Netz, gut beschriebene Audio- und Video-Daten sind rarer und teurer [2]."
+  }
+ ],
+ "related": [
+  "wie-bildmodelle-lernen",
+  "bildverstaendnis-praxis"
+ ],
+ "sources": [
+  {
+   "title": "Learning Transferable Visual Models From Natural Language Supervision / CLIP (Radford et al., 2021)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2103.00020",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Gemini: A Family of Highly Capable Multimodal Models (Technical Report)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2312.11805",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "GPT-4V(ision) system card",
+   "publisher": "OpenAI",
+   "url": "https://openai.com/index/gpt-4v-system-card/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Visual Instruction Tuning / LLaVA (Liu et al., 2023)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2304.08485",
+   "accessed": "2026-10-20"
+  }
+ ]
+}

@@ -1,0 +1,241 @@
+{
+ "slug": "bild-ki-praxis",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Bild-KI in der Praxis: Prompts, Referenzen, Workflows",
+ "dek": "Vom Prompt zur Bildserie: Midjourney, Firefly und API-Modelle gezielt steuern, typische Fehler prüfen und KI-Bilder sauber kennzeichnen.",
+ "published": "2026-10-14T09:00:00+02:00",
+ "modified": "2026-10-20T07:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Bild-KI",
+  "Prompting",
+  "Midjourney",
+  "Adobe Firefly",
+  "Text-to-Image",
+  "Workflow"
+ ],
+ "key_takeaways": [
+  "Bild-Prompts funktionieren anders als Chat-Prompts: Sie steuern Wahrscheinlichkeiten über Stichwort-Cluster (Motiv, Stil, Komposition, Licht), keine Befehle.",
+  "Die drei verbreiteten Arbeitsweisen: Chat-/API-Modelle für präzise Aufträge und Text im Bild, Midjourney für stilisierte Ästhetik, Adobe Firefly für die Einbettung in kommerzielle Design-Workflows.",
+  "Referenzbilder und Editierfunktionen (Bild-zu-Bild, Inpainting) sind der Hebel für Konsistenz - wichtiger als immer längere Prompts.",
+  "Systematische Prüfung schlägt Augenschein: Hände, Text, Physik und Markenlogos sind die vier klassischen Fehlerstellen.",
+  "Kennzeichnung ist Teil des Workflows: C2PA/Content Credentials der Anbieter plus eigene sichtbare Labels, etwa \"KI-generiert\"."
+ ],
+ "hero": {
+  "alt": "Flussdiagramm eines Bild-KI-Workflows in vier Kästen mit Pfeilen: Briefing, Prompt und Referenz, Varianten, Prüfung und Kennzeichnung.",
+  "caption": "Der Redaktions-Workflow für KI-Bilder in vier Schritten. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Die Technik hinter Bildmodellen erklärt die Seite [Wie Bildmodelle lernen](/wie-bildmodelle-lernen). Hier geht es um das Handwerk: Welches Werkzeug wofür, wie ein guter Bild-Prompt aufgebaut ist, wie Referenzen und Editieren funktionieren und wie du Ergebnisse prüfst und kennzeichnest. Stand der Werkzeug-Fakten: 20. Oktober 2026; Versionsstände ändern sich schnell, die Arbeitsweisen bleiben."
+  },
+  {
+   "t": "h2",
+   "x": "Der Werkzeugmarkt in drei Arbeitsweisen"
+  },
+  {
+   "t": "p",
+   "x": "Statt einer endlosen Werkzeugliste hilft eine Einteilung nach Arbeitsweise. Drei Muster decken fast alles ab:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Chat- und API-Modelle (etwa die Bilderzeugung in ChatGPT beziehungsweise über die OpenAI-API [1]): Stärke ist die Befolgung komplexer, verschachtelter Aufträge und lesbarer Text im Bild. Ideal, wenn das Bild eine konkrete Vorgabe exakt umsetzen soll.",
+    "Midjourney: Der Dienst ist seit jeher auf stilisierte, \"fertig aussehende\" Bilder optimiert; aktuell ist Version V8.1 das Standardmodell [3]. Gesteuert wird über Prompts mit Parametern und Referenzen in der Web-Oberfläche [2].",
+    "Adobe Firefly: Adobes Generativ-KI steckt direkt in Photoshop, Illustrator und Express und richtet sich an kommerzielle Workflows; Adobe wirbt mit einer für die kommerzielle Nutzung ausgelegten Trainingsgrundlage und integrierten Content Credentials [4]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Dazu kommen offene Modelle auf Stable-Diffusion-Basis für den lokalen Betrieb - relevant, wenn Bilder das eigene System nicht verlassen dürfen, siehe [Lokale Modelle](/lokale-modelle). Für die Auswahl gilt: Nicht das \"beste\" Modell suchen, sondern das passende Muster - präzise Auftragsarbeit, stilistische Erkundung oder eingebetteter Design-Prozess."
+  },
+  {
+   "t": "h2",
+   "x": "Bild-Prompts: anders als Chat-Prompts"
+  },
+  {
+   "t": "p",
+   "x": "Ein Bild-Prompt ist kein Gespräch, sondern ein Set von Stichwort-Clustern, die die Bildstatistik in eine Richtung schieben (siehe [Wie Bildmodelle lernen](/wie-bildmodelle-lernen)). Bewährt hat sich eine Reihenfolge in fünf Bausteinen:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Motiv: Was ist zu sehen, in einem Satz, konkret (\"eine ältere Buchbinderin an einer Werkbank\" statt \"eine Person\").",
+    "Komposition: Bildausschnitt und Perspektive (\"Großaufnahme der Hände\", \"Vogelperspektive\", \"Format 16:9\").",
+    "Stil: Medium und Referenz (\"Editiorial-Fotografie\", \"Flachzeichnung wie ein Infografik-Icon\", \"Analogfilm-Korn\").",
+    "Licht und Farbe: Stimmung (\"weiches Fensterlicht\", \"kühle Blautöne, ein warmer Akzent\").",
+    "Einschränkungen: Was nicht vorkommen soll - bei Werkzeugen, die Negativ-Prompts unterstützen."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zwei Regeln aus der Praxis: Erstens schlägt Konkretheit Länge - drei präzise Bausteine wirken besser als ein Fließtext. Zweitens lohnt es sich, einen erfolgreichen Prompt als Vorlage zu speichern und nur einen Baustein pro Runde zu ändern; so lernst du, welcher Hebel was bewirkt. Grundlagen zum Prompten allgemein: [Prompt-Grundlagen für Einsteiger](/prompt-grundlagen)."
+  },
+  {
+   "t": "h2",
+   "x": "Referenzen und Editieren: der Konsistenz-Hebel"
+  },
+  {
+   "t": "p",
+   "x": "Die wichtigste Entwicklung der letzten Jahre ist die Bild-Eingabe: Statt alles zu beschreiben, gibst du dem Modell ein Referenzbild mit. Drei Formen sind Standard geworden:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Bild-zu-Bild: Ein vorhandenes Bild wird in einen neuen Stil oder Kontext überführt. Stärke der Abweichung ist meist regelbar - niedrig für Behutsames, hoch für Neuinterpretation.",
+    "Inpainting/Editieren: Ein markierter Bildausschnitt wird neu generiert, der Rest bleibt. Das ist der Weg, um einzelne Fehler (Hände, Text, Logo) zu reparieren, statt das ganze Bild neu zu würfeln [1].",
+    "Stil- und Motiv-Referenzen: Midjourney etwa erlaubt Stil-Referenzen, die die Ästhetik eines Vorbilds auf neue Motive übertragen [2]."
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Praxisregel",
+   "x": "Wenn ein Bild zu 80 Prozent stimmt: nicht neu generieren, sondern die 20 Prozent gezielt editieren. Das spart Runden und hält die Serie konsistent."
+  },
+  {
+   "t": "h2",
+   "x": "Workflow: von der Idee zur Serie"
+  },
+  {
+   "t": "p",
+   "x": "Für Einzelbilder reicht Prompten und Aussuchen. Redaktionen und Marketing brauchen aber Serien - Hero-Bilder, Thumbnails, Kampagnenmotive im gleichen Look. Dafür hat sich ein vierstufiger Workflow bewährt, den wir auch für dieses Magazin nutzen:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Briefing: Motiv, Aussage, Format und No-Gos schriftlich festhalten (z. B. keine fotorealistischen Gesichter realer Personen).",
+    "Stil fixieren: Eine Referenz oder einen erfolgreichen Prompt als Stil-Anker definieren; alle Serienbilder laufen mit demselben Anker.",
+    "Varianten erzeugen und editieren: Mehrere Varianten je Motiv, dann gezielt nachbearbeiten statt neu würfeln.",
+    "Prüfen und kennzeichnen: Checkliste (nächster Abschnitt) abarbeiten, Kennzeichnung setzen, erst dann veröffentlichen."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Qualität prüfen: die vier Fehlerstellen"
+  },
+  {
+   "t": "p",
+   "x": "Die Schwächen der Modelle sind systematisch (siehe [Wie Bildmodelle lernen](/wie-bildmodelle-lernen)), deshalb reicht eine kurze, feste Checkliste:"
+  },
+  {
+   "t": "table",
+   "caption": "Redaktions-Checkliste für KI-Bilder vor Veröffentlichung (eigene Arbeitsliste).",
+   "head": [
+    "Prüfpunkt",
+    "Typischer Fehler",
+    "Gegenmittel"
+   ],
+   "rows": [
+    [
+     "Hände und Gliedmaßen",
+     "Fingerzahl, Gelenke, Verschmelzungen",
+     "Hände im Ausschnitt vermeiden oder per Inpainting nachbessern"
+    ],
+    [
+     "Text im Bild",
+     "Pseudo-Schrift, falsche Buchstaben",
+     "Text nachträglich im Layout setzen statt generieren zu lassen"
+    ],
+    [
+     "Physik und Logik",
+     "Schatten ohne Quelle, unmögliche Spiegelungen, widersprüchliche Perspektive",
+     "Motiv vereinfachen, Realismus-Anspruch senken (Illustrationsstil)"
+    ],
+    [
+     "Marken und Personen",
+     "Verfälschte Logos, Ähnlichkeit mit realen Personen",
+     "Eigene Grafiken/Monogramme nutzen, keine realen Personen abbilden"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zusätzlich gilt der Augenschein-Test in Zielgröße: Ein Hero-Bild wird in voller Breite geprüft, ein Thumbnail in klein. Was in Zielgröße nicht auffällt, ist akzeptabel; was auffällt, wird editiert oder verworfen."
+  },
+  {
+   "t": "h2",
+   "x": "Kennzeichnung und Rechte als Workflow-Schritt"
+  },
+  {
+   "t": "p",
+   "x": "Zwei Ebenen gehören zusammen: die maschinenlesbare und die sichtbare Kennzeichnung. Viele Anbieter betten Content Credentials nach dem C2PA-Standard direkt in die Datei ein; Adobe etwa kennzeichnet Firefly-Bilder so [4][5]. Das ersetzt aber nicht die sichtbare Markierung für Leserinnen und Leser: Dieses Magazin schreibt \"KI-generiert\" direkt ins Bild und die Bildunterschrift (siehe [Redaktionelle Grundsätze](/redaktion))."
+  },
+  {
+   "t": "p",
+   "x": "Rechtlich relevant sind außerdem Trainingsdaten, Urheberpersönlichkeitsrechte an Stilen und die Frage, wer Rechte am Ausgabebild hat. Das ist ein eigenes, weites Feld - wir behandeln es mit Quellen und Stand-Datum auf der Seite [Urheberrecht und Kennzeichnung bei KI-Medien](/urheberrecht-ki-medien)."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Bild-KI ist kein Knopf für fertige Bilder, sondern ein Werkzeug mit einem eigenen Handwerk: präzise Briefings, Stichwort-Cluster statt Sätze, Referenzen statt Neuwürfen, eine feste Prüfliste und saubere Kennzeichnung. Wer diese fünf Bausteine verinnerlicht, bekommt aus jedem der verbreiteten Werkzeuge verlässlich brauchbare Ergebnisse - und erkennt sofort, wo die Grenzen liegen."
+  }
+ ],
+ "method": "Grundlage sind die offiziellen Dokumentationen und Produktseiten von OpenAI, Midjourney und Adobe sowie die C2PA-Spezifikationsseite, alle abgerufen am 20. Oktober 2026. Der Workflow und die Prüfliste beschreiben die Arbeitsweise dieser Redaktion und sind als Praxisempfehlung, nicht als Messung, zu lesen.",
+ "limitations": [
+  "Werkzeugversionen und Funktionsumfänge ändern sich in Wochenfrist; die genannten Versionsstände gelten für den Abrufzeitpunkt.",
+  "Preise und Abo-Modelle nennen wir bewusst nicht, weil sie sich häufig ändern - bitte auf den Anbieterseiten prüfen.",
+  "Die Checkliste erhebt keinen Anspruch auf Vollständigkeit; Spezialfälle (medizinische Bilder, Beweisfotos) brauchen strengere Verfahren."
+ ],
+ "faq": [
+  {
+   "q": "Welches Bild-KI-Werkzeug ist das beste?",
+   "a": "Es gibt kein generell bestes. Für exakte Aufträge und Text im Bild: Chat-/API-Modelle. Für stilisierte Ästhetik: Midjourney. Für Adobe-Workflows und kommerzielle Sicherheit: Firefly. Für Datenschutz und Kontrolle: lokale Modelle."
+  },
+  {
+   "q": "Warum ignoriert das Modell Teile meines Prompts?",
+   "a": "Bild-Prompts sind keine Befehle, sondern Gewichtungen. Je mehr Bausteine, desto mehr verwässert der Einzelne. Kürzen, das Wichtigste nach vorn, Rest per Editieren nacharbeiten."
+  },
+  {
+   "q": "Wie bekomme ich eine konsistente Figur über mehrere Bilder?",
+   "a": "Über Referenzbilder (Bild-zu-Bild, Charakter-/Stil-Referenzen), nicht über immer detailliertere Beschreibungen. Ein fixierter Referenz-Workflow ist zuverlässiger als jeder Prompt-Text."
+  },
+  {
+   "q": "Muss ich KI-Bilder kennzeichnen?",
+   "a": "Aus Transparenzgründen: ja, und dieses Magazin tut es immer sichtbar. Zur Rechtslage (AI Act, Urheberrecht) siehe [Urheberrecht und Kennzeichnung bei KI-Medien](/urheberrecht-ki-medien) - keine Rechtsberatung."
+  }
+ ],
+ "related": [
+  "wie-bildmodelle-lernen",
+  "multimodale-modelle"
+ ],
+ "sources": [
+  {
+   "title": "Image generation (API-Dokumentation)",
+   "publisher": "OpenAI",
+   "url": "https://platform.openai.com/docs/guides/image-generation",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Midjourney Documentation",
+   "publisher": "Midjourney",
+   "url": "https://docs.midjourney.com/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "V8.1 is now the default model on Midjourney",
+   "publisher": "Midjourney Updates",
+   "url": "https://updates.midjourney.com/v8-1-is-now-the-default-model/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Adobe Firefly - Generative AI for Creatives",
+   "publisher": "Adobe",
+   "url": "https://www.adobe.com/products/firefly.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Coalition for Content Provenance and Authenticity (C2PA)",
+   "publisher": "C2PA",
+   "url": "https://c2pa.org/",
+   "accessed": "2026-10-20"
+  }
+ ]
+}
