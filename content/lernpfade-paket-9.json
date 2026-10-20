@@ -1,0 +1,251 @@
+{
+ "title": "Lernpfade Paket 9: Produkt & Kosten",
+ "intro": "Zwei Wege für Produktverantwortliche und Entscheider: KI-Features sauber konzipieren (LP-14) und KI-Kosten rechnen statt schätzen (LP-20). Ergänzung zu content/lernpfade.json - wird beim Merge der Pakete eingebunden.",
+ "paths": [
+  {
+   "id": "produktmanager-ki-features",
+   "name": "Produktmanager: KI-Features konzipieren",
+   "frage": "Ich muss entscheiden, ob und wie ein KI-Feature in unser Produkt kommt.",
+   "intro": "Von der Idee zum belastbaren MVP: Machbarkeit einschätzen, Qualität messen statt hoffen, Kosten skalieren und UX-Fallstricke vermeiden. Keine technischen Vorkenntnisse nötig.",
+   "level": "Praktiker/Entscheider",
+   "zeit": "~2 Stunden",
+   "zielgruppe": "Produktmanager, Product Owner, Gründer",
+   "lernziel": "KI-Features von Idee bis MVP bewerten: Machbarkeit, Qualität messen, Kosten skalieren, UX-Fallstricke vermeiden.",
+   "voraussetzungen": "keine technischen",
+   "steps": [
+    {
+     "slug": "was-ist-ein-ki-agent",
+     "warum": "Die Grundlage: Was ein Agent anders macht als ein Chatbot und warum das für Feature-Ideen wichtig ist."
+    },
+    {
+     "slug": "ki-feature-canvas",
+     "warum": "Das Werkzeug dieses Pfads: neun Felder, mit denen Sie jede KI-Feature-Idee in 30 Minuten auf Machbarkeit und Nutzen prüfen."
+    },
+    {
+     "slug": "modelle-und-agenten-evaluieren",
+     "warum": "Wie Sie Qualität mit Zeithorizont, Pass-Rate und Konfidenzintervall messen statt dem Demo-Video zu glauben."
+    },
+    {
+     "slug": "evals-statt-bauchgefuehl",
+     "warum": "Der Praxisteil: In einer Stunde eine eigene Testmenge bauen, mit der Sie Modelle fair vergleichen."
+    },
+    {
+     "slug": "ki-kosten-roi",
+     "warum": "Was das Feature kostet und was es bringt: die ROI-Rechnung, bevor das Budget fließt."
+    },
+    {
+     "slug": "ki-ux",
+     "warum": "Damit das Feature ankommt: Vertrauen kalibrieren, Fehlerfälle und Fallbacks gestalten, Erwartungen steuern."
+    }
+   ],
+   "terms": [
+    "Zeithorizont (Time Horizon)",
+    "Pass-Rate",
+    "Human-in-the-Loop",
+    "Grenzkosten"
+   ],
+   "abschluss_check": {
+    "beschreibung": "Nehmen Sie einen echten KI-Feature-Pitch (eigenen oder fremden) und durchleuchten Sie ihn mit diesen sechs Prüffragen. Danach testen Sie Ihr Wissen im Fünf-Fragen-Quiz.",
+    "prueffragen": [
+     "Lässt sich der Nutzen in einem Satz ohne KI-Schlagwort erklären? Wenn nicht, ist das Problem noch nicht klar.",
+     "Ist begründet, warum dafür ein KI-Modell nötig ist - oder würde es eine einfache Regel oder Suche auch tun? (Googles ML-Regel Nr. 1)",
+     "Gibt es eine schriftliche „gelöst“-Regel und eine Testmenge aus echten Fällen, oder nur Demo-Eindrücke?",
+     "Ist die Qualität mit Stichprobengröße und Konfidenzintervall angegeben - und für welche Aufgabenlänge (Zeithorizont) gilt sie?",
+     "Sind die Kosten pro gelöster Aufgabe gerechnet und skalieren sie bei der erwarteten Nutzung tragbar?",
+     "Sind Fehlerfälle, Fallbacks und die Rolle des Menschen (Human-in-the-Loop) definiert, bevor gebaut wird?"
+    ],
+    "quiz": [
+     {
+      "frage": "Was gehört ins erste Feld des KI-Feature-Canvas?",
+      "optionen": [
+       "Das passende Modell",
+       "Das Nutzerproblem und der erwartete Nutzen",
+       "Die Prompt-Vorlage",
+       "Das Budget"
+      ],
+      "antwort": 1,
+      "erklaerung": "Wer mit dem Modell beginnt, baut Lösungen ohne Problem. Der Canvas startet bei Problem und Nutzen."
+     },
+     {
+      "frage": "Warum reicht ein überzeugendes Demo-Video nicht als Qualitätsnachweis?",
+      "optionen": [
+       "Videos sind immer gefälscht",
+       "Es zeigt Einzelfälle ohne Stichprobe, „gelöst“-Regel und Konfidenz",
+       "Demos sind zu langsam",
+       "Modelle funktionieren im Video anders"
+      ],
+      "antwort": 1,
+      "erklaerung": "Eine Demo ist ein bester Fall. Erst ein Eval mit echten Fällen und fester Bewertungsregel misst die tatsächliche Quote."
+     },
+     {
+      "frage": "Was beschreibt der Zeithorizont eines Agenten?",
+      "optionen": [
+       "Die Antwortzeit pro Anfrage",
+       "Die Länge der Aufgaben, die er mit einer gegebenen Erfolgswahrscheinlichkeit löst",
+       "Die Dauer seines Trainings",
+       "Das Ablaufdatum des Modells"
+      ],
+      "antwort": 1,
+      "erklaerung": "Der Zeithorizont (METR) sagt, bei welcher Aufgabenlänge ein Modell noch zuverlässig liefert - zentrale Größe für Machbarkeit."
+     },
+     {
+      "frage": "Was ist ein Fallback in der KI-UX?",
+      "optionen": [
+       "Ein zweites, größeres Modell",
+       "Ein definierter Plan B, wenn das Modell unsicher ist oder scheitert",
+       "Eine Wartungsseite",
+       "Ein Rabatt bei Fehlern"
+      ],
+      "antwort": 1,
+      "erklaerung": "Fallbacks (Rückfrage, Mensch, klassische Suche) verhindern, dass Unsicherheit als falsche Sicherheit beim Nutzer ankommt."
+     },
+     {
+      "frage": "Wann ist ein KI-Feature reif für den MVP?",
+      "optionen": [
+       "Wenn der Prompt fertig geschrieben ist",
+       "Wenn Eval-Schwelle, Kosten pro gelöster Aufgabe und Fallback-Plan belastbar stehen",
+       "Wenn der Wettbewerb es auch hat",
+       "Wenn das Modell im Benchmark führt"
+      ],
+      "antwort": 1,
+      "erklaerung": "Messbare Qualität, tragfähige Stückkosten und ein Fehlerplan sind die drei Mindestbedingungen."
+     }
+    ]
+   }
+  },
+  {
+   "id": "ki-kosten-und-roi",
+   "name": "KI-Kosten & ROI: rechnen statt schätzen",
+   "frage": "Ich will wissen, was KI wirklich kostet und ob sich das rechnet.",
+   "intro": "Das Rechenwerkzeug für Entscheider: API-Preise lesen, Gesamtkosten erfassen, Kosten pro gelöster Aufgabe normieren und den Betrieb überwachen. Grundverständnis von Tokens ist hilfreich, aber nicht nötig.",
+   "level": "Entscheider",
+   "zeit": "~2 Stunden",
+   "zielgruppe": "Entscheider, Controller, IT-Leiter",
+   "lernziel": "KI-Kosten vollständig erfassen und steuern: API-Preise, TCO, Kosten pro gelöster Aufgabe, Budget-Alarme.",
+   "voraussetzungen": "keine, Grundverständnis Tokens hilfreich",
+   "steps": [
+    {
+     "slug": "tokens-und-kosten",
+     "warum": "Die Grundeinheit jeder KI-Rechnung: was Tokens sind und warum Ein- und Ausgabe unterschiedlich teuer sind."
+    },
+    {
+     "slug": "inferenz-und-kosten-verstehen",
+     "warum": "Warum jede Antwort Rechenzeit frisst und was das für Preise und Wartezeiten bedeutet."
+    },
+    {
+     "slug": "api-preise-vergleichen",
+     "warum": "Preislisten richtig lesen: Blended Price, Kontextlängen-Staffeln und die Posten, die nicht im großen Preis stehen."
+    },
+    {
+     "slug": "build-vs-buy",
+     "warum": "Die Weiche vor jeder Kostenrechnung: selbst bauen, zukaufen oder mischen - inklusive Total Cost of Ownership."
+    },
+    {
+     "slug": "ki-kosten-roi",
+     "warum": "Von den Stückkosten zum Business Case: Zeitgewinn und Personalkosten gegen die KI-Rechnung stellen."
+    },
+    {
+     "slug": "kosten-pro-aufgabe-messen",
+     "warum": "Die Kernkennzahl dieses Pfads: in vier Schritten messen, was eine gelöste Aufgabe wirklich kostet."
+    },
+    {
+     "slug": "llm-betrieb-monitoring",
+     "warum": "Damit die Rechnung stimmt bleibt: Budgets, Alarme und Qualität im laufenden Betrieb überwachen."
+    }
+   ],
+   "terms": [
+    "Blended Price",
+    "Grenzkosten",
+    "Kosten pro gelöster Aufgabe"
+   ],
+   "abschluss_check": {
+    "beschreibung": "Übung mit Musterlösung: Normieren Sie drei Angebote auf die Kosten pro gelöster Aufgabe. Annahmen für alle drei: eine Aufgabe ist ein Support-Ticket mit 3.000 Eingabetoken und 700 Ausgabetoken pro Versuch; Standardpreise; Fehlversuche werden wiederholt.",
+    "uebung": {
+     "angebote": [
+      {
+       "name": "Angebot A",
+       "preis_eingabe": "0,20 $ je Million Token",
+       "preis_ausgabe": "1,20 $ je Million Token",
+       "erfolgsquote": "55 %"
+      },
+      {
+       "name": "Angebot B",
+       "preis_eingabe": "2 $ je Million Token",
+       "preis_ausgabe": "10 $ je Million Token",
+       "erfolgsquote": "80 %"
+      },
+      {
+       "name": "Angebot C",
+       "preis_eingabe": "5 $ je Million Token",
+       "preis_ausgabe": "25 $ je Million Token",
+       "erfolgsquote": "90 %"
+      }
+     ],
+     "frage": "Welches Angebot kostet pro gelöster Aufgabe am wenigsten, und was kostet der Qualitätsaufschlag von B auf C?",
+     "musterloesung": [
+      "Schritt 1 - Kosten pro Versuch: A = 3.000 × 0,20 $/Mio + 700 × 1,20 $/Mio = 0,0014 $. B = 0,0130 $. C = 0,0325 $.",
+      "Schritt 2 - Kosten pro gelöster Aufgabe = Kosten pro Versuch geteilt durch Erfolgsquote: A = 0,0014 $ / 0,55 = 0,0025 $. B = 0,0130 $ / 0,80 = 0,0163 $. C = 0,0325 $ / 0,90 = 0,0361 $.",
+      "Ergebnis: A ist pro gelöster Aufgabe am billigsten, aber fast jedes zweite Ticket schlägt fehl. Der Wechsel von B auf C kostet rund 0,0198 $ mehr pro gelöster Aufgabe und kauft zehn Prozentpunkte Erfolgsquote (Grenzkosten der Qualität). Welcher Punkt richtig ist, hängt davon ab, was ein Fehlversuch im Betrieb kostet."
+     ]
+    },
+    "quiz": [
+     {
+      "frage": "Was ist der Blended Price?",
+      "optionen": [
+       "Der Durchschnitt aller Modellpreise eines Anbieters",
+       "Ein Mischpreis je Million Token aus einem festen Verhältnis von Ein- und Ausgabe, meist 3:1",
+       "Der Preis bei gemischtem Text und Bild",
+       "Der mittlere Preis zwischen Mindest- und Höchststaffel"
+      ],
+      "antwort": 1,
+      "erklaerung": "Der Blended Price macht Preislisten vergleichbar, weil er Ein- und Ausgabepreis nach einem realistischen Nutzungsmix gewichtet."
+     },
+     {
+      "frage": "Warum ist der Listenpreis je Token kein guter Modellvergleich?",
+      "optionen": [
+       "Weil Preise in Dollar nicht mit Euro vergleichbar sind",
+       "Weil Erfolgsquote und Tokenverbrauch (Denk-Token, Werkzeuge) die wahren Kosten erst bestimmen",
+       "Weil alle Anbieter gleiche Preise haben",
+       "Weil Token je nach Währung verschieden lang sind"
+      ],
+      "antwort": 1,
+      "erklaerung": "Ein teureres Modell, das seltener scheitert und weniger nachdenkt, kann pro gelöster Aufgabe billiger sein."
+     },
+     {
+      "frage": "Wie lautet die Formel für die Kosten pro gelöster Aufgabe?",
+      "optionen": [
+       "Tokenpreis mal Kontextlänge",
+       "Kosten pro Versuch geteilt durch Erfolgsquote",
+       "Monatsgebühr geteilt durch Nutzerzahl",
+       "Eingabetoken mal Ausgabetoken"
+      ],
+      "antwort": 1,
+      "erklaerung": "Gesamtkosten durch gelöste Aufgaben; pro Versuch gerechnet ist das Kosten je Versuch durch die Quote."
+     },
+     {
+      "frage": "Welcher Posten fehlt typischerweise im großen Listenpreis?",
+      "optionen": [
+       "Die Ausgabetoken",
+       "Zuschläge wie Datenresidenz, Such-Grounding und Cache-Schreiben",
+       "Die Umsatzsteuer",
+       "Der Modellname"
+      ],
+      "antwort": 1,
+      "erklaerung": "Nebenbedingungen wie Data Residency (+10 %), Grounding je 1.000 Anfragen und Cache-Write-Faktoren ändern die Rechnung spürbar."
+     },
+     {
+      "frage": "Was sind die Grenzkosten der Qualität?",
+      "optionen": [
+       "Die Kosten des letzten Tokens einer Antwort",
+       "Der Mehrpreis pro gelöster Aufgabe für die nächste Stufe Erfolgsquote",
+       "Die Kosten für die Qualitätsabteilung",
+       "Der Preis des teuersten Modells"
+      ],
+      "antwort": 1,
+      "erklaerung": "Grenzkosten zeigen, was zehn Prozentpunkte mehr Erfolgsquote konkret kosten - die eigentliche Entscheidungsgröße."
+     }
+    ]
+   }
+  }
+ ]
+}
