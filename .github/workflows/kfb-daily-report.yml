@@ -22,6 +22,10 @@ jobs:
         run: |
           google-chrome --version
           python3 tools/build.py
+      - name: Gate PDFs (upload to private Blob, remove from public site)
+        env:
+          LW_SECRET: ${{ secrets.LW_SECRET }}
+        run: python3 tools/gate_reports.py
       - name: Commit and push
         run: |
           git config user.name "Philipp Paulik"

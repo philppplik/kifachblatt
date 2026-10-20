@@ -15,7 +15,7 @@ class BreakerTests(unittest.TestCase):
   self.assertNotIn('<td><p>B</p><aside',r)
  def test_no_script_or_storage(self):
   for x in ['<script','sessionStorage','localStorage','https://','<form']:
-   self.assertNotIn(x,m.box()+m.CSS)
+   self.assertNotIn(x,(m.box()+m.CSS).replace('<script src="/assets/leadwall.js" defer></script>',''))  # only the lead-wall loader is allowed
  def test_mockup_image_lazy_with_alt(self):
   b=m.box()
   self.assertIn('class="rb-mock rb-mocks"',b)
