@@ -18,7 +18,7 @@ def render(port, year):
         '<a class="kfbf-logo" href="/"><img class="logo-mark" src="/assets/logo-mark-white.svg" alt="" width="22" height="22">KI<span>·</span>Fachblatt</a>'
         '<p>Einordnen statt Hype. Ein deutschsprachiges Fachmagazin über künstliche Intelligenz, von Philipp Paulik.</p></div>'
         '<div class="kfbf-cols">'
-        '<div><h4>Lesen</h4><a href="/glossar">Glossar</a><a href="/berichte">KI-Tagesbericht (PDF)</a><a href="/feed.xml">RSS-Feed</a><a href="/llms.txt">llms.txt</a></div>'
+        '<div><h4>Lesen</h4><a href="/glossar">Glossar</a><a href="/llm-kostenrechner">LLM-Kostenrechner</a><a href="/berichte">KI-Tagesbericht (PDF)</a><a href="/feed.xml">RSS-Feed</a><a href="/llms.txt">llms.txt</a></div>'
         + p +
         '<div><h4>Redaktion</h4><a href="/ueber">Über das Magazin</a><a href="/redaktion">Redaktion</a><a href="/transparenz">KI-Transparenz</a><a href="/korrekturen">Korrekturen</a><a href="/quellen">Quellen</a></div>'
         '<div><h4>Rechtliches</h4><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="https://philipp-paulik.de">Philipp Paulik</a></div>'
