@@ -1,0 +1,172 @@
+{
+ "slug": "embeddings-verstehen",
+ "lang": "de",
+ "section": "grundlagen",
+ "type": "explainer",
+ "title": "Embeddings und Vektorsuche: Bedeutung wird Geometrie",
+ "dek": "Wie aus Wörtern und Sätzen Zahlenreihen werden, was Kosinus-Ähnlichkeit misst, wie HNSW und FAISS Millionen von Vektoren durchsuchen und was MTEB verrät.",
+ "published": "2026-10-19T16:00:00+02:00",
+ "modified": "2026-10-19T16:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Embeddings",
+  "Vektorsuche",
+  "Sentence-BERT",
+  "HNSW",
+  "FAISS",
+  "MTEB",
+  "RAG"
+ ],
+ "key_takeaways": [
+  "Ein Embedding ist eine Zahlenreihe fester Länge, die Bedeutung in Geometrie übersetzt: Ähnliche Texte landen als Punkte nahe beieinander.",
+  "Sentence-BERT machte Satz-Embeddings praxistauglich: Die Suche unter 10.000 Sätzen sank von rund 65 Stunden mit BERT auf etwa 5 Sekunden.",
+  "Für Millionen von Vektoren sucht man approximativ: Graphenverfahren wie HNSW und Bibliotheken wie FAISS tauschen einen Rest Genauigkeit gegen große Geschwindigkeit.",
+  "Der MTEB-Benchmark zeigt über 8 Aufgabentypen und 58 Datensätze: Kein Embedding-Verfahren gewinnt überall, die eigene Testmenge bleibt Pflicht."
+ ],
+ "hero": {
+  "alt": "Punktwolke in vier farbigen Häufungen: Dokumente desselben Themas liegen als Punkte nahe beieinander, ein Pfeil zeigt von einer Anfrage zum nächstgelegenen Häufchen.",
+  "caption": "Der Kerngedanke: Bedeutung wird zu Abstand. Punkte desselben Themas liegen nah beieinander, die nächsten Nachbarn einer Anfrage sind ihre Treffer. Eigene Darstellung (schematisch).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Suchmaschinen, Empfehlungssysteme und [RAG](/glossar#rag)-Anwendungen beruhen auf einem gemeinsamen Trick: Sie übersetzen Text in Zahlenreihen und lassen den Computer mit diesen Reihen rechnen, statt Wörter zu vergleichen. Diese Zahlenreihen heißen [Embeddings](/glossar#embedding). Dieser Text erklärt, woher sie kommen, wie man ihre Ähnlichkeit misst, wie die Suche in Millionen von Vektoren schnell bleibt und woran man ein gutes Embedding-Modell erkennt."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Stellen Sie sich eine Bibliothek vor, die nicht alphabetisch sortiert, sondern nach Inhalt: Kochbücher zu Pasta stehen neben Kochbüchern zu Risotto, weit weg vom Steuerrecht. Ein Embedding ist die Regalposition eines Textes in dieser thematischen Bibliothek. Suchen heißt dann nur noch: Stellen Sie sich an die Stelle Ihrer Frage und schauen Sie, welche Bücher in Reichweite stehen."
+  },
+  {
+   "t": "h2",
+   "x": "Was ein Embedding ist"
+  },
+  {
+   "t": "p",
+   "x": "Ein Embedding-Modell bildet ein Wort, einen Satz oder ein Dokument auf einen Vektor ab, also eine Zahlenreihe fester Länge, häufig einige hundert bis wenige tausend Zahlen. Gelernt wird diese Abbildung aus großen Textmengen: Wörter, die in ähnlichen Zusammenhängen auftreten, bekommen ähnliche Vektoren. Das word2vec-Verfahren von 2013 zeigte, dass solche Vektoren aus 1,6 Milliarden Wörtern in unter einem Tag lernbar sind und dass in ihnen Beziehungen als Richtungen stecken, im berühmten Beispiel „König minus Mann plus Frau“ nahe bei „Königin“ [1]."
+  },
+  {
+   "t": "p",
+   "x": "Wichtig ist der Unterschied zum [Tokenizer](/glossar#tokenizer): Der Tokenizer zerlegt Text in Nummern aus einem festen Wörterbuch; jede Nummer steht für ein Wortteilchen und sagt nichts über Bedeutung aus. Das Embedding dagegen ist eine gelernte Ortsangabe im Bedeutungsraum. Zwei Sätze mit gleichem Sinn landen nah beieinander, auch wenn sie kein einziges Wort teilen."
+  },
+  {
+   "t": "h2",
+   "x": "Von Wörtern zu Sätzen: Sentence-BERT"
+  },
+  {
+   "t": "p",
+   "x": "Frühe Transformer-Modelle wie BERT konnten die Ähnlichkeit zweier Sätze sehr genau beurteilen, aber nur, indem beide Sätze gemeinsam durch das Modell liefen. Für die ähnlichste Paarung unter 10.000 Sätzen wären das rund 50 Millionen Modellaufrufe, von den Autoren auf etwa 65 Stunden geschätzt. Sentence-BERT (SBERT) von 2019 löste das Problem, indem es jeden Satz einzeln in einen festen Vektor übersetzt, den man einmal berechnet und speichert. Dieselbe Suche dauerte damit etwa 5 Sekunden, bei gleichbleibender Genauigkeit [2]. Dieser Schritt, von der Paarbewertung zur speicherbaren Regalposition, machte semantische Suche erst alltagstauglich."
+  },
+  {
+   "t": "h2",
+   "x": "Ähnlichkeit messen: Kosinus-Ähnlichkeit"
+  },
+  {
+   "t": "p",
+   "x": "Liegen Texte als Vektoren vor, braucht es ein Maß für Nähe. Üblich ist die [Kosinus-Ähnlichkeit](/glossar#kosinus-aehnlichkeit): Sie misst den Winkel zwischen zwei Vektoren und ist damit unempfindlich gegen deren Länge. Werte nahe 1 bedeuten „gleiche Richtung, gleiches Thema“, Werte nahe 0 „unabhängig“. In der Praxis folgt daraus eine einfache Arbeitsweise: Einmalig alle Dokumente in Vektoren übersetzen und speichern, zur Anfrage nur noch deren Vektor berechnen und die nächsten Nachbarn ausliefern."
+  },
+  {
+   "t": "h2",
+   "x": "Vektorsuche: von exakt zu approximativ"
+  },
+  {
+   "t": "p",
+   "x": "Bei einigen tausend Dokumenten genügt die exakte Suche: Jede Anfrage wird mit jedem gespeicherten Vektor verglichen. Bei Millionen von Einträgen wird das zu langsam, und hier setzen approximative Verfahren an. HNSW baut einen mehrschichtigen Nähe-Graphen über den Punkten; die Suche startet auf der groben obersten Ebene und steigt in immer feinere Ebenen hinab, wodurch der Aufwand nur noch logarithmisch mit der Datenmenge wächst [3]. Die Bibliothek FAISS bündelt solche Indexverfahren samt Kompression und GPU-Unterstützung; das zugehörige Paper beschreibt den Grundkompromiss der [Vektorsuche](/glossar#vektorsuche): Ein kleiner Verlust an Treffergenauigkeit (Recall) erkauft große Geschwindigkeits- und Speichervorteile [4]. Eine [Vektordatenbank](/glossar#vektordatenbank) packt Index, Speicher und Filterlogik schließlich in einen Dienst."
+  },
+  {
+   "t": "h2",
+   "x": "Modelle vergleichen: der MTEB-Benchmark"
+  },
+  {
+   "t": "p",
+   "x": "Welches Embedding-Modell ist gut? Der Massive Text Embedding Benchmark (MTEB) antwortet mit Breite statt mit einer Einzelaufgabe: 8 Aufgabentypen, 58 Datensätze und 112 Sprachen im ursprünglichen Benchmark, gegen den 33 Modelle gemessen wurden [5]. Das Ergebnis der Autoren ist für die Praxis der wichtigste Satz: Kein Verfahren dominiert über alle Aufgaben. Ein Modell, das semantische Ähnlichkeit spitze kann, kann beim Clustern oder Klassifizieren mittelmäßig sein [5]. Die öffentliche Bestenliste läuft als Hugging-Face-Space weiter und wird laufend mit neuen Modellen gefüttert [6]. Die Konsequenz gleicht der bei Sprachmodellen: Eine kleine eigene Prüfmenge aus echten Anfragen und Dokumenten schlägt jede Fremdtabelle, wie die Seite zu [Evals](/evals-statt-bauchgefuehl) ausführt."
+  },
+  {
+   "t": "h2",
+   "x": "Praxis und Grenzen"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Semantische Suche:** Anfragen finden Dokumente ohne gemeinsame Stichwörter, etwa findet „Reifenplatzer“ die Anleitung „Pannenhilfe“.",
+    "**RAG:** Vor dem Generieren werden passende Textstücke gesucht und dem Modell beigegeben; die Qualität der Embeddings entscheidet, was das Modell überhaupt zu sehen bekommt.",
+    "**Clustern und Klassifizieren:** Themen entdecken, Dubletten erkennen, Supportfälle vorsortieren, ohne dass je ein Mensch Regeln geschrieben hätte.",
+    "**Empfehlungen:** „Ähnliche Artikel“ ist wörtlich gemeint: die nächsten Punkte im Raum."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Grenzen liegen in den Trainingsdaten der Modelle. Wechselt die Domäne, etwa von Nachrichtentext zu Laborjargon, können Abstände ihre Bedeutung verlieren; mehrsprachige Anfragen brauchen ausdrücklich mehrsprachig trainierte Modelle, und bei langen Dokumenten entscheidet das [Chunking](/glossar#chunking) mit darüber, was überhaupt auffindbar ist. Auch hier gilt: Vor dem Rollout mit eigenen Beispielen messen, nicht auf Listenplätze vertrauen [5][6]."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen einem Token und einem Embedding?",
+   "a": "Ein Token ist eine Nummer aus einem festen Wörterbuch und steht nur für ein Textstück, ohne Bedeutung. Ein Embedding ist eine gelernte Ortsangabe im Bedeutungsraum: Texte mit gleichem Sinn bekommen nahe Vektoren, auch wenn sie kein Wort teilen."
+  },
+  {
+   "q": "Kann man aus einem Embedding den Ursprungstext zurückrechnen?",
+   "a": "Nicht verlustfrei; ein Embedding ist eine komprimierte Beschreibung, keine verschlüsselte Kopie. Studien zeigen aber, dass sich aus Embeddings teils erstaunlich viel Inhalt rekonstruieren lässt. Embeddings vertraulicher Texte sollten deshalb wie sensible Daten behandelt werden."
+  },
+  {
+   "q": "Brauche ich dafür eine Vektordatenbank?",
+   "a": "Für einige tausend Dokumente reicht eine exakte Suche in einer Datei oder einer normalen Datenbank mit Vektorerweiterung. Eine spezialisierte Vektordatenbank lohnt sich bei Millionen von Einträgen, hohen Anfrageraten oder wenn Filter und Metadaten eine Rolle spielen."
+  },
+  {
+   "q": "Was bedeutet „approximative“ Suche konkret?",
+   "a": "Der Index liefert mit hoher Wahrscheinlichkeit die wirklich nächsten Treffer, garantiert es aber nicht. Gemessen wird das als Recall: Anteil der gefundenen unter den tatsächlich besten Treffern. Mehr Recall kostet mehr Zeit und Speicher; der Kompromiss ist einstellbar."
+  },
+  {
+   "q": "Wie wähle ich ein Embedding-Modell aus?",
+   "a": "Erst die Bestenliste lesen, dann selbst messen: MTEB und seine Bestenliste zeigen, dass kein Modell überall gewinnt. Eine kleine Menge echter Anfragen mit bekannten richtigen Treffern zeigt, welches Modell zur eigenen Domäne und Sprache passt."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Mikolov u. a.: Efficient Estimation of Word Representations in Vector Space",
+   "publisher": "arXiv:1301.3781 (2013)",
+   "url": "https://arxiv.org/abs/1301.3781",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Reimers, Gurevych: Sentence-BERT: Sentence Embeddings using Siamese BERT-Networks",
+   "publisher": "arXiv:1908.10084 (EMNLP 2019)",
+   "url": "https://arxiv.org/abs/1908.10084",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Malkov, Yashunin: Efficient and robust approximate nearest neighbor search using Hierarchical Navigable Small World graphs",
+   "publisher": "arXiv:1603.09320 (TPAMI 2020)",
+   "url": "https://arxiv.org/abs/1603.09320",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Douze u. a.: The Faiss library",
+   "publisher": "arXiv:2401.08281 (Meta, 2024)",
+   "url": "https://arxiv.org/abs/2401.08281",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Muennighoff u. a.: MTEB: Massive Text Embedding Benchmark",
+   "publisher": "arXiv:2210.07316 (EACL 2023)",
+   "url": "https://arxiv.org/abs/2210.07316",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "MTEB Leaderboard",
+   "publisher": "Hugging Face Space, laufend aktualisiert",
+   "url": "https://huggingface.co/spaces/mteb/leaderboard",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Abstracts und Kernabschnitte der fünf genannten Papers (word2vec, Sentence-BERT, HNSW, FAISS, MTEB) sowie die Startseite der MTEB-Bestenliste auf Hugging Face. Die Angaben zu Rechenzeiten (65 Stunden gegenüber 5 Sekunden) und zur Benchmark-Größe (8 Aufgabentypen, 58 Datensätze, 112 Sprachen, 33 Modelle) stammen unverändert aus den Quellen [2] und [5].",
+ "limitations": "Die Verfahren wurden anhand ihrer Papers beschrieben, nicht selbst nachgemessen; die genannten Laufzeiten stammen aus der Hardware-Umgebung der jeweiligen Autoren. Die MTEB-Bestenliste verändert sich laufend, Platzierungen einzelner Modelle werden hier bewusst nicht genannt. Die Aussage zur Rekonstruierbarkeit von Embeddings im FAQ stammt aus der Sekundärliteratur und wurde nicht quantifiziert.",
+ "related": [
+  "rag-oder-langer-kontext",
+  "ml-grundbegriffe",
+  "evals-statt-bauchgefuehl",
+  "wie-ein-sprachmodell-lernt"
+ ]
+}

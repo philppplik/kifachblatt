@@ -2764,5 +2764,99 @@
     "url": "https://developers.google.com/search/docs/appearance/ai-features"
    }
   ]
+ },
+ {
+  "term": "Generalisierung",
+  "aka": [
+   "Generalization"
+  ],
+  "letter": "G",
+  "definition": "Die Fähigkeit eines Modells, auch auf Daten gut zu liefern, die es beim Lernen nie gesehen hat. Generalisierung ist das eigentliche Ziel des Lernens, nicht der Fehler auf den Trainingsdaten.",
+  "usage": "Gemessen wird sie auf einer getrennten Testmenge oder per Kreuzvalidierung; der Spalt zwischen Trainings- und Testfehler zeigt, wie gut sie gelungen ist.",
+  "related": [
+   "/ml-grundbegriffe"
+  ],
+  "see_also": [
+   "Overfitting",
+   "Kontamination",
+   "Evals"
+  ],
+  "sources": [
+   {
+    "title": "Cross-validation: evaluating estimator performance",
+    "url": "https://scikit-learn.org/stable/modules/cross_validation.html"
+   }
+  ]
+ },
+ {
+  "term": "Gradientenabstieg",
+  "aka": [
+   "Gradient Descent"
+  ],
+  "letter": "G",
+  "definition": "Das Standard-Optimierungsverfahren: Aus dem aktuellen Fehler wird die Richtung berechnet, die ihn am schnellsten verkleinert (der Gradient), und die Parameter wandern ein kleines Stück entgegen dieser Richtung. Die Schrittweite heißt Lernrate.",
+  "usage": "Zu große Lernraten lassen den Fehler springen oder explodieren, zu kleine machen das Training quälend langsam; sie ist der wichtigste Drehregler beim Training.",
+  "related": [
+   "/ml-grundbegriffe"
+  ],
+  "see_also": [
+   "Backpropagation",
+   "Checkpoint",
+   "Parameter"
+  ],
+  "sources": [
+   {
+    "title": "Goodfellow, Bengio, Courville: Deep Learning (freie HTML-Fassung)",
+    "url": "https://www.deeplearningbook.org/"
+   }
+  ]
+ },
+ {
+  "term": "Backpropagation",
+  "aka": [
+   "Fehlerrückführung"
+  ],
+  "letter": "B",
+  "definition": "Das Verfahren, das den Beitrag jedes einzelnen Parameters zum Gesamtfehler effizient berechnet, indem es die Ableitungen schichtweise von hinten nach vorn durch das Netz reicht. Liefert dem Gradientenabstieg seine Richtung.",
+  "usage": "Ohne Backpropagation wäre das Training tiefer Netze mit Milliarden Parametern rechnerisch nicht machbar; jede Trainingsschleife eines Sprachmodells nutzt es.",
+  "related": [
+   "/ml-grundbegriffe"
+  ],
+  "see_also": [
+   "Gradientenabstieg",
+   "Transformer",
+   "Pretraining (Vortraining)"
+  ],
+  "sources": [
+   {
+    "title": "Goodfellow, Bengio, Courville: Deep Learning (freie HTML-Fassung)",
+    "url": "https://www.deeplearningbook.org/"
+   }
+  ]
+ },
+ {
+  "term": "Vektorsuche",
+  "aka": [
+   "Nearest-Neighbor-Suche",
+   "ANN-Suche"
+  ],
+  "letter": "V",
+  "definition": "Die Suche nach den nächsten Nachbarn eines Anfrage-Vektors in einer Menge gespeicherter Embeddings. Exakt bei kleinen Beständen, approximativ (ANN) über Indexstrukturen wie HNSW bei Millionen von Einträgen.",
+  "usage": "Recall gegen Geschwindigkeit ist der Grundkompromiss: approximative Verfahren finden fast alle wirklich besten Treffer in einem Bruchteil der Zeit.",
+  "related": [
+   "/embeddings-verstehen"
+  ],
+  "see_also": [
+   "Embedding",
+   "Kosinus-Ähnlichkeit",
+   "Vektordatenbank",
+   "RAG"
+  ],
+  "sources": [
+   {
+    "title": "Douze u. a.: The Faiss library",
+    "url": "https://arxiv.org/abs/2401.08281"
+   }
+  ]
  }
 ]

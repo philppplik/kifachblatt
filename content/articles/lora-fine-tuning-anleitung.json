@@ -1,0 +1,211 @@
+{
+ "slug": "lora-fine-tuning-anleitung",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "LoRA-Fine-Tuning Schritt für Schritt: der erste eigene Adapter",
+ "dek": "Wie LoRA ein Milliarden-Modell mit Millionen Zusatzparametern umbaut: die Mathematik dahinter, eine eigene Parameter-Rechnung und der Trainingslauf mit PEFT.",
+ "published": "2026-10-19T18:00:00+02:00",
+ "modified": "2026-10-19T18:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "LoRA",
+  "QLoRA",
+  "Fine-Tuning",
+  "PEFT",
+  "Anleitung",
+  "Training"
+ ],
+ "key_takeaways": [
+  "[LoRA](/glossar#lora) friert das Basismodell ein und trainiert pro Schicht nur zwei kleine Matrizen: Die Änderung einer Gewichtsmatrix wird als Produkt zweier schmaler Matrizen vom Rang r angesetzt [1].",
+  "Eigene Rechnung für Llama 3 8B: LoRA mit r=16 auf den q- und v-Projektionen trainiert rund 6,8 Millionen statt 8 Milliarden Parameter, etwa 0,085 Prozent.",
+  "[QLoRA](/glossar#qlora) legt das Basismodell in 4 Bit ab und trainiert den Adapter darüber: Ein 65-Milliarden-Modell passte so auf eine einzige 48-GB-GPU [2].",
+  "Der Ablauf ist mit PEFT und TRL wenige Zeilen Code; die eigentliche Arbeit steckt in den Beispieldaten und in der Prüfmenge danach [3][4]."
+ ],
+ "hero": {
+  "alt": "Diagramm einer Gewichtsmatrix W, daneben zwei schmale Matrizen B und A, deren Produkt die Änderung Delta-W bildet; die trainierbare Fläche ist farblich hervorgehoben und winzig gegenüber W.",
+  "caption": "Das Prinzip: Statt der großen Matrix W werden nur die schmalen Matrizen B und A trainiert; ihr Produkt ergibt die Anpassung. Eigene Darstellung.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Diese Anleitung führt vom Verständnis bis zum ersten eigenen [LoRA](/glossar#lora)-Adapter: zuerst die Idee und eine nachvollziehbare Parameter-Rechnung, dann das Training mit den Werkzeugen PEFT und TRL und schließlich die Prüfung des Ergebnisses. Voraussetzung sind Grundkenntnisse in Python und die Begriffe aus [ML-Grundbegriffe](/ml-grundbegriffe); die Entscheidungsfrage „lohnt sich das überhaupt“ beantwortet [Fine-Tuning: wann es sich lohnt](/fine-tuning-wann)."
+  },
+  {
+   "t": "h2",
+   "x": "Wie LoRA funktioniert"
+  },
+  {
+   "t": "p",
+   "x": "Beim vollen [Fine-Tuning](/glossar#fine-tuning) wird jede Gewichtsmatrix W des Modells verändert. LoRA beruht auf der Beobachtung, dass die nötige Änderung Delta-W viel einfacher ist als die Matrix selbst: Sie lässt sich als Produkt zweier schmaler Matrizen annähern, B mal A, mit einem kleinen Rang r [1]. In der Gleichung: W bleibt eingefroren, und die Ausgabe wird zu W·x + B·A·x. Trainiert werden nur A und B. Das Paper berichtet für GPT-3 mit 175 Milliarden Parametern rund 10.000-mal weniger trainierbare Parameter und etwa ein Drittel des GPU-Speichers gegenüber vollem Training, bei gleichwertiger oder besserer Qualität auf den untersuchten Aufgaben und ohne zusätzliche Verzögerung bei der Antwort, weil B mal A nach dem Training in W eingerechnet werden kann [1]."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Statt ein Haus umzubauen (alle Wände einreißen und neu mauern), stellt LoRA bewegliche Möbel hinein: Der Grundriss bleibt, die Funktion ändert sich. Beim Auszug nimmt man die Möbel mit; das Haus ist unberührt, und für eine andere Nutzung stellt man andere Möbel in dasselbe Haus."
+  },
+  {
+   "t": "h2",
+   "x": "Eigene Rechnung: Was r=16 bei Llama 3 8B bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "Llama 3 8B hat 32 Schichten, eine Modelldimension von 4.096 und durch [Grouped-Query-Attention](/glossar#grouped-query-attention) 8 Schlüssel- und Wert-Köpfe mit Kopfgröße 128; die q-Projektion bildet also 4.096 auf 4.096 ab, die v-Projektion 4.096 auf 1.024 [6]. LoRA ersetzt die Änderung jeder Projektion durch das Produkt zweier Matrizen vom Rang r; die Zahl der trainierbaren Parameter pro Projektion ist r mal (Eingangs- plus Ausgangsdimension). Mit r=16, nur auf q und v angesetzt (das Standardbeispiel der PEFT-Dokumentation [3]):"
+  },
+  {
+   "t": "table",
+   "caption": "Trainierbare LoRA-Parameter bei Llama 3 8B (r=16, Ziel: q- und v-Projektion); eigene Rechnung aus den Architekturangaben in [6]",
+   "head": [
+    "Position",
+    "Rechnung",
+    "Parameter pro Schicht"
+   ],
+   "rows": [
+    [
+     "q-Projektion",
+     "16 × (4.096 + 4.096)",
+     "131.072"
+    ],
+    [
+     "v-Projektion",
+     "16 × (4.096 + 1.024)",
+     "81.920"
+    ],
+    [
+     "Summe pro Schicht",
+     "",
+     "212.992"
+    ],
+    [
+     "Alle 32 Schichten",
+     "212.992 × 32",
+     "6.815.744"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Rund 6,8 Millionen trainierbare Parameter stehen etwa 8 Milliarden eingefrorenen gegenüber: 0,085 Prozent des Modells. Wer alle linearen Schichten einschließlich des Feed-Forward-Netzes anpasst (in PEFT die Einstellung target_modules=„all-linear“ [3]), landet mit derselben Rechnung bei rund 42 Millionen Parametern, etwa einem halben Prozent. Der [Adapter](/glossar#adapter) speichert am Ende nur diese Zusatzgewichte: bei 16 Bit pro Wert also etwa 14 MB statt 16 GB für das ganze Modell."
+  },
+  {
+   "t": "h2",
+   "x": "QLoRA: der Adapter auf einem 4-Bit-Modell"
+  },
+  {
+   "t": "p",
+   "x": "[QLoRA](/glossar#qlora) kombiniert LoRA mit [Quantisierung](/glossar#quantisierung): Das Basismodell wird in 4 Bit eingefroren (das Paper führt dafür den Datentyp NF4 ein, dazu doppelte Quantisierung der Quantisierungskonstanten und ausgelagerte Optimizer-Zwischenstände gegen Speicherspitzen), und die Gradienten laufen durch das eingefrorene 4-Bit-Modell in den Adapter [2]. Damit trainierten die Autoren ein Modell mit 65 Milliarden Parametern auf einer einzigen GPU mit 48 GB, ohne messbaren Qualitätsverlust gegenüber vollem 16-Bit-Training; ihre beste Guanaco-Modellreihe erreichte auf dem Vicuna-Vergleich 99,3 Prozent des Referenzmodells ChatGPT nach 24 Stunden Training auf einer GPU [2]. Die nötigen 4-Bit-Bausteine liefert die Bibliothek bitsandbytes, die 8-Bit-Optimierer und 4-Bit-Linear-Schichten genau für diesen Zweck bereitstellt [5]."
+  },
+  {
+   "t": "h2",
+   "x": "Der Trainingslauf mit PEFT und TRL"
+  },
+  {
+   "t": "p",
+   "x": "Die Bibliothek PEFT von Hugging Face kapselt LoRA in einer Konfiguration, der Trainer SFTTrainer aus TRL übernimmt das überwachte Nachtrainieren auf eigenen Beispielen [3][4]. Das Grundgerüst ist kurz:"
+  },
+  {
+   "t": "code",
+   "lang": "python",
+   "x": "from peft import LoraConfig, get_peft_model\nfrom trl import SFTTrainer\nfrom datasets import load_dataset\n\nconfig = LoraConfig(\n    r=16, lora_alpha=16, lora_dropout=0.1,\n    target_modules=[\"q_proj\", \"v_proj\"], bias=\"none\",\n)\nmodel = get_peft_model(base_model, config)\n\ntrainer = SFTTrainer(\n    model=model,\n    train_dataset=load_dataset(\"deine-beispiele\", split=\"train\"),\n)\ntrainer.train()"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Beispieldaten bauen:** Dialoge oder Ein-/Ausgabe-Paare im gewünschten Stil und Format; der TRL-Dokumentation zufolge erwartet der SFTTrainer einen Datensatz im Text- oder Nachrichtenformat [4]. Qualität und Einheitlichkeit schlagen Menge.",
+    "**Konfigurieren:** Rang r und Zielmodule wählen; r=16 auf q und v ist der dokumentierte Startpunkt [3].",
+    "**Trainieren:** Verlust auf den Trainingsdaten beobachten, aber die Entscheidung an einer getrennten Validierungsmenge festmachen.",
+    "**Prüfen:** Basismodell und Adapter gegen dieselbe Prüfmenge laufen lassen, wie auf der Seite zu [Evals](/evals-statt-bauchgefuehl) beschrieben.",
+    "**Einrechnen oder getrennt lassen:** Der Adapter lässt sich für maximale Antwortgeschwindigkeit in die Gewichte einrechnen oder als kleine Datei neben dem Basismodell verwalten [1]."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Häufige Fehler beim ersten Adapter"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Zu hohe Lernrate oder zu viele Epochen:** Der Adapter lernt die Beispiele auswendig ([Overfitting](/glossar#overfitting)), das Modell verliert Allgemeinverhalten ([Catastrophic Forgetting](/glossar#catastrophic-forgetting)).",
+    "**Datenmüll:** Widersprüchliche oder uneinheitliche Beispiele; der PEFT-Vergleich zeigt, dass einfache, sauber eingestellte LoRA-Läufe unter realen Bedingungen stark sind, Datenqualität aber nicht ersetzen können [3][7].",
+    "**Kein Vergleich gegen das Basismodell:** Ohne die gleiche Prüfmenge auf beiden Modellen ist unklar, ob der Adapter hilft oder schadet.",
+    "**Falsches Ziel:** Fine-Tuning für veränderliches Wissen statt für Verhalten, siehe [Fine-Tuning: wann es sich lohnt](/fine-tuning-wann)."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was bedeutet der Rang r bei LoRA?",
+   "a": "Der Rang r ist die Breite der beiden eingeschobenen Matrizen und damit die Kapazität des Adapters. Größeres r kann mehr lernen, kostet mehr Speicher und neigt eher zum Auswendiglernen. Übliche Startwerte sind 8 bis 64; die PEFT-Dokumentation nutzt r=16."
+  },
+  {
+   "q": "Was ist lora_alpha?",
+   "a": "Ein Skalierungsfaktor: Der Adapter-Ausgang wird mit alpha geteilt durch r multipliziert, bevor er zum eingefrorenen Modell addiert wird. Praktisch steuert er, wie stark sich der Adapter gegenüber dem Basismodell durchsetzt; üblich ist alpha gleich r oder doppelt so groß."
+  },
+  {
+   "q": "Brauche ich eine teure GPU?",
+   "a": "Für einen LoRA-Lauf auf einem Modell mit 7 bis 8 Milliarden Parametern genügt typischerweise eine GPU mit 16 bis 24 GB, mit QLoRA deutlich weniger; das QLoRA-Paper trainierte 65 Milliarden Parameter auf einer 48-GB-Karte. Kleine Lehrmodelle unter einer Milliarde Parametern laufen sogar auf Consumer-Karten oder kostenlosen Notebook-Angeboten."
+  },
+  {
+   "q": "Kann ich mehrere Adapter für dasselbe Basismodell haben?",
+   "a": "Ja, das ist einer der Hauptvorteile: Das Basismodell liegt einmal im Speicher, und pro Anwendungsfall wird ein kleiner Adapter geladen oder gewechselt. Das LoRA-Paper betont, dass das Einrechnen des Adapters keine zusätzliche Antwortzeit kostet."
+  },
+  {
+   "q": "Woran erkenne ich, dass mein Training fertig ist?",
+   "a": "Nicht am Trainingsverlust allein: Der fällt fast immer weiter. Entscheidend ist die getrennte Prüfmenge mit echten Aufgaben. Stagniert oder verschlechtert sich dort die Qualität, ist der beste Punkt überschritten; der gespeicherte Zwischenstand (Checkpoint) von genau diesem Punkt ist das Ergebnis."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Hu u. a.: LoRA: Low-Rank Adaptation of Large Language Models",
+   "publisher": "arXiv:2106.09685 (ICLR 2022)",
+   "url": "https://arxiv.org/abs/2106.09685",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Dettmers u. a.: QLoRA: Efficient Finetuning of Quantized LLMs",
+   "publisher": "arXiv:2305.14314 (NeurIPS 2023)",
+   "url": "https://arxiv.org/abs/2305.14314",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "PEFT: LoRA-Konfiguration (LoraConfig)",
+   "publisher": "Hugging Face Dokumentation",
+   "url": "https://huggingface.co/docs/peft/main/en/package_reference/lora",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "SFT Trainer",
+   "publisher": "Hugging Face TRL-Dokumentation",
+   "url": "https://huggingface.co/docs/trl/sft_trainer",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "bitsandbytes: 8-Bit-Optimierer und 4-Bit-Quantisierung (README)",
+   "publisher": "GitHub, bitsandbytes-foundation",
+   "url": "https://github.com/bitsandbytes-foundation/bitsandbytes",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "The Llama 3 Herd of Models (Architektur-Tabelle)",
+   "publisher": "arXiv:2407.21783 (Meta, 2024)",
+   "url": "https://arxiv.org/pdf/2407.21783",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Lialin u. a.: Scaling Down to Scale Up: A Guide to Parameter-Efficient Fine-Tuning",
+   "publisher": "arXiv:2303.15647 (2023/24)",
+   "url": "https://arxiv.org/abs/2303.15647",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Abstracts und Methodikteile der LoRA- und QLoRA-Papers, die PEFT-Dokumentation zu LoraConfig einschließlich des Beispiels r=16 auf den q- und v-Projektionen, die TRL-Dokumentation zum SFTTrainer, das README von bitsandbytes und die Architektur-Tabelle des Llama-3-Berichts. Die Parameter-Rechnung wurde mit den dort genannten Dimensionen (32 Schichten, Modell-Dimension 4.096, 8 Key/Value-Köpfe à 128) selbst nachgerechnet und ist als eigene Rechnung gekennzeichnet.",
+ "limitations": "Die eigene Rechnung zählt nur die Adapter-Parameter, nicht Aktivierungen und Optimizer-Zwischenstände; der tatsächliche Speicherbedarf beim Training liegt über den hier genannten Werten für die Adapterdatei. Die Code-Skizze ist bewusst minimal und weicht je nach Bibliotheksversion in Details ab; sie ist nicht als lauffähiges Komplettprogramm geprüft. Hardware-Angaben (16 bis 24 GB) sind grobe Richtwerte aus den dokumentierten Beispielen, keine Messung der Redaktion.",
+ "related": [
+  "fine-tuning-wann",
+  "ml-grundbegriffe",
+  "llm-quantisierung-verfahren-grundlagen",
+  "evals-statt-bauchgefuehl"
+ ]
+}

@@ -1,0 +1,211 @@
+{
+ "slug": "ml-grundbegriffe",
+ "lang": "de",
+ "section": "grundlagen",
+ "type": "explainer",
+ "title": "ML-Grundbegriffe kompakt: Daten, Overfitting, Generalisierung",
+ "dek": "Trainings-, Validierungs- und Testdaten, warum Modelle auswendig lernen statt zu verstehen und wie Kreuzvalidierung die Leistung auf neuen Fällen schätzt.",
+ "published": "2026-10-19T15:00:00+02:00",
+ "modified": "2026-10-19T15:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Machine Learning",
+  "Overfitting",
+  "Generalisierung",
+  "Kreuzvalidierung",
+  "Trainingsdaten",
+  "Grundlagen"
+ ],
+ "key_takeaways": [
+  "Maschinelles Lernen heißt: Ein Verfahren verändert die Parameter eines Modells so, dass der Fehler auf Beispieldaten sinkt. Bewertet wird es aber auf Daten, die es nie gesehen hat.",
+  "Overfitting ist Auswendiglernen: Der Fehler auf den Trainingsdaten fällt weiter, der Fehler auf neuen Daten steigt wieder. Das Gegenstück, Underfitting, heißt: Das Modell ist zu einfach für das Muster.",
+  "Die faire Leistungszahl kommt aus einer Testmenge, die beim Bauen nie angefasst wird, oder aus Kreuzvalidierung, wenn Daten knapp sind.",
+  "Dieselben Begriffe gelten bei großen Sprachmodellen weiter: Kontamination ist Data Leakage im großen Stil, und ein zu langes Fine-Tuning auf einer kleinen Menge ist klassisches Overfitting."
+ ],
+ "hero": {
+  "alt": "Zwei Kurven über wachsender Modellkomplexität: Der Trainingsfehler fällt monoton, der Validierungsfehler fällt zuerst und steigt dann wieder; das Minimum ist markiert.",
+  "caption": "Das Grunddiagramm des maschinellen Lernens: Irgendwo zwischen zu einfach und auswendig gelernt liegt das Validierungsminimum. Eigene Darstellung (schematisch).",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer mit KI arbeitet, trifft früher oder später auf Sätze wie „das Modell generalisiert gut“ oder „da haben wir overfittet“. Dieser Text erklärt die vier Grundbegriffe dahinter: Daten, Lernen, [Overfitting](/glossar#overfitting) und [Generalisierung](/glossar#generalisierung). Er ist die Basis für die weiteren Seiten über [Embeddings](/embeddings-verstehen) und [Fine-Tuning](/fine-tuning-wann) und hilft, Modellkarten und Benchmark-Zahlen richtig zu lesen."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Stellen Sie sich eine Schülerin vor, die für eine Matheklausur lernt. Übt sie mit alten Klausuren und versteht die Methode, schreibt sie auch bei neuen Aufgaben gut. Lernt sie dagegen die Lösungen der alten Klausuren auswendig, glänzt sie im Übungsheft und scheitert an jeder neuen Aufgabe. Trainingsdaten sind das Übungsheft, die Klausur ist die Testmenge, und Auswendiglernen ist Overfitting."
+  },
+  {
+   "t": "h2",
+   "x": "Daten: der Rohstoff, über den alles entscheidet"
+  },
+  {
+   "t": "p",
+   "x": "Ein Lernverfahren bekommt Beispiele: Eingaben und meist auch die gewünschten Ausgaben. Aus diesen Beispielen stellt es die [Parameter](/glossar#parameter) des Modells ein. Die Qualität der Daten begrenzt dabei alles Weitere; Pedro Domingos formuliert es in seinem vielzitierten Überblicksaufsatz so: Mehr Daten schlagen oft das cleverere Verfahren, und „Garbage in, Garbage out“ gilt seit jeher [3]."
+  },
+  {
+   "t": "p",
+   "x": "Damit man die Leistung ehrlich messen kann, teilt man die Daten üblicherweise in drei Teile. Auf den **Trainingsdaten** lernt das Modell. Mit den **Validierungsdaten** wählt man zwischen Varianten, etwa zwischen Lernraten oder Modellgrößen. Die **Testdaten** bleiben bis zum Schluss unangetastet und beantworten genau eine Frage: Wie gut ist das fertige Modell auf neuen Fällen? Wer die Testdaten zwischendurch zum Nachjustieren benutzt, macht sie faktisch zu Validierungsdaten und misst sich selbst schöner, als das Modell ist. Googles Machine Learning Crash Course und die scikit-learn-Dokumentation beschreiben diese Aufteilung als Standardvorgehen [2][4]."
+  },
+  {
+   "t": "h2",
+   "x": "Was „Lernen“ technisch bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "Ein Modell ist zunächst eine Rechenvorschrift mit Millionen oder Milliarden einstellbarer Zahlen, den Parametern. Lernen heißt: Für jedes Trainingsbeispiel berechnet das Verfahren, wie weit die Ausgabe vom Ziel entfernt ist (der Verlust), und verändert die Parameter ein kleines Stück in die Richtung, die den Verlust verkleinert. Diese Abstiegsrichtung liefert der [Gradientenabstieg](/glossar#gradientenabstieg), die effiziente Berechnung der nötigen Ableitungen durch alle Schichten leistet [Backpropagation](/glossar#backpropagation) [1]. Zwischenstände dieses Prozesses werden als [Checkpoint](/glossar#checkpoint) gespeichert, etwa um später von dort weiterzutrainieren."
+  },
+  {
+   "t": "p",
+   "x": "Wichtig ist die Perspektive: Der Fehler auf den Trainingsdaten ist nur das Mittel, nicht das Ziel. Domingos drückt es so aus: Das eigentliche Ziel ist die Generalisierung, also gute Leistung außerhalb der Beispiele, die das Modell gesehen hat [3]. Genau daran scheitern Modelle auf zwei entgegengesetzte Arten."
+  },
+  {
+   "t": "h2",
+   "x": "Overfitting und Underfitting: die zwei Grundkrankheiten"
+  },
+  {
+   "t": "p",
+   "x": "**Underfitting** liegt vor, wenn das Modell zu einfach für das Muster in den Daten ist. Eine Gerade kann eben keinen Bogen abbilden; der Fehler ist auf Trainings- wie auf neuen Daten hoch. **Overfitting** ist das Gegenteil: Das Modell hat so viel Kapazität, dass es die Trainingsbeispiele samt ihren zufälligen Besonderheiten auswendig lernt. Der Trainingsfehler fällt weiter, aber der Fehler auf neuen Daten steigt wieder. Die scikit-learn-Dokumentation zeigt den Effekt an einem durchgerechneten Beispiel: Ein Polynom mittleren Grades trifft die Datenstruktur, ein sehr hoher Grad zittert zwischen den Punkten hindurch [5]."
+  },
+  {
+   "t": "chart",
+   "kind": "line",
+   "title": "Trainings- und Validierungsfehler über der Modellkomplexität (schematisch)",
+   "alt": "Liniendiagramm: Der Trainingsfehler fällt mit steigender Komplexität monoton von 9 auf 2,5, der Validierungsfehler fällt von 9,5 auf 6,2 und steigt danach wieder auf 8.",
+   "caption": "Schematische Darstellung des klassischen Verlaufs (keine Messwerte): Das Minimum des Validierungsfehlers markiert die passende Komplexität; rechts davon beginnt Overfitting. Darstellung im Stil von [5].",
+   "labels": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
+   ],
+   "x_label": "Modellkomplexität",
+   "y_label": "Fehler",
+   "series": [
+    {
+     "name": "Trainingsfehler",
+     "values": [
+      9,
+      7,
+      5.5,
+      4,
+      3,
+      2.5
+     ]
+    },
+    {
+     "name": "Validierungsfehler",
+     "values": [
+      9.5,
+      7.5,
+      6.5,
+      6.2,
+      6.8,
+      8
+     ]
+    }
+   ],
+   "source": "Eigene Darstellung nach dem Muster des scikit-learn-Beispiels [5]"
+  },
+  {
+   "t": "p",
+   "x": "In der Praxis erkennt man Overfitting an der Schere zwischen den beiden Kurven: Sinkt der Trainingsfehler weiter, während der Validierungsfehler stagniert oder steigt, lernt das Modell gerade auswendig. Gegenmittel sind mehr oder vielfältigere Daten, ein einfacheres Modell, Regularisierung, frühes Stoppen des Trainings oder, bei Bildern und Text, künstlich vervielfältigte Beispiele [1][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Generalisierung messen: Holdout und Kreuzvalidierung"
+  },
+  {
+   "t": "p",
+   "x": "Die einfachste Messung ist der Holdout: Ein fester Teil der Daten, oft 20 Prozent, wird als Testmenge zurückgelegt. Reichen die Daten dafür kaum, hilft die **k-fache Kreuzvalidierung**: Die Daten werden in k gleich große Teile zerlegt, das Modell wird k-mal trainiert, jedes Mal mit einem anderen Teil als Prüfmenge, und die k Ergebnisse werden gemittelt. scikit-learn dokumentiert das Verfahren und warnt vor seiner häufigsten Falle: Alle vorbereitenden Schritte, etwa eine Auswahl von Merkmalen, dürfen nur auf den Lerndaten jedes Durchlaufs geschehen, sonst fließt Prüfwissen ins Training ein [4]."
+  },
+  {
+   "t": "p",
+   "x": "Solches **Data Leakage** ist der heimtückischste Fehler der gesamten Datenarbeit: Information aus der Prüfmenge gelangt in den Lernprozess, und die gemessene Leistung sagt nichts mehr über neue Fälle aus. Typische Auslöser [2][4]:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Duplikate oder nahe Duplikate, die zugleich in Trainings- und Testmenge landen, etwa dasselbe Dokument in zwei Sprachfassungen.",
+    "Merkmale, die aus der Zielgröße abgeleitet sind und es in der echten Anwendung gar nicht gäbe, wie ein Feld „Kündigungsgrund“ beim Vorhersagen von Kündigungen.",
+    "Zeitreihen, die zufällig gemischt werden, sodass das Modell beim Training schon die Zukunft sieht.",
+    "Statistiken wie Mittelwerte oder Vokabulare, die über dem gesamten Datensatz statt nur über dem Lernanteil berechnet wurden."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Warum dieselben Begriffe bei Sprachmodellen wieder auftauchen"
+  },
+  {
+   "t": "p",
+   "x": "Große Sprachmodelle ändern die Skala, nicht die Begriffe. Beim [Pretraining](/glossar#pretraining-vortraining) wird der Verlust auf zurückgehaltenem Text verfolgt, und Entwickler achten darauf, dass Referenzaufgaben nicht in den Trainingsdaten stecken. Genau das ist [Kontamination](/glossar#kontamination): Data Leakage im Maßstab von Benchmarks, die unbemerkt im Trainingstext mitgelernt wurden und dadurch geschönte Werte liefern. Beim [Fine-Tuning](/glossar#fine-tuning) auf kleinen eigenen Datensätzen ist klassisches Overfitting der Normalfall, wenn zu lange oder mit zu großer Lernrate trainiert wird; das Modell verliert dabei oft Fähigkeiten aus dem Vortraining, was als [Catastrophic Forgetting](/glossar#catastrophic-forgetting) beschrieben wird. Und die Frage „wie gut ist das Modell wirklich“ beantwortet auch hier nur eine sauber getrennte Prüfmenge, wie die Seite zu [Evals](/evals-statt-bauchgefuehl) im Detail zeigt."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen Overfitting und Underfitting?",
+   "a": "Underfitting heißt, das Modell ist zu einfach für das Muster und irrt auf allen Daten gleichermaßen. Overfitting heißt, das Modell lernt die Trainingsdaten samt Zufälligkeiten auswendig: Der Trainingsfehler fällt weiter, der Fehler auf neuen Daten steigt wieder."
+  },
+  {
+   "q": "Woran erkenne ich Overfitting in der Praxis?",
+   "a": "An der Schere zwischen zwei Kurven: Der Fehler auf den Trainingsdaten sinkt weiter, während der Fehler auf einer getrennten Validierungsmenge stagniert oder wieder steigt. Ab diesem Punkt lernt das Modell auswendig."
+  },
+  {
+   "q": "Was ist der Unterschied zwischen Validierungs- und Testdaten?",
+   "a": "Validierungsdaten dienen zum Auswählen zwischen Varianten während der Entwicklung, etwa der Lernrate oder Modellgröße. Testdaten bleiben bis zum Schluss unbenutzt und liefern die ehrliche Abschlusszahl. Wer Testdaten zum Nachjustieren nutzt, macht sie zu Validierungsdaten."
+  },
+  {
+   "q": "Wie viele Daten braucht ein Modell?",
+   "a": "Es gibt keine allgemeine Zahl; sie hängt von Aufgabe, Musterstärke und Modellgröße ab. Faustregel der Lehrbücher: Lieber mehr und sauberere Daten als ein komplizierteres Modell, und bei knappen Daten Kreuzvalidierung statt einer einzelnen zufälligen Teilung nutzen."
+  },
+  {
+   "q": "Was ist Data Leakage?",
+   "a": "Wenn Information aus der Prüfmenge in den Lernprozess gelangt, etwa durch Duplikate, aus der Zielgröße abgeleitete Merkmale oder über alle Daten berechnete Statistiken. Die gemessene Leistung sieht dann besser aus, als sie auf neuen Fällen ist. Bei Sprachmodellen heißt das Pendant Kontamination."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Goodfellow, Bengio, Courville: Deep Learning (MIT Press, 2016), freie HTML-Fassung",
+   "publisher": "deeplearningbook.org",
+   "url": "https://www.deeplearningbook.org/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Machine Learning Crash Course",
+   "publisher": "Google for Developers",
+   "url": "https://developers.google.com/machine-learning/crash-course",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Domingos: A Few Useful Things to Know about Machine Learning (PDF)",
+   "publisher": "Communications of the ACM 55(10), 2012",
+   "url": "https://homes.cs.washington.edu/~pedrod/papers/cacm12.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Cross-validation: evaluating estimator performance",
+   "publisher": "scikit-learn-Dokumentation",
+   "url": "https://scikit-learn.org/stable/modules/cross_validation.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Underfitting vs. Overfitting",
+   "publisher": "scikit-learn-Dokumentation",
+   "url": "https://scikit-learn.org/stable/auto_examples/model_selection/plot_underfitting_overfitting.html",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die HTML-Fassung des Lehrbuchs „Deep Learning“ (Kapitel zu Kapazität, Overfitting und Regularisierung), Googles Machine Learning Crash Course, der Aufsatz von Pedro Domingos als PDF sowie die beiden genannten Seiten der scikit-learn-Dokumentation. Das Diagramm ist eine schematische Neuzeichnung des dort gezeigten Verlaufs, keine Messung.",
+ "limitations": "Der Text erklärt die Begriffe an klassischem maschinellen Lernen und überträgt sie nur skizziert auf Sprachmodelle; dort wirken weitere Größen wie Datenmischung und Trainingsdauer mit. Zahlenbeispiele im Diagramm sind Illustrationen, keine empirischen Werte. Die genannten Faustregeln ersetzen keine eigene Messung auf der eigenen Datenlage.",
+ "related": [
+  "wie-ein-sprachmodell-lernt",
+  "evals-statt-bauchgefuehl",
+  "fine-tuning-wann",
+  "embeddings-verstehen"
+ ]
+}
