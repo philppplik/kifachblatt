@@ -50,10 +50,10 @@ def box():
        '<p class="rb-copy">Modelle und KI-Artikel kompakt in der aktuellen Tagesausgabe.</p>'
        '<a class="rb-button" href="'+PDF+'">Tagesbericht gratis herunterladen <span aria-hidden="true">↓</span></a>'
        '<small>PDF · Kostenlos, ohne Anmeldung und ohne E-Mail. Ein Angebot von KI Fachblatt.</small></div>'
-       '<a class="rb-mock rb-mocks" href="'+PDF+'" aria-label="'+MOCK_ARIA+'"><img class="rb-p1" src="/assets/report-preview/'+name+'" width="'+str(w)+'" height="'+str(h)+'" alt="'+MOCK_ALT+'" loading="lazy" decoding="async">'+second()+'</a></aside>')
+       '<a class="rb-mock rb-mocks" href="'+PDF+'" aria-label="'+MOCK_ARIA+'"><img class="rb-p1" src="/assets/report-preview/'+name+'" width="'+str(w)+'" height="'+str(h)+'" alt="'+MOCK_ALT+'" loading="lazy" decoding="async">'+second()+'</a></aside><script src="/assets/leadwall.js" defer></script>')
 
 STYLE_RE = re.compile(r'<style id="report-breaker-style">.*?</style>', re.S)
-BOX_RE = re.compile(r'<aside class="report-breaker".*?</aside>', re.S)
+BOX_RE = re.compile(r'<aside class="report-breaker".*?</aside>(?:<script src="/assets/leadwall.js" defer></script>)?', re.S)
 
 def upgrade(html):
     """Swap a breaker from an earlier generation for the current markup and style."""
