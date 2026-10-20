@@ -92,7 +92,11 @@ def main(key,out):
   if idx<0:continue
   foot=h[idx:]
   if 'href="/redakteur/"' in foot:continue
-  h=h[:idx]+foot.replace('</footer>','<p class="er-directory-link" style="margin:16px 0"><a href="/redakteur/">Redakteure &amp; Mitwirken</a></p></footer>',1)
+  link='<a href="/redakteur/">Redakteure &amp; Mitwirken</a>'
+  m=re.search(r'<a href="/redaktion/?">Redaktion</a>',foot)
+  # Put it in the footer's Redaktion column, next to the Redaktion link. Fallback keeps the old single line.
+  foot=foot[:m.end()]+link+foot[m.end():] if m else foot.replace('</footer>','<p class="er-directory-link" style="margin:16px 0">'+link+'</p></footer>',1)
+  h=h[:idx]+foot
   f.write_text(h)
  print('rich editorial pages:',key,'articles',len(items),'profile',pf)
 if __name__=='__main__':main(sys.argv[1],sys.argv[2])

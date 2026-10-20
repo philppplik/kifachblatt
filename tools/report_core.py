@@ -29,7 +29,7 @@ a{color:%(ac)s;text-decoration:underline;text-decoration-color:rgba(0,0,0,.25)}
 .sl ol{columns:2;column-gap:6mm}.sl li{break-inside:avoid}
 .art .t a{color:#14151b;text-decoration:none}
 .pg{break-after:page}.pg:last-of-type{break-after:auto}
-.cover{border-top:6px solid %(ac)s;background:%(soft)s;padding:12mm 15mm 9mm;margin-bottom:7mm;border-bottom:1px solid %(line)s}
+.cover{border:1px solid rgba(127,127,127,.28);background:%(soft)s;padding:12mm 15mm 9mm;margin-bottom:7mm;border-bottom:1px solid %(line)s}
 .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:15pt;letter-spacing:-.01em;color:%(dk)s}
 .brand svg,.brand img{height:30px;width:30px}
 .cover h1{margin:9mm 0 2mm;font-size:26pt;line-height:1.1;letter-spacing:-.02em;color:#14151b}
@@ -43,7 +43,7 @@ td{padding:3px 6px;text-align:right;border-bottom:1px solid #eceef4;font-variant
 th:first-child,td:first-child{text-align:left}th.l,td.l{text-align:left}
 tbody tr:nth-child(even) td{background:#f8f9fc}
 .mut{color:#6b7080}
-.art{border:1px solid #dfe2ec;border-left:4px solid %(ac)s;border-radius:4px;padding:3.2mm 4mm;margin-bottom:3.2mm;break-inside:avoid}
+.art{border:1px solid #dfe2ec;border-radius:4px;padding:3.2mm 4mm;margin-bottom:3.2mm;break-inside:avoid}
 .art.lead{background:%(soft)s;padding:5mm}
 .art .m{font-size:8pt;color:#6b7080;text-transform:uppercase;letter-spacing:.05em}
 .art .t{font-size:11.5pt;font-weight:700;color:#14151b;margin:1px 0 2px;line-height:1.3}
