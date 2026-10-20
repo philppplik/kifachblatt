@@ -9,5 +9,5 @@ def path(date, secret):
 if __name__ == '__main__':
     f = sys.argv[1]; date = re.search(r'(\d{4}-\d{2}-\d{2})', f).group(1)
     req = urllib.request.Request('https://blob.vercel-storage.com/'+path(date, os.environ['LW_SECRET']), data=open(f,'rb').read(), method='PUT',
-        headers={'authorization':'Bearer '+os.environ['BLOB_READ_WRITE_TOKEN'],'x-api-version':'7','x-add-random-suffix':'0','x-allow-overwrite':'1','x-content-type':'application/pdf'})
+        headers={'authorization':'Bearer '+os.environ['BLOB_READ_WRITE_TOKEN'],'x-api-version':'7','x-vercel-blob-access':'private','x-add-random-suffix':'0','x-allow-overwrite':'1','x-content-type':'application/pdf'})
     print(urllib.request.urlopen(req, timeout=60).status, date)

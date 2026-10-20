@@ -10,7 +10,7 @@ import urllib.request
 
 def upload(f, date, secret, token):
     req = urllib.request.Request('https://blob.vercel-storage.com/' + path(date, secret), data=open(f, 'rb').read(), method='PUT',
-        headers={'authorization': 'Bearer ' + token, 'x-api-version': '7', 'x-add-random-suffix': '0', 'x-allow-overwrite': '1', 'x-content-type': 'application/pdf'})
+        headers={'authorization': 'Bearer ' + token, 'x-api-version': '7', 'x-vercel-blob-access': 'private', 'x-add-random-suffix': '0', 'x-allow-overwrite': '1', 'x-content-type': 'application/pdf'})
     return urllib.request.urlopen(req, timeout=60).status
 
 def main(root='.'):
