@@ -291,6 +291,46 @@
    "title": "CyberGym: Evaluating AI Agents on Real-World Vulnerabilities at Scale (arXiv:2506.02548)",
    "url": "https://arxiv.org/abs/2506.02548",
    "accessed": "2026-10-20"
+  },
+  "deepseek-wikipedia": {
+   "title": "Wikipedia: DeepSeek (Unternehmensartikel, laufend aktualisiert)",
+   "url": "https://en.wikipedia.org/wiki/DeepSeek",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-home": {
+   "title": "DeepSeek: offizielle Website (Hinweis zum Update V4.1-Flash-1017)",
+   "url": "https://www.deepseek.com/",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-hf-org": {
+   "title": "Hugging Face: deepseek-ai (Modellliste mit Daten)",
+   "url": "https://huggingface.co/deepseek-ai",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-v41-card": {
+   "title": "Hugging Face: DeepSeek-V4.1-Flash (Modellkarte mit Architektur und Messwerten)",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-v4pro-card": {
+   "title": "Hugging Face: DeepSeek-V4-Pro (Modellkarte der V4-Serie)",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-visionexp-card": {
+   "title": "Hugging Face: DeepSeek-V4-Flash-Vision-Exp (Modellkarte)",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Flash-Vision-Exp",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-api-docs": {
+   "title": "DeepSeek API Docs: Modellnamen und Umstellung auf V4.1-Flash-1017",
+   "url": "https://api-docs.deepseek.com/quick_start/pricing",
+   "accessed": "2026-10-20"
+  },
+  "deepseek-logo-commons": {
+   "title": "Wikimedia Commons: DeepSeek-Logo (MIT-lizenziert, Markenhinweis)",
+   "url": "https://commons.wikimedia.org/wiki/File:DeepSeek_logo.svg",
+   "accessed": "2026-10-20"
   }
  },
  "companies": [
@@ -1181,6 +1221,201 @@
    "logo": {
     "asset": "minimax",
     "label": "MiniMax-Logo"
+   }
+  },
+  {
+   "slug": "deepseek",
+   "name": "DeepSeek",
+   "initials": "DS",
+   "summary": "Chinesisches KI-Unternehmen, das offene Sprach-, Reasoning- und Multimodalmodelle entwickelt und eine eigene API-Plattform betreibt.",
+   "detail": "Aus dem Quant-Hedgefonds High-Flyer hervorgegangen. Veröffentlicht die Modellreihen V (Sprache und multimodal) und R (Reasoning) mit offenen Gewichten, dazu eine Chat-App und eine OpenAI- und Anthropic-kompatible Entwickler-API.",
+   "limits": "Offene Gewichte bedeuten nicht offene Trainingsdaten; die Lizenz ist pro Modell zu prüfen. Benchmarkangaben sind Hersteller-Selbstauskünfte. Schnelle Releasezyklen: Modell-IDs fest pinnen.",
+   "sources": [
+    "deepseek-wikipedia",
+    "deepseek-hf-org",
+    "deepseek-home",
+    "deepseek-api-docs"
+   ],
+   "facts": [
+    {
+     "label": "Einordnung",
+     "value": "Entwickler offener KI-Modelle (V- und R-Serie) mit eigener API und Chat-Anwendung.",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Gründung",
+     "value": "17. Juli 2023 als Ausgründung des AGI-Labors von High-Flyer.",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Gründer / CEO",
+     "value": "Liang Wenfeng; hielt im Mai 2024 über zwei Zwischengesellschaften 84 Prozent der Anteile.",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Hauptsitz",
+     "value": "Hangzhou, Zhejiang, China",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Eigentümer",
+     "value": "High-Flyer (Quant-Hedgefonds, 2015 von Liang Wenfeng mitgegründet).",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Finanzierung",
+     "value": "Series A im Mai 2026: 7 Mrd. US-Dollar bei 52 Mrd. US-Dollar Bewertung (post-money).",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Börsenpläne",
+     "value": "Bloomberg und Financial Times berichteten im Juli 2026 über IPO-Vorbereitungen mit frühestens 2027 angestrebter Notierung; nicht bestätigt.",
+     "source": "deepseek-wikipedia"
+    },
+    {
+     "label": "Lizenzpolitik",
+     "value": "Seit Januar 2025 erscheinen Modelle unter freien Lizenzen; die V4-Serie steht unter MIT. Trainingsdaten sind nicht offen lizenziert.",
+     "source": "deepseek-wikipedia"
+    }
+   ],
+   "rich": {
+    "eyebrow": "Offene Modelle · Chat · Entwickler-API",
+    "headline": "Vom Hedgefonds-Labor zum offenen Modellanbieter.",
+    "intro": "DeepSeek ist ein KI-Unternehmen aus Hangzhou, ausgegründet im Juli 2023 aus dem AGI-Labor des Quant-Hedgefonds High-Flyer. Es veröffentlicht Sprach-, Reasoning- und Multimodalmodelle mit offenen Gewichten und wurde im Januar 2025 mit dem Reasoning-Modell R1 weltbekannt, dessen Chat-App zeitweise ChatGPT von der Spitze des US-App-Stores verdrängte.",
+    "repo": "deepseek-ai",
+    "primary": "deepseek-wikipedia",
+    "layers": [
+     [
+      "Modellfamilien",
+      "Sprache und multimodal (V-Serie), Reasoning (R-Serie), Janus (Bild)"
+     ],
+     [
+      "Anwendungen",
+      "DeepSeek Chat (App und Web)"
+     ],
+     [
+      "Plattform",
+      "API, kompatibel zu OpenAI- und Anthropic-Schnittstellen"
+     ]
+    ],
+    "milestones": [
+     [
+      "Juli 2023",
+      "Ausgründung aus dem AGI-Labor von High-Flyer; Liang Wenfeng wird CEO.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "November 2023",
+      "DeepSeek-LLM, das erste eigene Sprachmodell.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Mai 2024",
+      "DeepSeek-V2 mit Multi-head Latent Attention und MoE.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Dezember 2024",
+      "DeepSeek-V3; Update im März 2025.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Januar 2025",
+      "DeepSeek-R1 samt Chat-App; die App verdrängt ChatGPT zeitweise von der Spitze des US-App-Stores, die Nvidia-Aktie verliert daraufhin 18 Prozent.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "August bis Dezember 2025",
+      "V3.1, V3.1-Terminus, V3.2-Exp und V3.2 mit DeepSeek Sparse Attention.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Juni 2026",
+      "DeepSeek-V4-Serie (Pro und Flash) mit einer Million Token Kontext.",
+      "deepseek-v4pro-card"
+     ],
+     [
+      "September/Oktober 2026",
+      "DeepSeek-V4.1-Flash, multimodal; Update auf V4.1-Flash-1017 am 17. Oktober.",
+      "deepseek-v41-card"
+     ]
+    ],
+    "sections": [
+     [
+      "Gründer und Hintergrund",
+      "DeepSeek ging aus High-Flyer hervor, einem 2015 von Liang Wenfeng mitgegründeten Quant-Hedgefonds. High-Flyer hatte schon vor den US-Exportbeschränkungen größere Nvidia-GPU-Bestände aufgebaut und betrieb eigene Trainingscluster (Fire-Flyer 1 und 2). Die Firma beschreibt ihre Kultur als forschungsbetont und ohne starre Leistungskennzahlen.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Open-Weight-Politik",
+      "Die Gewichte der aktuellen Serien stehen auf Hugging Face, die V4-Serie unter der MIT-Lizenz. Offene Gewichte heißt aber nicht offene Daten: Die Trainingskorpora sind nicht lizenziert zugänglich. Für jedes Modell gilt die Einzelprüfung von Lizenz und Karte.",
+      "deepseek-hf-org"
+     ],
+     [
+      "Finanzierung und Börsenpläne",
+      "Nach Jahren der Selbstfinanzierung durch High-Flyer kam im Mai 2026 eine Series A über 7 Mrd. US-Dollar bei 52 Mrd. Bewertung. Im Juli 2026 berichteten Bloomberg und Financial Times über IPO-Vorbereitungen mit einer Notierung frühestens 2027; das ist Berichtsstand, keine Firmenzusage.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Vorwurf des Trainingsdaten-Abgriffs",
+      "Im Februar 2026 warf Anthropic DeepSeek (und zwei weiteren Unternehmen) vor, über tausende betrügerisch angelegte Konten Millionen von Claude-Gesprächen zum Training eigener Modelle erzeugt zu haben. Das ist ein öffentlich erhobener Vorwurf, keine rechtskräftige Feststellung.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Schnelle Ablösung in der API",
+      "Die API bedient ältere Modellnamen weiter, leitet sie aber auf aktuelle Modelle um: deepseek-flash wird von V4.1-Flash-1017 bedient, die Namen deepseek-v4-flash und deepseek-v4-flash-vision-exp gelten als abgelöst. Wer Reproduzierbarkeit braucht, pinnt Versionen auf Ebene der eigenen Infrastruktur, nicht nur den API-Namen.",
+      "deepseek-api-docs"
+     ]
+    ],
+    "offerings": [
+     [
+      "V-Serie (Sprache und multimodal)",
+      "V4-Pro (1,6 Bio. Parameter) und V4.1-Flash (552 Mrd., multimodal) mit offenen Gewichten und API.",
+      "deepseek-v41-card"
+     ],
+     [
+      "R-Serie (Reasoning)",
+      "R1 und R1-0528 unter MIT-Lizenz; Vorgänger der aktuellen Reasoning-Modi.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "API und Chat",
+      "OpenAI- und Anthropic-kompatible API sowie Chat-App; Modellwahl über Namen wie deepseek-flash und deepseek-v4-pro.",
+      "deepseek-api-docs"
+     ]
+    ],
+    "checks": [
+     "Gewichtslizenz des konkreten Modells prüfen; die V4-Serie steht unter MIT, ältere Reihen unter anderen Bedingungen.",
+     "Bei API-Nutzung Datenverarbeitung und Speicherort klären; das Unternehmen sitzt in Hangzhou, China.",
+     "Herstellerbenchmarks stammen oft aus eigenen Harness-Setups und maximaler Reasoning-Stufe; mit eigenen Aufgaben nachmessen.",
+     "Kurze Releasezyklen einplanen: API-Namen werden auf neue Modelle umgeleitet, Versionen fest pinnen."
+    ],
+    "faq": [
+     [
+      "Wann wurde DeepSeek gegründet?",
+      "Am 17. Juli 2023 als Ausgründung des AGI-Labors des Hedgefonds High-Flyer; Gründer und CEO ist Liang Wenfeng.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Sind DeepSeek-Modelle Open Source?",
+      "Die Gewichte der aktuellen Modelle sind offen, die V4-Serie unter der MIT-Lizenz. Die Trainingsdaten sind nicht offen, daher spricht man genauer von offenen Gewichten.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Warum war DeepSeek-R1 ein Marktereignis?",
+      "Die R1-Chat-App überholte im Januar 2025 ChatGPT als meistgeladene Gratis-App im US-App-Store; die Nvidia-Aktie verlor daraufhin 18 Prozent.",
+      "deepseek-wikipedia"
+     ],
+     [
+      "Ist DeepSeek börsennotiert?",
+      "Nein. Bloomberg und Financial Times berichteten im Juli 2026 über Vorbereitungen für einen Börsengang frühestens 2027.",
+      "deepseek-wikipedia"
+     ]
+    ]
+   },
+   "logo": {
+    "asset": "deepseek",
+    "label": "DeepSeek-Logo"
    }
   }
  ],
@@ -2082,6 +2317,178 @@
    "logo": {
     "asset": "minimax",
     "label": "MiniMax-Logo (Unternehmenslogo; ein separates Modelllogo liegt nicht vor)"
+   }
+  },
+  {
+   "slug": "deepseek-v4-1-flash",
+   "name": "DeepSeek-V4.1-Flash",
+   "company": "deepseek",
+   "initials": "41",
+   "summary": "Multimodales MoE-Modell mit 552 Mrd. Parametern, einer Million Token Kontext und stark komprimiertem KV-Cache.",
+   "detail": "Neue Causal-Encoder-Decoder-Architektur: nur 8 Mrd. aktive Parameter beim Einlesen, 16 Mrd. beim Schreiben. Der globale KV-Cache liegt bei 890 Byte pro Token, etwa ein Viertel von V4-Flash. Verarbeitet Bilder und Text, gibt Text aus; die Reasoning-Stärke ist stufenlos von 1 bis 100 wählbar.",
+   "access": "DeepSeek-API (Modellname deepseek-flash, bedient von der Version 1017), Chat-App und Web; Gewichte auf Hugging Face unter MIT.",
+   "license": "MIT (Gewichte und Karte auf Hugging Face).",
+   "limits": "Alle Messwerte stammen vom Hersteller, mit maximaler Reasoning-Stufe und teils eigenem Harness. Die Basisversion und die API-Version 1017 sind nicht identisch mit der Erstveröffentlichung vom September.",
+   "sources": [
+    "deepseek-v41-card",
+    "deepseek-home",
+    "deepseek-api-docs",
+    "deepseek-hf-org"
+   ],
+   "facts": [
+    {
+     "label": "Veröffentlicht",
+     "value": "10. September 2026; Update V4.1-Flash-1017 am 17. Oktober 2026.",
+     "source": "deepseek-hf-org"
+    },
+    {
+     "label": "Architektur",
+     "value": "Causal Encoder-Decoder (CED), 40 Schichten; MoE mit 1 gemeinsamem und 384 gerouteten Experten, 6 aktiv pro Token.",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "Parameter",
+     "value": "552 Mrd. gesamt; 8 Mrd. aktiv beim Einlesen (Prefill), 16 Mrd. beim Schreiben (Decode).",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "Kontextfenster",
+     "value": "1 Mio. Token.",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "KV-Cache",
+     "value": "890 Byte pro Token global, laut Hersteller etwa ein Viertel von V4-Flash und 1/437 von V1.",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "Modalität",
+     "value": "Eingabe Bild und Text (eigener Vision-Encoder DeepSeek-ViT), Ausgabe Text.",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "Training",
+     "value": "45 Bio. Token multimodaler Korpus; Kontext ab 34 Bio. Token auf 1 Mio. erweitert.",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "Reasoning",
+     "value": "Stufenlos einstellbarer Reasoning-Aufwand (1 bis 100); Messwerte der Karte bei Stufe 100.",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "Herstellerwerte",
+     "value": "Terminal-Bench 2.1: 90,6; CyberGym: 88,1; Codeforces: 3471; HLE mit Werkzeugen: 63,9 (Selbstauskunft).",
+     "source": "deepseek-v41-card"
+    },
+    {
+     "label": "API-Umstellung",
+     "value": "Der API-Name deepseek-flash wird seit dem Update von V4.1-Flash-1017 bedient; die Vorgänger deepseek-v4-flash und -vision-exp gelten als abgelöst.",
+     "source": "deepseek-api-docs"
+    }
+   ],
+   "logo": {
+    "asset": "deepseek",
+    "label": "DeepSeek-Logo (Unternehmenslogo; ein separates Modelllogo liegt nicht vor)"
+   }
+  },
+  {
+   "slug": "deepseek-v4-pro",
+   "name": "DeepSeek-V4-Pro",
+   "company": "deepseek",
+   "initials": "4P",
+   "summary": "Flaggschiff der V4-Serie: 1,6 Bio. Parameter (49 Mrd. aktiv), eine Million Token Kontext, Max-Modus für schwere Reasoning-Aufgaben.",
+   "detail": "Hybrid-Attention aus Compressed Sparse Attention (CSA) und Heavily Compressed Attention (HCA): Bei 1 Mio. Token Kontext braucht das Modell laut Hersteller nur 27 Prozent der Rechenoperationen und 10 Prozent des KV-Cache von V3.2. Trainiert mit dem Muon-Optimizer auf über 32 Bio. Token; Spezialexperten werden per On-Policy-Destillation zu einem Modell konsolidiert.",
+   "access": "DeepSeek-API (Modellname deepseek-v4-pro) sowie Gewichte auf Hugging Face (Pro und Pro-Base, FP4/FP8 gemischt).",
+   "license": "MIT (Gewichte und Karte auf Hugging Face).",
+   "limits": "Herstellerangaben; der beschriebene Vorsprung beruht auf firmeninternen Messungen. Der 0813-Checkpoint (13. August 2026) ist ein Zwischenstand, kein neues Modell.",
+   "sources": [
+    "deepseek-v4pro-card",
+    "deepseek-hf-org",
+    "deepseek-v41-card"
+   ],
+   "facts": [
+    {
+     "label": "Veröffentlicht",
+     "value": "22. Juni 2026 (V4-Serie); Checkpoint V4-Pro-0813 am 13. August 2026.",
+     "source": "deepseek-hf-org"
+    },
+    {
+     "label": "Parameter",
+     "value": "1,6 Bio. gesamt, 49 Mrd. aktiv pro Token.",
+     "source": "deepseek-v4pro-card"
+    },
+    {
+     "label": "Kontextfenster",
+     "value": "1 Mio. Token.",
+     "source": "deepseek-v4pro-card"
+    },
+    {
+     "label": "Effizienz",
+     "value": "27 Prozent der Rechenoperationen und 10 Prozent des KV-Cache von V3.2 bei 1 Mio. Token (Herstellerangabe).",
+     "source": "deepseek-v4pro-card"
+    },
+    {
+     "label": "Training",
+     "value": "Über 32 Bio. Token Vortraining; zweistufige Nachtrainierung mit domänenspezifischen Experten und On-Policy-Destillation.",
+     "source": "deepseek-v4pro-card"
+    },
+    {
+     "label": "Modi",
+     "value": "V4-Pro-Max als maximale Reasoning-Stufe; V4-Flash-Max erreicht laut Hersteller ähnliche Reasoning-Werte bei höherem Denkbudget.",
+     "source": "deepseek-v4pro-card"
+    },
+    {
+     "label": "Herstellerwerte",
+     "value": "In der Vergleichstabelle der V4.1-Karte: HLE 42,7, Terminal-Bench 2.1: 87,9, CyberGym: 83,3, Codeforces: 3348 (Selbstauskunft).",
+     "source": "deepseek-v41-card"
+    }
+   ],
+   "logo": {
+    "asset": "deepseek",
+    "label": "DeepSeek-Logo (Unternehmenslogo; ein separates Modelllogo liegt nicht vor)"
+   }
+  },
+  {
+   "slug": "deepseek-v4-flash-vision-exp",
+   "name": "DeepSeek-V4-Flash-Vision-Exp",
+   "company": "deepseek",
+   "initials": "VX",
+   "summary": "Erstes experimentelles Multimodal-Modell der V4-Familie: V4-Flash plus Bildverständnis, inzwischen in der API abgelöst.",
+   "detail": "Baut auf V4-Flash (284 Mrd. Parameter, 13 Mrd. aktiv) auf und ergänzt visuelle Module durch Weitertraining. Gegenüber dem Checkpoint 0731 deutlich bessere multimodale Agentenwerte bei etwa gleichen Textwerten. In der DeepSeek-API ist das Modell inzwischen zurückgezogen; Anfragen laufen über V4.1-Flash-1017.",
+   "access": "Gewichte auf Hugging Face; in der DeepSeek-API abgelöst (Weiterleitung auf V4.1-Flash-1017).",
+   "license": "MIT (Gewichte und Karte auf Hugging Face).",
+   "limits": "Experimenteller Zwischenschritt, kein Dauermodell: Die API bedient den Namen nur noch als Weiterleitung. Messwerte sind Herstellerangaben gegen den eigenen Vorgänger und ein Fremdmodell (Opus-4.8).",
+   "sources": [
+    "deepseek-visionexp-card",
+    "deepseek-api-docs",
+    "deepseek-hf-org"
+   ],
+   "facts": [
+    {
+     "label": "Veröffentlicht",
+     "value": "1. September 2026.",
+     "source": "deepseek-hf-org"
+    },
+    {
+     "label": "Grundlage",
+     "value": "DeepSeek-V4-Flash (284 Mrd. Parameter, 13 Mrd. aktiv) plus visuelle Module und Weitertraining.",
+     "source": "deepseek-visionexp-card"
+    },
+    {
+     "label": "Herstellerwerte",
+     "value": "Multimodale Agenten: ApexBench 36,5 (V4-Flash-0731: 26,2), Chartography 64,3; Text-Agenten etwa auf Vorgängerniveau (Terminal-Bench 2.1: 83,9).",
+     "source": "deepseek-visionexp-card"
+    },
+    {
+     "label": "Status in der API",
+     "value": "Abgelöst: Anfragen an deepseek-v4-flash-vision-exp werden von V4.1-Flash-1017 beantwortet.",
+     "source": "deepseek-api-docs"
+    }
+   ],
+   "logo": {
+    "asset": "deepseek",
+    "label": "DeepSeek-Logo (Unternehmenslogo; ein separates Modelllogo liegt nicht vor)"
    }
   }
  ],
