@@ -83,5 +83,13 @@
     "risk": "Unverändertes Inline-SVG der offiziellen Brand-Seite; Weißraum, keine Umfärbung oder Rahmen. Markenrechte beachten.",
     "checked": "2026-10-19",
     "sha256": "4af90f5941c959b554b4f3eb82c5633044ad06fdf2d8daa837eea0357fbd7e22"
+  },
+  "minimax": {
+    "file": "minimax.png",
+    "source": "https://commons.wikimedia.org/wiki/File:MiniMax.png",
+    "license": "PD-textlogo laut Commons; Markenrechte bleiben bestehen",
+    "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
+    "checked": "2026-10-20",
+    "sha256": "73d242a14bdf7b1272d1fb8361d20c1e181ae9990f2c0eb68572531131990b64"
   }
 }
