@@ -65,16 +65,23 @@ def _norm_check(p):
     if not isinstance(c, dict):
         return None
     tasks = []
-    for t in (c.get('aufgaben') or []) + (c.get('szenarien') or []) + (c.get('praxis') or []):
+    for t in (c.get('aufgaben') or []) + (c.get('szenarien') or []) + (c.get('praxis') or []) + (c.get('fragen') or []) + (c.get('prueffragen') or []):
+        if isinstance(t, str):
+            t = {'frage': t}
         q = t.get('frage') or t.get('aufgabe') or ''
         a = t.get('loesung') or t.get('musterloesung') or ''
-        if q and a:
+        if q:
             tasks.append({'titel': t.get('titel', ''), 'frage': q, 'loesung': a})
     quiz = []
     for t in c.get('quiz') or []:
+        if not isinstance(t, dict):
+            continue
         q = t.get('frage') or t.get('q') or ''
-        a = t.get('antwort') or t.get('a') or ''
-        if q and a:
+        a = t.get('antwort') if t.get('antwort') is not None else t.get('a')
+        opts = t.get('optionen')
+        if isinstance(a, int) and isinstance(opts, list) and 0 <= a < len(opts):
+            a = opts[a] + ((' ' + t['erklaerung']) if t.get('erklaerung') else '')
+        if q and a and isinstance(a, str):
             quiz.append({'frage': q, 'antwort': a})
     if not tasks and not quiz:
         return None
@@ -185,8 +192,11 @@ def build(simple_page, shell_top, shell_bottom, errors):
             if c['aufgaben']:
                 pc.append('<h4>Aufgaben</h4>')
                 for j, t in enumerate(c['aufgaben'], 1):
-                    pc.append('<details class="lp-qa"><summary>%s</summary><p class="lp-qtext">%s</p><div class="lp-ans"><strong>Musterlösung</strong><p>%s</p></div></details>'
-                              % (esc(t['titel'] or 'Aufgabe %d' % j), esc(t['frage']), esc(t['loesung'])))
+                    if t['loesung']:
+                        pc.append('<details class="lp-qa"><summary>%s</summary><p class="lp-qtext">%s</p><div class="lp-ans"><strong>Musterlösung</strong><p>%s</p></div></details>'
+                                  % (esc(t['titel'] or 'Aufgabe %d' % j), esc(t['frage']), esc(t['loesung'])))
+                    else:
+                        pc.append('<p class="lp-task"><strong>%s</strong> %s</p>' % (esc(t['titel'] or 'Aufgabe %d:' % j), esc(t['frage'])))
             if c['quiz']:
                 pc.append('<h4>Quiz-Selbsttest</h4><p class="lp-hint">Antworte zuerst im Kopf, dann klappe die Antwort auf.</p>')
                 for t in c['quiz']:

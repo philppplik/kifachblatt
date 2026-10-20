@@ -2,6 +2,25 @@
 
 > Deutschsprachiges Fachmagazin über künstliche Intelligenz: Sprachmodelle, Agenten, RAG, Kosten und Verlässlichkeit. Einordnen statt hypen. Herausgeber: Philipp Paulik (Bonn). Beiträge entstehen mit KI-Unterstützung und sind allgemein gehalten.
 
+## Lernpfade
+
+<!--LP-->
+- [Einsteiger](https://kifachblatt.de/lernpfade#einsteiger): Ich will verstehen, was KI kann und was nicht.
+- [Praktiker](https://kifachblatt.de/lernpfade#praktiker): Ich baue oder nutze KI im Arbeitsalltag.
+- [Entscheider](https://kifachblatt.de/lernpfade#entscheider): Ich entscheide über Einsatz, Budget und Risiko.
+- [Entwickler: LLM-APIs in der Praxis](https://kifachblatt.de/lernpfade#entwickler-llm-apis): Ich will LLM-APIs produktiv einsetzen: Parameter, Streaming, Werkzeuge, RAG, Kosten. (Praktiker, ca. 2,5 h)
+- [Entwickler: Agenten bauen und absichern](https://kifachblatt.de/lernpfade#entwickler-agenten): Ich will Agenten mit Planung, Gedächtnis und Werkzeugen entwerfen und gegen Prompt Injection absichern. (Fortgeschritten, ca. 3 h)
+- [Open Source & offene Modelle](https://kifachblatt.de/lernpfade#open-source-modelle): Ich will die Landschaft offener Modelle lesen und richtig bewerten. (Praktiker, ca. 2 Stunden)
+- [Security & Red Teaming](https://kifachblatt.de/lernpfade#security-red-teaming): Ich will LLM-Systeme gegen Angriffe verteidigen. (Fortgeschritten, ca. 2,5 Stunden)
+- [Schüler & Azubis](https://kifachblatt.de/lernpfade#schueler-azubis): Ich will KI im Lernalltag klug und regelkonform nutzen. (Einsteiger, ca. 75 Minuten)
+- [Lehrkräfte](https://kifachblatt.de/lernpfade#lehrkraefte): Ich will KI im Unterricht einsetzen, ohne Kontrolle und Datenschutz zu verlieren. (Einsteiger bis Praktiker, ca. 2 Stunden)
+- [Prompt-Praxis: vom Wunsch zum Ergebnis](https://kifachblatt.de/lernpfade#prompt-praxis): Ich will systematisch bessere Antworten bekommen, statt jedes Mal neu herumzuprobieren. (Einsteiger bis Praktiker, ca. 90 Minuten)
+- [Marketing & SEO: KI-gestützte Content-Arbeit](https://kifachblatt.de/lernpfade#marketing-seo): Ich will Content mit KI schneller produzieren, ohne Markenkonsistenz und Sichtbarkeit in KI-Antwortsystemen zu verlieren. (Praktiker, ca. 2 Stunden)
+- [Multimodale KI: Text, Bild, Audio, Video in einem Modell](https://kifachblatt.de/lernpfade#multimodal): Ich will verstehen, wie ein Modell mehrere Medientypen verarbeitet - und das richtige für meine Aufgabe wählen. (Einsteiger bis Praktiker, ca. 2 Stunden)
+- [Unternehmer & KMU](https://kifachblatt.de/lernpfade#kmu): Ich will KI im Betrieb einführen – kalkulierbar und ohne Lehrgeld. (Entscheider, ca. 2 Stunden)
+- [Produktmanager: KI-Features konzipieren](https://kifachblatt.de/lernpfade#produktmanager-ki-features): Ich muss entscheiden, ob und wie ein KI-Feature in unser Produkt kommt. (Praktiker/Entscheider, ~2 Stunden)
+<!--/LP-->
+
 ## Beiträge
 
 <!--GEN-->
@@ -30,7 +49,10 @@
 - [KI in Schule, Ausbildung und Studium: Regeln und Grenzen](https://kifachblatt.de/ki-in-schule-ausbildung): Wann Schüler, Azubis und Studierende KI nutzen dürfen, was Anbieter, Schulen und Hochschulen vorgeben und wo die Täuschungsgrenze verläuft.
 - [Offene Gewichte vs. Open Source: Was hinter den Begriffen steckt](https://kifachblatt.de/offene-gewichte-vs-open-source): Herunterladbar heißt nicht frei nutzbar: Warum offene Gewichte und Open Source zwei verschiedene Dinge sind, welche Lizenzfallen lauern und wie du sie prüfst.
 - [KI-UX: Vertrauen, Fehlerfälle, Fallbacks, Erwartungsmanagement](https://kifachblatt.de/ki-ux): Wie Sie KI-Features so gestalten, dass Nutzer ihnen richtig vertrauen: Unsicherheit zeigen, Fehler prüfbar machen, Fallbacks bauen und Erwartungen steuern.
+- [KI in der Redaktion deklarieren: Die Transparenz-Regeln](https://kifachblatt.de/ki-deklaration-redaktion): Pressekodex, AP, Guardian und BR formulieren fast dieselben Regeln. Was Redaktionen kennzeichnen sollten und wie eine eigene Deklaration gelingt.
+- [KI-Texte erkennen: Wasserzeichen, Detektoren und ihre Grenzen](https://kifachblatt.de/ki-texte-erkennen): Ob ein Text von einer KI stammt, kann heute kein Werkzeug zuverlässig sagen. Was Wasserzeichen wie SynthID leisten und warum Detektoren Unschuldige treffen.
 - [KI-Feature-Canvas: von der Idee zum MVP](https://kifachblatt.de/ki-feature-canvas): Neun Felder, mit denen Sie ein KI-Feature vor dem ersten Sprint prüfen: Nutzen, Daten, Machbarkeit, Qualitätsmaß, Kosten und der Plan für den Fehlerfall.
+- [Transkription und Zusammenfassung: KI im Redaktionsalltag](https://kifachblatt.de/transkription-zusammenfassung): KI transkribiert Interviews in Minuten, fast auf Profi-Niveau. Was Whisper und Co. leisten, wo sie Fehler machen und wie ein sauberer Workflow aussieht.
 - [Eine persönliche Prompt-Bibliothek aufbauen](https://kifachblatt.de/prompt-bibliothek): Gute Prompts sind wiederverwendbares Werkzeug. Wie man sie sammelt, versioniert und pflegt, damit aus einmaligem Ausprobieren ein wachsender Bestand wird.
 - [Bildverständnis in der Praxis: Dokumente, Screenshots, Diagramme](https://kifachblatt.de/bildverstaendnis-praxis): Modelle lesen Bilder: Was Bildverständnis bei Dokumenten, Screenshots und Diagrammen leistet, wo es Fehler macht und wie du Ergebnisse zuverlässig absicherst.
 - [Prompt-Iteration und Debugging: systematisch statt raten](https://kifachblatt.de/prompt-iteration): Wie man einen schlechten Prompt wie einen Softwarefehler behandelt: Fehler reproduzieren, Ursache eingrenzen, eine Stelle ändern, prüfen.

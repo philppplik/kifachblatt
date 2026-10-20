@@ -1,6 +1,6 @@
 {
-  "title": "Lernpfade: KI verstehen in drei Etappen",
-  "intro": "Drei Wege durch das KI Fachblatt, je nachdem, wo du stehst. Jeder Pfad ist eine Reihenfolge von Seiten, die aufeinander aufbauen. Du musst nicht alles lesen: Wähle den Pfad, der zu deiner Frage passt, und hake Schritt für Schritt ab.",
+  "title": "Lernpfade: KI verstehen und anwenden",
+  "intro": "Geführte Wege durch das KI Fachblatt, je nach Ziel und Vorwissen. Jeder Pfad ist eine Reihenfolge von Seiten, die aufeinander aufbauen. Du musst nicht alles lesen: Wähle den Pfad, der zu deiner Frage passt, und hake Schritt für Schritt ab.",
   "paths": [
     {
       "id": "einsteiger",
