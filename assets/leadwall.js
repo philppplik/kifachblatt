@@ -1,6 +1,6 @@
 (function(){
   // Set the backend base URL in <meta name="kfb-lw-api" content="https://..."> or window.KFB_LW_API.
-  var m=document.querySelector('meta[name="kfb-lw-api"]'),API=(window.KFB_LW_API||(m&&m.content)||'').replace(/\/$/,'');
+  var m=document.querySelector('meta[name="kfb-lw-api"]'),API=(window.KFB_LW_API||(m&&m.content)||'https://daily-hob-newsletter.vercel.app/lw').replace(/\/$/,'');
   var KEY='kfb-lw-k',DAYS=365;
   function get(){try{var r=JSON.parse(localStorage.getItem(KEY)||'null');if(r&&r.exp>Date.now())return r.k}catch(e){}return null}
   function set(k){try{localStorage.setItem(KEY,JSON.stringify({k:k,exp:Date.now()+DAYS*864e5}))}catch(e){}}
