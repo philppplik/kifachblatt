@@ -26,7 +26,7 @@
  "hero": {
   "alt": "Zielscheibe mit Fadenkreuz neben einer abgehakten Prüfliste auf dunklem Grund, daneben ein kleines Dialogfenster mit stilisierten Angriffsfragen, die an einer Mauer abprallen",
   "caption": "Mit Plan statt Bauchgefühl angreifen: Red Teaming prüft ein System methodisch, bevor es andere tun.",
-  "ai_generated": true,
+  "ai_generated": false,
   "credit": "KI-generiert"
  },
  "body": [

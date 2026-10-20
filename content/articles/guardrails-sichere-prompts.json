@@ -26,7 +26,7 @@
  "hero": {
   "alt": "Mehrere konzentrische violette Schutzwände um einen hellen Kern, an denen stilisierte Textpfeile nacheinander abprallen, bis keiner mehr durchkommt",
   "caption": "Verteidigung in Schichten: Keine einzelne Schranke muss perfekt sein, wenn die nächste dahinter steht.",
-  "ai_generated": true,
+  "ai_generated": false,
   "credit": "KI-generiert"
  },
  "body": [

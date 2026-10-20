@@ -26,7 +26,7 @@
  "hero": {
   "alt": "Aufgeklappte Karteikarte im dunklen Interface-Stil mit Metadatenzeilen, darunter kleine Zähler für Likes und Downloads sowie ein Balkendiagramm als Sinnbild für eine Rangliste",
   "caption": "Die Modellkarte ist die Karteikarte des KI-Marktplatzes: Wer sie lesen kann, erkennt Qualität und Blindgänge.",
-  "ai_generated": true,
+  "ai_generated": false,
   "credit": "KI-generiert"
  },
  "body": [

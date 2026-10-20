@@ -26,7 +26,7 @@
  "hero": {
   "alt": "Dunkles Diagramm mit einem violetten Schild in der Mitte, auf das von drei Seiten Pfeile mit den Sinnbildern für Text, Daten und Kopie zulaufen und an der Schildwand abprallen",
   "caption": "Text über fremde Inhalte, vergiftete Daten, nachgebaute Modelle: Die Angriffe auf LLM-Systeme kommen auf sehr unterschiedlichen Wegen.",
-  "ai_generated": true,
+  "ai_generated": false,
   "credit": "KI-generiert"
  },
  "body": [

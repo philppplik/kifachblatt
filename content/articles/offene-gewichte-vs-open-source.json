@@ -26,7 +26,7 @@
  "hero": {
   "alt": "Waage vor dunklem Hintergrund: Auf der einen Schale liegen violett leuchtende Würfel als Sinnbild für Modellgewichte, auf der anderen ein aufgeschlagenes Dokument als Sinnbild für Quellcode und Lizenztext",
   "caption": "Gewichte auf der einen Seite, Rezept und Erlaubnis auf der anderen: Offene Gewichte und Open Source sind nicht dasselbe.",
-  "ai_generated": true,
+  "ai_generated": false,
   "credit": "KI-generiert"
  },
  "body": [
