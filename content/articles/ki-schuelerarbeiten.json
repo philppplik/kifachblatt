@@ -1,0 +1,172 @@
+{
+ "slug": "ki-schuelerarbeiten",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "KI-generierte Schülerarbeiten: einordnen statt verdächtigen",
+ "dek": "Warum KI-Detektoren in Studien so stark irren, wie Lehrkräfte Verdachtsfällen fair begegnen und welche Aufgabenformate das Problem an der Wurzel verkleinern.",
+ "published": "2026-10-20T05:40:00+02:00",
+ "modified": "2026-10-20T05:40:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Schule",
+  "Detektoren",
+  "Prüfungen",
+  "Lehrkräfte",
+  "Studie"
+ ],
+ "key_takeaways": [
+  "KI-Textdetektoren sind kein Beweismittel: In einer Stanford-Studie stuften sie über 60 Prozent der Essays nicht-muttersprachlicher Schreiber fälschlich als KI-generiert ein.",
+  "OpenAI hat sein eigenes Erkennungswerkzeug bereits 2023 wegen zu geringer Treffergenauigkeit eingestellt.",
+  "Fair ist ein stufiges Vorgehen: nicht anklagen, Gespräch führen, Prozessdokumente erfragen, mündlich nachfassen, notfalls unter Aufsicht wiederholen lassen.",
+  "Die Kultusministerkonferenz setzt auf neue Prüfungsformate: Prozessbewertung, Präsentation und Verteidigung statt reiner Produktabgabe."
+ ],
+ "hero": {
+  "alt": "Ein Dokument unter einer Lupe, daneben drei Bausteine: Signal, Verdacht, Beweis; nur das Signal ist angehakt, Verdacht und Beweis sind durchgestrichen.",
+  "caption": "Ein auffälliger Text ist ein Signal, kein Beweis. Redaktionelle Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Seit Chatbots in wenigen Sekunden passable Aufsätze liefern, schwebt über vielen Korrekturpaketen dieselbe Frage: Ist das hier echt? Die Versuchung ist groß, die Antwort einem KI-Detektor zu überlassen. Die Studienlage sagt: Das geht schief – und zwar ausgerechnet bei den Schülern am häufigsten, die ohnehin mehr erklären müssen."
+  },
+  {
+   "t": "callout",
+   "title": "Die Analogie",
+   "x": "Ein KI-Detektor funktioniert wie ein Metalldetektor am Flughafen, der auf Gürtelschnallen genauso anspringt wie auf verbotene Gegenstände – nur dass hier der Alarm entscheiden soll, ob jemand ein Problem ist."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Studienlage zeigt"
+  },
+  {
+   "t": "p",
+   "x": "Forschende der Stanford University ließen sieben verbreitete Detektoren über zwei Essay-Serien laufen: 91 Aufsätze von US-amerikanischen Achtklässlern und 91 TOEFL-Essays von nicht-muttersprachlichen Englischschreibern. Bei den US-Essays arbeiteten die Detektoren nahezu fehlerfrei. Bei den TOEFL-Essays stuften sie im Mittel 61,22 Prozent der Texte fälschlich als KI-generiert ein; 97 Prozent der Essays wurden von mindestens einem Detektor markiert, 18 von 91 Essays (rund 19 Prozent) einstimmig von allen sieben [1][2]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "TOEFL-Essays von Menschen, fälschlich als KI markiert",
+   "caption": "Anteil der 91 TOEFL-Essays menschlicher Autoren, die KI-Detektoren irrtümlich als KI-generiert einstuften. Zum Vergleich: Bei Essays US-amerikanischer Achtklässler lagen die Detektoren nahezu fehlerfrei [1][2].",
+   "alt": "Balkendiagramm: 19 Prozent der TOEFL-Essays wurden von allen sieben Detektoren als KI markiert, 61 Prozent im Mittel je Detektor, 97 Prozent von mindestens einem Detektor.",
+   "labels": [
+    "von allen 7 Detektoren",
+    "im Mittel je Detektor",
+    "von mind. 1 Detektor"
+   ],
+   "series": [
+    {
+     "name": "Fälschlich als KI markiert",
+     "values": [
+      19,
+      61,
+      97
+     ]
+    }
+   ],
+   "unit": " %",
+   "max": 100,
+   "source": "Liang u. a. (2023), Patterns; Darstellung: Redaktion [1][2]"
+  },
+  {
+   "t": "p",
+   "x": "Der Grund liegt im Messprinzip. Die meisten Detektoren bewerten, wie „überraschend“ ein Text für ein Sprachmodell ist (Perplexität): vorhersehbare, glatte Sprache gilt als KI-typisch. Nicht-muttersprachliche Texte sind sprachlich schlichter und damit vorhersehbarer – sie rutschen in dieselbe Kategorie, obwohl ein Mensch sie geschrieben hat [1]. Umgekehrt lässt sich ein KI-Text mit einem einzigen Zusatz-[Prompt](/glossar#prompt) („schreib es umgangssprachlicher, mit kleinen Fehlern“) so umformen, dass er die Detektoren unterläuft [1]."
+  },
+  {
+   "t": "p",
+   "x": "Dass das kein akademisches Randproblem ist, zeigt der Markt selbst: OpenAI hatte 2023 einen eigenen KI-Text-Classifier veröffentlicht und stellte ihn am 20. Juli 2023 wieder ein – ausdrücklich wegen seiner geringen Trefferquote [3]. Der Hersteller des meistgenutzten Modells hält sein eigenes Erkennungswerkzeug also für zu ungenau."
+  },
+  {
+   "t": "h2",
+   "x": "Verdachtsfälle fair behandeln"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Signal, nicht Anklage.** Ein auffälliger Textstil ist ein Grund zum Nachfragen, nie ein Beweis. Ein Detektor-Ergebnis ist ein weiteres Signal, keinesfalls mehr.",
+    "**Gespräch vor Konsequenz.** Die Schülerin oder den Schüler den Text erklären lassen: Wie bist du vorgegangen, was war schwierig, warum hast du diese Quelle gewählt? Wer einen Text selbst geschrieben hat, kann darüber sprechen.",
+    "**Prozessdokumente erfragen.** Gliederung, handschriftliche Notizen, Zwischenstände oder Versionsverlauf zeigen Arbeitsweise statt Ergebnis.",
+    "**Mündlich nachfassen.** Eine kurze Verteidigung der Kernaussagen entspricht genau dem Prüfungsformat, das die Länder ohnehin ausbauen [4].",
+    "**Im Zweifel sauber wiederholen.** Eine Ersatzleistung unter Aufsicht ist für beide Seiten fairer als eine Note auf Verdacht."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Aufgaben umbauen statt Detektoren vertrauen"
+  },
+  {
+   "t": "p",
+   "x": "Die dauerhafte Antwort liegt nicht in besserer Detektion, sondern in besseren Aufgaben. Die Bildungsministerkonferenz hat 2024 festgehalten, ein allgemeines KI-Verbot bei häuslichen Arbeiten sei „weder zielführend und wünschenswert, noch durchhaltbar“; stattdessen sollen die Länder ihre Leistungsüberprüfungsformate weiterentwickeln, Prozessbewertung und Mehrdimensionalität (schriftlich, mündlich, praktisch, digital) stärker in den Blick nehmen [4]."
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Persönliche und lokale Bezüge:** Aufgaben, die eigene Beobachtungen, Klassenexperimente oder lokale Quellen verlangen, lassen sich schlecht aus dem Kontext heraus fälschen.",
+    "**Prozess zählt:** Gliederung, Zwischenstände und Reflexionsprotokoll geben Punkte, nicht nur das Endprodukt [4].",
+    "**Präsentation und Verteidigung:** Wer ein Produkt abgibt, erklärt es; die KMK nennt ausdrücklich die „versierte Koaktivität“ von Mensch und KI als Bewertungsgegenstand [4].",
+    "**Klare Absprachen:** Vorab festlegen, welche KI-Nutzung erlaubt ist und wie sie zu kennzeichnen ist – das macht ehrliche Nutzung möglich und Unehrlichkeit erst zum Verstoß [4]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Für die Schülerseite steht die spiegelbildliche Einordnung im Artikel [KI in Schule, Ausbildung und Studium](/ki-in-schule-ausbildung). Wer Material mit KI vorbereitet, findet den passenden Workflow unter [Unterrichtsmaterial mit KI erstellen](/unterrichtsmaterial-ki)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Woran erkenne ich KI-Texte ohne Detektor?",
+   "a": "An gar keinem Merkmal sicher. Auffälligkeiten (gleichmäßiger Stil, generische Übergänge, erfundene Quellen) sind Hinweise, keine Belege. Selbst erfundene Literaturangaben können von Menschen abgeschrieben worden sein. Der faire Weg ist das Gespräch über den Arbeitsprozess."
+  },
+  {
+   "q": "Darf ich ein Detektor-Ergebnis in einer Bewertung verwenden?",
+   "a": "Als alleinige Grundlage nein. Die Studienlage zeigt hohe Fehlquoten, besonders bei nicht-muttersprachlichen Texten [1][2], und OpenAI hat sein eigenes Werkzeug wegen Ungenauigkeit eingestellt [3]. Als Anlass für ein Gespräch ist ein Signal vertretbar, als Beweis nicht."
+  },
+  {
+   "q": "Was ist mit Watermarking – löst das das Problem?",
+   "a": "[Watermarking bei KI-Text](/glossar#watermarking-bei-ki-text) bettet statistische Muster direkt bei der Erzeugung ein und wäre prinzipiell verlässlicher als nachträgliche Detektoren. Es funktioniert aber nur, wenn alle Anbieter mitziehen, der Text nicht umformuliert wird und Auswertungswerkzeuge verfügbar sind. Als allgemeiner Nachweis taugt es heute nicht."
+  },
+  {
+   "q": "Wie erkläre ich meiner Klasse faire Regeln?",
+   "a": "Am besten positiv: festlegen, wofür KI benutzt werden darf (Recherche, Feedback, Übungsfragen), wie sie zu kennzeichnen ist, und was Eigenleistung bleibt. Die KMK empfiehlt genau solche Absprachen zur Verwendung und Kennzeichnung [4]. Wer Regeln offen mitbekommt, muss nicht raten."
+  },
+  {
+   "q": "Gilt die Kritik an Detektoren auch an Hochschulen?",
+   "a": "Ja, dort ist die Lage sogar schärfer, weil Hausarbeiten und Abschlussarbeiten existenzielle Folgen haben können. Das fünfstufige Vorgehen (Signal, Gespräch, Prozessdokumente, mündliche Nachfassung, Wiederholung) lässt sich eins zu eins übertragen."
+  }
+ ],
+ "sources": [
+  {
+   "title": "AI-Detectors Biased Against Non-Native English Writers",
+   "publisher": "Stanford Institute for Human-Centered AI (HAI), 15. Mai 2023",
+   "url": "https://hai.stanford.edu/news/ai-detectors-biased-against-non-native-english-writers",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "GPT detectors are biased against non-native English writers (Liang u. a., 2023)",
+   "publisher": "Patterns, Cell Press",
+   "url": "https://www.cell.com/patterns/fulltext/S2666-3899(23)00130-7",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "New AI classifier for indicating AI-written text (Hinweis zur Einstellung am 20. Juli 2023)",
+   "publisher": "OpenAI",
+   "url": "https://openai.com/index/new-ai-classifier-for-indicating-ai-written-text/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Handlungsempfehlung für die Bildungsverwaltung zum Umgang mit Künstlicher Intelligenz in schulischen Bildungsprozessen (Beschluss vom 10.10.2024)",
+   "publisher": "Sekretariat der Kultusministerkonferenz",
+   "url": "https://kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2024/2024_10_10-Handlungsempfehlung-KI.pdf",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Darstellung der Stanford-Studie beim HAI, der Fachartikel von Liang u. a. in Patterns (Abstract und Ergebnisteil), die OpenAI-Ankündigung zum AI Classifier inklusive des Einstellungshinweises und die KMK-Handlungsempfehlung (Themenbereich 2 vollständig). Das fünfstufige Vorgehen ist eine redaktionelle Arbeitsvorlage auf Basis der KMK-Empfehlungen. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Stanford-Studie stammt von 2023 und testete englische Essays; absolute Prozentwerte übertragen sich nicht eins zu eins auf deutsche Schülertexte oder neuere Detektoren. Die Richtung des Befunds (Fehlquoten, Bias gegen Nicht-Muttersprachler, Umgehbarkeit) ist jedoch durch die Mechanik der Verfahren begründet und wurde seither nicht widerlegt. Detektor-Angebote einzelner Anbieter wurden nicht im Detail geprüft.",
+ "related": [
+  "unterrichtsmaterial-ki",
+  "ki-in-schule-ausbildung",
+  "halluzinationen"
+ ]
+}

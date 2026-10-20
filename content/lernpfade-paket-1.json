@@ -1,0 +1,158 @@
+{
+ "paket": 1,
+ "name": "Bildung",
+ "hinweis_integrator": "Zwei Pfade für content/lernpfade.json (an cfg['paths'] anhängen). Format wie die Bestandspfade, plus freiwillige Zusatzfelder (zielgruppe, level, zeit, voraussetzungen, lernziel, abschluss_check) für die geplante Pfad-Übersicht und den Abschluss-Check als <details>-Blöcke. Der derzeitige Builder (tools/lernpfade.py) ignoriert unbekannte Felder und nutzt id, name, frage, intro, steps, terms.",
+ "paths": [
+  {
+   "id": "schueler-azubis",
+   "name": "Schüler & Azubis",
+   "frage": "Ich will KI im Lernalltag klug und regelkonform nutzen.",
+   "zielgruppe": "Schüler, Azubis, Studienanfänger",
+   "level": "Einsteiger",
+   "zeit": "ca. 75 Minuten",
+   "voraussetzungen": "keine",
+   "lernziel": "KI-Hilfsmittel im Lernalltag sicher und regelkonform einsetzen; erkennen, wo KI irrt und wo Nutzung Täuschung wäre.",
+   "intro": "Kein Vorwissen nötig. Du lernst, wie Sprachmodelle funktionieren, warum sie sich irren, welche Regeln in Schule, Ausbildung und Studium gelten und wie du gute Anweisungen schreibst.",
+   "steps": [
+    {
+     "slug": "tokens-und-kosten",
+     "warum": "Der Grundbaustein: Modelle lesen und schreiben in kleinen Textstücken, und danach richten sich Länge und Preis."
+    },
+    {
+     "slug": "wie-ein-sprachmodell-lernt",
+     "warum": "Von Pretraining bis RLVR: Wie aus Rohtext ein Assistent wird und warum das Modell kein Wissensspeicher ist."
+    },
+    {
+     "slug": "halluzinationen",
+     "warum": "Warum ein Modell überzeugend falsche Dinge sagt, auch Quellen, die es nicht gibt."
+    },
+    {
+     "slug": "ki-in-schule-ausbildung",
+     "warum": "Welche Regeln in Schule, Ausbildung und Studium gelten und wo die Täuschungsgrenze verläuft."
+    },
+    {
+     "slug": "prompt-grundlagen",
+     "warum": "Wie du dem Modell klare Aufgaben gibst: die fünf Bausteine guter Prompts und warum Iteration mehr zählt als der perfekte erste Satz."
+    }
+   ],
+   "terms": [
+    "Sprachmodell (LLM)",
+    "Token",
+    "Prompt",
+    "Halluzination",
+    "Temperatur",
+    "Sycophancy"
+   ],
+   "abschluss_check": {
+    "einleitung": "Selbsttest ohne Benotung: Antworten erst selbst formulieren, dann aufklappen.",
+    "fragen": [
+     {
+      "frage": "Ein Modell nennt eine Quelle, die es nicht gibt. Was ist passiert?",
+      "loesung": "Eine Halluzination: Das Modell erzeugt plausibel klingenden Text ohne Wahrheitsprüfung. Konsequenz: Quellenangaben immer gegen das Original prüfen, nie ungeprüft übernehmen."
+     },
+     {
+      "frage": "Du bist 15 und willst dir einen eigenen Account bei einem KI-Chatbot einrichten. Was gilt?",
+      "loesung": "Anbieterbedingungen prüfen (bei OpenAI: mindestens 13, unter 18 nur mit Erlaubnis der Eltern). Datenschutzrechtlich gilt in Deutschland bei Einwilligungen die Grenze von 16 Jahren, darunter müssen Eltern zustimmen."
+     },
+     {
+      "frage": "Deine Lehrkraft hat nichts zu KI gesagt. Du lässt die komplette Hausaufgabe von der KI schreiben und gibst sie unverändert ab. Einordnen.",
+      "loesung": "Täuschung: Eine geforderte Eigenleistung wird vorgetäuscht. Dass keine Absprache existiert, ändert daran nichts; die KMK erwartet Eigenständigkeit und empfiehlt Kennzeichnungs-Absprachen."
+     },
+     {
+      "frage": "Du lässt dir von der KI zehn Übungsfragen stellen und deine Antworten korrigieren. Einordnen.",
+      "loesung": "Erlaubte Lernhilfe: Es wird keine Abgabeleistung vorgetäuscht. Trotzdem Antworten der KI bei Faktenfragen gegen den Unterrichtsstoff prüfen."
+     },
+     {
+      "frage": "Die KI korrigiert die Grammatik deines Aufsatzes, ohne den Inhalt zu ändern. Einordnen.",
+      "loesung": "Meist erlaubtes Hilfsmittel, vergleichbar einer Rechtschreibprüfung. Maßgeblich ist die Absprache im Kurs; im Zweifel kurz kennzeichnen oder fragen."
+     },
+     {
+      "frage": "Warum reicht es nicht, die KI zu bitten: „Sag mir nur wahre Fakten“?",
+      "loesung": "Das Modell hat keinen Wahrheitsfilter; die Anweisung ändert nichts an der Erzeugung. Sicherheit entsteht nur durch Prüfen gegen die Quelle."
+     },
+     {
+      "frage": "Die KI lobt deine Gliederung überschwänglich. Warum ist das keine Leistungsbeurteilung?",
+      "loesung": "Sycophancy: Modelle neigen dazu, Nutzer zu bestätigen. Für echte Beurteilung ausdrücklich nach Schwächen fragen oder Menschen fragen."
+     },
+     {
+      "frage": "Ein Mitschüler sagt: „Prompten ist egal, das Modell versteht schon, was ich meine.“ Nenne zwei Gegenargumente aus den Prompt-Grundlagen.",
+      "loesung": "Das Modell kennt nur den Text im Kontextfenster, nicht die Absicht dahinter; fehlender Kontext wird geraten. Und: Aufgabe, Format und Prüfkriterien im Prompt verändern die Antwort messbar, Beispiele (Few-Shot) schlagen lange Beschreibungen."
+     }
+    ],
+    "szenarien_hinweis": "Drei Praxis-Szenarien zum Einordnen „erlaubt / grenzwertig / Täuschung“ stehen als Tabelle im Artikel KI in Schule, Ausbildung und Studium (Schritt 4)."
+   }
+  },
+  {
+   "id": "lehrkraefte",
+   "name": "Lehrkräfte",
+   "frage": "Ich will KI im Unterricht einsetzen, ohne Kontrolle und Datenschutz zu verlieren.",
+   "zielgruppe": "Lehrkräfte, Dozenten, Ausbilder",
+   "level": "Einsteiger bis Praktiker",
+   "zeit": "ca. 2 Stunden",
+   "voraussetzungen": "keine",
+   "lernziel": "Unterrichtsmaterial effizient erstellen, KI-Nutzung von Lernenden fair bewerten, Datenschutz in der Schule wahren.",
+   "intro": "Die Gegenseite des Schüler-Pfads: dieselben Grundlagen, dann Materialworkflow, fairer Umgang mit Verdachtsfällen und die Datenschutz-Ebenen der Schule.",
+   "steps": [
+    {
+     "slug": "ki-in-schule-ausbildung",
+     "warum": "Die Schülerperspektive verstehen: Anbieterregeln, Schulregeln und die Täuschungsgrenze aus Sicht der Lernenden."
+    },
+    {
+     "slug": "wie-ein-sprachmodell-lernt",
+     "warum": "Fachliche Grundlage, um Chancen und Grenzen der Werkzeuge einschätzen und erklären zu können."
+    },
+    {
+     "slug": "unterrichtsmaterial-ki",
+     "warum": "Ein Fünf-Schritte-Workflow mit Kontrollpunkten und ein Briefing zum Kopieren für differenziertes Material."
+    },
+    {
+     "slug": "ki-schuelerarbeiten",
+     "warum": "Warum Detektoren kein Beweis sind, wie Verdachtsfälle fair laufen und welche Aufgabenformate weiterhelfen."
+    },
+    {
+     "slug": "datenschutz-schule",
+     "warum": "DSGVO, Einwilligungsalter und Landesfreigaben: welche Daten in welche Werkzeuge dürfen."
+    },
+    {
+     "slug": "prompt-grundlagen",
+     "warum": "Die eigenen Anweisungen verbessern und den Schülern gleich sauberes Prompting beibringen."
+    }
+   ],
+   "terms": [
+    "Prompt",
+    "Halluzination",
+    "Watermarking (bei KI-Text)",
+    "Temperatur"
+   ],
+   "abschluss_check": {
+    "einleitung": "Selbsttest ohne Benotung: Antworten erst selbst formulieren, dann aufklappen.",
+    "fragen": [
+     {
+      "frage": "Formuliere ein Arbeitsblatt-Briefing (Ziel, Klasse, Zeit, Format, Prüfkriterien) für ein Thema deiner Wahl.",
+      "loesung": "Vergleiche mit der Vorlage im Artikel Unterrichtsmaterial mit KI: Rolle, Aufgabe, Kontext (Klasse, Lerngruppe, Zeit), Format (Anzahl und Art der Aufgaben, Erwartungshorizont) und Prüfkriterien (lösbare Zahlen, Niveau) müssen vorkommen."
+     },
+     {
+      "frage": "Finde drei Fehlerquellen, die ein ungeprüftes KI-Arbeitsblatt typischerweise enthalten kann.",
+      "loesung": "Erfundene oder falsche Fakten und Jahreszahlen, nicht lösbare oder mehrdeutige Aufgaben und erfundene Quellenangaben. Deshalb: jede Zahl, jedes Zitat und jede Aufgabe vor dem Einsatz selbst prüfen."
+     },
+     {
+      "frage": "Ein Detektor meldet bei einem Schülertext „98 % KI“. Was tust du?",
+      "loesung": "Nicht als Beweis behandeln: Studien zeigen hohe Fehlquoten, besonders bei nicht-muttersprachlichen Texten, und OpenAI hat seinen eigenen Classifier eingestellt. Fairer Weg: Gespräch, Prozessdokumente erfragen, mündlich nachfassen, im Zweifel unter Aufsicht wiederholen lassen."
+     },
+     {
+      "frage": "Eine Kollegin will Schülertexte zur Feedback-Erstellung in einen freien Consumer-Chatbot kopieren. Deine Einschätzung?",
+      "loesung": "Tabu ohne geprüfte Freigabe: Schülertexte sind personenbezogene Daten Minderjähriger. Alternativen: anonymisieren (wenn wirksam) oder ein landesseitig freigegebenes Werkzeug nutzen."
+     },
+     {
+      "frage": "Ab welchem Alter können Schüler in Deutschland in Onlinedienste datenschutzrechtlich selbst einwilligen, und was folgt daraus für verpflichtende KI-Nutzung im Unterricht?",
+      "loesung": "Ab 16 Jahren (Deutschland hat nicht abgesenkt). Verpflichtende Nutzung kann sich nicht auf Einwilligungen über Privataccounts stützen, weil Einwilligung freiwillig sein muss; der Zugang muss schulisch organisiert und abgesichert sein."
+     },
+     {
+      "frage": "Welche Pflicht bringt Artikel 4 der EU-KI-Verordnung, und seit wann gilt sie?",
+      "loesung": "Seit 2. Februar 2025 müssen Anbieter und Betreiber von KI-Systemen für ausreichende KI-Kompetenz der Nutzer sorgen. Auch Schulen können Betreiber sein; Datenschutz ist damit auch eine Bildungsaufgabe."
+     }
+    ]
+   }
+  }
+ ]
+}

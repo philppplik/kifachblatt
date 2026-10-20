@@ -1,0 +1,190 @@
+{
+ "slug": "prompt-grundlagen",
+ "lang": "de",
+ "section": "grundlagen",
+ "type": "explainer",
+ "title": "Prompt-Grundlagen: Sprachmodellen klare Aufgaben geben",
+ "dek": "Was ein Prompt ist, aus welchen Bausteinen gute Anweisungen bestehen, was Few-Shot bedeutet und warum Iteration wichtiger ist als der perfekte erste Satz.",
+ "published": "2026-10-20T05:20:00+02:00",
+ "modified": "2026-10-20T05:20:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Prompting",
+  "Prompt",
+  "Grundlagen",
+  "Few-Shot",
+  "System-Prompt"
+ ],
+ "key_takeaways": [
+  "Ein Prompt ist die Arbeitsanweisung an das Modell; seine Qualität begrenzt die Qualität der Antwort.",
+  "Gute Prompts bestehen aus fünf Bausteinen: Aufgabe, Kontext, Format, Beispiele und Prüfkriterien; Rolle und Ton sind Zusatz, nicht Kern.",
+  "Zero-Shot heißt ohne Beispiele, Few-Shot mit wenigen Beispielen; der Begriff stammt aus dem GPT-3-Papier von 2020.",
+  "Profis iterieren: Ergebnis prüfen, Anweisung schärfen, erneut versuchen – und Fakten immer gegen die Quelle prüfen."
+ ],
+ "hero": {
+  "alt": "Fünf gestapelte Bausteine mit den Aufschriften Aufgabe, Kontext, Format, Beispiele, Prüfkriterien; ein Pfeil führt zu einem Kasten Antwort.",
+  "caption": "Die fünf Bausteine eines guten Prompts. Redaktionelle Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein [Prompt](/glossar#prompt) ist der Text, den du einem [Sprachmodell](/glossar#sprachmodell-llm) als Auftrag gibst. Das Modell kennt dich nicht, es kennt nur diesen Text und das, was im selben [Kontextfenster](/glossar#kontextfenster) steht. Alles, was die Antwort braucht, muss also im Prompt stecken oder bekanntes Weltwissen sein. Genau daraus folgen alle Prompting-Regeln."
+  },
+  {
+   "t": "p",
+   "x": "Dieser Text erklärt den Aufbau guter Prompts ohne Vorwissen, mit einer Alltagsanalogie und Beispielen zum Kopieren. Wer danach tiefer einsteigen will, findet die offiziellen Leitfäden von OpenAI und Anthropic in den Quellen [1][2]."
+  },
+  {
+   "t": "callout",
+   "title": "Die Analogie",
+   "x": "Ein Prompt ist eine Arbeitsanweisung an eine extrem schnelle Aushilfe am ersten Tag. Sie hat viel gelesen, aber sie weiß nichts über dich, dein Projekt oder deinen Geschmack. Was du ihr nicht sagst, rät sie – und manchmal rät sie überzeugt daneben."
+  },
+  {
+   "t": "h2",
+   "x": "Wer eigentlich mit wem spricht"
+  },
+  {
+   "t": "p",
+   "x": "In Chat-Programmen gibt es zwei Ebenen von Anweisungen. Der [System-Prompt](/glossar#system-prompt) steht über dem Gespräch und legt Rahmenregeln fest, etwa Rolle, Stil und Verbote; ihn setzen Entwickler oder die App. Deine Nachrichten sind der Nutzer-Prompt. Bei Konflikten gewinnt in der Regel die höhere Ebene. Als Nutzer musst du den System-Prompt nicht schreiben können, aber es hilft zu wissen, dass er existiert – er erklärt, warum sich derselbe Prompt in verschiedenen Apps unterschiedlich anfühlt."
+  },
+  {
+   "t": "h2",
+   "x": "Die fünf Bausteine eines guten Prompts"
+  },
+  {
+   "t": "table",
+   "caption": "Die Bausteine sind eine redaktionelle Verdichtung der Leitfäden von OpenAI und Anthropic [1][2]. Nicht jeder Prompt braucht alle fünf; je anspruchsvoller die Aufgabe, desto mehr lohnen sich.",
+   "head": [
+    "Baustein",
+    "Leitfrage",
+    "Beispiel"
+   ],
+   "rows": [
+    [
+     "Aufgabe",
+     "Was genau soll herauskommen?",
+     "„Schreibe eine E-Mail, die den Termin verschiebt.“"
+    ],
+    [
+     "Kontext",
+     "Was muss das Modell über die Lage wissen?",
+     "„Der Kunde wartet seit einer Woche, es ist das zweite Verschieben.“"
+    ],
+    [
+     "Format",
+     "Wie soll die Antwort aussehen?",
+     "„Maximal acht Sätze, keine Aufzählung.“"
+    ],
+    [
+     "Beispiele",
+     "Wie sieht gut aus?",
+     "„So klang die letzte Mail an ihn: …“"
+    ],
+    [
+     "Prüfkriterien",
+     "Woran erkennst du ein gutes Ergebnis?",
+     "„Der neue Termin muss konkret sein, nicht ‚bald‘.“"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "OpenAI fasst den Kern so zusammen: schreibe klare Anweisungen, liefere Referenztext, zerlege komplexe Aufgaben und gib dem Modell Zeit zu „denken“ [1]. Anthropic betont dasselbe Grundprinzip: Sei klar und direkt, nutze Beispiele und gib dem Modell Ausgabestruktur vor [2]. Hinter beiden steht eine einfache Logik: Jedes Wort im Prompt verengt den Raum dessen, was das Modell als nächstes [Token](/glossar#token) für wahrscheinlich hält."
+  },
+  {
+   "t": "h2",
+   "x": "Zero-Shot und Few-Shot"
+  },
+  {
+   "t": "p",
+   "x": "Zwei Begriffe aus Modellkarten sind hier zu Hause. Zero-Shot heißt: Du stellst die Aufgabe ohne Beispiel. [Few-Shot](/glossar#few-shot-prompting) heißt: Du gibst ein bis fünf Beispiele für gewünschte Ein- und Ausgaben mit, und das Modell setzt das Muster fort. Der Begriff geht auf das GPT-3-Papier von 2020 zurück, das zeigte, dass ein großes Modell neue Aufgaben allein aus wenigen Beispielen im Prompt lösen kann, ohne nachtrainiert zu werden [3]."
+  },
+  {
+   "t": "p",
+   "x": "In der Praxis: Solange die Aufgabe alltäglich ist, reicht Zero-Shot. Sobald du ein bestimmtes Format, einen Ton oder eine fachliche Konvention brauchst, schlägt Few-Shot fast jede Beschreibung. Ein gutes Beispiel ist wie eine Musterlösung im Praktikum: Es zeigt, was gemeint ist, statt es zu erklären."
+  },
+  {
+   "t": "h2",
+   "x": "So sieht der Unterschied aus"
+  },
+  {
+   "t": "code",
+   "x": "Schwach:\n„Schreib was über Quantisierung.“\n\nStärker:\n„Erkläre Quantisierung von Sprachmodellen in 150 Wörtern\nfür Leser ohne Informatik-Hintergrund. Nutze die Analogie\neiner komprimierten Fotodatei. Keine Formeln. Nenne am\nEnde zwei Grenzen des Verfahrens.“"
+  },
+  {
+   "t": "p",
+   "x": "Der zweite Prompt deckt alle fünf Bausteine ab: Aufgabe (erklären), Kontext (Zielgruppe ohne Informatik), Format (150 Wörter, keine Formeln), Beispiel (die Analogie) und Prüfkriterium (zwei Grenzen am Ende). Das Ergebnis wird nicht jedes Mal perfekt sein, aber es wird messbar näher an dem liegen, was du willst."
+  },
+  {
+   "t": "h2",
+   "x": "Iterieren statt perfekt formulieren"
+  },
+  {
+   "t": "p",
+   "x": "Beide Anbieter empfehlen ausdrücklich, Prompts schrittweise zu verbessern statt den perfekten ersten Versuch zu suchen [1][2]. Der Arbeitsablauf ist immer derselbe: Ergebnis lesen, die größte Abweichung benennen, die Anweisung genau an dieser Stelle schärfen, erneut versuchen. Nach zwei bis drei Runden sitzt der Prompt meist. Wer dieselbe Aufgabe öfter hat, speichert die funktionierende Fassung als Vorlage – daraus wird mit der Zeit eine persönliche Prompt-Bibliothek."
+  },
+  {
+   "t": "h2",
+   "x": "Was Prompting nicht ändert"
+  },
+  {
+   "t": "p",
+   "x": "Drei Grenzen bleiben, egal wie gut der Prompt ist. Erstens: Das Modell weiß nur, was in seinen Trainingsdaten oder im Kontext steht; fehlt das Wissen, erfindet es manchmal – eine [Halluzination](/glossar#halluzination). Kein Prompt-Verbot macht erfundene Quellen unmöglich, nur das Prüfen schützt. Zweitens: Die [Temperatur](/glossar#temperatur) steuert, wie zufällig das Modell wählt; bei höherer Temperatur streuen die Antworten stärker. Drittens: Modelle neigen zu [Sycophancy](/glossar#sycophancy), sie bestätigen dich eher, als dich zu korrigieren. Wer ehrliche Kritik will, sollte sie ausdrücklich einfordern: „Finde drei Schwächen in meinem Text.“"
+  },
+  {
+   "t": "p",
+   "x": "Damit ist der Grundkurs fertig. Vertiefen kannst du ihn mit [Few-Shot-Prompting in der Praxis](/few-shot-prompting-praxis), [System-Prompts und Rollen](/system-prompts) und [Prompt-Iteration und Debugging](/prompt-iteration). Für eigene Qualitätskontrollen lohnt danach der Artikel [Evals: Testen statt Bauchgefühl](/evals-statt-bauchgefuehl)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Wie lang darf ein Prompt sein?",
+   "a": "So lang wie nötig, so kurz wie möglich. Die Anbieter-Leitfäden empfehlen Klarheit vor Kürze [1][2]. Ein Prompt mit einer halben Seite sauberem Kontext schlägt drei kryptische Zeilen. Die Grenze setzt das [Kontextfenster](/glossar#kontextfenster) des Modells."
+  },
+  {
+   "q": "Muss ich höflich zur KI sein?",
+   "a": "Nein, aber klar formulierte, sachliche Anweisungen funktionieren besser als Kommandoton oder Floskeln. Höflichkeit schadet nicht, sie ersetzt nur keinen der fünf Bausteine."
+  },
+  {
+   "q": "Auf Deutsch oder Englisch prompten?",
+   "a": "Große aktuelle Modelle beherrschen beides. Für deutsche Ausgabetexte ist Deutsch meist die sichere Wahl; bei sehr technischen Themen kann Englisch leicht stabiler sein, weil ein größerer Teil der Trainingsdaten englisch ist. Im Zweifel beides probieren – Iteration gilt auch hier."
+  },
+  {
+   "q": "Warum ignoriert das Modell manchmal meine Anweisung?",
+   "a": "Häufige Gründe: Die Anweisung widerspricht sich selbst, sie steht am Ende eines sehr langen Kontexts (vergleiche [Lost in the Middle](/glossar#lost-in-the-middle)), oder eine höhere Ebene wie der System-Prompt gewinnt den Konflikt. Anweisung kürzen, an den Anfang stellen und Widersprüche streichen hilft in den meisten Fällen."
+  },
+  {
+   "q": "Kann ein guter Prompt Halluzinationen verhindern?",
+   "a": "Nein. Formulierungen wie „nenne nur geprüfte Fakten“ senken das Risiko gefühlt, verhindern aber nichts. Das Modell hat keinen Wahrheitsfilter; der Artikel [Warum Sprachmodelle halluzinieren](/halluzinationen) erklärt die Ursache. Sicherheit gibt es nur durch Prüfen gegen die Quelle."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Prompt engineering (Leitfaden)",
+   "publisher": "OpenAI, Plattform-Dokumentation",
+   "url": "https://platform.openai.com/docs/guides/prompt-engineering",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Prompt engineering overview",
+   "publisher": "Anthropic, Claude-Dokumentation",
+   "url": "https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/overview",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Language Models are Few-Shot Learners (Brown u. a., 2020)",
+   "publisher": "arXiv:2005.14165",
+   "url": "https://arxiv.org/abs/2005.14165",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 der Prompt-Engineering-Leitfaden von OpenAI, die Prompt-Engineering-Übersicht von Anthropic und der Abstract sowie die Einleitung des GPT-3-Papiers (arXiv:2005.14165). Die fünf Bausteine sind eine redaktionelle Verdichtung der beiden Anbieter-Leitfäden, das Code-Beispiel ist ein eigenes Praxisbeispiel der Redaktion. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Leitfäden der Anbieter werden laufend überarbeitet; einzelne Empfehlungen (etwa zu Reasoning-Modellen) gelten nur für bestimmte Modellserien. Von den gelesenen Papieren wurde beim GPT-3-Papier nicht der Volltext, sondern Abstract und Einleitung ausgewertet. Die Baustein-Tabelle vereinfacht bewusst: Profi-Techniken wie [Chain of Thought](/glossar#chain-of-thought) oder strukturierte Ausgaben sind eigenen Artikeln vorbehalten.",
+ "related": [
+  "ki-in-schule-ausbildung",
+  "halluzinationen",
+  "evals-statt-bauchgefuehl"
+ ]
+}

@@ -1,0 +1,153 @@
+{
+ "slug": "unterrichtsmaterial-ki",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Unterrichtsmaterial mit KI erstellen: schnell, aber geprüft",
+ "dek": "Wie Lehrkräfte mit Sprachmodellen differenziertes Material entwerfen: ein Workflow mit Kontrollpunkten, ein Briefing zum Kopieren und seine Grenzen.",
+ "published": "2026-10-20T05:30:00+02:00",
+ "modified": "2026-10-20T05:30:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Unterricht",
+  "Lehrkräfte",
+  "Differenzierung",
+  "Material",
+  "Schule"
+ ],
+ "key_takeaways": [
+  "KI entlastet beim Entwerfen, Differenzieren und Anpassen von Material; die fachliche und didaktische Kontrolle bleibt bei der Lehrkraft.",
+  "Ein fünfstufiger Workflow mit Prüfpunkt vor dem Einsatz verhindert, dass Halluzinationen ins Klassenzimmer gelangen.",
+  "Die Kultusministerkonferenz sieht den größten Nutzen in differenzierten Lernangeboten, Inklusion und Entlastung – bei unzureichender Forschungslage zur Lernwirksamkeit.",
+  "Für personenbezogene Schülerdaten gelten die Regeln des Datenschutz-Artikels dieser Reihe; Materialentwürfe ohne Schülerdaten sind der unproblematische Normalfall."
+ ],
+ "hero": {
+  "alt": "Flussdiagramm mit vier Kästen: Ziel und Niveau, KI-Entwurf, fachliche Prüfung, Unterricht; zwischen Entwurf und Prüfung ein Warnsymbol.",
+  "caption": "Der Workflow von der Idee zum geprüften Material. Redaktionelle Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Unterrichtsvorbereitung ist Zeitarbeit: Arbeitsblätter, Übungsaufgaben, Textvarianten, Vertretungsstunden. [Sprachmodelle](/glossar#sprachmodell-llm) können davon einen Teil in Minuten entwerfen. Die Handlungsempfehlung der Kultusministerkonferenz beschreibt den Nutzen so: Lehrkräfte würden bei Vorbereitung, Durchführung und Nachbereitung entlastet und bekämen Freiräume, um einer heterogenen Schülerschaft mit personalisierter Unterstützung zu begegnen [1]. Gleichzeitig stellt dasselbe Papier fest: Die Forschungslage zur Lernwirksamkeit generativer KI ist noch unzureichend [1]. Entlastung ja, Autopilot nein."
+  },
+  {
+   "t": "callout",
+   "title": "Die Analogie",
+   "x": "KI ist bei der Materialerstellung wie eine Referendarin mit viel Fleiß und wenig Erfahrung: Sie liefert schnell einen brauchbaren Entwurf, aber jede Aufgabe, jede Zahl und jede Quelle muss vor dem Einsatz von einer erfahrenen Lehrkraft gegengelesen werden."
+  },
+  {
+   "t": "h2",
+   "x": "Was die KI hier wirklich gut kann"
+  },
+  {
+   "t": "p",
+   "x": "Die KMK nennt als Stärken den Aufbau differenzierter Lernangebote, individuelle Förderung und personalisierte Lernwege sowie Inklusion: automatische Bildbeschreibungen, Vorlesefunktionen, Text-zu-Sprache und Sprache-zu-Text, automatisierte Übersetzung und das Umwandeln von Texten in leichte Sprache [1]. In der Praxis heißt das:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Differenzierung auf Knopfdruck:** derselbe Stoff als Grund-, Standard- und Expertenversion, mit angepasstem Wortschatz und Aufgabentiefe.",
+    "**Formate variieren:** aus einem Sachtext werden ein Lückentext, ein Quiz, Karteikarten oder eine Diskussionsvorlage.",
+    "**Sprachliche Zugänge:** Zusammenfassungen in leichter Sprache oder Übersetzungen für mehrsprachige Lerngruppen [1].",
+    "**Feedback-Entwürfe:** Musterlösungen und Fehlerkataloge, an denen sich die Rückmeldung an Schüler orientieren kann."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Der Fünf-Schritte-Workflow"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Ziel und Niveau festlegen.** Kompetenz, Klassenstufe und Zeitrahmen schriftlich fixieren; ohne Zielvorgabe differenziert die KI ins Beliebige.",
+    "**Briefing schreiben.** Ein strukturierter [Prompt](/glossar#prompt) mit Aufgabe, Kontext, Format und Prüfkriterien; Vorlage weiter unten.",
+    "**Entwurf erzeugen lassen.** Erst die Struktur, dann den Inhalt; so bleibt die Kontrolle über den Aufbau bei dir.",
+    "**Fachlich prüfen.** Jede Zahl, jedes Zitat, jede Quelle gegen das Original; Aufgaben selbst durchrechnen. Die Datenschutzkonferenz formuliert es als Grundsatz: Ergebnisse von KI-Anwendungen sind auf Richtigkeit zu prüfen [3].",
+    "**Einsetzen und nachsteuern.** Nach der Stunde notieren, was funktioniert hat, und das Briefing für das nächste Mal anpassen."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Ein Briefing zum Kopieren"
+  },
+  {
+   "t": "code",
+   "x": "Rolle: Du bist eine erfahrene Lehrkraft für Mathematik.\nAufgabe: Erstelle ein Arbeitsblatt zum Thema Prozentrechnung.\nKontext: Klasse 7, Realschule, 20 Minuten Bearbeitungszeit,\nheterogene Lerngruppe, kein Taschenrechner.\nFormat: 3 Aufgaben in aufsteigender Schwierigkeit,\njede mit Erwartungshorizont und Punktevergabe.\nPrüfkriterien: Alle Zahlen sind ganzzahlig lösbar,\ndie Aufgaben haben einen Alltagsbezug (Einkaufen),\nkeine Lösungshinweise im Aufgabenteil."
+  },
+  {
+   "t": "p",
+   "x": "Das Briefing deckt die Bausteine der [Prompt-Grundlagen](/prompt-grundlagen) ab: Aufgabe, Kontext, Format, Beispiele und Prüfkriterien. Wer öfter Material desselben Typs baut, speichert die funktionierende Fassung und tauscht nur Thema und Klassenstufe aus."
+  },
+  {
+   "t": "h2",
+   "x": "Werkzeuge im Schulalltag"
+  },
+  {
+   "t": "p",
+   "x": "Neben den allgemeinen Chatbots gibt es Angebote, die gezielt für Schulen gebaut werden. Das Hamburger Angebot fobizz etwa stellt KI-Werkzeuge für Unterrichtsplanung und -durchführung bereit und wirbt damit, dass auch Schülerinnen und Schüler DSGVO-konform in geschützten Klassenräumen damit arbeiten können [2]. Mehrere Bundesländer lizenzieren solche Angebote landesweit. Zusätzlich prüfen die Länder, die unterrichtlich nutzbaren KI-Anwendungen didaktisch einzuordnen, etwa im Prüfverfahren „eduCheck digital“ [1]."
+  },
+  {
+   "t": "p",
+   "x": "Welche Werkzeuge an deiner Schule mit welchen Daten genutzt werden dürfen, ist eine eigene Frage: Sie hängt von Land, Schulträger und Freigaben ab. Der Artikel [Datenschutz in der Schule](/datenschutz-schule) sortiert die Ebenen. Die Kurzform: In Entwürfen für Unterrichtsmaterial haben personenbezogene Schülerdaten nichts zu suchen – und das ist meist leicht einzuhalten, weil Material sie schlicht nicht braucht."
+  },
+  {
+   "t": "h2",
+   "x": "Wo die Entlastung endet"
+  },
+  {
+   "t": "p",
+   "x": "Drei Grenzen bleiben. Erstens die [Halluzination](/glossar#halluzination): Das Modell erfindet plausibel klingende Jahreszahlen, Zitate und Aufgabenlösungen. Zweitens die Didaktik: Ein Modell kennt deine Lerngruppe nicht; ob eine Aufgabe zum Vorwissen passt, entscheidet die Lehrkraft. Drittens die Verantwortung: Die KMK betont, Lehrkräfte behielten die zentrale Rolle bei der Gestaltung der Lernumgebung [1]. Entlastung bei der Erstellung heißt also mehr Prüfen, nicht weniger Verantwortung."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Darf ich KI-generiertes Material ungeprüft einsetzen?",
+   "a": "Nein. Die Datenschutzkonferenz nennt das Prüfen der Ergebnisse auf Richtigkeit eine Grundanforderung [3]. Mindestens Zahlen, Zitate, Quellen und Aufgabenlösungen müssen vor dem Einsatz gegen das Original geprüft werden."
+  },
+  {
+   "q": "Muss ich KI-generiertes Material kennzeichnen?",
+   "a": "Eine gesetzliche Pflicht für Unterrichtsmaterial gibt es derzeit nicht; eine kurze Kennzeichnung gegenüber Kolleginnen und Kollegen ist trotzdem gute Praxis, weil sie die Prüftiefe transparent macht. Für Schülerarbeiten gelten andere Absprachen, siehe [KI-generierte Schülerarbeiten](/ki-schuelerarbeiten)."
+  },
+  {
+   "q": "Darf ich Schülertexte in die KI kopieren, um Feedback zu bekommen?",
+   "a": "Schülertexte sind personenbezogene Daten. Ob und in welches Werkzeug sie dürfen, hängt von den Freigaben deines Landes und deiner Schule ab; Details im Artikel [Datenschutz in der Schule](/datenschutz-schule). Ohne geprüfte Freigabe: Texte vorher anonymisieren oder die Rückmeldung an anonymisierten Beispielen üben."
+  },
+  {
+   "q": "Lohnt sich KI auch für kleine Aufgaben wie eine Vertretungsstunde?",
+   "a": "Gerade dort. Ein festes Briefing für Standardformate (Quiz, Lückentext, Stationen) spart pro Einheit wenige Minuten bis eine halbe Stunde; summiert über ein Schuljahr wird daraus der spürbare Teil der Entlastung, die die KMK beschreibt [1]."
+  },
+  {
+   "q": "Ersetzt die KI irgendwann die Unterrichtsplanung?",
+   "a": "Nach heutiger Lage nein. Die KMK hält die Forschungslage zur Lernwirksamkeit für unzureichend und sieht KI als Unterstützung, nicht als Ersatz der Lehrkraft [1]. Planung ist Didaktik: Zielgruppe, Vorwissen und Anschluss kennt nur die Lehrperson."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Handlungsempfehlung für die Bildungsverwaltung zum Umgang mit Künstlicher Intelligenz in schulischen Bildungsprozessen (Beschluss vom 10.10.2024)",
+   "publisher": "Sekretariat der Kultusministerkonferenz",
+   "url": "https://kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2024/2024_10_10-Handlungsempfehlung-KI.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Tools und KI für Schule und Unterricht",
+   "publisher": "fobizz",
+   "url": "https://fobizz.com/de/die-fobizz-tools-fuer-schule-und-unterricht/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Orientierungshilfe: Künstliche Intelligenz und Datenschutz (Version 1.0, 6. Mai 2024)",
+   "publisher": "Datenschutzkonferenz",
+   "url": "https://www.datenschutzkonferenz-online.de/media/oh/20240506_DSK_Orientierungshilfe_KI_und_Datenschutz.pdf",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die KMK-Handlungsempfehlung (Themenbereiche 1, 3 und 4 vollständig), die Werkzeug-Übersicht von fobizz und die DSK-Orientierungshilfe (Abschnitt 3 zur Nutzung). Der Fünf-Schritte-Workflow und das Beispiel-Briefing sind eigene redaktionelle Arbeitsvorlagen. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Werkzeugangebote und Landeslizenzen ändern sich schnell; genannt wurde nur ein beispielhaftes, am 20. Oktober 2026 erreichbares Angebot. Wirksamkeitsaussagen zum Lernerfolg wären derzeit nicht seriös, die KMK selbst hält die Forschungslage für unzureichend [1]. Konkrete Freigaben bleiben Sache der Länder und Schulträger.",
+ "related": [
+  "prompt-grundlagen",
+  "ki-schuelerarbeiten",
+  "datenschutz-schule"
+ ]
+}

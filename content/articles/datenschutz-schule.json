@@ -1,0 +1,197 @@
+{
+ "slug": "datenschutz-schule",
+ "lang": "de",
+ "section": "datenschutz",
+ "type": "explainer",
+ "title": "Datenschutz in der Schule: welche KI, welche Daten",
+ "dek": "DSGVO, Einwilligungsalter und Landesfreigaben verständlich sortiert: Was Lehrkräfte und Schulen bei KI-Werkzeugen und Schülerdaten beachten müssen.",
+ "published": "2026-10-20T05:50:00+02:00",
+ "modified": "2026-10-20T05:50:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Datenschutz",
+  "DSGVO",
+  "Schule",
+  "Lehrkräfte",
+  "Recht"
+ ],
+ "key_takeaways": [
+  "Grundregel: Keine personenbezogenen Schülerdaten in KI-Werkzeuge, die nicht für die Schule geprüft und freigegeben sind.",
+  "Bei Einwilligungen in Onlinedienste gilt in Deutschland die Altersgrenze von 16 Jahren; darunter brauchen Eltern zuzustimmen.",
+  "Die Verantwortung liegt bei Schule und Schulträger als öffentliche Stelle, nicht bei der einzelnen Lehrkraft; die Datenschutzkonferenz liefert die Prüfkriterien.",
+  "Seit Februar 2025 verpflichtet Artikel 4 der EU-KI-Verordnung Anbieter und Betreiber, für KI-Kompetenz ihrer Nutzer zu sorgen."
+ ],
+ "hero": {
+  "alt": "Ein Schild vor drei Datenarten: keine personenbezogenen Daten, anonymisierte Daten und personenbezogene Daten, jeweils mit Ampelfarbe grün, gelb, rot.",
+  "caption": "Drei Datenarten, drei Regeln. Redaktionelle Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "callout",
+   "title": "Stand und Einordnung",
+   "x": "Stand dieses Textes: 20. Oktober 2026. Er erklärt die Regeln verständlich, ist aber keine Rechtsberatung. Verbindlich sind Gesetz, die Vorgaben deines Bundeslands und die Beratung durch die zuständige Datenschutzaufsicht oder den behördlichen Datenschutzbeauftragten."
+  },
+  {
+   "t": "p",
+   "x": "Wenn eine Lehrkraft einen Schülertext in einen Chatbot kopiert, passieren zwei Dinge gleichzeitig: Das Modell hilft beim Feedback, und personenbezogene Daten eines Minderjährigen wandern zu einem Anbieter, oft in die USA. Ob das erlaubt ist, entscheidet nicht das Bauchgefühl, sondern drei Ebenen: die Datenschutz-Grundverordnung (DSGVO), das Schulrecht des Bundeslands und die Nutzungsbedingungen des Anbieters. Dieser Text sortiert die Ebenen so, dass klar wird, wer was entscheiden muss."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 1: Die DSGVO-Grundregeln"
+  },
+  {
+   "t": "p",
+   "x": "Die Datenschutzkonferenz (DSK), das Gremium der Datenschutzaufsichten von Bund und Ländern, hat 2024 eine Orientierungshilfe für KI-Anwendungen veröffentlicht. Ihre Logik lässt sich auf drei Fragen zuspitzen: Ist das Einsatzfeld und sein Zweck vorab festgelegt? Kommt die Anwendung ganz ohne personenbezogene Daten aus? Und gibt es für jede verbleibende Verarbeitung eine Rechtsgrundlage [1]?"
+  },
+  {
+   "t": "p",
+   "x": "Für den Schulalltag heißt das: Der Normalfall sollte der datenfreie Prompt sein. Aufgaben entwerfen, Texte vereinfachen, Beispiele erzeugen – nichts davon braucht Namen, Noten oder Schülertexte. Die DSK nennt zusätzlich besondere Vorsicht bei besonders geschützten Daten (etwa Gesundheit oder Religion, Artikel 9 DSGVO) und verlangt, Ergebnisse auf Richtigkeit und Diskriminierung zu prüfen [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 2: Kinder, Einwilligung und das Alter"
+  },
+  {
+   "t": "p",
+   "x": "Artikel 8 DSGVO regelt, wann Kinder in Onlinedienste selbst einwilligen dürfen: Grundsätzlich ab 16 Jahren; die Mitgliedstaaten durften die Grenze bis auf 13 Jahre absenken [2]. Deutschland hat von dieser Möglichkeit keinen Gebrauch gemacht. Die Sächsische Datenschutzbeauftragte fasst die Rechtslage so zusammen: Bei Diensten der Informationsgesellschaft ist eine einwilligungsbasierte Verarbeitung bei Kindern unter 16 Jahren nur rechtmäßig, wenn die Eltern zustimmen [3]."
+  },
+  {
+   "t": "p",
+   "x": "Praktisch folgt daraus: Private Accounts minderjähriger Schüler bei Consumer-Chatbots sind Sache der Eltern und der Anbieterbedingungen. Die Schule kann sich darauf aber nicht verlassen: Wenn KI im Unterricht Pflicht werden soll, muss der Zugang schulisch organisiert und rechtlich abgesichert sein – Einwilligungskonstrukte über Privataccounts sind dafür nach den Kriterien der DSK (Freiwilligkeit!) regelmäßig ungeeignet [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 3: Wer in der Schule was entscheidet"
+  },
+  {
+   "t": "p",
+   "x": "Schulen sind öffentliche Stellen. Für sie gilt eine strengere Logik als für private Nutzer: Sie brauchen für jede Verarbeitung personenbezogener Daten eine gesetzliche Grundlage, und die Verantwortung tragen Schule und Schulträger – nicht die einzelne Lehrkraft. Die Kultusministerkonferenz hat deshalb vereinbart, Schulen und Schulträgern Hinweise zur rechtskonformen Nutzung von KI-Anwendungen an die Hand zu geben und Prüfverfahren wie „eduCheck digital“ weiterzuentwickeln [4]."
+  },
+  {
+   "t": "p",
+   "x": "In der Praxis läuft die Absicherung meist über schulisch oder landesweit freigegebene Angebote. Das Hamburger Angebot fobizz etwa bietet KI-Werkzeuge an, mit denen nach Angabe des Anbieters auch Schülerinnen und Schüler DSGVO-konform in geschützten Klassenräumen arbeiten können [5]; mehrere Länder lizenzieren solche Angebote für ihre Schulen. Maßgeblich ist immer die Freigabe des eigenen Landes oder Schulträgers, nicht die Werbung des Anbieters."
+  },
+  {
+   "t": "table",
+   "caption": "Redaktionelle Einordnung auf Basis der DSK-Orientierungshilfe [1]. Die konkrete Freigabeliste des Landes geht im Einzelfall vor.",
+   "head": [
+    "Datenart",
+    "Freie Consumer-Chatbots",
+    "Schulisch freigegebene Werkzeuge"
+   ],
+   "rows": [
+    [
+     "Keine personenbezogenen Daten (Aufgabenideen, Veranschaulichungen)",
+     "grundsätzlich nutzbar",
+     "nutzbar"
+    ],
+    [
+     "Anonymisierte Inhalte (Schülertext ohne Namen und Rückschlüsse)",
+     "nur wenn Anonymisierung wirklich wirksam ist",
+     "nutzbar"
+    ],
+    [
+     "Personenbezogene Schülerdaten (Namen, Arbeiten, Noten, Verhalten)",
+     "tabu",
+     "nur im freigegebenen Rahmen"
+    ],
+    [
+     "Besonders geschützte Daten (Gesundheit, Religion, Förderstatus)",
+     "tabu",
+     "grundsätzlich vermeiden; DSK verlangt besondere Vorsicht [1]"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Neu seit 2025: KI-Kompetenz als Pflicht"
+  },
+  {
+   "t": "p",
+   "x": "Mit Artikel 4 der EU-KI-Verordnung gilt seit dem 2. Februar 2025 eine eigene Pflicht: Anbieter und Betreiber von KI-Systemen müssen für ein ausreichendes Maß an KI-Kompetenz der Menschen sorgen, die diese Systeme in ihrem Auftrag nutzen [6]. Auch eine Schule kann Betreiberin sein. Datenschutz ist damit nicht mehr nur eine Regel-, sondern eine Bildungsfrage: Wer KI einsetzt, soll verstehen, was er tut – was genau der Anspruch dieses Lernpfads ist."
+  },
+  {
+   "t": "h2",
+   "x": "Kurz-Checkliste für den Schulalltag"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Gibt es eine Freigabe des Landes oder Schulträgers für dieses Werkzeug? Wenn ja: Bedingungen lesen.",
+    "Enthält mein Prompt personenbezogene Daten? Wenn ja: weglassen oder wirksam anonymisieren.",
+    "Wäre die Nutzung für Schüler verpflichtend? Dann ist die Privataccount-Einwilligung keine tragfähige Grundlage [1].",
+    "Ergebnis vor jeder Verwendung auf Richtigkeit und Diskriminierung prüfen [1].",
+    "Bei Unsicherheit: behördliche Datenschutzbeauftragte oder die Landesaufsicht fragen – genau dafür sind sie da."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Dürfen Schüler privat ChatGPT für Hausaufgaben nutzen?",
+   "a": "Privatnutzung ist Sache der Eltern und der Anbieterbedingungen; bei OpenAI liegt das Mindestalter bei 13 Jahren, Minderjährige brauchen die Erlaubnis der Eltern. Datenschutzrechtlich gilt in Deutschland bei Einwilligungen die 16-Jahres-Grenze [2][3]. Das entbindet die Schule aber nicht: Was im Unterricht verlangt wird, muss schulisch abgesichert sein."
+  },
+  {
+   "q": "Wer haftet, wenn eine Lehrkraft Schülerdaten in einen Chatbot kopiert?",
+   "a": "Verantwortlicher im Sinne der DSGVO ist die öffentliche Stelle, also Schule und Schulträger. Die einzelne Lehrkraft handelt in deren Auftrag und sollte sich an Freigaben halten; grobe eigenmächtige Verstöße können dienstrechtliche Folgen haben. Die faire Antwort des Systems ist deshalb: klare Freigaben und Hinweise statt Einzelverantwortung [4]."
+  },
+  {
+   "q": "Braucht die Schule für jedes KI-Werkzeug eine Datenschutz-Folgenabschätzung?",
+   "a": "Nicht automatisch. Die DSK nennt die Folgenabschätzung als Schritt bei der Implementierung, wo die Kriterien des Artikels 35 DSGVO vorliegen können, etwa bei systematischer Auswertung von Leistungsdaten [1]. Für den datenfreien Einsatz zur Materialerstellung ist sie regelmäßig nicht nötig; die Entscheidung trifft die Schulleitung mit dem Datenschutzbeauftragten."
+  },
+  {
+   "q": "Darf die KI Schülerarbeiten benoten?",
+   "a": "Die Leistungsbewertung ist eine hoheitliche Aufgabe der Lehrkraft und bleibt es. Die KMK verweist auf Artikel 22 DSGVO: Bei Entscheidungen mit rechtlicher Wirkung muss eine menschliche Letztentscheidung gewährleistet sein; KI kann allenfalls als dokumentierte Korrekturassistenz dienen [4]."
+  },
+  {
+   "q": "Gelten diese Regeln auch für Lehrkräfte-Fortbildungen mit KI?",
+   "a": "Grundsätzlich ja, nur einfacher: Erwachsene können selbst einwilligen, und Fortbildungsinhalte enthalten selten Schülerdaten. Sobald echte Unterrichtsbeispiele mit Schülerdaten geübt werden, gelten wieder die Regeln aus der Tabelle oben."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Orientierungshilfe: Künstliche Intelligenz und Datenschutz (Version 1.0, 6. Mai 2024)",
+   "publisher": "Datenschutzkonferenz",
+   "url": "https://www.datenschutzkonferenz-online.de/media/oh/20240506_DSK_Orientierungshilfe_KI_und_Datenschutz.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Art. 8 DSGVO: Bedingungen für die Einwilligung eines Kindes",
+   "publisher": "dsgvo-gesetz.de (Gesetzestext)",
+   "url": "https://dsgvo-gesetz.de/art-8-dsgvo/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Einwilligung (Abschnitt „Besonderer Schutz für Kinder und Jugendliche“)",
+   "publisher": "Sächsische Datenschutz- und Transparenzbeauftragte",
+   "url": "https://www.datenschutz.sachsen.de/einwilligung.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Handlungsempfehlung für die Bildungsverwaltung zum Umgang mit Künstlicher Intelligenz in schulischen Bildungsprozessen (Beschluss vom 10.10.2024)",
+   "publisher": "Sekretariat der Kultusministerkonferenz",
+   "url": "https://kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2024/2024_10_10-Handlungsempfehlung-KI.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Tools und KI für Schule und Unterricht",
+   "publisher": "fobizz",
+   "url": "https://fobizz.com/de/die-fobizz-tools-fuer-schule-und-unterricht/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Article 4: AI literacy (gilt seit 2. Februar 2025)",
+   "publisher": "EU Artificial Intelligence Act, Verordnung (EU) 2024/1689",
+   "url": "https://artificialintelligenceact.eu/article/4/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die DSK-Orientierungshilfe (Inhaltsverzeichnis und Abschnitte 1 und 3), der Gesetzestext des Artikels 8 DSGVO, die Ausführungen der Sächsischen Datenschutzbeauftragten zur Einwilligung Minderjähriger, die KMK-Handlungsempfehlung (Themenbereich 4), die Werkzeug-Seite von fobizz und Artikel 4 der EU-KI-Verordnung. Die Einordnungstabelle ist eine redaktionelle Verdichtung der DSK-Kriterien. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Keine Rechtsberatung: Der Text erklärt Grundsätze und ersetzt weder die Prüfung des Einzelfalls noch die Beratung durch Datenschutzbeauftragte oder Aufsichtsbehörden. Schulrecht ist Ländersache; Freigabelisten und Erlasse der Länder ändern sich laufend und wurden nicht einzeln geprüft. Anbieterzusagen (etwa zur DSGVO-Konformität) wurden nur als Anbieterangabe gelesen, nicht auditiert. Stand: 20. Oktober 2026.",
+ "related": [
+  "ki-in-schule-ausbildung",
+  "unterrichtsmaterial-ki",
+  "halluzinationen"
+ ]
+}

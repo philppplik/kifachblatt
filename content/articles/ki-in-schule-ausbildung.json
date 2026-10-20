@@ -1,0 +1,211 @@
+{
+ "slug": "ki-in-schule-ausbildung",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "KI in Schule, Ausbildung und Studium: Regeln und Grenzen",
+ "dek": "Wann Schüler, Azubis und Studierende KI nutzen dürfen, was Anbieter, Schulen und Hochschulen vorgeben und wo die Täuschungsgrenze verläuft.",
+ "published": "2026-10-20T05:10:00+02:00",
+ "modified": "2026-10-20T05:10:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Schule",
+  "Ausbildung",
+  "Studium",
+  "KMK",
+  "Regeln"
+ ],
+ "key_takeaways": [
+  "Ob du KI beim Lernen nutzen darfst, hängt von drei Ebenen ab: den Altersregeln der Anbieter, den Regeln deiner Schule, deines Betriebs oder deiner Hochschule und der Frage, ob du KI-Arbeit als deine eigene ausgibst.",
+  "Die Kultusministerkonferenz hält ein allgemeines KI-Verbot für Hausaufgaben weder für zielführend noch für durchsetzbar und setzt auf klare Absprachen und Kennzeichnung.",
+  "Täuschung beginnt dort, wo eine geforderte Eigenleistung ungekennzeichnet von der KI kommt.",
+  "Bei OpenAI liegt das Mindestalter für ChatGPT bei 13 Jahren, Minderjährige brauchen die Erlaubnis der Eltern; datenschutzrechtlich gilt in Deutschland bei Einwilligungen die Grenze von 16 Jahren."
+ ],
+ "hero": {
+  "alt": "Drei Kästen nebeneinander: Lernen mit KI ist erlaubt, Regeln klären ist Pflicht, ungekennzeichnet abgeben ist Täuschung.",
+  "caption": "Die drei Ebenen, über die sich KI-Nutzung in Schule, Ausbildung und Studium einordnen lässt. Redaktionelle Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Die Kultusministerkonferenz stellt nüchtern fest: KI-gestützte Anwendungen haben „bereits heute Einzug in die Kinderzimmer Deutschlands gefunden“ [2]. Die Frage ist daher nicht mehr, ob Schülerinnen und Schüler, Azubis und Studierende KI nutzen, sondern wie. Wer die Regeln verstehen will, muss drei Ebenen auseinanderhalten: Was erlaubt der Anbieter? Was erlaubt die eigene Schule, der Betrieb oder die Hochschule? Und wo hört Hilfe auf und fängt Täuschung an?"
+  },
+  {
+   "t": "p",
+   "x": "Dieser Text sortiert die drei Ebenen ohne Vorwissen. Er ersetzt nicht den Blick in die Hausordnung oder Prüfungsordnung, aber er zeigt, wonach du suchen musst und welche Grundsätze fast überall gelten."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung",
+   "x": "Anbieter legen das Mindestalter fest, Schulen und Hochschulen legen die Spielregeln für Aufgaben und Prüfungen fest, und die Täuschungsgrenze verläuft dort, wo du eine geforderte Eigenleistung ungekennzeichnet von der KI erledigen lässt. Alle drei Ebenen kannst du in wenigen Minuten prüfen."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 1: Was die Anbieter vorgeben"
+  },
+  {
+   "t": "p",
+   "x": "Jeder Dienst hat Nutzungsbedingungen, und darin steht ein Mindestalter. Bei OpenAI heißt es in den Nutzungsbedingungen: Man muss mindestens 13 Jahre alt sein (oder das im eigenen Land vorgeschriebene Mindestalter), und wer unter 18 ist, braucht die Erlaubnis eines Elternteils oder gesetzlichen Vertreters [3]. Andere Anbieter haben ähnliche Klauseln, die Altersgrenzen unterscheiden sich aber im Detail."
+  },
+  {
+   "t": "p",
+   "x": "Daneben gibt es das Datenschutzrecht. In der EU regelt Artikel 8 der Datenschutz-Grundverordnung, dass Kinder bei Onlinediensten erst ab 16 Jahren selbst wirksam einwilligen können, sofern das Land die Grenze nicht abgesenkt hat. Deutschland hat nicht abgesenkt: Unter 16 braucht es hier die Zustimmung der Eltern. Was genau das für Schul-Accounts und Klassenarbeiten bedeutet, erklärt der Artikel [Datenschutz in der Schule](/datenschutz-schule)."
+  },
+  {
+   "t": "p",
+   "x": "International geht der Trend in dieselbe Richtung: Die UNESCO empfiehlt in ihrem weltweiten Leitfaden für generative KI in Bildung und Forschung Altersgrenzen für die selbstständige Nutzung, den Schutz der Daten von Lernenden und einen menschzentrierten Einsatz, bei dem die Technik das Lernen unterstützt statt ersetzt [4]."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 2: Was Schule, Betrieb und Hochschule vorgeben"
+  },
+  {
+   "t": "p",
+   "x": "In Deutschland ist Schulrecht Ländersache. Die sechzehn Bundesländer haben sich aber auf eine gemeinsame Linie verständigt: In der Handlungsempfehlung der Bildungsministerkonferenz vom 10. Oktober 2024 heißt es, ein allgemeines Verbot von KI für Produkte, die in häuslicher Arbeit entstehen, sei „weder zielführend und wünschenswert, noch durchhaltbar“. Stattdessen sollen Lehrkräfte Absprachen zur Verwendung und Kennzeichnung KI-generierter Produkte treffen [1]."
+  },
+  {
+   "t": "p",
+   "x": "Gleichzeitig ändern die Länder die Prüfungskultur: Formate, die eine eigenständige Leistung juristisch nicht sauber sichern können, sollen abgeschafft oder weiterentwickelt werden; Prozessbewertung, Präsentation und Verteidigung sollen stärker zählen [1]. Für dich heißt das: Es wird normal werden, dass du erklären musst, wie ein Ergebnis zustande kam, statt nur ein fertiges Produkt abzugeben."
+  },
+  {
+   "t": "p",
+   "x": "In der Berufsausbildung kommt eine zweite Hausordnung dazu: die des Betriebs. Kundendaten, Verträge oder interne Zahlen gehören nicht in frei zugängliche Chatbots, auch nicht „nur zum Zusammenfassen“. Seit dem 2. Februar 2025 verpflichtet Artikel 4 der europäischen KI-Verordnung Anbieter und Betreiber von KI-Systemen außerdem dazu, für ausreichende KI-Kompetenz der Menschen zu sorgen, die diese Systeme nutzen [5]. Viele Betriebe bauen deshalb gerade Regeln und Schulungen auf; Azubis sollten fragen, statt zu raten."
+  },
+  {
+   "t": "p",
+   "x": "An Hochschulen zählt die Prüfungsordnung. Viele verlangen bei schriftlichen Arbeiten eine Eigenständigkeitserklärung, in der du versicherst, die Arbeit selbstständig und nur mit den angegebenen Hilfsmitteln angefertigt zu haben. Ob und wie KI als Hilfsmittel angegeben werden muss, regeln Fakultät und Dozenten unterschiedlich. Die sicherste Vorgehensweise: vor der ersten größeren Abgabe fragen und die Antwort festhalten."
+  },
+  {
+   "t": "h2",
+   "x": "Ebene 3: Die Täuschungsgrenze"
+  },
+  {
+   "t": "p",
+   "x": "Der Kern ist einfach: Täuschung ist, wer eine fremde Leistung als eigene ausgibt, obwohl eine Eigenleistung gefordert ist. Ob die fremde Leistung von einer Mitschülerin, aus einem Buch oder von einem [Sprachmodell](/glossar#sprachmodell-llm) kommt, ändert daran nichts. Neu ist nur, wie leicht die fremde Leistung zu bekommen ist und wie schwer sie zu erkennen ist."
+  },
+  {
+   "t": "table",
+   "caption": "Typische Situationen und ihre Einordnung. Maßgeblich bleibt immer die konkrete Absprache in deiner Schule, deinem Betrieb oder deinem Kurs.",
+   "head": [
+    "Situation",
+    "Einordnung",
+    "Warum"
+   ],
+   "rows": [
+    [
+     "„Erkläre mir die Photosynthese so, dass ich sie verstehe.“",
+     "erlaubt",
+     "Lernhilfe wie ein Nachhilfelehrer; keine Abgabe."
+    ],
+    [
+     "„Stelle mir zehn Übungsfragen zum Thema und korrigiere meine Antworten.“",
+     "erlaubt",
+     "Selbstständiges Üben, kein Täuschungsmoment."
+    ],
+    [
+     "„Verbessere die Grammatik meines Aufsatzes, ohne den Inhalt zu ändern.“",
+     "meist erlaubt",
+     "Hilfsmittel wie eine Rechtschreibprüfung; Absprache prüfen."
+    ],
+    [
+     "„Schreibe die Einleitung, ich schreibe den Rest“, ohne es anzugeben.",
+     "grenzwertig",
+     "Die Eigenleistung verschwimmt; nur mit Kennzeichnung sauber."
+    ],
+    [
+     "Komplette Hausaufgabe von der KI schreiben lassen und unverändert abgeben.",
+     "Täuschung",
+     "Geforderte Eigenleistung wird vorgetäuscht."
+    ],
+    [
+     "KI-Antwort mit erfundenen Quellen ungeprüft in die Facharbeit übernehmen.",
+     "Täuschung",
+     "Zusätzlich zur fehlenden Eigenleistung falsche Belege."
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zwei Fehler passieren dabei besonders oft. Erstens: Das Modell nennt eine Quelle, die es nicht gibt. Das ist keine Absicht, sondern eine [Halluzination](/glossar#halluzination) – der Text klingt überzeugend, ist aber frei erfunden. Wer solche Angaben ungeprüft übernimmt, täuscht, ohne es zu merken. Zweitens: Das Modell schmeichelt. [Sycophancy](/glossar#sycophancy) heißt die Neigung, dir eher zuzustimmen als dich zu korrigieren. Ein „Gute Arbeit!“ der KI ist deshalb keine Leistungsbeurteilung."
+  },
+  {
+   "t": "h2",
+   "x": "Drei Gewohnheiten, die fast überall passen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Erst selbst denken, dann fragen.** Formuliere deine eigene Antwort oder Gliederung, bevor du die KI um eine Alternative bittest. So lernst du etwas und kannst die Antwort der KI beurteilen, statt sie nur zu übernehmen.",
+    "**Jede Tatsachenbehauptung prüfen.** Namen, Zahlen, Jahreszahlen und Quellen gegen die Originalquelle prüfen. Der Artikel [Warum Sprachmodelle halluzinieren](/halluzinationen) erklärt, warum das nötig bleibt.",
+    "**Offenlegen, wo KI geholfen hat.** Ein Satz wie „Erstellt mit KI-Unterstützung, Quellen geprüft“ macht aus einem Verdachtsfall eine saubere Arbeitsweise. Die KMK empfiehlt genau solche Kennzeichnungs-Absprachen [1]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer promptsicher werden will, findet im nächsten Schritt die [Prompt-Grundlagen](/prompt-grundlagen). Lehrkräfte und Ausbilder, die die Gegenseite einnehmen, lesen am besten den Lernpfad für Lehrkräfte mit den Artikeln zu [Unterrichtsmaterial](/unterrichtsmaterial-ki), [KI-generierten Schülerarbeiten](/ki-schuelerarbeiten) und [Datenschutz in der Schule](/datenschutz-schule)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ab welchem Alter darf ich ChatGPT und ähnliche Dienste nutzen?",
+   "a": "Bei OpenAI liegt das Mindestalter bei 13 Jahren; wer unter 18 ist, braucht nach den Nutzungsbedingungen die Erlaubnis der Eltern [3]. Datenschutzrechtlich gilt in Deutschland bei einwilligungsbasierter Nutzung die Grenze von 16 Jahren. Andere Anbieter haben eigene Klauseln, ein Blick in deren Bedingungen lohnt sich immer."
+  },
+  {
+   "q": "Meine Schule hat keine KI-Regel. Darf ich dann alles?",
+   "a": "Nein. Ohne Absprache gilt der Grundsatz, dass Prüfungs- und Abgabeleistungen Eigenleistungen sind. Die KMK empfiehlt Schulen, klare Absprachen zu treffen [1]; bis das passiert, ist offenes Ansprechen die sichere Variante."
+  },
+  {
+   "q": "Ist es Täuschung, wenn ich mir Texte übersetzen oder zusammenfassen lasse?",
+   "a": "Das hängt von der Aufgabe ab. Geht es um Verständnis, ist es ein Hilfsmittel. Wird genau die Übersetzung oder Zusammenfassung als deine Leistung bewertet, braucht es eine Absprache oder Kennzeichnung."
+  },
+  {
+   "q": "Was passiert, wenn ich ungekennzeichnet KI-Arbeit abgebe und es auffällt?",
+   "a": "Das regelt die Schulordnung beziehungsweise Prüfungsordnung; üblich sind Nachbesprechung, Wiederholung der Leistung unter Aufsicht oder Bewertung als Täuschungsversuch. Die Länder entwickeln die Prüfungsformate gerade so weiter, dass der Prozess stärker zählt [1]."
+  },
+  {
+   "q": "Gibt es verlässliche Programme, die KI-Texte erkennen?",
+   "a": "Nein. Die Forschung zeigt hohe Fehlquoten, und selbst OpenAI hat sein eigenes Erkennungswerkzeug wegen Ungenauigkeit eingestellt. Details stehen im Artikel [KI-generierte Schülerarbeiten einordnen](/ki-schuelerarbeiten)."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Handlungsempfehlung für die Bildungsverwaltung zum Umgang mit Künstlicher Intelligenz in schulischen Bildungsprozessen (Beschluss vom 10.10.2024)",
+   "publisher": "Sekretariat der Kultusministerkonferenz",
+   "url": "https://kmk.org/fileadmin/Dateien/veroeffentlichungen_beschluesse/2024/2024_10_10-Handlungsempfehlung-KI.pdf",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Bildungsministerkonferenz verabschiedet Handlungsempfehlung zum Umgang mit Künstlicher Intelligenz",
+   "publisher": "Kultusministerkonferenz, Mitteilung vom 10.10.2024",
+   "url": "https://www.kmk.org/aktuelles/pressearchiv/mitteilung/bildungsministerkonferenz-verabschiedet-handlungsempfehlung-zum-umgang-mit-kuenstlicher-intelligenz-1.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Terms of Use (Abschnitt „Minimum age“)",
+   "publisher": "OpenAI",
+   "url": "https://openai.com/policies/row-terms-of-use/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Guidance for generative AI in education and research",
+   "publisher": "UNESCO (2023, Seite zuletzt aktualisiert 2026)",
+   "url": "https://www.unesco.org/en/articles/guidance-generative-ai-education-and-research",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Article 4: AI literacy (gilt seit 2. Februar 2025)",
+   "publisher": "EU Artificial Intelligence Act, Verordnung (EU) 2024/1689",
+   "url": "https://artificialintelligenceact.eu/article/4/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die KMK-Handlungsempfehlung (vollständig) und die zugehörige Pressemitteilung, der Abschnitt „Minimum age“ der OpenAI-Nutzungsbedingungen, die UNESCO-Leitfadenseite und Artikel 4 der EU-KI-Verordnung in der Fassung von artificialintelligenceact.eu. Die Einordnungstabelle der Situationen ist eine redaktionelle Zusammenstellung auf Basis der KMK-Empfehlungen. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Schulrecht ist Ländersache: konkrete Regeln der Länder, Schulen, Betriebe und Hochschulen können von den hier beschriebenen Grundsätzen abweichen und ändern sich laufend. Anbieterbedingungen wurden nur für OpenAI im Wortlaut geprüft, andere Anbieter haben eigene Klauseln. Dieser Text ersetzt keine Beratung im Einzelfall.",
+ "related": [
+  "prompt-grundlagen",
+  "halluzinationen",
+  "datenschutz-schule"
+ ]
+}
