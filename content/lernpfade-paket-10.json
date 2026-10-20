@@ -1,0 +1,183 @@
+{
+ "paket": 10,
+ "kapitel": "Open Source & Security",
+ "hinweis": "Fragment für den Integrator: Inhalt von 'paths' in content/lernpfade.json einfügen. Format der Pfade wie dort; Zusatzfelder (level, zielgruppe, dauer, voraussetzungen, lernziel, abschluss_check) stammen aus dem Konzept (Kap. 2 und 5) und können für Badges und Abschluss-Check-Blöcke genutzt werden; das derzeitige Render-Skript ignoriert sie.",
+ "paths": [
+  {
+   "id": "open-source-modelle",
+   "name": "Open Source & offene Modelle",
+   "frage": "Ich will die Landschaft offener Modelle lesen und richtig bewerten.",
+   "intro": "Lizenzen, Modellkarten, Leaderboards: Du lernst, was 'open' bei KI-Modellen wirklich bedeutet, wie du Angebote auf Hugging Face prüfst und woran du gute von lauten Veröffentlichungen unterscheidest.",
+   "level": "Praktiker",
+   "zielgruppe": "Technikinteressierte Leser, Entwickler, Entscheider mit Souveränitätsfrage",
+   "dauer": "ca. 2 Stunden",
+   "voraussetzungen": "Keine",
+   "lernziel": "Landschaft offener Modelle lesen: Lizenzen, Modellkarten, Leaderboards, eigene Bewertung.",
+   "steps": [
+    {
+     "slug": "offene-gewichte-vs-open-source",
+     "warum": "Die Grundfrage zuerst: Herunterladbar heißt nicht frei nutzbar. Was offene Gewichte von Open Source trennt und welche Lizenzfallen lauern."
+    },
+    {
+     "slug": "muse-spark-open-offene-gewichte-analyse",
+     "warum": "Praxisbeispiel 1: Eine große Open-Weights-Veröffentlichung mit Schwellen und Bedingungen - an echten Zahlen eingeordnet."
+    },
+    {
+     "slug": "minimax-m3-1-flash-analyse",
+     "warum": "Praxisbeispiel 2: Wie sich ein weiteres offenes Modell in Leistung und Lizenz einordnen lässt."
+    },
+    {
+     "slug": "beam-501b-reflection-offenes-modell-analyse",
+     "warum": "Praxisbeispiel 3: Marketing-Behauptungen eines offenen Modells gegen die Faktenlage prüfen."
+    },
+    {
+     "slug": "hugging-face-lesen",
+     "warum": "Das Handwerkszeug: Modellkarten, Downloads und Leaderboards auf Hugging Face richtig lesen und Blindgänger erkennen."
+    },
+    {
+     "slug": "lokale-modelle",
+     "warum": "Vom Lesen zum Machen: Wann sich der Betrieb eines offenen Modells auf eigener Hardware lohnt."
+    },
+    {
+     "slug": "berichte",
+     "warum": "Dein tägliches Werkzeug danach: Der KI-Tagesbericht zeigt die meistbeachteten Modelle auf Hugging Face - mit Kennzahlen, die du jetzt einordnen kannst."
+    }
+   ],
+   "terms": [
+    "Offene Gewichte",
+    "Lizenz (bei Modellen)",
+    "Lokale Modelle",
+    "Benchmark",
+    "Checkpoint",
+    "Quantisierung"
+   ],
+   "abschluss_check": {
+    "einleitung": "Teste dich selbst: Aufgabe zuerst ohne Hilfe bearbeiten, dann mit der Musterlösung vergleichen.",
+    "aufgaben": [
+     {
+      "frage": "Öffne die Modellkarte eines aktuellen Modells auf Hugging Face (z. B. aus dem KI-Tagesbericht) und prüfe sie auf sechs Pflichtangaben: Lizenz, Basismodell, Trainingsdaten, Evaluation, Limitationen, Aktualität. Was fehlt?",
+      "loesung": "Vollständig ist die Karte, wenn: (1) die Lizenz im Metadaten-Kopf steht und als Text vorliegt, (2) das Basismodell (base_model) genannt ist, (3) Herkunft und Zeitraum der Trainingsdaten benannt sind, (4) Evaluationen mit Testmengen und Bedingungen dokumentiert sind, (5) ein substanzieller Abschnitt zu Grenzen und Risiken existiert und (6) die letzte Änderung nicht zu lange zurückliegt und die Community-Aktivität gepflegt wirkt. Fehlende Punkte sind Warnsignale - besonders Lizenz und Evaluation."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Ein Modell trägt 'open' im Namen. Darfst du es damit sicher kommerziell nutzen?",
+      "antwort": "Nein. Entscheidend ist allein der Lizenztext: Community-Lizenzen können Schwellen (z. B. Nutzerzahl, Umsatz), Namensnennung und Verbotslisten enthalten. 'Open' im Namen ist ein Marketing-Signal, keine Kategorie."
+     },
+     {
+      "frage": "Was verlangt die Open Source AI Definition (OSAID) zusätzlich zu den herunterladbaren Gewichten?",
+      "antwort": "Ausreichende Informationen über die Trainingsdaten und den Code für Training und Betrieb unter offenen Bedingungen - plus die vier Freiheiten nutzen, untersuchen, verändern, teilen ohne Diskriminierung."
+     },
+     {
+      "frage": "Ein Modell hat 2 Millionen Downloads auf Hugging Face. Was sagt dir das über seine Qualität?",
+      "antwort": "Nichts Direktes. Downloads zählen Dateiabrufe inklusive automatischer Ladevorgänge und Deployments. Qualität zeigen nur benannte Testmengen, Bedingungen und im Zweifel eigene Tests."
+     },
+     {
+      "frage": "Die Open LLM Leaderboard zeigt ein Modell auf Platz 1. Kannst du die Platzierung heute noch verwenden?",
+      "antwort": "Nur eingeschränkt: Die Rangliste wurde im März 2025 archiviert und wird nicht mehr gepflegt. Platzierungen veralten, Testmengen werden bekannt (Kontamination). Aktuelle, spezialisierte Boards mit dokumentierter Methode prüfen."
+     },
+     {
+      "frage": "Was nimmt die EU-KI-Verordnung für Modelle unter freien und quelloffenen Lizenzen von Pflichten aus?",
+      "antwort": "Bei allgemeinen KI-Modellen entfallen nur zwei der vier Pflichten aus Artikel 53 (Dokumentation für Behörden und für nachgeschaltete Anbieter); Urheberrechtsrichtlinie und Trainingsdaten-Zusammenfassung bleiben Pflicht. Modelle mit systemischem Risiko sind ganz ausgenommen."
+     }
+    ]
+   }
+  },
+  {
+   "id": "security-red-teaming",
+   "name": "Security & Red Teaming",
+   "frage": "Ich will LLM-Systeme gegen Angriffe verteidigen.",
+   "intro": "Vom Angriff zur Abwehr: Du lernst die wichtigsten Angriffsmuster kennen, prüfst eigene Systeme methodisch per Red Teaming und baust eine Verteidigung in Schichten.",
+   "level": "Fortgeschritten",
+   "zielgruppe": "Security-Verantwortliche, Entwickler, Pentester",
+   "dauer": "ca. 2,5 Stunden",
+   "voraussetzungen": "Der Lernpfad zu Agenten oder gleichwertige Kenntnisse über agentische Systeme",
+   "lernziel": "Angriffsmuster auf LLM-Systeme verstehen, Red Teaming methodisch durchführen, Verteidigung schichten. Defensiv-Fokus: keine Angriffsanleitungen.",
+   "steps": [
+    {
+     "slug": "sicherheit-fuer-agenten-systeme",
+     "warum": "Das Fundament: Prompt Injection verstehen und Agenten mit kleinen Rechten und Sandbox bauen - ohne dieses Fundament trägt keine spätere Schicht."
+    },
+    {
+     "slug": "angriffsmuster-llm",
+     "warum": "Die Landkarte der Gegenseite: Jailbreaks, Data Poisoning, Modell-Extraktion und die OWASP Top 10 für LLM-Anwendungen 2025."
+    },
+    {
+     "slug": "red-teaming-durchfuehren",
+     "warum": "Vom Wissen zur Prüfung: Umfang festlegen, Szenarien bauen, dokumentieren, abdichten, erneut testen - methodisch und erlaubnisbasiert."
+    },
+    {
+     "slug": "benchmarks/cybergym",
+     "warum": "Wie man Sicherheit von Agenten misst: Das Porträt eines Benchmarks, der Agenten an realen Schwachstellen arbeiten lässt."
+    },
+    {
+     "slug": "guardrails-sichere-prompts",
+     "warum": "Die Verteidigung bauen: Schicht für Schicht von der Prompt-Härtung bis zu Rechten und Sandbox - mit ehrlichen Grenzen."
+    },
+    {
+     "slug": "benchmarks/tau2-bench",
+     "warum": "Agenten unter Bedingungen prüfen: Das Porträt zeigt, wie Zuverlässigkeit von Agenten in realistischen Szenarien gemessen wird."
+    }
+   ],
+   "terms": [
+    "Prompt Injection",
+    "Jailbreak",
+    "Red Teaming",
+    "Guardrails",
+    "Sandboxing",
+    "Data Poisoning"
+   ],
+   "abschluss_check": {
+    "einleitung": "Teste dich selbst: Ordne jedes Angriffsbeispiel der Verteidigungsschicht zu, die es zuerst stoppen sollte - dann mit der Musterlösung vergleichen.",
+    "aufgaben": [
+     {
+      "frage": "Ein Assistent mit E-Mail-Zugriff soll präparierte Nachrichten lesen. Welche Schicht stoppt den Datenabfluss am zuverlässigsten?",
+      "loesung": "Rechte und Sandbox (Schicht 4): Der Assistent bekommt gar keine Möglichkeit, Daten nach außen zu senden. Eingabefilter (Schicht 2) können den Angriff zusätzlich erkennen, aber nur die Rechtebegrenzung macht ihn wirkungslos."
+     },
+     {
+      "frage": "Ein Nutzer versucht per Rollenspiel-Eingabe, den Chatbot zu verbotenen Antworten zu bringen. Welche Schichten greifen?",
+      "loesung": "Prompt-Härtung (Schicht 1) und Ausgabeprüfung (Schicht 3): Die harte Vorgabe erschwert das Umkippen, die Ausgabeprüfung fängt den Rest. Ein Restrisiko bleibt - deshalb Monitoring (Schicht 5)."
+     },
+     {
+      "frage": "In der RAG-Wissensbasis liegt ein öffentlich editierbares Dokument mit versteckten Anweisungen. Was schützt zuerst?",
+      "loesung": "Quellenkontrolle und Eingabeprüfung für fremde Inhalte (Schicht 2) plus Markierung externer Inhalte als Daten in der Prompt-Härtung (Schicht 1). Grundsätzlich: Wissensbasis gegen ungeprüfte Fremdinhalte abschotten."
+     },
+     {
+      "frage": "Jemand versucht, über gezielte API-Fragen Eigenschaften deines Modells abzugreifen (Modell-Extraktion). Welche Schicht bemerkt das?",
+      "loesung": "Überwachung (Schicht 5): Ratenbegrenzung und Mustererkennung auf Abrufe. Technisch lässt sich gezieltes Abfragen schwer verhindern - entdecken und drosseln ist die realistische Verteidigung."
+     },
+     {
+      "frage": "Ein Coding-Agent soll generierten Code ausführen. Welche Schicht verhindert Schäden am echten System?",
+      "loesung": "Sandboxing (Schicht 4): Ausführung in einer abgeschotteten Wegwerf-Umgebung ohne echte Daten und Rechte, plus menschliche Freigabe (Schicht 6) vor produktiven Änderungen."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Warum ist ein System-Prompt allein kein Sicherheitsmechanismus?",
+      "antwort": "Weil Vorgaben und Angreifertext im selben Textkanal laufen und das Modell beides nicht zuverlässig trennt. Der Prompt steuert Verhalten, erzwingt es aber nicht - Schutz entsteht erst durch Schichten um das Modell herum."
+     },
+     {
+      "frage": "Was unterscheidet Red Teaming von einem Benchmark?",
+      "antwort": "Ein Benchmark misst Fähigkeiten mit festen Aufgaben und fester Bewertung; Red Teaming sucht offen und kreativ nach Fehlverhalten eines konkreten Systems - ohne feste Aufgabenliste, mit Dokumentations- und Retest-Pflicht."
+     },
+     {
+      "frage": "Nenne die vier Ebenen, die der OWASP-Leitfaden für ganzheitliches Red Teaming empfiehlt.",
+      "antwort": "Modellevaluierung, Test der Implementierung (Prompts, Werkzeuge, Schranken), Prüfung der Infrastruktur und Analyse des Laufzeitverhaltens."
+     },
+     {
+      "frage": "Darfst du ein fremdes LLM-System 'zu Übungszwecken' angreifen, wenn du es gut meinst?",
+      "antwort": "Nein. Ohne dokumentierte Autorisierung des Betreibers ist es kein Test, sondern ein Angriff - mit arbeits- und strafrechtlichen Risiken. Eigene Systeme: schriftliche Spielregeln; fremde: ausdrückliche Freigabe."
+     },
+     {
+      "frage": "Was ist Data Poisoning im Alltag eines RAG-Systems?",
+      "antwort": "Präparierte Inhalte in der Wissensbasis: Wer öffentlich editierbare oder ungeprüfte Dokumente indiziert, gibt Fremden einen Hebel auf die Antworten. Gegenmittel: Quellenkontrolle, Prüfung der Datenflüsse, Verhaltens-Tests."
+     },
+     {
+      "frage": "Ein Angriff gelingt trotz Filter. Welche Schichten begrenzen jetzt den Schaden?",
+      "antwort": "Kleinste nötige Rechte und Sandbox (was darf das System überhaupt?), Ausgabeprüfung (was verlässt das System?), Überwachung (wird es bemerkt?) und menschliche Freigabe bei kritischen Aktionen."
+     }
+    ]
+   }
+  }
+ ]
+}

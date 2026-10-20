@@ -1,0 +1,182 @@
+{
+ "slug": "guardrails-sichere-prompts",
+ "lang": "de",
+ "section": "verlaesslichkeit",
+ "type": "explainer",
+ "title": "Guardrails und sichere Prompts: Verteidigung in Schichten",
+ "dek": "Kein Filter und kein System-Prompt stoppt jeden Angriff auf ein LLM-System. Was wirklich trägt: Verteidigung in Schichten, von der Eingabe bis zu den Rechten.",
+ "published": "2026-10-20T06:10:00+02:00",
+ "modified": "2026-10-20T06:10:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Guardrails",
+  "System-Prompt",
+  "Prompt Injection",
+  "NeMo Guardrails",
+  "Security",
+  "Sandboxing"
+ ],
+ "key_takeaways": [
+  "Prompt Injection gilt strukturell als schwer vollständig lösbar, weil Anweisungen und Daten im selben Textkanal laufen - ein System-Prompt ist eine Bitte an das Modell, kein Sicherheitsmechanismus [1][4].",
+  "Wirksame Verteidigung arbeitet in Schichten: System-Prompt-Härtung, Eingabeprüfung, Ausgabeprüfung, eingeschränkte Rechte und Sandbox, Überwachung und menschliche Freigaben [1][3].",
+  "Guardrail-Frameworks wie NVIDIAs NeMo Guardrails ergänzen ein Modell um programmierbare Prüfschienen für Ein- und Ausgaben, ohne das Modell selbst zu ändern [2].",
+  "Die härteste Schicht ist organisatorisch: kleinste nötige Rechte, abgeschottete Ausführung und Freigabe durch Menschen bei kritischen Aktionen begrenzen den Schaden, wenn alle technischen Schranken versagen [1].",
+  "Gemessen wird die Verteidigung durch erlaubtes Testen: Ohne regelmäßiges [Red Teaming](/red-teaming-durchfuehren) ist unklar, ob die Schichten halten."
+ ],
+ "hero": {
+  "alt": "Mehrere konzentrische violette Schutzwände um einen hellen Kern, an denen stilisierte Textpfeile nacheinander abprallen, bis keiner mehr durchkommt",
+  "caption": "Verteidigung in Schichten: Keine einzelne Schranke muss perfekt sein, wenn die nächste dahinter steht.",
+  "ai_generated": true,
+  "credit": "KI-generiert"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Eine mittelalterliche Burg verließ sich nie auf eine Mauer: Graben, äußere Mauer, innere Mauer, Bergfried - jede Schicht musste nur gut genug sein, um die nächste zu retten. Genau so denkt man die Absicherung von LLM-Systemen sinnvoll: als Verteidigung in Schichten, bei der kein einzelnes Bauteil perfekt sein muss. Dieser Artikel stellt die Schichten vor und benennt, was jede leistet und wo sie versagt. Er schließt an [Angriffsmuster auf LLM-Systeme](/angriffsmuster-llm) und [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme) an; wie du die Schichten prüfst, steht in [Red Teaming selbst durchführen](/red-teaming-durchfuehren)."
+  },
+  {
+   "t": "h2",
+   "x": "Warum eine Schicht nie reicht"
+  },
+  {
+   "t": "p",
+   "x": "Die unbequeme Grundwahrheit zuerst: [Prompt Injection](/glossar#prompt-injection) gilt als strukturell schwer lösbar, weil bei Sprachmodellen Anweisungen und Daten durch denselben Textkanal laufen [1][4]. Ein [System-Prompt](/glossar#system-prompt) kann Verhalten steuern, aber nicht erzwingen - er ist Teil desselben Textstroms, den auch der Angreifer füllt. Die OWASP-Hinweise zur Abwehr von Prompt Injection und die Dokumentation großer Anbieter sind sich deshalb einig: Es gibt keine einzelne Maßnahme mit hundertprozentiger Wirkung, sondern nur Kombinationen, die Angriffe unwahrscheinlicher, langsamer und weniger schädlich machen [1][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Schichten im Überblick"
+  },
+  {
+   "t": "table",
+   "caption": "Sechs Verteidigungsschichten für LLM-Systeme, ihre Stärken und Grenzen. Redaktionelle Einordnung anhand der zitierten Quellen [1][2][3].",
+   "head": [
+    "Schicht",
+    "Was sie tut",
+    "Wo sie versagt"
+   ],
+   "rows": [
+    [
+     "1. System-Prompt-Härtung",
+     "Rolle, Grenzen und Anweisungshierarchie klar formulieren; fremde Inhalte als Daten markieren [3]",
+     "Überredbar durch geschickte Eingaben; kein Schutz gegen entschlossene Angriffe [1]"
+    ],
+    [
+     "2. Eingabeprüfung",
+     "Filter und Klassifikatoren erkennen verdächtige Eingaben und fremde Inhalte [1][2]",
+     "Fehlalarme und Umgehungen; kann Sprache und Kontext nicht vollständig verstehen"
+    ],
+    [
+     "3. Ausgabeprüfung",
+     "Antworten vor Anzeige oder Ausführung prüfen, etwa auf Datenabfluss oder verbotene Inhalte [1][2]",
+     "Erkennt nicht jeden codierten Abfluss; bremst legitime Antworten"
+    ],
+    [
+     "4. Kleinste Rechte und Sandbox",
+     "Werkzeuge mit minimalen Rechten, Ausführung in abgeschotteter Umgebung",
+     "Begrenzt Komfort und Funktionsumfang; muss konsequent durchgezogen werden"
+    ],
+    [
+     "5. Überwachung",
+     "Abrufmuster, Kosten und Auffälligkeiten beobachten und alarmieren",
+     "Erkennt Schäden oft erst beim Entstehen statt vorher"
+    ],
+    [
+     "6. Menschliche Freigabe",
+     "[Human-in-the-Loop](/glossar#human-in-the-loop) bei kritischen Aktionen wie Versand oder Zahlung",
+     "Skaliert schlecht; Gewöhnungseffekt führt zu ungelesenen Klicks"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Reihenfolge ist kein Zufall: Die ersten drei Schichten arbeiten am Text, die letzten drei an der Umgebung. Wer nur am Text arbeitet, kämpft auf dem Feld, auf dem der Angreifer zu Hause ist. Die eigentliche Risikoreduktion kommt aus den Schichten vier bis sechs - sie begrenzen, was ein überlistetes Modell überhaupt anrichten kann [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Sichere(r) Prompts: was hilft, was nicht"
+  },
+  {
+   "t": "p",
+   "x": "Prompts härten heißt nicht, sie geheim zu halten. Die OWASP-Liste führt System Prompt Leakage als eigenes Risiko: Interne Vorgaben, Funktionsnamen oder gar Zugangsdaten im System-Prompt können durch Fragerei offengelegt werden - Geheimnisse gehören deshalb gar nicht erst in den Prompt [1]. Was dagegen hilft: eine ausdrückliche Anweisungshierarchie ('diese Regeln gelten vor jeder Nutzeranweisung'), das konsequente Markieren externer Inhalte als Daten und realistische, wenige Verbote statt langer Wunschlisten. Die Dokumentation der Anbieter zeigt dazu konkrete Muster, etwa das Einrahmen unvertrauenswürdiger Inhalte und das Trainieren des Modells auf erwartete Umgehungsversuche [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Guardrail-Frameworks am Beispiel NeMo Guardrails"
+  },
+  {
+   "t": "p",
+   "x": "[Guardrails](/glossar#guardrails) sind technische Schranken um das Modell herum, die Ein- und Ausgaben prüfen, ohne das Modell selbst zu ändern. Als Referenz für ein solches Framework dient NVIDIAs quelloffenes NeMo Guardrails: Es erlaubt programmierbare 'Rails' - festgelegte Prüfungen und Dialogpfade, die zwischen Nutzer, Modell und Werkzeuge geschaltet werden [2]. Typische Schienen sind die Prüfung der Eingabe auf Angriffsmuster, die Begrenzung der Antworten auf erlaubte Themenfelder und die Kontrolle von Fakten gegen eine Wissensbasis. Der Vorteil des Ansatzes: Die Schranken sind eigene, testbare Software mit eigener Logik, nicht noch mehr Prompt. Der Preis: Jede Schiene muss gepflegt werden und kann selbst Fehlalarme oder Lücken haben [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Die härteste Schicht ist organisatorisch"
+  },
+  {
+   "t": "p",
+   "x": "Technik allein trägt keine Verteidigung. Drei organisatorische Entscheidungen bestimmen, wie schlimm ein erfolgreicher Angriff wird. Erstens kleinste nötige Rechte: Ein Lese-Assistent braucht keine Schreibzugriffe; ein Recherche-Agent keinen Geldbeutel. Zweitens [Sandboxing](/glossar#sandboxing): Modellgenerierter Code und Agentenaktionen laufen in Wegwerf-Umgebungen ohne echte Daten und Systeme. Drittens Freigaben: Bei Aktionen mit echten Folgen - Versand, Löschung, Zahlung - zeigt das System den Entwurf einem Menschen. Diese drei Punkte sind der Kern von [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme) und decken sich mit den OWASP-Empfehlungen gegen überzogene Handlungsfreiheit (Excessive Agency) [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Erwartungsmanagement: Ziel ist Schadensbegrenzung, nicht Unverwundbarkeit"
+  },
+  {
+   "t": "p",
+   "x": "Niemand kann heute versprechen, dass ein LLM-System jeder Injection standhält [1][4]. Das ehrliche Ziel lautet: Angriffe seltener erfolgreich machen, ihren Schaden deckeln und sie bemerken, wenn sie passieren. Ob die eigenen Schichten das leisten, weiß nur, wer sie prüft: mit dokumentierten, erlaubten Angriffsversuchen nach der Methodik in [Red Teaming selbst durchführen](/red-teaming-durchfuehren) - vor dem Start und nach jeder wesentlichen Änderung. Verteidigung ist wie bei der Burg: Keine Mauer hält ewig, aber ein Burgherr, der seine Mauern regelmäßig rüttelt, schläft besser."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 das OWASP Cheat Sheet zur Abwehr von Prompt Injection, die OWASP-Risikoseite LLM01:2025, das Repository von NVIDIAs NeMo Guardrails und die Anthropic-Dokumentation zur Abschwächung von Jailbreaks und Prompt Injections. Das Sechs-Schichten-Modell ist eine redaktionelle Strukturierung dieser Empfehlungen; die zitierten Quellen selbst ordnen Maßnahmen anders und detaillierter.",
+ "limitations": [
+  "Das Schichtenmodell ist eine didaktische Zusammenfassung, kein anerkannter Standard; konkrete Architekturen hängen vom Einzelfall ab.",
+  "Guardrail-Frameworks entwickeln sich schnell weiter; die Beschreibung von NeMo Guardrails entspricht dem Repository-Stand vom 20. Oktober 2026.",
+  "Keine der beschriebenen Maßnahmen garantiert Schutz; der Artikel ersetzt kein Sicherheitsaudit bei hohem Schutzbedarf."
+ ],
+ "faq": [
+  {
+   "q": "Ist ein guter System-Prompt nicht Schutz genug?",
+   "a": "Nein. Ein System-Prompt steht im selben Textkanal wie Nutzereingaben und externe Inhalte; das Modell kann Vorgabe und Angriff nicht zuverlässig trennen. Prompts härten lohnt sich, aber sie sind eine Schicht von mehreren - entscheidend sind Rechte, Sandboxing, Prüfungen und Überwachung."
+  },
+  {
+   "q": "Was sind Guardrails bei KI-Systemen?",
+   "a": "Technische Schranken um das Modell herum: Prüfungen der Ein- und Ausgaben, erlaubte Themenfelder, Faktenkontrollen - als eigene Softwareschicht, unabhängig vom Modell. Frameworks wie NeMo Guardrails machen solche Schienen programmierbar und testbar."
+  },
+  {
+   "q": "Welche Maßnahme bringt am meisten, wenn ich nur eine umsetzen kann?",
+   "a": "Die Rechtefrage: Gib dem System nur die Rechte und Daten, die es für seine Aufgabe braucht, und führe kritische Aktionen über eine menschliche Freigabe. Das begrenzt den Schaden jedes erfolgreichen Angriffs - egal, über welche Lücke er hereinkommt."
+  },
+  {
+   "q": "Woran erkenne ich, dass meine Verteidigung funktioniert?",
+   "a": "Nur durch Testen: dokumentierte, autorisierte Angriffsversuche auf das eigene System (Red Teaming), idealerweise vor dem Start und nach jeder wesentlichen Änderung. Dazu gehört Überwachung im Betrieb, damit auffällige Muster und Kosten früh auffallen."
+  }
+ ],
+ "related": [
+  "angriffsmuster-llm",
+  "red-teaming-durchfuehren",
+  "nemotron-3-5-super-lightning-analyse"
+ ],
+ "sources": [
+  {
+   "title": "LLM Prompt Injection Prevention Cheat Sheet",
+   "publisher": "OWASP Cheat Sheet Series",
+   "url": "https://cheatsheetseries.owasp.org/cheatsheets/LLM_Prompt_Injection_Prevention_Cheat_Sheet.html",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "NeMo Guardrails (Repository)",
+   "publisher": "NVIDIA NeMo (GitHub)",
+   "url": "https://github.com/NVIDIA-NeMo/Guardrails",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Mitigate jailbreaks and prompt injections",
+   "publisher": "Anthropic Documentation",
+   "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/strengthen-guardrails/mitigate-jailbreaks",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "LLM01:2025 Prompt Injection",
+   "publisher": "OWASP GenAI Security Project",
+   "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+   "accessed": "2026-10-20"
+  }
+ ]
+}

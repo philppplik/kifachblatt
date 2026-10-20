@@ -1,0 +1,221 @@
+{
+ "slug": "angriffsmuster-llm",
+ "lang": "de",
+ "section": "verlaesslichkeit",
+ "type": "explainer",
+ "title": "Angriffsmuster auf LLMs: Jailbreaks, Poisoning, Extraktion",
+ "dek": "Prompt Injection, Jailbreaks, vergiftete Daten, kopierte Modelle: die wichtigsten Angriffsmuster auf LLM-Systeme, eingeordnet anhand der OWASP Top 10 von 2025.",
+ "published": "2026-10-20T05:40:00+02:00",
+ "modified": "2026-10-20T05:40:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Security",
+  "Prompt Injection",
+  "Jailbreak",
+  "Data Poisoning",
+  "Modell-Extraktion",
+  "OWASP"
+ ],
+ "key_takeaways": [
+  "Die OWASP Top 10 für LLM-Anwendungen 2025 führen Prompt Injection als Risiko Nummer eins, gefolgt von Risiken wie der Offenlegung sensibler Daten, Lieferkette und vergifteten Trainingsdaten [1].",
+  "Bei der indirekten Prompt Injection stehen die Anweisungen des Angreifers nicht im Chatfenster, sondern in Inhalten, die das Modell liest - Webseiten, E-Mails, Dokumente [2][4].",
+  "Data Poisoning zielt auf Trainings-, Fine-Tuning- oder Embedding-Daten und pflanzt dem Modell Fehler oder Hintertüren ein, die später schwer zu entdecken sind [3].",
+  "Bei der Modell-Extraktion bauen Angreifer ein fremdes Modell allein über gezielte Anfragen nach; Forschende zeigten, dass sich dabei sogar interne Eigenschaften produktiver Systeme abgreifen lassen [5].",
+  "Kein einzelnes Muster ist das gefährlichste: Entscheidend ist, welche Fähigkeiten und Rechte das eigene System hat. Die Verteidigung beschreiben die Artikel zu [Red Teaming](/red-teaming-durchfuehren) und [Guardrails](/guardrails-sichere-prompts)."
+ ],
+ "hero": {
+  "alt": "Dunkles Diagramm mit einem violetten Schild in der Mitte, auf das von drei Seiten Pfeile mit den Sinnbildern für Text, Daten und Kopie zulaufen und an der Schildwand abprallen",
+  "caption": "Text über fremde Inhalte, vergiftete Daten, nachgebaute Modelle: Die Angriffe auf LLM-Systeme kommen auf sehr unterschiedlichen Wegen.",
+  "ai_generated": true,
+  "credit": "KI-generiert"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein LLM-System abzusichern, gleicht dem Schutz eines Gebäudes mit vielen Eingängen: Es reicht nicht, die Haustür zu verrammeln, wenn Fenster, Kellerluke und der Schlüsseldienst unbeobachtet bleiben. Dieser Artikel legt die Landkarte: die wichtigsten Angriffsmuster auf Systeme mit Sprachmodellen, eingeordnet anhand der OWASP Top 10 für LLM-Anwendungen in der Fassung 2025 [1]. Er ist bewusst defensiv geschrieben - Ziel ist das Verstehen und Verhindern, nicht das Nachbauen von Angriffen. Er baut auf [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme) auf; die Gegenmaßnahmen vertiefen [Red Teaming selbst durchführen](/red-teaming-durchfuehren) und [Guardrails und sichere Prompts](/guardrails-sichere-prompts)."
+  },
+  {
+   "t": "callout",
+   "title": "Defensiv-Fokus",
+   "x": "Dieser Artikel erklärt Angriffsmuster, damit du Systeme besser schützen kannst. Er enthält bewusst keine Anleitungen für Angriffe, keine präparierten Beispiel-Eingaben und keine Hinweise auf ungepatchte Schwachstellen konkreter Produkte."
+  },
+  {
+   "t": "h2",
+   "x": "Die Landkarte: OWASP Top 10 für LLM-Anwendungen 2025"
+  },
+  {
+   "t": "p",
+   "x": "Das OWASP GenAI Security Project pflegt eine Rangliste der gravierendsten Risiken für Anwendungen mit Sprachmodellen. Die Fassung 2025 umfasst zehn Positionen [1]:"
+  },
+  {
+   "t": "table",
+   "caption": "Die OWASP Top 10 für LLM-Anwendungen 2025 in Kurzform [1]. Vertieft werden LLM01, LLM04, die Extraktions- und Leakage-Risiken.",
+   "head": [
+    "Rang",
+    "Risiko",
+    "Kurzfassung"
+   ],
+   "rows": [
+    [
+     "LLM01",
+     "Prompt Injection",
+     "Eingaben verändern das Verhalten des Modells über unvorhergesehene Wege [2]"
+    ],
+    [
+     "LLM02",
+     "Sensitive Information Disclosure",
+     "Das System gibt vertrauliche Daten preis"
+    ],
+    [
+     "LLM03",
+     "Supply Chain",
+     "Angriffe über Modelle, Daten und Komponenten von Dritten"
+    ],
+    [
+     "LLM04",
+     "Data and Model Poisoning",
+     "Präparierte Trainings- oder Einbettungsdaten [3]"
+    ],
+    [
+     "LLM05",
+     "Improper Output Handling",
+     "Ungenügend geprüfte Modellausgaben werden weiterverarbeitet"
+    ],
+    [
+     "LLM06",
+     "Excessive Agency",
+     "Zu weitreichende Rechte und Handlungsfreiheit des Systems"
+    ],
+    [
+     "LLM07",
+     "System Prompt Leakage",
+     "Interne Vorgaben und Geheimnisse im System-Prompt werden offengelegt"
+    ],
+    [
+     "LLM08",
+     "Vector and Embedding Weaknesses",
+     "Schwachstellen in Einbettungen und Vektordatenbanken"
+    ],
+    [
+     "LLM09",
+     "Misinformation",
+     "Das System erzeugt glaubwürdige Falschinformationen"
+    ],
+    [
+     "LLM10",
+     "Unbounded Consumption",
+     "Unkontrollierter Ressourcenverbrauch, von Kosten bis Denial of Service"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Drei Dinge fallen beim Lesen der Liste auf. Erstens: Nur ein Teil der Risiken ist klassische 'Hackerarbeit' - Misinformation oder ungebremster Verbrauch entstehen auch ohne böse Absicht. Zweitens: Mehrere Einträge hängen direkt zusammen, etwa Prompt Injection mit überzogenen Rechten (Excessive Agency). Drittens: Die Liste beschreibt Anwendungen, nicht nur Modelle. Wer ein Modell hinter einer API mit Werkzeugen betreibt, hat eine größere Angriffsfläche als das Basismodell allein."
+  },
+  {
+   "t": "h2",
+   "x": "Prompt Injection: der Angriff durch den Textkanal"
+  },
+  {
+   "t": "p",
+   "x": "[Prompt Injection](/glossar#prompt-injection) ist das Kopfrisiko der OWASP-Liste [1][2]. Die direkte Variante kennt fast jeder Chatbot-Nutzer: Eine Eingabe versucht, die Vorgaben des Systems zu überlisten. Die gefährlichere Variante ist die indirekte Injection: Die Anweisungen stecken nicht in der Nutzereingabe, sondern in Inhalten, die das System verarbeitet - einer Webseite, einer E-Mail, einem Dokument, einem Ticket-Text. Bereits 2023 zeigten Forschende um Kai Greshake, dass sich so echte, mit Werkzeugen ausgestattete LLM-Anwendungen kompromittieren lassen, etwa indem präparierte Inhalte das Modell zum Ausspähen oder Weiterleiten von Daten verleiten [4]."
+  },
+  {
+   "t": "p",
+   "x": "Das Grundproblem ist strukturell: Anweisungen und Daten laufen bei Sprachmodellen durch denselben Textkanal. Das Modell kann 'tu dies' und 'hier steht: tu dies' nicht zuverlässig auseinanderhalten [2]. Ein [System-Prompt](/glossar#system-prompt) ist deshalb kein Sicherheitsmechanismus, sondern eine Bitte an das Modell. Was das für die Abwehr heißt - Schichten statt Appelle -, beschreibt der Artikel zu [Guardrails](/guardrails-sichere-prompts)."
+  },
+  {
+   "t": "h2",
+   "x": "Jailbreaks: Schranken aushebeln"
+  },
+  {
+   "t": "p",
+   "x": "Ein [Jailbreak](/glossar#jailbreak) ist eine Eingabe, die die Sicherheitsvorkehrungen eines Modells umgeht und es zu Antworten bringt, die es ablehnen sollte [1][2]. Die Muster reichen von Rollenspielen ('tu so, als gäbe es keine Regeln') über Umformulierungen in anderen Sprachen oder Kodierungen bis zu vielschrittigen Dialogen, die das Modell Stück für Stück an ein verbotenes Ergebnis heranführen. Für Betreiber sind zwei Punkte wichtig: Jailbreaks sind ein bekanntes, aktiv erforschtes Restrisiko und kein Zeichen eines 'kaputten' Modells; und ihre Erfolgsquote hängt stark davon ab, was hinter dem Modell hängt. Ein Chatbot, der Unsinn erzählt, ist ärgerlich. Ein Agent mit Werkzeugen und Rechten, der ausgehebelt wird, ist ein Sicherheitsvorfall [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Data Poisoning: der Angriff auf das Lernen selbst"
+  },
+  {
+   "t": "p",
+   "x": "[Data Poisoning](/glossar#data-poisoning) beginnt früher als jeder Chat: Angreifer schleusen präparierte Inhalte in die Daten ein, aus denen ein Modell lernt - in Vortrainings- und Fine-Tuning-Daten, aber auch in die Dokumente einer [RAG](/glossar#rag)-Wissensbasis [3]. OWASP führt Daten- und Modellvergiftung als Risiko LLM04; die Folgen reichen von gezielten Fehlern über Voreingenommenheit bis zu versteckten Hintertüren, die erst auf ein Stichwort hin aktiv werden [3]. Für die meisten Anwender ist der praxisnahe Fall nicht das vergiftete Basismodell, sondern die vergiftete Wissensquelle: Wer öffentlich editierbare oder ungeprüfte Inhalte in seinen Index lässt, gibt Fremden einen Hebel auf die Antworten seines Systems."
+  },
+  {
+   "t": "h2",
+   "x": "Modell-Extraktion: der Nachbau über die Schnittstelle"
+  },
+  {
+   "t": "p",
+   "x": "Bei der [Modell-Extraktion](/glossar#modell-extraktion) wird ein fremdes Modell allein durch gezielte Anfragen an seine Schnittstelle nachgebaut - ohne dass die Gewichte je sichtbar waren. Dass das nicht nur Theorie ist, zeigten Forschende 2024 mit einem Verfahren, mit dem sie interne Eigenschaften produktiver Sprachmodelle abgriffen; der Angriff lief über die gewöhnliche API und wurde den Anbietern vor Veröffentlichung gemeldet [5]. Verwandt ist das Risiko LLM07, System Prompt Leakage: Interne Vorgaben, Funktionssignaturen oder gar Zugangsdaten gehören nicht in den System-Prompt, weil sie durch geschickte Fragerei offengelegt werden können [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Was das für die Verteidigung heißt"
+  },
+  {
+   "t": "p",
+   "x": "Drei Schlussfolgerungen für die eigene Praxis. Erstens: Die Angriffsfläche hängt an den Fähigkeiten, nicht am Modell allein. Jedes Werkzeug, jedes Recht, jede externe Datenquelle erweitert sie. Zweitens: Kein Muster steht für sich. Eine indirekte Injection wird erst durch übergroße Rechte und ungeprüfte Ausgaben zum Datenabfluss - die OWASP-Liste ist als Geflecht zu lesen [1]. Drittens: Sicherheit ist ein Prozess. Eigene Systeme gehören regelmäßig und erlaubnisbasiert getestet; die Methodik dazu beschreibt [Red Teaming selbst durchführen](/red-teaming-durchfuehren), der Aufbau der Verteidigung in Schichten folgt in [Guardrails und sichere Prompts](/guardrails-sichere-prompts) und in [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme)."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Übersichtsseite der OWASP Top 10 für LLM-Anwendungen (Fassung 2025) mit den Detailseiten zu LLM01 (Prompt Injection) und LLM04 (Data and Model Poisoning), das Papier von Greshake et al. zu indirekter Prompt Injection (arXiv:2302.12173) und das Papier 'Stealing Part of a Production Language Model' (arXiv:2403.06634) jeweils auf den verlinkten Seiten. Die Einordnung und die Kurzfassungen in der Tabelle sind redaktionelle Zusammenfassungen dieser Quellen.",
+ "limitations": [
+  "Die OWASP-Liste ist eine Community-Einordnung, keine Norm; Gewichtung und Begriffe können in späteren Fassungen anders ausfallen.",
+  "Die Auswahl der vertieften Muster ist redaktionell; die Liste deckt weitere Risiken ab, die hier nur gestreift werden.",
+  "Angriffstechniken entwickeln sich schnell weiter; der beschriebene Stand ist der 20. Oktober 2026."
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen Prompt Injection und Jailbreak?",
+   "a": "Prompt Injection schleust Anweisungen über verarbeitete Inhalte oder Eingaben ein, damit das System Dinge tut, die der Betreiber nicht vorgesehen hat. Ein Jailbreak zielt auf die Schutzvorkehrungen des Modells selbst und bringt es zu Antworten, die es ablehnen sollte. In der Praxis überschneiden sich beide; OWASP führt Prompt Injection als eigenes Kopf-Risiko."
+  },
+  {
+   "q": "Warum ist indirekte Prompt Injection so gefährlich?",
+   "a": "Weil der Angriff nicht im Chatfenster stattfindet, sondern in Inhalten, die das System liest: Webseiten, E-Mails, Dokumente. Der Nutzer merkt nichts, und das Modell kann Anweisung und Inhalt nicht zuverlässig trennen. Studien haben gezeigt, dass sich damit werkzeugausgestattete Assistenten zum Ausspähen von Daten missbrauchen lassen."
+  },
+  {
+   "q": "Kann man ein Modell durch Data Poisoning nachträglich manipulieren?",
+   "a": "Ja, wenn präparierte Inhalte in Trainings-, Fine-Tuning- oder Wissensdaten gelangen. Für Anwender besonders relevant: ungeprüfte oder öffentlich editierbare Quellen in einer RAG-Wissensbasis. Gegenmittel sind Quellenkontrolle, Prüfung der Datenflüsse und Tests auf auffälliges Verhalten."
+  },
+  {
+   "q": "Lässt sich ein Modell über seine API stehlen?",
+   "a": "Teilweise: Forschende haben gezeigt, dass sich über gezielte Anfragen interne Eigenschaften und Verhaltensweisen produktiver Modelle abgreifen lassen. Wer ein eigenes Modell als Dienst anbietet, sollte Abrufmuster überwachen, Raten begrenzen und keine internen Details in Antworten oder System-Prompts legen."
+  }
+ ],
+ "related": [
+  "red-teaming-durchfuehren",
+  "guardrails-sichere-prompts",
+  "lhtb-2-langzeit-agenten-benchmark"
+ ],
+ "sources": [
+  {
+   "title": "OWASP Top 10 for Large Language Model Applications (2025)",
+   "publisher": "OWASP GenAI Security Project",
+   "url": "https://genai.owasp.org/llm-top-10/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "LLM01:2025 Prompt Injection",
+   "publisher": "OWASP GenAI Security Project",
+   "url": "https://genai.owasp.org/llmrisk/llm01-prompt-injection/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "LLM04:2025 Data and Model Poisoning",
+   "publisher": "OWASP GenAI Security Project",
+   "url": "https://genai.owasp.org/llmrisk/llm04-data-and-model-poisoning/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Not what you've signed up for: Compromising Real-World LLM-Integrated Applications with Indirect Prompt Injection (arXiv:2302.12173)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2302.12173",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Stealing Part of a Production Language Model (arXiv:2403.06634)",
+   "publisher": "arXiv",
+   "url": "https://arxiv.org/abs/2403.06634",
+   "accessed": "2026-10-20"
+  }
+ ]
+}
