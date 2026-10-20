@@ -5,6 +5,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Inferenz und Kosten verstehen: Tokens, KV-Cache, Quantisierung](https://kifachblatt.de/inferenz-und-kosten-verstehen): Was beim Antworten passiert, warum der KV-Cache so viel Speicher frisst und woraus sich ein API-Preis ergibt, mit eigenen Rechnungen zu Llama 3.
+- [Wie ein Sprachmodell lernt: von Pretraining bis RLVR](https://kifachblatt.de/wie-ein-sprachmodell-lernt): Pretraining, SFT, RLHF, DPO und RLVR einfach erklärt: Was jede Stufe leistet, warum Modelle so verschieden wirken und was die Begriffe in Modellkarten bedeuten.
 - [Quantisierung von Sprachmodellen: Verfahren, Zahlen, Grenzen](https://kifachblatt.de/llm-quantisierung-verfahren-grundlagen): Wie viel Speicher 4 Bit pro Gewicht wirklich sparen, welche Verfahren von LLM.int8() bis BitNet b1.58 was taugen und wo die Grenzen liegen.
 - [MiniMax M3.1 Flash: Agenten-Modell im Kosten- und Benchmark-Check](https://kifachblatt.de/minimax-m3-1-flash-analyse): MiniMax verspricht fast dreifache Inferenzgeschwindigkeit und 70 Prozent weniger Kosten. Wir ordnen Benchmarks, Preise und das Space-Bunny-Vorspiel ein.
 - [Nemotron 3.5: Was 99,62 Prozent Quantisierungserhalt bedeuten](https://kifachblatt.de/nemotron-3-5-super-lightning-analyse): NVIDIAs offene Modelle Super und Lightning im Check: Destillation, NVFP4 gegen BF16 in 36 Benchmark-Zeilen und die Frage, was ein Median verbirgt.
