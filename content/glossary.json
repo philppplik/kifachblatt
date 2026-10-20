@@ -1753,5 +1753,574 @@
     "url": "https://arxiv.org/abs/2503.14499"
    }
   ]
+ },
+ {
+  "term": "Diffusionsmodell",
+  "aka": [
+   "Diffusion"
+  ],
+  "letter": "D",
+  "definition": "Bild- oder Audiomodell, das aus reinem Rauschen schrittweise ein sauberes Ergebnis formt. Es lernt, Rauschen rückwärts zu entfernen, und erzeugt so neue Inhalte.",
+  "usage": "Bildgeneratoren wie Stable Diffusion erzeugen so Fotos aus einer Textbeschreibung.",
+  "related": [],
+  "see_also": [
+   "Sprachmodell (LLM)",
+   "Token"
+  ],
+  "sources": [
+   {
+    "title": "Ho et al.: Denoising Diffusion Probabilistic Models",
+    "url": "https://arxiv.org/abs/2006.11239"
+   },
+   {
+    "title": "Rombach et al.: High-Resolution Image Synthesis with Latent Diffusion Models",
+    "url": "https://arxiv.org/abs/2112.10752"
+   }
+  ]
+ },
+ {
+  "term": "Vision-Transformer",
+  "aka": [
+   "ViT"
+  ],
+  "letter": "V",
+  "definition": "Überträgt die Transformer-Architektur auf Bilder: Das Bild wird in Kästchen zerlegt, jedes Kästchen wird wie ein Token behandelt.",
+  "usage": "Moderne Bildverarbeitung und Bildverständnis in multimodalen Modellen laufen meist über einen ViT als Bild-Encoder.",
+  "related": [],
+  "see_also": [
+   "Transformer",
+   "Attention (Aufmerksamkeit)",
+   "Multimodal"
+  ],
+  "sources": [
+   {
+    "title": "Dosovitskiy et al.: An Image is Worth 16x16 Words",
+    "url": "https://arxiv.org/abs/2010.11929"
+   }
+  ]
+ },
+ {
+  "term": "State-Space-Modell",
+  "aka": [
+   "SSM",
+   "Mamba"
+  ],
+  "letter": "S",
+  "definition": "Alternativarchitektur zum Transformer, die Sequenzen mit linearem statt quadratischem Aufwand verarbeitet. Mamba ist die bekannteste Variante.",
+  "usage": "Interessant für sehr lange Eingaben, bei denen klassische Attention zu teuer wird.",
+  "related": [],
+  "see_also": [
+   "Transformer",
+   "Kontextfenster"
+  ],
+  "sources": [
+   {
+    "title": "Gu & Dao: Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+    "url": "https://arxiv.org/abs/2312.00752"
+   }
+  ]
+ },
+ {
+  "term": "Grouped-Query-Attention",
+  "aka": [
+   "GQA"
+  ],
+  "letter": "G",
+  "definition": "Sparsame Variante der Attention: Mehrere Abfrage-Köpfe teilen sich Schlüssel und Werte. Das senkt Speicher und Rechenzeit bei der Inferenz.",
+  "usage": "Viele aktuelle offene Modelle nutzen GQA, damit lange Kontexte bezahlbar bleiben.",
+  "related": [],
+  "see_also": [
+   "Attention (Aufmerksamkeit)",
+   "KV-Cache"
+  ],
+  "sources": [
+   {
+    "title": "Ainslie et al.: GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints",
+    "url": "https://arxiv.org/abs/2305.13245"
+   }
+  ]
+ },
+ {
+  "term": "Sliding-Window-Attention",
+  "aka": [],
+  "letter": "S",
+  "definition": "Attention, bei der jedes Token nur auf ein festes Fenster seiner Vorgänger schaut statt auf die ganze Sequenz. Spart Rechenzeit bei langen Texten.",
+  "usage": "Mistral 7B kombiniert gleitende Fenster mit einem rollierenden KV-Cache für lange Eingaben.",
+  "related": [],
+  "see_also": [
+   "Attention (Aufmerksamkeit)",
+   "KV-Cache",
+   "Kontextfenster"
+  ],
+  "sources": [
+   {
+    "title": "Jiang et al.: Mistral 7B",
+    "url": "https://arxiv.org/abs/2310.06825"
+   }
+  ]
+ },
+ {
+  "term": "Positionskodierung",
+  "aka": [
+   "Positional Encoding"
+  ],
+  "letter": "P",
+  "definition": "Zusatzinformation, die dem Modell sagt, an welcher Stelle der Sequenz ein Token steht. Ohne sie wäre die Reihenfolge unsichtbar.",
+  "usage": "Rotary Position Embedding ist die heute übliche Form in großen Sprachmodellen.",
+  "related": [],
+  "see_also": [
+   "Transformer",
+   "Rotary Position Embedding"
+  ],
+  "sources": [
+   {
+    "title": "Vaswani et al.: Attention Is All You Need",
+    "url": "https://arxiv.org/abs/1706.03762"
+   }
+  ]
+ },
+ {
+  "term": "Layer Normalization",
+  "aka": [
+   "LayerNorm"
+  ],
+  "letter": "L",
+  "definition": "Stabilisiert das Training, indem sie die Aktivierungen jedes Tokens auf einen einheitlichen Wertebereich normiert.",
+  "usage": "Ohne Normalisierung lassen sich tiefe Transformer praktisch nicht zuverlässig trainieren.",
+  "related": [],
+  "see_also": [
+   "Transformer"
+  ],
+  "sources": [
+   {
+    "title": "Ba et al.: Layer Normalization",
+    "url": "https://arxiv.org/abs/1607.06450"
+   }
+  ]
+ },
+ {
+  "term": "Residual Connection",
+  "aka": [
+   "Skip Connection"
+  ],
+  "letter": "R",
+  "definition": "Direktverbindung, die das Eingangssignal einer Schicht unverändert zur Ausgabe addiert. Damit fließt der Lerngradient auch durch sehr tiefe Netze.",
+  "usage": "Jeder Transformer-Block enthält solche Abkürzungen; ohne sie versagt das Training tiefer Modelle.",
+  "related": [],
+  "see_also": [
+   "Transformer"
+  ],
+  "sources": [
+   {
+    "title": "He et al.: Deep Residual Learning for Image Recognition",
+    "url": "https://arxiv.org/abs/1512.03385"
+   }
+  ]
+ },
+ {
+  "term": "Multi-Token-Prediction",
+  "aka": [
+   "MTP"
+  ],
+  "letter": "M",
+  "definition": "Trainingsziel, bei dem das Modell mehrere kommende Token gleichzeitig vorhersagt statt nur das nächste. Kann Qualität und Geschwindigkeit erhöhen.",
+  "usage": "Meta zeigte, dass MTP größere Modelle schneller und besser auf Code- und Textaufgaben macht.",
+  "related": [],
+  "see_also": [
+   "Token",
+   "Pretraining (Vortraining)"
+  ],
+  "sources": [
+   {
+    "title": "Gloeckle et al.: Better & Faster Large Language Models via Multi-token Prediction",
+    "url": "https://arxiv.org/abs/2404.19737"
+   }
+  ]
+ },
+ {
+  "term": "Vision-Language-Modell",
+  "aka": [
+   "VLM"
+  ],
+  "letter": "V",
+  "definition": "Modell, das Bilder und Text gemeinsam versteht: Es nimmt beides als Eingabe und beschreibt, vergleicht oder beantwortet Fragen dazu.",
+  "usage": "Ein Foto eines defekten Bauteils hochladen und fragen, welches Ersatzteil passt.",
+  "related": [],
+  "see_also": [
+   "Multimodal",
+   "Vision-Transformer",
+   "Embedding"
+  ],
+  "sources": [
+   {
+    "title": "Radford et al.: Learning Transferable Visual Models From Natural Language Supervision",
+    "url": "https://arxiv.org/abs/2103.00020"
+   }
+  ]
+ },
+ {
+  "term": "Text-to-Image-Modell",
+  "aka": [],
+  "letter": "T",
+  "definition": "Erzeugt aus einer Textbeschreibung ein neues Bild. Technisch meist ein Diffusionsmodell mit Textkonditionierung.",
+  "usage": "Produktbild-Entwürfe oder Illustrationen direkt aus einem Satz generieren.",
+  "related": [],
+  "see_also": [
+   "Diffusionsmodell",
+   "Multimodal"
+  ],
+  "sources": [
+   {
+    "title": "Rombach et al.: High-Resolution Image Synthesis with Latent Diffusion Models",
+    "url": "https://arxiv.org/abs/2112.10752"
+   },
+   {
+    "title": "Ramesh et al.: Zero-Shot Text-to-Image Generation",
+    "url": "https://arxiv.org/abs/2102.12092"
+   }
+  ]
+ },
+ {
+  "term": "Text-to-Video-Modell",
+  "aka": [],
+  "letter": "T",
+  "definition": "Erzeugt aus einer Textbeschreibung eine Videosequenz. Anspruchsvoller als Bilder, weil Bewegung und Zeitkonsistenz stimmen müssen.",
+  "usage": "Kurze Produktvideos oder Visualisierungen ohne Kamerateam generieren.",
+  "related": [],
+  "see_also": [
+   "Text-to-Image-Modell",
+   "Diffusionsmodell"
+  ],
+  "sources": [
+   {
+    "title": "Kondratyuk et al.: VideoPoet: A Large Language Model for Zero-Shot Video Generation",
+    "url": "https://arxiv.org/abs/2312.14125"
+   }
+  ]
+ },
+ {
+  "term": "Text-to-Speech",
+  "aka": [
+   "TTS"
+  ],
+  "letter": "T",
+  "definition": "Wandelt geschriebenen Text in gesprochene Sprache um, zunehmend mit natürlicher Betonung und klonbaren Stimmen.",
+  "usage": "Artikel als Audio vorlesen lassen oder Telefon-Assistenten mit natürlicher Stimme.",
+  "related": [],
+  "see_also": [
+   "Multimodal"
+  ],
+  "sources": [
+   {
+    "title": "Wang et al.: Neural Codec Language Models are Zero-Shot Text to Speech Synthesizers",
+    "url": "https://arxiv.org/abs/2301.02111"
+   }
+  ]
+ },
+ {
+  "term": "Speech-to-Text",
+  "aka": [
+   "Spracherkennung",
+   "ASR"
+  ],
+  "letter": "S",
+  "definition": "Wandelt gesprochene Sprache in Text um. Moderne Systeme sind robust gegen Dialekte, Akzente und Hintergrundlärm.",
+  "usage": "Meetings automatisch mitschreiben oder Sprachnotizen durchsuchbar machen.",
+  "related": [],
+  "see_also": [
+   "Multimodal"
+  ],
+  "sources": [
+   {
+    "title": "Radford et al.: Robust Speech Recognition via Large-Scale Weak Supervision",
+    "url": "https://arxiv.org/abs/2212.04356"
+   }
+  ]
+ },
+ {
+  "term": "Audio-Language-Modell",
+  "aka": [],
+  "letter": "A",
+  "definition": "Sprachmodell, das Audio direkt als Eingabe und Ausgabe verarbeitet, ohne den Umweg über eine Textumschrift.",
+  "usage": "Sprachassistenten, die Tonfall und Pausen mitverstehen und natürlich antworten.",
+  "related": [],
+  "see_also": [
+   "Multimodal",
+   "Speech-to-Text",
+   "Text-to-Speech"
+  ],
+  "sources": [
+   {
+    "title": "Rubenstein et al.: AudioPaLM: A Large Language Model That Can Speak and Listen",
+    "url": "https://arxiv.org/abs/2306.12925"
+   }
+  ]
+ },
+ {
+  "term": "Encoder-Decoder-Modell",
+  "aka": [],
+  "letter": "E",
+  "definition": "Klassischer Aufbau mit zwei Teilen: Der Encoder verdichtet die Eingabe, der Decoder erzeugt daraus die Ausgabe. Viele aktuelle LLM sind dagegen reine Decoder.",
+  "usage": "Übersetzungsmodelle wie T5 arbeiten als Encoder-Decoder; GPT-artige Modelle sind Decoder-only.",
+  "related": [],
+  "see_also": [
+   "Transformer",
+   "Sprachmodell (LLM)"
+  ],
+  "sources": [
+   {
+    "title": "Raffel et al.: Exploring the Limits of Transfer Learning with a Unified Text-to-Text Transformer",
+    "url": "https://arxiv.org/abs/1910.10683"
+   }
+  ]
+ },
+ {
+  "term": "Bild-Tokenizer",
+  "aka": [
+   "VQ-VAE"
+  ],
+  "letter": "B",
+  "definition": "Wandelt Bilder in diskrete Token um, damit Sprachmodell-Architekturen sie verarbeiten können. Brücke zwischen Pixelwelt und Tokenwelt.",
+  "usage": "Multimodale Modelle, die Bilder erzeugen, lernen über solche Bild-Token.",
+  "related": [],
+  "see_also": [
+   "Tokenizer",
+   "Vision-Transformer"
+  ],
+  "sources": [
+   {
+    "title": "van den Oord et al.: Neural Discrete Representation Learning",
+    "url": "https://arxiv.org/abs/1711.00937"
+   }
+  ]
+ },
+ {
+  "term": "Kontrastives Lernen",
+  "aka": [],
+  "letter": "K",
+  "definition": "Lernverfahren, das zusammengehörige Paare (etwa Bild und passende Beschreibung) im Vektorraum nah zusammenrückt und unpassende auseinander.",
+  "usage": "CLIP lernte so, Bilder und Texte in einem gemeinsamen Raum zu vergleichen, Grundlage von Bildsuche und VLMs.",
+  "related": [],
+  "see_also": [
+   "Embedding",
+   "Vision-Language-Modell"
+  ],
+  "sources": [
+   {
+    "title": "Radford et al.: Learning Transferable Visual Models From Natural Language Supervision",
+    "url": "https://arxiv.org/abs/2103.00020"
+   }
+  ]
+ },
+ {
+  "term": "Agent-Loop",
+  "aka": [],
+  "letter": "A",
+  "definition": "Der Grundzyklus eines Agenten: Aufgabe lesen, Schritt planen, Werkzeug aufrufen, Ergebnis prüfen, nächsten Schritt wählen, bis das Ziel erreicht ist.",
+  "usage": "Ein Coding-Agent liest einen Fehler, ändert Code, führt Tests aus und wiederholt das, bis die Tests grün sind.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "ReAct",
+   "Werkzeugaufruf"
+  ],
+  "sources": [
+   {
+    "title": "Anthropic: Building Effective Agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents"
+   }
+  ]
+ },
+ {
+  "term": "Planung (bei Agenten)",
+  "aka": [
+   "Planning"
+  ],
+  "letter": "P",
+  "definition": "Fähigkeit eines Agenten, eine Aufgabe vorab in Teilschritte zu zerlegen und die Reihenfolge festzulegen, statt Schritt für Schritt zu improvisieren.",
+  "usage": "Ein Recherche-Agent legt erst einen Gliederungsplan an und arbeitet ihn dann Punkt für Punkt ab.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Agent-Loop"
+  ],
+  "sources": [
+   {
+    "title": "Anthropic: Building Effective Agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents"
+   }
+  ]
+ },
+ {
+  "term": "Memory (bei Agenten)",
+  "aka": [
+   "Gedächtnis"
+  ],
+  "letter": "M",
+  "definition": "Speicher, über den ein Agent Informationen über den aktuellen Kontext hinaus behält. Kurzzeit-Memory liegt im Kontextfenster, Langzeit-Memory in externen Speichern.",
+  "usage": "Ein Assistent erinnert sich Wochen später an Ihre bevorzugte Berichtsform, weil er sie ins Langzeit-Memory geschrieben hat.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Kontextfenster",
+   "RAG"
+  ],
+  "sources": [
+   {
+    "title": "Packer et al.: MemGPT: Towards LLMs as Operating Systems",
+    "url": "https://arxiv.org/abs/2310.08560"
+   }
+  ]
+ },
+ {
+  "term": "Function Calling",
+  "aka": [],
+  "letter": "F",
+  "definition": "Standardisierter Weg, wie ein Modell einen Werkzeugaufruf als strukturierte Daten (Name plus Argumente) ausgibt, statt freien Text zu erfinden.",
+  "usage": "Das Modell liefert {\"funktion\": \"wetter\", \"stadt\": \"Berlin\"}, das System führt den Aufruf aus.",
+  "related": [],
+  "see_also": [
+   "Werkzeugaufruf",
+   "Agent"
+  ],
+  "sources": [
+   {
+    "title": "Schick et al.: Toolformer: Language Models Can Teach Themselves to Use Tools",
+    "url": "https://arxiv.org/abs/2302.04761"
+   }
+  ]
+ },
+ {
+  "term": "Multi-Agent-System",
+  "aka": [],
+  "letter": "M",
+  "definition": "Mehrere Agenten mit verschiedenen Rollen, die zusammen an einer Aufgabe arbeiten, etwa ein Planer, ein Ausführer und ein Prüfer.",
+  "usage": "Ein Agent schreibt Code, ein zweiter reviewt ihn, ein dritter führt die Tests aus.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Orchestrierung"
+  ],
+  "sources": [
+   {
+    "title": "Wu et al.: AutoGen: Enabling Next-Gen LLM Applications via Multi-Agent Conversation",
+    "url": "https://arxiv.org/abs/2308.08155"
+   }
+  ]
+ },
+ {
+  "term": "Orchestrierung",
+  "aka": [],
+  "letter": "O",
+  "definition": "Die Steuerungsebene, die festlegt, welcher Agent oder welches Werkzeug wann zum Zug kommt und wie Zwischenergebnisse weitergegeben werden.",
+  "usage": "Ein Router schickt einfache Fragen an ein kleines, schwere Aufgaben an ein großes Modell.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Multi-Agent-System",
+   "Router (Gating)"
+  ],
+  "sources": [
+   {
+    "title": "Anthropic: Building Effective Agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents"
+   }
+  ]
+ },
+ {
+  "term": "Human-in-the-Loop",
+  "aka": [],
+  "letter": "H",
+  "definition": "Menschliche Kontrollpunkte im Ablauf: Der Agent fragt vor kritischen Schritten um Freigabe oder legt Entscheidungen dem Menschen vor.",
+  "usage": "Vor dem Versand einer E-Mail oder einer Zahlung zeigt der Agent den Entwurf zur Bestätigung.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Guardrails"
+  ],
+  "sources": [
+   {
+    "title": "Anthropic: Building Effective Agents",
+    "url": "https://www.anthropic.com/engineering/building-effective-agents"
+   }
+  ]
+ },
+ {
+  "term": "Agentic RAG",
+  "aka": [],
+  "letter": "A",
+  "definition": "RAG-Variante, bei der ein Agent selbst entscheidet, wann er sucht, welche Quellen er nutzt und ob er die gefundenen Stellen für ausreichend hält.",
+  "usage": "Statt einer einzigen Suche formuliert der Agent Folgefragen, bis die Antwort belegt ist.",
+  "related": [],
+  "see_also": [
+   "RAG",
+   "Agent",
+   "Grounding"
+  ],
+  "sources": [
+   {
+    "title": "Singh et al.: Agentic Retrieval-Augmented Generation: A Survey on Agentic RAG",
+    "url": "https://arxiv.org/abs/2501.09136"
+   }
+  ]
+ },
+ {
+  "term": "Computer Use",
+  "aka": [],
+  "letter": "C",
+  "definition": "Agenten, die einen echten Rechner bedienen: Bildschirm lesen, Maus bewegen, klicken, tippen, wie ein Mensch vor der Maschine.",
+  "usage": "Ein Agent füllt ein Formular in einer Webanwendung aus, für die es keine Schnittstelle gibt.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Vision-Language-Modell"
+  ],
+  "sources": [
+   {
+    "title": "Xie et al.: OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments",
+    "url": "https://arxiv.org/abs/2404.07972"
+   }
+  ]
+ },
+ {
+  "term": "Reflexion (Selbstkorrektur)",
+  "aka": [
+   "Reflexion"
+  ],
+  "letter": "R",
+  "definition": "Verfahren, bei dem ein Agent sein eigenes Ergebnis kritisch prüft und bei Fehlern überarbeitet, statt den ersten Entwurf abzuliefern.",
+  "usage": "Nach einem fehlgeschlagenen Test analysiert der Agent, was schiefging, und versucht einen neuen Ansatz.",
+  "related": [],
+  "see_also": [
+   "Agent",
+   "Agent-Loop"
+  ],
+  "sources": [
+   {
+    "title": "Shinn et al.: Reflexion: Language Agents with Verbal Reinforcement Learning",
+    "url": "https://arxiv.org/abs/2303.11366"
+   }
+  ]
+ },
+ {
+  "term": "Guardrails",
+  "aka": [
+   "Leitplanken"
+  ],
+  "letter": "G",
+  "definition": "Technische Schranken um ein Modell herum, die Ein- und Ausgaben prüfen und unerwünschtes Verhalten blockieren, unabhängig vom Modell selbst.",
+  "usage": "Ein Filter fängt Beleidigungen, persönliche Daten oder Anleitungen zu gefährlichen Handlungen ab, bevor sie den Nutzer erreichen.",
+  "related": [],
+  "see_also": [
+   "Jailbreak",
+   "Human-in-the-Loop",
+   "Red Teaming"
+  ],
+  "sources": [
+   {
+    "title": "Inan et al.: Llama Guard: LLM-based Input-Output Safeguard for Human-AI Conversations",
+    "url": "https://arxiv.org/abs/2312.06674"
+   }
+  ]
  }
 ]
