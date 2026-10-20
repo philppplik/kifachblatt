@@ -100,7 +100,7 @@ console.log(JSON.stringify(costPerRequest(m, s)));
 class Seite(unittest.TestCase):
     def test_pflichtangaben(self):
         for needle in ['Quellen und Stand', 'ohne Gewähr', 'Keine Verbindung zu den genannten Anbietern',
-                       'EZB-Referenzkurs', 'redaktionell geprüft', 'kifachblatt.de/llm-kostenrechner']:
+                       'EZB-Referenzkurs', 'Erstellt mit KI-Unterstützung', 'kifachblatt.de/llm-kostenrechner']:
             self.assertIn(needle, PAGE)
 
     def test_kein_drittanbieter_code_oder_tracking(self):

@@ -18,12 +18,21 @@
     if(!f.consent.checked)return show('Bitte stimme dem Erhalt des Tagesberichts per E-Mail zu (Checkbox).',1);
     if(!API)return show('Die Anmeldung ist noch nicht freigeschaltet.',1);
     b.disabled=true;
-    fetch(API+'/api/subscribe',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:em,consent:true,website:f.website.value})})
+    fetch(API+'/api/'+(f.getAttribute('data-ep')||'subscribe'),{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:em,consent:true,website:f.website.value})})
       .then(function(r){return r.json()}).then(function(j){b.disabled=false;
-        if(j.ok)show('Fast geschafft: Wir haben dir eine Bestätigungsmail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen).');
+        if(j.ok)show(f.getAttribute('data-ep')==='tksub'?'Fast geschafft: Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen), dann kannst du das Toolkit herunterladen.':'Fast geschafft: Wir haben dir eine Bestätigungsmail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen).');
         else show('Das hat nicht geklappt. Bitte prüfe die Eingaben.',1)})
       .catch(function(){b.disabled=false;show('Verbindungsfehler. Bitte versuche es später erneut.',1)});
   });
+  // 2b) Toolkit page: remembered subscribers get the download link directly.
+  var kn=document.getElementById('tk-known');if(kn){var kk=get();if(kk){kn.hidden=false;kn.querySelector('a').href=API+'/api/tkdl?k='+encodeURIComponent(kk)}}
+  // 2c) Toolkit confirmation page
+  if(path==='/toolkit-bestaetigt'){
+    var th=/[#&]k=([^&]+)/.exec(location.hash),tok=document.getElementById('lw-ok'),tbad=document.getElementById('lw-bad');
+    if(th&&API){var tk=decodeURIComponent(th[1]);history.replaceState(null,'',location.pathname);tok.hidden=false;document.getElementById('lw-dl').href=API+'/api/tkdl?k='+encodeURIComponent(tk);
+      document.getElementById('lw-keep').addEventListener('click',function(){set(tk);location.href=API+'/api/tkdl?k='+encodeURIComponent(tk)});
+    }else tbad.hidden=false;
+  }
   // 3) Confirmation page: token comes in the URL fragment; only an active click stores it (Option B).
   if(path==='/tagesbericht-bestaetigt'){
     var h=/[#&]k=([^&]+)/.exec(location.hash),ok=document.getElementById('lw-ok'),bad=document.getElementById('lw-bad');

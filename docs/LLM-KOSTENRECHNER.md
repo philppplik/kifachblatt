@@ -19,7 +19,7 @@ Primärquellen mit Abrufdatum. Ziel: SEO-Rankings auf Kosten-Keywords ("LLM API 
   ("Keine Verbindung zu den genannten Anbietern; alle Marken gehören ihren Inhabern").
 - **Richtigkeit/Haftung:** Stand-Angabe + "alle Angaben ohne Gewähr" + Verweis auf die Anbieter-Seite
   als verbindliche Referenz; keine Kauf-/Anbieterberatung. Entspricht der Site-Footer-Logik.
-- **AI Act / KI-Kennzeichnung:** "kompiliert mit KI-Unterstützung und redaktionell geprüft" steht im
+- **AI Act / KI-Kennzeichnung:** "Erstellt mit KI-Unterstützung. Preise aus Anbieter-Preislisten, Stand 20.10.2026" steht im
   Methodik-Block; Site-weite Transparenzseite verlinkt.
 - **DSGVO:** 100 % clientseitig, genau ein `fetch` auf die eigene Preis-JSON, kein localStorage,
   keine Cookies, kein Server-Call mit Nutzereingaben (Test `test_datenschutz_versprechen_deckt_umsetzung`
