@@ -1,0 +1,240 @@
+{
+ "slug": "faktencheck-mit-ki",
+ "lang": "de",
+ "section": "verlaesslichkeit",
+ "type": "explainer",
+ "title": "Faktencheck mit KI: Was geht, was nie geht",
+ "dek": "KI-Assistenten erfinden Quellen und nennen falsche Fakten mit voller Überzeugung. Was Studien über Fehlerquoten zeigen und wie ein Prüf-Workflow aussieht.",
+ "published": "2026-10-17T09:00:00+02:00",
+ "modified": "2026-10-20T09:40:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Faktencheck",
+  "Halluzination",
+  "Quellenkritik",
+  "Recherche",
+  "Verlässlichkeit"
+ ],
+ "key_takeaways": [
+  "Sprachmodelle raten, wenn sie unsicher sind, weil Training und Bewertung das Raten belohnen; Halluzinationen sind damit kein Betriebsunfall, sondern eingebaut [1].",
+  "In einer Untersuchung von 636 KI-erzeugten Literaturangaben waren bei GPT-3.5 55 Prozent, bei GPT-4 noch 18 Prozent komplett erfunden [2].",
+  "Acht KI-Suchmaschinen beantworteten in einem Test des Tow Center mehr als 60 Prozent der Anfragen zu Nachrichtenartikeln falsch; manche Anbieter lagen bei über 90 Prozent [3].",
+  "In der großen EBU-Studie mit 22 Rundfunkanstalten wies fast die Hälfte von über 3.000 KI-Antworten zu Nachrichten mindestens ein gravierendes Problem auf [4].",
+  "Faktencheck mit KI funktioniert als Gegenleser und Strukturhelfer, nie als Quelle: Jede Zahl, jedes Zitat und jede Quellenangabe muss am Original verifiziert werden."
+ ],
+ "hero": {
+  "alt": "Säulendiagramm mit Fehlerquoten aus vier Untersuchungen: 18 Prozent erfundene Quellen bei GPT-4, 55 Prozent bei GPT-3.5, über 60 Prozent falsche Antworten bei KI-Suchmaschinen, knapp 50 Prozent KI-Antworten mit gravierenden Problemen.",
+  "caption": "Fehlerquoten aus vier unabhängigen Untersuchungen. Die Studien messen Verschiedenes, die Richtung ist dieselbe. Eigene Darstellung nach [1][2][3][4].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein Redakteur fragt einen KI-Assistenten nach einer Zahl für einen Artikel. Die Antwort kommt in Sekunden, mit Quellenangabe, im Tonfall einer Nachrichtenagentur. Die Zahl ist falsch, die Quelle existiert nicht. Diese Szene ist der Alltag mit Sprachmodellen: Sie liefern flüssige, plausibel wirkende Antworten, und gerade das macht sie für die Recherche gefährlich. Dieser Text erklärt, warum Modelle Fakten erfinden, was die aktuelle Studienlage über Fehlerquoten zeigt und welche Aufgaben im Faktencheck man einem Modell anvertrauen kann und welche nie."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Ein Sprachmodell ist wie ein Prüfling, der für jede leere Antwort null Punkte bekommt, für eine geratene aber manchmal volle Punktzahl: Es rät immer. Der Faktenchecker dagegen arbeitet wie ein Steuerprüfer: Er glaubt nichts, was nicht belegt ist, und verlangt für jeden Posten einen Beleg. Beide Rollen in einer Software zu suchen, ist der Grundfehler."
+  },
+  {
+   "t": "h2",
+   "x": "Warum Sprachmodelle Fakten erfinden"
+  },
+  {
+   "t": "p",
+   "x": "Das Grundproblem ist statistisch, nicht böswillig. Ein Sprachmodell lernt aus Text, welche Wortfolgen wahrscheinlich sind, nicht welche Aussagen wahr sind. Wenn es keine Antwort weiß, erzeugt es trotzdem eine, weil seine Trainings- und Bewertungsverfahren das Raten belohnen: In den gängigen Tests gibt es Punkte für eine Antwort und keine Punkte für ein ehrliches „weiß ich nicht“. Das ist das zentrale Ergebnis der Analyse „Why Language Models Hallucinate“ von Forschern um Adam Tauman Kalai: Halluzinationen sind Fehler, die aus dem ganz normalen Lernverfahren entstehen, und sie bleiben bestehen, weil fast alle Bewertungsmaßstäbe unsicheres Verhalten bestrafen [1]. Hintergrund zum Mechanismus liefert unsere Seite [Warum Sprachmodelle halluzinieren](/halluzinationen) und der Glossar-Eintrag zur [Halluzination](/glossar#halluzination)."
+  },
+  {
+   "t": "p",
+   "x": "Dazu kommt eine Eigenschaft, die in der Redaktion besonders tückisch ist: Das Modell klingt immer gleich sicher. Es markiert nicht, wo es weiß und wo es rät. Psychologisch wirkt der flüssige Text wie ein Beleg. Genau dieses „selbstbewusste Falschen“ benennen sowohl das Tow Center als Vertrauensfalle als auch die EBU-Studie als systemisches Muster über alle getesteten Assistenten hinweg [3][4]."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Studien zeigen: Fehlerquoten im Überblick"
+  },
+  {
+   "t": "p",
+   "x": "Vier Untersuchungen aus den Jahren 2023 bis 2025 geben ein konsistentes Bild. Sie messen unterschiedliche Dinge, deshalb sind die Prozentwerte nicht direkt vergleichbar; die Richtung aber ist eindeutig."
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Erfundene Literatur.** Walters und Wilder ließen GPT-3.5 und GPT-4 kurze Literaturübersichten zu 42 Themen schreiben und prüften alle 636 Quellenangaben nach. Bei GPT-3.5 waren 55 Prozent der Angaben komplett erfunden, bei GPT-4 immer noch 18 Prozent; von den echten Angaben enthielten 24 bis 43 Prozent inhaltliche Fehler wie falsche Jahreszahlen oder Autorennamen [2].",
+    "**KI-Suchmaschinen.** Das Tow Center for Digital Journalism stellte acht generativen Suchwerkzeugen 1.600 Anfragen zu Nachrichtenartikeln, deren Originalquelle über eine normale Suche leicht zu finden war. Insgesamt waren über 60 Prozent der Antworten falsch; die Spanne reichte von 37 Prozent Fehlern bei Perplexity bis zu 94 Prozent bei Grok 3. Bezahlversionen antworteten selbstbewusster, aber nicht genauer [3].",
+    "**Nachrichtenfragen im großen Vergleich.** In der Untersuchung „News Integrity in AI Assistants“ bewerteten Journalistinnen und Journalisten von 22 öffentlich-rechtlichen Rundfunkanstalten in 18 Ländern mehr als 3.000 Antworten von ChatGPT, Copilot, Gemini und Perplexity auf Nachrichtenfragen. Fast die Hälfte der Antworten hatte mindestens ein gravierendes Problem, ein Drittel wies ernsthafte Quellenmängel auf, ein Fünftel enthielt grobe inhaltliche Fehler wie halluzinierte oder veraltete Angaben [4].",
+    "**Ursache bestätigt.** Die OpenAI-nahe Analyse von 2025 liefert die Erklärung dazu: Solange Bewertungen Raten belohnen, bleibt das Raten rational. Die Autoren schlagen vor, die Bewertungskriterien der dominierenden Benchmarks zu ändern, statt nur neue Halluzinationstests anzuhängen [1]."
+   ]
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "Fehlerquoten in vier Untersuchungen",
+   "alt": "GPT-4: 18 Prozent erfundene Quellen; GPT-3.5: 55 Prozent; KI-Suchmaschinen im Schnitt: über 60 Prozent falsche Antworten; EBU-Studie: knapp 50 Prozent Antworten mit gravierendem Problem.",
+   "caption": "Die Studien messen Unterschiedliches (erfundene Quellen, falsche Antworten, Antworten mit gravierendem Problem) und sind nicht direkt vergleichbar. Eigene Darstellung nach den Angaben in [2][3][4].",
+   "source": "Eigene Darstellung nach [2][3][4]",
+   "unit": " %",
+   "x_label": "Untersuchung",
+   "y_label": "Fehlerquote in Prozent",
+   "labels": [
+    "GPT-4: erfundene Quellen",
+    "GPT-3.5: erfundene Quellen",
+    "KI-Suche: falsche Antworten",
+    "EBU: Antworten mit Problem"
+   ],
+   "series": [
+    {
+     "name": "Fehlerquote",
+     "values": [
+      18,
+      55,
+      60,
+      48
+     ]
+    }
+   ]
+  },
+  {
+   "t": "table",
+   "caption": "Die vier Untersuchungen im Vergleich; Messgegenstand und Jahr unterscheiden sich, die Werte sind nicht 1:1 vergleichbar [1][2][3][4]",
+   "head": [
+    "Untersuchung",
+    "Jahr",
+    "Geprüft",
+    "Zentrales Ergebnis"
+   ],
+   "rows": [
+    [
+     "Walters & Wilder",
+     "2023",
+     "636 KI-Literaturangaben",
+     "18 bis 55 % komplett erfunden"
+    ],
+    [
+     "Tow Center (CJR)",
+     "2025",
+     "1.600 Anfragen an 8 KI-Suchmaschinen",
+     "über 60 % falsche Antworten"
+    ],
+    [
+     "EBU / BBC",
+     "2025",
+     "3.000+ Antworten von 4 Assistenten",
+     "fast 50 % mit gravierendem Problem"
+    ],
+    [
+     "Kalai u. a. (OpenAI-nah)",
+     "2025",
+     "Trainings- und Bewertungsverfahren",
+     "Raten wird belohnt, Ehrlichkeit bestraft"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Was geht: KI als Prüfassistent, nicht als Quelle"
+  },
+  {
+   "t": "p",
+   "x": "Die schlechte Nachricht ist nicht die ganze Geschichte. Dasselbe Modell, das als Auskunftsperson versagt, kann als Werkzeug im Prüfprozess helfen, weil dort sein Textverständnis zählt und nicht sein Faktenwissen. Sinnvoll eingesetzt wird es bei Aufgaben, deren Ergebnis Sie ohnehin am Original kontrollieren:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Behauptungen extrahieren.** Aus einem eigenen Artikelentwurf eine Liste aller prüfbaren Einzelaussagen ziehen lassen („Zahlen, Namen, Daten, Zitate“). Das Modell findet Prüfpunkte, die ein müder Redakteur übersieht; geprüft wird danach wie immer.",
+    "**Gegenleser spielen.** Den Entwurf mit der Anweisung prüfen lassen, Widersprüche, unbelegte Superlative und logische Sprünge zu markieren. Das Ergebnis ist eine Liste von Verdachtsmomenten, keine Wahrheitsauskunft.",
+    "**Recherchewege sammeln.** Fragen formulieren lassen, die man zur Prüfung stellen müsste, und mögliche Primärquellentypen benennen lassen (Statistikamt, Studie, Protokoll). Das ersetzt die Suche nicht, strukturiert sie aber.",
+    "**Transkripte und Dokumente durchsuchen.** Innerhalb eines von Ihnen bereitgestellten Textes Stellen finden, die eine Aussage stützen oder widerlegen. Hier halluziniert das Modell weniger, weil die Antwort im Dokument steht; die Fundstelle prüfen Sie trotzdem mit einem Blick.",
+    "**Formate prüfen.** Literaturverzeichnisse auf Vollständigkeit und Stil durchsehen lassen. Ob die Titel existieren, muss separat verifiziert werden, siehe unten."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Was nie geht"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Das Modell als Quelle zitieren.** Eine KI-Aussage ist kein Beleg. Sie steht in keiner Datenbank, ist nicht reproduzierbar und kann von niemandem gegengelesen werden. Wer „laut ChatGPT“ schreibt, publiziert eine unprüfbare Behauptung.",
+    "**Quellenangaben des Modells ungeprüft übernehmen.** Die 18 bis 55 Prozent erfundener Titel aus der Zitationsstudie [2] bedeuten: Jede vom Modell genannte Studie, jeder Link und jede DOI muss einzeln geöffnet werden. Erst was existiert und die Aussage trägt, ist eine Quelle.",
+    "**Den Faktencheck an das Modell delegieren.** Die Frage „Stimmt das?“ an dasselbe System, das die Antwort erzeugt hat, prüft nichts. Das Modell bestätigt sich mit derselben Überzeugung, mit der es sich geirrt hat; diese Neigung zur Zustimmung ist als [Sycophancy](/glossar#sycophancy) beschrieben.",
+    "**Aktualität annehmen.** Ohne aktive Websuche kennt das Modell die Welt nur bis zu seinem Trainingsstand und auch dann lückenhaft. Preise, Ämter, Kurse und Gesetzestexte sind immer am Original zu prüfen.",
+    "**Vertrauliches einspeisen.** Unveröffentlichte Recherchen, Informantennamen oder interne Dokumente gehören nicht in fremde KI-Dienste; was Sie eintippen, kann beim Anbieter landen. Die AP-Standards formulieren diese Regel für ihre Redaktion ausdrücklich so."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Ein Workflow, der trägt: Vier-Augen-Prinzip mit Maschine"
+  },
+  {
+   "t": "p",
+   "x": "Aus den Studien und der eigenen Praxis dieser Redaktion lässt sich ein Ablauf ableiten, der die Stärken nutzt und die Schwächen aussperrt:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Trennen.** Formulierung und Faktenbeschaffung sind zwei Schritte. Das Modell darf strukturieren, glätten, gegenlesen; die Fakten kommen aus Primärquellen.",
+    "**Behauptungsliste ziehen.** Jede prüfbare Aussage des Entwurfs als einzelnen Punkt listen, maschinell vorschlagen lassen, manuell ergänzen.",
+    "**Jede Behauptung mit Primärquelle belegen.** Originalstudie, Gesetzestext, Statistik, Protokoll. Keine Sekundärquelle zweiter Kette, kein KI-Text.",
+    "**Fundstellen dokumentieren.** Link und Abrufdatum festhalten, wie es diese Redaktion in jedem Artikel unter „Quellen“ tut ([so arbeiten wir](/transparenz)).",
+    "**Vier Augen drauf.** Eine zweite Person liest die heikelsten Stellen: Zahlen, Namen, Zitate. Bei KI-Unterstützung gilt das doppelt, weil Fehler sprachlich sauber verpackt sind."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer tiefer einsteigen will: Der Artikel [Deep-Research-Werkzeuge in der Recherche](/deep-research-recherche) zeigt, was die recherchierenden Agenten-Modi der Anbieter leisten und wo sie dieselben Grenzen haben; [KI-Texte erkennen](/ki-texte-erkennen) behandelt die umgekehrte Frage, ob man fremde KI-Texte als solche identifizieren kann. Die Begriffe [Grounding](/glossar#grounding) und [Temperatur](/glossar#temperatur) im Glossar erklären zwei Stellschrauben, die Fehlerwahrscheinlichkeit beeinflussen."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Kann ich ChatGPT als Quelle in einem Artikel zitieren?",
+   "a": "Nein. Eine KI-Antwort ist kein prüfbarer Beleg: Sie steht in keiner Datenbank, ist nicht reproduzierbar und niemand kann sie verantworten. Studien zeigen, dass 18 bis 55 Prozent der von Sprachmodellen genannten Literaturangaben erfunden sind [2]. Zitiert werden nur Quellen, die Sie selbst geöffnet und geprüft haben."
+  },
+  {
+   "q": "Sind KI-Suchmaschinen mit Live-Zugriff nicht zuverlässiger?",
+   "a": "Kaum. Im Test des Tow Center beantworteten acht generative Suchwerkzeuge über 60 Prozent der Anfragen zu Nachrichtenartikeln falsch, darunter das Erfinden von Links und das Zitieren falscher Originale [3]. Die EBU-Studie mit 3.000 Antworten fand bei fast der Hälfte gravierende Probleme, vor allem bei der Quellenangabe [4]."
+  },
+  {
+   "q": "Woran erkenne ich eine Halluzination ohne Nachschlagen?",
+   "a": "Gar nicht zuverlässig. Halluzinierte Quellen und Zahlen sind sprachlich nicht von echten zu unterscheiden; das Modell klingt in beiden Fällen gleich sicher [1]. Verdächtig sind sehr präzise Angaben ohne Kontext, auffällig glatte Zitate und Quellen, die niemand sonst zitiert. Sicherheit gibt nur das Öffnen der Originalquelle."
+  },
+  {
+   "q": "Wofür darf ich ein Sprachmodell im Faktencheck dann nutzen?",
+   "a": "Für alles, dessen Ergebnis Sie ohnehin prüfen: prüfbare Behauptungen aus einem Entwurf extrahieren, Widersprüche markieren lassen, Prüffragen sammeln, in von Ihnen bereitgestellten Dokumenten nach Fundstellen suchen. Das Modell ist der Assistent, der Verdachtsmomente sortiert, nicht der Prüfer."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026: die Analyse „Why Language Models Hallucinate“ (arXiv), die Zitationsstudie von Walters und Wilder in Scientific Reports (Volltext), der Bericht des Tow Center for Digital Journalism zu acht KI-Suchwerkzeugen und die Berichtsseite der EBU-Studie „News Integrity in AI Assistants“ mit den Kennzahlen. Prozentwerte stammen aus den jeweiligen Veröffentlichungen; das Diagramm fasst sie als eigene Darstellung zusammen, ohne die Messgegenstände gleichzusetzen. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die vier Studien messen unterschiedliche Dinge (erfundene Quellen, falsche Antworten, Antworten mit gravierendem Problem) und stammen aus den Jahren 2023 bis 2025; neuere Modellversionen können besser oder schlechter abschneiden. Die Werte sind Momentaufnahmen der getesteten Systeme, keine dauerhaften Eigenschaften einzelner Anbieter. Eigene Fehlerquoten deutscher Redaktionen liegen nicht vor.",
+ "related": [
+  "deep-research-recherche",
+  "ki-texte-erkennen",
+  "transkription-zusammenfassung"
+ ],
+ "sources": [
+  {
+   "title": "Why Language Models Hallucinate",
+   "publisher": "arXiv:2509.04664 (Kalai, Nachum, Vempala, Zhang, 2025)",
+   "url": "https://arxiv.org/abs/2509.04664",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Fabrication and errors in the bibliographic citations generated by ChatGPT",
+   "publisher": "Scientific Reports (Walters & Wilder, 2023)",
+   "url": "https://www.nature.com/articles/s41598-023-41032-5",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "AI Search Has a Citation Problem",
+   "publisher": "Columbia Journalism Review, Tow Center (Jaźwińska & Chandrasekar, 2025)",
+   "url": "https://www.cjr.org/tow_center/we-compared-eight-ai-search-engines-theyre-all-bad-at-citing-news.php",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "News Integrity in AI Assistants",
+   "publisher": "EBU mit BBC und 22 öffentlich-rechtlichen Medien (2025)",
+   "url": "https://www.ebu.ch/research/open/report/news-integrity-in-ai-assistants",
+   "accessed": "2026-10-20"
+  }
+ ]
+}

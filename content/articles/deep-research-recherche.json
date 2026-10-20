@@ -1,0 +1,239 @@
+{
+ "slug": "deep-research-recherche",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Deep-Research-Werkzeuge: Recherche per Agent, mit Grenzen",
+ "dek": "Recherchierende KI-Agenten lesen Hunderte Quellen und liefern Berichte mit Zitaten. Was die Angebote leisten, was sie kosten und wo sie irren.",
+ "published": "2026-10-17T15:00:00+02:00",
+ "modified": "2026-10-20T09:40:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Deep Research",
+  "Recherche",
+  "KI-Agenten",
+  "Journalismus",
+  "Quellenkritik"
+ ],
+ "key_takeaways": [
+  "Deep Research ist ein Agenten-Modus: Das System plant selbst, sucht mehrfach, liest Quellen und schreibt einen Bericht mit Zitaten; OpenAI nennt 5 bis 30 Minuten Laufzeit, Perplexity 2 bis 4 Minuten [1][3].",
+  "OpenAIs Deep-Research-Modell erreichte bei Einführung 26,6 Prozent auf der Expertenprüfung Humanity's Last Exam und Spitzenwerte auf dem Assistenten-Benchmark GAIA [1][5].",
+  "Alle vier Anbieter (OpenAI, Google, Perplexity, Anthropic) liefern klickbare Zitate; Anthropic und Google binden auf Wunsch eigene Dateien, E-Mails und Dokumente ein [2][4].",
+  "Die Anbieter selbst warnen vor Halluzinationen und schwacher Unsicherheitsanzeige; die Berichte sind Recherchematerial, kein veröffentlichungsfertiger Text [1].",
+  "Praxisregel: Bericht als Quellenkarte nutzen, jede tragende Aussage am Original verifizieren, Vertrauliches nicht einspeisen."
+ ],
+ "hero": {
+  "alt": "Säulendiagramm: Trefferquoten auf der Expertenprüfung Humanity's Last Exam: OpenAI Deep Research 26,6 Prozent, Perplexity Deep Research 21,1 Prozent, o3-mini high 13 Prozent, o3-mini medium 10,5 Prozent.",
+  "caption": "Humanity's Last Exam (HLE): Trefferquoten bei Einführung der Deep-Research-Modi Anfang 2025. Eigene Darstellung nach [1][3].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Seit Anfang 2025 bieten die großen KI-Anbieter einen Modus an, der mehr tut als eine Chat-Antwort: Deep Research. Sie stellen eine Frage, das System legt eigenständig einen Rechercheplan an, führt Dutzende Suchanfragen aus, liest hunderte Seiten und liefert nach einigen Minuten einen Bericht mit Zitaten. Für Redaktionen klingt das nach einem Volontär, der über Nacht das Themenfeld kartiert. Dieser Text ordnet ein, was die Werkzeuge von OpenAI, Google, Perplexity und Anthropic tatsächlich leisten, was die Benchmarks bedeuten und welche Prüfpflichten bleiben."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Ein Deep-Research-Bericht ist wie die erste Kartierung durch einen Praktikanten: Er kommt mit einem Stapel Ausdrucke zurück, sagt, wo er überall war, und hat das Wichtigste markiert. Man würde diese Mappe als Arbeitsgrundlage nehmen, aber niemals ungelesen drucken, und genau so sollte man den KI-Bericht behandeln."
+  },
+  {
+   "t": "h2",
+   "x": "Was Deep Research von der Chat-Antwort unterscheidet"
+  },
+  {
+   "t": "p",
+   "x": "Ein normaler Chatbot antwortet aus dem Modellgedächtnis in einem Zug. Deep Research arbeitet dagegen [agentisch](/glossar#agent): Das System zerlegt die Frage, sucht mehrfach, bewertet Zwischenergebnisse und passt den Plan an, bevor es den Bericht schreibt. OpenAI beschreibt seinen Modus als eigenen Agenten, der „hunderte Online-Quellen findet, analysiert und zusammenführt“ und dafür je nach Aufgabe 5 bis 30 Minuten braucht [1]. Perplexity nennt Dutzende Suchen und hunderte gelesene Quellen bei einer Laufzeit von 2 bis 4 Minuten [3]. Anthropic beschreibt den Research-Modus von Claude als aufeinander aufbauende Suchen mit Zitaten zum Gegenprüfen [4]."
+  },
+  {
+   "t": "p",
+   "x": "Zwei Folgen für die Praxis: Erstens kostet eine Anfrage Minuten statt Sekunden und ist meist kontingentiert. Zweitens ist das Ergebnis kein Gespräch, sondern ein Dokument mit Quellenverzeichnis; der Wert liegt in der Quellenkarte, nicht im Fließtext."
+  },
+  {
+   "t": "p",
+   "x": "Der Ablauf ist bei allen vier ähnlich: Sie formulieren den Auftrag im Chat, gegebenenfalls mit Dateianhang oder Quellenauswahl, das System zeigt einen Rechercheplan oder beginnt direkt, und nach einigen Minuten liegt ein Bericht vor. Bei Gemini lässt sich der Rechercheplan vor dem Start ansehen und anpassen; Quellen wie Gmail, Drive oder NotebookLM-Notizbücher können gezielt zu- oder abgewählt werden [2]. Bei Perplexity lässt sich der fertige Bericht als PDF exportieren oder als geteilte Seite weitergeben [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Die vier Angebote im Überblick"
+  },
+  {
+   "t": "table",
+   "caption": "Deep-Research-Modi der vier Anbieter, Stand der jeweiligen Produktseiten, abgerufen am 20. Oktober 2026 [1][2][3][4]",
+   "head": [
+    "Anbieter",
+    "Laufzeit (Herstellerangabe)",
+    "Besonderheit",
+    "Zitate"
+   ],
+   "rows": [
+    [
+     "OpenAI: Deep Research in ChatGPT",
+     "5-30 Minuten",
+     "eigenes Agentenmodell auf o3-Basis; Bericht mit Quellenverzeichnis",
+     "ja, mit Quellenverzeichnis"
+    ],
+    [
+     "Google: Deep Research in Gemini",
+     "Minutenbereich",
+     "Quellen wählbar: Google Suche, Gmail, Drive, NotebookLM; Tageslimits je nach Tarif",
+     "ja"
+    ],
+    [
+     "Perplexity: Deep Research",
+     "2-4 Minuten",
+     "kostenlos nutzbar (begrenzt), Pro mit höherem Kontingent; Export als PDF",
+     "ja"
+    ],
+    [
+     "Anthropic: Research in Claude",
+     "Minutenbereich",
+     "durchsucht Web und optional Google Workspace (Mail, Kalender, Docs)",
+     "ja, inline"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Unterschiede liegen weniger im Prinzip als im Datenraum: Google und Anthropic binden auf Wunsch eigene Inhalte ein (E-Mails, Dokumente, Kalender), was für Auswertung des eigenen Materials nützlich ist, aber Datenschutzfragen aufwirft. OpenAI und Perplexity konzentrieren ihre Darstellung auf die öffentliche Websuche. Preise und Kontingente ändern sich laufend; die Anbieterseiten geben den jeweils aktuellen Stand an [1][2][3][4]."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Benchmarks aussagen und was nicht"
+  },
+  {
+   "t": "p",
+   "x": "Zwei Prüfstande tauchen in den Produktankündigungen immer wieder auf. GAIA ist ein Benchmark für Assistenten mit 466 praxisnahen Fragen, die Recherche, Werkzeugnutzung und mehrstufiges Schlussfolgern verlangen; Menschen lösten in der Veröffentlichung 92 Prozent, GPT-4 mit Plugins nur 15 Prozent [5]. Humanity's Last Exam (HLE) ist eine Sammlung von über 3.000 Expertenfragen aus mehr als 100 Fachgebieten [1][3]."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "Humanity's Last Exam: Deep-Research-Modi bei Einführung",
+   "alt": "OpenAI Deep Research 26,6 Prozent, Perplexity Deep Research 21,1 Prozent, o3-mini high 13 Prozent, o3-mini medium 10,5 Prozent.",
+   "caption": "Trefferquoten auf HLE laut den Einführungsbeiträgen von OpenAI und Perplexity Anfang 2025; aktuelle Modellversionen können abweichen. Eigene Darstellung nach [1][3].",
+   "source": "Eigene Darstellung nach [1][3]",
+   "unit": " %",
+   "x_label": "System",
+   "y_label": "Trefferquote HLE in Prozent",
+   "labels": [
+    "OpenAI Deep Research",
+    "Perplexity Deep Research",
+    "o3-mini (high)",
+    "o3-mini (medium)"
+   ],
+   "series": [
+    {
+     "name": "Trefferquote",
+     "values": [
+      26.6,
+      21.1,
+      13.0,
+      10.5
+     ]
+    }
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zur Einordnung: 26,6 Prozent auf einer Prüfung, die Expertinnen und Experten an ihre Grenzen bringt, ist ein starker Wert für ein Recherche-System und zugleich weit von Zuverlässigkeit entfernt. Die Werte stammen aus den Ankündigungen der Anbieter, sind nicht unabhängig nachgemessen und beziehen sich auf die Modelle von Anfang 2025. Benchmark-Spitzenplätze wechseln schnell; unser Porträt von [Humanity's Last Exam](/benchmarks/humanitys-last-exam) und die Seite [Modelle und Agenten richtig evaluieren](/modelle-und-agenten-evaluieren) zeigen, wie man solche Angaben liest."
+  },
+  {
+   "t": "h2",
+   "x": "Wann sich der Einsatz lohnt und wann nicht"
+  },
+  {
+   "t": "p",
+   "x": "Stark sind die Agenten überall dort, wo die Antwort im offenen Web verteilt liegt: Überblick über ein neues Themenfeld, Markt- und Wettbewerbslage, Technikvergleiche, das Sammeln von Studien und Behördendokumenten zu einer Frage. Schwach sind sie bei allem, was hinter Paywalls, in Fachdatenbanken, in Akten oder in Köpfen liegt, und bei sehr neuen Entwicklungen der letzten Stunden. Für die klassische journalistische Kernarbeit, also Gespräche, Dokumente und Exklusives, bleiben sie ein Vorarbeit-Werkzeug."
+  },
+  {
+   "t": "h2",
+   "x": "Die Grenzen: Was die Anbieter selbst einräumen"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Halluzinationen bleiben.** OpenAI schreibt, das System könne Fakten erfinden oder falsche Schlüsse ziehen, wenn auch seltener als bisherige Modelle, und habe Schwächen, Unsicherheit korrekt anzuzeigen [1].",
+    "**Autorität wird nicht erkannt.** Die Systeme unterscheiden schlecht zwischen belastbarer Quelle und Gerücht; OpenAI nennt das ausdrücklich als bekannte Schwäche [1].",
+    "**Quellenarbeit fehleranfällig.** In den unabhängigen Tests des Tow Center zitierten KI-Suchwerkzeuge häufig falsche Originale oder erfanden Links; Details in unserem Artikel [Faktencheck mit KI](/faktencheck-mit-ki).",
+    "**Aktualität und Sperren.** Bezahlschranken, gesperrte Crawler und sehr neue Ereignisse bleiben Lücken; ein Bericht kann überzeugend aussehen und trotzdem die entscheidende Primärquelle vermissen lassen.",
+    "**Vertraulichkeit.** Was Sie in den Auftrag schreiben (Interna, Informantenhinweise), verlässt Ihr Haus. Für vertrauliche Recherchen sind diese Dienste tabu, wie es auch die AP-Standards für ihre Journalisten festlegen."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Ein Arbeitsablauf für die Redaktion"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Auftrag präzisieren.** Frage, Zeitraum, Region und gewünschte Quellentypen (Primärquellen, Studien, Behörden) in den Auftrag schreiben; vage Aufträge liefern glatte Allgemeinplätze.",
+    "**Bericht als Landkarte lesen.** Struktur und Stichwortliste übernehmen, Fließtext ignorieren. Der Wert ist das Inhaltsverzeichnis des Themas.",
+    "**Zitate stichprobenartig öffnen.** Jede Aussage, die in den Artikel soll, am Original prüfen: Existiert die Quelle, sagt sie das Behauptete, ist sie aktuell? Grundregeln im Artikel [Faktencheck mit KI](/faktencheck-mit-ki).",
+    "**Lücken notieren.** Was der Agent nicht gefunden hat (Paywalls, Fachdatenbanken, Graupapier), gezielt selbst recherchieren.",
+    "**Einsatz dokumentieren.** Wenn KI-Recherche in einen Beitrag eingeflossen ist, gehört das in die Transparenz-Angabe des Mediums; wie das aussehen kann, zeigt unsere Seite [KI in der Redaktion deklarieren](/ki-deklaration-redaktion)."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer die technische Grundlage verstehen will, findet sie im Glossar unter [Agent](/glossar#agent), [Grounding](/glossar#grounding) und [Chain of Thought](/glossar#chain-of-thought). Für die wissenschaftliche Variante der Themenlage verweisen wir auf den Lernpfad-Artikel [Literaturrecherche mit KI](/literaturrecherche-ki)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ersetzt Deep Research die eigene Recherche?",
+   "a": "Nein. Die Berichte sind eine strukturierte Quellenkarte, kein verifiziertes Ergebnis. Die Anbieter selbst warnen vor halluzinierten Fakten und schwacher Anzeige von Unsicherheit [1]. Jede Aussage, die publiziert werden soll, muss am Original geprüft werden."
+  },
+  {
+   "q": "Was bedeuten 26,6 Prozent auf Humanity's Last Exam?",
+   "a": "Es ist der bis dahin höchste öffentlich genannte Wert eines recherchierenden Systems auf einer sehr schweren Expertenprüfung mit über 3.000 Fragen; zugleich heißt es: Fast drei von vier Antworten waren falsch oder unzureichend [1]. Benchmark-Werte sagen etwas über Forschungsstand, nichts über die Richtigkeit des nächsten Berichts."
+  },
+  {
+   "q": "Welches Angebot ist das beste?",
+   "a": "Das lässt sich pauschal nicht sagen. OpenAI und Perplexity fokussieren die Websuche, Google und Anthropic binden eigene Dateien und E-Mails ein [2][4]. Kontingente, Preise und Modelle ändern sich laufend; entscheidend ist der Prüfprozess danach, nicht die Marke davor."
+  },
+  {
+   "q": "Darf ich vertrauliche Recherche in einen Deep-Research-Auftrag schreiben?",
+   "a": "Nein. Auftragstexte landen beim Anbieter und können je nach Tarif und Einstellung gespeichert oder fürs Training genutzt werden. Informantenschutz und unveröffentlichte Interna gehören nicht in solche Dienste; das entspricht auch den AP-Richtlinien."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Einführungsbeiträge und Hilfeseiten von OpenAI (deep research), Google (Deep Research in Gemini), Perplexity (Deep Research) und Anthropic (Research) sowie das GAIA-Paper auf arXiv. Laufzeiten, Funktionsumfang und Benchmark-Werte sind Herstellerangaben aus diesen Quellen; sie wurden nicht unabhängig nachgemessen. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Funktionsumfang, Preise, Kontingente und Modellversionen der vier Angebote ändern sich laufend; die Angaben sind der Stand der Produktseiten vom 20. Oktober 2026. Benchmark-Werte stammen aus Anbieter-Kommunikation und beziehen sich auf Modelle von Anfang 2025. Ein eigener Vergleichstest der Systeme wurde für diesen Artikel nicht durchgeführt.",
+ "related": [
+  "faktencheck-mit-ki",
+  "literaturrecherche-ki",
+  "transkription-zusammenfassung"
+ ],
+ "sources": [
+  {
+   "title": "Introducing deep research",
+   "publisher": "OpenAI (2025)",
+   "url": "https://openai.com/index/introducing-deep-research/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Use Deep Research in Gemini Apps",
+   "publisher": "Google Gemini Apps Help",
+   "url": "https://support.google.com/gemini/answer/15719111",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Introducing Perplexity Deep Research",
+   "publisher": "Perplexity (2025)",
+   "url": "https://www.perplexity.ai/hub/blog/introducing-perplexity-deep-research",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Claude takes research to new places",
+   "publisher": "Anthropic (2025)",
+   "url": "https://www.anthropic.com/news/research",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "GAIA: a benchmark for General AI Assistants",
+   "publisher": "arXiv:2311.12983 (Mialon u. a., 2023)",
+   "url": "https://arxiv.org/abs/2311.12983",
+   "accessed": "2026-10-20"
+  }
+ ]
+}
