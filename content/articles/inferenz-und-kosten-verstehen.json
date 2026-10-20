@@ -1,0 +1,358 @@
+{
+  "slug": "inferenz-und-kosten-verstehen",
+  "lang": "de",
+  "section": "grundlagen",
+  "type": "explainer",
+  "title": "Inferenz und Kosten verstehen: Tokens, KV-Cache, Quantisierung",
+  "dek": "Was beim Antworten passiert, warum der KV-Cache so viel Speicher frisst und woraus sich ein API-Preis ergibt, mit eigenen Rechnungen zu Llama 3.",
+  "published": "2026-10-20T09:31:00+02:00",
+  "modified": "2026-10-20T09:31:00+02:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Inferenz",
+    "Tokens",
+    "KV-Cache",
+    "Quantisierung",
+    "API-Preise",
+    "GQA"
+  ],
+  "key_takeaways": [
+    "Ein Modell antwortet in zwei Phasen: Die Eingabe wird parallel verarbeitet, die Ausgabe Token für Token; die zweite Phase ist speicherlastig [1].",
+    "Der KV-Cache kostet beim 13-Milliarden-Modell OPT 800 KB pro Token und bis zu 1,6 GB pro Anfrage; er begrenzt den Durchsatz [1].",
+    "Eigene Rechnung: Llama 3 70B braucht dank GQA bei 128K Kontext etwa 42,9 GB Cache statt rund 343,6 GB bei voller Kopfzahl [2][3].",
+    "Ausgabetoken kosten bei Anthropic das Fünffache der Eingabetoken; Cache-Treffer nur ein Zehntel [5].",
+    "In unserer Beispielrechnung spart Prompt-Caching knapp 80 Prozent der Kosten für einen wiederholten Systemprompt (eigene Rechnung nach [5])."
+  ],
+  "hero": {
+    "alt": "Säulendiagramm: KV-Cache bei 128K Kontext für Llama 3 8B, 70B, 405B und 70B ohne GQA, mit stark wachsenden Säulen.",
+    "caption": "KV-Cache bei 128K Kontext in GB. Eigene Rechnung aus den Architekturangaben von Llama 3.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Wer ein Sprachmodell nutzt, sieht eine Frage und eine Antwort. Dahinter liegen Rechenarbeit und Speicher, und beides kostet Geld. Dieser Text erklärt, was passiert, wenn ein Modell antwortet, warum der Speicher das eigentliche Nadelöhr ist und aus welchen Posten sich ein Preis zusammensetzt. Ziel ist, dass Sie eine API-Rechnung, ein Hardwareangebot oder die Angabe „128K Kontext“ selbst einordnen können."
+    },
+    {
+      "t": "callout",
+      "title": "Die Kurzfassung als Analogie",
+      "x": "Stellen Sie sich einen Übersetzer vor, der ein langes Dokument Satz für Satz überträgt. Seine Notizen zu den bisherigen Sätzen sind der KV-Cache. Je länger das Dokument, desto dicker der Notizblock, und desto weniger Übersetzer passen mit ihren Notizblöcken in einen Raum."
+    },
+    {
+      "t": "h2",
+      "x": "Tokens: die Recheneinheit"
+    },
+    {
+      "t": "p",
+      "x": "Ein Modell liest keine Buchstaben und keine ganzen Wörter, sondern [Token](/glossar#token): Wortteile, die ein [Tokenizer](/glossar#tokenizer) festlegt. Gängig ist die Methode Byte Pair Encoding. Sie wurde für die maschinelle Übersetzung eingeführt, damit seltene Wörter in kleinere, bekannte Teile zerlegt werden können, etwa Namen, Komposita oder Lehnwörter [4]. Häufige Wörter bleiben ein Token, seltene zerfallen in mehrere."
+    },
+    {
+      "t": "p",
+      "x": "Für Preis und Tempo zählt die Tokenzahl, nicht die Wortzahl. Metas Llama 3 nutzt ein Vokabular von 128.000 Token. Gegenüber dem Llama-2-Tokenizer stieg die Kompression auf einer Stichprobe englischer Texte von 3,17 auf 3,94 Zeichen pro Token. Das lässt das Modell bei gleichem Trainingsaufwand mehr Text „lesen“ [3]. Für Deutsch mit seinen langen Wortzusammensetzungen gilt: Dieselbe Seite Text braucht oft mehr Token als im Englischen. Eine belastbare Zahl dazu liefern die hier gelesenen Quellen nicht; das Zählwerkzeug des jeweiligen Anbieters gibt Auskunft."
+    },
+    {
+      "t": "h2",
+      "x": "Was beim Antworten passiert: zwei Phasen"
+    },
+    {
+      "t": "p",
+      "x": "Das PagedAttention-Paper beschreibt zwei Phasen [1]. In der Prompt-Phase verarbeitet das Modell die gesamte Eingabe und berechnet das erste neue Token. Weil alle Eingabetoken schon bekannt sind, lässt sich das parallel erledigen. In der Generierungsphase entsteht der Rest der Antwort Token für Token: Das Modell nimmt jeweils das zuletzt erzeugte Token und rechnet das nächste aus. Dieser sequentielle Ablauf macht die Arbeit speicherlastig [1]."
+    },
+    {
+      "t": "p",
+      "x": "Das erklärt zwei Kennzahlen, die in Vergleichen auftauchen: die Wartezeit bis zum ersten Zeichen ([Time to First Token](/glossar#time-to-first-token)) hängt vor allem an der Prompt-Phase, die Geschwindigkeit danach ([Time per Output Token](/glossar#time-per-output-token)) an der Generierungsphase. Analogie: Das Einlesen der Aufgabe geht schnell, das Schreiben der Antwort Wort für Wort dauert."
+    },
+    {
+      "t": "h2",
+      "x": "Der KV-Cache: das Gedächtnis während der Antwort"
+    },
+    {
+      "t": "p",
+      "x": "Für jedes Token, das das Modell schon gesehen hat, merkt es sich zwei Zahlenreihen, Schlüssel (Key) und Wert (Value), damit es sie beim nächsten Token nicht neu berechnen muss. Diese Merkliste heißt [KV-Cache](/glossar#kv-cache). Sie wächst mit jedem Token und mit jeder gleichzeitigen Anfrage. Das PagedAttention-Paper rechnet für das 13-Milliarden-Modell OPT vor: Ein einzelnes Token braucht 800 KB (2 Vektoren × 5.120 Dimensionen × 40 Schichten × 2 Byte in FP16). Bei 2.048 Token Länge sind das bis zu 1,6 GB für eine einzige Anfrage [1]."
+    },
+    {
+      "t": "p",
+      "x": "Auf einer 40-GB-GPU gehen im selben Beispiel rund 65 Prozent des Speichers an die Modellgewichte und knapp 30 Prozent an den KV-Cache. Von dessen Verwaltung hängt ab, wie viele Anfragen gleichzeitig laufen können [1]. Der KV-Cache begrenzt also den Durchsatz, nicht nur die Länge einer einzelnen Antwort."
+    },
+    {
+      "t": "h3",
+      "x": "Eigene Rechnung: KV-Cache bei Llama 3"
+    },
+    {
+      "t": "p",
+      "x": "Die Formel lautet: 2 (Key und Value) × Schichten × KV-Köpfe × Kopfgröße × Bytes pro Zahl. Metas Tabelle der Architektur nennt für Llama 3 mit 8B, 70B und 405B Parametern 32, 80 und 126 Schichten und jeweils 8 Key/Value-Köpfe bei einer Modelldimension von 4.096, 8.192 und 16.384 [3]. Die Kopfgröße ergibt sich als Modelldimension geteilt durch die Zahl der Attention-Köpfe (32, 64, 128), also jeweils 128 (eigene Rechnung). Mit 2 Byte pro Zahl (FP16) folgt:"
+    },
+    {
+      "t": "table",
+      "caption": "KV-Cache-Bedarf pro Token und bei 128K Kontext (131.072 Token), FP16; eigene Rechnung aus den Architekturangaben in [3]",
+      "head": [
+        "Modell",
+        "KV-Cache pro Token",
+        "bei 8K Kontext",
+        "bei 128K Kontext"
+      ],
+      "rows": [
+        [
+          "Llama 3 8B",
+          "128 KiB",
+          "1,1 GB",
+          "17,2 GB"
+        ],
+        [
+          "Llama 3 70B",
+          "320 KiB",
+          "2,7 GB",
+          "42,9 GB"
+        ],
+        [
+          "Llama 3 405B",
+          "504 KiB",
+          "4,2 GB",
+          "67,6 GB"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Zum Vergleich: Die 70-Milliarden-Gewichte brauchen in FP16 140 GB (Parameter × 2 Byte, eigene Rechnung). Ein einziger 128K-Kontext fügt dann noch einmal rund 43 GB hinzu, und jede weitere gleichzeitige Anfrage bringt ihren eigenen Cache mit. Daraus erklärt sich, warum lange Kontexte teuer sind, selbst wenn die Preisliste sie nicht eigens ausweist."
+    },
+    {
+      "t": "h3",
+      "x": "Warum Llama 3 so wenig Cache braucht: GQA"
+    },
+    {
+      "t": "p",
+      "x": "Llama 3 setzt [Grouped-Query-Attention](/glossar#grouped-query-attention) (GQA) mit 8 Key/Value-Köpfen ein, um Inferenz zu beschleunigen und den KV-Cache zu verkleinern [3]. Das GQA-Paper erklärt die Idee: Multi-Query-Attention nutzt nur einen einzigen Key/Value-Kopf und beschleunigt das Dekodieren stark, kann aber die Qualität mindern. GQA wählt eine Zwischenlösung mit mehr als einem, aber weniger Key/Value-Köpfen als Query-Köpfen und kommt der Qualität von Multi-Head-Attention nahe, bei einer Geschwindigkeit wie Multi-Query [2]."
+    },
+    {
+      "t": "p",
+      "x": "Wie groß der Unterschied ist, zeigt die Rechnung für Llama 3 70B mit 64 statt 8 Key/Value-Köpfen (ein Szenario ohne GQA, rein rechnerisch): 2560 KiB pro Token und 343,6 GB bei 128K Kontext, also das Achtfache (eigene Rechnung)."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "KV-Cache bei 128K Kontext in FP16",
+      "alt": "Llama 3 8B: 17,2 GB, 70B: 42,9 GB, 405B: 67,6 GB, 70B ohne GQA (rein rechnerisch): 343,6 GB.",
+      "caption": "Eigene Rechnung aus den Architekturangaben des Llama-3-Berichts [3]: 2 × Schichten × KV-Köpfe × 128 × 2 Byte × 131.072 Token. Die letzte Säule ist ein reines Rechenbeispiel mit 64 KV-Köpfen.",
+      "source": "Eigene Rechnung",
+      "unit": " GB",
+      "x_label": "Modell",
+      "y_label": "KV-Cache in GB",
+      "labels": [
+        "8B",
+        "70B",
+        "405B",
+        "70B ohne GQA"
+      ],
+      "series": [
+        {
+          "name": "KV-Cache",
+          "values": [
+            17.2,
+            42.9,
+            67.6,
+            343.6
+          ]
+        }
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "Wie Server den Cache verwalten: PagedAttention"
+    },
+    {
+      "t": "p",
+      "x": "Wird der Cache naiv reserviert, geht viel Platz durch Fragmentierung und Doppelungen verloren. PagedAttention lehnt sich an die Speicherseiten von Betriebssystemen an: Der Cache wird in Blöcke zerlegt, nach Bedarf zugeteilt und lässt sich zwischen Anfragen teilen. Das System vLLM erreichte damit nach Angabe der Autoren nahezu verlustfreie Cache-Nutzung und 2 bis 4 mal höheren Durchsatz bei gleicher Latenz im Vergleich zu FasterTransformer und Orca, besonders bei langen Sequenzen und großen Modellen [1]. Im Glossar: [PagedAttention](/glossar#pagedattention), [Continuous Batching](/glossar#continuous-batching) und [Batching](/glossar#batching)."
+    },
+    {
+      "t": "h2",
+      "x": "Quantisierung: kleiner rechnen"
+    },
+    {
+      "t": "p",
+      "x": "[Quantisierung](/glossar#quantisierung) speichert die Gewichte (und teils den Cache) mit weniger Bit pro Zahl. 4 Bit statt 16 Bit bedeuten ein Viertel des Speichers für die Gewichte: Aus 140 GB für ein 70-Milliarden-Modell werden 35 GB (eigene Rechnung, ohne Overhead). Wie die Verfahren von [GPTQ](/glossar#gptq) bis BitNet funktionieren, was sie an Qualität kosten und wo ihre Grenzen liegen, steht ausführlich in unserem Beitrag [Quantisierung von Sprachmodellen: Verfahren, Zahlen, Grenzen](/llm-quantisierung-verfahren-grundlagen). Kurz gesagt: Quantisierung ist der schnellste Hebel, ein Modell auf kleinere oder weniger Karten zu bekommen, und senkt damit die Kosten pro Anfrage."
+    },
+    {
+      "t": "h2",
+      "x": "Woraus sich ein API-Preis zusammensetzt"
+    },
+    {
+      "t": "p",
+      "x": "Anbieter rechnen in Dollar je Million Token (MTok) und trennen Eingabe und Ausgabe. Die Preisseite von Anthropic (Stand 20. Oktober 2026) nennt zum Beispiel für Claude Sonnet 5 2 Dollar je Million Eingabetoken und 10 Dollar je Million Ausgabetoken [5]. Die Ausgabe ist dort bei allen aktuell gelisteten Modellen fünfmal so teuer wie die Eingabe (eigener Vergleich der Tabelle [5]). Das passt zur Technik: Die Eingabe wird in der Prompt-Phase parallel verarbeitet, die Ausgabe entsteht Token für Token [1]. Nehmen Sie diese Zahlen als Beispiel für die Struktur, nicht als Dauerpreis; Preise ändern sich."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Preis je Million Token bei Anthropic (Stand 20.10.2026)",
+      "alt": "Haiku 4.5: 1 Dollar Eingabe, 5 Dollar Ausgabe. Sonnet 5: 2 und 10. Opus 5: 5 und 25. Fable 5.1: 10 und 50.",
+      "caption": "Basispreise je Million Token laut Anthropic-Preisseite [5]; die Ausgabe kostet jeweils das Fünffache der Eingabe.",
+      "source": "Anthropic, Pricing (20.10.2026)",
+      "unit": " $",
+      "x_label": "Dollar je Million Token",
+      "y_label": "Modell",
+      "labels": [
+        "Haiku 4.5",
+        "Sonnet 5",
+        "Opus 5",
+        "Fable 5.1"
+      ],
+      "series": [
+        {
+          "name": "Eingabe",
+          "values": [
+            1,
+            2,
+            5,
+            10
+          ]
+        },
+        {
+          "name": "Ausgabe",
+          "values": [
+            5,
+            10,
+            25,
+            50
+          ]
+        }
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "Die Preistreiber im Überblick"
+    },
+    {
+      "t": "ul",
+      "items": [
+        "**Modellklasse.** Zwischen kleinem und größtem Modell derselben Familie liegt in der Preisliste ein Faktor 10 (Haiku 4.5 gegenüber Fable 5.1, eigener Vergleich nach [5]).",
+        "**Ausgabelänge.** Jedes Ausgabetoken kostet das Fünffache eines Eingabetokens. Modelle, die lange „nachdenken“, erzeugen viele Ausgabetoken, siehe [Test-Time Compute](/glossar#test-time-compute) und [Reasoning-Modell](/glossar#reasoning-modell).",
+        "**Kontextlänge.** Bei neueren Claude-Modellen kostet ein Token im langen Kontext laut Preisseite dasselbe wie im kurzen: Eine Anfrage mit 900.000 Token wird zum gleichen Tokenpreis berechnet wie eine mit 9.000 [5]. Die Rechnung steigt trotzdem mit der Tokenzahl.",
+        "**Wiederverwendete Eingaben.** [Prompt-Caching](/glossar#prompt-caching) senkt den Preis für Wiederholtes, siehe unten.",
+        "**Asynchrone Verarbeitung.** Die Batch-Schnittstelle gibt bei Anthropic 50 Prozent Rabatt auf Eingabe und Ausgabe, dafür wird nicht sofort geantwortet [5].",
+        "**Werkzeuge.** Bei Tool-Aufrufen zählen die Tokens der Werkzeugdefinitionen als Eingabe, und serverseitige Werkzeuge wie die Websuche können zusätzlich nutzungsabhängig kosten [5]."
+      ]
+    },
+    {
+      "t": "h3",
+      "x": "Prompt-Caching, durchgerechnet"
+    },
+    {
+      "t": "p",
+      "x": "Bei Anthropic kostet das Schreiben in den Cache (5 Minuten Laufzeit) das 1,25-Fache des Eingabepreises, ein Treffer nur das 0,1-Fache [5]. Das passt zum KV-Cache: Gleiche Anfangsstücke eines Prompts müssen nicht neu verarbeitet werden. Beispielrechnung mit Claude Sonnet 5 (2 Dollar Eingabe, 2,50 Dollar Cache-Schreiben, 0,20 Dollar Cache-Treffer, 10 Dollar Ausgabe je MTok, alle nach [5]). Ein Assistent schickt 20-mal denselben Systemprompt mit 50.000 Token plus je 500 Ausgabetoken, alle Anfragen innerhalb der Cache-Laufzeit:"
+    },
+    {
+      "t": "table",
+      "caption": "Eigene Rechnung nach den Preisen in [5]; nur Systemprompt und Ausgabe, ohne Nutzerfragen",
+      "head": [
+        "Variante",
+        "Eingabe",
+        "Ausgabe",
+        "Summe"
+      ],
+      "rows": [
+        [
+          "Ohne Cache: 20 × 50.000 Token zu 2 $/MTok",
+          "2,00 $",
+          "0,10 $",
+          "2,10 $"
+        ],
+        [
+          "Mit Cache: 1 × Schreiben (0,125 $) + 19 × Treffer (0,19 $)",
+          "0,315 $",
+          "0,10 $",
+          "0,415 $"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Das sind knapp 80 Prozent weniger (eigene Rechnung: 0,415 geteilt durch 2,10 ergibt rund 20 Prozent). Der Vorteil entfällt, wenn der Cache zwischen den Anfragen abläuft oder der Prompt-Anfang sich ändert. Prüfen Sie dafür die Bedingungen des Anbieters."
+    },
+    {
+      "t": "h2",
+      "x": "Eigene Hardware: wofür man tatsächlich zahlt"
+    },
+    {
+      "t": "p",
+      "x": "Wer ein [lokales Modell](/glossar#lokale-modelle) betreibt, sieht dieselben Posten in anderer Form: Der Speicher der Grafikkarte muss Gewichte und KV-Cache aufnehmen, die Speicherbandbreite bestimmt das Tempo der Generierung (siehe [Speicherbandbreite-Grenze](/glossar#speicherbandbreite-grenze)), und die Parallelität hängt am freien Speicher. Quantisierung und GQA verkleinern beide Posten. Mehr dazu auf unserer Seite [Lokale Modelle](/lokale-modelle)."
+    },
+    {
+      "t": "h2",
+      "x": "Eine Checkliste für den Alltag"
+    },
+    {
+      "t": "ul",
+      "items": [
+        "Tokens statt Wörter schätzen: Das Zählwerkzeug des Anbieters nutzen.",
+        "Die Ausgabe begrenzen: Sie ist der teurere Posten und braucht die langsame Phase.",
+        "Gleiche Anfangsstücke (Systemprompt, Dokument) vorn halten, damit Caching greift.",
+        "Nicht jede Aufgabe braucht das größte Modell: Eine kleinere Klasse kostet in der Preisliste bis zu ein Zehntel.",
+        "Lange Kontexte kosten Speicher und Geld, auch wenn die Preisliste keinen Aufschlag nennt.",
+        "Nicht dringende Massenaufgaben über Batch-Schnittstellen laufen lassen, sofern der Anbieter sie anbietet."
+      ]
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist ein Token?",
+      "a": "Ein Wortteil, in den ein Tokenizer den Text zerlegt. Häufige Wörter bleiben ein Token, seltene werden in mehrere Teile zerlegt. Abgerechnet und gemessen wird in Token, nicht in Wörtern. Meta berichtet für Llama 3 auf einer englischen Stichprobe 3,94 Zeichen pro Token [3]."
+    },
+    {
+      "q": "Was ist der KV-Cache und warum ist er wichtig?",
+      "a": "Der KV-Cache speichert für jedes bereits gesehene Token zwei Zahlenreihen (Key und Value), damit das Modell sie nicht erneut berechnen muss. Er wächst mit Kontextlänge und Zahl gleichzeitiger Anfragen und begrenzt deshalb den Durchsatz. Beim 13-Milliarden-Modell OPT sind es 800 KB pro Token [1]."
+    },
+    {
+      "q": "Warum ist die Ausgabe teurer als die Eingabe?",
+      "a": "Die Eingabe wird in einer Phase parallel verarbeitet, die Ausgabe entsteht Token für Token [1]. Anthropic setzt den Ausgabepreis bei allen aktuell gelisteten Modellen auf das Fünffache des Eingabepreises [5]; wie genau Anbieter ihre Preise herleiten, nennen die gelesenen Quellen nicht."
+    },
+    {
+      "q": "Wie viel Speicher spart Quantisierung?",
+      "a": "Bei 4 Bit pro Gewicht ein Viertel der Gewichte gegenüber FP16: Ein 70-Milliarden-Modell schrumpft von 140 auf 35 GB (eigene Rechnung ohne Overhead). Details und Qualitätsgrenzen im Beitrag zur Quantisierung."
+    },
+    {
+      "q": "Lohnt sich Prompt-Caching?",
+      "a": "Bei Anthropic kostet ein Cache-Treffer das 0,1-Fache des Eingabepreises, das Schreiben das 1,25-Fache für 5 Minuten [5]. In unserer Beispielrechnung sinken die Kosten um knapp 80 Prozent. Es lohnt sich, wenn sich große Prompt-Anfänge innerhalb der Cache-Laufzeit wiederholen."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention",
+      "publisher": "arXiv:2309.06180 (Kwon u. a., SOSP 2023, vLLM)",
+      "url": "https://arxiv.org/abs/2309.06180",
+      "accessed": "2026-10-20"
+    },
+    {
+      "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints",
+      "publisher": "arXiv:2305.13245 (Ainslie u. a., Google Research)",
+      "url": "https://arxiv.org/pdf/2305.13245",
+      "accessed": "2026-10-20"
+    },
+    {
+      "title": "The Llama 3 Herd of Models",
+      "publisher": "arXiv:2407.21783 (Meta, 2024)",
+      "url": "https://arxiv.org/pdf/2407.21783",
+      "accessed": "2026-10-20"
+    },
+    {
+      "title": "Neural Machine Translation of Rare Words with Subword Units",
+      "publisher": "arXiv:1508.07909 (Sennrich u. a., ACL 2016)",
+      "url": "https://arxiv.org/abs/1508.07909",
+      "accessed": "2026-10-20"
+    },
+    {
+      "title": "Pricing - Claude API Docs",
+      "publisher": "Anthropic, abgerufen am 20.10.2026",
+      "url": "https://docs.anthropic.com/en/docs/about-claude/pricing",
+      "accessed": "2026-10-20"
+    }
+  ],
+  "method": "Gelesen wurden am 20. Oktober 2026 die arXiv-Seiten und Texte von PagedAttention (vLLM), GQA, Byte Pair Encoding (Abstract), Teile des Llama-3-Berichts (Architektur, Tokenizer) und die Anthropic-Preisseite. Alle Umrechnungen (KV-Cache pro Token, bei 8K und 128K Kontext, Speicher der Gewichte, Caching-Beispiel, Preisverhältnisse) sind eigene Rechnungen mit den genannten Eingangswerten; die Kopfgröße 128 ergibt sich aus Modelldimension geteilt durch Attention-Köpfe [3]. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+  "limitations": "Der Cache-Bedarf ist ohne Overhead und ohne Quantisierung des Caches gerechnet, reale Systeme weichen ab. Preise sind der Stand vom 20. Oktober 2026 eines einzelnen Anbieters und ändern sich; andere Anbieter rechnen anders. Die Beispielrechnung setzt voraus, dass alle Anfragen in die Cache-Laufzeit fallen und der Präfix identisch ist. Zur Tokenzahl deutscher Texte liegt keine belastbare Zahl aus den gelesenen Quellen vor.",
+  "related": [
+    "wie-ein-sprachmodell-lernt",
+    "llm-quantisierung-verfahren-grundlagen",
+    "tokens-und-kosten",
+    "lokale-modelle"
+  ]
+}
