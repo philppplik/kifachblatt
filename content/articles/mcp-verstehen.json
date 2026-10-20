@@ -1,0 +1,168 @@
+{
+ "slug": "mcp-verstehen",
+ "lang": "de",
+ "section": "agenten",
+ "type": "explainer",
+ "title": "MCP verstehen: der USB-Standard für KI-Werkzeuge",
+ "dek": "Das Model Context Protocol erklärt: Host, Client und Server, die drei Server-Primitive Tools, Resources und Prompts, Transportwege und Sicherheitsfragen.",
+ "published": "2026-10-17T15:00:00+02:00",
+ "modified": "2026-10-17T15:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "MCP",
+  "Model Context Protocol",
+  "Werkzeuge",
+  "Standard",
+  "Integration"
+ ],
+ "key_takeaways": [
+  "MCP (Model Context Protocol) ist ein offener Standard, der KI-Anwendungen mit Datenquellen und Werkzeugen verbindet; die Projektseite selbst nutzt das Bild eines USB-C-Anschlusses für KI-Anwendungen. [1]",
+  "Die Architektur ist dreistufig: Der MCP-Host (die KI-Anwendung, etwa Claude Code oder VS Code) erzeugt pro Server genau einen MCP-Client, und jeder Client hält eine eigene Verbindung zu seinem MCP-Server. [3]",
+  "Server bieten drei Primitive an: Tools (ausführbare Funktionen), Resources (Datenquellen wie Dateiinhalte oder Datenbankdatensätze) und Prompts (wiederverwendbare Vorlagen); Clients entdecken sie über */list-Methoden. [3]",
+  "Lokale Server sprechen typischerweise über stdio mit genau einem Client; entfernte Server über Streamable HTTP mit vielen Clients. [3]",
+  "Anthropic hat MCP am 25. November 2024 offengelegt; die Spezifikation lebt seitdem versioniert weiter, jüngste Protokollversionen haben etwa das Sampling-Primitiv als veraltet markiert. [2][4]"
+ ],
+ "hero": {
+  "alt": "Stern-Diagramm: Eine KI-Anwendung als Host in der Mitte mit vier Client-Bausteinen, jeder verbunden mit einem eigenen Server, etwa Dateisystem, Datenbank und ein entfernter Dienst über HTTP.",
+  "caption": "MCP-Topologie: ein Host, pro Server ein Client, lokale und entfernte Server. Eigene Grafik der Redaktion.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Jede KI-Anwendung, die etwas tun soll, braucht Anschluss an die Welt: Dateien, Datenbanken, Kalender, Ticketsysteme. Vor [MCP](/glossar#mcp) bedeutete das pro Anwendung und pro System eine eigene Integration; n Anwendungen mal m Systeme, ein Flickenteppich. Das Model Context Protocol zieht eine Steckdose dazwischen: Wer einmal einen MCP-Server für sein System schreibt, versorgt jede MCP-fähige Anwendung; wer seine Anwendung MCP-fähig macht, bekommt das ganze Server-Ökosystem dazu. Die Projektseite selbst vergleicht MCP mit USB-C: ein standardisierter Port, an den sehr unterschiedliche Geräte passen. [1]"
+  },
+  {
+   "t": "h2",
+   "x": "Woher MCP kommt"
+  },
+  {
+   "t": "p",
+   "x": "Anthropic hat das Protokoll am 25. November 2024 als offenen Standard vorgestellt, zusammen mit der Spezifikation und SDKs, lokaler Server-Unterstützung in den Claude-Desktop-Apps und einem Open-Source-Repositorium fertiger Server für Systeme wie Google Drive, Slack, GitHub und Postgres. Die Begründung von damals liest sich heute aktuell: Selbst die besten Modelle blieben hinter Datensilos gefangen, weil jede neue Quelle eine eigene Sonderlösung verlangte. [2] Inzwischen ist MCP anbieterübergreifend verbreitet; die Dokumentation nennt KI-Assistenten wie Claude und ChatGPT sowie Entwicklungswerkzeuge wie Visual Studio Code und Cursor als unterstützende Seite. [1]"
+  },
+  {
+   "t": "h2",
+   "x": "Die Beteiligten: Host, Client, Server"
+  },
+  {
+   "t": "p",
+   "x": "Die Architektur-Dokumentation trennt drei Rollen sauber. Der MCP-Host ist die KI-Anwendung selbst, etwa Claude Code, Claude Desktop oder VS Code; er koordiniert alles. Für jeden MCP-Server, den der Host anbindet, erzeugt er genau einen MCP-Client, und dieser Client hält eine dedizierte Verbindung zu genau diesem Server. Der MCP-Server ist das Programm, das Kontext anbietet: Werkzeuge, Daten, Vorlagen. Verbindet sich VS Code also mit einem Sentry-Server und einem lokalen Dateisystem-Server, laufen zwei Client-Objekte mit zwei getrennten Verbindungen. [3]"
+  },
+  {
+   "t": "p",
+   "x": "Wichtig für die Vorstellung: \"Server\" heißt nicht \"Rechenzentrum\". Ein MCP-Server kann ein kleines lokales Programm sein, das der Host selbst startet. Lokale Server nutzen typischerweise den stdio-Transport (Standardeingabe/-ausgabe) und bedienen genau einen Client; entfernte Server sprechen über den Streamable-HTTP-Transport und bedienen viele Clients. [3]"
+  },
+  {
+   "t": "h2",
+   "x": "Was Server anbieten: Tools, Resources, Prompts"
+  },
+  {
+   "t": "p",
+   "x": "MCP definiert drei Kern-Primitive, die ein Server anbieten kann: Tools sind ausführbare Funktionen, die die KI-Anwendung aufrufen kann, etwa Dateioperationen, API-Aufrufe oder Datenbankabfragen. Resources sind Datenquellen, die Kontext liefern, etwa Dateiinhalte, Datenbankdatensätze oder API-Antworten. Prompts sind wiederverwendbare Vorlagen, die Interaktionen strukturieren, etwa System-Prompts oder Few-Shot-Beispiele. Jeder Primitiv-Typ hat Methoden zum Entdecken (*/list), zum Abrufen (*/get) und, wo sinnvoll, zum Ausführen (tools/call). [3]"
+  },
+  {
+   "t": "p",
+   "x": "Das Entdecken ist dynamisch: Der Client fragt zur Laufzeit mit tools/list, was der Server gerade anbietet, statt eine feste Liste einzubrennen. Ein Datenbank-Server kann so beispielsweise Tools für Abfragen, eine Resource mit dem Datenbankschema und einen Prompt mit Beispielaufrufen ausliefern. [3] Auf der Gegenseite definiert MCP auch Primitive, die Clients anbieten; mit Elicitation kann ein Server beim Nutzer zusätzliche Angaben oder eine Bestätigung anfordern. Als veraltet gelten inzwischen Sampling (Server fordert Modell-Antworten vom Client an) und das Logging-Primitiv; die Dokumentation empfiehlt stattdessen direkte LLM-Integration beziehungsweise stderr/OpenTelemetry. [3]"
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung: Was MCP ist und was nicht"
+  },
+  {
+   "t": "p",
+   "x": "MCP ersetzt nicht [Function Calling](/glossar#function-calling), es standardisiert die Zufahrt dorthin. Das Modell trifft weiterhin die Auswahl eines Werkzeugs anhand von Name, Beschreibung und Schema (siehe [Function Calling und Werkzeugaufrufe](/function-calling-praxis)); MCP regelt, wie die Werkzeugliste in die Anwendung kommt und wie Aufrufe zum Server und zurück laufen. Und MCP löst nicht deine Rechtefrage: Ein Dateisystem-Server mit Schreibrechten ist ein Dateisystem-Server mit Schreibrechten, egal wie standardisiert er angedockt ist."
+  },
+  {
+   "t": "callout",
+   "title": "Sicherheits-Merksatz",
+   "x": "Jeder angebundene MCP-Server erweitert die Angriffsfläche des Agenten: Seine Beschreibungen und Ausgaben landen im Kontext und können [Prompt Injection](/glossar#prompt-injection) tragen. Binde nur Server an, denen du traust, mit minimalen Rechten, und lies Werkzeugausgaben als ungeprüfte Eingabe. Vertiefung: [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme)."
+  },
+  {
+   "t": "h2",
+   "x": "Praxis: der erste Server in zehn Minuten"
+  },
+  {
+   "t": "p",
+   "x": "Der Einstieg ist auf der Projektseite dokumentiert und beginnt mit der Entscheidung, auf welcher Seite du stehst: Du kannst einen Server bauen, der deine Daten und Werkzeuge anbietet, oder einen Client beziehungsweise eine Anwendung, die Server nutzt. [1] Für den ersten eigenen Server reichen die offiziellen SDKs; die Architektur-Dokumentation führt den kompletten Entdeckungs- und Aufruf-Austausch in Pseudocode vor. [3] Für den Alltag mit vorgefertigten Servern hinterlegst du in der Host-Anwendung meist nur eine Konfigurationszeile je Server, und der Host startet und verbindet ihn selbst. Die Beispiele der Dokumentation reichen vom lokalen Dateisystem bis zum entfernten Dienst wie Sentry. [3]"
+  },
+  {
+   "t": "h2",
+   "x": "Typische Fehler"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Jedes interne System sofort als Server anschließen: Fang mit einem lesenden Server an (Resources statt Tools); Schreiben kommt, wenn die Prozesse stehen.",
+    "Server ohne Vertrauensprüfung aus fremden Quellen installieren: Ein MCP-Server ist Code, der auf deiner Maschine oder mit deinen Zugangsdaten läuft.",
+    "Zu breite Werkzeugschemata: get_document ohne Pfadfilter ist ein Datenabfluss mit Anschluss; enge Schemas und Pfade whitelisten.",
+    "Transport falsch wählen: stdio für lokale Einzelplatz-Server, Streamable HTTP für geteilte entfernte; andersherum wird es unübersichtlich. [3]",
+    "Versionssturheit: Die Spezifikation ist versioniert und ändert sich; vor dem Bauen die aktuelle Fassung lesen, nicht ein Tutorial von vorgestern. [4]"
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Wie es weitergeht"
+  },
+  {
+   "t": "p",
+   "x": "Die Mechanik der Werkzeugaufrufe selbst erklärt [Function Calling und Werkzeugaufrufe](/function-calling-praxis); das Gesamtbild aus Schleife, Planung und Gedächtnis liefert [Agenten-Architekturen](/agenten-architekturen); und den Praxiseinsatz von MCP im Entwickleralltag zeigt [Coding-Agenten im Entwickleralltag](/coding-agenten-alltag)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen MCP-Host, -Client und -Server?",
+   "a": "Der Host ist die KI-Anwendung selbst, etwa Claude Code oder VS Code. Für jeden Server erzeugt der Host einen Client, der genau eine Verbindung zu genau diesem Server hält. Der Server ist das Programm, das Werkzeuge, Daten oder Prompt-Vorlagen anbietet, lokal oder entfernt. [3]"
+  },
+  {
+   "q": "Was kann ein MCP-Server anbieten?",
+   "a": "Drei Primitive: Tools (ausführbare Funktionen), Resources (Datenquellen wie Dateien oder Datenbankinhalte) und Prompts (wiederverwendbare Vorlagen). Clients entdecken das Angebot dynamisch über list-Methoden, statt es fest einzubauen. [3]"
+  },
+  {
+   "q": "Läuft ein MCP-Server in der Cloud?",
+   "a": "Nicht zwingend. Lokale Server laufen auf deinem Rechner und sprechen über stdio mit genau einem Client; entfernte Server laufen beim Anbieter und sprechen über Streamable HTTP mit vielen Clients. Beides ist MCP. [3]"
+  },
+  {
+   "q": "Ersetzt MCP Function Calling?",
+   "a": "Nein, es ergänzt es. Das Modell wählt und befüllt Werkzeugaufrufe wie bisher; MCP standardisiert, wie Werkzeuge und Daten an die Anwendung angedockt und Aufrufe transportiert werden. Ohne MCP schreibst du pro Anwendung und System eine eigene Integration. [1][3]"
+  },
+  {
+   "q": "Ist MCP nur eine Anthropic-Sache?",
+   "a": "Anthropic hat MCP im November 2024 als offenen Standard veröffentlicht; inzwischen ist er anbieterübergreifend verbreitet, die Dokumentation nennt neben Claude auch ChatGPT und Entwicklungswerkzeuge wie VS Code und Cursor. [1][2]"
+  }
+ ],
+ "sources": [
+  {
+   "title": "What is the Model Context Protocol (MCP)?",
+   "publisher": "modelcontextprotocol.io",
+   "url": "https://modelcontextprotocol.io/introduction",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Introducing the Model Context Protocol",
+   "publisher": "Anthropic News (25.11.2024)",
+   "url": "https://www.anthropic.com/news/model-context-protocol",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Architecture overview",
+   "publisher": "modelcontextprotocol.io Docs",
+   "url": "https://modelcontextprotocol.io/docs/learn/architecture",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Specification",
+   "publisher": "modelcontextprotocol.io",
+   "url": "https://modelcontextprotocol.io/specification/latest",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Einführungs- und Architekturseiten der MCP-Dokumentation einschließlich der Abschnitte zu Teilnehmern, Transporten und Primitiven, die ursprüngliche Veröffentlichungsmeldung von Anthropic vom 25. November 2024 und die Einstiegsseite der versionierten Spezifikation. Die Fehlerliste und die Sicherheits-Merksätze sind redaktionelle Einordnung. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "MCP ist ein lebender Standard; Details der Spezifikation (etwa veraltete Primitive und Erweiterungen) beziehen sich auf den 20. Oktober 2026 und ändern sich mit jeder Protokollversion. Wir haben für diesen Artikel keinen eigenen Server gebaut und keine Kompatibilität einzelner Host-Anwendungen getestet. Die Verbreitungsaussagen folgen der Projektdokumentation, nicht einer eigenen Markterhebung. Die Sicherheitshinweise ersetzen kein Review der konkret eingesetzten Server.",
+ "related": [
+  "function-calling-praxis",
+  "agenten-architekturen",
+  "was-ist-ein-ki-agent",
+  "sicherheit-fuer-agenten-systeme"
+ ]
+}

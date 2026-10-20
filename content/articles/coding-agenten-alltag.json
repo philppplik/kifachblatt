@@ -1,0 +1,167 @@
+{
+ "slug": "coding-agenten-alltag",
+ "lang": "de",
+ "section": "agenten",
+ "type": "explainer",
+ "title": "Coding-Agenten im Alltag: Setup, Grenzen, Review-Pflicht",
+ "dek": "Wie Coding-Agenten wie Claude Code, Copilot coding agent und Codex heute arbeiten, was sie können und welche Regeln Hilfe von Schrott trennen.",
+ "published": "2026-10-18T09:00:00+02:00",
+ "modified": "2026-10-18T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Coding-Agent",
+  "Claude Code",
+  "GitHub Copilot",
+  "Codex",
+  "SWE-bench",
+  "Review"
+ ],
+ "key_takeaways": [
+  "Coding-Agenten sind aus dem Experimentierstadium raus: GitHub beschreibt seinen Copilot coding agent als Hintergrund-Entwickler, dem du Issues zuweist und der in einer flüchtigen GitHub-Actions-Umgebung arbeitet, Tests laufen lässt und einen Pull Request zur Prüfung öffnet. [2]",
+  "Das Arbeitsmodell ist überall dasselbe geworden: Aufgabe zuweisen, Agent arbeitet isoliert, Ergebnis kommt als prüfbarer Pull Request zurück; Anthropic beschreibt für Claude Code dasselbe Muster von Commits und Pull Requests bis zu geplanten Daueraufgaben. [1][4]",
+  "Gemessen wird über Benchmarks wie SWE-bench: 2.294 echte GitHub-Issues aus 12 Python-Repositories, die menschengefilterte Teilmenge Verified umfasst 500 Aufgaben; die Kennzahl ist der Anteil gelöster Instanzen (% Resolved). [3]",
+  "Die Review-Pflicht bleibt beim Menschen: Der Agent liefert einen Vorschlag mit Diff und Testlauf, kein fertiges Ergebnis; GitHub selbst beschreibt den Arbeitsfluss als \"Agent baut, Mensch reviewed, Kommentare steuern nach\". [2]",
+  "Agent mode in der IDE und coding agent in der Cloud sind zwei verschiedene Dinge: Ersterer editiert synchron dein lokales Projekt, letzterer arbeitet autonom im Hintergrund auf GitHub-Infrastruktur. [2]"
+ ],
+ "hero": {
+  "alt": "Ablaufdiagramm: Ein Issue geht an einen Agenten, der in einer isolierten Umgebung Code ändert und Tests laufen lässt; das Ergebnis ist ein Pull Request mit einem menschlichen Prüfschritt, erst danach geht es in den Hauptzweig.",
+  "caption": "Der Coding-Agent-Kreislauf: Issue rein, Pull Request raus, Mensch prüft. Eigene Grafik der Redaktion.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Von allen Agenten-Anwendungen ist keine so konkret geworden wie der Coding-Agent: ein [KI-Agent](/was-ist-ein-ki-agent), dessen Werkzeugkiste ein ganzes Entwicklungsprojekt ist, mit Dateisystem, Compiler, Testsuite und Versionskontrolle. Dieser Artikel ordnet den Alltag damit ein: wie die drei prominentesten Vertreter (Claude Code, GitHub Copilot coding agent, OpenAI Codex) heute arbeiten, was Benchmarks dazu sagen, und welche Betriebsregeln aus dem Werkzeug eine Hilfe statt einer Schrottmaschine machen. Die Architektur dahinter (Schleife, Planung, Werkzeuge) erklärt [Agenten-Architekturen](/agenten-architekturen)."
+  },
+  {
+   "t": "h2",
+   "x": "Wie die drei großen arbeiten"
+  },
+  {
+   "t": "p",
+   "x": "Claude Code ist Anthropics Agent für Terminal, VS Code, JetBrains, Desktop und Web. Die Dokumentation beschreibt die Kernaufgaben: aufgeschobene Arbeit automatisieren, Features bauen und Bugs fixen, Commits und Pull Requests erstellen, Werkzeuge per [MCP](/glossar#mcp) anschließen, mehrere Agenten parallel laufen lassen, per CLI skripten und wiederkehrende Aufgaben planen. [1] GitHubs Copilot coding agent arbeitet eine Ebene höher im Prozess: Du weist ihm ein Issue zu (oder erwähnst @copilot in einem PR), er arbeitet im Hintergrund in einer flüchtigen, von GitHub Actions betriebenen Entwicklungsumgebung, durchsucht den Code, ändert ihn, führt automatisierte Tests und Linter aus und öffnet am Ende einen Pull Request, zu dem er dein Review anfordert; über PR-Kommentare lässt du ihn nachbessern. [2] OpenAIs Codex folgt demselben Grundmuster: Ziel oder Aufgabe formulieren, der Agent sammelt Kontext, handelt und liefert ein prüfbares Ergebnis. [4]"
+  },
+  {
+   "t": "p",
+   "x": "GitHub benennt die Aufgabenliste, für die der coding agent gedacht ist: Bugs fixen, kleinere Features, Testabdeckung erhöhen, Dokumentation aktualisieren, technische Schuld abbauen, Merge-Konflikte auflösen. Die Grenze zieht dieselbe Quelle gleich mit: Der Agent ist für den Rückstau an \"nice to have\"-Aufgaben und für Gerüstarbeit gedacht; Arbeit, die viel kreatives Denken verlangt, bleibt bei Menschen. [2]"
+  },
+  {
+   "t": "h2",
+   "x": "Zwei Betriebsarten nicht verwechseln"
+  },
+  {
+   "t": "p",
+   "x": "GitHub selbst warnt vor der beliebtesten Begriffsverwechslung: Der Copilot coding agent ist nicht der Agent mode in der IDE. Der Agent mode editiert autonom direkt in deiner lokalen Entwicklungsumgebung, synchron, während du zusiehst. Der coding agent arbeitet autonom in einer GitHub-Actions-Umgebung, bekommt Aufgaben über Issues oder Chat und legt das Ergebnis als Pull Request vor. [2] Der Unterschied ist nicht akademisch: Lokal hat der Agent deine Rechte und deine ungespeicherten Dateien; in der Cloud eine frische, wegwerfbare Umgebung mit klarer Prüfschleife. Für Teams ist der PR-Fluss außerdem transparenter: Jeder Schritt landet in einem Commit und ist in den Logs sichtbar. [2]"
+  },
+  {
+   "t": "h2",
+   "x": "Was die Benchmarks sagen"
+  },
+  {
+   "t": "p",
+   "x": "Die Standard-Messlatte ist SWE-bench: 2.294 echte GitHub-Issues aus 12 Python-Repositories, gemessen wird der Anteil gelöster Instanzen (% Resolved). Die häufig zitierte Teilmenge Verified umfasst 500 von Menschen geprüfte Aufgaben; daneben gibt es Lite (300 Aufgaben für günstigere Auswertung), Multilingual (300 Aufgaben aus 42 Repositories in neun Sprachen) und Multimodal (480 Aufgaben mit visuellen Elementen). [3] Unser [Portrait zu SWE-bench Verified](/benchmarks/swe-bench-verified) erklärt, warum die Verified-Teilmenge entstand, und das [Terminal-Bench-2.1-Portrait](/benchmarks/terminal-bench-2-1) zeigt die Terminal-Variante. Wichtig beim Lesen: Scores verschiedener Agenten-Setups auf demselben Benchmark sind nicht ohne Weiteres vergleichbar, weil Umgebung, Schrittlimit und Modellwahl variieren; Grundlagen liefert [Modelle und Agenten richtig evaluieren](/modelle-und-agenten-evaluieren)."
+  },
+  {
+   "t": "p",
+   "x": "Was Benchmarks nicht messen, ist der Alltagsgewinn: GitHub argumentiert, der coding agent übernehme die manuellen Schritte drumherum, Branch, Commit-Nachricht, Push, PR, Beschreibung, und schaffe Transparenz, weil alles auf GitHub passiert. [1][2] Das ist der eigentliche Produktivitätspunkt: nicht dass der Agent besser programmiert als du, sondern dass er die Plackerei um den Patch herum mit erledigt und parallel arbeiten kann, während du etwas anderes tust."
+  },
+  {
+   "t": "h2",
+   "x": "Setup: die Betriebsregeln, die den Unterschied machen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Aufgaben schreiben wie für eine fremde Kollegin: Ziel, Akzeptanzkriterium, betroffene Dateien, was explizit nicht geändert werden soll. Der Agent liest das Issue wörtlich; Vagheit wird zu Halluzinations-Weitschweifigkeit.",
+    "Tests als Wahrheitsquelle hinterlegen: Der Agent orientiert sich an dem, was grün werden kann; ohne Testsuite optimiert er auf Plausibilität.",
+    "Klein schneiden: Ein Issue, ein PR, eine verantwortbare Änderung. Große Aufträge erzeugen große Diffs, und große Diffs reviewed niemand mehr ehrlich.",
+    "Rechte begrenzen: Nur die Zugänge geben, die die Aufgabe braucht; produktive Zugänge und Geheimnisse gehören nicht in die Agenten-Umgebung (Grundregeln: [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme)).",
+    "Review ernst nehmen: Diff lesen, Tests selbst laufen lassen, Randfälle fragen. Der PR ist ein Vorschlag, kein Ergebnis; die Verantwortung für den Merge trägt der Mensch. [2]"
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Merksatz Review-Pflicht",
+   "x": "Der Coding-Agent ist ein sehr schneller Junior-Entwickler mit perfektem Gedächtnis und ohne Verantwortungsgefühl. Du würdest einem Junior keinen ungelesenen Diff in den Hauptzweig mergen lassen. Dasselbe gilt hier."
+  },
+  {
+   "t": "h2",
+   "x": "Typische Grenzen im Alltag"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Kontext, den der Agent nicht sehen kann: mündliche Absprachen, Doku im Kopf, Systeme außerhalb des Repos. Was nicht im Issue oder Code steht, existiert für ihn nicht.",
+    "Leise falsche Fixes: Der Test wird grün, weil der Agent den Test anpasst, nicht den Fehler. Diff-Review muss Teständerungen besonders kritisch lesen.",
+    "Kosten bei Dauerbetrieb: Agenten-Schleifen verbrennen Tokens pro Schritt; parallele Agenten auf losen Aufgaben sind ein Budget-Posten, kein Gratis-Feature (Rechnungshilfe: [Kosten- und Latenz-Tuning](/kosten-latenz-tuning)).",
+    "Veraltete Abhängigkeiten im Trainingswissen: Für brandneue Bibliotheksversionen braucht der Agent Websuche, Doku-Resources per [MCP](/glossar#mcp) oder präzise Beispiele im Issue.",
+    "Sicherheitslücken mit Selbstbewusstsein: Agents erzeugen plausiblen Code, auch unsicheren; Sicherheitsreview bleibt eigenes Gewerk."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Wie es weitergeht"
+  },
+  {
+   "t": "p",
+   "x": "Wer die Architektur-Muster hinter den Werkzeugen verstehen will, liest [Agenten-Architekturen](/agenten-architekturen); wer eigene Werkzeuge für den Agenten anschließen will, [MCP verstehen und einsetzen](/mcp-verstehen). Für die Langzeit-Perspektive (was Agenten über Stunden statt Minuten können) empfiehlt sich unsere Analyse der [LHTB-2 Langzeit-Benchmark](/lhtb-2-langzeit-agenten-benchmark)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen Agent mode und coding agent?",
+   "a": "Der Agent mode in der IDE editiert synchron dein lokales Projekt, während du zusiehst. Der coding agent bekommt Aufgaben über Issues oder Chat, arbeitet autonom in einer flüchtigen GitHub-Actions-Umgebung und liefert das Ergebnis als Pull Request zur Prüfung. [2]"
+  },
+  {
+   "q": "Kann der Coding-Agent meinen ganzen Sprint übernehmen?",
+   "a": "Nein, und das ist nicht der Anspruch. Die Anbieter-Dokumentation zielt auf klar umrissene Aufgaben: Bugs, kleine Features, Tests, Doku, technische Schuld. Arbeit mit hohem kreativem oder koordinativem Anteil bleibt bei Menschen; der Agent räumt den Rückstau ab und baut Gerüste. [2]"
+  },
+  {
+   "q": "Was bedeuten SWE-bench-Zahlen in der Praxis?",
+   "a": "SWE-bench misst, welcher Anteil echter GitHub-Issues ein System löst (% Resolved); Verified ist die menschengeprüfte 500-Aufgaben-Teilmenge. Die Zahl taugt zum Grobvergleich von Systemen, sagt aber nichts über dein Repo, deine Sprache oder deine Aufgabenart aus; Setups unterscheiden sich in Umgebung und Schrittlimit. [3]"
+  },
+  {
+   "q": "Wer haftet für den Code des Agenten?",
+   "a": "Der Mensch, der mergt. Der Agent liefert einen Vorschlag samt Diff und Testlauf; Review, Freigabe und Verantwortung bleiben beim prüfenden Entwickler. Der beschriebene Arbeitsfluss ist ausdrücklich: Agent baut, Mensch reviewed, Kommentare steuern nach. [2]"
+  },
+  {
+   "q": "Brauche ich dafür MCP?",
+   "a": "Nicht zwingend, aber es ist der Standardweg, dem Agenten zusätzliche Werkzeuge und Datenquellen anzudocken; die Claude-Code-Dokumentation führt das Verbinden von Werkzeugen über MCP als Kernfeature. [1] Grundlagen: MCP verstehen und einsetzen."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Claude Code: Overview",
+   "publisher": "Anthropic Docs",
+   "url": "https://docs.anthropic.com/en/docs/claude-code/overview",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "About GitHub Copilot coding agent",
+   "publisher": "GitHub Docs",
+   "url": "https://docs.github.com/en/copilot/concepts/coding-agent/coding-agent",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "SWE-bench Leaderboards",
+   "publisher": "swebench.com",
+   "url": "https://www.swebench.com",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Codex: Overview",
+   "publisher": "OpenAI Developers",
+   "url": "https://developers.openai.com/codex/overview",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Übersichtsseiten von Claude Code, Copilot coding agent und Codex sowie die SWE-bench-Leaderboard-Seite mit den Benchmark-Umfängen. Die Betriebsregeln und die Grenzenliste sind redaktionelle Erfahrungswerte; die Junior-Entwickler-Formel ist ein bewusstes Bild der Redaktion, keine Anbieter-Aussage. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Werkzeuglandschaft ändert sich wöchentlich; alle Produktaussagen beziehen sich auf die Dokumentationsstände vom 20. Oktober 2026. Wir zitieren bewusst keine konkreten Benchmark-Scores, weil sie von Agenten-Setup, Modellversion und Umgebung abhängen und schnell überholen. Die Betriebsregeln sind Erfahrungswerte, keine gemessene Wirkungsstudie. Codex-Details stammen nur aus der Übersichtsseite, nicht aus einer eigenen Erprobung.",
+ "related": [
+  "agenten-architekturen",
+  "mcp-verstehen",
+  "evals-statt-bauchgefuehl",
+  "lhtb-2-langzeit-agenten-benchmark"
+ ]
+}

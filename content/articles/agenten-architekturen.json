@@ -1,0 +1,223 @@
+{
+ "slug": "agenten-architekturen",
+ "lang": "de",
+ "section": "agenten",
+ "type": "explainer",
+ "title": "Agenten-Architekturen: Planung, Memory, Orchestrierung",
+ "dek": "Aus welchen Bausteinen ein KI-Agent entsteht: der Agent-Loop, Planung von ReAct bis Tree of Thoughts, Memory jenseits des Kontextfensters und Orchestrierung.",
+ "published": "2026-10-17T09:00:00+02:00",
+ "modified": "2026-10-17T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Agent-Loop",
+  "ReAct",
+  "Planung",
+  "Memory",
+  "Orchestrierung",
+  "Architektur"
+ ],
+ "key_takeaways": [
+  "Der Kern jedes Agenten ist eine Schleife: Beobachten, Denken, Handeln, Beobachten. ReAct (2022) hat gezeigt, dass verwebte Denk- und Aktionsschritte Halluzinationen drücken und auf ALFWorld 34 Prozentpunkte über Imitations- und RL-Methoden lagen. [1]",
+  "Anthropic trennt Workflows (fest codierte Abläufe) von Agenten (das Modell steuert selbst) und empfiehlt: die einfachste Lösung, die reicht; ein einzelner guter Aufruf mit Abruf schlägt viele Agenten-Konstrukte. [5]",
+  "Planung hat drei erforschte Stufen: lineares Nachdenken (Chain of Thought), verzweigtes Suchen (Tree of Thoughts; im Game of 24 von 4 auf 74 Prozent Erfolg) und nachträgliches Lernen aus Fehlern (Reflexion; 91 Prozent pass@1 auf HumanEval). [2][4]",
+  "Memory ist ein Betriebssystem-Problem, kein Modellfeature: MemGPT verwaltet den begrenzten Kontext wie virtuellen Speicher mit Stufen, die der Agent selbst ein- und auslagert. [3]",
+  "Orchestrierung heißt: Ein Planer zerlegt, Arbeiter führen aus, ein Synthese-Schritt baut das Ergebnis; jedes zusätzliche Modell in der Kette multipliziert Kosten, Latenz und Fehlerquellen. [5]"
+ ],
+ "hero": {
+  "alt": "Kreisdiagramm des Agent-Loops: Beobachten, Denken, Handeln als drei Segmente im Kreis, daneben Stufen für Planung (linear, verzweigt, reflektierend) und ein gestufter Speicher für Memory.",
+  "caption": "Der Agent-Loop und seine drei Erweiterungen: Planung, Memory, Orchestrierung. Eigene Grafik der Redaktion.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "[Was ein KI-Agent wirklich ist](/was-ist-ein-ki-agent), klärt die Begriffsseite dieses Magazins: ein Modell, das in einer Schleife Werkzeuge benutzt. Dieser Artikel geht eine Ebene tiefer und beantwortet die Baufrage: Aus welchen Komponenten besteht so ein Agent, welche Muster für [Planung](/glossar#planung-bei-agenten) und [Memory](/glossar#memory-bei-agenten) haben sich bewährt, und wann lohnt [Orchestrierung](/glossar#orchestrierung) mehrerer Modelle? Die Quellenlage ist ungewöhnlich gut: Die zentralen Muster stammen aus peer-reviewten Arbeiten, und mit Anthropics Praxisbericht liegt eine ehrliche Industrie-Erfahrung vor, die erstaunlich oft zur einfachsten Lösung rät. [5]"
+  },
+  {
+   "t": "h2",
+   "x": "Der Agent-Loop als Fundament"
+  },
+  {
+   "t": "p",
+   "x": "Jeder Agent läuft in derselben Schleife: Der aktuelle Zustand geht ins Modell, das Modell entscheidet den nächsten Schritt, ein Werkzeug führt ihn aus, das Ergebnis erweitert den Zustand, und es geht von vorne los, bis die Aufgabe gelöst oder ein Abbruchkriterium erreicht ist. Der [Agent-Loop](/glossar#agent-loop) klingt trivial, aber zwei Entwurfsentscheidungen bestimmen alles Weitere: Was steht im Zustand (volle Historie, Zusammenfassung, strukturierte Notizen?), und wer beendet die Schleife (das Modell, ein Schrittlimit, ein Budget?)."
+  },
+  {
+   "t": "p",
+   "x": "Die einflussreichste Form dieser Schleife ist ReAct (Yao u. a., 2022): Das Modell schreibt abwechselnd Gedanken (reasoning traces) und Aktionen. Die Gedanken helfen ihm, Pläne zu bilden, zu verfolgen und bei Fehlern umzuschwenken; die Aktionen holen Information aus der Welt, etwa aus einer Wikipedia-API. In den Experimenten überwand ReAct auf HotpotQA und Fever das typische Halluzinieren und Fehler-Fortschreiben reiner Gedankenketten, und auf den interaktiven Umgebungen ALFWorld und WebShop schlug es Imitations- und Verstärkungslernen-Ansätze um absolute 34 beziehungsweise 10 Prozentpunkte Erfolgsrate, mit nur ein bis zwei Beispielen im Kontext. [1]"
+  },
+  {
+   "t": "h2",
+   "x": "Workflow oder Agent?"
+  },
+  {
+   "t": "p",
+   "x": "Anthropic zieht in seinem Praxisbericht eine Trennlinie, die jede Architektur-Diskussion sortiert: Workflows sind Systeme, in denen Modelle und Werkzeuge über fest codierte Pfade laufen; Agenten sind Systeme, in denen das Modell seinen Ablauf und Werkzeugeinsatz selbst steuert. Die Empfehlung der Autoren nach Dutzenden Kundenprojekten: Suche die einfachste Lösung und erhöhe die Komplexität nur bei Bedarf; für viele Anwendungen reicht ein einzelner, gut gebauter Aufruf mit Abruf und Beispielen. Agenten-Systeme tauschen Latenz und Kosten gegen Aufgabenleistung, und dieser Tausch muss sich rechnen. [5]"
+  },
+  {
+   "t": "p",
+   "x": "Der Bericht benennt die erprobte Leiter der Workflow-Muster: Prompt Chaining (Schritte in Reihe mit programmatischen Prüfpunkten dazwischen), Routing (Eingaben klassifizieren und an spezialisierte Folgeaufgaben leiten, etwa einfache Fragen ans kleine, schwere ans große Modell), Parallelisierung (unabhängige Teilaufgaben gleichzeitig oder dieselbe Aufgabe mehrfach für Sicherheit), Orchestrator-Workers (ein zentrales Modell zerlegt dynamisch, Arbeiter führen aus, der Orchestrator synthetisiert) und Evaluator-Optimizer (ein Modell erzeugt, ein zweites bewertet, in einer Schleife). Erst danach kommen autonome Agenten. [5]"
+  },
+  {
+   "t": "table",
+   "caption": "Die Muster-Leiter aus Anthropics Praxisbericht, von einfach nach aufwendig sortiert. [5]",
+   "head": [
+    "Muster",
+    "Idee",
+    "Wann es trägt"
+   ],
+   "rows": [
+    [
+     "Augmented LLM",
+     "ein Modell plus Abruf, Werkzeuge, Memory",
+     "Standardbaustein für fast alles"
+    ],
+    [
+     "Prompt Chaining",
+     "feste Schrittfolge mit Gates",
+     "klare, zerlegbare Abläufe"
+    ],
+    [
+     "Routing",
+     "klassifizieren und verteilen",
+     "getrennt behandelbare Eingabetypen"
+    ],
+    [
+     "Parallelisierung",
+     "teilen oder mehrfach laufen lassen",
+     "Tempo oder Abstimmung nötig"
+    ],
+    [
+     "Orchestrator-Workers",
+     "Planer zerlegt dynamisch, Arbeiter liefern",
+     "Zerlegung vorher nicht bekannt"
+    ],
+    [
+     "Evaluator-Optimizer",
+     "Erzeuger und Prüfer im Wechsel",
+     "klare Bewertungskriterien vorhanden"
+    ],
+    [
+     "Agent",
+     "Modell steuert selbst bis zum Ziel",
+     "offene Aufgaben, unvorhersehbare Schrittzahl"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Planung: drei Stufen des Nachdenkens"
+  },
+  {
+   "t": "p",
+   "x": "Stufe eins ist die lineare Gedankenkette: Das Modell denkt Schritt für Schritt nach, bevor es handelt. Stufe zwei ist Suche: Tree of Thoughts (Yao u. a., 2023) lässt das Modell mehrere Gedankenpfade parallel erkunden, Zwischenstände selbst bewerten und bei Sackgassen zurückspringen. Im Game of 24 stieg die Erfolgsrate von 4 Prozent (GPT-4 mit Gedankenkette) auf 74 Prozent (ToT); die Autoren nennen das bewusstes, über Pfadentscheidungen verhandelndes Problemlösen. [4] Der Preis: Viele zusätzliche Modellaufrufe pro Aufgabe. ToT lohnt sich dort, wo frühe Entscheidungen teuer kippen, nicht für Routinefragen."
+  },
+  {
+   "t": "p",
+   "x": "Stufe drei ist Lernen aus dem eigenen Versuch, ohne das Modell umzutrainieren: Reflexion (Shinn u. a., 2023) verwandelt das Feedback der Umgebung (bestanden/nicht bestanden, Fehlermeldungen) in einen sprachlichen Selbstbericht, den der Agent in einen episodischen Speicher legt und beim nächsten Versuch mitliest. Im Paper erreichte der Reflexion-Agent 91 Prozent pass@1 auf dem Programmier-Benchmark HumanEval und übertraf damit das damalige GPT-4 mit 80 Prozent. [2] Die Zahlen stammen aus den Papers und sind auf deren Testbeds bezogen; die Muster dahinter (denken, suchen, reflektieren) sind das Übertragbare."
+  },
+  {
+   "t": "h2",
+   "x": "Memory: das Betriebssystem-Problem"
+  },
+  {
+   "t": "p",
+   "x": "Das [Kontextfenster](/glossar#kontextfenster) ist der Arbeitsspeicher des Agenten: schnell, teuer, begrenzt. Alles, was dauerhaft bleiben soll (Nutzerdaten, Zwischenergebnisse, gelernte Fehler), braucht eine zweite Ebene. MemGPT (Packer u. a., 2023) hat die Analogie explizit gemacht: Wie ein Betriebssystem mit virtuellem Speicher zwischen RAM und Platte verwaltet, soll der Agent zwischen Kontextfenster und externem Speicher selbst Seiten ein- und auslagern; die Autoren zeigten das an Dokumentanalyse jenseits des Kontextlimits und an Chat-Verläufen über viele Sitzungen. [3]"
+  },
+  {
+   "t": "p",
+   "x": "Praktisch landest du bei drei Speicherarten: dem Gesprächspuffer im Kontext (flüchtig), einem episodischen Speicher für Ereignisse und Reflexionen (meist als Datenbanktabelle oder Vektorindex, siehe [RAG selbst bauen](/rag-selbst-bauen)) und einem semantischen Speicher für Fakten (ebenfalls abrufbar). Die Falle ist Selbstvergiftung: Ein falscher Eintrag im Memory wandert in jede künftige Entscheidung. Schreib deshalb nur geprüfte Ergebnisse ins Langzeitgedächtnis, und protokolliere Herkunft und Zeitpunkt jedes Eintrags."
+  },
+  {
+   "t": "h2",
+   "x": "Orchestrierung: mehrere Modelle, ein System"
+  },
+  {
+   "t": "p",
+   "x": "[Multi-Agent-Systeme](/glossar#multi-agent-system) verteilen Rollen: ein Planer, mehrere Spezialisten, ein Prüfer. Anthropics Orchestrator-Workers-Muster ist die zahme Form davon; wilde Formen mit frei chattenen Agenten erzeugen vor allem eins: mehr Tokens. Die Regel aus dem Praxisbericht gilt auch hier: Frameworks erleichtern den Start, verdecken aber Prompts und Antworten und laden zu Komplexität ein, die eine einfachere Lösung überflüssig gemacht hätte; die Autoren raten, mit den rohen LLM-APIs zu beginnen und jedes Framework zu verstehen, bevor man es einsetzt. [5]"
+  },
+  {
+   "t": "callout",
+   "title": "Kosten-Merksatz",
+   "x": "Jedes zusätzliche Modell in der Kette multipliziert drei Dinge: Kosten pro Aufgabe, Latenz bis zum Ergebnis und die Anzahl der Stellen, an denen ein Fehler entstehen kann. Orchestrierung ist ein Werkzeug für echte Zerlegungsprobleme, kein Upgrade-Ritual."
+  },
+  {
+   "t": "h2",
+   "x": "Sicherheit von Anfang an"
+  },
+  {
+   "t": "p",
+   "x": "Ein Agent mit Werkzeugen ist ein Programm, das ungeprüfte Eingaben (Webseiten, E-Mails, Dokumente) in Aktionen übersetzt. Die drei Grundregeln: minimale Rechte pro Werkzeug, menschliche Freigabe bei Nebenwirkungen ([Human-in-the-Loop](/glossar#human-in-the-loop)) und eine isolierte Ausführungsumgebung ([Sandboxing](/glossar#sandboxing)). Der vertiefende Artikel dazu ist [Sicherheit für Agenten-Systeme](/sicherheit-fuer-agenten-systeme); wie Agenten unter realen Bedingungen gemessen werden, zeigt unsere Analyse der [LHTB-2 Langzeit-Benchmark](/lhtb-2-langzeit-agenten-benchmark)."
+  },
+  {
+   "t": "h2",
+   "x": "Wie es weitergeht"
+  },
+  {
+   "t": "p",
+   "x": "Die Werkzeugebene unter diesen Mustern erklärt [Function Calling und Werkzeugaufrufe](/function-calling-praxis); der Standard, über den Werkzeuge heute anwendungsübergreifend angedockt werden, ist Thema von [MCP verstehen und einsetzen](/mcp-verstehen). Der Praxistest für alles hier: [Coding-Agenten im Entwickleralltag](/coding-agenten-alltag)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen Workflow und Agent?",
+   "a": "Beim Workflow legst du den Ablauf im Code fest, das Modell füllt vorgegebene Stationen. Beim Agenten entscheidet das Modell selbst, welcher Schritt als Nächstes kommt und welches Werkzeug es ruft. Anthropics Praxisempfehlung: erst Workflow, Agent nur, wenn die Aufgabe offen und die Schrittzahl unvorhersehbar ist. [5]"
+  },
+  {
+   "q": "Brauche ich Tree of Thoughts für bessere Antworten?",
+   "a": "Selten. ToT lohnt sich, wenn frühe Entscheidungen teuer kippen und das Modell Pfadalternativen bewerten muss; im Game of 24 brachte das 74 statt 4 Prozent Erfolg. Für Routinefragen kostet die Suche nur Tokens. [4]"
+  },
+  {
+   "q": "Wie baue ich Gedächtnis ohne Spezial-Framework?",
+   "a": "Drei Speicherarten reichen: Gesprächspuffer im Kontext, eine Tabelle oder ein Vektorindex für Ereignisse und Reflexionen, ein abrufbarer Faktenspeicher. MemGPT zeigt das Prinzip: Der Agent verwaltet selbst, was zwischen Kontext und externem Speicher wandert. [3]"
+  },
+  {
+   "q": "Lernt ein Reflexion-Agent dauerhaft?",
+   "a": "Nur innerhalb dessen, was du speicherst. Reflexion schreibt sprachliche Selbstberichte in einen episodischen Speicher, der beim nächsten Versuch mitgelesen wird; die Modellgewichte bleiben unverändert. Über Sessions hinweg lernst du nur, was du explizit ablegst. [2]"
+  },
+  {
+   "q": "Sind Multi-Agent-Systeme den Aufwand wert?",
+   "a": "Nur für echte Zerlegungsprobleme. Jedes weitere Modell multipliziert Kosten, Latenz und Fehlerstellen. Die erprobte Reihenfolge ist: einzelner augmentierter Aufruf, dann Workflow-Muster, dann Orchestrator-Workers, autonome Vielagenten-Systeme zuletzt. [5]"
+  }
+ ],
+ "sources": [
+  {
+   "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+   "publisher": "arXiv:2210.03629 (Yao u. a., ICLR 2023)",
+   "url": "https://arxiv.org/abs/2210.03629",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Reflexion: Language Agents with Verbal Reinforcement Learning",
+   "publisher": "arXiv:2303.11366 (Shinn u. a., NeurIPS 2023)",
+   "url": "https://arxiv.org/abs/2303.11366",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "MemGPT: Towards LLMs as Operating Systems",
+   "publisher": "arXiv:2310.08560 (Packer u. a., 2023)",
+   "url": "https://arxiv.org/abs/2310.08560",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Tree of Thoughts: Deliberate Problem Solving with Large Language Models",
+   "publisher": "arXiv:2305.10601 (Yao u. a., NeurIPS 2023)",
+   "url": "https://arxiv.org/abs/2305.10601",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Building effective agents",
+   "publisher": "Anthropic Engineering (19.12.2024)",
+   "url": "https://www.anthropic.com/engineering/building-effective-agents",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Abstracts und Einleitungen der vier genannten Papers sowie der vollständige Praxisbericht von Anthropic einschließlich der Workflow-Muster. Die Muster-Tabelle verdichtet den Bericht; Prozentzahlen stammen aus den Papers und sind auf deren Testumgebungen bezogen. Die Memory-Dreiteilung und die Sicherheitsregeln sind redaktionelle Einordnung. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Paper-Zahlen (34/10 Prozentpunkte, 74 Prozent, 91 Prozent) stammen aus den jeweiligen Testumgebungen von 2022/2023 und sagen wenig über heutige Modelle und deine Aufgabe aus. Der Anthropic-Bericht ist eine Anbieter-Perspektive vom Dezember 2024; der dortige Werkzeug-Überblick ist teilweise überholt, die Architektur-Muster aber stabil. Wir haben keines der Muster für diesen Artikel neu implementiert oder gemessen. Die Memory-Dreiteilung ist eine pragmatische Einordnung, keine Standardtaxonomie.",
+ "related": [
+  "was-ist-ein-ki-agent",
+  "function-calling-praxis",
+  "mcp-verstehen",
+  "sicherheit-fuer-agenten-systeme"
+ ]
+}
