@@ -26,6 +26,8 @@
 - [Data & ML: von null zum ersten eigenen Modell](https://kifachblatt.de/lernpfade#data-ml): Ich will verstehen, wie Modelle lernen, und selbst einen ersten Adapter trainieren. (Praktiker, ca. 3 Stunden)
 - [IT-Admin & DevOps: LLMs selbst hosten](https://kifachblatt.de/lernpfade#hosting): Ich will LLM-Inferenz im eigenen Betrieb: Server, Durchsatz, Überwachung, Absicherung. (Fortgeschritten, ca. 3 Stunden)
 - [KI-Kosten & ROI: rechnen statt schätzen](https://kifachblatt.de/lernpfade#ki-kosten-und-roi): Ich will wissen, was KI wirklich kostet und ob sich das rechnet. (Entscheider, ~2 Stunden)
+- [Journalisten: KI in Recherche und Redaktion](https://kifachblatt.de/lernpfade#journalisten-ki-recherche-redaktion): Ich arbeite in einer Redaktion und will KI einsetzen, ohne Faktentreue und Quellenkritik aufzugeben.
+- [Wissenschaft & Studium: KI als Forschungswerkzeug](https://kifachblatt.de/lernpfade#wissenschaft-studium-ki-forschungswerkzeug): Ich schreibe wissenschaftlich und will KI für Literatur und Daten nutzen, ohne Zitier- und Deklarationspflichten zu verletzen.
 <!--/LP-->
 
 ## Beiträge
@@ -90,7 +92,11 @@
 - [Muse Spark Open: Was die offenen Gewichte technisch bedeuten](https://kifachblatt.de/muse-spark-open-offene-gewichte-analyse): Metas 816-Milliarden-Modell im Check: Architektur, Speicherbedarf, Lizenzbedingungen und eine Benchmark-Bilanz, die eher gemischt ausfällt als überlegen.
 - [Long-Horizon-Terminal-Bench 2.0: Was drei Stunden Agentenarbeit zeigen](https://kifachblatt.de/lhtb-2-langzeit-agenten-benchmark): Ein Preprint testet 15 KI-Modelle drei Stunden lang auf 77 Terminalaufgaben. Was Methode, Zahlen und Kosten belegen und wo die Grenzen der Studie liegen.
 - [DSGVO und KI: Was mit personenbezogenen Daten erlaubt ist](https://kifachblatt.de/dsgvo-und-ki): Personenbezogene Daten in Prompts, Training und Betrieb: Was die DSGVO verlangt, wie der EDSA KI-Modelle einordnet und welche Regeln im Alltag tragen.
+- [KI-Nutzung in wissenschaftlichen Arbeiten deklarieren](https://kifachblatt.de/ki-deklaration-wissenschaft): COPE, ICMJE, Nature und Science sind sich einig: KI ist nie Autorin, die Nutzung wird offengelegt. Was wohin gehört und was verboten ist.
+- [Datenanalyse mit KI-Assistenten: Code, Plots, Plausibilität](https://kifachblatt.de/datenanalyse-ki-assistenten): Tabelle hochladen, Frage stellen, Diagramm bekommen: KI-Assistenten schreiben den Analyse-Code mit. Wo das hilft und wie die Gegenprobe aussieht.
+- [Quellen prüfen und korrekt zitieren bei KI-Unterstützung](https://kifachblatt.de/quellen-pruefen-zitieren): KI liefert Quellenlisten in Sekunden, aber nicht jede Quelle existiert. So prüfen Sie Verweise und zitieren KI-Chats korrekt nach APA und MLA.
 - [Coding-Agenten im Alltag: Setup, Grenzen, Review-Pflicht](https://kifachblatt.de/coding-agenten-alltag): Wie Coding-Agenten wie Claude Code, Copilot coding agent und Codex heute arbeiten, was sie können und welche Regeln Hilfe von Schrott trennen.
+- [Literaturrecherche mit KI: Werkzeuge, Abdeckung, Blindgänger](https://kifachblatt.de/literaturrecherche-ki): KI-Werkzeuge durchsuchen Hunderte Millionen Papers und fassen Studien zusammen. Was sie leisten, was sie kosten und wo sie täuschen.
 - [Deep-Research-Werkzeuge: Recherche per Agent, mit Grenzen](https://kifachblatt.de/deep-research-recherche): Recherchierende KI-Agenten lesen Hunderte Quellen und liefern Berichte mit Zitaten. Was die Angebote leisten, was sie kosten und wo sie irren.
 - [MCP verstehen: der USB-Standard für KI-Werkzeuge](https://kifachblatt.de/mcp-verstehen): Das Model Context Protocol erklärt: Host, Client und Server, die drei Server-Primitive Tools, Resources und Prompts, Transportwege und Sicherheitsfragen.
 - [Agenten-Architekturen: Planung, Memory, Orchestrierung](https://kifachblatt.de/agenten-architekturen): Aus welchen Bausteinen ein KI-Agent entsteht: der Agent-Loop, Planung von ReAct bis Tree of Thoughts, Memory jenseits des Kontextfensters und Orchestrierung.

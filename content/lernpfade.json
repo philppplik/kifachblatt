@@ -1758,6 +1758,224 @@
           }
         ]
       }
+    },
+    {
+      "id": "journalisten-ki-recherche-redaktion",
+      "name": "Journalisten: KI in Recherche und Redaktion",
+      "frage": "Ich arbeite in einer Redaktion und will KI einsetzen, ohne Faktentreue und Quellenkritik aufzugeben.",
+      "intro": "Etwa 2 Stunden, keine Vorkenntnisse nötig. Du lernst, warum Modelle Fakten erfinden, wie du KI-Ergebnisse prüfst, welche Deep-Research-Werkzeuge taugen, wie Transkription und Zusammenfassung sauber laufen, woran du KI-Texte (nicht) erkennst und wie du den Einsatz offen deklarierst.",
+      "steps": [
+        {
+          "slug": "halluzinationen",
+          "warum": "Das Grundrisiko zuerst: Warum Sprachmodelle überzeugend Falsches behaupten und was das für jede Recherche bedeutet."
+        },
+        {
+          "slug": "faktencheck-mit-ki",
+          "warum": "Was Studien über Fehlerquoten zeigen und wie ein Prüf-Workflow aussieht, in dem die KI nie ihre eigene Quelle ist."
+        },
+        {
+          "slug": "deep-research-recherche",
+          "warum": "Die recherchierenden Agenten von OpenAI, Google, Perplexity und Anthropic im Vergleich, mit Trefferquoten und Grenzen."
+        },
+        {
+          "slug": "transkription-zusammenfassung",
+          "warum": "Vom Interview-Audio zum geprüften Protokoll: Whisper, Parakeet und ein Workflow, der Zitate schützt."
+        },
+        {
+          "slug": "ki-texte-erkennen",
+          "warum": "Wasserzeichen und Detektoren: warum der Stil-Test versagt und welche Nachweise wirklich zählen."
+        },
+        {
+          "slug": "ki-deklaration-redaktion",
+          "warum": "Pressekodex, AP, Guardian und BR: die Transparenz-Regeln und die eigene Deklaration."
+        }
+      ],
+      "terms": [
+        "Grounding",
+        "Watermarking (bei KI-Text)",
+        "Halluzination",
+        "Sycophancy"
+      ],
+      "abschluss_check": {
+        "aufgabe": "Drei KI-Recherche-Ergebnisse auf Quellenfehler prüfen. Auflösung: Ergebnis 1 nennt eine Studie mit korrekter Aussage, aber falschem Jahr (Quellenfehler: Datum). Ergebnis 2 nennt eine Quelle, die nicht existiert (erfundene Referenz). Ergebnis 3 nennt eine echte Quelle, die das Behauptete nicht sagt (Aussagefehler). Alle drei Fehlerarten kommen in den Artikeln des Pfads vor.",
+        "quiz": [
+          {
+            "frage": "Ein KI-Assistent nennt eine Zahl mit Quellenangabe. Was gilt?",
+            "optionen": [
+              "Die Quellenangabe macht die Zahl belastbar",
+              "Erst die geöffnete und gelesene Quelle macht sie belastbar",
+              "Moderne Modelle erfinden keine Quellen mehr",
+              "Man zitiert den Assistenten als Quelle"
+            ],
+            "richtig": 1,
+            "warum": "Zwischen 18 und 55 Prozent KI-genannter Literaturangaben sind in Studien komplett erfunden; nur der Blick in die Originalquelle zählt."
+          },
+          {
+            "frage": "Was ist der zentrale Vorteil lokaler Transkriptionsmodelle wie Whisper oder Parakeet für Redaktionen?",
+            "optionen": [
+              "Sie sind immer genauer als Cloud-Dienste",
+              "Die Aufnahmen verlassen den eigenen Rechner nicht",
+              "Sie erkennen Sprecher automatisch zuverlässig",
+              "Sie brauchen keine Hardware"
+            ],
+            "richtig": 1,
+            "warum": "Sensible Interviews bleiben auf dem eigenen Gerät; die Genauigkeit hängt von Sprache, Dialekt und Aufnahme ab."
+          },
+          {
+            "frage": "Wörtliche Zitate aus einem KI-Transkript …",
+            "optionen": [
+              "können übernommen werden, wenn das Modell aktuell ist",
+              "gehören immer an der Originalaufnahme geprüft",
+              "sind sicher, wenn sie zweimal identisch transkribiert wurden",
+              "brauchen keine Prüfung bei deutschen Interviews"
+            ],
+            "richtig": 1,
+            "warum": "Transkripte sind Näherungen; gerade bei prägnanten Formulierungen kann ein einziges falsches Wort den Sinn drehen."
+          },
+          {
+            "frage": "Ein KI-Detektor meldet: 98 Prozent wahrscheinlich KI-geschrieben. Was bedeutet das?",
+            "optionen": [
+              "Der Text ist fast sicher maschinell",
+              "Der Score ist eine Stildeutung mit messbaren systematischen Fehlern",
+              "Der Text muss aus einem aktuellen Modell stammen",
+              "Die Quelle des Textes ist bewiesen"
+            ],
+            "richtig": 1,
+            "warum": "Studien zeigen hohe Falsch-Positiv-Raten, etwa 61,3 Prozent bei Texten nicht-muttersprachlicher Autoren; Detektoren taugen nicht als Beweis."
+          },
+          {
+            "frage": "Was leisten Text-Wasserzeichen wie SynthID?",
+            "optionen": [
+              "Sie erkennen jeden KI-Text beliebiger Herkunft",
+              "Sie markieren Text bei der Erzeugung, wirken aber nur bei mitwirkenden Anbietern",
+              "Sie verhindern das Umschreiben von KI-Text",
+              "Sie ersetzen die redaktionelle Prüfung"
+            ],
+            "richtig": 1,
+            "warum": "Wasserzeichen beantworten nur, ob ein Text aus einem bestimmten System stammt; offene Modelle und Paraphrasen bleiben Lücken."
+          },
+          {
+            "frage": "Was verlangt der Pressekodex für künstlich generierte Inhalte?",
+            "optionen": [
+              "Ein generelles Verbot",
+              "Volle redaktionelle Verantwortung unabhängig von der Erstellungsweise",
+              "Kennzeichnung nur bei Bezahlartikeln",
+              "Nichts, KI ist nicht geregelt"
+            ],
+            "richtig": 1,
+            "warum": "Die Präambel (Fassung 19. März 2025) erstreckt die presseethische Verantwortung ausdrücklich auf künstlich generierte Inhalte."
+          }
+        ]
+      }
+    },
+    {
+      "id": "wissenschaft-studium-ki-forschungswerkzeug",
+      "name": "Wissenschaft & Studium: KI als Forschungswerkzeug",
+      "frage": "Ich schreibe wissenschaftlich und will KI für Literatur und Daten nutzen, ohne Zitier- und Deklarationspflichten zu verletzen.",
+      "intro": "Etwa 2 Stunden, wissenschaftliches Arbeiten als Voraussetzung. Du lernst, welche Recherche-Werkzeuge echte Literaturdatenbanken durchsuchen, wie du Quellen prüfst und KI-Nutzung korrekt zitierst, wo KI bei der Datenanalyse hilft und wie COPE, ICMJE, Nature und Science die Deklaration regeln.",
+      "steps": [
+        {
+          "slug": "literaturrecherche-ki",
+          "warum": "Datenbanken mit KI-Schicht versus Chat-Assistenten: Abdeckung, Herstellerangaben und die typischen Blindgänger."
+        },
+        {
+          "slug": "halluzinationen",
+          "warum": "Erfundene Quellen sind das Lehrstück der Halluzination: Warum Modelle Referenzen fabulieren."
+        },
+        {
+          "slug": "quellen-pruefen-zitieren",
+          "warum": "Der Drei-Schritte-Check für jede Quelle und die aktuellen APA- und MLA-Formate für KI-Chats."
+        },
+        {
+          "slug": "datenanalyse-ki-assistenten",
+          "warum": "Code, Plots und Plausibilität: Was die Assistenten mit deinen Tabellen tun und wie die Gegenprobe aussieht."
+        },
+        {
+          "slug": "ki-deklaration-wissenschaft",
+          "warum": "Keine KI-Autorschaft, feste Deklarationsorte, Ampel-Modell: die Regeln von COPE, ICMJE, Nature und Science."
+        },
+        {
+          "slug": "benchmarks",
+          "warum": "Die Porträts zu GPQA und MLE-Bench als Grenzmarke: Was Modelle in Forschung und Data Science leisten und wie die Werte zu lesen sind."
+        }
+      ],
+      "terms": [
+        "Grounding",
+        "Kontamination",
+        "Sycophancy",
+        "Chain of Thought"
+      ],
+      "abschluss_check": {
+        "aufgabe": "Drei KI-generierte Literaturangaben verifizieren. Auflösung: Angabe 1 existiert und belegt die Aussage (korrekt). Angabe 2 existiert nicht, DOI und Datenbanksuche bleiben ohne Treffer (erfundene Referenz). Angabe 3 existiert, sagt aber das Gegenteil der behaupteten Richtung (Aussagefehler). Erst der Blick ins Original trennt die drei Fälle.",
+        "quiz": [
+          {
+            "frage": "Woran erkennst du eine belastbare KI-Recherche?",
+            "optionen": [
+              "Die Antwort enthält viele Quellenangaben",
+              "Die Quellen existieren, sagen das Behauptete und sind nicht zurückgezogen",
+              "Das Modell nennt seine Trefferquote",
+              "Die Zusammenfassung klingt wissenschaftlich"
+            ],
+            "richtig": 1,
+            "warum": "Existenz, Aussage und Aktualität (Retraction-Check) sind die drei Prüfungen; Menge und Ton sagen nichts."
+          },
+          {
+            "frage": "Die KI nennt eine Quelle, die du nirgends findest. Was tust du?",
+            "optionen": [
+              "Sie mit Vorbehalt zitieren",
+              "Die KI als Quelle zitieren",
+              "Die Angabe streichen; sie war mit hoher Wahrscheinlichkeit erfunden",
+              "Eine ähnlich klingende echte Quelle stattdessen zitieren"
+            ],
+            "richtig": 2,
+            "warum": "Nicht auffindbare Referenzen sind ein bekanntes Halluzinationsmuster und gehören nicht ins Verzeichnis."
+          },
+          {
+            "frage": "Wie zitiert APA einen KI-Chat?",
+            "optionen": [
+              "ChatGPT als Autor",
+              "Die Firma als Urheber, Datum, Chattitel mit Klammerzusatz, Modell, Share-URL",
+              "Nur die URL im Fließtext",
+              "Gar nicht, KI ist nicht zitierfähig"
+            ],
+            "richtig": 1,
+            "warum": "Nach der APA-Fassung von 2025 ist die Firma Urheber; die KI selbst kann nie Autorin sein."
+          },
+          {
+            "frage": "Was empfiehlt das MLA für Quellen, die eine KI verlinkt hat?",
+            "optionen": [
+              "Die KI-Antwort zitieren",
+              "Die verlinkten Quellen direkt konsultieren und zitieren",
+              "Auf Sekundärquellen ganz verzichten",
+              "Den Chat-Verlauf ausdrucken"
+            ],
+            "richtig": 1,
+            "warum": "Werkzeuge können Quellen erfinden oder falsch zusammenfassen; die Primärquelle zählt."
+          },
+          {
+            "frage": "Dein KI-Assistent liefert Code und ein Diagramm zu deiner Tabelle. Was ist die wichtigste Gegenprobe?",
+            "optionen": [
+              "Den Prompt noch einmal senden",
+              "Eine Kernzahl auf einem zweiten, unabhängigen Weg nachrechnen",
+              "Das Diagramm auf Farben prüfen",
+              "Ein anderes Modell nach seiner Meinung fragen"
+            ],
+            "richtig": 1,
+            "warum": "Annahmefehler über Spalten, Einheiten und Zeiträume fallen nur auf, wenn Ergebnisse unabhängig verifiziert werden."
+          },
+          {
+            "frage": "Wo gehört die Deklaration von KI-Schreibhilfe in einer Publikation hin?",
+            "optionen": [
+              "In die Autorenzeile",
+              "In die Danksagung; methodische Nutzung in den Methodenteil",
+              "In eine Fußnote des Titels",
+              "Nirgendwo, Schreibhilfe ist immer deklarationsfrei"
+            ],
+            "richtig": 1,
+            "warum": "ICMJE und Science ordnen Schreibhilfe den Acknowledgments zu, KI in Datenerhebung, Analyse oder Abbildungen dem Methodenteil, plus Begleitschreiben bei der Einreichung."
+          }
+        ]
+      }
     }
   ]
 }
