@@ -1,0 +1,279 @@
+{
+ "slug": "offene-gewichte-vs-open-source",
+ "lang": "de",
+ "section": "modelle",
+ "type": "explainer",
+ "title": "Offene Gewichte vs. Open Source: Was hinter den Begriffen steckt",
+ "dek": "Herunterladbar heißt nicht frei nutzbar: Warum offene Gewichte und Open Source zwei verschiedene Dinge sind, welche Lizenzfallen lauern und wie du sie prüfst.",
+ "published": "2026-10-20T05:10:00+02:00",
+ "modified": "2026-10-20T05:10:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Open Source",
+  "Offene Gewichte",
+  "Lizenz",
+  "OSAID",
+  "EU AI Act",
+  "Modellkarte"
+ ],
+ "key_takeaways": [
+  "Offene Gewichte bedeuten nur: Die trainierten Parameter sind herunterladbar. Open Source verlangt nach der Open Source Definition dagegen Nutzungsfreiheit ohne Diskriminierung von Personen, Gruppen oder Anwendungsfeldern [2].",
+  "Die Open Source AI Definition (OSAID 1.0) der OSI überträgt das Prinzip auf KI-Systeme: nutzen, untersuchen, verändern und teilen - inklusive Angaben zu Trainingsdaten, Code und Gewichten unter offenen Bedingungen [1].",
+  "Verbreitete Community-Lizenzen wie die Llama-Lizenz schränken die Nutzung ein, etwa über eine Schwelle von 700 Millionen monatlich aktiven Nutzern und eine Nutzungsrichtlinie - nach OSI-Lesart ist das kein Open Source [2][3].",
+  "Die EU-KI-Verordnung stellt KI-Systeme unter freien und quelloffenen Lizenzen weitgehend frei, bei allgemeinen KI-Modellen entfallen aber nur zwei der vier Dokumentationspflichten, und Modelle mit systemischem Risiko sind ganz ausgenommen [4][6].",
+  "Vor jeder Nutzung zählt der Lizenztext selbst: kommerzielle Nutzung, Schwellen, Nutzungsrichtlinie, Namensnennung und Regeln für Weitergabe und Fine-Tunes prüfen."
+ ],
+ "hero": {
+  "alt": "Waage vor dunklem Hintergrund: Auf der einen Schale liegen violett leuchtende Würfel als Sinnbild für Modellgewichte, auf der anderen ein aufgeschlagenes Dokument als Sinnbild für Quellcode und Lizenztext",
+  "caption": "Gewichte auf der einen Seite, Rezept und Erlaubnis auf der anderen: Offene Gewichte und Open Source sind nicht dasselbe.",
+  "ai_generated": true,
+  "credit": "KI-generiert"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer ein KI-Modell von Hugging Face herunterlädt, hält auf den ersten Blick etwas in der Hand, das aussieht wie Open Source: Dateien, ein Repository, eine Lizenzangabe. Doch herunterladbar heißt nicht frei verwendbar. Der Unterschied ist wie zwischen einem Brot, das der Bäcker verschenkt, und dem Rezept dazu: Das geschenkte Brot darfst du essen, aber nicht unbedingt weiterverkaufen oder als dein eigenes ausgeben. Das Rezept mit Erlaubnis erlaubt beides - und verrät obendrein die Zutaten."
+  },
+  {
+   "t": "p",
+   "x": "Dieser Artikel trennt die beiden Begriffe, zeigt das Spektrum der tatsächlich verwendeten Lizenzen und erklärt, warum der Unterschied auch in der EU-KI-Verordnung eine Rolle spielt. Am Ende steht eine kurze Prüfliste für die Praxis."
+  },
+  {
+   "t": "h2",
+   "x": "Zwei Begriffe, zwei Versprechen"
+  },
+  {
+   "t": "p",
+   "x": "[Offene Gewichte](/glossar#offene-gewichte) sind eine technische Tatsache: Die trainierten Parameter eines Modells liegen als Datei vor, die jeder herunterladen kann. Damit lässt sich das Modell lokal betreiben, untersuchen und mit eigenen Daten weitertrainieren. Mehr sagt der Begriff nicht. Er macht keine Aussage darüber, ob du das Modell kommerziell nutzen, verändern oder weitergeben darfst, und schon gar nichts darüber, wie es trainiert wurde."
+  },
+  {
+   "t": "p",
+   "x": "Open Source ist dagegen ein rechtliches Versprechen. Die Open Source Definition der Open Source Initiative (OSI) verlangt unter anderem, dass eine Lizenz weder Personen oder Gruppen noch Anwendungsfelder diskriminieren darf [2]. Genau an diesen Punkten scheitern viele Modelllizenzen: Sie verbieten bestimmte Nutzungen oder schließen große Unternehmen von der kostenlosen Nutzung aus. Die OSI hat das am Beispiel von Metas Llama-Lizenz ausführlich begründet und den Hersteller gebeten, das Modell nicht als Open Source zu bezeichnen [2]."
+  },
+  {
+   "t": "p",
+   "x": "Für KI-Systeme hat die OSI im Oktober 2024 mit der Open Source AI Definition (OSAID 1.0) eine eigene Definition verabschiedet [1]. Sie verlangt vier Freiheiten: Ein KI-System darf für jeden Zweck genutzt, untersucht, verändert und geteilt werden können, ohne um Erlaubnis fragen zu müssen. Damit das bei einem Modell überhaupt möglich ist, müssen nach der OSAID drei Dinge unter offenen Bedingungen verfügbar sein: ausreichende Informationen über die Trainingsdaten, der Code für Training und Betrieb sowie die Gewichte selbst [1]. Nur ein Bruchteil der populären Modelle erfüllt das vollständig - bei den Trainingsdaten hapert es fast überall."
+  },
+  {
+   "t": "h2",
+   "x": "Das Lizenz-Spektrum in der Praxis"
+  },
+  {
+   "t": "p",
+   "x": "Zwischen 'komplett frei' und 'nur anschauen' liegt ein breites Spektrum. Die Dokumentation von Hugging Face listet die auf der Plattform üblichen Lizenzen, von OSI-anerkannten Lizenzen wie Apache-2.0 und MIT bis zu speziellen Modelllizenzen mit Nutzungsbeschränkungen [5]. Drei grobe Gruppen helfen bei der Einordnung:"
+  },
+  {
+   "t": "table",
+   "caption": "Drei Lizenzgruppen bei KI-Modellen und was sie in der Praxis bedeuten. Einordnung der Redaktion, Beispiele ohne Anspruch auf Vollständigkeit.",
+   "head": [
+    "Gruppe",
+    "Typische Merkmale",
+    "Praxis-Folge"
+   ],
+   "rows": [
+    [
+     "OSI-anerkannte Lizenzen (Apache-2.0, MIT)",
+     "Keine Nutzungsverbote, keine Mengenbegrenzung, Weitergabe und kommerzielle Nutzung erlaubt [5]",
+     "Volle Freiheit, aber: Marken-, Patent- und Haftungsfragen bleiben; Lizenztext trotzdem lesen"
+    ],
+    [
+     "Community-Lizenzen mit Schwellen (z. B. Llama)",
+     "Kostenlose Nutzung bis zu einer Größengrenze, Namensnennung, Nutzungsrichtlinie [3]",
+     "Für die meisten Nutzer praktisch frei, ab einer Unternehmensgröße Verhandlungspflicht"
+    ],
+    [
+     "Forschungs- und Speziallizenzen (Non-Commercial, OpenRAIL)",
+     "Nutzung nur für Forschung oder mit Verbotsliste für Anwendungsfelder [5]",
+     "Kommerzielle Nutzung ausgeschlossen oder rechtlich unsicher; genauestens prüfen"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Llama 3.1 Community License ist das bekannteste Beispiel der zweiten Gruppe: Sie erlaubt Nutzung, Nachbildung und Verbreitung, verlangt die Namensnennung 'Built with Llama' und verpflichtet Anbieter mit mehr als 700 Millionen monatlich aktiven Nutzern, eine gesonderte Lizenz bei Meta anzufragen. Zusätzlich gilt eine Nutzungsrichtlinie mit Verbotsliste [3]. Unsere Analysen zu [Muse Spark Open](/muse-spark-open-offene-gewichte-analyse) (Umsatzschwelle von 20 Millionen US-Dollar für Modell-als-Dienst-Angebote) und zu [MiniMax M3.1 Flash](/minimax-m3-1-flash-analyse) zeigen, dass solche Schwellen in verschiedenen Varianten vorkommen - der Text der jeweiligen Lizenz zählt, nicht der Marketing-Begriff."
+  },
+  {
+   "t": "callout",
+   "title": "Keine Rechtsberatung",
+   "x": "Dieser Artikel ordnet Begriffe und Quellen ein und ersetzt keine Rechtsberatung. Lizenztexte und Gesetze ändern sich; für verbindliche Aussagen den aktuellen Wortlaut lesen und im Zweifel juristisch prüfen lassen. Stand: 20. Oktober 2026."
+  },
+  {
+   "t": "h2",
+   "x": "Was der Download der Gewichte praktisch ermöglicht"
+  },
+  {
+   "t": "p",
+   "x": "Dass die Gewichte als Datei vorliegen, ist technisch die wichtigste Eigenschaft offener Modelle. Sie macht drei Dinge möglich, die ein reiner API-Zugang nicht bietet: erstens den Betrieb auf eigener Hardware ohne laufende Abhängigkeit vom Anbieter, zweitens das Weitertrainieren, etwa durch [Fine-Tuning](/glossar#fine-tuning) oder Adapter wie [LoRA](/glossar#lora), und drittens die unabhängige Prüfung - von der [Quantisierung](/glossar#quantisierung) für kleinere Hardware bis zur Analyse des Modellverhaltens. Genau deshalb spielen offene Gewichte in unseren Modellanalysen und im Pfad der [lokalen Modelle](/lokale-modelle) eine so große Rolle."
+  },
+  {
+   "t": "p",
+   "x": "Diese technische Freiheit ist aber nur die halbe Geschichte. Ob du das heruntergeladene Modell in einem Produkt einsetzen, an Kunden weitergeben oder als Dienst anbieten darfst, entscheidet allein die Lizenz. Wer das verwechselt, baut womöglich ein Geschäftsmodell auf einer Erlaubnis, die es nicht gibt - oder verzichtet umgekehrt auf Freiheiten, die die Lizenz längst einräumt."
+  },
+  {
+   "t": "h2",
+   "x": "Warum die Debatte um den Begriff so hartnäckig ist"
+  },
+  {
+   "t": "p",
+   "x": "Der Streit um 'Open Source KI' ist nicht nur Wortklauberei. Hersteller haben ein eigenes Interesse am Begriff: Er steht für Vertrauen, Unabhängigkeit und Entwicklerfreundlichkeit. Die OSI spricht in ihrer Stellungnahme zu Llama von einer Verwechslung von Open Source mit 'Ressourcen, die einigen Nutzern unter einigen Bedingungen zur Verfügung stehen' [2]. Umgekehrt argumentieren manche Hersteller, die klassische Open-Source-Definition passe nicht auf KI-Systeme, weil dort neben Code auch Gewichte und Daten eine Rolle spielen. Die OSAID ist der Versuch, genau diese Lücke zu schließen, ohne die Grundprinzipien aufzuweichen [1]."
+  },
+  {
+   "t": "p",
+   "x": "Für Leser von Modellkarten heißt das: Das Wort 'open' im Modellnamen oder im Blogpost ist ein Marketing-Signal, keine Kategorie. Entscheidend sind zwei Fragen, die sich unabhängig prüfen lassen: Liegen die Gewichte wirklich vor? Und was erlaubt die Lizenz? Erst die Kombination ergibt das Bild."
+  },
+  {
+   "t": "h2",
+   "x": "Warum der Unterschied auch den Gesetzgeber beschäftigt"
+  },
+  {
+   "t": "p",
+   "x": "Die EU-KI-Verordnung (Verordnung (EU) 2024/1689) knüpft direkt an den Begriff der freien und quelloffenen Lizenz an. Artikel 2 Absatz 12 nimmt KI-Systeme, die unter einer solchen Lizenz veröffentlicht werden, grundsätzlich von den Pflichten der Verordnung aus - es sei denn, es handelt sich um Hochrisiko-Systeme oder um Systeme, die unter die Verbots- oder Transparenzartikel 5 oder 50 fallen [4][6]."
+  },
+  {
+   "t": "p",
+   "x": "Bei allgemeinen KI-Modellen (General-Purpose AI) ist die Ausnahme enger: Artikel 53 Absatz 2 befreit Anbieter offen lizenzierter Modelle nur von zwei der vier Pflichten aus Artikel 53 Absatz 1 - der Pflicht zur technischen Dokumentation für Behörden und zur Dokumentation für nachgeschaltete Anbieter. Die Pflichten zu Urheberrechtsrichtlinie und Trainingsdaten-Zusammenfassung bleiben bestehen. Und für Modelle mit systemischem Risiko gilt die Ausnahme gar nicht [6]. Wer also 'open' ist, hat es leichter, aber nicht automatisch frei."
+  },
+  {
+   "t": "h2",
+   "x": "Drei Welten im Vergleich"
+  },
+  {
+   "t": "table",
+   "caption": "Gegenüberstellung: proprietärer API-Zugang, offene Gewichte mit Community-Lizenz und Open Source nach OSAID. Einordnung der Redaktion anhand der zitierten Quellen.",
+   "head": [
+    "Kriterium",
+    "Proprietäres API-Modell",
+    "Offene Gewichte (Community-Lizenz)",
+    "Open Source nach OSAID"
+   ],
+   "rows": [
+    [
+     "Gewichte herunterladbar",
+     "Nein",
+     "Ja [3]",
+     "Ja [1]"
+    ],
+    [
+     "Lokaler Betrieb möglich",
+     "Nein",
+     "Ja",
+     "Ja"
+    ],
+    [
+     "Kommerzielle Nutzung",
+     "Nutzungsbedingungen des Anbieters",
+     "Meist ja, teils mit Schwellen [3]",
+     "Ja, ohne Diskriminierung [1][2]"
+    ],
+    [
+     "Anwendungsfeld-Verbote",
+     "Üblich",
+     "Üblich (Nutzungsrichtlinie) [3]",
+     "Nicht zulässig [2]"
+    ],
+    [
+     "Angaben zu Trainingsdaten",
+     "Selten",
+     "Unterschiedlich",
+     "Gefordert (Dateninformation) [1]"
+    ],
+    [
+     "Weitergabe veränderter Versionen",
+     "Entfällt",
+     "Je nach Lizenz",
+     "Erlaubt [1]"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Tabelle zeigt auch, warum die mittlere Spalte so erfolgreich ist: Für die überwiegende Mehrheit der Anwendungen reichen offene Gewichte mit einer großzügigen Community-Lizenz völlig aus. Erst bei bestimmten Unternehmensgrößen, regulierten Anwendungsfeldern oder wenn Weitergabe und vollständige Nachvollziehbarkeit gefragt sind, kippt die Rechnung Richtung OSAID-konformer Modelle - oder macht die Prüfung durch eine Rechtsabteilung unvermeidbar."
+  },
+  {
+   "t": "h2",
+   "x": "Sechs Fragen vor der Nutzung eines offenen Modells"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "Wie heißt die Lizenz genau, und liegt ihr Text vor? Ein Name ohne Text ist kein Beleg.",
+    "Ist die kommerzielle Nutzung erlaubt - und gibt es Schwellen nach Nutzerzahl, Umsatz oder Unternehmensgröße [3]?",
+    "Gibt es eine Nutzungsrichtlinie mit verbotenen Anwendungsfeldern, und passt mein Einsatz dazu [2]?",
+    "Welche Namensnennung wird verlangt, und wo muss sie stehen?",
+    "Darf ich Fine-Tunes und andere Abwandlungen verbreiten, und unter welchen Bedingungen?",
+    "Wie offen ist das Modell wirklich: Gewichte, Code, Trainingsdaten-Informationen - die OSAID-Checkliste hilft bei der Einordnung [1]."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer die Antworten beisammen hat, kann bewusst entscheiden: ein maximal freies Modell nach OSAID-Maßstab, ein praktisch freies Modell mit Schwellen oder bewusst ein proprietäres API-Angebot. Alle drei Wege sind legitim - problematisch ist nur, sie zu verwechseln. Für den Betrieb auf eigener Hardware hilft der Überblick über [lokale Modelle](/lokale-modelle), für die Bewertung konkreter Veröffentlichungen unsere Analysen zu [Muse Spark Open](/muse-spark-open-offene-gewichte-analyse) und [Beam 501B Reflection](/beam-501b-reflection-offenes-modell-analyse)."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 der Volltext der Open Source AI Definition 1.0 auf opensource.org, die Stellungnahme der OSI zur Llama-Lizenz, die Llama 3.1 Community License auf llama.com, die Lizenz-Dokumentation von Hugging Face sowie die Artikel 2 und 53 der Verordnung (EU) 2024/1689 im Amtsblatt (eur-lex.europa.eu); die Artikel 2 Absatz 12 und 53 Absatz 2 wurden zusätzlich im englischsprachigen Volltext auf artificialintelligenceact.eu gegengeprüft. Die Einordnung in drei Lizenzgruppen ist eine redaktionelle Vereinfachung.",
+ "limitations": [
+  "Dieser Artikel ist keine Rechtsberatung; verbindlich ist allein der jeweilige Lizenz- und Gesetzestext.",
+  "Die Beispiele (Llama, Muse Spark Open, MiniMax) stehen stellvertretend und erfassen nicht alle am Markt üblichen Bedingungen.",
+  "Die Auslegung der EU-KI-Verordnung entwickelt sich durch Praxis, Leitlinien und Rechtsprechung weiter; der beschriebene Stand ist der 20. Oktober 2026."
+ ],
+ "faq": [
+  {
+   "q": "Sind offene Gewichte dasselbe wie Open Source?",
+   "a": "Nein. Offene Gewichte heißt nur, dass die trainierten Parameter herunterladbar sind. Open Source verlangt zusätzlich eine Lizenz ohne Diskriminierung von Personen, Gruppen oder Anwendungsfeldern; für KI-Systeme präzisiert das die Open Source AI Definition der OSI, die auch Angaben zu Trainingsdaten und Code fordert."
+  },
+  {
+   "q": "Ist Llama Open Source?",
+   "a": "Nach Auffassung der Open Source Initiative nicht: Die Llama-Lizenz beschränkt die kommerzielle Nutzung ab 700 Millionen monatlich aktiven Nutzern und enthält eine Nutzungsrichtlinie mit Verbotsliste. Das widerspricht der Open Source Definition. Praktisch nutzbar ist das Modell für die meisten Anwendungen trotzdem - eben unter den Bedingungen der Community License."
+  },
+  {
+   "q": "Was bedeutet 'freie und quelloffene Lizenz' im EU AI Act?",
+   "a": "KI-Systeme unter solchen Lizenzen sind weitgehend von den Pflichten der Verordnung ausgenommen (Artikel 2 Absatz 12), mit Ausnahmen für Hochrisiko- und verbotene Systeme. Bei allgemeinen KI-Modellen entfallen nur zwei Dokumentationspflichten (Artikel 53 Absatz 2), und Modelle mit systemischem Risiko sind von der Ausnahme ganz ausgeschlossen."
+  },
+  {
+   "q": "Woran erkenne ich eine OSI-anerkannte Lizenz bei einem Modell?",
+   "a": "Am Lizenznamen auf der Modellseite: Apache-2.0 und MIT sind klassische OSI-anerkannte Lizenzen; die Hugging-Face-Dokumentation listet die üblichen Kennungen. Bei speziellen Modelllizenzen (Namen des Herstellers, Zusätze wie 'Community' oder 'Responsible') lohnt immer der Blick in den Volltext."
+  }
+ ],
+ "related": [
+  "muse-spark-open-offene-gewichte-analyse",
+  "minimax-m3-1-flash-analyse",
+  "beam-501b-reflection-offenes-modell-analyse"
+ ],
+ "sources": [
+  {
+   "title": "The Open Source AI Definition - 1.0",
+   "publisher": "Open Source Initiative",
+   "url": "https://opensource.org/ai/open-source-ai-definition",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Meta's LLaMa license is not Open Source",
+   "publisher": "Open Source Initiative (Blog)",
+   "url": "https://blog.opensource.org/metas-llama-2-license-is-not-open-source/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Llama 3.1 Community License Agreement",
+   "publisher": "Meta",
+   "url": "https://www.llama.com/llama3_1/license/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Verordnung (EU) 2024/1689 (Verordnung über künstliche Intelligenz), Amtsblatt L, 12.7.2024",
+   "publisher": "EUR-Lex",
+   "url": "https://eur-lex.europa.eu/legal-content/DE/TXT/HTML/?uri=OJ:L_202401689",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Licenses - Hub documentation",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/docs/hub/repositories-licenses",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "EU AI Act, Article 53: Obligations of providers of general-purpose AI models",
+   "publisher": "artificialintelligenceact.eu",
+   "url": "https://artificialintelligenceact.eu/article/53/",
+   "accessed": "2026-10-20"
+  }
+ ]
+}
