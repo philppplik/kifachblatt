@@ -1097,6 +1097,667 @@
           }
         ]
       }
+    },
+    {
+      "id": "kreative",
+      "name": "Kreative: Bild-, Audio- und Video-KI",
+      "frage": "Ich gestalte Medien und will generative KI sauber und rechtssicher einsetzen.",
+      "intro": "Für Designer, Mediengestalter und Content-Produzenten: Du lernst, wie Bild-, Audio- und Video-Modelle arbeiten, wie du sie gezielt steuerst und wie du Ergebnisse prüfst, kennzeichnest und veröffentlichst.",
+      "level": "Einsteiger bis Praktiker",
+      "zielgruppe": "Designer, Mediengestalter, Content-Produzenten",
+      "dauer": "ca. 2 Stunden",
+      "voraussetzungen": "keine",
+      "lernziel": "Generative Medienmodelle verstehen, sauber prompten, rechtlich und kennzeichnungskorrekt veröffentlichen.",
+      "steps": [
+        {
+          "slug": "wie-bildmodelle-lernen",
+          "warum": "Das Fundament: Diffusion, Latentraum und Bild-Tokenizer - danach verstehst du, warum die Werkzeuge sich so verhalten, wie sie es tun."
+        },
+        {
+          "slug": "bild-ki-praxis",
+          "warum": "Das Handwerk: Prompts, Referenzen, Workflows und die Prüfliste für typische Bildfehler."
+        },
+        {
+          "slug": "audio-sprach-ki",
+          "warum": "Transkription, Vertonung und der heikle Sonderfall Stimmklon: was geht, was nur mit Einwilligung."
+        },
+        {
+          "slug": "video-ki",
+          "warum": "Der aktuelle Werkzeugmarkt nach dem Sora-Aus und der Shot-Workflow, mit dem aus Einzelclips ein Film wird."
+        },
+        {
+          "slug": "urheberrecht-ki-medien",
+          "warum": "Kennzeichnung, Urheberrecht und AI Act für KI-Medien: die Rechtsseite des Veröffentlichens (mit Stand-Datum, keine Rechtsberatung)."
+        },
+        {
+          "slug": "halluzinationen",
+          "warum": "Artefakte in Bildern sind das visuelle Gegenstück zu Halluzinationen bei Text: plausibel, aber falsch - und darum prüfbar."
+        }
+      ],
+      "terms": [
+        "Diffusionsmodell",
+        "Text-to-Image-Modell",
+        "Text-to-Video-Modell",
+        "Multimodal",
+        "Bild-Tokenizer",
+        "Text-to-Speech",
+        "Speech-to-Text"
+      ],
+      "check": {
+        "praxis": [
+          "Ordne fünf beschriebene Bild-Artefakte der richtigen Fehlerstelle zu (Hände, Text im Bild, Physik, Markenlogos, Stilkonflikt) und nenne je ein Gegenmittel aus der Prüfliste in \"Bild-KI in der Praxis\".",
+          "Ein Kollege will die Stimme einer bekannten Moderatorin für ein Erklärvideo klonen, \"die merkt das schon nicht\". Welche zwei Dinge sind vorher zwingend zu klären?",
+          "Du brauchst einen 60-sekündigen Werbeclip. Erkläre, warum du nicht einen Prompt für den ganzen Film schreibst, sondern in Shots denkst."
+        ],
+        "quiz": [
+          {
+            "q": "Ein Bildmodell rendert im Logo-Schriftzug zwei Buchstaben falsch. Was ist die wahrscheinlichste Ursache?",
+            "a": "Text ist hochfrequent und regelbasiert; die Bildstatistik trifft exakte Muster schlechter als grobe Formen (plus Decoder-Verlust im Latentraum)."
+          },
+          {
+            "q": "Was unterscheidet STT von TTS?",
+            "a": "STT wandelt gesprochene Sprache in Text um (erkennen), TTS erzeugt aus Text gesprochene Sprache (erzeugen)."
+          },
+          {
+            "q": "Welche Voraussetzung gilt vor jedem Stimmklon?",
+            "a": "Die dokumentierte Einwilligung der sprechenden Person; Anbieter verlangen zusätzlich Berechtigungsnachweise."
+          },
+          {
+            "q": "Nenne zwei derzeit führende Video-KI-Werkzeuge nach dem Sora-Aus (Stand Oktober 2026).",
+            "a": "Z. B. Google Veo 3.1, Runway Gen-4.5 oder Kling 3.0."
+          },
+          {
+            "q": "Welche zwei Kennzeichnungs-Ebenen gehören in jeden Veröffentlichungs-Workflow?",
+            "a": "Sichtbare Markierung für Leser (\"KI-generiert\") und maschinenlesbare Herkunftsnachweise (C2PA/Content Credentials)."
+          },
+          {
+            "q": "Warum sind Referenzbilder wichtiger als längere Prompts für konsistente Serien?",
+            "a": "Referenzen verankern Stil und Motiv direkt in der Bildstatistik; Prompt-Text gewichtet nur und verwässert mit jedem Baustein."
+          }
+        ]
+      }
+    },
+    {
+      "id": "hr-recruiting",
+      "name": "HR & Recruiting",
+      "frage": "Ich will KI in Personalprozessen einsetzen – ohne Diskriminierung und ohne Rechtsbruch.",
+      "level": "Entscheider / Praktiker",
+      "zeit": "ca. 90 Minuten",
+      "voraussetzung": "Keine.",
+      "lernziel": "KI in Recruiting und Personalentwicklung einsetzen, AI-Act-Hochrisiko-Einstufung und Diskriminierungsrisiken kennen.",
+      "intro": "Kaum ein Bereich berührt Grundrechte so direkt wie die Personalarbeit: KI im Recruiting ist im EU AI Act ausdrücklich als Hochrisiko eingestuft. Dieser Pfad zeigt, was die Werkzeuge können, wo die rechtlichen Linien laufen, wie du KI-geschriebene Bewerbungen einordnest und wie du die Belegschaft mitnimmst.",
+      "steps": [
+        {
+          "slug": "ki-recruiting",
+          "warum": "Werkzeugtypen, Bias-Forschung und die Hochrisiko-Einstufung im EU AI Act: der Überblick über Chancen und Fallstricke, mit sechs Praxisregeln."
+        },
+        {
+          "slug": "eu-ai-act",
+          "warum": "Der Rechtsrahmen im Detail: Risikoklassen, Pflichten für Anbieter und Anwender, Fristen – Personalauswahl ist der prominenteste Hochrisiko-Fall. (Artikel aus Paket 7, in Arbeit)"
+        },
+        {
+          "slug": "ki-bewerbungen",
+          "warum": "Die Gegenseite: Zwei von drei Bewerbungen entstehen mit KI-Hilfe. Warum Detektoren versagen und wie du deine Auswahlprozesse umbaust."
+        },
+        {
+          "slug": "mitarbeiter-mitnehmen",
+          "warum": "KI in HR-Prozessen braucht Akzeptanz: Schulung, Nutzungsrichtlinie und die Rolle des Betriebsrats. (Geteilt mit dem KMU-Pfad)"
+        },
+        {
+          "slug": "dsgvo-und-ki",
+          "warum": "Bewerberdaten sind personenbezogene Daten: Was in Prompts und Systeme darf, was nicht – und welche Verträge du brauchst. (Artikel aus Paket 7, in Arbeit)"
+        }
+      ],
+      "terms": [
+        "Sycophancy",
+        "Halluzination",
+        "Human-in-the-Loop",
+        "Alignment"
+      ],
+      "check": {
+        "aufgaben": [
+          {
+            "titel": "Drei Szenarien nach Risikoklasse einordnen",
+            "frage": "Ordne nach dem EU AI Act ein (Hochrisiko ja/nein): (a) Ein Werkzeug filtert eingehende Lebensläufe und erzeugt eine Rangliste der zehn besten Kandidaten. (b) Ein Werkzeug prüft deine Stellenanzeigen auf diskriminierende Formulierungen. (c) Ein System bewertet die schriftlichen Antworten von Bewerbenden in einem Online-Test und schlägt vor, wen du einlädst.",
+            "loesung": "(a) Hochrisiko: Auswahl und Rangfolge natürlicher Personen, Anhang III Punkt 4(a). (b) Kein Hochrisiko-System: Es bewertet Texte des Arbeitgebers, nicht Personen; die Einordnung des AI Act Service Desk nennt genau diesen Fall als außerhalb von Punkt 4(a). (c) Hochrisiko: Bewertung von Bewerberantworten mit materiellem Einfluss auf die Auswahl. Stand der Einordnung: Oktober 2026, keine Rechtsberatung."
+          }
+        ],
+        "quiz": [
+          {
+            "q": "Ab wann gelten die Hochrisiko-Pflichten des EU AI Act für Recruiting-Systeme?",
+            "a": "Nach der Änderung durch das Digital-Omnibus-Paket ab dem 2. Dezember 2027 (ursprünglich: 2. August 2026). DSGVO und AGG gelten unabhängig davon schon heute. Stand: Oktober 2026."
+          },
+          {
+            "q": "Was fand die Washington-Studie zur Lebenslauf-Bewertung durch Sprachmodelle?",
+            "a": "Drei getestete Modelle bevorzugten in über drei Millionen Vergleichen weiß assoziierte Namen in 85 % der Fälle; schwarz männlich gelesene Namen wurden nie gegenüber weiß männlich gelesenen bevorzugt. Die Verzerrungen zeigen sich auch in Kombinationen von Merkmalen (Intersektionalität)."
+          },
+          {
+            "q": "Warum sind KI-Text-Detektoren im Bewerbungsprozess problematisch?",
+            "a": "Sie markieren schlichte, vorhersehbare Sprache als KI-generiert – und trafen in einer Studie 61 % der Texte nicht-muttersprachlicher Schreiber fälschlich, während Muttersprachler fast fehlerfrei durchkamen. Ablehnungen auf dieser Basis benachteiligen systematisch Unschuldige."
+          },
+          {
+            "q": "Nenne zwei Prozess-Anpassungen, die besser wirken als Detektoren.",
+            "a": "Referenzaufgaben aus dem echten Job statt Hochglanz-Anschreiben, mündliche Vertiefung behaupteter Stationen im Gespräch – plus eine klare Ansage in der Ausschreibung, welche KI-Nutzung akzeptiert ist."
+          },
+          {
+            "q": "Was ist der Unterschied zwischen KI-Assistenz und KI-Bewertung im Recruiting?",
+            "a": "Assistenz (Anzeigen schreiben, Termine koordinieren, Fragen beantworten) bewertet keine Menschen und fällt nicht unter Anhang III. Bewertung (Filtern, Rangfolge, Testauswertung von Personen) ist Hochrisiko-KI mit entsprechenden Pflichten."
+          }
+        ]
+      }
+    },
+    {
+      "id": "recht-datenschutz",
+      "name": "Recht & Datenschutz: KI compliant nutzen",
+      "frage": "Ich will KI im Unternehmen einsetzen, ohne Datenschutz und Haftung aus dem Blick zu verlieren.",
+      "intro": "Für Datenschutzbeauftragte, Juristen, Compliance und Geschäftsführer. Du lernst die Grundpflichten aus DSGVO und KI-Verordnung, prüfst Anbieter systematisch und ordnest Dokumentationspflichten ein. Keine Rechtsberatung: Jede Seite nennt Quellen und ihren Stand.",
+      "zielgruppe": "Datenschutzbeauftragte, Juristen, Compliance, Geschäftsführer",
+      "level": "Entscheider/Praktiker",
+      "zeit": "ca. 2,5 Stunden",
+      "voraussetzungen": "Grundverständnis DSGVO hilfreich",
+      "lernziel": "DSGVO- und AI-Act-Grundpflichten kennen, Anbieter prüfen, Dokumentationspflichten einordnen.",
+      "steps": [
+        {
+          "slug": "dsgvo-und-ki",
+          "warum": "Die Basis: Wann Prompts und Trainingsdaten personenbezogene Daten enthalten und was die Aufsichtsbehörden dazu sagen."
+        },
+        {
+          "slug": "eu-ai-act",
+          "warum": "Das Risikomodell der KI-Verordnung: verboten, hochriskant, transparenzpflichtig - mit den Fristen, die jetzt gelten."
+        },
+        {
+          "slug": "anbieter-check",
+          "warum": "Vom Gesetz zum Einkauf: Auftragsverarbeitung, Datenflüsse und Zertifizierungen als Prüfliste für jeden KI-Anbieter."
+        },
+        {
+          "slug": "lokale-modelle",
+          "warum": "Die technische Ausweichroute: Wann ein Modell auf eigener Hardware Datenschutzprobleme schon am Ursprung löst."
+        },
+        {
+          "slug": "urheberrecht-ki-medien",
+          "warum": "Was bei KI-generierten Texten und Bildern zu beachten ist: Training, Ausgabe, Kennzeichnung."
+        },
+        {
+          "slug": "sicherheit-fuer-agenten-systeme",
+          "warum": "Zugriffsrechte als Haftungsfrage: Warum ein Agent mit weiten Rechten ein Compliance-Risiko ist."
+        },
+        {
+          "slug": "transparenz",
+          "warum": "Das Praxisbeispiel: Wie diese Redaktion selbst KI-Nutzung, Quellen und Verantwortung offenlegt."
+        }
+      ],
+      "terms": [
+        "DSGVO",
+        "EU AI Act",
+        "Auftragsverarbeitung",
+        "Urheberrecht",
+        "Lizenz (bei Modellen)",
+        "Offene Gewichte",
+        "Data Poisoning",
+        "Modell-Extraktion"
+      ],
+      "abschluss_check": {
+        "praxisfaelle": [
+          {
+            "fall": "Eine Kollegin fügt Kundennamen und Vertragsdaten in die US-Cloud-API eines KI-Anbieters ein. Was prüfst du zuerst?",
+            "einordnung": "Personenbezogene Daten in einem Drittland-Transfer: Rechtsgrundlage (Art. 6 DSGVO), Auftragsverarbeitungsvertrag (Art. 28) und das EU-US Data Privacy Framework mit dem laufenden Rechtsstreit prüfen. Siehe /dsgvo-und-ki und /anbieter-check."
+          },
+          {
+            "fall": "Der Vertrieb will ein KI-Tool einsetzen, das Gesprächsmitschnitte zusammenfasst und Stimmungen bewertet. Welche KI-Verordnungspunkte fallen an?",
+            "einordnung": "Emotionserkennung am Arbeitsplatz ist nach Art. 5 verboten (mit engen Ausnahmen); reine Zusammenfassung wäre zulässig, aber transparenz- und datenschutzpflichtig. Siehe /eu-ai-act."
+          },
+          {
+            "fall": "Ein Mitarbeiter erstellt mit Bild-KI Werbemotive im Stil einer bekannten Marke. Welche Risiken bestehen?",
+            "einordnung": "Stil- und Werknähe kann Urheber- und Markenrechte berühren; Ausgaben vor Veröffentlichung prüfen, geschützte Logos nicht ohne Erlaubnis. Siehe /urheberrecht-ki-medien."
+          },
+          {
+            "fall": "Ein Agent-System soll eigenständig E-Mails beantworten und Termine buchen. Was ist aus Compliance-Sicht zu regeln?",
+            "einordnung": "Zugriffsrechte minimal fassen, Aktionen protokollieren, menschliche Freigabe für Versand festlegen - Zugriffsrechte sind eine Haftungsfrage. Siehe /sicherheit-fuer-agenten-systeme."
+          },
+          {
+            "fall": "Die GF fragt, ob ein lokales Modell die Datenschutzprüfung überflüssig macht. Was antwortest du?",
+            "einordnung": "Nein, aber es vereinfacht sie: Keine Drittland-Übertragung und kein Auftragsverarbeiter beim Betrieb, trotzdem bleiben Rechtsgrundlage, Löschkonzepte und Dokumentation nötig. Siehe /lokale-modelle und /dsgvo-und-ki."
+          }
+        ],
+        "quiz": [
+          {
+            "frage": "Seit wann gelten die zentralen Transparenzpflichten (Art. 50) der KI-Verordnung?",
+            "antwort": "Seit dem 2. August 2026 (mit Übergang für Bestandssysteme bis 2. Dezember 2026).",
+            "quelle": "/eu-ai-act"
+          },
+          {
+            "frage": "Welcher Vertrag ist Pflicht, wenn ein KI-Anbieter personenbezogene Daten für dein Unternehmen verarbeitet?",
+            "antwort": "Ein Auftragsverarbeitungsvertrag nach Art. 28 DSGVO.",
+            "quelle": "/dsgvo-und-ki"
+          },
+          {
+            "frage": "Was erlaubt § 44b UrhG - und unter welcher Bedingung?",
+            "antwort": "Text und Data Mining, also Vervielfältigungen für Analysen wie KI-Training - solange Rechteinhaber nicht wirksam widersprochen haben (Opt-out).",
+            "quelle": "/urheberrecht-ki-medien"
+          },
+          {
+            "frage": "Nenne drei Punkte des Anbieter-Checks vor dem KI-Einkauf.",
+            "antwort": "Auftragsverarbeitung und Datenflüsse (wohin gehen die Daten, wird trainiert?), Zertifizierungen (z. B. C5), Drittland-Transfer und Modell-/Exit-Fragen.",
+            "quelle": "/anbieter-check"
+          },
+          {
+            "frage": "Ab wann gelten die Hochrisiko-Anforderungen für Kreditscoring und Versicherungspricing (Anhang III) nach dem KI-Omnibus?",
+            "antwort": "Ab dem 2. Dezember 2027.",
+            "quelle": "/eu-ai-act"
+          },
+          {
+            "frage": "Warum ist die Kennzeichnung KI-generierter Inhalte auch außerhalb gesetzlicher Pflichten sinnvoll?",
+            "antwort": "Sie schafft Vertrauen und Transparenz gegenüber Lesern und Kunden - und ist ab August 2026 für viele synthetische Inhalte ohnehin Pflicht (Art. 50).",
+            "quelle": "/eu-ai-act"
+          }
+        ]
+      }
+    },
+    {
+      "id": "finanzen-controlling",
+      "name": "Finanzen & Controlling: KI in Zahlenprozessen",
+      "frage": "Ich will KI für Belege, Auswertungen und Prognosen nutzen - ohne Fehlern und Prüfungsrisiken.",
+      "intro": "Für Controller, Buchhaltung und Finanzverantwortliche. Du lernst, KI für Dokumenten- und Datenanalyse einzusetzen, die Rechengrenzen von Sprachmodellen zu respektieren und die Prüf- und Compliance-Anforderungen zu erfüllen. Keine Anlageberatung, keine Produktempfehlung.",
+      "zielgruppe": "Controller, Buchhaltung, Finanzverantwortliche",
+      "level": "Praktiker/Entscheider",
+      "zeit": "ca. 2 Stunden",
+      "voraussetzungen": "kaufmännische Grundkenntnisse",
+      "lernziel": "KI für Dokumenten- und Datenanalyse einsetzen, Rechengrenzen von LLMs kennen, Prüf- und Compliance-Anforderungen erfüllen.",
+      "steps": [
+        {
+          "slug": "tokens-und-kosten",
+          "warum": "Die Grundeinheit: Warum Modelle in Tokens rechnen und was das für Kontextlänge und Kosten großer Belegstapel bedeutet."
+        },
+        {
+          "slug": "dokumentenanalyse-ki",
+          "warum": "Der Kernfall: Rechnungen, Verträge und Berichte mit KI lesen - inklusive Grenzen bei Tabellen und Prüfstrategie."
+        },
+        {
+          "slug": "rechnen-mit-llms",
+          "warum": "Die wichtigste Grenze: Sprachmodelle rechnen schlecht - wann Werkzeuge und Verifikation Pflicht sind."
+        },
+        {
+          "slug": "halluzinationen",
+          "warum": "Warum ein Modell überzeugend falsche Zahlen nennt und welche Arbeitsweisen das abfangen."
+        },
+        {
+          "slug": "marktdaten-sentiment-ki",
+          "warum": "Was KI-Auswertungen von Markt- und Stimmungsdaten leisten - und wo die Methodik endet."
+        },
+        {
+          "slug": "ki-compliance-finanzen",
+          "warum": "Der Pflichtenrahmen: DORA, KI-Verordnung und GoBD als Schichten - plus ein Betriebsmodell, das trägt."
+        }
+      ],
+      "terms": [
+        "Konfidenzintervall",
+        "Grounding",
+        "Halluzination",
+        "Temperatur"
+      ],
+      "abschluss_check": {
+        "praxisfaelle": [
+          {
+            "fall": "Die KI fasst eine Gewinn- und Verlustrechnung zusammen und nennt ein Umsatzwachstum von 23 Prozent. Die Quelldatei zeigt 17 Prozent. Was ist passiert und was tust du?",
+            "einordnung": "Klassische Zahlenhalluzination: Das Modell hat plausibel klingend ergänzt statt gelesen. Regel: Jede Zahl aus der Ausgabe gegen das Quelldokument prüfen, Berechnungen nie dem Modell überlassen. Siehe /halluzinationen und /dokumentenanalyse-ki."
+          },
+          {
+            "fall": "Ein Kollege lässt das Modell 47 Rechnungspositionen summieren und übernimmt das Ergebnis. Welches Risiko trägt das?",
+            "einordnung": "LLMs sind bei mehrstelliger Arithmetik unzuverlässig; Studien zeigen hohe Fehlerraten trotz hoher Selbstsicherheit. Summen gehören in ein Werkzeug (Tabellenkalkulation, Code), das Modell liest nur. Siehe /rechnen-mit-llms."
+          },
+          {
+            "fall": "Ein KI-Sentiment-Report empfiehlt, wegen negativer Schlagzeilen einen Lieferanten zu wechseln. Wie bewertest du das?",
+            "einordnung": "Sentiment-Modelle liefern Stimmungsindikatoren, keine Entscheidungsgrundlagen; Stichprobe, Zeitraum und Verzerrungen der Quellen prüfen und den Befund als eines von mehreren Signalen behandeln. Siehe /marktdaten-sentiment-ki."
+          }
+        ],
+        "quiz": [
+          {
+            "frage": "Warum darf ein LLM im Controlling keine Summen bilden?",
+            "antwort": "Sprachmodelle erzeugen Text statistisch und rechnen nicht verlässlich; Fehler bei mehrstelliger Arithmetik sind dokumentiert. Berechnungen gehören in prüfbare Werkzeuge.",
+            "quelle": "/rechnen-mit-llms"
+          },
+          {
+            "frage": "Was verlangt DORA von einem Finanzunternehmen, das KI einsetzt?",
+            "antwort": "KI-Systeme als IKT-Assets im Register führen, Risikomanagement und Tests, Vorfälle klassifizieren und melden, Drittanbieter vertraglich regeln - gilt seit dem 17. Januar 2025.",
+            "quelle": "/ki-compliance-finanzen"
+          },
+          {
+            "frage": "Welche GoBD-Grundsätze gelten, wenn KI Belegdaten extrahiert?",
+            "antwort": "Nachvollziehbarkeit: Der Originalbeleg bleibt unverändert maßgeblich, das Verfahren ist dokumentiert, jede Buchung ist zum Beleg rückverfolgbar - die KI-Extraktion ist ein protokollierter Verarbeitungsschritt.",
+            "quelle": "/dokumentenanalyse-ki"
+          },
+          {
+            "frage": "Was bedeutet Halluzination bei Zahlen - und welches Gegenmittel hilft am meisten?",
+            "antwort": "Das Modell nennt plausibel klingende, aber falsche Werte. Am wirksamsten: Grounding (Quelltext im Kontext), Zahl-für-Zahl-Abgleich gegen das Original und niedrige Temperatur.",
+            "quelle": "/halluzinationen"
+          },
+          {
+            "frage": "Ab wann wird Kreditscoring per KI hochriskant-reguliert - und von wem überwacht?",
+            "antwort": "Ab dem 2. Dezember 2027 (Anhang III nach dem KI-Omnibus); im Finanzsektor ist die BaFin Marktüberwachungsbehörde.",
+            "quelle": "/ki-compliance-finanzen"
+          },
+          {
+            "frage": "Warum sind Token-Kosten bei der Belegverarbeitung eine Planungsgröße?",
+            "antwort": "Kontextlänge und Preis hängen an Tokens: Große Dokumentenstapel erzeugen erhebliche Eingabemengen; wer Tokens schätzt, kann Kosten und sinnvolle Stapelgrößen vorab kalkulieren.",
+            "quelle": "/tokens-und-kosten"
+          }
+        ]
+      }
+    },
+    {
+      "id": "data-ml",
+      "name": "Data & ML: von null zum ersten eigenen Modell",
+      "level": "Praktiker",
+      "zielgruppe": "Quereinsteiger in ML, Data-Analysten, Studierende",
+      "zeit": "ca. 3 Stunden",
+      "voraussetzungen": "Grundkenntnisse Programmieren (Python hilfreich)",
+      "frage": "Ich will verstehen, wie Modelle lernen, und selbst einen ersten Adapter trainieren.",
+      "intro": "Von den Grundbegriffen des maschinellen Lernens über Embeddings bis zum ersten eigenen LoRA-Fine-Tuning: mit eigener Rechnung, echten Werkzeugen und einer Prüfmenge am Ende.",
+      "lernziel": "ML-Grundbegriffe sicher anwenden, Embeddings verstehen, ein erstes LoRA-Fine-Tuning nachvollziehen.",
+      "steps": [
+        {
+          "slug": "wie-ein-sprachmodell-lernt",
+          "warum": "Die vier Lernstufen eines Sprachmodells: Von Pretraining bis RLVR, damit die Begriffe der Modellkarten kein Neuschnee sind."
+        },
+        {
+          "slug": "ml-grundbegriffe",
+          "warum": "Daten, Overfitting, Generalisierung: das Handwerkszeug, um jede Lernkurve und Benchmark-Zahl richtig zu lesen."
+        },
+        {
+          "slug": "embeddings-verstehen",
+          "warum": "Bedeutung wird Geometrie: Wie Vektoren Texte auffindbar machen und woran man Embedding-Modelle erkennt."
+        },
+        {
+          "slug": "llm-quantisierung-verfahren-grundlagen",
+          "warum": "Wie große Modelle auf kleinere Hardware passen: die Zahlen hinter 4 Bit, bevor du selbst trainierst."
+        },
+        {
+          "slug": "fine-tuning-wann",
+          "warum": "Die Entscheidung vor dem Training: Prompting, RAG oder Fine-Tuning, mit Kostenrechnung und Entscheidungsregel."
+        },
+        {
+          "slug": "lora-fine-tuning-anleitung",
+          "warum": "Der praktische Kern: LoRA verstehen, die Parameter selbst nachrechnen und den ersten Adapter mit PEFT und TRL trainieren."
+        },
+        {
+          "slug": "evals-statt-bauchgefuehl",
+          "warum": "Der Abschluss jedes Trainings: eine eigene Prüfmenge entscheidet, ob der Adapter besser ist als das Basismodell."
+        }
+      ],
+      "terms": [
+        "LoRA",
+        "QLoRA",
+        "Adapter",
+        "Checkpoint",
+        "Overfitting"
+      ],
+      "check": {
+        "aufgaben": [
+          {
+            "frage": "Entscheidungsmatrix anwenden: Ein Team will, dass das Modell interne Abkürzungen und den Firmen-Tonfall sicher beherrscht. Prompting, RAG oder Fine-Tuning?",
+            "antwort": "Verhalten, kein Wissen: erst Prompting mit Beispielen ausschöpfen; wenn das Format und der Ton trotz guter Prompts instabil bleiben, ein kleines LoRA-Fine-Tuning. RAG löst dieses Problem nicht."
+          },
+          {
+            "frage": "Entscheidungsmatrix anwenden: Der Kundensupport soll Antworten aus 4.000 Handbuchseiten geben, die monatlich aktualisiert werden. Prompting, RAG oder Fine-Tuning?",
+            "antwort": "RAG: großes, veränderliches, belegpflichtiges Wissen gehört in den Kontext, nicht in die Gewichte."
+          },
+          {
+            "frage": "Entscheidungsmatrix anwenden: Das Modell soll Antworten immer als valides JSON in einem festen Schema liefern, Prompts mit Beispielen helfen nur teilweise. Prompting, RAG oder Fine-Tuning?",
+            "antwort": "Fine-Tuning: ein festes Ausgabeformat ist der Lehrbuchfall; vorher trotzdem eine Prüfmenge bauen und gegen das Basismodell messen."
+          },
+          {
+            "frage": "Entscheidungsmatrix anwenden: Ein Anwalt möchte, dass das Modell die aktuelle Rechtsprechung seit diesem Quartal kennt. Prompting, RAG oder Fine-Tuning?",
+            "antwort": "RAG beziehungsweise Werkzeug-Anbindung: aktuelles Wissen einzutrainieren friert es ein und lässt keine Quellenangabe zu."
+          }
+        ],
+        "quiz": [
+          {
+            "frage": "Der Trainingsfehler fällt weiter, der Validierungsfehler steigt. Was liegt vor?",
+            "antwort": "Overfitting: Das Modell lernt die Trainingsdaten auswendig statt zu generalisieren."
+          },
+          {
+            "frage": "Wofür sind Testdaten reserviert?",
+            "antwort": "Für die einmalige, ehrliche Abschlussmessung. Wer sie zum Nachjustieren nutzt, macht sie zu Validierungsdaten."
+          },
+          {
+            "frage": "Was misst die Kosinus-Ähnlichkeit?",
+            "antwort": "Den Winkel zwischen zwei Vektoren; Werte nahe 1 bedeuten gleiche Bedeutungsrichtung, unabhängig von der Vektorlänge."
+          },
+          {
+            "frage": "Warum braucht man bei Millionen von Embeddings approximative Suche?",
+            "antwort": "Die exakte Suche vergleicht jede Anfrage mit jedem Vektor und wird zu langsam; Indexe wie HNSW tauschen einen kleinen Recall-Verlust gegen logarithmisch wachsende Suchzeit."
+          },
+          {
+            "frage": "Wie viele Parameter trainiert LoRA mit r=16 auf den q- und v-Projektionen eines 8B-Modells mit 32 Schichten ungefähr?",
+            "antwort": "Rund 6,8 Millionen, etwa 0,085 Prozent der 8 Milliarden Gesamtparameter (Herleitung im LoRA-Artikel)."
+          },
+          {
+            "frage": "Was ist der Unterschied zwischen LoRA und QLoRA?",
+            "antwort": "QLoRA legt das Basismodell zusätzlich in 4 Bit ab und trainiert den Adapter darüber; das senkt den Speicherbedarf so weit, dass 65-Milliarden-Modelle auf einer 48-GB-GPU trainierbar waren."
+          }
+        ]
+      }
+    },
+    {
+      "id": "hosting",
+      "name": "IT-Admin & DevOps: LLMs selbst hosten",
+      "level": "Fortgeschritten",
+      "zielgruppe": "Admins, DevOps, IT-Leiter",
+      "zeit": "ca. 3 Stunden",
+      "voraussetzungen": "Linux-/Server-Grundlagen, GPU-Basiswissen hilfreich",
+      "frage": "Ich will LLM-Inferenz im eigenen Betrieb: Server, Durchsatz, Überwachung, Absicherung.",
+      "intro": "Vom lokalen Modell zum belastbaren Dienst: wie Inferenz-Server Durchsatz gewinnen, welche Kennzahlen den Betrieb tragen, wie man überwacht und absichert.",
+      "lernziel": "LLM-Inferenz im eigenen Betrieb: Server, Durchsatz, Überwachung, Absicherung.",
+      "steps": [
+        {
+          "slug": "lokale-modelle",
+          "warum": "Die Grundfrage: Wann sich der eigene Rechner gegenüber der API lohnt; Datenschutz und Kontrolle gegen Leistung abwägen."
+        },
+        {
+          "slug": "llm-quantisierung-verfahren-grundlagen",
+          "warum": "Das Speicher-Vokabular des Betriebs: Was 8, 4 oder 1,58 Bit für Hardware und Qualität bedeuten."
+        },
+        {
+          "slug": "inferenz-und-kosten-verstehen",
+          "warum": "Prompt-Phase, Generierungsphase, KV-Cache: die Mechanik, an der später Durchsatz und Kapazität hängen."
+        },
+        {
+          "slug": "inferenz-server-betrieb",
+          "warum": "Der Kern: Continuous Batching, PagedAttention, TTFT/TPOT und eine Kapazitätsrechnung für die eigene GPU-Ausstattung."
+        },
+        {
+          "slug": "llm-betrieb-monitoring",
+          "warum": "Der Dienst ist live: Metriken aus vLLM, Rate-Limits lesen, Token-Buchhaltung und Alarme, die nicht nerven."
+        },
+        {
+          "slug": "ki-dienste-absichern",
+          "warum": "Vier Fronten: Zugriff, Datenflüsse, Lieferkette und Updates, geordnet nach den OWASP Top 10 für LLM-Anwendungen."
+        },
+        {
+          "slug": "nemotron-3-5-super-lightning-analyse",
+          "warum": "Das Praxisbeispiel: eine echte Analyse eines Modells, das genau für diesen effizienten Betrieb gebaut wird."
+        }
+      ],
+      "terms": [
+        "Continuous Batching",
+        "PagedAttention",
+        "Inferenz-Server",
+        "Speicherbandbreite-Grenze",
+        "Time to First Token",
+        "Time per Output Token"
+      ],
+      "check": {
+        "aufgaben": [
+          {
+            "frage": "Kapazitätsrechnung: Ein 70B-Modell in FP16 (140 GB Gewichte) soll auf vier 80-GB-GPUs laufen. Der KV-Cache braucht 320 KiB pro Token und Anfrage. Wie viele Unterhaltungen mit je 8.000 Token Kontext passen ungefähr gleichzeitig auf den Server, wenn nach Gewichten und Reserve rund 150 GB frei bleiben?",
+            "antwort": "150 GB geteilt durch 320 KiB ergeben rund 470.000 Token Spielraum; geteilt durch 8.000 Token pro Unterhaltung bleiben etwa 58 gleichzeitige Unterhaltungen. (Eigene Rechnung, Herleitung im Artikel Inferenz-Server im Betrieb.)"
+          },
+          {
+            "frage": "Die Warteschlange wächst seit einer Stunde, die KV-Cache-Auslastung liegt bei 98 Prozent. Was sind die drei sinnvollen Hebel?",
+            "antwort": "Mehr Kapazität (GPU), kürzere Kontexte oder stärkere Quantisierung; kurzfristig hilft nur Drosseln oder Ablehnen weiterer Anfragen."
+          }
+        ],
+        "quiz": [
+          {
+            "frage": "Was ist der Unterschied zwischen TTFT und TPOT?",
+            "antwort": "TTFT ist die Wartezeit bis zum ersten Token (Prompt-Phase), TPOT das Tempo pro Ausgabetoken danach (Generierungsphase)."
+          },
+          {
+            "frage": "Welches Problem löst Continuous Batching?",
+            "antwort": "Beim klassischen Batch warten kurze Anfragen auf die längste und neue auf den kompletten Durchlauf; Continuous Batching lässt fertige Anfragen sofort aussteigen und neue einsteigen."
+          },
+          {
+            "frage": "Was verwaltet PagedAttention und nach welchem Vorbild?",
+            "antwort": "Den KV-Cache, nach dem Vorbild virtueller Speicherseiten in Betriebssystemen; das senkt Verschnitt und erhöht den Durchsatz."
+          },
+          {
+            "frage": "Ein API-Aufruf antwortet mit HTTP 429. Was ist die richtige Reaktion im eigenen Code?",
+            "antwort": "Warteschlange und Wiederholung mit wachsenden Wartezeiten (Backoff); parallel prüfen, ob die Anfragen- oder die Token-Grenze getroffen ist, bei Token-Reserve Aufgaben bündeln."
+          },
+          {
+            "frage": "Warum ist Pickle als Modellformat ein Sicherheitsrisiko, und was ist die Alternative?",
+            "antwort": "Pickle kann beim Entpacken beliebigen Code ausführen; Safetensors ist ein reines Datenformat ohne Ausführungsmöglichkeit, ergänzt um Signaturprüfung der Quelle."
+          },
+          {
+            "frage": "Welche vier Funktionen bilden den Kern des NIST AI Risk Management Framework?",
+            "antwort": "Govern, Map, Measure, Manage."
+          }
+        ]
+      }
+    },
+    {
+      "id": "ki-kosten-und-roi",
+      "name": "KI-Kosten & ROI: rechnen statt schätzen",
+      "frage": "Ich will wissen, was KI wirklich kostet und ob sich das rechnet.",
+      "intro": "Das Rechenwerkzeug für Entscheider: API-Preise lesen, Gesamtkosten erfassen, Kosten pro gelöster Aufgabe normieren und den Betrieb überwachen. Grundverständnis von Tokens ist hilfreich, aber nicht nötig.",
+      "level": "Entscheider",
+      "zeit": "~2 Stunden",
+      "zielgruppe": "Entscheider, Controller, IT-Leiter",
+      "lernziel": "KI-Kosten vollständig erfassen und steuern: API-Preise, TCO, Kosten pro gelöster Aufgabe, Budget-Alarme.",
+      "voraussetzungen": "keine, Grundverständnis Tokens hilfreich",
+      "steps": [
+        {
+          "slug": "tokens-und-kosten",
+          "warum": "Die Grundeinheit jeder KI-Rechnung: was Tokens sind und warum Ein- und Ausgabe unterschiedlich teuer sind."
+        },
+        {
+          "slug": "inferenz-und-kosten-verstehen",
+          "warum": "Warum jede Antwort Rechenzeit frisst und was das für Preise und Wartezeiten bedeutet."
+        },
+        {
+          "slug": "api-preise-vergleichen",
+          "warum": "Preislisten richtig lesen: Blended Price, Kontextlängen-Staffeln und die Posten, die nicht im großen Preis stehen."
+        },
+        {
+          "slug": "build-vs-buy",
+          "warum": "Die Weiche vor jeder Kostenrechnung: selbst bauen, zukaufen oder mischen - inklusive Total Cost of Ownership."
+        },
+        {
+          "slug": "ki-kosten-roi",
+          "warum": "Von den Stückkosten zum Business Case: Zeitgewinn und Personalkosten gegen die KI-Rechnung stellen."
+        },
+        {
+          "slug": "kosten-pro-aufgabe-messen",
+          "warum": "Die Kernkennzahl dieses Pfads: in vier Schritten messen, was eine gelöste Aufgabe wirklich kostet."
+        },
+        {
+          "slug": "llm-betrieb-monitoring",
+          "warum": "Damit die Rechnung stimmt bleibt: Budgets, Alarme und Qualität im laufenden Betrieb überwachen."
+        }
+      ],
+      "terms": [
+        "Blended Price",
+        "Grenzkosten",
+        "Kosten pro gelöster Aufgabe"
+      ],
+      "abschluss_check": {
+        "beschreibung": "Übung mit Musterlösung: Normieren Sie drei Angebote auf die Kosten pro gelöster Aufgabe. Annahmen für alle drei: eine Aufgabe ist ein Support-Ticket mit 3.000 Eingabetoken und 700 Ausgabetoken pro Versuch; Standardpreise; Fehlversuche werden wiederholt.",
+        "uebung": {
+          "angebote": [
+            {
+              "name": "Angebot A",
+              "preis_eingabe": "0,20 $ je Million Token",
+              "preis_ausgabe": "1,20 $ je Million Token",
+              "erfolgsquote": "55 %"
+            },
+            {
+              "name": "Angebot B",
+              "preis_eingabe": "2 $ je Million Token",
+              "preis_ausgabe": "10 $ je Million Token",
+              "erfolgsquote": "80 %"
+            },
+            {
+              "name": "Angebot C",
+              "preis_eingabe": "5 $ je Million Token",
+              "preis_ausgabe": "25 $ je Million Token",
+              "erfolgsquote": "90 %"
+            }
+          ],
+          "frage": "Welches Angebot kostet pro gelöster Aufgabe am wenigsten, und was kostet der Qualitätsaufschlag von B auf C?",
+          "musterloesung": [
+            "Schritt 1 - Kosten pro Versuch: A = 3.000 × 0,20 $/Mio + 700 × 1,20 $/Mio = 0,0014 $. B = 0,0130 $. C = 0,0325 $.",
+            "Schritt 2 - Kosten pro gelöster Aufgabe = Kosten pro Versuch geteilt durch Erfolgsquote: A = 0,0014 $ / 0,55 = 0,0025 $. B = 0,0130 $ / 0,80 = 0,0163 $. C = 0,0325 $ / 0,90 = 0,0361 $.",
+            "Ergebnis: A ist pro gelöster Aufgabe am billigsten, aber fast jedes zweite Ticket schlägt fehl. Der Wechsel von B auf C kostet rund 0,0198 $ mehr pro gelöster Aufgabe und kauft zehn Prozentpunkte Erfolgsquote (Grenzkosten der Qualität). Welcher Punkt richtig ist, hängt davon ab, was ein Fehlversuch im Betrieb kostet."
+          ]
+        },
+        "quiz": [
+          {
+            "frage": "Was ist der Blended Price?",
+            "optionen": [
+              "Der Durchschnitt aller Modellpreise eines Anbieters",
+              "Ein Mischpreis je Million Token aus einem festen Verhältnis von Ein- und Ausgabe, meist 3:1",
+              "Der Preis bei gemischtem Text und Bild",
+              "Der mittlere Preis zwischen Mindest- und Höchststaffel"
+            ],
+            "antwort": 1,
+            "erklaerung": "Der Blended Price macht Preislisten vergleichbar, weil er Ein- und Ausgabepreis nach einem realistischen Nutzungsmix gewichtet."
+          },
+          {
+            "frage": "Warum ist der Listenpreis je Token kein guter Modellvergleich?",
+            "optionen": [
+              "Weil Preise in Dollar nicht mit Euro vergleichbar sind",
+              "Weil Erfolgsquote und Tokenverbrauch (Denk-Token, Werkzeuge) die wahren Kosten erst bestimmen",
+              "Weil alle Anbieter gleiche Preise haben",
+              "Weil Token je nach Währung verschieden lang sind"
+            ],
+            "antwort": 1,
+            "erklaerung": "Ein teureres Modell, das seltener scheitert und weniger nachdenkt, kann pro gelöster Aufgabe billiger sein."
+          },
+          {
+            "frage": "Wie lautet die Formel für die Kosten pro gelöster Aufgabe?",
+            "optionen": [
+              "Tokenpreis mal Kontextlänge",
+              "Kosten pro Versuch geteilt durch Erfolgsquote",
+              "Monatsgebühr geteilt durch Nutzerzahl",
+              "Eingabetoken mal Ausgabetoken"
+            ],
+            "antwort": 1,
+            "erklaerung": "Gesamtkosten durch gelöste Aufgaben; pro Versuch gerechnet ist das Kosten je Versuch durch die Quote."
+          },
+          {
+            "frage": "Welcher Posten fehlt typischerweise im großen Listenpreis?",
+            "optionen": [
+              "Die Ausgabetoken",
+              "Zuschläge wie Datenresidenz, Such-Grounding und Cache-Schreiben",
+              "Die Umsatzsteuer",
+              "Der Modellname"
+            ],
+            "antwort": 1,
+            "erklaerung": "Nebenbedingungen wie Data Residency (+10 %), Grounding je 1.000 Anfragen und Cache-Write-Faktoren ändern die Rechnung spürbar."
+          },
+          {
+            "frage": "Was sind die Grenzkosten der Qualität?",
+            "optionen": [
+              "Die Kosten des letzten Tokens einer Antwort",
+              "Der Mehrpreis pro gelöster Aufgabe für die nächste Stufe Erfolgsquote",
+              "Die Kosten für die Qualitätsabteilung",
+              "Der Preis des teuersten Modells"
+            ],
+            "antwort": 1,
+            "erklaerung": "Grenzkosten zeigen, was zehn Prozentpunkte mehr Erfolgsquote konkret kosten - die eigentliche Entscheidungsgröße."
+          }
+        ]
+      }
     }
   ]
 }
