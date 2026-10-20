@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="de"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<script>document.documentElement.className="js";if(/\.html$/.test(location.pathname))history.replaceState(null,"",location.pathname.replace(/\.html$/,"")+location.search+location.hash)</script>
+<title>LLM-Kostenrechner: API-Preise von 25 Modellen vergleichen | KI Fachblatt</title>
+<meta name="description" content="Was kostet Ihr KI-Workload? API-Preise von OpenAI, Anthropic, Google, Mistral, DeepSeek und xAI im direkten Vergleich - interaktiv, mit Quellen und tagesaktuellem Stand. Kostenlos, ohne Anmeldung.">
+<link rel="canonical" href="https://kifachblatt.de/llm-kostenrechner">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<meta name="theme-color" content="#100f0d">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" href="/favicon.ico" sizes="48x48"><link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="alternate" type="application/rss+xml" title="KI Fachblatt" href="/feed.xml">
+<meta property="og:type" content="website"><meta property="og:site_name" content="KI Fachblatt"><meta property="og:locale" content="de_DE">
+<meta property="og:title" content="LLM-Kostenrechner: API-Preise von 25 Modellen vergleichen | KI Fachblatt"><meta property="og:description" content="API-Kosten Ihres Workloads über 25 Modelle von 6 Anbietern vergleichen. Interaktiv, quellenbasiert, kostenlos."><meta property="og:url" content="https://kifachblatt.de/llm-kostenrechner"><meta property="og:image" content="https://kifachblatt.de/assets/kifachblatt-og.png">
+<meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://kifachblatt.de/assets/kifachblatt-og.png">
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/assets/tools/llm-kostenrechner.css">
+<link rel="author" href="https://kifachblatt.de/redakteur/philipp-paulik"><link rel="stylesheet" href="/assets/monetization/consent.css"><script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebApplication","name":"LLM-Kostenrechner","url":"https://kifachblatt.de/llm-kostenrechner","applicationCategory":"DeveloperApplication","operatingSystem":"Beliebig (Webbrowser)","inLanguage":"de","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"description":"Interaktiver Vergleich der API-Preise von 25 LLM-Modellen (OpenAI, Anthropic, Google, Mistral, DeepSeek, xAI) für den eigenen Workload.","publisher":{"@id":"https://kifachblatt.de/#org"},"dateModified":"2026-10-20"}
+</script>
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Wie aktuell sind die Preise im LLM-Kostenrechner?","acceptedAnswer":{"@type":"Answer","text":"Alle Preise stammen aus den offiziellen Preislisten der Anbieter und werden redaktionell gepflegt. Unter dem Rechner steht zu jeder Quelle das Abrufdatum; die Anbieter-Seiten sind im Streitfall immer die verbindliche Referenz."}},
+{"@type":"Question","name":"Rechnet der Kostenrechner in Dollar oder Euro?","acceptedAnswer":{"@type":"Answer","text":"Die Anbieter berechnen in US-Dollar, daher ist USD die Grundwährung. Optional rechnet das Tool mit dem EZB-Referenzkurs in Euro um; der Kursstand wird angezeigt."}},
+{"@type":"Question","name":"Was bedeutet die Cache-Trefferquote?","acceptedAnswer":{"@type":"Answer","text":"Viele Anbieter berechnen wiederholte, gecachte Eingabe-Tokens deutlich günstiger. Wer z. B. bei RAG denselben Kontext oft sendet, kann einen Teil seiner Eingabe-Tokens als Cache-Hits ansetzen und so die realen Kosten besser abschätzen."}},
+{"@type":"Question","name":"Werden meine Eingaben irgendwo gespeichert oder übertragen?","acceptedAnswer":{"@type":"Answer","text":"Nein. Der Rechner läuft vollständig im Browser; es werden keine Nutzungsdaten an Server übertragen. Szenarien lassen sich als URL-Link teilen, der die Werte nur im Link selbst enthält."}}
+]}
+</script>
+</head>
+<body><a class="skip" href="#main">Zum Inhalt</a><div id="bar"></div>
+
+<header class="mast"><div class="wrap"><a class="logo" href="/"><img class="logo-mark" src="/assets/logo-mark-white.svg" alt="" width="22" height="22">KI<span>·</span>Fachblatt</a>
+<button type="button" class="burger" aria-label="Menü" aria-expanded="false" aria-controls="menu"><span></span><span></span><span></span></button><nav class="main" id="menu" aria-label="Hauptnavigation"><a href="/#themen">Themen</a><a class="p-nav" href="/ki-modelle">Portraits</a><a href="/glossar">Glossar</a><a class="st" href="/suche">Suche</a><a href="/ueber">Über</a></nav><a class="search-ico" href="/suche" aria-label="Suche" title="Suche"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true" focusable="false"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.8-3.8"/></svg></a><script>document.documentElement.classList.add("js");(function(){var b=document.querySelector(".burger"),m=document.getElementById("menu");if(!b||!m)return;function c(){m.classList.remove("open");b.setAttribute("aria-expanded","false");b.setAttribute("aria-label","Menü")}b.addEventListener("click",function(){var o=m.classList.toggle("open");b.setAttribute("aria-expanded",o?"true":"false");b.setAttribute("aria-label",o?"Menü schließen":"Menü")});document.addEventListener("keydown",function(e){if(e.key==="Escape")c()});m.addEventListener("click",function(e){if(e.target.tagName==="A")c()})})()</script></div></header>
+
+<main id="main"><div class="wrap">
+<nav class="crumbs" aria-label="Brotkrumen"><a href="/">Start</a> › Tools</nav>
+<header class="art-head">
+<p class="kicker">Tool · Kostenlos · Ohne Anmeldung</p>
+<h1>LLM-Kostenrechner</h1>
+<p class="deck">Was kostet Ihr KI-Workload? Vergleichen Sie die API-Preise von 25 Modellen von OpenAI, Anthropic, Google, Mistral, DeepSeek und xAI - mit Cache, Batch-Rabatt und Staffelpreisen. Alle Preise aus den offiziellen Preislisten, Stand <span id="kr-stand">20.10.2026</span>.</p>
+</header>
+
+<div class="kr-layout">
+<section class="kr-panel" aria-label="Ihr Szenario">
+<h2>Ihr Szenario</h2>
+<div class="kr-field"><label for="kr-preset">Anwendungsfall</label>
+<select id="kr-preset">
+<option value="chat">Chat-Support (1.500 in / 250 out, 2.000/Tag)</option>
+<option value="rag">RAG / Wissens-Chat (6.000 in / 600 out, 800/Tag)</option>
+<option value="coding">Coding-Agent (30.000 in / 4.000 out, 300/Tag)</option>
+<option value="summary">Zusammenfassungen (8.000 in / 400 out, 500/Tag)</option>
+<option value="custom">Individuell</option>
+</select></div>
+<div class="kr-field"><label for="kr-input">Eingabe-Tokens pro Anfrage</label><input type="number" id="kr-input" min="1" max="10000000" value="1500" inputmode="numeric"></div>
+<div class="kr-field"><label for="kr-output">Ausgabe-Tokens pro Anfrage</label><input type="number" id="kr-output" min="1" max="1000000" value="250" inputmode="numeric"></div>
+<div class="kr-field"><label for="kr-requests">Anfragen pro Tag</label><input type="number" id="kr-requests" min="1" max="10000000" value="2000" inputmode="numeric"></div>
+<div class="kr-field"><label for="kr-cache">Cache-Trefferquote: <span id="kr-cache-val">40 %</span></label><input type="range" id="kr-cache" min="0" max="100" step="5" value="40"></div>
+<label class="kr-check"><input type="checkbox" id="kr-batch"><span>Batch-Verarbeitung<small>50 % Rabatt bei OpenAI, Anthropic, Google und Mistral (asynchron, verzögert).</small></span></label>
+<label class="kr-check"><input type="checkbox" id="kr-offpeak"><span>DeepSeek-Nebenzeit<small>Halbe Preise außerhalb 01:00-04:00 und 06:00-10:00 UTC (Mo-Fr).</small></span></label>
+<div class="kr-field"><label>Währung</label><div class="kr-cur">
+<label><input type="radio" name="kr-cur" value="USD" checked> USD</label>
+<label><input type="radio" name="kr-cur" value="EUR"> EUR</label>
+</div></div>
+<button type="button" class="kr-copy" id="kr-copy">Szenario-Link kopieren</button>
+</section>
+
+<section aria-label="Ergebnis">
+<div class="kr-best" id="kr-best" role="status">Preisdaten werden geladen …</div>
+<div class="kr-changes" id="kr-changes" hidden><b class="kr-ct">Angekündigte Preisänderungen</b><ul id="kr-changes-list"></ul></div>
+<div class="chart kr-chart"><h3>Monatskosten im Vergleich (Top 12)</h3><div id="kr-chart" role="img" aria-label="Balkendiagramm der Monatskosten aller Modelle"></div>
+<p class="kr-cap">Sortiert nach Monatskosten für das gewählte Szenario. Eigene Berechnung auf Basis der Anbieter-Preislisten.</p></div>
+<div class="kr-tablewrap"><h3>Alle Modelle im Detail</h3>
+<div class="kr-table-scroll"><table class="kr-table">
+<thead><tr><th>#</th><th>Modell</th><th>Eingabe / 1M</th><th>Cache / 1M</th><th>Ausgabe / 1M</th><th>pro Anfrage</th><th>pro Monat</th></tr></thead>
+<tbody id="kr-tbody"></tbody>
+</table></div><p class="kr-count" id="kr-count"></p></div>
+</section>
+</div>
+
+<section class="body" style="max-width:820px;padding-bottom:50px">
+<h2 id="methode">So rechnet das Tool</h2>
+<p>Kosten pro Anfrage = (frische Eingabe-Tokens × Eingabepreis + gecachte Eingabe-Tokens × Cache-Preis + Ausgabe-Tokens × Ausgabepreis) ÷ 1.000.000. Die Monatskosten multiplizieren das mit Anfragen pro Tag × 30. Staffelpreise (xAI und Google ab 200.000 Eingabe-Tokens) setzt der Rechner automatisch anhand Ihrer Eingabegröße. Der Batch-Schalter zieht 50 % ab, wo der Anbieter einen Batch-Tarif anbietet; der Nebenzeit-Schalter nutzt die halben DeepSeek-Preise außerhalb der Hauptzeit.</p>
+<p>Nicht enthalten sind Posten, die nicht pro Token abgerechnet werden: Tool-Aufrufe wie Google Search Grounding (14 $ pro 1.000 über dem Freikontingent) oder DeepSeek Search/Fetch, Bild-, Audio- und Video-Modelle, Cache-<em>Schreib</em>kosten bei Anthropic (1,25× Eingabepreis für den 5-Minuten-Cache), Mindestlaufzeiten und Enterprise-Rabatte. Der Rechner zeigt Listpreise des Standard-Tarifs; verbindlich ist immer die Preisseite des Anbieters.</p>
+<p>Die Tokenizer der Anbieter zählen unterschiedlich: Claude-Modelle ab Version 4.7 erzeugen laut Anthropic rund 30 % mehr Tokens für denselben Text. Für eine belastbare Schätzung zählen Sie Ihre tatsächlichen Tokens mit dem Tokenizer des Zielanbieters.</p>
+<h2 id="quellen">Quellen und Stand</h2>
+<p>Alle Preise stammen aus den offiziellen Preislisten der Anbieter (Primärquellen), kompiliert mit KI-Unterstützung und redaktionell geprüft. Datenstand: <b>20.10.2026</b>. Die EUR-Umrechnung nutzt den EZB-Referenzkurs.</p>
+<ul class="kr-sources" id="kr-sources">
+<li><a href="https://openai.com/api/pricing/" rel="noopener">OpenAI — offizielle Preisliste</a>, abgerufen am 20.10.2026</li>
+<li><a href="https://docs.anthropic.com/en/docs/about-claude/pricing" rel="noopener">Anthropic — offizielle Preisliste</a>, abgerufen am 20.10.2026</li>
+<li><a href="https://ai.google.dev/gemini-api/docs/pricing" rel="noopener">Google (Gemini API) — offizielle Preisliste</a>, abgerufen am 20.10.2026</li>
+<li><a href="https://docs.mistral.ai/inference/pricing" rel="noopener">Mistral AI — offizielle Preisliste</a>, abgerufen am 20.10.2026</li>
+<li><a href="https://api-docs.deepseek.com/quick_start/pricing/" rel="noopener">DeepSeek — offizielle Preisliste</a>, abgerufen am 20.10.2026</li>
+<li><a href="https://docs.x.ai/docs/models" rel="noopener">xAI — offizielle Preisliste</a>, abgerufen am 20.10.2026</li>
+<li><a href="https://www.ecb.europa.eu/stats/policy_and_exchange_rates/euro_reference_exchange_rates/html/index.en.html" rel="noopener">EZB-Referenzkurs Euro/US-Dollar</a> (1,1225), Stand 19.10.2026</li>
+</ul>
+<p class="kr-meta">Der LLM-Kostenrechner ist ein kostenloses Informationsangebot des KI Fachblatts und keine Kauf- oder Anbieterberatung. Alle Angaben ohne Gewähr; Preise können sich kurzfristig ändern. Keine Verbindung zu den genannten Anbietern; alle Marken gehören ihren Inhabern. Ihre Eingaben bleiben im Browser - es werden keine Daten übertragen oder gespeichert. <a href="/transparenz">Wie wir mit KI arbeiten</a> · <a href="/korrekturen">Fehler melden</a></p>
+<h2 id="weiterlesen">Weiterlesen</h2>
+<ul>
+<li><a href="/api-preise-vergleichen">API-Preise vergleichen: Blended Price, Kontextlänge und versteckte Posten richtig lesen</a></li>
+<li><a href="/tokens-und-kosten">Tokens und Kosten: Was ein Token ist und wie Abrechnung funktioniert</a></li>
+<li><a href="/kosten-pro-aufgabe-messen">Kosten pro Aufgabe messen statt raten</a></li>
+<li><a href="/kosten-latenz-tuning">Kosten-Latenz-Tuning für LLM-Anwendungen</a></li>
+</ul>
+<h2 id="faq">Häufige Fragen</h2>
+<div class="faq">
+<details><summary>Wie aktuell sind die Preise?</summary><p>Alle Preise stammen aus den offiziellen Preislisten der Anbieter und werden redaktionell gepflegt. Unter „Quellen und Stand“ steht zu jeder Quelle das Abrufdatum; die Anbieter-Seiten sind im Streitfall die verbindliche Referenz.</p></details>
+<details><summary>Dollar oder Euro?</summary><p>Die Anbieter rechnen in US-Dollar ab, daher ist USD die Grundwährung. Optional rechnet das Tool mit dem EZB-Referenzkurs in Euro um; der Kursstand wird bei den Quellen angezeigt.</p></details>
+<details><summary>Was bedeutet die Cache-Trefferquote?</summary><p>Viele Anbieter berechnen wiederholte, gecachte Eingabe-Tokens deutlich günstiger. Wer etwa bei RAG denselben Kontext oft sendet, kann einen Teil seiner Eingabe-Tokens als Cache-Hits ansetzen und die realen Kosten besser abschätzen.</p></details>
+<details><summary>Werden meine Eingaben gespeichert?</summary><p>Nein. Der Rechner läuft vollständig in Ihrem Browser; es werden keine Nutzungsdaten übertragen. Szenarien lassen sich als Link teilen, der die Werte nur in der URL enthält.</p></details>
+</div>
+</section>
+</div></main>
+
+<script src="/assets/tools/llm-kostenrechner.js" defer></script>
+<footer class="kfbf" data-portrait-footer-done><div class="wrap"><div class="kfbf-top"><div class="kfbf-brand"><a class="kfbf-logo" href="/"><img class="logo-mark" src="/assets/logo-mark-white.svg" alt="" width="22" height="22">KI<span>·</span>Fachblatt</a><p>Einordnen statt Hype. Ein deutschsprachiges Fachmagazin über künstliche Intelligenz, von Philipp Paulik.</p></div><div class="kfbf-cols"><div><h4>Lesen</h4><a href="/glossar">Glossar</a><a href="/berichte">KI-Tagesbericht (PDF)</a><a href="/feed.xml">RSS-Feed</a><a href="/llms.txt">llms.txt</a></div><div><h4>Verzeichnis</h4><a href="/unternehmen">Unternehmens-Portraits</a><a href="/ki-modelle">KI-Modell-Portraits</a><a href="/benchmarks">Benchmark-Portraits</a></div><div><h4>Redaktion</h4><a href="/ueber">Über das Magazin</a><a href="/redaktion">Redaktion</a><a href="/redakteur/">Redakteure &amp; Mitwirken</a><a href="/lernpfade">Lernpfade</a><a href="/transparenz">KI-Transparenz</a><a href="/korrekturen">Korrekturen</a><a href="/quellen">Quellen</a></div><div><h4>Rechtliches</h4><a href="/impressum">Impressum</a><a href="/datenschutz">Datenschutz</a><a href="/werben">Werben &amp; Kooperationen</a><a href="/werbung">Werbung &amp; Affiliate</a><a href="/cookies">Cookies &amp; Einstellungen</a><button type="button" class="kfb-consent-open" data-kfb-consent-open>Datenschutzeinstellungen</button><span id="kfb-consent-status" class="kfb-sr" role="status"></span><a href="https://philipp-paulik.de">Philipp Paulik</a></div></div></div><p class="proj"><b>Projekte von Philipp Paulik:</b> <a href="https://pblock.philipp-paulik.de">pBlock</a> · <a href="https://custmtab.philipp-paulik.de">cust*m Tab</a> · <a href="https://zwep.philipp-paulik.de">ZWEP</a> · <a href="https://flower.philipp-paulik.de">Flower</a> · <a href="https://ct.philipp-paulik.de">ct</a> · <a href="https://plane.philipp-paulik.de">plane</a></p><p class="note">Beiträge entstehen mit KI-Unterstützung und sind bewusst allgemein gehalten. Preise, Versionen und Rechtslage ändern sich: Prüfe wichtige Angaben bei der Quelle. © 2026 Philipp Paulik</p></div></footer>
+<script src="/app.js" defer></script><section id="kfb-consent" class="kfb-consent" role="region" aria-labelledby="kfb-consent-title" hidden>
+<h2 id="kfb-consent-title">Deine Privatsphäre.</h2>
+<p>Du entscheidest über Statistik und Werbung. Ohne Zustimmung bleibt beides aus.</p>
+<fieldset><legend>Wofür dürfen Daten genutzt werden?</legend>
+<label><input type="checkbox" checked disabled><span><strong>Notwendig</strong><small>Seite und Datenschutzauswahl. Kein Tracking.</small></span></label>
+<label><input type="checkbox" id="kfb-statistics"><span><strong>Statistik</strong><small>Google Analytics 4 (Google Ireland / Google LLC): Seitenaufrufe und Interaktionen, Cookies bis 180 Tage; USA-Übermittlung möglich. Nur nach Zustimmung.</small></span></label>
+<label><input type="checkbox" id="kfb-advertising"><span><strong>Werbung</strong><small>AdSense und Werbedienste. Derzeit aus.</small></span></label>
+</fieldset><div class="kfb-consent-actions"><button type="button" data-consent="reject">Alle ablehnen</button><button type="button" data-consent="all">Alle verfügbaren akzeptieren</button><button type="button" data-consent="save">Auswahl speichern</button></div>
+<p><a href="/datenschutz">Datenschutz</a> · <a href="/cookies">Cookies &amp; Einstellungen</a> · <a href="/impressum">Impressum</a></p><p class="kfb-muted">Ohne Auswahl bleiben Statistik und Werbung aus. Jederzeit im Footer änderbar.</p></section><script type="application/json" id="kfb-monetization-config">{"version": 1, "consentRevision": "2026-10-ga4-live-1", "analytics": {"enabled": true, "provider": "ga4", "measurementId": "G-75G1VNDHJW", "activationApproved": true, "privacyReviewed": true, "eventRetentionMonths": 2, "cookieLifetimeDays": 180, "resetRetentionOnActivity": false}, "advertising": {"enabled": false}, "metrics": {"enabled": false}, "spots": []}</script><script src="/assets/monetization/consent.js" defer></script></body></html>

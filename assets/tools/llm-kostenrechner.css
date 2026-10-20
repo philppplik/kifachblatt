@@ -1,0 +1,57 @@
+/* LLM-API-Kostenrechner — kifachblatt.de/tools */
+.kr-layout{display:grid;grid-template-columns:340px minmax(0,1fr);gap:48px;align-items:start;margin:34px 0 20px}
+.kr-layout>*{min-width:0}
+.kr-panel{position:sticky;top:24px;border:1px solid var(--line);border-radius:12px;padding:24px;background:var(--bg2)}
+.kr-panel h2{font-size:15px;margin:0 0 18px;letter-spacing:-.2px}
+.kr-field{margin-bottom:18px}
+.kr-field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--mute);margin-bottom:6px}
+.kr-field input[type=number],.kr-field select{width:100%;max-width:100%;min-width:0;font:14px var(--sans);border:1px solid #cdccd3;border-radius:6px;color:var(--ink);background:#fff;padding:11px 14px;min-height:42px}
+.kr-field input[type=range]{-webkit-appearance:none;appearance:none;width:100%;min-height:0;height:6px;padding:0;border:0;border-radius:3px;background:linear-gradient(to right,var(--amber) var(--fill,40%),#e0dfe7 var(--fill,40%));margin:14px 0 4px;cursor:pointer}
+.kr-field input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:22px;height:22px;border-radius:50%;background:var(--amber);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);cursor:pointer}
+.kr-field input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--amber);border:3px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);cursor:pointer}
+.kr-field input[type=range]:focus-visible{outline:3px solid #9466e3;outline-offset:4px}
+.kr-check{display:flex;gap:9px;align-items:flex-start;font-size:13px;line-height:1.45;margin-bottom:12px;cursor:pointer}
+.kr-check input{margin-top:3px;accent-color:var(--amber)}
+.kr-check small{display:block;color:var(--mute);font-size:11px}
+.kr-cur{display:flex;gap:8px}
+.kr-cur label{flex:1;display:flex;align-items:center;justify-content:center;gap:6px;border:1px solid var(--line);border-radius:8px;padding:9px;font-size:13px;cursor:pointer;background:#fff;text-transform:none;letter-spacing:0;font-weight:400;color:var(--ink)}
+.kr-cur input{accent-color:var(--amber)}
+.kr-copy{margin-top:6px;width:100%;background:#181818;color:#fff;border:1px solid #181818;padding:11px 20px;border-radius:7px;font-size:13px;cursor:pointer}
+.kr-copy:hover{background:#39303f}
+.kr-best{border:1px solid var(--line);border-left:4px solid var(--amber);background:var(--bg2);border-radius:8px;padding:16px 20px;font-size:15px;line-height:1.6;margin-bottom:26px}
+.kr-chart{border:1px solid var(--line);border-radius:10px;padding:20px 18px 14px;background:var(--bg);margin-bottom:14px}
+.kr-chart h3,.kr-tablewrap h3{font-size:16px;margin:0 0 14px}
+.kr-row{display:grid;grid-template-columns:minmax(120px,26%) 1fr;gap:12px;align-items:center;margin:9px 0}
+.kr-lab b{display:block;font-size:13.5px;line-height:1.25}
+.kr-lab span{font-size:11px;color:var(--mute)}
+.kr-track{display:flex;flex-direction:column;gap:2px}
+.kr-bar{display:block;height:14px;border-radius:3px;background:#b78dff}
+.kr-first .kr-bar{background:var(--amber)}
+.kr-val{font-size:12px;color:var(--mute)}
+.kr-chart .kr-cap,.kr-note{font-size:12px;color:var(--mute);margin:6px 0 0}
+.kr-tablewrap{margin:30px 0 10px}
+.kr-table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:10px}
+table.kr-table{border-collapse:collapse;width:100%;font-size:13px;min-width:640px}
+table.kr-table th{text-align:left;font-size:10px;text-transform:uppercase;letter-spacing:.04em;background:#f4f4f6;color:#63636c;padding:12px 14px;border-bottom:1px solid var(--line);white-space:nowrap}
+table.kr-table td{padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top;white-space:nowrap}
+table.kr-table td:nth-child(2){white-space:normal;min-width:170px}
+table.kr-table tr.kr-top td{background:#f6f0fe}
+.kr-mute{color:var(--mute);font-size:11px}
+.kr-count{font-size:11px;color:var(--mute);margin:8px 2px 0}
+.kr-changes{border:1px solid #e3c46b;background:#fdf8ea;border-radius:10px;padding:16px 20px;margin:26px 0}
+.kr-changes b.kr-ct{display:block;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#8a6a12;margin-bottom:8px}
+.kr-changes ul{margin:0;padding-left:1.2em;font-size:14px}
+.kr-changes li{margin:.35em 0}
+.kr-meta{font-size:12px;color:var(--mute);margin:26px 0 0}
+.kr-sources li{margin:.4em 0;font-size:14px}
+@media(max-width:900px){
+ .kr-layout{grid-template-columns:minmax(0,1fr);gap:26px}
+ .kr-panel{position:static}
+ .kr-row{grid-template-columns:1fr;gap:3px}
+ .kr-lab b{display:inline;margin-right:6px}
+}
+@media(prefers-reduced-motion:reduce){.kr-bar{transition:none!important}}
+/* style.css setzt input{min-height:42px;width:100%} global — Checkboxen/Radios zurücksetzen */
+.kr-panel input[type=checkbox],.kr-panel input[type=radio]{width:auto;min-height:0;padding:0;border-radius:0}
+.kr-check input[type=checkbox]{width:16px;height:16px;flex:none}
+.kr-cur input[type=radio]{width:15px;height:15px;flex:none}
