@@ -246,6 +246,51 @@
    "title": "MiniMaxAI/MiniMax-M2.1 (Modellkarte und config.json)",
    "url": "https://huggingface.co/MiniMaxAI/MiniMax-M2.1",
    "accessed": "2026-10-20"
+  },
+  "browsecomp-paper": {
+   "title": "BrowseComp: A Simple Yet Challenging Benchmark for Browsing Agents (arXiv:2504.12516)",
+   "url": "https://arxiv.org/abs/2504.12516",
+   "accessed": "2026-10-20"
+  },
+  "browsecomp-code": {
+   "title": "OpenAI simple-evals: BrowseComp-Implementierung",
+   "url": "https://github.com/openai/simple-evals",
+   "accessed": "2026-10-20"
+  },
+  "osworld-paper": {
+   "title": "OSWorld: Benchmarking Multimodal Agents for Open-Ended Tasks in Real Computer Environments (arXiv:2404.07972)",
+   "url": "https://arxiv.org/abs/2404.07972",
+   "accessed": "2026-10-20"
+  },
+  "osworld-site": {
+   "title": "OSWorld: Projektseite mit Versionshinweisen (OSWorld-Verified, OSWorld 2.0)",
+   "url": "https://os-world.github.io/",
+   "accessed": "2026-10-20"
+  },
+  "mlebench-paper": {
+   "title": "MLE-bench: Evaluating Machine Learning Agents on Machine Learning Engineering (arXiv:2410.07095)",
+   "url": "https://arxiv.org/abs/2410.07095",
+   "accessed": "2026-10-20"
+  },
+  "hle-paper": {
+   "title": "Humanity's Last Exam (arXiv:2501.14249)",
+   "url": "https://arxiv.org/abs/2501.14249",
+   "accessed": "2026-10-20"
+  },
+  "tau2-paper": {
+   "title": "τ²-Bench: Evaluating Conversational Agents in a Dual-Control Environment (arXiv:2506.07982)",
+   "url": "https://arxiv.org/abs/2506.07982",
+   "accessed": "2026-10-20"
+  },
+  "cybergym-blog": {
+   "title": "CyberGym: Evaluating AI Agents' Real-World Cybersecurity Capabilities at Scale (UC Berkeley RDI)",
+   "url": "https://rdi.berkeley.edu/blog/cybergym/",
+   "accessed": "2026-10-20"
+  },
+  "cybergym-paper": {
+   "title": "CyberGym: Evaluating AI Agents on Real-World Vulnerabilities at Scale (arXiv:2506.02548)",
+   "url": "https://arxiv.org/abs/2506.02548",
+   "accessed": "2026-10-20"
   }
  },
  "companies": [
@@ -2084,6 +2129,81 @@
    "limits": "Version 2.0, 2.1 und spätere Versionen getrennt führen. Agent, Tools, Reasoning-Aufwand, Ressourcen und Zahl der Wiederholungen beeinflussen den Wert.",
    "sources": [
     "terminal"
+   ]
+  },
+  {
+   "slug": "browsecomp",
+   "name": "BrowseComp",
+   "initials": "B",
+   "summary": "Prüft, ob ein Agent das Web hartnäckig durchsuchen kann, bis er schwer auffindbare, verflochtene Informationen findet.",
+   "detail": "Der Benchmark von OpenAI umfasst 1.266 von Menschen erstellte Fragen, deren Antworten nur durch anhaltendes, kreatives Browsen über viele Websites zu finden sind. Die Antworten sind kurz und maschinell gegen Referenzantworten prüfbar. Menschliche Tester lösten 29,2 Prozent der Fragen; OpenAI Deep Research erreichte 51,5 Prozent.",
+   "metric": "Genauigkeit: Anteil richtig beantworteter Fragen (%), Bewertung durch ein Modell als Prüfer.",
+   "limits": "Die Fragen sind nach dem Umkehrprinzip gebaut: Die Referenzantwort ist sicher richtig, aber weitere gültige Antworten sind nicht ausgeschlossen. Der Benchmark bildet keine echte Nutzeranfragen-Verteilung ab und misst bewusst nur die Kernfähigkeit des Findens. Die Bewertung übernimmt ein Sprachmodell, kein exakter Abgleich.",
+   "sources": [
+    "browsecomp-paper",
+    "browsecomp-code"
+   ]
+  },
+  {
+   "slug": "osworld",
+   "name": "OSWorld",
+   "initials": "B",
+   "summary": "Prüft multimodale Agenten in echten Computerumgebungen: Betriebssystem, echte Apps und Dateien statt Simulationsumgebung.",
+   "detail": "OSWorld stellt 369 reale Computeraufgaben auf Ubuntu, Windows und macOS, jede mit definiertem Ausgangszustand und ausführbarem Prüfskript. Bei Veröffentlichung lösten Menschen 72,36 Prozent der Aufgaben, das beste Modell 12,24 Prozent. Die Projektseite führt mittlerweile die überarbeitete Fassung OSWorld-Verified und seit Juni 2026 OSWorld 2.0.",
+   "metric": "Erfolgsrate: Anteil korrekt abgeschlossener Aufgaben (%), geprüft durch Ausführung der Prüfskripte.",
+   "limits": "Ergebnisse hängen stark vom Agenten-Scaffold, den erlaubten Aktionen und dem Budget ab. Acht Google-Drive-Aufgaben können wegen Netzwerkabhängigkeiten ausfallen (dann 361 Aufgaben). Versionen (Original, Verified, 2.0) sind nicht direkt vergleichbar.",
+   "sources": [
+    "osworld-paper",
+    "osworld-site"
+   ]
+  },
+  {
+   "slug": "mle-bench",
+   "name": "MLE-bench",
+   "initials": "B",
+   "summary": "Prüft, ob ein Agent komplette Machine-Learning-Projekte stemmt: Daten vorbereiten, Modelle trainieren, Experimente auswerten.",
+   "detail": "MLE-bench von OpenAI baut auf 75 echten Kaggle-Wettbewerben auf und vergleicht die Einreichungen der Agenten mit den öffentlichen menschlichen Bestenlisten. Das beste getestete Setup (o1-preview mit AIDE-Scaffold) erreichte in 16,9 Prozent der Wettbewerbe mindestens Bronze-Niveau.",
+   "metric": "Medaillenrate: Anteil der Wettbewerbe mit mindestens Bronze-Medaille nach Kaggle-Schwellen (%).",
+   "limits": "Ergebnisse sind scaffold-abhängig und hängen vom Rechenbudget ab. Da Kaggle-Wettbewerbe öffentlich sind, untersucht das Paper ausdrücklich Verunreinigung durch Trainingsdaten. ML-Engineering in freier Wildbahn ist breiter als der Wettbewerbsausschnitt.",
+   "sources": [
+    "mlebench-paper"
+   ]
+  },
+  {
+   "slug": "humanitys-last-exam",
+   "name": "Humanity's Last Exam",
+   "initials": "B",
+   "summary": "Geschlossene Prüfung an der Grenze menschlichen Wissens: 2.500 Expertenfragen aus Dutzenden Fächern, teils multimodal.",
+   "detail": "Humanity's Last Exam (Center for AI Safety und Scale AI) wurde weltweit von Fachexperten geschrieben, nachdem gängige Wissenstests wie MMLU in die Sättigung liefen. Die Fragen sind Multiple-Choice oder kurze Antworten, eindeutig lösbar, aber nicht durch schnelle Websuche beantwortbar. Führende Modelle lagen bei Veröffentlichung bei niedriger Genauigkeit und schlechter Kalibrierung.",
+   "metric": "Genauigkeit (%) und Kalibrierungsfehler bei geschlossenen Fragen.",
+   "limits": "Nur geschlossene akademische Fragen: Recherche-, Agenten- und Interaktionsfähigkeiten werden nicht gemessen. Der öffentliche Datensatz kann in Trainingsdaten auftauchen; die Betreiber halten einen privaten Testteil zurück. Ergebnisse älterer Läufe veralten schnell.",
+   "sources": [
+    "hle-paper"
+   ]
+  },
+  {
+   "slug": "tau2-bench",
+   "name": "τ²-Bench",
+   "initials": "B",
+   "summary": "Prüft Gesprächsagenten in einer Welt, die Agent UND Nutzer gemeinsam verändern: Wer führt wen wodurch?",
+   "detail": "τ²-Bench von Sierra erweitert τ-bench um eine Telekommunikations-Domäne mit geteilter Kontrolle (als Dec-POMDP modelliert): Der simulierte Nutzer handelt selbst mit Werkzeugen, und der Agent muss ihn koordinieren und anleiten. Ein generatorischer Aufgabenbaukasten erzeugt prüfbare Aufgaben kontrollierter Komplexität. Die Autoren zeigen deutliche Leistungseinbrüche, sobald der Nutzer mithandelt.",
+   "metric": "Erfolgsrate der Aufgaben (pass^k über wiederholte Läufe).",
+   "limits": "Der Nutzer ist ein Simulator, kein echter Mensch. Die Domänen (Telekom, zuvor Airline und Retail) decken nur einen Ausschnitt echter Support-Arbeit ab. Ergebnisse hängen vom gewählten Nutzersimulator und dessen Modell ab.",
+   "sources": [
+    "tau2-paper"
+   ]
+  },
+  {
+   "slug": "cybergym",
+   "name": "CyberGym",
+   "initials": "B",
+   "summary": "Prüft, ob ein Agent eine echte, beschriebene Software-Schwachstelle durch ein ausführbares Angriffsskript reproduziert.",
+   "detail": "CyberGym von UC Berkeley enthält 1.507 reale Schwachstellen aus 188 verbreiteten Open-Source-Projekten wie OpenSSL und FFmpeg. Der Agent erhält Beschreibung und Codebasis und muss einen Proof of Concept bauen, der die Lücke reproduziert; die Prüfung erfolgt ausführungsbasiert. Spitzenagenten erreichten etwa 30 Prozent im Einzelversuch und rund 67 Prozent bei 30 Versuchen; im Projekt entstanden so auch 35 bisher unbekannte Zero-Days.",
+   "metric": "Erfolgsrate: Anteil reproduzierter Schwachstellen (%), optional bei mehreren Versuchen.",
+   "limits": "Gemessen wird das Reproduzieren beschriebener Lücken, nicht das eigenständige Finden. Ergebnisse hängen vom Agentenrahmen (im Paper OpenHands) und der Versuchszahl ab. Der Benchmark ist dual-use: Er misst Fähigkeiten, die auch missbraucht werden können.",
+   "sources": [
+    "cybergym-blog",
+    "cybergym-paper"
    ]
   }
  ],
