@@ -1,0 +1,208 @@
+{
+ "slug": "transkription-zusammenfassung",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Transkription und Zusammenfassung: KI im Redaktionsalltag",
+ "dek": "KI transkribiert Interviews in Minuten, fast auf Profi-Niveau. Was Whisper und Co. leisten, wo sie Fehler machen und wie ein sauberer Workflow aussieht.",
+ "published": "2026-10-19T09:00:00+02:00",
+ "modified": "2026-10-20T09:45:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Transkription",
+  "Spracherkennung",
+  "Whisper",
+  "Zusammenfassung",
+  "Journalismus",
+  "Workflow"
+ ],
+ "key_takeaways": [
+  "Moderne Spracherkennung wie OpenAIs Whisper liegt in englischen Tests nahe an menschlichen Profi-Transkriptoren; der beste computergestützte Dienst lag nur 1,15 Prozentpunkte besser [1].",
+  "Die Modelle sind offen verfügbar und laufen lokal: Whisper ist quelloffen [2], NVIDIAs Parakeet-TDT-0.6B-v3 beherrscht 25 europäische Sprachen inklusive Deutsch und steht unter einer CC-BY-4.0-Lizenz [4].",
+  "Die Fehlerquellen sind bekannt: Namen, Fachbegriffe, Dialekte, Übersprechen und sprachenabhängige Qualitätsunterschiede [3]. Wörtliche Zitate gehören deshalb immer an der Originalaufnahme geprüft.",
+  "Zusammenfassungen sind ein zweiter, eigenständiger Schritt: Ein Sprachmodell kann Transkripte gliedern und verdichten, neigt aber dazu, Lücken plausibel zu füllen [6]. Die Zusammenfassung ist ein Rohentwurf, kein Protokoll."
+ ],
+ "hero": {
+  "alt": "Säulendiagramm der Whisper-Trainingsdaten: 438.000 Stunden englische Sprache, 117.000 Stunden verteilt auf 96 weitere Sprachen, 125.000 Stunden Übersetzungsdaten.",
+  "caption": "Die Trainingsdaten von Whisper im Überblick. Der englische Anteil ergibt sich als Restgröße (eigene Rechnung). Eigene Darstellung nach [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein 45-minütiges Interview liegt als Audiodatei vor, die Abgabefrist rückt näher, und früher hieß das: eine Stunde Abtippen, eher zwei. Heute lädt man die Datei in ein Transkriptionswerkzeug und bekommt nach wenigen Minuten ein durchsuchbares Skript mit Zeitstempeln. Der Zeitgewinn ist real. Die entscheidende Frage ist nur, wo das Transkript endet und wo journalistische Prüfung beginnt."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Ein Transkriptionsmodell arbeitet wie ein sehr schneller, leicht schwerhöriger Protokollant: Es schreibt alles mit, versteht aber nichts. Ein Räuspern wird schnell zum Wort, ein Fachbegriff zum ähnlich klingenden Alltagswort. Die Zusammenfassung dagegen ist wie ein Kollege, der das Protokoll überfliegt und berichtet, was drinsteht: hilfreich, aber er ergänzt aus Erfahrung, was er nicht genau gelesen hat. Gegen das Original prüfen muss man beide."
+  },
+  {
+   "t": "h2",
+   "x": "Spracherkennung ist erwachsen geworden"
+  },
+  {
+   "t": "p",
+   "x": "Der Referenzpunkt ist Whisper, ein 2022 von OpenAI veröffentlichtes Modell, das mit 680.000 Stunden beschrifteter Audiodaten trainiert wurde. Davon entfallen 117.000 Stunden auf 96 Sprachen jenseits des Englischen und 125.000 Stunden auf Übersetzungsdaten [1]. Zwei Ergebnisse der Studie sind für die Praxis zentral. Erstens: Das Modell verallgemeinert ungewöhnlich gut. Auf fremden Aufnahmen, die es nie im Training gesehen hat, machte es im Schnitt 55,2 Prozent weniger Fehler als ein Vergleichsmodell, das auf dem Referenzdatensatz fast gleichauf lag [1]. Zweitens: In einem Vergleich mit professionellen menschlichen Transkriptionsdiensten lag Whisper nur einen Bruchteil eines Prozentpunktes hinter den rein menschlichen Anbietern; der beste computergestützte Dienst war 1,15 Prozentpunkte besser [1]."
+  },
+  {
+   "t": "p",
+   "x": "Mindestens ebenso wichtig wie die Qualität ist die Verfügbarkeit. OpenAI hat Code und Modelle quelloffen veröffentlicht, in sieben Größen von 39 Millionen bis 1,55 Milliarden Parametern [2]. Die kleinen Varianten laufen auf einem normalen Redaktionslaptop, die großen auf einer Workstation mit Grafikkarte. Transkription ist damit kein Cloud-Dienst mehr, den man pro Minute bezahlt, sondern ein Werkzeug, das auf dem eigenen Gerät läuft, inklusive der Frage, welche Daten das Gerät überhaupt verlassen müssen."
+  },
+  {
+   "t": "p",
+   "x": "Warum die Datenmenge so zählt, zeigt eine Rechenregel aus dem Paper: Bei den untersuchten Sprachen halbierte sich die Fehlerrate jeweils, wenn die Trainingsdaten einer Sprache versechzehnfacht wurden [1]. Wer viel gesprochenes Material im Netz hinterlässt, wird gut verstanden; wer eine kleine Sprache oder einen starken Dialekt spricht, eben nicht. Genau daraus folgen die wichtigsten Praxisgrenzen weiter unten."
+  },
+  {
+   "t": "h2",
+   "x": "Was für deutschsprachige Redaktionen zählt"
+  },
+  {
+   "t": "p",
+   "x": "Für deutsche Interviews ist die Sprachabdeckung der entscheidende Faktor. Hier ist seit 2025 ein zweites offenes Modell relevant: NVIDIAs Parakeet-TDT-0.6B-v3 wurde gezielt für 25 europäische Sprachen trainiert, Deutsch ausdrücklich eingeschlossen. Das Modell setzt automatisch Punktuation und Großschreibung, liefert Zeitstempel auf Wortebene, verarbeitet bis zu 24 Minuten Audio mit voller Aufmerksamkeit und bis zu drei Stunden mit lokaler Aufmerksamkeit. Es steht unter der permissiven CC-BY-4.0-Lizenz, die auch die kommerzielle Nutzung erlaubt [4]."
+  },
+  {
+   "t": "p",
+   "x": "Welches Modell für welches Material am besten passt, lässt sich nicht pauschal beantworten. Die Fehlerraten unterscheiden sich je nach Sprache, Aufnahmequalität und Sprecher stark. Die Modellkarte von Whisper weist die Fehlerrate je Sprache gesondert aus und warnt vor schwächeren Ergebnissen bei Dialekten, Akzenten und Sprachen mit wenig Trainingsmaterial; dort steigt auch die Neigung, Text zu erfinden oder zu wiederholen [3]. Einen laufend gepflegten Vergleich bietet das Open ASR Leaderboard auf Hugging Face, das aktuelle Modelle auf standardisierten Datensätzen misst [5]. Vor der Einführung lohnt ein eigener Test: ein typisches Redaktionsinterview, zwei Modelle, zehn Minuten Nachzählen."
+  },
+  {
+   "t": "table",
+   "caption": "Zwei offene Transkriptionsmodelle im Vergleich; Angaben aus den jeweiligen Veröffentlichungen [1][2][4]",
+   "head": [
+    "Eigenschaft",
+    "Whisper (large-v3)",
+    "Parakeet-TDT-0.6B-v3"
+   ],
+   "rows": [
+    [
+     "Anbieter",
+     "OpenAI",
+     "NVIDIA"
+    ],
+    [
+     "Parameter",
+     "1,55 Milliarden",
+     "600 Millionen"
+    ],
+    [
+     "Sprachen",
+     "99 (unterschiedliche Qualität)",
+     "25 europäische, Deutsch enthalten"
+    ],
+    [
+     "Lizenz",
+     "MIT (Code und Modelle offen)",
+     "CC-BY-4.0, kommerziell nutzbar"
+    ],
+    [
+     "Besonderheiten",
+     "Zeitstempel, Spracherkennung, Übersetzung ins Englische",
+     "Auto-Punktation, Wort-Zeitstempel, bis 3 h Audio"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Vom Transkript zur Zusammenfassung"
+  },
+  {
+   "t": "p",
+   "x": "Das Transkript ist erst der Rohstoff. Der zweite Schritt im Alltag ist das Verdichten: ein <a href=\"/glossar#sprachmodell-llm\">Sprachmodell</a> gliedert das Gespräch nach Themen, zieht Kernaussagen heraus oder baut ein Exposé. Das spart erneut Zeit, verschiebt aber das Risiko. Während das Transkriptionsmodell Wörter verwechselt, kann das Sprachmodell Inhalte verschieben: Es lässt Einwände weg, glättet Widersprüche oder ergänzt Zusammenhänge, die so nicht gesagt wurden. Die Analyse „Why Language Models Hallucinate“ beschreibt den Grund: Modelle werden darauf trainiert, immer eine plausible Antwort zu liefern, statt Wissenslücken offenzulegen [6]. Eine Lücke im Transkript wird so schnell zur elegant überbrückten Lücke in der Zusammenfassung. Wer tiefer einsteigen will, findet den Mechanismus im Artikel über <a href=\"/halluzinationen\">Halluzinationen</a>."
+  },
+  {
+   "t": "p",
+   "x": "Die praktische Konsequenz: Die Zusammenfassung ist ein Arbeitsentwurf, nie ein Protokoll. Sie eignet sich, um ein langes Gespräch zu erschließen, Zitate zu finden und einen Artikel zu strukturieren. Sie eignet sich nicht, um ungesehen in Text oder Rechercheakte zu wandern."
+  },
+  {
+   "t": "h2",
+   "x": "Ein Workflow für den Redaktionsalltag"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Einwilligung und Aufnahme klären.** Wie bei jeder Aufzeichnung gilt: Die Gesprächspartner müssen der Aufnahme zustimmen. Schon der Upload der Audiodatei in einen Cloud-Dienst ist eine Verarbeitung personenbezogener Daten.",
+    "**Lokal oder Cloud bewusst wählen.** Sensible Interviews, etwa mit Informanten, gehören auf ein lokales Modell wie Whisper oder Parakeet; die Datei verlässt dann den eigenen Rechner nicht [2][4]. Für unverfängliches Material sind Cloud-Dienste bequemer. Was dabei rechtlich zu prüfen ist, skizziert der Artikel über <a href=\"/dsgvo-und-ki\">DSGVO und KI</a>.",
+    "**Transkript mit Zeitstempeln erzeugen.** Zeitstempel sind kein Luxus: Sie machen jede Stelle mit einem Klick am Original nachprüfbar [4].",
+    "**Stichproben am Audio prüfen.** Zwei, drei Passagen gegen die Aufnahme hören genügen, um die Qualität des jeweiligen Materials einzuschätzen: Namen, Zahlen, Fachbegriffe.",
+    "**Zusammenfassung gezielt beauftragen.** „Gliedere das Transkript nach Themen und liste je die Kernaussagen mit Zeitstempel“ funktioniert besser als „Fasse zusammen“, weil der Zeitstempel den Rückweg ans Original offenhält.",
+    "**Wörtliche Zitate immer am Original prüfen.** Ausnahmslos. Ein Transkript ist eine Näherung, und genau die prägnantesten Formulierungen sind die, bei denen ein einziges falsches Wort den Sinn dreht."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Grenzen, die bleiben"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Eigennamen und Fachvokabular.** Was selten im Trainingsmaterial vorkommt, wird durch Ähnliches ersetzt. Namen von Personen, Firmen und Orten sind die klassischen Fehlerstellen.",
+    "**Dialekt und Akzent.** Die Fehlerrate steigt messbar bei Sprechern, deren Aussprache im Trainingsmaterial unterrepräsentiert ist [3].",
+    "**Übersprechen und Hall.** Sobald mehrere Menschen gleichzeitig reden oder der Raum schallt, wächst die Fehlerquote; die Zuordnung von Sprechern ist ohnehin ein separates Problem, das Whisper nicht löst [1].",
+    "**Sprachen abseits der Hauptdaten.** Die Qualität hängt stark vom Datenvolumen je Sprache ab; bei wenig Material drohen <a href=\"/glossar#halluzination\">Halluzinationen</a>, also frei erfundene Passagen im Transkript [3].",
+    "**Stille Korrekturen bei der Zusammenfassung.** Das Sprachmodell kennzeichnet nicht, was es weggelassen oder ergänzt hat [6]. Ohne Rückgriff auf Transkript und Audio bleibt das unsichtbar."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Transkription und Zusammenfassung gehören zu den reifsten KI-Anwendungen im Redaktionsalltag: Der Nutzen ist groß, die Fehler sind systematisch und damit beherrschbar. Wer die Prüfung am Original als festen Schritt einbaut, gewinnt Stunden, ohne die Sorgfaltspflicht auszulagern. Wie die Redaktion selbst mit KI-Werkzeugen arbeitet, legt die Seite <a href=\"/transparenz\">Transparenz</a> offen."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Kann ich Interviews kostenlos transkribieren lassen?",
+   "a": "Ja. OpenAIs Whisper ist quelloffen und läuft auf dem eigenen Rechner, von der Tiny-Variante mit 39 Millionen Parametern bis zur Large-Version mit 1,55 Milliarden [2]. Auch NVIDIAs Parakeet-TDT-0.6B-v3 ist frei verfügbar und für europäische Sprachen einschließlich Deutsch trainiert [4]. Der Preis dafür ist eigene Hardware und etwas Einrichtung; dafür verlassen die Aufnahmen den eigenen Rechner nicht."
+  },
+  {
+   "q": "Wie gut ist die Qualität auf Deutsch?",
+   "a": "Für Deutsch liegen keine eigenen Vergleiche mit menschlichen Transkriptoren vor, aber beide genannten Modelle decken Deutsch ab: Whisper mehrsprachig mit je Sprache ausgewiesener Fehlerrate [3], Parakeet gezielt für 25 europäische Sprachen trainiert [4]. In der Praxis entscheiden Aufnahmequalität, Dialekt und Fachvokabular mehr als die Modellwahl. Ein kurzer Selbsttest mit eigenem Material ist die verlässlichste Antwort."
+  },
+  {
+   "q": "Darf ich ein Interview in einen Cloud-Assistenten hochladen?",
+   "a": "Das ist keine technische, sondern eine rechtliche und redaktionelle Frage. Die Aufnahme enthält personenbezogene Daten der Gesprächspartner; ihr Upload ist eine Datenverarbeitung, die eine Grundlage braucht. Für sensible Gespräche sind lokale Modelle die einfachste Lösung. Details zu Datenschutz und KI behandelt ein eigener Artikel; dieser Text ersetzt keine Rechtsberatung (Stand: 20. Oktober 2026)."
+  },
+  {
+   "q": "Kann ich mich auf eine KI-Zusammenfassung verlassen?",
+   "a": "Als Arbeitsentwurf ja, als Protokoll nein. Sprachmodelle füllen Lücken mit plausiblem Text, statt Unsicherheit anzuzeigen [6]. Nutzen Sie Zusammenfassungen zum Sichten und Strukturieren, aber prüfen Sie jede Aussage, die in einen Artikel soll, am Transkript und jedes wörtliche Zitat an der Aufnahme."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026: das Whisper-Paper von Radford und Kollegen (arXiv, Volltext), das Whisper-Repository von OpenAI, die Modellkarten von openai/whisper-large-v3 und nvidia/parakeet-tdt-0.6b-v3 auf Hugging Face, das Open ASR Leaderboard sowie die Analyse „Why Language Models Hallucinate“ (arXiv). Alle Zahlen zu Trainingsdaten, Modellgrößen und Fehlerraten stammen aus diesen Quellen; das Diagramm zu den Trainingsdaten ist eine eigene Darstellung, der englische Anteil darin eine als solche markierte eigene Rechnung. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die zitierten Vergleiche mit menschlichen Transkriptoren stammen aus dem Jahr 2022 und beziehen sich auf Englisch; für Deutsch liegt keine entsprechende Untersuchung vor. Fehlerraten hängen stark von Aufnahmequalität, Sprechern und Sprache ab und können mit neueren Modellversionen anders ausfallen. Die praktischen Empfehlungen ersetzen keine Rechtsberatung zum Datenschutz.",
+ "related": [
+  "faktencheck-mit-ki",
+  "deep-research-recherche",
+  "ki-texte-erkennen"
+ ],
+ "sources": [
+  {
+   "title": "Robust Speech Recognition via Large-Scale Weak Supervision (Whisper-Paper)",
+   "publisher": "arXiv (OpenAI, 2022)",
+   "url": "https://arxiv.org/abs/2212.04356"
+  },
+  {
+   "title": "openai/whisper (Quellcode und Modelle)",
+   "publisher": "GitHub",
+   "url": "https://github.com/openai/whisper"
+  },
+  {
+   "title": "Modellkarte: openai/whisper-large-v3",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/openai/whisper-large-v3"
+  },
+  {
+   "title": "Modellkarte: nvidia/parakeet-tdt-0.6b-v3",
+   "publisher": "Hugging Face (NVIDIA)",
+   "url": "https://huggingface.co/nvidia/parakeet-tdt-0.6b-v3"
+  },
+  {
+   "title": "Open ASR Leaderboard",
+   "publisher": "Hugging Face Spaces",
+   "url": "https://huggingface.co/spaces/hf-audio/open_asr_leaderboard"
+  },
+  {
+   "title": "Why Language Models Hallucinate",
+   "publisher": "arXiv (Kalai u. a., 2025)",
+   "url": "https://arxiv.org/abs/2509.04664"
+  }
+ ]
+}
