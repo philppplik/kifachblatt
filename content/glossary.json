@@ -2719,5 +2719,50 @@
     "url": "https://www.investopedia.com/terms/r/returnoninvestment.asp"
    }
   ]
+ },
+ {
+  "term": "Zero-Shot",
+  "aka": [
+   "Null-Beispiel-Prompting"
+  ],
+  "letter": "Z",
+  "definition": "Prompting ohne Beispiele: Das Modell bekommt nur die Anweisung und den Kontext, keine gelösten Musterfälle. Gegenstück zu Few-Shot-Prompting; bei gut instruct-trainierten Modellen für viele Standardaufgaben ausreichend.",
+  "usage": "Nur die Anweisung 'Klassifiziere diese E-Mail als dringend oder normal', ohne ein einziges Beispiel im Prompt.",
+  "related": [
+   "/few-shot-prompting-praxis"
+  ],
+  "see_also": [
+   "Few-Shot-Prompting",
+   "Prompt"
+  ],
+  "sources": [
+   {
+    "title": "Brown et al.: Language Models are Few-Shot Learners",
+    "url": "https://arxiv.org/abs/2005.14165"
+   }
+  ]
+ },
+ {
+  "term": "AEO",
+  "aka": [
+   "Answer Engine Optimization",
+   "Antwortmaschinen-Optimierung"
+  ],
+  "letter": "A",
+  "definition": "Aufbereitung von Inhalten, damit Antwortmaschinen (KI-Übersichten, Chatbots) sie erfassen und als Quelle zitieren: klare Antwortabsätze, strukturierte Daten, belegte Aussagen. Ergänzt SEO, ersetzt es nicht.",
+  "usage": "Ein FAQ-Block mit echten Fragen und eigenständig verständlichen Antworten, damit die KI-Übersicht den Absatz zitieren kann.",
+  "related": [
+   "/seo-aeo-ki-zeitalter"
+  ],
+  "see_also": [
+   "Grounding",
+   "Watermarking (bei KI-Text)"
+  ],
+  "sources": [
+   {
+    "title": "Google Search Central: AI features and your website",
+    "url": "https://developers.google.com/search/docs/appearance/ai-features"
+   }
+  ]
  }
 ]

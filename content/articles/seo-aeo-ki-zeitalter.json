@@ -1,0 +1,177 @@
+{
+ "slug": "seo-aeo-ki-zeitalter",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "SEO und AEO im KI-Zeitalter: sichtbar in KI-Antworten",
+ "dek": "AI Overviews, Chatbots und Antwortmaschinen verändern, wie Inhalte gefunden werden. Was gemessen ist, was Google selbst rät und was hinter llms.txt steckt.",
+ "published": "2026-10-20T07:08:00+02:00",
+ "modified": "2026-10-20T07:08:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "SEO",
+  "AEO",
+  "AI Overviews",
+  "llms.txt",
+  "Sichtbarkeit"
+ ],
+ "key_takeaways": [
+  "Antwortmaschinen ersetzen einen Teil der Klicks: In einer Pew-Auswertung von 68.879 Suchanfragen klickten Nutzer bei Seiten mit KI-Zusammenfassung nur in 8 % der Fälle auf ein klassisches Ergebnis, ohne Zusammenfassung in 15 % [2].",
+  "Google betont: Für KI-Übersichten und KI-Modus gelten dieselben Grundlagen wie für die klassische Suche; zusätzliche Dateien oder Auszeichnungen sind nicht nötig [1].",
+  "Zitierbarkeit wird zur eigenen Disziplin ([AEO](/glossar#aeo)): klare Antwortblöcke, saubere Struktur, strukturierte Daten und zitierfähige Aussagen erhöhen die Chance, als Quelle in KI-Antworten zu erscheinen.",
+  "llms.txt ist ein inoffizieller Vorschlag für eine Markdown-Datei, die Modellen die wichtigsten Inhalte einer Site weist; weder Standard noch Rankingfaktor [3].",
+  "Wer die KI-Übersichten für die eigene Site beschränken will, nutzt die dokumentierten Vorschau-Steuerungen wie nosnippet und max-snippet [1]."
+ ],
+ "hero": {
+  "alt": "Zwei Suchergebnisseiten nebeneinander: links klassische blaue Linkliste mit Klickpfad, rechts eine KI-Antwortbox mit drei Quellen-Chips, von denen nur einer angeklickt wird.",
+  "caption": "Klassische Trefferliste gegen KI-Antwort mit Quellen: Klicks wandern von Links zu Zitaten. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Suchmaschinenoptimierung hieß zwanzig Jahre lang: möglichst weit oben in einer Liste aus zehn Links stehen. Diese Liste bekommt seit 2024 Konkurrenz aus dem eigenen Haus: Google blendet bei vielen Anfragen eine KI-erzeugte Übersicht (AI Overviews) über den klassischen Ergebnissen ein, in Deutschland seit März 2025 [4]. Dazu kommen Chatbots und Antwortmaschinen, die Fragen direkt beantworten und Quellen nur als Fußnote zeigen. Für Betreiber von Inhalten verschiebt sich die zentrale Frage: Nicht mehr nur werde ich gefunden, sondern werde ich zitiert."
+  },
+  {
+   "t": "h2",
+   "x": "Was gemessen ist: Klicks wandern ab"
+  },
+  {
+   "t": "p",
+   "x": "Die bislang sauberste öffentliche Messung stammt vom Pew Research Center. Ausgewertet wurden die Surf-Daten von 900 US-Erwachsenen mit insgesamt 68.879 Google-Suchanfragen im März 2025; rund 18 % dieser Suchen erzeugten eine KI-Zusammenfassung. Das zentrale Ergebnis: Besuchten Nutzer eine Ergebnisseite mit KI-Zusammenfassung, klickten sie nur in 8 % der Fälle auf ein klassisches Suchergebnis, gegenüber 15 % bei Seiten ohne Zusammenfassung. Auf die in der Zusammenfassung selbst genannten Quellen wurde in nur 1 % der Besuche geklickt. Zudem endete die Sitzung nach Seiten mit KI-Übersicht häufiger ganz (26 % gegenüber 16 %) [2]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Nutzerklicks mit und ohne KI-Zusammenfassung",
+   "alt": "Balkendiagramm: Klick auf klassisches Ergebnis 8 Prozent mit KI-Zusammenfassung gegenüber 15 Prozent ohne. Klick auf Quelle in der Zusammenfassung 1 Prozent. Sitzung beendet 26 Prozent mit, 16 Prozent ohne Zusammenfassung.",
+   "caption": "Anteil der Ergebnisseiten-Besuche mit jeweiliger Nutzeraktion; Werte aus der Pew-Auswertung von März 2025 [2]. Eigene Darstellung.",
+   "labels": [
+    "Klassisches Ergebnis geklickt",
+    "Quelle in Übersicht geklickt",
+    "Sitzung danach beendet"
+   ],
+   "series": [
+    {
+     "name": "Mit KI-Übersicht",
+     "values": [
+      8,
+      1,
+      26
+     ]
+    },
+    {
+     "name": "Ohne KI-Übersicht",
+     "values": [
+      15,
+      null,
+      16
+     ]
+    }
+   ],
+   "unit": "%",
+   "source": "Pew Research Center, Juli 2025 [2]"
+  },
+  {
+   "t": "p",
+   "x": "Drei Einordnungen sind wichtig. Erstens stammen die Daten aus den USA und aus der Anfangszeit der AI Overviews; Zahlen sind Momentaufnahmen. Zweitens bedeutet weniger Klicks nicht automatisch weniger Wert: Wer in der Übersicht genannt wird, gewinnt Sichtbarkeit ohne Besuch, eine Größe, die klassische Messung nicht erfasst. Drittens zeigt dieselbe Studie, wo Zusammenfassungen erscheinen: bei 60 % der Anfragen mit Fragewort, aber nur bei 8 % der Ein- bis Zwei-Wort-Suchen [2]. Ausgerechnet die erklärenden, langen Inhalte, die Fachseiten ausmachen, treffen also am ehesten auf KI-Antworten."
+  },
+  {
+   "t": "h2",
+   "x": "Was Google selbst rät: keine neuen Tricks"
+  },
+  {
+   "t": "p",
+   "x": "Googles offizielle Dokumentation zu KI-Funktionen in der Suche liest sich fast enttäuschend nüchtern: Es gibt keine zusätzlichen Anforderungen, keine neuen Auszeichnungen und keine Spezialdateien. Für AI Overviews und den KI-Modus gelten dieselben technischen und inhaltlichen Grundlagen wie für die klassische Suche: indexierbare Seiten, hilfreiche Inhalte für Menschen, saubere Struktur, strukturierte Daten passend zum sichtbaren Inhalt [1]. Wer die Darstellung beschränken will, kann das über die dokumentierten Vorschau-Steuerungen tun: nosnippet unterbindet Textausschnitte, max-snippet begrenzt ihre Länge, noindex nimmt die Seite ganz heraus [1]."
+  },
+  {
+   "t": "h2",
+   "x": "AEO: optimieren auf die Antwort, nicht nur auf den Rang"
+  },
+  {
+   "t": "p",
+   "x": "Unter dem Kürzel [AEO](/glossar#aeo) (Answer Engine Optimization) läuft die Disziplin, Inhalte so aufzubereiten, dass Antwortmaschinen sie leicht erfassen und zitieren können. Aus Googles Dokumentation und dem beobachteten Verhalten der Systeme lassen sich fünf Maßnahmen ableiten, die ohne Spekulation auskommen [1][2]:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Antworten in eigenen Absätzen.** Die Kernaussage eines Abschnitts steht in einem vollständigen, für sich verständlichen Absatz, idealerweise direkt unter der Zwischenüberschrift. Zusammenfassungen greifen bevorzugt solche Einheiten.",
+    "**Fragen benennen, die beantwortet werden.** Zwischenüberschriften und FAQ-Blöcke als echte Fragen formulieren; die Pew-Daten zeigen, dass Frageformulierungen überdurchschnittlich oft KI-Antworten auslösen [2].",
+    "**Strukturierte Daten pflegen.** Schema.org-Auszeichnungen, die zum sichtbaren Inhalt passen, helfen Maschinen, Art, Autor und Datum eines Beitrags sicher zu erfassen [1].",
+    "**Zahlen mit Quelle schreiben.** Aussagen mit Beleg und Datum sind für Antwortmaschinen besser zitierbar und für Leser besser prüfbar als Adjektive.",
+    "**Marke und Autor konsistent führen.** Wiedererkennbare Autoren- und Verlagsangaben machen aus einer Einzelseite eine zuordenbare Quelle; das stärkt zugleich die [Markenkonsistenz](/markenkonsistenz-ki)."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "llms.txt: Vorschlag, kein Standard"
+  },
+  {
+   "t": "p",
+   "x": "Seit 2024 kursiert der Vorschlag llms.txt: eine Markdown-Datei im Wurzelverzeichnis einer Website, die Sprachmodellen die wichtigsten Inhalte und deren Struktur auf einem Blick anbietet, ähnlich wie robots.txt für Crawler, aber inhaltlich statt regulierend [3]. Wichtig ist die Einordnung: llms.txt ist ein Vorschlag eines Einzelautors, kein verabschiedeter Standard, und es ist nicht dokumentiert, dass die großen Such- oder Antwortsysteme die Datei verbindlich auswerten [3]. Wer sie trotzdem pflegt, tut das als günstige Zusammenfassung der eigenen Site für jede Maschine, die mitliest; das KI Fachblatt selbst führt eine solche Datei unter [/llms.txt](/llms.txt). Schaden kann sie nicht, ersetzen tut sie nichts von dem, was oben steht."
+  },
+  {
+   "t": "h2",
+   "x": "Was sich nicht geändert hat"
+  },
+  {
+   "t": "p",
+   "x": "Die Versuchung ist groß, AEO als Ersatz für sauberes SEO zu lesen. Die Dokumentation sagt das Gegenteil: KI-Funktionen sitzen auf dem klassischen Index [1]. Eine Seite, die nicht gefunden, nicht gecrawlt oder als wenig hilfreich eingestuft wird, erscheint auch in keiner KI-Antwort. Die Reihenfolge bleibt damit: erst technisch und inhaltlich solide sein, dann auf Zitierbarkeit feilen. Und eine zweite Konstante: Messung. Wer Sichtbarkeit in KI-Antworten ernst nimmt, beobachtet, ob die eigenen Inhalte für wichtige Fragen genannt werden, so wie [Evals statt Bauchgefühl](/evals-statt-bauchgefuehl) es für Modelle fordert; der Eindruck aus drei Stichproben im eigenen Chatfenster ist kein Monitoring."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 Googles Dokumentation zu KI-Funktionen in der Suche, die Pew-Research-Analyse vom 22. Juli 2025 (inklusive der dort beschriebenen Methodik mit 900 Panelteilnehmern und 68.879 Suchanfragen), die llms.txt-Vorschlagsseite und Googles deutschsprachige Ankündigung zum Start der KI-Übersichten in Deutschland. Das Diagramm bildet die in der Pew-Studie genannten Prozentwerte neu ab; die fünf AEO-Maßnahmen sind eine redaktionelle Ableitung aus den genannten Quellen, kein offizieller Maßnahmenkatalog.",
+ "limitations": "Die Pew-Daten stammen aus den USA, vom März 2025, und erfassen nur google.com; sie sagen nichts über Deutschland 2026 oder andere Suchmaschinen. Wie genau Googles Systeme Quellen für Übersichten auswählen, ist nicht öffentlich; die AEO-Maßnahmen sind begründete Heuristiken, keine Wirkungsgarantie. Zur tatsächlichen Auswertung von llms.txt durch Anbieter gibt es keine verlässliche öffentliche Evidenz [3].",
+ "sources": [
+  {
+   "title": "AI features and your website",
+   "publisher": "Google Search Central (Dokumentation)",
+   "url": "https://developers.google.com/search/docs/appearance/ai-features",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Google users are less likely to click on links when an AI summary appears in the results",
+   "publisher": "Pew Research Center (Chapekis, Lieb, 22. Juli 2025)",
+   "url": "https://www.pewresearch.org/short-reads/2025/07/22/google-users-are-less-likely-to-click-on-links-when-an-ai-summary-appears-in-the-results/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "The /llms.txt file",
+   "publisher": "llmstxt.org (Vorschlag von Jeremy Howard)",
+   "url": "https://llmstxt.org/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Übersicht mit KI: Der Start in Deutschland",
+   "publisher": "Google Blog Deutschland",
+   "url": "https://blog.google/intl/de-de/produkte/suchen-entdecken/uebersicht-mit-ki-start/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen SEO und AEO?",
+   "a": "SEO optimiert Inhalte für die Platzierung in der klassischen Trefferliste, AEO (Answer Engine Optimization) für die Übernahme in maschinell erzeugte Antworten, etwa Googles KI-Übersichten oder Chatbots. AEO ersetzt SEO nicht: KI-Funktionen greifen auf denselben Index zu. Wer nicht gefunden und als hilfreich eingestuft wird, wird auch nicht zitiert."
+  },
+  {
+   "q": "Kosten mich AI Overviews meine Besucher?",
+   "a": "Die beste öffentliche Messung (Pew, USA, März 2025) zeigt: Bei Seiten mit KI-Zusammenfassung wurden klassische Ergebnisse nur in 8 % der Besuche geklickt statt 15 % ohne. Ob das für eine einzelne Site gilt, hängt von Themen und Suchanfragen ab; reine Definitionsthemen sind stärker betroffen als Inhalte mit eigenen Daten. Sichtbarkeit ohne Klick kann trotzdem Markenwirkung haben, lässt sich aber schlechter messen."
+  },
+  {
+   "q": "Bringt eine llms.txt-Datei bessere Rankings?",
+   "a": "Dafür gibt es keine Belege. llms.txt ist ein inoffizieller Vorschlag für eine Markdown-Datei, die Modellen die wichtigsten Inhalte einer Site weist. Sie ist weder Standard noch dokumentierter Rankingfaktor. Wer sie pflegt, bietet Maschinen eine bequeme Zusammenfassung; ersetzen tut sie saubere Struktur und Inhalte nicht."
+  },
+  {
+   "q": "Kann ich verhindern, dass meine Texte in KI-Antworten auftauchen?",
+   "a": "Teilweise: Google dokumentiert die Vorschau-Steuerungen nosnippet, max-snippet und noindex, mit denen sich Textausschnitte und damit die Nutzung in KI-Übersichten beschränken lassen. Für Drittsysteme außerhalb Googles gelten deren eigene Regeln und Crawler-Anweisungen; eine universelle Sperre für alle Antwortmaschinen existiert nicht."
+  },
+  {
+   "q": "Welche Inhalte werden in KI-Antworten zitiert?",
+   "a": "Öffentlich belastbar ist: In der Pew-Auswertung waren Wikipedia, YouTube und Reddit die meistzitierten Quellen, 88 % der Übersichten nannten drei oder mehr Quellen, und Frage- sowie lange Suchanfragen lösten überdurchschnittlich oft Übersichten aus. Für eigene Inhalte erhöhen klare Antwortabsätze, strukturierte Daten und belegte Aussagen die Chance, als Quelle zu erscheinen; eine Garantie gibt es nicht."
+  }
+ ],
+ "related": [
+  "content-workflows-llm",
+  "markenkonsistenz-ki"
+ ]
+}

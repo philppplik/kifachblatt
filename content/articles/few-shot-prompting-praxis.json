@@ -1,0 +1,190 @@
+{
+ "slug": "few-shot-prompting-praxis",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Few-Shot-Prompting in der Praxis: Beispiele, die wirken",
+ "dek": "Warum ein paar Beispiele im Prompt oft mehr bringen als lange Anweisungen, was die Forschung dazu wirklich zeigt und wie man Beispiele richtig baut.",
+ "published": "2026-10-19T07:42:00+02:00",
+ "modified": "2026-10-19T07:42:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Few-Shot-Prompting",
+  "Prompting",
+  "In-Context Learning",
+  "Prompt-Praxis",
+  "LLM"
+ ],
+ "key_takeaways": [
+  "Few-Shot-Prompting heißt: Dem Modell werden einige fertige Beispiele mitgegeben, bevor die eigentliche Aufgabe kommt. Der Begriff stammt aus der GPT-3-Arbeit von 2020 [1].",
+  "Im GPT-3-Paper stieg die Trefferquote bei TriviaQA von 64,3 % ohne Beispiel auf 71,2 % mit 64 Beispielen; schon ein einziges Beispiel brachte den größten Sprung [1].",
+  "Eine vielzitierte Untersuchung zeigt: Ob die Beispielantworten korrekt sind, ist weniger wichtig als gedacht. Entscheidend sind das Format, die Art der Eingaben und der Antwortraum [2].",
+  "Beispiele kosten bei jeder Anfrage [Token](/glossar#token): Acht Beispiele à 100 Token sind 800 zusätzliche Eingabe-Token pro Aufruf (eigene Rechnung).",
+  "Für Rechen- und Logikaufgaben sind Beispiele mit ausgeschriebenen Zwischenschritten ([Chain of Thought](/glossar#chain-of-thought)) wirksamer als reine Antwortbeispiele [3]."
+ ],
+ "hero": {
+  "alt": "Drei Karten für Zero-Shot, One-Shot und Few-Shot mit steigenden Balken: Ohne Beispiel 64,3 Prozent, mit einem Beispiel 68,0 Prozent, mit 64 Beispielen 71,2 Prozent Trefferquote bei TriviaQA.",
+  "caption": "Trefferquote von GPT-3 (175B) bei TriviaQA nach Anzahl der Beispiele im Prompt; Werte aus [1]. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Manche Anweisungen will man einem Sprachmodell gar nicht in Worte fassen. Wie klingt unsere Antwort an verärgerte Kunden? Nach welchem Muster kürzen wir Überschriften? Statt drei Absätze Regeln zu schreiben, ist es oft wirksamer, dem Modell einfach zwei oder drei fertige Beispiele vorzulegen. Genau das ist [Few-Shot-Prompting](/glossar#few-shot-prompting): Der [Prompt](/glossar#prompt) enthält einige gelöste Beispielfälle, danach folgt die neue, ungelöste Aufgabe. Das Modell setzt das Muster fort, ohne dass ein einziges Gewicht verändert wird."
+  },
+  {
+   "t": "p",
+   "x": "Erfunden hat die Technik nicht der Alltag, sondern ein Paper: In Language Models are Few-Shot Learners zeigten OpenAI-Forschende 2020, dass GPT-3 mit 175 Milliarden Parametern Aufgaben lösen kann, die es nie trainiert hat, allein weil ein paar Beispiele im Eingabetext stehen. Sie nannten das In-Context Learning und testeten drei Stufen: Zero-Shot (nur die Anweisung), One-Shot (ein Beispiel) und Few-Shot (typischerweise 10 bis 100 Beispiele, soweit sie ins Kontextfenster passten) [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Zahlen zeigen"
+  },
+  {
+   "t": "p",
+   "x": "Die gemessenen Sprünge sind je nach Aufgabe unterschiedlich groß, folgen aber einem stabilen Muster: Der größte Gewinn entsteht schon beim ersten Beispiel. Bei der Wissensaufgabe TriviaQA stieg GPT-3 (175B) von 64,3 % (Zero-Shot) auf 68,0 % (One-Shot) und 71,2 % (64 Beispiele). Bei LAMBADA, einer Aufgabe zum Vervollständigen von Textstellen, stieg die Trefferquote von 68,4 % über 73,2 % auf 76,2 % [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "GPT-3 (175B): Trefferquote nach Anzahl der Beispiele",
+   "alt": "Säulendiagramm: Bei TriviaQA steigt die Trefferquote von 64,3 Prozent ohne Beispiel über 68,0 Prozent mit einem Beispiel auf 71,2 Prozent mit 64 Beispielen. Bei LAMBADA von 68,4 über 73,2 auf 76,2 Prozent.",
+   "caption": "Werte aus dem GPT-3-Paper [1]; jeweils Zero-Shot, One-Shot und Few-Shot (64 Beispiele). Eigene Darstellung.",
+   "labels": [
+    "Zero-Shot",
+    "One-Shot",
+    "Few-Shot (64)"
+   ],
+   "series": [
+    {
+     "name": "TriviaQA",
+     "values": [
+      64.3,
+      68.0,
+      71.2
+     ]
+    },
+    {
+     "name": "LAMBADA",
+     "values": [
+      68.4,
+      73.2,
+      76.2
+     ]
+    }
+   ],
+   "unit": "%",
+   "y_label": "Trefferquote",
+   "source": "Brown u. a. 2020 [1]"
+  },
+  {
+   "t": "p",
+   "x": "Zwei Lesarten sind wichtig. Erstens: Few-Shot ist kein Freifahrtschein. Bei vielen Aufgaben blieb GPT-3 auch mit Beispielen hinter feinabgestimmten Modellen zurück, und das Paper weist selbst auf Aufgaben hin, bei denen Beispiele fast nichts brachten [1]. Zweitens: Die Kurve flacht ab. Vom nullten zum ersten Beispiel ist der Sprung groß, vom zehnten zum sechzigsten klein. Wer Beispiele in den Prompt packt, kauft jedes weitere mit teurer werdenden [Token](/glossar#token) bei sinkendem Zusatznutzen."
+  },
+  {
+   "t": "h2",
+   "x": "Der überraschende Befund: Falsche Antworten schaden kaum"
+  },
+  {
+   "t": "p",
+   "x": "Die gängige Annahme war lange: Beispiele wirken, weil das Modell aus ihnen die richtige Zuordnung lernt. Die Arbeit Rethinking the Role of Demonstrations (Min u. a., 2022) hat das direkt geprüft. Das Ergebnis: Ersetzt man in den Beispielen die korrekten Antworten durch zufällige Antworten aus demselben Antwortraum, fällt die Leistung nur um wenige Prozentpunkte. Fast ebenso gut funktionierten also Beispiele mit falschen Lösungen [2]."
+  },
+  {
+   "t": "p",
+   "x": "Was stattdessen trug, waren drei Dinge: dass die Beispiele den möglichen Antwortraum zeigen (zum Beispiel die Kategorien positiv, negativ, neutral), dass die Beispieleingaben aus derselben Art von Aufgaben stammen, und dass das Format von Eingabe und Ausgabe konsistent ist [2]. Für die Praxis heißt das: Perfektion bei jedem Beispiel ist weniger wichtig als ein sauberes, einheitliches Schema. Ein Tippfehler in einer Beispielantwort ist verzeihlich, ein wechselndes Antwortformat nicht."
+  },
+  {
+   "t": "h2",
+   "x": "Beispiele richtig bauen: die fünf Hebel"
+  },
+  {
+   "t": "p",
+   "x": "Aus den Befunden und der Dokumentationspraxis lassen sich fünf Hebel ableiten, die in der Reihenfolge ihrer Wirkung geprüft werden sollten [2][4]:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Format zuerst.** Alle Beispiele folgen exakt demselben Muster: gleiche Trenner, gleiche Reihenfolge von Eingabe und Ausgabe, gleiche Schreibweise der Antwort. Die neue Aufgabe am Ende sieht genauso aus, nur ohne Antwort.",
+    "**Antwortraum zeigen.** Jede Kategorie, die das Modell benutzen darf, sollte mindestens einmal vorkommen. Wer drei Klassen will, aber nur zwei zeigt, bekommt selten die dritte.",
+    "**Typische Fälle, keine Kunststücke.** Beispiele sollen die Verteilung der echten Anfragen abbilden: häufige Fälle zuerst, ein bis zwei Grenzfälle, keine Sammlung von Spezialfällen, die im Alltag nie vorkommen.",
+    "**Anzahl klein halten.** Beginne mit zwei bis vier Beispielen. Mehr Beispiele kosten Token und bringen nach dem Paper-Verlauf wenig zusätzliche Trefferquote [1]. Nur wenn Fehler auftreten, gezielt ergänzen.",
+    "**Reihenfolge prüfen.** Sprachmodelle gewichten das Ende des Prompts stark. Das Beispiel direkt vor der neuen Aufgabe sollte ein klarer, unstrittiger Fall sein, kein Grenzfall."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Was Beispiele kosten: eine kleine Rechnung"
+  },
+  {
+   "t": "p",
+   "x": "Beispiele werden bei jeder Anfrage erneut mitgeschickt. Acht Beispiele mit je rund 100 [Token](/glossar#token) sind 800 Eingabe-Token zusätzlich pro Aufruf. Bei 100.000 Aufrufen im Monat summiert sich das auf 80 Millionen zusätzliche Eingabe-Token (eigene Rechnung: 800 mal 100.000). Je nach Modell und Preisliste kann das die Kosten einer Integration spürbar verschieben; die genauen Sätze hängen vom Anbieter ab und ändern sich regelmäßig. Gegenmittel: weniger, dafür treffendere Beispiele, [Prompt-Caching](/glossar#prompt-caching), wo der Anbieter es anbietet, oder bei sehr stabilen Aufgaben ein Fine-Tuning, das die Beispiele ins Modell verlagert."
+  },
+  {
+   "t": "h2",
+   "x": "Wann Few-Shot nicht reicht"
+  },
+  {
+   "t": "p",
+   "x": "Bei Aufgaben mit Zwischenschritten, etwa Rechenwegen oder mehrstufigen Schlüssen, helfen reine Antwortbeispiele wenig. Hier zeigt die Arbeit zu [Chain of Thought](/glossar#chain-of-thought) den Ausweg: Die Beispiele enthalten nicht nur die Lösung, sondern den ausgeschriebenen Lösungsweg. Ausreichend große Modelle imitieren dann den Weg, nicht nur das Ergebnis, und verbessern sich bei Rechen- und Logikaufgaben deutlich [3]. Wer also Beispiele für knifflige Aufgaben baut, sollte den Rechenweg im Beispiel vormachen, nicht nur das Resultat."
+  },
+  {
+   "t": "p",
+   "x": "Und es gibt den umgekehrten Fall: Moderne Reasoning-Modelle und gut instruct-trainierte Modelle lösen viele Standardaufgaben inzwischen ohne Beispiele zuverlässig. Bevor man eine Few-Shot-Konstruktion baut, lohnt der einfache Test: dieselbe Aufgabe einmal ohne Beispiel stellen. Bringt das Modell die Leistung schon mit, kosten Beispiele nur Token und Wartung. Few-Shot ist ein Werkzeug für den Fall, dass Anweisungen allein das gewünschte Format oder die gewünschte Entscheidungslogik nicht zuverlässig treffen; kein Pflichtbestandteil jedes Prompts."
+  }
+ ],
+ "method": "Gelesen wurden am 19. Oktober 2026 die arXiv-Seiten der drei zitierten Papers (GPT-3, Rethinking Demonstrations, Chain-of-Thought) sowie die Few-Shot-Seite des Prompting Guide. Die Werte für TriviaQA und LAMBADA sind den Ergebnistabellen des GPT-3-Papers entnommen und wurden hier als Diagramm neu dargestellt. Die Token-Kostenrechnung ist eine eigene Rechnung mit gerundeten Annahmen (100 Token pro Beispiel, 100.000 Aufrufe) und dient der Größenordnung, nicht der Abrechnung.",
+ "limitations": "Alle Leistungszahlen stammen aus den Papers der jeweiligen Autoren, gemessen an GPT-3 und den dortigen Testdaten; sie wurden nicht unabhängig reproduziert und lassen sich nicht eins zu eins auf heutige Modelle übertragen. Der Befund zu zufälligen Antworten [2] wurde an Klassifikations- und Multiple-Choice-Aufgaben erhoben und gilt nicht ohne Weiteres für freie Textgenerierung. Der Prompting Guide ist ein Community-Projekt ohne Peer-Review.",
+ "sources": [
+  {
+   "title": "Language Models are Few-Shot Learners",
+   "publisher": "arXiv:2005.14165 (Brown u. a., OpenAI, NeurIPS 2020)",
+   "url": "https://arxiv.org/abs/2005.14165",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Rethinking the Role of Demonstrations: What Makes In-Context Learning Work?",
+   "publisher": "arXiv:2202.12837 (Min u. a., EMNLP 2022)",
+   "url": "https://arxiv.org/abs/2202.12837",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Chain-of-Thought Prompting Elicits Reasoning in Large Language Models",
+   "publisher": "arXiv:2201.11903 (Wei u. a., Google Research, NeurIPS 2022)",
+   "url": "https://arxiv.org/abs/2201.11903",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Few-Shot Prompting",
+   "publisher": "Prompting Guide (DAIR.AI, Community-Projekt)",
+   "url": "https://www.promptingguide.ai/techniques/fewshot",
+   "accessed": "2026-10-19"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Wie viele Beispiele braucht ein guter Few-Shot-Prompt?",
+   "a": "Für die meisten Praxisaufgaben reichen zwei bis vier Beispiele. Im GPT-3-Paper brachte schon der Sprung von null auf ein Beispiel den größten Leistungsgewinn; danach flacht die Kurve ab. Mehr Beispiele kosten bei jeder Anfrage Token und lohnen sich nur, wenn gezielt beobachtete Fehler damit verschwinden."
+  },
+  {
+   "q": "Müssen die Beispiele im Prompt fehlerfrei sein?",
+   "a": "Weniger als gedacht: Eine EMNLP-Studie fand, dass zufällige Antworten im richtigen Format kaum schlechter abschnitten als korrekte. Entscheidend sind ein einheitliches Format, passende Beispieleingaben und ein sichtbarer Antwortraum. Trotzdem gilt: Wer korrekte Beispiele geben kann, sollte es tun; die Studie misst Durchschnittswerte, nicht jeden Einzelfall."
+  },
+  {
+   "q": "Was ist der Unterschied zwischen Few-Shot-Prompting und Fine-Tuning?",
+   "a": "Beim Few-Shot-Prompting stehen die Beispiele nur im Eingabetext; die Modellgewichte bleiben unverändert, und die Beispiele kosten bei jedem Aufruf Token. Beim Fine-Tuning werden die Gewichte mit Beispielen nachtrainiert; die Beispiele stecken danach im Modell und nicht mehr im Prompt. Few-Shot ist schneller gebaut und geändert, Fine-Tuning kann bei sehr stabilen, häufigen Aufgaben günstiger im Betrieb sein."
+  },
+  {
+   "q": "Funktioniert Few-Shot auch bei Rechenaufgaben?",
+   "a": "Nur begrenzt mit reinen Antwortbeispielen. Wirksamer sind Beispiele mit ausgeschriebenem Lösungsweg (Chain of Thought): Das Modell imitiert den Rechenweg und schneidet bei Rechen- und Logikaufgaben deutlich besser ab, wie die zitierte Arbeit von Wei u. a. zeigt."
+  },
+  {
+   "q": "Brauchen moderne Modelle überhaupt noch Beispiele?",
+   "a": "Oft nicht für Standardaufgaben: Gut instruct-trainierte Modelle folgen klaren Anweisungen häufig schon im Zero-Shot. Beispiele lohnen sich weiter, wenn es um ein spezielles Ausgabeformat, eine bestimmte Entscheidungslogik oder einen eigenen Stil geht, den man schwer in Worte fassen kann. Der einfachste Test ist, die Aufgabe einmal ohne Beispiel zu stellen und das Ergebnis zu vergleichen."
+  }
+ ],
+ "related": [
+  "system-prompts",
+  "prompt-iteration"
+ ]
+}

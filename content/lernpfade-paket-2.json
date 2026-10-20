@@ -1,0 +1,172 @@
+{
+ "paths": [
+  {
+   "id": "prompt-praxis",
+   "name": "Prompt-Praxis: vom Wunsch zum Ergebnis",
+   "level": "Einsteiger bis Praktiker",
+   "zielgruppe": "Alle, die Chatbots und KI-Assistenten im Alltag oder Beruf nutzen",
+   "zeit": "ca. 90 Minuten",
+   "frage": "Ich will systematisch bessere Antworten bekommen, statt jedes Mal neu herumzuprobieren.",
+   "voraussetzungen": "Keine. Grundkenntnisse im Umgang mit einem Chatbot reichen.",
+   "lernziel": "Systematisch prompten: Kontext geben, Beispiele nutzen, iterieren und die Qualität der Ergebnisse prüfen.",
+   "intro": "Prompting ist eine lernbare Handwerkskunst, kein Rätselraten. Dieser Pfad führt von den Grundlagen über Beispiele und Systemanweisungen bis zum eigenen, prüfbaren Prompt-Bestand.",
+   "steps": [
+    {
+     "slug": "prompt-grundlagen",
+     "warum": "Der Einstieg: Woraus ein Prompt besteht und warum Kontext mehr zählt als Zauberformeln (Artikel in Vorbereitung durch die Redaktion)."
+    },
+    {
+     "slug": "few-shot-prompting-praxis",
+     "warum": "Warum ein paar Beispiele oft mehr bringen als lange Anweisungen, und wie man Beispiele richtig baut."
+    },
+    {
+     "slug": "system-prompts",
+     "warum": "Die unsichtbare Daueranweisung: Rolle, Regeln und Grenzen einmal richtig setzen."
+    },
+    {
+     "slug": "prompt-iteration",
+     "warum": "Prompts debuggen wie Software: Fehler einordnen, eine Stelle ändern, mit Testmenge prüfen."
+    },
+    {
+     "slug": "evals-statt-bauchgefuehl",
+     "warum": "Eine eigene kleine Testmenge bauen, damit Verbesserungen messbar statt gefühlt sind."
+    },
+    {
+     "slug": "prompt-bibliothek",
+     "warum": "Aus einmaligem Ausprobieren wird ein wachsender, gepflegter Bestand an geprüften Prompts."
+    }
+   ],
+   "terms": [
+    "Prompt",
+    "System-Prompt",
+    "Few-Shot-Prompting",
+    "Zero-Shot",
+    "Chain of Thought"
+   ],
+   "abschluss_check": {
+    "praxis": [
+     {
+      "aufgabe": "Schwacher Prompt: 'Schreib was über unsere neue Software.' Verbessere ihn mit Zielgruppe, Auftrag, Länge und Tonalität.",
+      "musterloesung": "Zum Beispiel: 'Schreibe einen LinkedIn-Beitrag (max. 120 Wörter) für Bestandskunden: Unsere Software Version 4 spart bis zu 30 % Erfassungszeit. Ton: sachlich, kein Marketing-Überbieten. Ende mit einem Satz zur kostenlosen Testphase.' Entscheidend ist nicht diese Formulierung, sondern dass Zielgruppe, Auftrag, Umfang und Ton benannt sind."
+     },
+     {
+      "aufgabe": "Schwacher Prompt: 'Fass das zusammen: [2.000 Wörter Vertragstext]'. Wo liegt das Problem und wie repariert man es?",
+      "musterloesung": "Das Ziel fehlt: Zusammenfassen wofür und für wen? Reparatur: Auftrag und Publikum ergänzen ('die drei für einen Mieter riskantesten Klauseln in je einem Satz, für Laien') und bei sensiblen Texten prüfen, welche Daten in welches Werkzeug dürfen."
+     },
+     {
+      "aufgabe": "Schwacher Prompt: 'Mach die Antwort besser.' Warum funktioniert das nicht, und was wäre die bessere Iteration?",
+      "musterloesung": "'Besser' ist kein prüfbares Kriterium; das Modell rät. Besser: den Fehler benennen ('zu lang, zu formell, Punkt 2 fehlt') und genau eine Stelle ändern, dann erneut prüfen (siehe Prompt-Iteration)."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Was ist der Unterschied zwischen Zero-Shot und Few-Shot?",
+      "antwort": "Zero-Shot: nur die Anweisung, keine Beispiele. Few-Shot: einige gelöste Beispiele stehen im Prompt, das Modell setzt das Muster fort."
+     },
+     {
+      "frage": "Was steht typischerweise im System-Prompt und wer sieht ihn?",
+      "antwort": "Rolle, Regeln, Format und Grenzen der Antworten; er stammt vom Anbieter oder Entwickler und ist für Nutzer der App meist unsichtbar."
+     },
+     {
+      "frage": "Nenne die Kernregel beim Debuggen eines Prompts.",
+      "antwort": "Pro Iteration nur eine Stelle ändern und gegen eine feste Testmenge prüfen; sonst ist nicht erkennbar, welche Änderung wirkte."
+     },
+     {
+      "frage": "Warum gehören keine Geheimnisse in den System-Prompt?",
+      "antwort": "Alles im System-Prompt kann im Prinzip vom Modell wiedergegeben und durch geschickte Fragen ausgelesen werden; er ist eine Anweisung, kein Tresor."
+     },
+     {
+      "frage": "Woran erkennt man, dass ein Prompt eine eigene Testmenge braucht?",
+      "antwort": "Sobald er wiederholt läuft (Produkt, Workflow, Assistenz) oder Änderungen bewertet werden sollen: Dann zählt die Leistung über eine feste Menge echter Fälle, nicht der Einzeleindruck."
+     }
+    ]
+   }
+  },
+  {
+   "id": "marketing-seo",
+   "name": "Marketing & SEO: KI-gestützte Content-Arbeit",
+   "level": "Praktiker",
+   "zielgruppe": "Marketing-Verantwortliche, SEOs, Content-Teams",
+   "zeit": "ca. 2 Stunden",
+   "frage": "Ich will Content mit KI schneller produzieren, ohne Markenkonsistenz und Sichtbarkeit in KI-Antwortsystemen zu verlieren.",
+   "voraussetzungen": "Marketing-Grundlagen; hilfreich ist der Lernpfad Prompt-Praxis.",
+   "lernziel": "Content-Produktion mit KI beschleunigen und gleichzeitig Markenstimme halten sowie in KI-Übersichten und Antwortmaschinen zitierbar bleiben.",
+   "intro": "Sprachmodelle verändern zwei Seiten des Marketings gleichzeitig: die Produktion von Inhalten und deren Auffindbarkeit. Dieser Pfad deckt beide ab: vom Workflow über die Markenstimme bis zur Sichtbarkeit in AI Overviews und Antwortmaschinen.",
+   "steps": [
+    {
+     "slug": "content-workflows-llm",
+     "warum": "Der tragfähige Prozess: Briefing, Kontext, KI-Entwurf, menschliches Review, Freigabe; mit Produktivitätszahlen und Googles Regeln."
+    },
+    {
+     "slug": "seo-aeo-ki-zeitalter",
+     "warum": "Klicks wandern zu KI-Antworten: was gemessen ist, was Google rät und was llms.txt kann und nicht kann."
+    },
+    {
+     "slug": "bild-ki-praxis",
+     "warum": "Bilder zum Content mit Bild-KI erzeugen: Prompts, Referenzen, Workflows (Artikel in Vorbereitung durch die Redaktion)."
+    },
+    {
+     "slug": "markenkonsistenz-ki",
+     "warum": "Eine Stimme in jedem Entwurf: Tonalität messbar machen, dauerhaft hinterlegen, im Review sichern."
+    },
+    {
+     "slug": "evals-statt-bauchgefuehl",
+     "warum": "Qualitätsmessung auf Content übertragen: feste Prüffälle statt Stichprobe nach Gefühl."
+    },
+    {
+     "slug": "halluzinationen",
+     "warum": "Das Markenrisiko falscher Fakten verstehen: warum Modelle erfinden und was dagegen hilft."
+    }
+   ],
+   "terms": [
+    "Sycophancy",
+    "Semantisches Caching",
+    "Grounding",
+    "Prompt",
+    "AEO"
+   ],
+   "abschluss_check": {
+    "praxis": [
+     {
+      "aufgabe": "Prüfe diesen KI-Entwurf gegen einen Stilguide (Vorgabe: sachlich, keine Superlative, kurze Sätze): 'Unser revolutionäres, bahnbrechendes Produkt wird Ihre Arbeitswelt für immer transformieren!'",
+      "musterloesung": "Der Satz verstößt dreifach: Superlative ('revolutionär', 'bahnbrechend'), unbelegte Zukunftsbehauptung, Werbepathos statt Sachlichkeit. Umarbeiten etwa: 'Version 4 erfasst Belege automatisch; in unserem Test sank der Aufwand pro Beleg von 4 auf 3 Minuten.' Regel: Abweichung benennen und als Beispiel in die Vorgabe zurückspielen."
+     },
+     {
+      "aufgabe": "Dein Chef fragt: 'Warum sinken unsere Besucherzahlen, obwohl wir bei Google auf Platz 2 stehen?' Skizziere die Antwort.",
+      "musterloesung": "Rang und Klicks entkoppeln sich: KI-Übersichten beantworten viele Anfragen direkt; die Pew-Auswertung zeigte 8 % Klickrate mit KI-Übersicht gegenüber 15 % ohne. Gegenmaßnahmen: Zitierbarkeit stärken (Antwortabsätze, strukturierte Daten, belegte Aussagen), Themen mit eigenen Daten ausbauen, Sichtbarkeit in KI-Antworten beobachten statt nur Ränge."
+     },
+     {
+      "aufgabe": "Baue die Minimal-Vorgabe für Markenstimme aus fünf Beispieltexten deines Arbeitgebers (gedanklich).",
+      "musterloesung": "Aus den Texten werden Tonalitätsregler abgeleitet (z. B. ernst 8/10, förmlich 6/10), drei Beispielsätze im eigenen Ton und eine Negativliste typischer Modellfloskeln; das Paket wird in den Werkzeugen hinterlegt und im Review genutzt."
+     }
+    ],
+    "quiz": [
+     {
+      "frage": "Wie bewertet Google KI-generierte Inhalte grundsätzlich?",
+      "antwort": "Nach Nutzen für Leser, nicht nach Entstehungsart. Missbrauch ist die massenhafte Produktion wertloser Inhalte zur Ranking-Manipulation, egal ob von Mensch oder Maschine."
+     },
+     {
+      "frage": "Was besagt die Pew-Studie zu Klicks bei KI-Übersichten?",
+      "antwort": "Bei Seiten mit KI-Zusammenfassung wurde nur in 8 % der Besuche auf ein klassisches Ergebnis geklickt (ohne: 15 %); Quellen in der Übersicht selbst nur in 1 %."
+     },
+     {
+      "frage": "Was ist llms.txt und was ist es nicht?",
+      "antwort": "Ein inoffizieller Vorschlag für eine Markdown-Datei, die Modellen die wichtigsten Inhalte einer Site weist. Es ist weder Standard noch dokumentierter Rankingfaktor."
+     },
+     {
+      "frage": "Nenne die vier Tonalitätsdimensionen nach Nielsen Norman Group.",
+      "antwort": "Witzig vs. ernst, förmlich vs. locker, respektvoll vs. respektlos, enthusiastisch vs. sachlich."
+     },
+     {
+      "frage": "Warum gehört der Ton-Check in dasselbe Review wie der Fakten-Check?",
+      "antwort": "Weil Modelle im Durchschnittston ihrer Trainingsdaten schreiben und in langen Unterhaltungen dorthin driften; ohne Prüfung klingt der Entwurf nach dem Modell, nicht nach der Marke."
+     },
+     {
+      "frage": "Was bedeutet AEO und wie verhält es sich zu SEO?",
+      "antwort": "Answer Engine Optimization: Inhalte so aufbereiten, dass Antwortmaschinen sie erfassen und zitieren. Es ergänzt SEO, ersetzt es nicht; KI-Funktionen sitzen auf dem klassischen Index."
+     }
+    ]
+   }
+  }
+ ]
+}

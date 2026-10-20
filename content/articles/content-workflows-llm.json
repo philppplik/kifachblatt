@@ -1,0 +1,171 @@
+{
+ "slug": "content-workflows-llm",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Content-Workflows mit LLMs: Briefing, Entwurf, Review",
+ "dek": "Wie Redaktionen Sprachmodelle sinnvoll einbauen: klare Briefings, maschinelle Entwürfe, menschliche Prüfung. Mit Produktivitätszahlen und Googles Regeln.",
+ "published": "2026-10-20T06:52:00+02:00",
+ "modified": "2026-10-20T06:52:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Content-Workflow",
+  "Redaktion",
+  "LLM",
+  "Marketing",
+  "Qualitätssicherung"
+ ],
+ "key_takeaways": [
+  "Der tragfähige Workflow ist eine Kette aus fünf Schritten: Briefing, Recherche und Kontext, Entwurf durch das Modell, menschliches Review, Freigabe. Das Modell ersetzt einen Schritt, nicht die Kette.",
+  "Die bislang robusteste Feldstudie maß bei Kundenservice-Kräften mit KI-Assistent 14 % mehr gelöste Fälle pro Stunde im Schnitt und 34 % bei unerfahrenen Kräften [2].",
+  "Google wertet Inhalte nicht nach der Entstehungsart, sondern nach Nutzen für Leser; massenhafte KI-Inhalte ohne Mehrwert gelten als Spam, egal wie sie entstanden sind [1].",
+  "Das Briefing ist der Hebel mit dem größten Hebelarm: Zielgruppe, Auftrag, Tonalität und verbindliche Fakten entscheiden über die Qualität des Entwurfs.",
+  "Jeder KI-Entwurf braucht eine dokumentierte Prüfung: Fakten gegen Quellen, Ton gegen Stilvorgabe, Freigabe durch einen Menschen mit Namen."
+ ],
+ "hero": {
+  "alt": "Flussdiagramm mit fünf Stationen: Briefing, Kontext, KI-Entwurf, menschliches Review, Freigabe. Zwischen KI-Entwurf und Review eine Schleife für Nachbesserungen.",
+  "caption": "Der Content-Workflow mit Sprachmodell: Maschine entwirft, Mensch prüft und gibt frei. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "In vielen Teams läuft die KI-Nutzung bei Texten noch so: Jemand öffnet einen Chatbot, tippt schreib mir einen Blogartikel über X und kämpft dann eine Stunde mit dem Ergebnis. Das Problem liegt selten im Modell, sondern im fehlenden Prozess. Textproduktion war schon vor KI eine Kette aus Briefing, Recherche, Entwurf, Review und Freigabe. Sprachmodelle verändern diese Kette, aber sie lösen sie nicht auf: Sie übernehmen den Entwurfsschritt und Teile der Recherche, während Briefing und Prüfung wichtiger werden, nicht unwichtiger."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Produktivitätsforschung zeigt"
+  },
+  {
+   "t": "p",
+   "x": "Die bislang meistzitierte Feldstudie zum Thema untersuchte über 5.000 Kundenservice-Beschäftigte eines Softwarekonzerns, die einen KI-Assistenten beim Beantworten von Anfragen nutzten. Ergebnis: Im Schnitt stieg die Zahl gelöster Fälle pro Stunde um 14 %. Der Effekt verteilte sich sehr ungleich: Bei neuen und unerfahrenen Kräften lag er bei 34 %, während die erfahrensten Beschäftigten kaum profitierten. Die Autoren deuten das so, dass der Assistent das implizite Wissen der Besten weitergibt und damit vor allem denen hilft, die es noch nicht haben [2]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Produktivitätsgewinn durch KI-Assistenten im Kundenservice",
+   "alt": "Balkendiagramm: Im Durchschnitt 14 Prozent mehr gelöste Fälle pro Stunde, bei unerfahrenen Beschäftigten 34 Prozent, bei den erfahrensten nahe null.",
+   "caption": "Gemessene Steigerung der gelösten Fälle pro Stunde; Gesamtwert und Erfahrungsgruppen aus [2]. Eigene Darstellung.",
+   "labels": [
+    "Durchschnitt",
+    "Neue/unerfahrene Kräfte",
+    "Erfahrenste Kräfte"
+   ],
+   "series": [
+    {
+     "name": "Gewinn",
+     "values": [
+      14,
+      34,
+      0
+     ]
+    }
+   ],
+   "unit": "%",
+   "source": "Brynjolfsson, Li, Raymond (NBER Working Paper 31161) [2]"
+  },
+  {
+   "t": "p",
+   "x": "Die Übertragung auf Content-Arbeit liegt nahe, braucht aber Ehrlichkeit: Der Kundenservice ist ein engerer, wiederholbarerer Prozess als redaktionelles Schreiben. Die Studie misst gelöste Fälle, nicht publikationsreife Texte. Was sie belastbar zeigt: Der Gewinn entsteht dort, wo der Assistent in einen bestehenden Prozess eingebunden ist und die schwächer ausgebildete Seite unterstützt, nicht als Ersatz für das Prozesswissen der Erfahrenen [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 1: Das Briefing entscheidet"
+  },
+  {
+   "t": "p",
+   "x": "Der größte Qualitätshebel sitzt vor dem ersten Prompt. Ein brauchbares Briefing für einen KI-Entwurf enthält fünf Angaben: Zielgruppe und Situation der Leser, den Auftrag des Textes in einem Satz (informieren, erklären, überzeugen), die verbindlichen Fakten und Aussagen, Tonalität und Länge sowie die Nicht-Ziele (was der Text ausdrücklich nicht tun soll). Wer diese Angaben schriftlich macht, merkt schnell, wo das eigene Briefing Lücken hat; das Modell füllt sie sonst mit dem Durchschnitt seines Trainingsmaterials. Hilfreich sind dauerhafte Vorgaben, die nicht in jedem Auftrag wiederholt werden müssen, etwa hinterlegte Stil- und Rollenanweisungen in den Werkzeugen [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 2 und 3: Kontext liefern, dann entwerfen lassen"
+  },
+  {
+   "t": "p",
+   "x": "Die sicherste Methode gegen erfundene Inhalte ist, dem Modell das Material zu geben, aus dem der Text entstehen soll: Quellen, Notizen, Zahlen, Zitate. Die Anweisung lautet dann nicht schreib über, sondern schreib aus. Nielsen Norman Group fasst den Grundsatz für KI-gestütztes Schreiben so zusammen: Das Modell ist ein Assistent für Struktur und Formulierung, kein Ersatz für die inhaltliche Arbeit; die Verantwortung für Richtigkeit und Einschätzung bleibt beim Menschen [4]. Für den Entwurf selbst hat sich die Zerlegung bewährt: erst Gliederung prüfen, dann abschnittsweise ausformulieren lassen. Ein langer Entwurf in einem Zug ist schwerer zu prüfen als fünf kurze."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 4: Review mit fester Checkliste"
+  },
+  {
+   "t": "p",
+   "x": "Das Review ist der Schritt, der KI-Workflows von KI-Spielerei unterscheidet. Eine tragfähige Checkliste hat drei Blöcke und dauert bei einem Standardartikel etwa 15 Minuten:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Fakten gegen Quellen.** Jede Zahl, jeder Name, jedes Zitat und jede Datumsangabe wird gegen die gelieferten Quellen geprüft. Nicht gegen das eigene Gefühl und schon gar nicht gegen eine zweite KI-Nachfrage im selben Chat.",
+    "**Ton gegen Vorgabe.** Klingt der Text nach der Marke oder nach dem Modell? Typische Erkennungsmerkmale von Modelltexten sind ausweichende Einleitungen, aufgeblähte Adjektive und Aufzählungen ohne Aussage.",
+    "**Leser gegen Auftrag.** Erfüllt der Text den Auftrag aus dem Briefing, oder beantwortet er eine bequemere Frage? Gerade fähige Modelle weichen gern auf die Frage aus, die sie besser beantworten können, eine Form von [Sycophancy](/glossar#sycophancy)."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Übrigens arbeitet diese Redaktion selbst nach einem solchen Modell: Beiträge des KI Fachblatts entstehen mit KI-Unterstützung, Auswahl, Quellenprüfung und Veröffentlichung verantwortet der Herausgeber. Die Details sind öffentlich auf der [Transparenz-Seite](/transparenz) beschrieben und können als Praxisbeispiel für einen deklarierten Workflow dienen."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 5: Freigabe und Googles Regeln"
+  },
+  {
+   "t": "p",
+   "x": "Für alle, die mit ihren Inhalten in Google gefunden werden wollen, ist die Ausgangslage klar dokumentiert: Google bewertet Inhalte nach ihrem Nutzen für Leser, nicht nach der Entstehungsart. KI-Einsatz ist demnach weder verboten noch ein Bonus; entscheidend ist, ob der Inhalt für Menschen gemacht ist und echten Mehrwert bietet. Was Google ausdrücklich als Missbrauch einstuft, ist die massenhafte Produktion von Inhalten ohne Mehrwert, mit dem Ziel, Rankings zu manipulieren, unabhängig davon, ob Menschen oder Maschinen schreiben [1]. Praktisch heißt das: Ein geprüfter KI-Entwurf mit echter redaktioneller Arbeit ist unproblematisch; ungeprüftes Durchreichen von Massentexten ist es nicht. Die Freigabe durch eine namentlich verantwortliche Person ist damit nicht nur redaktionelle Tugend, sondern der dokumentierte Unterschied zwischen den beiden Fällen."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 Googles Leitfaden zu KI-generierten Inhalten in der Suche, die NBER-Seite der Studie Generative AI at Work, der Nielsen-Norman-Group-Artikel zu KI-gestütztem Schreiben fürs Web und die OpenAI-Hilfeseite zu Custom Instructions. Die fünf Schritte sind eine redaktionelle Strukturierung dieser Quellen plus eigener Redaktionspraxis; das KI Fachblatt arbeitet selbst mit einem deklarierten KI-Workflow (siehe /transparenz).",
+ "limitations": "Die 14-%- und 34-%-Werte stammen aus einem einzelnen Unternehmen und einer Kundenservice-Anwendung; sie lassen sich nicht direkt als Erwartungswert für redaktionelle Teams lesen [2]. Googles Formulierungen lassen Spielraum in der Auslegung, und die Bewertung einzelner Inhalte ist nicht von außen prüfbar [1]. Der beschriebene Workflow ist ein Praxisgerüst, keine gemessene Bestvariante; Teamgröße, Themen und Risikotoleranz verändern die sinnvolle Ausgestaltung.",
+ "sources": [
+  {
+   "title": "Google Search's guidance about AI-generated content",
+   "publisher": "Google Search Central Blog",
+   "url": "https://developers.google.com/search/blog/2023/02/google-search-and-ai-content",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Generative AI at Work",
+   "publisher": "NBER Working Paper 31161 (Brynjolfsson, Li, Raymond)",
+   "url": "https://www.nber.org/papers/w31161",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Custom instructions for ChatGPT",
+   "publisher": "OpenAI Help Center",
+   "url": "https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Write for the Web with Generative AI",
+   "publisher": "Nielsen Norman Group",
+   "url": "https://www.nngroup.com/articles/genai-write-for-the-web/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Erkennt Google KI-Texte und straft sie ab?",
+   "a": "Google erklärt, Inhalte nach Nutzen für Leser zu bewerten, nicht nach Entstehungsart. KI-Texte sind weder automatisch verboten noch automatisch gut. Als Verstoß gilt die massenhafte Produktion wertloser Inhalte zur Manipulation von Rankings, egal ob von Mensch oder Maschine. Entscheidend ist also die redaktionelle Arbeit: geprüfte Fakten, echter Mehrwert, verantwortliche Freigabe."
+  },
+  {
+   "q": "Wie viel Zeit spart ein KI-Workflow beim Texten wirklich?",
+   "a": "Die seriös gemessene Zahl stammt aus dem Kundenservice: 14 % mehr gelöste Fälle pro Stunde im Schnitt, 34 % bei unerfahrenen Kräften. Für Redaktionen gibt es keine vergleichbar saubere Studie. Aus der Praxis lässt sich sagen: Der Entwurfsschritt wird deutlich schneller, Briefing und Prüfung werden aufwendiger. Die Ersparnis hängt davon ab, wie diszipliniert die Kette eingehalten wird."
+  },
+  {
+   "q": "Sollen wir KI-Entwürfe vor der Veröffentlichung kennzeichnen?",
+   "a": "Eine gesetzliche Pflicht für gewöhnliche Marketingtexte besteht nicht; Transparenz ist aber glaubwürdig und einfach. Das KI Fachblatt selbst deklariert die KI-Unterstützung auf einer eigenen Seite und in der Autorenzeile. Für redaktionelle Angebote empfiehlt sich genau das: eine kurze, dauerhafte Erklärung statt Kennzeichnung je Satz."
+  },
+  {
+   "q": "Welche Aufgaben sollten nicht an das Modell delegiert werden?",
+   "a": "Alles, dessen Fehler teuer ist und das nicht prüfbar geliefert wird: originäre Recherche und Interviews, rechtliche oder medizinische Aussagen ohne Fachprüfung, Zahlen ohne Quelle, Meinungs- und Erfahrungsanteile. Das Modell ist stark in Struktur, Umformulierung und Entwurf aus geliefertem Material; es ist schwach darin, neue, prüfbare Fakten zu erzeugen."
+  },
+  {
+   "q": "Wie halte ich die Markenstimme im Workflow konstant?",
+   "a": "Durch dauerhafte Vorgaben statt Einmalformulierungen: Stilregeln und Beispielsätze gehören in die Werkzeug-Einstellungen oder in ein wiederverwendbares Briefing, nicht in jeden Auftrag neu. Der Artikel [Markenkonsistenz mit KI](/markenkonsistenz-ki) beschreibt das Vorgehen im Detail."
+  }
+ ],
+ "related": [
+  "markenkonsistenz-ki",
+  "seo-aeo-ki-zeitalter"
+ ]
+}

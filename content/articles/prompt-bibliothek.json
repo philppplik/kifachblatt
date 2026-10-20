@@ -1,0 +1,147 @@
+{
+ "slug": "prompt-bibliothek",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Eine persönliche Prompt-Bibliothek aufbauen",
+ "dek": "Gute Prompts sind wiederverwendbares Werkzeug. Wie man sie sammelt, versioniert und pflegt, damit aus einmaligem Ausprobieren ein wachsender Bestand wird.",
+ "published": "2026-10-19T08:31:00+02:00",
+ "modified": "2026-10-19T08:31:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Prompt-Bibliothek",
+  "Prompting",
+  "Wissensmanagement",
+  "Prompt-Praxis",
+  "Produktivität"
+ ],
+ "key_takeaways": [
+  "Ein gut formulierter Prompt ist kein Einwegprodukt, sondern ein Werkzeug: Wer ihn nicht sichert, baut ihn beim nächsten Bedarf von null.",
+  "Der minimale Datensatz pro Eintrag: Name, Zweck, Prompt-Text, Variablen, ein Beispielergebnis, Modell und Datum des letzten Tests.",
+  "Fertige Sammlungen wie die Anthropic Prompt Library, das OpenAI Cookbook oder der Prompting Guide sind gute Startpunkte, aber Rohmaterial: Übernommen wird erst, was an den eigenen Fällen getestet ist [1][2][3].",
+  "Prompts veralten: Nach Modellwechseln können bewährte Formulierungen anders wirken. Ein Testdatum pro Eintrag macht den Bestand pflegbar.",
+  "Keine personenbezogenen Daten oder Kundendaten in geteilte Bibliotheken: Ein Prompt mit echten Inhalten ist ein Dokument wie jedes andere."
+ ],
+ "hero": {
+  "alt": "Ein Regal mit beschrifteten Karteikarten für wiederkehrende Aufgaben: Zusammenfassen, Klassifizieren, Antwortentwurf, Tabellenumbau. Eine Karte wird herausgezogen und zeigt Zweck, Variablen und Testdatum.",
+  "caption": "Die Prompt-Bibliothek als Karteikasten: jede Karte ein geprüfter, wiederverwendbarer Prompt. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Viele durchlaufen dieselbe Schleife: Für eine wiederkehrende Aufgabe wird ein [Prompt](/glossar#prompt) mühsam hingefeilt, er funktioniert, die Unterhaltung wird geschlossen, und drei Wochen später beginnt die Feilarbeit von vorn. Eine Prompt-Bibliothek durchbricht diese Schleife. Sie ist kein kompliziertes System, sondern ein geordneter Bestand der eigenen, geprüften Prompts, vergleichbar mit dem Werkzeugkasten statt des losen Schraubendrehers in der Schublade."
+  },
+  {
+   "t": "h2",
+   "x": "Was in einen Eintrag gehört"
+  },
+  {
+   "t": "p",
+   "x": "Damit ein Prompt nach Monaten noch benutzbar ist, reicht der Text allein nicht. Sechs Felder haben sich bewährt, und sie passen in eine Notiz, eine Tabelle oder eine Textdatei; spezielle Software ist nicht nötig:"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Name und Zweck in einem Satz.** Nicht der Text selbst, sondern die Aufgabe: Kundenmail eskalationsstufe 1 oder Protokoll in Aufgabenliste umwandeln.",
+    "**Der Prompt-Text mit Variablen.** Veränderliche Stellen werden als Platzhalter markiert, etwa {Kundenmail} oder {Zielgruppe}. So ist auf einen Blick sichtbar, was pro Einsatz zu füllen ist.",
+    "**Ein gespeichertes Beispielergebnis.** Die beste Antwort, die der Prompt je geliefert hat. Sie dient als Referenz: Liefert der Prompt später Schlechteres, ist etwas verändert worden, am Prompt oder am Modell.",
+    "**Modell und Kontext.** Mit welchem Modell der Prompt gebaut und getestet wurde. Formulierungen, die ein Modell tragen, können ein anderes kalt lassen.",
+    "**Testdatum.** Wann der Eintrag zuletzt gegen das Beispielergebnis geprüft wurde. Ohne Datum weiß man bei einem Bestand von dreißig Einträgen nicht mehr, was frisch ist.",
+    "**Quelle oder Herkunft.** Selbst gebaut, aus einer Sammlung übernommen oder von Kollegen übergeben; bei Übernahmen mit Fundstelle, damit Lizenz und Aktualität prüfbar bleiben."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Startpunkte: fertige Sammlungen richtig nutzen"
+  },
+  {
+   "t": "p",
+   "x": "Niemand muss bei null anfangen. Die Anthropic Prompt Library stellt Dutzende kuratierte Prompts für typische Aufgaben bereit, von der Zusammenfassung bis zur Datenextraktion [1]. Das OpenAI Cookbook liefert Beispiele eher auf Entwicklerebene, inklusive strukturierter Ausgaben und Auswertung [2]. Der Prompting Guide erklärt Techniken mit Beispielen und ist damit eher Lehrbuch als Kopiervorlage [3]. Dazu kommen Community-Sammlungen wie die GitHub-Liste awesome-chatgpt-prompts, in der Freiwillige Rollen- und Aufgabenprompts pflegen [4]."
+  },
+  {
+   "t": "callout",
+   "title": "Übernehmen heißt testen",
+   "x": "Sammlungen sind Rohmaterial, keine Qualitätsgarantie. Ein Prompt aus einer Liste wurde für die Fälle des Autors gebaut, nicht für die eigenen. Deshalb gilt dieselbe Regel wie bei Eigenbauten: Übernommen wird erst, was an zwei oder drei eigenen Beispielfällen geprüft ist. Wie diese Prüfung aussieht, beschreibt [Prompt-Iteration und Debugging](/prompt-iteration)."
+  },
+  {
+   "t": "h2",
+   "x": "Ordnung ohne Bürokratie"
+  },
+  {
+   "t": "p",
+   "x": "Eine private Bibliothek braucht keine Datenbank. Bewährt haben sich drei einfache Ordnungen, je nach Arbeitsweise: eine Textdatei pro Aufgabenbereich (Textbaustein-Ordner), eine Tabelle mit den sechs Feldern als Spalten oder die Ablage als Snippets im Textbaustein-System des Rechners. Entscheidend sind nur zwei Eigenschaften: Die Einträge sind durchsuchbar, und sie liegen an einem Ort, nicht verteilt über Chats, Mails und Notizen. Wer im Team arbeitet, teilt die Bibliothek schreibgeschützt und sammelt Verbesserungen an einer Stelle; sonst entstehen fünf Varianten desselben Prompts mit unbekanntem Stand."
+  },
+  {
+   "t": "h2",
+   "x": "Pflege: Prompts veralten leise"
+  },
+  {
+   "t": "p",
+   "x": "Zwei Alterungsprozesse sind planbar. Erstens Modellwechsel: Formulierungen, die für ein älteres Modell nötig waren, können ein neueres bremsen oder umgekehrt. Die Anbieterdokumentationen raten deshalb, bewährte Prompts nach Modellupdates erneut zu prüfen; mit einem gespeicherten Beispielergebnis pro Eintrag ist das eine Sache von Minuten [2]. Zweitens Aufgabenwandel: Richtlinien, Töne und Formate ändern sich, und der Prompt ändert sich nicht von allein mit. Ein realistischer Rhythmus für eine aktive Bibliothek ist eine kurze Durchsicht pro Quartal: Die fünf meistgenutzten Einträge erneut testen, ungenutzte archivieren statt löschen."
+  },
+  {
+   "t": "h2",
+   "x": "Datenschutz und Teamregeln"
+  },
+  {
+   "t": "p",
+   "x": "Prompts enthalten oft mehr, als man denkt: echte Kundenmails als Beispiel, interne Preise im Kontextblock, Namen aus dem Beispieldialog. Sobald eine Bibliothek geteilt wird, gelten für sie dieselben Regeln wie für jedes andere Dokument. Drei Gewohnheiten verhindern die typischen Unfälle: Beispiele vor dem Ablegen anonymisieren, Variablen statt echter Inhalte nutzen und in der Teamversion keine Zugangsdaten oder internen Systemdetails hinterlegen. Was für den einzelnen Eintrag gilt, gilt auch für den Export: Eine kopierte Bibliothek ist ein Datenabzug wie jeder andere."
+  }
+ ],
+ "method": "Gelesen wurden am 19. Oktober 2026 die Anthropic Prompt Library, das OpenAI Cookbook, der Prompting Guide und die GitHub-Sammlung awesome-chatgpt-prompts. Die Struktur der Einträge und die Pflegeempfehlungen sind redaktionelle Verdichtung aus diesen Sammlungen und dokumentierter Prompting-Praxis; sie stammen nicht aus einer einzelnen zitierbaren Quelle.",
+ "limitations": "Die genannten Sammlungen sind redaktionell beziehungsweise gemeinschaftlich kuratiert, ohne unabhängige Qualitätsmessung der einzelnen Prompts. Aussagen zur Alterung von Prompts beruhen auf den Praxishinweisen der Anbieter und auf Beobachtung, nicht auf kontrollierten Studien. Welche Ablageform passt, hängt von der eigenen Arbeitsweise ab; die genannten Varianten sind Beispiele, keine vollständige Übersicht.",
+ "sources": [
+  {
+   "title": "Prompt Library",
+   "publisher": "Anthropic Documentation",
+   "url": "https://docs.anthropic.com/en/resources/prompt-library",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "OpenAI Cookbook",
+   "publisher": "OpenAI",
+   "url": "https://cookbook.openai.com/",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Prompt Engineering Guide",
+   "publisher": "Prompting Guide (DAIR.AI, Community-Projekt)",
+   "url": "https://www.promptingguide.ai/",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Awesome ChatGPT Prompts",
+   "publisher": "GitHub (Community-Sammlung, f/awesome-chatgpt-prompts)",
+   "url": "https://github.com/f/awesome-chatgpt-prompts",
+   "accessed": "2026-10-19"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Lohnt sich eine Prompt-Bibliothek auch für mich allein?",
+   "a": "Ja, sobald dieselbe Aufgabenart dreimal vorkommt. Der Aufwand ist minimal: eine Datei mit sechs Feldern pro Eintrag. Der Gewinn liegt weniger im einzelnen Prompt als im gespeicherten Beispielergebnis und Testdatum; damit wird der Bestand prüfbar, statt nach Monaten geraten werden zu müssen, was noch funktioniert."
+  },
+  {
+   "q": "In welchem Format speichere ich Prompts am besten?",
+   "a": "Im einfachsten Format, das durchsuchbar ist und veränderte Stellen sichtbar macht: Textdateien, eine Tabelle oder Snippets im Textbaustein-System. Spezialwerkzeuge sind nicht nötig. Wichtiger als das Format ist, dass alles an einem Ort liegt und Variablen als Platzhalter markiert sind."
+  },
+  {
+   "q": "Darf ich Prompts aus öffentlichen Sammlungen einfach übernehmen?",
+   "a": "Die großen Anbieter-Sammlungen sind zum Gebrauch gedacht; bei Community-Listen lohnt ein Blick in die jeweilige Lizenz beziehungsweise die Projektseite. Inhaltlich gilt unabhängig von der Lizenz: Übernommene Prompts an eigenen Fällen testen, bevor sie in den produktiven Bestand kommen."
+  },
+  {
+   "q": "Wie oft muss ich meine Prompts prüfen?",
+   "a": "Es gibt keinen festen Rhythmus, aber zwei natürliche Anlässe: nach einem Wechsel des genutzten Modells und bei der regelmäßigen Durchsicht, für die sich ein Quartal bewährt hat. Einträge mit altem Testdatum und ohne Nutzung archivieren statt löschen; so bleibt nachvollziehbar, was früher funktioniert hat."
+  },
+  {
+   "q": "Gehören System-Prompts auch in die Bibliothek?",
+   "a": "Ja, und zwar als eigener Eintragstyp mit denselben Feldern. Gerade [System-Prompts](/system-prompts) laufen dauerhaft und unbemerkt, weshalb Testdatum und Beispielergebnis hier besonders wichtig sind: Sie machen sichtbar, ob die Daueranweisung nach einem Modellupdate noch das tut, wofür sie gebaut wurde."
+  }
+ ],
+ "related": [
+  "prompt-iteration",
+  "system-prompts"
+ ]
+}

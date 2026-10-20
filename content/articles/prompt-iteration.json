@@ -1,0 +1,171 @@
+{
+ "slug": "prompt-iteration",
+ "lang": "de",
+ "section": "methode",
+ "type": "explainer",
+ "title": "Prompt-Iteration und Debugging: systematisch statt raten",
+ "dek": "Wie man einen schlechten Prompt wie einen Softwarefehler behandelt: Fehler reproduzieren, Ursache eingrenzen, eine Stelle ändern, prüfen.",
+ "published": "2026-10-19T08:14:00+02:00",
+ "modified": "2026-10-19T08:14:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Prompting",
+  "Prompt-Debugging",
+  "Evals",
+  "Prompt-Praxis",
+  "Qualitätssicherung"
+ ],
+ "key_takeaways": [
+  "Prompts verhalten sich wie Code: Sie haben reproduzierbare Fehler, und sie vertragen dieselbe Disziplin beim Debuggen. Raten und Umschreiben im Ganzen ist der langsamste Weg.",
+  "Die fünf häufigsten Fehlerklassen: unklare Anweisung, fehlender Kontext, Formatbruch, erfundene Inhalte ([Halluzination](/glossar#halluzination)), zu viele Anforderungen auf einmal.",
+  "Die Kernregel: pro Runde nur eine Stelle ändern. Sonst weiß man nie, welche Änderung die Verbesserung gebracht hat, und baut sich neue Fehler ein.",
+  "Eine kleine Testmenge aus 15 bis 30 echten Fällen macht Verbesserungen messbar; beide großen Anbieter dokumentieren genau dieses Vorgehen als Standard [1][2].",
+  "Wenn drei gezielte Reparaturen nicht tragen, liegt das Problem selten am Wortlaut: Dann fehlt Kontext, ist die Aufgabe zu groß oder das Modell die falsche Wahl."
+ ],
+ "hero": {
+  "alt": "Kreislauf aus vier Schritten: Beobachten, Eingrenzen, Ändern, Prüfen. Daneben drei Versionen eines Prompts als Karten v1, v2 und v3 mit ansteigendem Qualitätsbalken.",
+  "caption": "Der Iterationszyklus: reproduzieren, eingrenzen, eine Stelle ändern, mit Testmenge prüfen. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Jeder kennt die Situation: Der [Prompt](/glossar#prompt) ist formuliert, die Antwort kommt, und sie ist falsch, ausweichend oder im falschen Format. Was viele dann tun, ist der natürliche, aber schlechteste Reflex: den ganzen Prompt umschreiben und hoffen. Damit verwirft man alles, was schon funktionierte, und lernt nichts über die eigentliche Ursache. Prompt-Engineering-Dokumentationen beider großer Anbieter empfehlen stattdessen seit Jahren dasselbe Vorgehen, das Programmierer vom Debuggen kennen: Fehler festhalten, Ursache eingrenzen, gezielt ändern, prüfen [1][2][4]."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 1: Den Fehler festhalten, nicht das Gefühl"
+  },
+  {
+   "t": "p",
+   "x": "Schlecht ist keine Diagnose. Bevor irgendetwas geändert wird, wird der Fehler notiert: Eingabe, erhaltene Ausgabe, erwartete Ausgabe. Dieser Dreiklang ist die kleinste verwertbare Fehlerbeschreibung. Anthropic nennt im Evaluationsleitfaden genau das den Startpunkt: reale Eingaben sammeln, bei denen das System versagt hat, und sie als Testfälle konservieren [1]. Wer nur im Kopf festhält der Text war zu lang, verliert nach zwei Runden den Überblick, was schon versucht wurde."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 2: Die fünf Fehlerklassen"
+  },
+  {
+   "t": "p",
+   "x": "Fast jeder Promptfehler fällt in eine von fünf Klassen. Die Einordnung bestimmt die Reparatur, deshalb lohnt die ehrliche Zuordnung vor jeder Änderung:"
+  },
+  {
+   "t": "table",
+   "caption": "Fehlerklassen bei Prompts und die passende Gegenmaßnahme",
+   "head": [
+    "Fehlerklasse",
+    "Woran man es erkennt",
+    "Passende Reparatur"
+   ],
+   "rows": [
+    [
+     "Unklare Anweisung",
+     "Das Modell beantwortet eine andere Frage als gemeint",
+     "Aufgabe in einen Satz mit Verb, Objekt und Erfolgskriterium fassen"
+    ],
+    [
+     "Fehlender Kontext",
+     "Antwort ist allgemein richtig, aber nutzlos für den konkreten Fall",
+     "Fakten, Zielgruppe und Rahmen nachliefern; nicht raten lassen"
+    ],
+    [
+     "Formatbruch",
+     "Inhalt stimmt, Struktur nicht (Länge, Aufbau, Schema)",
+     "Format explizit vorgeben oder ein [Few-Shot-Beispiel](/glossar#few-shot-prompting) zeigen"
+    ],
+    [
+     "Erfundener Inhalt",
+     "Quellen, Zahlen oder Namen, die es nicht gibt",
+     "Kontext liefern, Unsicherheit erlauben, Quellenpflicht formulieren; siehe [Halluzinationen](/halluzinationen)"
+    ],
+    [
+     "Überladung",
+     "Ein Teil der Anforderungen wird ignoriert",
+     "Aufgabe teilen oder Anforderungen priorisieren und nummerieren"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Klassen schließen einander aus, und das ist der Punkt: Wer eine Formatbruch mit mehr Kontext repariert, macht den Prompt länger und den Fehler nicht besser. Die Erfahrung aus der Praxis deckt sich mit den Evaluationsleitfäden: Erst wenn der Fehlertyp benannt ist, ist die Reparatur meist eine Sache von Minuten [1][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 3: Eine Stelle pro Runde ändern"
+  },
+  {
+   "t": "p",
+   "x": "Die wichtigste Disziplinregel lautet: Pro Iteration genau eine Änderung. Wer Anweisung, Beispiele und Tonalität gleichzeitig umbaut und danach eine bessere Antwort bekommt, weiß nicht, welcher Eingriff wirkte, und ob einer der anderen den Effekt teilweise wieder zunichtegemacht hat. OpenAIs Evaluationsanleitung verlangt für Prompt-Änderungen dasselbe wie für jeden Eingriff ins System: an einer festen Testmenge messen, nicht am Einzeleindruck [2]. Dazu gehört auch ein einfaches Versionsprotokoll: v1, v2, v3 mit Datum, geänderter Stelle und Ergebnis. Drei Zeilen Text pro Version genügen; der Artikel [Prompt-Bibliothek](/prompt-bibliothek) zeigt, wie man daraus einen dauerhaften Bestand aufbaut."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 4: Mit einer kleinen Testmenge prüfen"
+  },
+  {
+   "t": "p",
+   "x": "Eine einzelne gute Antwort beweist nichts, weil Sprachmodelle von Lauf zu Lauf variieren. Der Ausweg ist eine kleine, feste Testmenge: 15 bis 30 echte Fälle, darunter die typischen und die bisher gescheiterten. Anthropic empfiehlt, mit einer überschaubaren Menge realer Fälle zu starten und bei jeder Prompt- oder Modelländerung erneut zu messen [1]. OpenAI beschreibt denselben Aufbau: feste Eingaben, definierte Bewertungskriterien, Vergleich vor und nach der Änderung [2]. Wie man so eine Testmenge in einer Stunde baut und auswertet, steht ausführlich in [Evals statt Bauchgefühl](/evals-statt-bauchgefuehl). Wer keine automatische Auswertung aufsetzen will, prüft die Fälle von Hand; entscheidend ist nur, dass die Fälle und die Bewertung gleich bleiben."
+  },
+  {
+   "t": "h2",
+   "x": "Wenn Reparieren nicht trägt: die drei Abbiegungen"
+  },
+  {
+   "t": "p",
+   "x": "Manche Prompts lassen sich nicht retten, und es ist Stärke, das früh zu erkennen. Drei Abbiegungen sind dokumentiert und in der Praxis tragfähig: Erstens die Aufgabe teilen: Ein Prompt, der recherchiert, zusammenfasst und formatiert, wird zu drei Aufrufen mit Zwischenergebnissen; Anthropic beschreibt diese Zerlegung als Standardmuster für komplexe Aufgaben [1]. Zweitens Kontext beschaffen statt formulieren: Wenn das Modell Fakten erfindet, fehlt selten ein Satz im Prompt, sondern das Dokument, aus dem die Antwort kommen soll. Drittens das Modell wechseln: Für manche Aufgaben ist ein anderes Modell schlicht besser geeignet, und die eigenen Testfälle liefern den fairen Vergleich, statt sich auf Marketingzahlen zu verlassen [2][3]. Was man nicht tun sollte: die [Temperatur](/glossar#temperatur) als Reparatur missverstehen. Sie ändert die Streuung der Antworten, nicht deren Wahrheitsgehalt und nicht ihre Struktur."
+  }
+ ],
+ "method": "Gelesen wurden am 19. Oktober 2026 die Evaluations-Dokumentation von Anthropic (Test and Evaluate), der Evaluationsleitfaden von OpenAI, der Anthropic-Engineering-Artikel zu Evaluationsmethodik und das OpenAI Cookbook. Die fünf Fehlerklassen und der Ablauf sind eine redaktionelle Verdichtung dieser Quellen und gängiger Prompting-Praxis, kein wörtliches Schema aus einer einzelnen Quelle.",
+ "limitations": "Die genannten Dokumente beschreiben Vorgehensweisen der Anbieter, keine unabhängig gemessene Wirksamkeit; kontrollierte Studien zur Frage, welche Prompt-Reparatur im Mittel am meisten bringt, gibt es kaum. Die Empfehlung 15 bis 30 Testfälle ist ein pragmatischer Richtwert für redaktionelle und geschäftliche Standardfälle, kein statistisch abgesicherter Schwellenwert. Modellverhalten ändert sich mit Versionen; ein gewarteter Prompt kann nach einem Modellupdate erneut geprüft werden müssen.",
+ "sources": [
+  {
+   "title": "Test and evaluate: Overview",
+   "publisher": "Anthropic Documentation",
+   "url": "https://docs.anthropic.com/en/docs/test-and-evaluate/overview",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Evals",
+   "publisher": "OpenAI Platform Documentation",
+   "url": "https://platform.openai.com/docs/guides/evals",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "Demystifying evals for AI agents",
+   "publisher": "Anthropic Engineering Blog",
+   "url": "https://www.anthropic.com/engineering/demystifying-evals-for-ai-agents",
+   "accessed": "2026-10-19"
+  },
+  {
+   "title": "OpenAI Cookbook",
+   "publisher": "OpenAI (GitHub)",
+   "url": "https://cookbook.openai.com/",
+   "accessed": "2026-10-19"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Woran erkenne ich, ob der Fehler im Prompt oder im Modell liegt?",
+   "a": "Der schnellste Test: dieselbe Eingabe an ein zweites, stärkeres Modell geben. Löst das zweite Modell die Aufgabe ohne Änderung, lag es an der Modellwahl. Bleibt der Fehler, fehlt meist Kontext oder die Anweisung ist unklar. Eine dritte Möglichkeit ist eine überladene Aufgabe: Teilt man sie in zwei Aufrufe und verschwindet der Fehler, war der Umfang die Ursache."
+  },
+  {
+   "q": "Wie viele Iterationen sind normal, bis ein Prompt trägt?",
+   "a": "Für Standardaufgaben wie Zusammenfassen, Klassifizieren oder Umformulieren meist zwei bis fünf Runden, wenn pro Runde nur eine Stelle geändert wird. Deutlich mehr Runden ohne Fortschritt sind ein Warnsignal: Dann liegt das Problem selten am Wortlaut, sondern an fehlendem Kontext, einer zu großen Aufgabe oder der Modellwahl."
+  },
+  {
+   "q": "Soll ich den Prompt von der KI selbst verbessern lassen?",
+   "a": "Als Hilfestellung ja, als Ersatz für die Prüfung nein. Ein Modell kann Varianten vorschlagen und Widersprüche im Prompt finden. Ob eine Variante besser ist, entscheidet aber nur die feste Testmenge mit echten Fällen; sonst optimiert man auf den Geschmack des Modells statt auf das Ergebnis."
+  },
+  {
+   "q": "Hilft es, die Temperatur zu senken, wenn Antworten unsauber sind?",
+   "a": "Nur bedingt. Eine niedrigere Temperatur macht Antworten gleichförmiger, nicht wahrer und nicht besser strukturiert. Gegen Halluzinationen hilft gelieferter Kontext, gegen Formatbrüche eine Formatvorgabe oder ein Beispiel. Temperatur ist ein Streuungsregler, keine Reparatur."
+  },
+  {
+   "q": "Brauche ich für jede kleine Prompt-Änderung eine Testmenge?",
+   "a": "Für redaktionelle Einmaltexte reicht der kritische Blick auf den Einzelfall. Sobald ein Prompt wiederholt läuft, in einem Produkt, einem Workflow oder einer Assistenz, lohnt die kleine feste Testmenge: Sie ist der einzige Beleg, dass eine Änderung die Gesamtleistung verbessert und nicht nur den zuletzt betrachteten Fall."
+  }
+ ],
+ "related": [
+  "few-shot-prompting-praxis",
+  "prompt-bibliothek"
+ ]
+}

@@ -1,0 +1,131 @@
+{
+ "slug": "markenkonsistenz-ki",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "Markenkonsistenz mit KI: eine Stimme in jedem Entwurf",
+ "dek": "Sprachmodelle schreiben im Durchschnittston ihrer Trainingsdaten. Wie Marken ihre Stimme messbar machen, in Werkzeugen hinterlegen und mit Review sichern.",
+ "published": "2026-10-20T07:24:00+02:00",
+ "modified": "2026-10-20T07:24:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Markenkonsistenz",
+  "Tonalität",
+  "Stilguide",
+  "Marketing",
+  "LLM"
+ ],
+ "key_takeaways": [
+  "Ohne Vorgabe schreibt jedes Modell im Durchschnittston seiner Trainingsdaten: glatt, höflich, generisch. Markenstimme entsteht nur durch explizite, prüfbare Vorgaben.",
+  "Ton ist messbar: Nielsen Norman Group beschreibt Tonalität in vier Dimensionen, etwa ernst gegen witzig und förmlich gegen locker [1]. Aus abstrakten Adjektiven werden so einstellbare Regler.",
+  "Beispiele schlagen Adjektive: Drei bis fünf reale Beispielsätze im eigenen Ton wirken zuverlässiger als jede Stilbeschreibung.",
+  "Die Werkzeuge können Vorgaben inzwischen dauerhaft speichern: Custom Instructions bei ChatGPT [4], bei Claude wurden die Styles 2026 in Skills überführt [2][3].",
+  "Die Markenstimme hält nur mit Review: Jeder KI-Entwurf läuft gegen die Vorgabe, Abweichungen werden als Feedback in die Vorgabe zurückgespielt."
+ ],
+ "hero": {
+  "alt": "Drei Textkarten mit unterschiedlichem Ton laufen in einen Trichter und kommen als einheitliche Karte mit einem Stil wieder heraus. Darunter vier Schieberegler für die Tonalitätsdimensionen.",
+  "caption": "Aus drei Modelltönen wird eine Markenstimme: Vorgabe, Beispieltexte, Review. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer drei verschiedene Modelle bittet, eine Produktankündigung zu schreiben, bekommt drei überraschend ähnliche Texte: freundlich, aufgeräumt, austauschbar. Das ist kein Zufall, sondern Statistik. Sprachmodelle reproduzieren den Durchschnitt dessen, was in ihren Trainingsdaten als guter Text gilt, und werden zusätzlich darauf trainiert, zu gefallen; die Neigung, dem Gegenüber nach dem Mund zu reden, hat als [Sycophancy](/glossar#sycophancy) einen eigenen Forschungsbegriff. Eine Marke aber lebt vom Gegenteil: von wiedererkennbarer Abweichung. Markenkonsistenz mit KI ist deshalb keine Modellfrage, sondern eine Führungsfrage: Die Stimme muss so genau vorgegeben werden, dass ein Werkzeug ohne Gedächtnis für die Marke sie treffen kann."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 1: Die Stimme messbar machen"
+  },
+  {
+   "t": "p",
+   "x": "Die meisten Stilguides scheitern an Adjektiven: sympathisch, modern, hochwertig. Solche Worte hat jeder gelesen und jeder versteht anders, das Modell eingeschlossen. Nielsen Norman Group hat für Tonalität ein arbeitsfähiges Gerüst beschrieben: Vier Dimensionen, auf denen sich jede Stimme verorten lässt: witzig gegen ernst, förmlich gegen locker, respektvoll gegen respektlos, enthusiastisch gegen sachlich [1]. Der Nutzen ist praktisch: Statt der Marke ist humorvoll steht auf dem Regler humorvoll auf 2 von 10, nur trockene Formulierungen, keine Wortspiele. Was auf einem Regler steht, kann ein Briefing transportieren, ein Modell umsetzen und ein Reviewer prüfen."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 2: Beispiele statt Beschreibungen"
+  },
+  {
+   "t": "p",
+   "x": "Selbst die beste Reglerposition bleibt eine Beschreibung. Wirksamer ist das Material, aus dem Sprachmodelle nun einmal lernen: Beispiele. Drei bis fünf reale Texte im eigenen Ton, etwa die beste Kundenmail des letzten Jahres und ein Absatz aus der eigenen Website, schlagen jede Stilbeschreibung. Im Prompt wirken sie wie [Few-Shot-Beispiele](/glossar#few-shot-prompting): Das Modell setzt das Muster fort, statt eine Anweisung zu interpretieren. Aus derselben Sammlung lassen sich auch Gegenbeispiele bauen, typische Modellfloskeln, die die Marke nie verwenden würde; die Negativliste ist oft kürzer und eindeutiger als die Positivliste."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 3: Die Vorgabe dauerhaft hinterlegen"
+  },
+  {
+   "t": "p",
+   "x": "Stilvorgaben gehören nicht in jeden Auftrag neu getippt, sondern in die dauerhaften Anweisungen der Werkzeuge. Bei ChatGPT dienen die Custom Instructions dazu: dauerhafte Angaben zu Kontext und gewünschter Antwortform, die für alle Unterhaltungen gelten [4]. Bei Claude lassen sich über die Personalisierungsfunktionen ebenfalls dauerhafte Anweisungen setzen; die bislang für Stilvorgaben genutzten Styles wurden im Juni 2026 in sogenannte Skills überführt, bestehende Styles werden automatisch migriert [2][3]. Für Teams heißt das: Die Markenstimme wird einmal als Paket aus Reglern, Beispieltexten und Negativliste gepflegt und in allen genutzten Werkzeugen hinterlegt, statt als Folklore in Köpfen zu wohnen. Wer mit APIs arbeitet, legt dieselbe Vorgabe in den [System-Prompt](/system-prompts)."
+  },
+  {
+   "t": "h2",
+   "x": "Schritt 4: Review und Rückspielung"
+  },
+  {
+   "t": "p",
+   "x": "Keine Vorgabe hält von allein. Modelle ändern sich mit Updates, und selbst ein stabiles Modell driftet in langen Unterhaltungen Richtung Durchschnittston. Deshalb gehört der Ton-Check in dasselbe Review wie der Fakten-Check: Klingt der Entwurf nach uns oder nach dem Modell? Zwei Gewohnheiten machen die Prüfung billig und wirksam. Erstens die Blindprobe: Entwürfe gelegentlich ohne Herkunftsangabe lesen; wer Marke und Modell nicht auseinanderhalten kann, hat ein Tonproblem. Zweitens die Rückspielung: Jede gefundene Abweichung wird nicht nur korrigiert, sondern als Regel oder Beispiel in die Vorgabe zurückgespielt. So wird der Stilguide zu einem lernenden Bestand statt zu einem Dokument, das einmal geschrieben und nie geöffnet wird. Die Pflege-Mechanik entspricht der einer [Prompt-Bibliothek](/prompt-bibliothek): Beispiele, Testdatum, regelmäßige Durchsicht."
+  },
+  {
+   "t": "h2",
+   "x": "Grenzen: Was KI nicht konsistent halten kann"
+  },
+  {
+   "t": "p",
+   "x": "Ehrlichkeit gebietet drei Einschränkungen. Erstens: Je ungewöhnlicher die Markenstimme, desto mehr Review bleibt nötig; der Durchschnittston ist nun mal der Modus, in dem Modelle am stärksten sind. Zweitens: Konsistenz ist nicht nur Ton, sondern auch Haltung, welche Themen die Marke besetzt und welche nicht; diese Entscheidung kann kein Werkzeug treffen. Drittens: Eine Markenstimme, die es vor der KI-Nutzung nicht schriftlich gab, entsteht nicht durch KI; das Werkzeug macht eine vorhandene Stimme skalierbar, es erfindet sie nicht. Wer hier bei null steht, beginnt mit Schritt 1 und zehn selbst geschriebenen Texten, nicht mit einem Prompt."
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 der Nielsen-Norman-Group-Artikel zu den vier Dimensionen der Tonalität, der Claude-Support-Artikel zur Überführung von Styles in Skills (Stand Juni 2026), der Überblicksartikel zu Claudes Personalisierungsfunktionen und die OpenAI-Hilfeseite zu Custom Instructions. Das Vier-Schritte-Vorgehen ist eine redaktionelle Strukturierung; die Blindprobe und die Rückspielung sind Praxisempfehlungen der Redaktion und stammen nicht aus einer der Quellen.",
+ "limitations": "Die vier Tonalitätsdimensionen sind ein etabliertes UX-Gerüst, keine wissenschaftliche Messskala mit Normwerten. Produktnamen und Funktionsumfänge der Werkzeuge ändern sich laufend; die Beschreibung gilt für den Recherchestand vom 20. Oktober 2026. Aussagen über die Wirkung von Beispieltexten beruhen auf dokumentiertem Few-Shot-Verhalten und Praxis, nicht auf einer kontrollierten Markenstudie.",
+ "sources": [
+  {
+   "title": "The Four Dimensions of Tone of Voice",
+   "publisher": "Nielsen Norman Group",
+   "url": "https://www.nngroup.com/articles/tone-of-voice-dimensions/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Styles are moving to skills",
+   "publisher": "Claude Help Center (Juni 2026)",
+   "url": "https://support.claude.com/en/articles/10181068-styles-are-moving-to-skills",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Understanding Claude's personalization features",
+   "publisher": "Claude Help Center",
+   "url": "https://support.claude.com/en/articles/10185728-understanding-claude-s-personalization-features",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Custom instructions for ChatGPT",
+   "publisher": "OpenAI Help Center",
+   "url": "https://help.openai.com/en/articles/8096356-custom-instructions-for-chatgpt",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Kann ein Sprachmodell überhaupt eine echte Markenstimme treffen?",
+   "a": "Annähern ja, vollständig nein. Mit klaren Tonalitätsreglern, Beispieltexten und Negativliste kommen Entwürfe nahe genug, dass das Review effizient bleibt. Der Durchschnittston ist aber der natürliche Modus der Modelle; je ungewöhnlicher die Stimme, desto mehr Nacharbeit bleibt. Die Vorgabe ersetzt das Lektorat nicht, sie macht es planbar."
+  },
+  {
+   "q": "Was ist wirksamer: Stil beschreiben oder Beispiele geben?",
+   "a": "Beispiele, klar. Sprachmodelle lernen Muster aus Beispielen zuverlässiger, als sie Adjektive interpretieren. Die beschreibende Ebene (Tonalitätsregler, Negativliste) ist trotzdem nötig, weil sie prüfbar macht, was die Beispiele zeigen: Im Review entscheidet die Regel über strittige Fälle, nicht das Bauchgefühl."
+  },
+  {
+   "q": "Wo hinterlege ich die Markenstimme dauerhaft?",
+   "a": "In den dauerhaften Anweisungen der Werkzeuge: Custom Instructions bei ChatGPT, Personalisierung beziehungsweise Skills bei Claude, im System-Prompt bei API-Nutzung. Wichtig ist, dass die Stimme als ein gepflegtes Paket (Regler, Beispiele, Negativliste) an einer Stelle gepflegt und in die Werkzeuge verteilt wird, nicht umgekehrt."
+  },
+  {
+   "q": "Was tun, wenn der Ton nach einem Modellupdate driftet?",
+   "a": "Denselben Mechanismus anwenden wie bei jeder Prompt-Pflege: gegen gespeicherte Beispielergebnisse testen, die Abweichung benennen und die Vorgabe anpassen. Wer Beispieltexte und Testdatum pflegt, merkt die Drift bei der nächsten Nutzung statt nach der nächsten Kundenbeschwerde."
+  },
+  {
+   "q": "Gilt das auch für kleine Teams ohne formellen Stilguide?",
+   "a": "Gerade dort. Ein formeller Guide ist keine Voraussetzung; zehn selbst geschriebene Texte, aus denen Regler, Beispiele und eine kurze Negativliste destilliert werden, reichen für den Anfang. Das Ergebnis ist in einem Nachmittag gebaut und wächst über die Rückspielung aus dem Review."
+  }
+ ],
+ "related": [
+  "content-workflows-llm",
+  "prompt-bibliothek"
+ ]
+}
