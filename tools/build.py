@@ -407,7 +407,7 @@ def glossary_page(shell_top, shell_bottom, now):
 
 SEARCH_PAGES = [
     ('Glossar: KI-Begriffe, kurz erklärt', '/glossar', 'Seite', 'Das KI-Glossar erklärt Begriffe zu Sprachmodellen, Agenten, RAG und Evaluation.'),
-    ('Lernpfade: KI verstehen in drei Etappen', '/lernpfade', 'Seite', 'Drei Lernpfade für Einsteiger, Praktiker und Entscheider mit Seiten in sinnvoller Reihenfolge.'),
+    ('Lernpfade: KI verstehen in drei Etappen', '/lernpfade', 'Seite', 'Lernpfade für Einsteiger, Praktiker, Entscheider und Spezialisten: Seiten in sinnvoller Reihenfolge, mit Fortschritt und Abschluss-Check.'),
     ('KI-Tagesbericht als PDF', '/berichte', 'Seite', 'Tägliche Ausgabe als PDF: Trending-Modelle, die Analysen des Tages, Impressum.'),
     ('Über das Magazin', '/ueber', 'Seite', 'Das KI Fachblatt ist ein deutschsprachiges Fachmagazin über künstliche Intelligenz von Philipp Paulik.'),
 ]
@@ -569,6 +569,11 @@ def main():
     lines = ''.join('- [%s](%s/%s): %s\n' % (a['title'], BASE, a['slug'], a['dek']) for a in arts)
     if '<!--GEN-->' in ll: ll = re.sub(r'<!--GEN-->.*?<!--/GEN-->', lambda m: '<!--GEN-->\n' + lines + '<!--/GEN-->', ll, flags=re.S)
     else: ll = ll.replace('## Beiträge\n\n', '## Beiträge\n\n<!--GEN-->\n' + lines + '<!--/GEN-->\n', 1)
+    import lernpfade as _lp
+    if _lp.LLMS_LINES:
+        blk = '<!--LP-->\n' + _lp.LLMS_LINES + '<!--/LP-->'
+        if '<!--LP-->' in ll: ll = re.sub(r'<!--LP-->.*?<!--/LP-->', lambda m: blk, ll, flags=re.S)
+        else: ll = ll.replace('## Beiträge\n\n', '## Lernpfade\n\n' + blk + '\n\n## Beiträge\n\n', 1)
     open('llms.txt', 'w', encoding='utf-8').write(ll)
     print('built %d article(s), %d section page(s); news-sitemap: %d; search-index: %d' % (len(arts), len(sections), len(recent), n_search))
 
