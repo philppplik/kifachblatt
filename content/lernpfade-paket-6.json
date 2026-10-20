@@ -1,0 +1,69 @@
+{
+ "paket": 6,
+ "stand": "2026-10-20",
+ "hinweis": "Nicht in lernpfade.json mergen – das macht der Integrator. Format wie content/lernpfade.json, plus optionale Felder (level, zeit, voraussetzung, lernziel, check) für die geplanten UX-Erweiterungen. Schritt-Slugs verweisen auf bestehende Seiten, auf Artikel aus Paket 6 und auf geplante Slugs aus Paket 7 (eu-ai-act, dsgvo-und-ki – exakt wie im Konzept).",
+ "paths": [
+  {
+   "id": "kmu",
+   "name": "Unternehmer & KMU",
+   "frage": "Ich will KI im Betrieb einführen – kalkulierbar und ohne Lehrgeld.",
+   "level": "Entscheider",
+   "zeit": "ca. 2 Stunden",
+   "voraussetzung": "Keine. Der Entscheider-Pfad ist ein guter Einstieg vorab.",
+   "lernziel": "Vom ersten Use-Case zur kalkulierbaren Einführung: priorisieren, beschaffen, Mitarbeiter mitnehmen.",
+   "intro": "Du führst einen kleinen oder mittleren Betrieb und willst KI nicht als Experiment, sondern als Werkzeug: Dieser Pfad führt von der Auswahl der ersten Anwendungsfälle über die Kauf-oder-Bauen-Frage und die Kostenrechnung bis zur Mitnahme der Belegschaft – und schließt mit den Sicherheitsgrundlagen für Systeme mit echten Rechten.",
+   "steps": [
+    {"slug": "use-cases-priorisieren", "warum": "Der häufigste Fehlschlag ist das falsche Projekt: So findest und sortierst du Anwendungsfälle mit der Wirkung-Aufwand-Matrix und startest einen Piloten mit Messwerten."},
+    {"slug": "build-vs-buy", "warum": "Abo, API oder eigener Server? Die drei Beschaffungswege mit aktuellen Preisen, versteckten Kosten und einer ehrlichen Vollkosten-Rechnung (TCO)."},
+    {"slug": "lokale-modelle", "warum": "Wann es sich lohnt, Modelle selbst zu hosten – für Datenhoheit, Volumen oder Unabhängigkeit – und was das an Hardware und Betrieb kostet."},
+    {"slug": "ki-kosten-roi", "warum": "Vom Token-Preis zu den Kosten pro gelöster Aufgabe und zum ROI: die Rechnung, die entscheidet, ob sich der Einsatz trägt."},
+    {"slug": "mitarbeiter-mitnehmen", "warum": "Technik ist der leichte Teil: Schulung, Nutzungsrichtlinie, Freigaben und die frühe Einbindung des Betriebsrats."},
+    {"slug": "sicherheit-fuer-agenten-systeme", "warum": "Sobald KI echte Rechte bekommt (lesen, schreiben, senden), zählen Zugriffsbegrenzung und Absicherung – hier lernst du die Grundregeln."}
+   ],
+   "terms": ["Grenzkosten", "Kosten pro gelöster Aufgabe", "Human-in-the-Loop", "Foundation-Model-Risiken"],
+   "check": {
+    "aufgaben": [
+     {"titel": "Vier Use-Cases einordnen", "frage": "Ordne in die Wirkung-Aufwand-Matrix ein: (a) KI-Entwürfe für Standardantworten im Support, (b) vollautomatischer Preisroboter im Onlineshop, (c) Wissensdatenbank mit RAG über 15 Jahre Projektdokumentation, (d) KI-Zusammenfassung der wöchentlichen Teamsitzung.", "loesung": "(a) hohe Wirkung, geringer Aufwand: schneller Gewinn, Ergebnis ist in Minuten prüfbar. (b) unklare Wirkung, hoher Aufwand und hohes Fehlerrisiko: vorerst Finger weg. (c) hohe Wirkung, hoher Aufwand: strategisches Projekt, erst nach einem schnellen Gewinn angehen. (d) geringe Wirkung, geringer Aufwand: Lückenfüller, mitnehmen, aber nicht als Pilotprojekt verkaufen."},
+     {"titel": "ROI-Mini-Rechnung nachvollziehen", "frage": "Ein Werkzeug kostet 400 € im Monat (Lizenz, Pflege, Prüfzeit). Es spart 60 Stunden Schreibarbeit, interner Stundensatz 50 €. Wie hoch sind monatlicher Überschuss und ROI?", "loesung": "Ersparnis: 60 × 50 € = 3.000 €. Überschuss: 3.000 € − 400 € = 2.600 €. ROI = (3.000 € − 400 €) / 400 € = 650 %. Ehrlich bleibt die Rechnung nur, wenn die 60 Stunden wirklich freigesetzt und anderweitig genutzt werden."}
+    ],
+    "quiz": [
+     {"q": "Warum ist der Token-Preis pro Million keine gute Entscheidungsgrundlage?", "a": "Weil er nichts über die Kosten einer gelösten Aufgabe sagt: Akzeptanzquote, Prüfzeit und Vollkosten (Anbindung, Pflege) entscheiden. Ein teureres Modell kann pro brauchbarem Ergebnis günstiger sein."},
+     {"q": "Nenne zwei valide Gründe für Self-Hosting statt API.", "a": "Datenhoheit (Daten dürfen den eigenen Verantwortungsbereich nicht verlassen) und hohes, stabiles Volumen, bei dem eigener Betrieb die Token-Kosten schlägt; außerdem, wenn KI Teil des eigenen Produkts ist."},
+     {"q": "Was ist Schatten-KI und warum ist sie eine Gratis-Bedarfsanalyse?", "a": "Beschäftigte nutzen private KI-Werkzeuge ohne Freigabe. Das ist ein Datenschutzrisiko, zeigt aber genau, wo im Betrieb echter Bedarf liegt – die Aufgaben, die sich Leute heute schon heimlich erleichtern, sind bewährte Kandidaten für genehmigte Prozesse."},
+     {"q": "Welche drei Dinge legst du vor Start eines Pilotprojekts fest?", "a": "Startwert (Dauer und Kosten der Aufgabe heute), Zielwert mit Abbruchkriterium, und die Messmethode (Stichprobe echter Aufgaben, mit und ohne KI, von Menschen bewertet)."},
+     {"q": "Warum soll der Betriebsrat bei der KI-Einführung früh eingebunden werden?", "a": "Weil KI-Werkzeuge Verhalten oder Leistung überwachen können und dann Mitbestimmung nach § 87 BetrVG greift – und weil die frühe Einbindung Bedenken auf den Tisch bringt, die sonst als stiller Widerstand im Projekt landen."}
+    ]
+   }
+  },
+  {
+   "id": "hr-recruiting",
+   "name": "HR & Recruiting",
+   "frage": "Ich will KI in Personalprozessen einsetzen – ohne Diskriminierung und ohne Rechtsbruch.",
+   "level": "Entscheider / Praktiker",
+   "zeit": "ca. 90 Minuten",
+   "voraussetzung": "Keine.",
+   "lernziel": "KI in Recruiting und Personalentwicklung einsetzen, AI-Act-Hochrisiko-Einstufung und Diskriminierungsrisiken kennen.",
+   "intro": "Kaum ein Bereich berührt Grundrechte so direkt wie die Personalarbeit: KI im Recruiting ist im EU AI Act ausdrücklich als Hochrisiko eingestuft. Dieser Pfad zeigt, was die Werkzeuge können, wo die rechtlichen Linien laufen, wie du KI-geschriebene Bewerbungen einordnest und wie du die Belegschaft mitnimmst.",
+   "steps": [
+    {"slug": "ki-recruiting", "warum": "Werkzeugtypen, Bias-Forschung und die Hochrisiko-Einstufung im EU AI Act: der Überblick über Chancen und Fallstricke, mit sechs Praxisregeln."},
+    {"slug": "eu-ai-act", "warum": "Der Rechtsrahmen im Detail: Risikoklassen, Pflichten für Anbieter und Anwender, Fristen – Personalauswahl ist der prominenteste Hochrisiko-Fall. (Artikel aus Paket 7, in Arbeit)"},
+    {"slug": "ki-bewerbungen", "warum": "Die Gegenseite: Zwei von drei Bewerbungen entstehen mit KI-Hilfe. Warum Detektoren versagen und wie du deine Auswahlprozesse umbaust."},
+    {"slug": "mitarbeiter-mitnehmen", "warum": "KI in HR-Prozessen braucht Akzeptanz: Schulung, Nutzungsrichtlinie und die Rolle des Betriebsrats. (Geteilt mit dem KMU-Pfad)"},
+    {"slug": "dsgvo-und-ki", "warum": "Bewerberdaten sind personenbezogene Daten: Was in Prompts und Systeme darf, was nicht – und welche Verträge du brauchst. (Artikel aus Paket 7, in Arbeit)"}
+   ],
+   "terms": ["Sycophancy", "Halluzination", "Human-in-the-Loop", "Alignment"],
+   "check": {
+    "aufgaben": [
+     {"titel": "Drei Szenarien nach Risikoklasse einordnen", "frage": "Ordne nach dem EU AI Act ein (Hochrisiko ja/nein): (a) Ein Werkzeug filtert eingehende Lebensläufe und erzeugt eine Rangliste der zehn besten Kandidaten. (b) Ein Werkzeug prüft deine Stellenanzeigen auf diskriminierende Formulierungen. (c) Ein System bewertet die schriftlichen Antworten von Bewerbenden in einem Online-Test und schlägt vor, wen du einlädst.", "loesung": "(a) Hochrisiko: Auswahl und Rangfolge natürlicher Personen, Anhang III Punkt 4(a). (b) Kein Hochrisiko-System: Es bewertet Texte des Arbeitgebers, nicht Personen; die Einordnung des AI Act Service Desk nennt genau diesen Fall als außerhalb von Punkt 4(a). (c) Hochrisiko: Bewertung von Bewerberantworten mit materiellem Einfluss auf die Auswahl. Stand der Einordnung: Oktober 2026, keine Rechtsberatung."}
+    ],
+    "quiz": [
+     {"q": "Ab wann gelten die Hochrisiko-Pflichten des EU AI Act für Recruiting-Systeme?", "a": "Nach der Änderung durch das Digital-Omnibus-Paket ab dem 2. Dezember 2027 (ursprünglich: 2. August 2026). DSGVO und AGG gelten unabhängig davon schon heute. Stand: Oktober 2026."},
+     {"q": "Was fand die Washington-Studie zur Lebenslauf-Bewertung durch Sprachmodelle?", "a": "Drei getestete Modelle bevorzugten in über drei Millionen Vergleichen weiß assoziierte Namen in 85 % der Fälle; schwarz männlich gelesene Namen wurden nie gegenüber weiß männlich gelesenen bevorzugt. Die Verzerrungen zeigen sich auch in Kombinationen von Merkmalen (Intersektionalität)."},
+     {"q": "Warum sind KI-Text-Detektoren im Bewerbungsprozess problematisch?", "a": "Sie markieren schlichte, vorhersehbare Sprache als KI-generiert – und trafen in einer Studie 61 % der Texte nicht-muttersprachlicher Schreiber fälschlich, während Muttersprachler fast fehlerfrei durchkamen. Ablehnungen auf dieser Basis benachteiligen systematisch Unschuldige."},
+     {"q": "Nenne zwei Prozess-Anpassungen, die besser wirken als Detektoren.", "a": "Referenzaufgaben aus dem echten Job statt Hochglanz-Anschreiben, mündliche Vertiefung behaupteter Stationen im Gespräch – plus eine klare Ansage in der Ausschreibung, welche KI-Nutzung akzeptiert ist."},
+     {"q": "Was ist der Unterschied zwischen KI-Assistenz und KI-Bewertung im Recruiting?", "a": "Assistenz (Anzeigen schreiben, Termine koordinieren, Fragen beantworten) bewertet keine Menschen und fällt nicht unter Anhang III. Bewertung (Filtern, Rangfolge, Testauswertung von Personen) ist Hochrisiko-KI mit entsprechenden Pflichten."}
+    ]
+   }
+  }
+ ]
+}

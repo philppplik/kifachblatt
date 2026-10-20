@@ -1,0 +1,153 @@
+{
+ "slug": "ki-recruiting",
+ "lang": "de",
+ "section": "recht",
+ "type": "explainer",
+ "title": "KI im Recruiting: Chancen, Werkzeugtypen, Fallstricke",
+ "dek": "KI sortiert Lebensläufe schneller als jedes Team – und diskriminiert nachweisbar. Was die Werkzeuge können, warum sie Hochrisiko-KI sind, was du beachten musst.",
+ "published": "2026-10-19T07:30:00+02:00",
+ "modified": "2026-10-20T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Recruiting",
+  "HR",
+  "EU AI Act",
+  "Diskriminierung",
+  "Bias",
+  "Hochrisiko-KI"
+ ],
+ "key_takeaways": [
+  "KI-Systeme zur Auswahl und Bewertung von Bewerbern sind nach Anhang III des EU AI Act als Hochrisiko eingestuft [1]. Die Pflichten für Anbieter und Anwender solcher Systeme gelten nach der Änderung durch das Digital Omnibus ab dem 2. Dezember 2027 [2] – die DSGVO und das AGG gelten dagegen schon heute.",
+  "In einer Studie mit über drei Millionen Vergleichen bevorzugten drei getestete Sprachmodelle Lebensläufe mit weiß assoziierten Namen in 85 % der Fälle; schwarz männlich gelesene Namen wurden nie gegenüber weiß männlich gelesenen bevorzugt [3]. Wer solche Systeme einsetzt, muss messen und dokumentieren, nicht vertrauen.",
+  "Nur 26 % der Bewerbenden trauen KI eine faire Bewertung zu [4]. Menschliche Endentscheidung, geprüfte Kriterien und ehrliche Kommunikation sind keine Kür, sondern die Bedingung dafür, dass KI im Recruiting überhaupt akzeptiert wird."
+ ],
+ "hero": {
+  "alt": "Ein Trichter, durch den oben viele stilisierte Bewerbungsmappen fallen. In der Mitte sitzt ein Filterrad mit dem Kürzel KI, unten kommen wenige Mappen an. Neben dem Trichter steht ein Warnschild mit einer Waage.",
+  "caption": "KI als Filter im Bewerbungsprozess: Sie sortiert schnell – und kann dabei systematisch Gruppen benachteiligen. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "**Hinweis: Dieser Artikel dient der Einordnung und ist keine Rechtsberatung. Stand der Rechtsinformationen: 20. Oktober 2026.** Recruiting ist das Feld, in dem KI am unmittelbarsten über Menschen entscheidet – und in dem die Fehlerforschung am ältesten ist. Schon 2018 stellte Amazon ein internes Bewertungssystem ein, nachdem aufgefallen war, dass es Bewerbungen von Frauen systematisch abwertete; das Modell hatte aus zehn Jahren überwiegend männlicher Einstellungen gelernt [5]. Acht Jahre später sind die Werkzeuge besser, die Grundfrage ist aber dieselbe geblieben: Wer sortiert hier eigentlich wen aus – und nach welchen Kriterien?"
+  },
+  {
+   "t": "h2",
+   "x": "Was die Werkzeuge können"
+  },
+  {
+   "t": "p",
+   "x": "Der Markt bietet vier Typen. **Screening-Systeme** lesen Lebensläufe und ordnen sie nach Passung. **Matching-Werkzeuge** schlagen Kandidaten Stellen vor oder umgekehrt. **Interview-Analyse** wertet schriftliche oder Video-Antworten aus. **Assistenz** schreibt Anzeigen, beantwortet Bewerberfragen und koordiniert Termine. Die ersten drei Typen bewerten Menschen – genau sie fallen in die kritische Kategorie. Die Assistenz dagegen unterstützt den Prozess, ohne über Personen zu urteilen."
+  },
+  {
+   "t": "p",
+   "x": "Die Einordnung des AI Act Service Desk der EU-Kommission macht die Grenze anschaulich: Ein Werkzeug, das Lebensläufe filtert, Antworten in Tests bewertet oder Ranglisten erzeugt, ist Hochrisiko im Sinne von Anhang III, Punkt 4 – auch dann, wenn am Ende ein Mensch entscheidet, weil die Vorsortierung die Entscheidung faktisch lenkt. Ein Werkzeug, das dagegen Stellenanzeigen auf diskriminierende Formulierungen prüft oder Arbeitgeber-Werbung ausspielt, fällt nicht in die Hochrisiko-Klasse [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Der rechtliche Rahmen (Stand Oktober 2026)"
+  },
+  {
+   "t": "p",
+   "x": "Der EU AI Act stuft KI-Systeme für die Auswahl, Bewertung und Zuweisung von Arbeitskräften als Hochrisiko ein [1]. Nach der Änderung durch das Digital-Omnibus-Paket gelten die Kapitel zu Hochrisiko-Systemen aus Anhang III ab dem **2. Dezember 2027** – ursprünglich war der 2. August 2026 vorgesehen [2]. Ab dann müssen Anbieter solcher Systeme Risikomanagement, Datenqualität, Dokumentation und menschliche Aufsicht sicherstellen; die Anwender – also die einstellenden Unternehmen – müssen unter anderem die Systeme bestimmungsgemäß nutzen, die menschliche Aufsicht organisieren und Beschäftigte vor dem Einsatz informieren [2]. Bereits seit dem 2. August 2026 gelten die Transparenzpflichten für KI-Systeme [2]."
+  },
+  {
+   "t": "p",
+   "x": "Unabhängig vom AI Act gilt: Die DSGVO begrenzt, welche Bewerberdaten verarbeitet und ob sie an Anbieter außerhalb der EU fließen dürfen – Details im geplanten Artikel zu [DSGVO und KI](/dsgvo-und-ki) und zur [Prüfung von Anbietern](/anbieter-check). Und das Allgemeine Gleichbehandlungsgesetz (AGG) verbietet Benachteiligungen etwa wegen Geschlechts, Herkunft oder Alters – es macht dabei keinen Unterschied, ob ein Mensch oder ein Modell benachteiligt. Der AI Act kommt also nicht *statt* des bestehenden Rechts, sondern obenauf. Die ausführliche Einordnung liefert der geplante Beitrag zum [EU AI Act](/eu-ai-act)."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Bias-Forschung zeigt"
+  },
+  {
+   "t": "p",
+   "x": "Die größte einschlägige Studie stammt von der University of Washington: Forschende ließen drei Sprachmodelle (von Mistral AI, Salesforce und Contextual AI) mehr als 550 echte Lebensläufe bewerten, in denen sie 120 Vornamen variierten, die in den USA typischerweise als weiß oder schwarz, männlich oder weiblich gelesen werden – über drei Millionen Vergleiche in neun Berufsfeldern. Ergebnis: Weiß assoziierte Namen wurden in 85 % der Vergleiche bevorzugt (schwarz assoziierte: 9 %), männlich gelesene in 52 % (weiblich gelesene: 11 %). Nie wurde ein schwarz männlich gelesener Name einem weiß männlich gelesenen vorgezogen [3]."
+  },
+  {
+   "t": "p",
+   "x": "Zwei Details der Studie verdienen Beachtung. Erstens: Die Muster lassen sich nicht aus Einzeleffekten addieren – schwarz weiblich gelesene Namen wurden gegenüber schwarz männlich gelesenen in 67 % der Fälle bevorzugt, ein sogenannter intersektionaler Effekt, den man nur sieht, wenn man Kombinationen prüft [3]. Zweitens: Getestet wurden allgemeine Sprachmodelle, keine zertifizierten Recruiting-Produkte. Gerade deshalb ist die Botschaft klar: Ein generisches Modell ist kein zulässiger Ersatz für ein geprüftes Auswahlverfahren – und auch bei Spezialwerkzeugen ersetzt der Verweis auf den Hersteller keine eigene Prüfung. Methoden dafür liefert [Evals statt Bauchgefühl](/evals-statt-bauchgefuehl); die Grundmechanik verzerrter Trainingsdaten erklärt [Wie ein Sprachmodell lernt](/wie-ein-sprachmodell-lernt)."
+  },
+  {
+   "t": "callout",
+   "title": "Der Amazon-Präzedenzfall",
+   "x": "Amazons experimentelles Bewertungssystem (2014–2018) bestrafte Lebensläufe, die das Wort „women's“ enthielten, und wertete Absolventinnen zweier Frauen-Colleges ab – gelernt aus zehn Jahren männlich dominierter Einstellungen. Das Projekt wurde beerdigt [5]. Die Lehre gilt unverändert: Wer historische Einstellungsdaten als Wahrheitsmaßstab nimmt, automatisiert die Vergangenheit."
+  },
+  {
+   "t": "h2",
+   "x": "Sauber einsetzen: sechs Regeln für die Praxis"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Menschliche Endentscheidung.** KI darf sichten und vorschlagen, nicht ablehnen. Jede Absage braucht eine menschliche Prüfung – das senkt das rechtliche Risiko und entspricht der Erwartung der Bewerbenden: Nur 26 % trauen KI eine faire Bewertung zu, 52 % gehen davon aus, dass KI ihre Unterlagen sichtet [4].",
+    "**Kriterien vorab festlegen.** Was zählt für diese Stelle – und was ausdrücklich nicht? Ohne schriftliche Kriterien ist weder die Arbeit des Modells noch die der Menschen prüfbar.",
+    "**Werkzeug einordnen.** Fällt es unter Anhang III (Bewertung, Rangfolge, Zuweisung)? Dann Dokumentation, Aufsicht und die Fristen des AI Act auf dem Schirm haben [1][2] und den Anbieter nach Konformitätsunterlagen fragen.",
+    "**Eigene Daten prüfen.** Mit Testprofilen arbeiten: gleiche Qualifikation, variierte Namen und Merkmale. Was die Washington-Studie im Labor fand [3], musst du bei deinem Anbieter ausschließen – und die Prüfung dokumentieren.",
+    "**Bewerbende informieren.** Transparenz über den KI-Einsatz ist seit August 2026 EU-weit Pflichtbestandteil vieler Systeme [2] – und schlicht fair.",
+    "**Aufsicht dokumentieren.** Wer prüft, wann, mit welchem Ergebnis? Im Streitfall zählt, was schriftlich ist."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Und die Kehrseite nicht vergessen: Bewerbende nutzen ihrerseits KI in großer Zahl. Wie du KI-geschriebene Bewerbungen einordnest und deine Prozesse darauf einstellst, behandelt der Artikel [KI-geschriebene Bewerbungen](/ki-bewerbungen)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Gilt der EU AI Act schon für mein Recruiting?",
+   "a": "Die Hochrisiko-Pflichten für Systeme der Personalauswahl (Anhang III) gelten nach der Digital-Omnibus-Änderung ab dem 2. Dezember 2027. Transparenzpflichten gelten bereits seit dem 2. August 2026, und DSGVO sowie AGG gelten unabhängig davon schon heute. Die Vorbereitungszeit bis Dezember 2027 ist realistisch zu nutzen: Einordnung, Anbieter-Prüfung und Dokumentation brauchen Monate. Keine Rechtsberatung – verbindlich ist der Gesetzestext."
+  },
+  {
+   "q": "Ist es legal, ChatGPT oder Claude Lebensläufe sortieren zu lassen?",
+   "a": "Generische Sprachmodelle sind nicht als Recruiting-Systeme zugelassen und in Studien zeigen sie deutliche Verzerrungen. Fachlich ist das riskant, rechtlich kann es gegen AGG und DSGVO verstoßen, und ab Dezember 2027 greifen die Hochrisiko-Pflichten. Kurz: nicht machen. Dafür gibt es geprüfte Spezialwerkzeuge – die ebenfalls kontrolliert gehören."
+  },
+  {
+   "q": "Was muss ich vom Anbieter verlangen?",
+   "a": "Konformitätsdokumentation nach AI Act (soweit einschlägig), Angaben zu Trainings- und Prüfdaten, Bias-Testergebnisse, Datenflüsse (welche Daten wohin, auch außerhalb der EU), Vertrag zur Auftragsverarbeitung und Auskunft darüber, wie die menschliche Aufsicht vorgesehen ist. Details liefert der geplante Artikel [Anbieter-Check](/anbieter-check)."
+  },
+  {
+   "q": "Woran erkenne ich, dass unser Screening-System diskriminiert?",
+   "a": "Durch eigene Tests, nicht durch Herstellerversprechen: synthetische Profile mit gleicher Qualifikation und variierten Merkmalen (Name, Geschlecht, Alter) einspielen und die Rangfolgen vergleichen. Die Washington-Studie zeigt, dass man dafür auch Kombinationen von Merkmalen prüfen muss – einzelne Effekte summieren sich nicht einfach."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Employment (Beispiele und Einordnung zu Anhang III, Punkt 4)",
+   "publisher": "AI Act Service Desk, Europäische Kommission",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/employment-0",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Timeline for the Implementation of the EU AI Act (inkl. Digital Omnibus on AI)",
+   "publisher": "AI Act Service Desk, Europäische Kommission",
+   "url": "https://ai-act-service-desk.ec.europa.eu/en/ai-act/timeline/timeline-implementation-eu-ai-act",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "AI tools show biases in ranking job applicants' names according to perceived race and gender",
+   "publisher": "UW News, University of Washington, 31. Oktober 2024",
+   "url": "https://www.washington.edu/news/2024/10/31/ai-bias-resume-screening-race-gender/?utm=",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Gartner Survey Shows Just 26% of Job Applicants Trust AI Will Fairly Evaluate Them",
+   "publisher": "Gartner, Pressemitteilung, 31. Juli 2025",
+   "url": "https://www.gartner.com/en/newsroom/press-releases/2025-07-31-gartner-survey-shows-just-26-percent-of-job-applicants-trust-ai-will-fairly-evaluate-them",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Amazon scraps secret AI recruiting tool that showed bias against women",
+   "publisher": "Reuters, 11. Oktober 2018",
+   "url": "https://www.reuters.com/article/idUSKCN1MK0AG/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Einordnungsseite des AI Act Service Desk zum Beschäftigungsbereich (Anhang III, Punkt 4, mit Beispielfällen), die offizielle Zeitplan-Seite inklusive der Digital-Omnibus-Änderungen, der UW-News-Artikel zur Resume-Screening-Studie, die Gartner-Pressemitteilung (2. Quartal 2025, 3.000 Befragte) und die Reuters-Recherche zu Amazon von 2018. Dieser Artikel ist keine Rechtsberatung; er ordnet öffentlich zugängliche Quellen ein und gibt Handlungsempfehlungen der Redaktion wieder.",
+ "limitations": "Die UW-Studie testete drei allgemeine Sprachmodelle mit US-amerikanischen Namen und Stellen; die Ergebnisse sind nicht eins zu eins auf zertifizierte Recruiting-Produkte oder den deutschen Markt übertragbar, belegen aber das Grundrisiko. Rechtsstand ist der 20. Oktober 2026; der Digital-Omnibus-Prozess und nationale Umsetzungsgesetze können Details weiter ändern. Der Amazon-Fall beruht auf Angaben fünf anonymer Quellen gegenüber Reuters; Amazon hat die Veröffentlichung nicht als Unternehmensdarstellung bestätigt.",
+ "related": [
+  "ki-bewerbungen",
+  "mitarbeiter-mitnehmen",
+  "evals-statt-bauchgefuehl"
+ ]
+}

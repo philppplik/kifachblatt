@@ -1,0 +1,142 @@
+{
+ "slug": "ki-bewerbungen",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "KI-geschriebene Bewerbungen: erkennen, einordnen, Prozesse anpassen",
+ "dek": "Zwei von drei Bewerbungen entstehen mit KI-Hilfe. Was das für die Auswahl bedeutet, warum Detektoren keine Lösung sind und wie Personaler Prozesse umbauen.",
+ "published": "2026-10-19T07:45:00+02:00",
+ "modified": "2026-10-20T09:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Bewerbung",
+  "Recruiting",
+  "KI-Detektoren",
+  "Anschreiben",
+  "HR",
+  "Authentizität"
+ ],
+ "key_takeaways": [
+  "Rund 61 % der Bewerbenden in Deutschland nutzen KI für ihre Unterlagen; 74 % der Personalverantwortlichen finden die Unterlagen dadurch professioneller – aber 69 % weniger individuell und 73 % weniger authentisch [1].",
+  "Automatische KI-Detektoren sind keine Antwort: Sie markierten in einer Studie 61 % von Aufsätzen nicht-muttersprachlicher Schreiber fälschlich als KI-generiert [2], und OpenAI hat seinen eigenen Klassifikator wegen zu geringer Trefferquote abgeschaltet [3].",
+  "Die wirksame Anpassung liegt im Prozess, nicht in der Enttarnung: Referenzaufgaben statt Hochglanz-Anschreiben, mündliche Vertiefung, und klar kommunizieren, welche KI-Nutzung erwünscht ist."
+ ],
+ "hero": {
+  "alt": "Ein Stapel nahezu identischer Bewerbungsmappen, alle im selben Layout. Eine Lupe schwebt darüber und zeigt auf eine der Mappen, die sich farblich leicht abhebt.",
+  "caption": "Wenn alle Unterlagen perfekt aussehen, verliert das perfekte Dokument seinen Informationswert. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Das Anschreiben als Gradmesser für Motivation und Schreibfähigkeit hat ausgedient. Rund 61 % der Bewerbenden in Deutschland setzen KI ein, um Dokumente wie das Anschreiben zu optimieren – so die Application-Quality-Studie von Stepstone mit 3.495 Bewerbenden und 704 Personalverantwortlichen vom Frühjahr 2025 [1]. Die Personaler sehen den Effekt: Drei von vier (74 %) beschreiben die eingehenden Unterlagen als professioneller, aber 69 % vermissen die individuelle Anpassung, 73 % empfinden sie als weniger authentisch, und 75 % sehen Qualifikationen zu oft übertrieben dargestellt [1]. Was Personaler heute lesen, ist ein neuer Texttyp: hochglanzpoliert und schwer zu bewerten."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnen statt enttarnen"
+  },
+  {
+   "t": "p",
+   "x": "Die erste Versuchung ist der Detektor: Software, die KI-Text erkennen soll. Die zweite Erkenntnis ist ernüchternd. Forschende der Stanford University prüften sieben verbreitete Detektoren mit 91 Aufsätzen nicht-muttersprachlicher Englischschreiber und 88 Aufsätzen US-amerikanischer Achtklässler: Die Detektoren markierten im Schnitt 61,3 % der TOEFL-Texte fälschlich als KI-generiert, während die Aufsätze der Muttersprachler fast fehlerfrei als menschlich erkannt wurden. 97,8 % der TOEFL-Texte wurden von mindestens einem Detektor falsch eingeordnet [2]. Der Grund ist strukturell: Detektoren messen die Vorhersehbarkeit des Textes, und schlichte, formelhafte Sprache ist vorhersehbar – ob sie nun von einem Modell oder einem Menschen mit kleinem Wortschatz stammt [2]."
+  },
+  {
+   "t": "p",
+   "x": "Dazu passt, dass OpenAI 2023 seinen eigenen KI-Klassifikator vom Netz nahm – offiziell wegen der „niedrigen Treffergenauigkeit“ [3]. Und Gartner berichtet, dass 6 % der Bewerbenden zugeben, in Interviews schon einmal betrogen zu haben, und prognostiziert, dass bis 2028 weltweit jedes vierte Bewerberprofil gefälscht sein könnte [4]. Die Lage ist also doppelt vertrackt: Echte KI-Nutzung ist kaum zuverlässig nachweisbar – und echte Täuschung (erfundene Identitäten, Interview-Betrug) geht weit über schicke Formulierungen hinaus."
+  },
+  {
+   "t": "h2",
+   "x": "Was KI-Unterlagen wirklich verraten"
+  },
+  {
+   "t": "p",
+   "x": "Der Informationsverlust ist real, aber begrenzt auf eine bestimmte Schicht: die *sprachliche Oberfläche*. Rechtschreibung, Stil, Struktur sagen 2026 fast nichts mehr über die Person aus, weil jedes gängige Modell sie auf Hochglanz bringt. Was weiterhin Aussagekraft hat, sind die *Inhalte*: konkrete Stationen mit nachprüfbaren Ergebnissen, Projekte mit Zahlen, Lücken und Brüche, die im Gespräch erklärt werden können. Und die Passung: Stepstone fand, dass 60 % der Bewerbungen schon am fehlenden Bezug zu den geforderten Fähigkeiten scheitern – ein Problem, das KI nicht gelöst, sondern durch Massenbewerbungen „auf gut Glück“ eher verschärft hat [1]."
+  },
+  {
+   "t": "p",
+   "x": "Es gibt auch eine faire Gegenperspektive: KI gleicht Chancen aus. Bewerber mit Lese-Rechtschreib-Schwäche, ohne Deutsch als Muttersprache oder ohne Bewerbungstraining liefern heute Unterlagen ab, die nicht mehr an der Form scheitern. Das ist ein Gewinn an Fairness – und ein Grund mehr, die Auswahl von der Oberfläche auf die Substanz zu verlegen. Ethische Einordnungen von Werkzeugen gehören zum [Alignment](/glossar#alignment)- und [Sycophancy](/glossar#sycophancy)-Grundwissen: Modelle schreiben, was gefällt – inklusive übertriebener Qualifikationen, wenn man nicht widerspricht."
+  },
+  {
+   "t": "h2",
+   "x": "Prozesse umbauen: fünf Maßnahmen"
+  },
+  {
+   "t": "ol",
+   "items": [
+    "**Erklären, was erlaubt ist.** Eine Zeile in der Stellenanzeige genügt: „KI-Nutzung bei Unterlagen ist okay – wir achten auf konkrete Ergebnisse und prüfen sie im Gespräch.“ Wer nichts sagt, bekommt das Schlechte aus beiden Welten: heimliche Nutzung und gegenseitiges Misstrauen.",
+    "**Referenzaufgabe statt Ansichtssache.** Eine kleine, echte Aufgabe aus dem Job (mit Zeitrahmen) zeigt mehr als drei Seiten Anschreiben. Sie ist schwerer zu fälschen, weil sie Denken verlangt, nicht Formulierung – und sie ist für Bewerbende fairer, weil alle dasselbe zeigen.",
+    "**Mündlich vertiefen.** Zwei bis drei gezielte Fragen zu den behaupteten Stationen („Was genau war Ihr Anteil an diesem Ergebnis?“) trennen echte Erfahrung zuverlässiger von Formulierung als jede Software.",
+    "**Anschreiben anders gewichten.** Wer es behalten will, sollte es als Motivationssignal lesen, nicht als Könnensnachweis – und Alternativen zulassen (kurzes Video, Portfolio, Probearbeiten).",
+    "**Eigene KI-Regeln spiegeln.** Wer selbst KI in der Vorauswahl einsetzt, sollte dieselbe Transparenz üben, die er von Bewerbenden erwartet. Die rechtlichen Leitplanken dafür stehen in [KI im Recruiting](/ki-recruiting)."
+   ]
+  },
+  {
+   "t": "callout",
+   "title": "Faustregel",
+   "x": "Behandle jede Bewerbung als *behauptete* Qualifikation, nicht als bewiesene. Das war vor KI klug und ist es jetzt umso mehr – nur dass heute auch die eleganteste Formulierung nichts mehr beweist."
+  },
+  {
+   "t": "h2",
+   "x": "Was Bewerbende wissen sollten"
+  },
+  {
+   "t": "p",
+   "x": "Die Stepstone-Daten zeigen die Falle: KI macht Unterlagen glatter, aber nicht passender – und 80 % der Personalverantwortlichen bewerten die eingehenden Bewerbungen insgesamt als höchstens mittelmäßig [1]. Wer mit KI arbeitet, gewinnt deshalb nicht durch das perfekte Layout, sondern durch die bessere Recherche: Welche Fähigkeiten verlangt die Stelle wirklich, welche eigenen Ergebnisse belegen sie? KI-Formulierungen müssen hinterfragt und gegen die eigene Erfahrung geprüft werden – eine übertriebene Behauptung im Anschreiben wird im Gespräch teuer. [Sycophancy](/glossar#sycophancy) – die Neigung von Modellen, zu schmeicheln – endet spätestens an der ersten Nachfrage."
+  },
+  {
+   "t": "p",
+   "x": "Für beide Seiten gilt damit derselbe Kernsatz: KI verändert die *Herstellung* von Bewerbungen, nicht die *Währung* des Prozesses. Die Währung bleibt belegbare Erfahrung, nachprüfbar und im Gespräch tragfähig."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Kann ich KI-geschriebene Bewerbungen zuverlässig erkennen?",
+   "a": "Nein. Studien zeigen hohe Fehlquoten – 61 % falsch markierte Texte nicht-muttersprachlicher Schreiber bei nahezu fehlerfreier Erkennung bei Muttersprachlern – und OpenAI hat seinen eigenen Detektor wegen zu geringer Genauigkeit eingestellt. Wer Kandidaten auf Basis eines Detektor-Ergebnisses ablehnt, trifft mit hoher Wahrscheinlichkeit auch Unschuldige, überproportional Menschen mit anderer Erstsprache."
+  },
+  {
+   "q": "Ist KI-Nutzung in der Bewerbung Täuschung?",
+   "a": "Nicht grundsätzlich. Rechtschreib- und Stilhilfe ist seit Jahrzehnten üblich, KI setzt das fort. Zur Täuschung wird es, wenn Inhalte erfunden oder Qualifikationen übertrieben werden – das ist dann im Gespräch oder bei der Referenzprüfung aufklärbar. Als Arbeitgeber hilft eine klare Ansage in der Ausschreibung, welche Nutzung akzeptiert ist."
+  },
+  {
+   "q": "Soll ich das Anschreiben abschaffen?",
+   "a": "Nicht unbedingt abschaffen, aber anders lesen. Als Nachweis von Schreibfähigkeit taugt es nicht mehr, als Signal für Motivation und Recherche durchaus: Wer konkret auf die Stelle eingeht, hat Arbeit investiert – mit oder ohne KI. Viele Prozesse ersetzen es sinnvoll durch eine Referenzaufgabe oder ein kurzes Motivationsvideo."
+  },
+  {
+   "q": "Wie häufig ist Bewerbungsbetrug jenseits schöner Texte?",
+   "a": "Gartner berichtet aus einer Befragung von 3.000 Kandidaten im zweiten Quartal 2025: 6 % gaben zu, bei Interviews schon einmal betrogen zu haben (etwa durch eine andere Person im Gespräch). Die Prognose, dass bis 2028 jedes vierte Profil weltweit gefälscht sein könnte, ist eine Schätzung – sie zeigt die Richtung, ist aber keine Messung. Identitätsprüfung spätestens vor Vertragsschluss ist die richtige Antwort."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Studie: Zwei von drei Bewerbungen mit Hilfe von KI erstellt – Recruiter*innen fehlt Individualität",
+   "publisher": "The Stepstone Group, 27. Mai 2025",
+   "url": "https://www.thestepstonegroup.com/deutsch/newsroom/pressemitteilungen/studie-zwei-von-drei-bewerbungen-mit-hilfe-von-ki-erstellt-recruiterinnen-fehlt-individualitaet/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "GPT detectors are biased against non-native English writers",
+   "publisher": "Patterns (Cell Press), Juli 2023",
+   "url": "https://www.cell.com/patterns/fulltext/S2666-3899(23)00130-7",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "OpenAI scuttles AI-written text detector over 'low rate of accuracy'",
+   "publisher": "TechCrunch, 25. Juli 2023",
+   "url": "https://techcrunch.com/2023/07/25/openai-scuttles-ai-written-text-detector-over-low-rate-of-accuracy/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Gartner Survey Shows Just 26% of Job Applicants Trust AI Will Fairly Evaluate Them",
+   "publisher": "Gartner, Pressemitteilung, 31. Juli 2025",
+   "url": "https://www.gartner.com/en/newsroom/press-releases/2025-07-31-gartner-survey-shows-just-26-percent-of-job-applicants-trust-ai-will-fairly-evaluate-them",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Stepstone-Pressemitteilung zur Application-Quality-Studie (Stichproben: 3.495 Bewerbende, 704 Personalverantwortliche, März/April 2025), der Volltext der Patterns-Studie zu KI-Detektoren, der TechCrunch-Bericht zur Abschaltung des OpenAI-Klassifikators und die Gartner-Pressemitteilung. Die Prozess-Empfehlungen sind eine eigene Zusammenstellung der Redaktion.",
+ "limitations": "Die Stepstone-Zahlen beruhen auf Selbstauskünften; die tatsächliche Nutzungsquote kann höher liegen. Die Detektor-Studie stammt von 2023 und testete englische Texte – die Richtung des Befunds gilt für Deutsch vermutlich ebenso, wurde aber nicht nachgemessen. Gartners 2028-Prognose ist eine Schätzung, keine Messung. Dieser Artikel ersetzt keine arbeitsrechtliche Beratung im Einzelfall.",
+ "related": [
+  "ki-recruiting",
+  "mitarbeiter-mitnehmen",
+  "halluzinationen"
+ ]
+}
