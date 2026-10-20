@@ -1,0 +1,326 @@
+{
+ "slug": "api-preise-vergleichen",
+ "lang": "de",
+ "section": "praxis",
+ "type": "explainer",
+ "title": "API-Preise vergleichen: Blended Price, Kontextlänge, versteckte Posten",
+ "dek": "Eingabe, Ausgabe, Cache, Batch: So lesen Sie LLM-Preislisten richtig, bringen Anbieter auf eine vergleichbare Größe und finden gern vergessene Posten.",
+ "published": "2026-10-20T07:15:00+02:00",
+ "modified": "2026-10-20T07:15:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "API-Preise",
+  "Blended Price",
+  "Tokenkosten",
+  "Prompt-Caching",
+  "Batch API",
+  "Kostenvergleich"
+ ],
+ "key_takeaways": [
+  "Preislisten nennen getrennte Preise für Eingabe-, Ausgabe- und Cache-Token. Erst ein Mischpreis (Blended Price) mit offengelegtem Verhältnis macht Modelle vergleichbar.",
+  "Die Ausgabe kostet bei allen großen Anbietern das Vier- bis Sechsfache der Eingabe; Reasoning-Modelle erzeugen viele unsichtbare Ausgabetoken.",
+  "Die teuersten Posten stehen oft nicht in der Preiszeile: Werkzeug-Overhead, Websuche, lange Kontexte, Tokenizer-Wechsel und befristete Einführungspreise."
+ ],
+ "hero": {
+  "alt": "Balkendiagramm: Mischpreise großer LLM-APIs in Dollar je Million Token bei angenommenem Verhältnis drei zu eins, von GPT-5.6 Luna bis Claude Fable 5.1.",
+  "caption": "Mischpreise je Million Token bei 3:1-Verhältnis von Eingabe zu Ausgabe, Listenpreise vom 20. Oktober 2026. Eigene Rechnung.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Jeder große LLM-Anbieter veröffentlicht eine Preisliste, und keine sieht aus wie die andere. Anthropic staffelt nach Cache-Schreiben und Cache-Treffern [1], OpenAI zeigt Standard-, Batch- und Residency-Preise nebeneinander [2], Google verkündet Einführungspreise mit Ablaufdatum [3]. Wer nur die erste Zahl jeder Liste vergleicht, vergleicht nichts. Dieser Beitrag zeigt an den aktuellen Listen (Stand 20. Oktober 2026), wie man die Preise auf eine vergleichbare Größe bringt und welche Posten regelmäßig unterschätzt werden."
+  },
+  {
+   "t": "callout",
+   "title": "Die Kurzfassung als Analogie",
+   "x": "Wie bei Handy-Tarifen: Der Minutenpreis sagt wenig, wenn Sie vor allem im Ausland telefonieren und abends streamen. Entscheidend ist Ihr Nutzungsprofil und die Frage, welche Optionen extra kosten. Nur dass beim LLM der „Auslandstag“ Web-Suche und der „Stream“ die lange Antwort heißt."
+  },
+  {
+   "t": "h2",
+   "x": "Die Grundpreise: Eingabe, Ausgabe, Cache"
+  },
+  {
+   "t": "p",
+   "x": "Alle Listenpreise gelten je eine Million Token (MTok) und verstehen sich in US-Dollar ohne Steuern. Die Ausgabe ist überall der teure Posten: Sie kostet das Vier- bis Sechsfache der Eingabe, weil das Erzeugen von Token seriell läuft und die teure Phase der [Inferenz](/inferenz-und-kosten-verstehen) ist. Modelle mit sichtbarem Nachdenken erzeugen dabei viele Ausgabetoken, die der Nutzer nie sieht: Google weist Denk-Token ausdrücklich als Teil des Ausgabepreises aus [3]."
+  },
+  {
+   "t": "table",
+   "caption": "Basis-Listenpreise je Million Token, Standard-Verarbeitung, Stand 20. Oktober 2026 [1] [2] [3]",
+   "head": [
+    "Modell",
+    "Eingabe",
+    "Ausgabe",
+    "Cache-Lesepreis"
+   ],
+   "rows": [
+    [
+     "Claude Fable 5.1",
+     "10,00 $",
+     "50,00 $",
+     "0,25 $ (2,5 % der Eingabe) [1]"
+    ],
+    [
+     "Claude Opus 5",
+     "5,00 $",
+     "25,00 $",
+     "0,50 $ (10 %) [1]"
+    ],
+    [
+     "Claude Sonnet 5",
+     "2,00 $",
+     "10,00 $",
+     "0,20 $ (10 %) [1]"
+    ],
+    [
+     "Claude Haiku 4.5",
+     "1,00 $",
+     "5,00 $",
+     "0,10 $ (10 %) [1]"
+    ],
+    [
+     "GPT-5.6 Sol",
+     "5,00 $",
+     "30,00 $",
+     "0,50 $ gecachte Eingabe [2]"
+    ],
+    [
+     "GPT-5.6 Terra",
+     "2,00 $",
+     "12,00 $",
+     "0,20 $ gecachte Eingabe [2]"
+    ],
+    [
+     "GPT-5.6 Luna",
+     "0,20 $",
+     "1,20 $",
+     "0,02 $ gecachte Eingabe [2]"
+    ],
+    [
+     "Gemini 4 Argon (Einführungspreis)",
+     "2,00 $",
+     "10,00 $",
+     "0,10 $ [3]"
+    ],
+    [
+     "Gemini 3.8 Flash (Einführungspreis)",
+     "0,75 $",
+     "3,75 $",
+     "0,075 $ [3]"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Blended Price: ein Vergleichsmaß mit offengelegter Annahme"
+  },
+  {
+   "t": "p",
+   "x": "Der [Blended Price](/glossar#blended-price) mischt Eingabe- und Ausgabepreis zu einer einzigen Zahl, gewichtet nach dem erwarteten Verhältnis. Die Annahme gehört immer dazu: Für einen Chatbot mit langen Dokumenten in der Eingabe und kurzen Antworten rechnen wir hier mit drei zu eins. Die Formel: (3 × Eingabepreis + 1 × Ausgabepreis) geteilt durch 4. Ein anderes Verhältnis verändert die Reihenfolge; bei ausgeglichenem 1:1 rücken die Modelle mit hohem Ausgabepreis nach hinten."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Mischpreise je Million Token (3:1, Stand 20.10.2026)",
+   "alt": "Fable 5.1: 20 Dollar, GPT-5.6 Sol: 11,25, Opus 5: 10, Terra: 4,50, Sonnet 5 und Gemini 4 Argon je 4, Haiku 4.5: 2, Gemini 3.8 Flash: 1,50, GPT-5.6 Luna: 0,45 Dollar.",
+   "caption": "Eigene Rechnung: (3 × Eingabe + 1 × Ausgabe) / 4, Listenpreise von [1] [2] [3]. Gemini-Modelle zum befristeten Einführungspreis. Das Verhältnis 3:1 ist eine Annahme und muss zur eigenen Last passen.",
+   "source": "Eigene Rechnung aus [1] [2] [3]",
+   "unit": " $",
+   "x_label": "Dollar je Million Token (Mischpreis)",
+   "y_label": "Modell",
+   "labels": [
+    "Claude Fable 5.1",
+    "GPT-5.6 Sol",
+    "Claude Opus 5",
+    "GPT-5.6 Terra",
+    "Claude Sonnet 5",
+    "Gemini 4 Argon*",
+    "Claude Haiku 4.5",
+    "Gemini 3.8 Flash*",
+    "GPT-5.6 Luna"
+   ],
+   "series": [
+    {
+     "name": "Mischpreis",
+     "values": [
+      20,
+      11.25,
+      10,
+      4.5,
+      4,
+      4,
+      2,
+      1.5,
+      0.45
+     ]
+    }
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zwei Lesarten sind wichtig. Erstens: Zwischen dem teuersten und dem billigsten Modell liegt hier ein Faktor von über 40, die Modellklasse entscheidet also mehr als der Anbieter. Zweitens: Günstig ist nicht automatisch passend. Ein Mischpreis sagt nichts über die Qualität; die Kennzahl, die beides verbindet, sind die [Kosten pro gelöster Aufgabe](/kosten-pro-aufgabe-messen)."
+  },
+  {
+   "t": "h2",
+   "x": "Versteckte Posten, die Preislisten klein schreiben"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Werkzeug-Overhead.** Wer Werkzeugaufrufe nutzt, zahlt für die Werkzeugbeschreibungen mit: Anthropic beziffert den Systemprompt für Werkzeugnutzung je nach Modell auf rund 300 bis 800 Eingabetoken pro Anfrage, ein einzelnes Bash-Werkzeug addiert weitere rund 250 bis 330 [1]. Bei kurzen Anfragen kann das den Grundpreis verdoppeln.",
+    "**Websuche und Grounding.** OpenAI berechnet 10 $ je 1.000 Suchanfragen [2], Anthropic ebenfalls 10 $ je 1.000 Suchen [1], Google 14 $ je 1.000 Anfragen nach einem Freikontingent von 5.000 pro Monat [3]. Agenten, die viel recherchieren, bezahlen die Recherche extra.",
+    "**Langer Kontext.** OpenAIs Standardpreise gelten nur bis 270.000 Kontexttoken [2]. Wer längere Fenster fährt, zahlt andere Sätze und sollte vor dem Skalieren nachsehen, nicht nach der ersten Rechnung.",
+    "**Tokenizer-Wechsel.** Anthropic weist darauf hin, dass neuere Tokenizer bei Claude ab Version 4.7 rund 30 Prozent mehr Token für denselben Text erzeugen [1]. Ein Modellwechsel kann die Rechnung also auch dann ändern, wenn der Listenpreis gleich bleibt.",
+    "**Standortzuschläge.** Datenverarbeitung in einer bestimmten Region kostet Aufschlag: OpenAI listet „Data Residency“ mit plus zehn Prozent [2], Anthropic einen Faktor 1,1 für US-only-Inferenz [1].",
+    "**Cache-Nebenkosten.** Google berechnet für explizites Kontext-Caching künftig auch Speicherpreise je Million Token und Stunde [3]. Caching ist kein Gratis-Speicher."
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Rabatte richtig lesen: Batch, Cache, Einführungspreise"
+  },
+  {
+   "t": "p",
+   "x": "Drei Rabattarten wiederholen sich bei allen Anbietern. Erstens Batch: Wer Anfragen asynchron bündelt und bis zu 24 Stunden warten kann, zahlt bei OpenAI, Anthropic und Google jeweils die Hälfte [1] [2] [3]. Zweitens [Prompt-Caching](/glossar#prompt-caching): Wiederholte Prompt-Anfänge werden billiger gelesen, bei Anthropic mit dem Faktor 0,1 auf den Eingabepreis (0,025 bei Fable 5.1), dafür kostet das Schreiben in den Cache mehr als die normale Eingabe [1]; die Faustregel dort: Caching lohnt sich ab dem zweiten Lesen desselben Anfangs. Drittens Einführungspreise mit Verfallsdatum: Google verdoppelt die Preise von Gemini 4 Argon zum 1. Dezember 2026 und die von Gemini 3.8 Flash zum 1. Januar 2027 [3]. Umgekehrt wurde der Einführungspreis von Claude Sonnet 5 im Herbst 2026 zum dauerhaften Standardpreis [1]. Preislisten sind bewegliche Ziele; jede Kalkulation braucht ein Stand-Datum."
+  },
+  {
+   "t": "p",
+   "x": "Eine vierte Form ist das Abo mit Guthaben: Mistral bündelt in seinen Plänen monatliches API-Guthaben, etwa 10 $ im kostenlosen und 30 $ im Pro-Plan [4]. Für schwankende kleine Lasten kann das die einfachste Rechnung sein."
+  },
+  {
+   "t": "h2",
+   "x": "Eigene Rechnung: 10.000 Support-Tickets"
+  },
+  {
+   "t": "p",
+   "x": "Wir rechnen ein Beispiel durch, Annahmen offengelegt: Ein Ticket verbraucht 3.000 Eingabetoken (Verlauf, Systemprompt, Kundentext) und 700 Ausgabetoken. Pro Anbieter ohne Cache und Batch, Standardpreise vom 20. Oktober 2026."
+  },
+  {
+   "t": "table",
+   "caption": "Eigene Beispielrechnung für 10.000 Tickets à 3.000 Eingabe- und 700 Ausgabetoken, Standardpreise [1] [2]",
+   "head": [
+    "Modell",
+    "Kosten je Ticket",
+    "Kosten je 10.000 Tickets"
+   ],
+   "rows": [
+    [
+     "GPT-5.6 Luna",
+     "0,0014 $",
+     "14,40 $"
+    ],
+    [
+     "Claude Haiku 4.5",
+     "0,0065 $",
+     "65,00 $"
+    ],
+    [
+     "Gemini 3.8 Flash (Einführungspreis)",
+     "0,0049 $",
+     "48,75 $"
+    ],
+    [
+     "Claude Sonnet 5",
+     "0,0130 $",
+     "130,00 $"
+    ],
+    [
+     "GPT-5.6 Terra",
+     "0,0144 $",
+     "144,00 $"
+    ],
+    [
+     "Claude Opus 5",
+     "0,0325 $",
+     "325,00 $"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Zwei Lehren aus der Tabelle. Erstens entscheidet die Annahme über alles: Anthropic selbst rechnet in seiner Dokumentation ein ähnliches Support-Szenario mit Haiku 4.5 und kommt auf rund 37 $ je 10.000 Tickets, weil dort andere Token-Mengen und Anteile angesetzt werden [1]. Wer Annahmen nicht offenlegt, produziert Scheingenauigkeit. Zweitens wächst die Differenz mit dem Volumen: Der Sprung von Luna auf Opus 5 kostet in diesem Beispiel gut 310 $ pro 10.000 Tickets, bei einer Million Tickets im Jahr reden wir über gut 31.000 $. Wer mit solchen Volumina plant, rechnet deshalb nicht nur Modelle, sondern auch Betriebsmodelle gegenüber, etwa API gegen eigenes Hosting; die Systematik dazu liefert [Build vs. Buy](/build-vs-buy), und die Kostenrechnung im Unternehmenskontext [KI-Kosten und ROI kalkulieren](/ki-kosten-roi)."
+  },
+  {
+   "t": "h2",
+   "x": "Checkliste für den Preisvergleich"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Mischpreis mit dem eigenen Eingabe-Ausgabe-Verhältnis rechnen, nicht mit dem der Beispiele anderer.",
+    "Werkzeug- und Suchkosten je Anfrage schätzen und zum Tokenpreis addieren.",
+    "Prüfen, bis zu welcher Kontextlänge der gezeigte Preis gilt.",
+    "Batch- und Cache-Rabatte nur einpreisen, wenn der eigene Ablauf sie wirklich nutzt.",
+    "Stand-Datum notieren und befristete Einführungspreise im Kalender markieren.",
+    "Mit den [Kosten pro gelöster Aufgabe](/kosten-pro-aufgabe-messen) gegenprüfen: Das billigste Modell ist das, das die Aufgabe am billigsten richtig löst, nicht das mit dem kleinsten Listenpreis."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Wer Vergleiche jenseits der eigenen Rechnung sucht, kann auf Auswertungen wie die Modellvergleiche von Artificial Analysis zurückgreifen, die Preise, Geschwindigkeit und Qualität gemeinsam betrachten [5]. Aber auch dort gilt: Die Methodik mitlesen, bevor man eine Rangfolge übernimmt."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist ein Blended Price?",
+   "a": "Ein Mischpreis je Million Token aus Eingabe- und Ausgabepreis, gewichtet nach einem angenommenen Verhältnis, etwa drei zu eins. Er macht Modelle grob vergleichbar, ist aber nur so gut wie die offengelegte Annahme über das eigene Nutzungsprofil."
+  },
+  {
+   "q": "Warum ist die Ausgabe so viel teurer als die Eingabe?",
+   "a": "Eingabetoken verarbeitet das Modell parallel, Ausgabetoken erzeugt es eins nach dem anderen, und genau diese serielle Phase ist rechenintensiv. Aktuelle Listenpreise zeigen Faktoren zwischen vier und sechs."
+  },
+  {
+   "q": "Lohnt sich die Batch API?",
+   "a": "Wenn die Ergebnisse nicht sofort gebraucht werden, ja: Alle drei großen Anbieter geben rund 50 Prozent Rabatt für gebündelte, asynchrone Verarbeitung innerhalb von bis zu 24 Stunden. Für interaktive Produkte kommt Batch dagegen nicht in Frage."
+  },
+  {
+   "q": "Wann lohnt sich Prompt-Caching rechnerisch?",
+   "a": "Wenn sich lange Prompt-Anfänge wiederholen, etwa Systemprompts oder Dokumente. Bei Anthropic kostet das Schreiben in den Cache 25 Prozent Aufschlag, der Lesetreffer nur 10 Prozent des Eingabepreises; der Punkt, ab dem es sich trägt, liegt beim zweiten Lesen desselben Anfangs."
+  },
+  {
+   "q": "Wie aktuell sind die Zahlen in diesem Beitrag?",
+   "a": "Die Listen wurden am 20. Oktober 2026 gelesen. Preise, Einführungskonditionen und Tokenizer ändern sich laufend; vor jeder Kalkulation die Listen erneut prüfen. Die Methode des Beitrags bleibt davon unberührt."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Pricing (Modellpreise, Prompt Caching, Batch, Werkzeuge, Rechenbeispiele)",
+   "publisher": "Claude Docs / Anthropic",
+   "url": "https://docs.claude.com/en/docs/about-claude/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "OpenAI API Pricing",
+   "publisher": "OpenAI",
+   "url": "https://openai.com/api/pricing/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Gemini Developer API pricing",
+   "publisher": "Google AI for Developers",
+   "url": "https://ai.google.dev/gemini-api/docs/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Pricing (Pläne und API-Guthaben)",
+   "publisher": "Mistral AI",
+   "url": "https://mistral.ai/pricing",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Comparison of AI Models across Intelligence, Performance, and Price",
+   "publisher": "Artificial Analysis",
+   "url": "https://artificialanalysis.ai/models",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Preisseiten von Anthropic (Claude Docs) [1], OpenAI [2], Google (Gemini API) [3] und Mistral [4] sowie die Modellvergleichsseite von Artificial Analysis [5]. Mischpreise und die Ticket-Rechnung sind eigene Rechnungen der Redaktion aus den dort genannten Listenpreisen; Annahmen stehen jeweils am Text.",
+ "limitations": "Alle Preise in US-Dollar ohne Steuern, Stand 20. Oktober 2026; Einführungspreise und Tokenizer-Regeln können sich jederzeit ändern. Die Beispielrechnung vergleicht nur Listenpreise, nicht Qualität: Ein teureres Modell kann pro gelöster Aufgabe billiger sein. Enterprise-Konditionen und Mengenrabatte sind individuell und hier nicht abgebildet.",
+ "related": [
+  "tokens-und-kosten",
+  "inferenz-und-kosten-verstehen",
+  "kosten-pro-aufgabe-messen",
+  "lokale-modelle"
+ ]
+}
