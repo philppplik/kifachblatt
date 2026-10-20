@@ -15,6 +15,12 @@ class LandingTests(unittest.TestCase):
     self.assertNotIn('<form',s);self.assertNotIn('<script',s);self.assertNotIn('<iframe',s)
     self.assertIn('Ohne Anmeldung',s);self.assertIn('Ohne E-Mail',s)
     self.assertTrue((Path(t)/'assets/report-preview/landing.css').is_file())
+ def test_breaker_thumb_from_supplied_snapshot(self):
+  with tempfile.TemporaryDirectory() as t,patch.object(r.shutil,'which',return_value=None):
+   fb=Path(t)/'content/report-preview';fb.mkdir(parents=True)
+   (fb/'page-1.jpg').write_bytes(b'x');(fb/'page-2.jpg').write_bytes(b'x');(fb/'breaker-thumb.jpg').write_bytes(b'y')
+   r.build(t,t,'fa',['2026-10-19'],'current.pdf','report-')
+   self.assertEqual((Path(t)/'assets/report-preview/breaker-thumb.jpg').read_bytes(),b'y')
  def test_real_pdf_conversion_when_present(self):
   if not r.shutil.which('pdftoppm'):self.skipTest('system renderer unavailable')
   # Integration proof checks the generated build assets rather than faking images.

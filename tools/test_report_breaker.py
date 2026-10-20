@@ -15,7 +15,23 @@ class BreakerTests(unittest.TestCase):
   self.assertNotIn('<td><p>B</p><aside',r)
  def test_no_script_or_storage(self):
   for x in ['<script','sessionStorage','localStorage','https://','<form']:
-   self.assertNotIn(x,m.BOX+m.CSS)
+   self.assertNotIn(x,m.box()+m.CSS)
+ def test_mockup_image_lazy_with_alt(self):
+  b=m.box()
+  self.assertIn('class="rb-mock"',b)
+  self.assertIn('loading="lazy"',b)
+  self.assertIn('decoding="async"',b)
+  self.assertIn('alt="',b)
+  self.assertIn('/assets/report-preview/page-1.jpg',b)
+  self.assertIn('width="707" height="1000"',b)
+ def test_upgrade_replaces_previous_generation(self):
+  old='<html><head><style id="report-breaker-style">.old{color:red}</style></head><body><div class="body"><p>A</p><aside class="report-breaker"><span class="rb-label">alt</span></aside><p>B</p></div></body></html>'
+  r=m.patch(old)
+  self.assertIn('rb-mock',r)
+  self.assertNotIn('.old{color:red}',r)
+  self.assertNotIn('>alt<',r)
+  self.assertEqual(r.count('class="report-breaker"'),1)
+  self.assertEqual(m.patch(r),r)
  def test_non_article_unchanged(self):
   s='<html><head></head><body><p>Home</p></body></html>'
   self.assertEqual(m.patch(s),s)
