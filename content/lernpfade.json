@@ -153,6 +153,194 @@
         "Human-in-the-Loop",
         "Red Teaming"
       ]
+    },
+    {
+      "id": "entwickler-llm-apis",
+      "name": "Entwickler: LLM-APIs in der Praxis",
+      "frage": "Ich will LLM-APIs produktiv einsetzen: Parameter, Streaming, Werkzeuge, RAG, Kosten.",
+      "intro": "Für Softwareentwickler mit Programmiererfahrung und HTTP/JSON-Grundlagen. Vom ersten Request bis zur getunten Anwendung: Du lernst, wie ein API-Aufruf aufgebaut ist, wie das Modell deine Funktionen aufruft, wie du es mit eigenem Wissen antworten lässt und wie du Kosten und Latenz in den Griff bekommst.",
+      "level": "Praktiker",
+      "zeit": "ca. 2,5 h",
+      "voraussetzungen": "Programmiererfahrung, HTTP/JSON",
+      "lernziel": "LLM-APIs produktiv einsetzen: Parameter, Streaming, strukturierte Ausgaben, Werkzeugaufrufe, Kosten im Griff.",
+      "steps": [
+        {
+          "slug": "tokens-und-kosten",
+          "warum": "Der Grundbaustein: Modelle lesen und schreiben in Tokens, und danach richten sich Länge, Kosten und Kontextlimit."
+        },
+        {
+          "slug": "inferenz-und-kosten-verstehen",
+          "warum": "Was beim Antworten passiert, warum der KV-Cache so viel Speicher braucht und woraus ein API-Preis entsteht."
+        },
+        {
+          "slug": "llm-apis-praxis",
+          "warum": "Der Handwerkskasten: Request-Aufbau, die vier Parameter, die wirklich etwas verändern, Streaming und Structured Output."
+        },
+        {
+          "slug": "function-calling-praxis",
+          "warum": "Das Modell lernt tun: Werkzeugdefinition, die fünf Schritte der Aufruf-Schleife, Client- und Server-Tools."
+        },
+        {
+          "slug": "rag-oder-langer-kontext",
+          "warum": "Die Architektur-Weiche: Wann reicht der lange Kontext, wann brauchst du einen Index mit Suche?"
+        },
+        {
+          "slug": "rag-selbst-bauen",
+          "warum": "Ein eigenes Retrieval-System von null: Text zerlegen, Embeddings erzeugen, indexieren, mit Belegen antworten."
+        },
+        {
+          "slug": "evals-statt-bauchgefuehl",
+          "warum": "Eine eigene Testmenge in einer Stunde bauen, damit Prompt- und Modelländerungen messbar statt gefühlt sind."
+        },
+        {
+          "slug": "kosten-latenz-tuning",
+          "warum": "Die drei großen Hebel für Betrieb: Prompt-Caching, Batch API und Modellwahl, mit Zahlen und eigener Rechnung."
+        }
+      ],
+      "terms": [
+        "Token",
+        "Kontextfenster",
+        "KV-Cache",
+        "Prompt-Caching",
+        "Function Calling",
+        "RAG",
+        "Rate Limit",
+        "Latenz"
+      ],
+      "check": {
+        "typ": "Szenarien plus Quiz",
+        "beschreibung": "Drei Szenarien: Wähle je die passende API-Konfiguration (Streaming ja/nein, Structured Output oder Text, Cache-Strategie) und begründe sie. Danach ein 6-Fragen-Quiz.",
+        "szenarien": [
+          {
+            "frage": "Ein Support-Chatbot soll Antworten Wort für Wort anzeigen und am Ende den Verbrauch loggen. Welche Einstellungen brauchst du?",
+            "loesung": "stream: true für die Live-Anzeige und stream_options mit include_usage: true, sonst fehlt die Token-Abrechnung; beim Anthropic-Pendant kommen die Verbrauchswerte im Stream-Verlauf."
+          },
+          {
+            "frage": "Ein Hintergrundjob soll 40.000 Produkttexte klassifizieren, Ergebnis morgen früh ist früh genug. Wie stellst du das auf?",
+            "loesung": "Batch API: Anfragen als JSONL-Datei mit custom_id einreichen, 50 Prozent Rabatt auf Input und Output, Ergebnisse innerhalb von 24 Stunden; Structured Output mit striktem Schema für die Klassifikation."
+          },
+          {
+            "frage": "Deine Anwendung schickt bei jeder Anfrage dieselbe 3.000-Tokens-Richtlinie plus 200 variable Tokens. Was ist der erste Hebel?",
+            "loesung": "Prompt-Caching: Das stabile Präfix (über 1.024 Tokens) vorne halten, Variablem hinten; Cache-Lesungen kosten etwa ein Zehntel des Input-Preises."
+          }
+        ],
+        "quiz": [
+          {
+            "frage": "Was begrenzt max_tokens?",
+            "antwort": "Nur die maximale Länge der Antwort. Es ist ein Kosten- und Sicherheitsdeckel, kein Qualitätsregler."
+          },
+          {
+            "frage": "Was garantiert der JSON mode, was Structured Outputs zusätzlich?",
+            "antwort": "JSON mode garantiert nur syntaktisch gültiges JSON (und braucht das Wort JSON im Kontext). Structured Outputs mit striktem JSON Schema garantieren zusätzlich Schema-Treue: Pflichtfelder, Typen, Enum-Werte."
+          },
+          {
+            "frage": "Wer führt einen Function-Calling-Aufruf aus?",
+            "antwort": "Deine Anwendung, nie das Modell. Das Modell liefert nur Namen und Argumente als JSON. Ausnahme: Server-Tools, die der Anbieter auf eigener Infrastruktur ausführt."
+          },
+          {
+            "frage": "Warum müssen Frage und Dokumente mit demselben Embedding-Modell vektorisiert werden?",
+            "antwort": "Weil nur Vektoren desselben Modells im selben Raum liegen; Embeddings verschiedener Modelle sind untereinander unvergleichbar."
+          },
+          {
+            "frage": "Wie viel spart die Batch API?",
+            "antwort": "50 Prozent auf Input- und Output-Tokens, bei Ergebnisziel von 24 Stunden und deutlich höheren Rate-Limits."
+          },
+          {
+            "frage": "Was kostet das Schreiben in den Prompt-Cache?",
+            "antwort": "Bei OpenAI seit der GPT-5.6-Familie das 1,25-Fache des Input-Preises; bei Anthropic 1,25-fach für fünf Minuten, 2-fach für eine Stunde Lebensdauer."
+          }
+        ]
+      }
+    },
+    {
+      "id": "entwickler-agenten",
+      "name": "Entwickler: Agenten bauen und absichern",
+      "frage": "Ich will Agenten mit Planung, Gedächtnis und Werkzeugen entwerfen und gegen Prompt Injection absichern.",
+      "intro": "Für Softwareentwickler mit API-Erfahrung (idealerweise der Lernpfad LLM-APIs vorab). Du steigst vom Agent-Loop über Planungsmuster und Memory bis zu MCP als Werkzeug-Standard, der Sicherheitsarchitektur und dem Praxistest Coding-Agent.",
+      "level": "Fortgeschritten",
+      "zeit": "ca. 3 h",
+      "voraussetzungen": "Lernpfad LLM-APIs in der Praxis oder gleichwertige API-Erfahrung",
+      "lernziel": "Agenten mit Planung, Gedächtnis und Werkzeugen entwerfen und gegen Prompt Injection absichern.",
+      "steps": [
+        {
+          "slug": "was-ist-ein-ki-agent",
+          "warum": "Die Begriffsklärung: Vom Chatbot zum System, das in einer Schleife selbst Werkzeuge benutzt."
+        },
+        {
+          "slug": "agenten-architekturen",
+          "warum": "Die Bausteine: Agent-Loop, Planung von ReAct bis Reflexion, Memory als Betriebssystem-Problem, Orchestrierung."
+        },
+        {
+          "slug": "mcp-verstehen",
+          "warum": "Der offene Standard, über den Werkzeuge und Daten anwendungsübergreifend angedockt werden: Host, Client, Server."
+        },
+        {
+          "slug": "sicherheit-fuer-agenten-systeme",
+          "warum": "Prompt Injection verstehen und Agenten mit kleinen Rechten und Sandbox bauen."
+        },
+        {
+          "slug": "lhtb-2-langzeit-agenten-benchmark",
+          "warum": "Unsere Analyse: Was Agenten über lange Zeiträume leisten und wo sie kippen."
+        },
+        {
+          "slug": "benchmarks/terminal-bench-2-1",
+          "warum": "Das Portrait der Terminal-Benchmark: Agenten unter realen Kommandozeilen-Bedingungen."
+        },
+        {
+          "slug": "coding-agenten-alltag",
+          "warum": "Der Praxistest: Setup, Grenzen und Review-Pflicht bei Claude Code, Copilot coding agent und Codex."
+        }
+      ],
+      "terms": [
+        "Agent-Loop",
+        "ReAct",
+        "Planung (bei Agenten)",
+        "Memory (bei Agenten)",
+        "Orchestrierung",
+        "MCP",
+        "Prompt Injection",
+        "Guardrails"
+      ],
+      "check": {
+        "typ": "Architektur-Review plus Quiz",
+        "beschreibung": "Architektur-Review: Prüfe einen Agenten-Entwurf auf fünf Risiken (Musterlösung). Danach ein 6-Fragen-Quiz.",
+        "szenarien": [
+          {
+            "frage": "Entwurf: Ein Agent mit Dateisystem- und E-Mail-Werkzeug liest eingehende Mails und beantwortet sie automatisch. Nenne fünf Risiken.",
+            "loesung": "1) Prompt Injection aus Mail-Inhalten steuert Werkzeugaufrufe. 2) Senden ohne menschliche Freigabe (kein Human-in-the-Loop). 3) Zu breite Rechte: Lesen reicht für die meisten Fälle, Löschen gehört nicht ins Werkzeugset. 4) Memory-Selbstvergiftung: ungeprüfte Inhalte landen dauerhaft im Speicher. 5) Kein Abbruchkriterium: Schleifen ohne Schritt- oder Budgetlimit."
+          },
+          {
+            "frage": "Ein Agent soll wöchentlich einen Report aus drei internen Systemen bauen. Workflow oder Agent?",
+            "loesung": "Workflow. Der Ablauf ist bekannt und fest: Orchestrator-Workers oder Prompt Chaining reicht. Agent erst, wenn die Schrittzahl offen und unvorhersehbar ist."
+          }
+        ],
+        "quiz": [
+          {
+            "frage": "Aus welchen drei Phasen besteht der Agent-Loop?",
+            "antwort": "Beobachten (Zustand ins Modell), Denken (nächsten Schritt entscheiden), Handeln (Werkzeug ausführen und Ergebnis zurückschreiben), bis ein Abbruchkriterium greift."
+          },
+          {
+            "frage": "Was unterscheidet Workflow und Agent?",
+            "antwort": "Beim Workflow legt der Code die Pfade fest; beim Agenten steuert das Modell selbst Ablauf und Werkzeugwahl."
+          },
+          {
+            "frage": "Welche drei Primitive bietet ein MCP-Server?",
+            "antwort": "Tools (ausführbare Funktionen), Resources (Datenquellen) und Prompts (wiederverwendbare Vorlagen), dynamisch entdeckbar über list-Methoden."
+          },
+          {
+            "frage": "Warum ist Memory ein Sicherheitsthema?",
+            "antwort": "Ein falscher oder präparierter Eintrag wandert in jede künftige Entscheidung; schreibe nur geprüfte Ergebnisse ins Langzeitgedächtnis und protokolliere Herkunft und Zeitpunkt."
+          },
+          {
+            "frage": "Wer reviewed den Pull Request eines Coding-Agenten?",
+            "antwort": "Ein Mensch, immer. Der Agent liefert einen Vorschlag mit Diff und Testlauf; Verantwortung und Merge bleiben beim prüfenden Entwickler."
+          },
+          {
+            "frage": "Was ist der teuerste Architektur-Fehler bei Multi-Agent-Systemen?",
+            "antwort": "Mehr Modelle als nötig: Jedes zusätzliche Modell multipliziert Kosten, Latenz und Fehlerstellen. Die erprobte Reihenfolge ist einzelner augmentierter Aufruf, Workflow, erst dann Orchestrierung."
+          }
+        ]
+      }
     }
   ]
 }
