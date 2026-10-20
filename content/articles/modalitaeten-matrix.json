@@ -1,0 +1,253 @@
+{
+ "slug": "modalitaeten-matrix",
+ "lang": "de",
+ "section": "grundlagen",
+ "type": "explainer",
+ "title": "Modalitäten-Matrix: Welche KI-Modelle was lesen und erzeugen",
+ "dek": "Multimodal klingt nach eierlegender Wollmilchsau. Die Matrix zeigt, welche Modelle Text, Bild, Audio und Video tatsächlich einlesen, und was sie ausgeben.",
+ "published": "2026-10-20T09:18:00+02:00",
+ "modified": "2026-10-20T09:18:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Multimodal",
+  "Modalitäten",
+  "GPT-4o",
+  "Gemini",
+  "Whisper",
+  "Stable Diffusion"
+ ],
+ "key_takeaways": [
+  "Eine Modalität ist ein Datentyp: Text, Bild, Audio oder Video. Entscheidend sind beide Richtungen, Eingabe und Ausgabe.",
+  "GPT-4o nimmt laut OpenAI Text, Audio, Bild und Video entgegen und gibt Text, Audio und Bild aus, mit 232 Millisekunden Mindest-Antwortzeit auf Sprache [1].",
+  "Viele als „[multimodal](/glossar#multimodal)“ beworbene Modelle lesen mehr, als sie erzeugen: Gemini 1.5 verarbeitet Stunden von Video und Audio, gibt aber Text aus [2].",
+  "CLIP zeigt die dritte Kategorie: Es erzeugt nichts, sondern verortet Bild und Text im selben Zahlenraum, trainiert an 400 Millionen Paaren [4]."
+ ],
+ "hero": {
+  "alt": "Matrix aus sechs Modellzeilen und zwei Spaltenblöcken für Eingabe und Ausgabe: GPT-4o und Gemini decken fast alle Felder ab, Whisper, CLIP, Stable Diffusion 3 und Veo nur einzelne.",
+  "caption": "Die Modalitäten-Matrix auf einen Blick: dunkle Felder bedeuten beherrschte Ein- oder Ausgabe. Eigene Darstellung aus den Quellen [1] bis [6].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wer KI-Modelle vergleichen will, stolpert früh über das Wort „multimodal“. Es verspricht, ein Modell könne alles: lesen, sehen, hören, sprechen, zeichnen. In Wahrheit steckt dahinter eine einfache, aber selten klar beantwortete Frage: Welche Datentypen gehen hinein, und welche kommen heraus? Diese Seite legt die Antwort als Matrix an: sechs bekannte Modelle, vier Datentypen, zwei Richtungen. Jede Zeile ist mit der Originalquelle belegt, jede Zelle wurde gegen die Anbieterangabe oder das Paper geprüft."
+  },
+  {
+   "t": "h2",
+   "x": "Was eine Modalität ist"
+  },
+  {
+   "t": "p",
+   "x": "Modalität meint den Datentyp einer Information: Text, Bild, Audio, Video. Der Begriff klingt akademisch, beschreibt aber etwas Alltägliches, nämlich den Unterschied zwischen einem Brief, einem Foto, einer Sprachnachricht und einem Film. Ein Modell, das mehrere dieser Typen verarbeitet, heißt [multimodal](/glossar#multimodal). Dabei zählen zwei Richtungen getrennt: die Eingabe, was das Modell verstehen kann, und die Ausgabe, was es erzeugen kann. Beides zusammen ergibt die ehrliche Antwort auf „Was kann das Modell?“."
+  },
+  {
+   "t": "p",
+   "x": "Intern wird jede Modalität zuerst in Zahlen übersetzt. Text wird zu [Tokens](/glossar#token), Bilder werden in Patches zerlegt oder als verdichtete Latenzen verarbeitet (der [Bild-Tokenizer](/glossar#bild-tokenizer) leistet das), Audio landet als Spektrogramm oder Audio-Token im Modell. Erst nach dieser Übersetzung kann dieselbe Art von Netz alle Typen verarbeiten, meist ein [Transformer](/architekturen-im-ueberblick). Deshalb ist Multimodalität weniger Magie als Übersetzungsarbeit am Eingang und Ausgang."
+  },
+  {
+   "t": "h2",
+   "x": "Die Matrix"
+  },
+  {
+   "t": "table",
+   "caption": "Ein- und Ausgabemodalitäten von sechs Referenzmodellen nach Anbieter- und Paperangaben. Eigene Zusammenstellung; jede Zeile ist mit der Originalquelle belegt.",
+   "head": [
+    "Modell",
+    "Eingabe",
+    "Ausgabe",
+    "Quelle"
+   ],
+   "rows": [
+    [
+     "GPT-4o (OpenAI)",
+     "Text, Bild, Audio, Video",
+     "Text, Audio, Bild",
+     "[1]"
+    ],
+    [
+     "Gemini 1.5 Pro / Flash (Google)",
+     "Text, Bild, Audio, Video",
+     "Text",
+     "[2]"
+    ],
+    [
+     "Whisper (OpenAI)",
+     "Audio",
+     "Text",
+     "[3]"
+    ],
+    [
+     "CLIP (OpenAI)",
+     "Text und Bild (gepaart)",
+     "Ähnlichkeitswerte, keine Inhalte",
+     "[4]"
+    ],
+    [
+     "Stable Diffusion 3 (Stability AI)",
+     "Text",
+     "Bild",
+     "[5]"
+    ],
+    [
+     "Veo 3.1 (Google DeepMind)",
+     "Text",
+     "Video mit Audio",
+     "[6]"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Drei Zeilen fallen auf. Erstens GPT-4o: OpenAI beschreibt es als ein einziges Modell, das „jede Kombination aus Text, Audio, Bild und Video“ als Eingabe akzeptiert und „jede Kombination aus Text, Audio und Bild“ ausgibt. Die Mindest-Antwortzeit auf Sprache liegt bei 232 Millisekunden, im Schnitt bei 320, in etwa menschlichem Gesprächstempo [1]. Zweitens Gemini 1.5: Es verarbeitet nach dem technischen Bericht Millionen von Tokens Kontext, einschließlich mehrerer langer Dokumente und „Stunden von Video und Audio“. Als Demonstration lernte es aus einem Grammatikbuch im Kontext, Englisch in die Sprache Kalamang zu übersetzen, die weniger als 200 Sprecher hat. Die Ausgabe bleibt aber Text [2]. Drittens CLIP: Es erzeugt gar nichts, sondern misst nur, wie gut ein Text zu einem Bild passt, gelernt aus 400 Millionen Bild-Text-Paaren aus dem Netz [4]."
+  },
+  {
+   "t": "p",
+   "x": "Die Spezialisten komplettieren das Bild. Whisper ist ein reines [Speech-to-Text](/glossar#speech-to-text)-Modell, trainiert mit 680.000 Stunden mehrsprachiger, schwach überwachter Audiodaten, und erreicht laut Paper ohne aufgabenspezifisches Feintuning Ergebnisse nahe menschlicher Genauigkeit [3]. Stable Diffusion 3 geht den umgekehrten Weg vom Text zum Bild und nutzt dafür eine Transformer-Architektur, in der Text- und Bildinformationen bidirektional fließen, was unter anderem die Typografie in erzeugten Bildern verbesserte [5]. Veo 3.1 schließlich erzeugt aus Textanweisungen Videos, in der aktuellen Version mit nativem Ton [6]."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "Lesen können sie mehr als erzeugen",
+   "caption": "Anzahl der Modalitäten pro Richtung und Modell, gezählt aus den Quellen [1] bis [6]. Nur GPT-4o erzeugt mehr als einen Datentyp; bei Gemini 1.5, Whisper, CLIP und Stable Diffusion 3 bleibt die Ausgabe auf einen Kanal beschränkt.",
+   "alt": "Säulendiagramm mit je zwei Säulen pro Modell: GPT-4o Eingabe 4, Ausgabe 3; Gemini 1.5 Eingabe 4, Ausgabe 1; Whisper 1 zu 1; CLIP 2 zu 1; Stable Diffusion 3 1 zu 1; Veo 3.1 Eingabe 1, Ausgabe 2 (Video mit Audio).",
+   "x_label": "Modell",
+   "y_label": "Anzahl Modalitäten",
+   "labels": [
+    "GPT-4o",
+    "Gemini 1.5",
+    "Whisper",
+    "CLIP",
+    "SD 3",
+    "Veo 3.1"
+   ],
+   "series": [
+    {
+     "name": "Eingabe",
+     "values": [
+      4,
+      4,
+      1,
+      2,
+      1,
+      1
+     ]
+    },
+    {
+     "name": "Ausgabe",
+     "values": [
+      3,
+      1,
+      1,
+      1,
+      1,
+      2
+     ]
+    }
+   ],
+   "source": "Eigene Zählung aus den Quellen [1] bis [6]; CLIP-Ausgabe als ein Kanal (Embeddings) gezählt."
+  },
+  {
+   "t": "h2",
+   "x": "Ein Modell für alles oder viele Spezialisten?"
+  },
+  {
+   "t": "p",
+   "x": "Hinter der Matrix steckt ein Richtungsstreit. Der eine Weg baut ein einziges Modell, das alle Typen intern verarbeitet, GPT-4o ist das Referenzbeispiel: Dieselbe Maschine hört eine Frage, sieht ein Foto und antwortet mit Stimme [1]. Der andere Weg kettet Spezialisten: Ein Modell transkribiert, eines versteht, eines spricht. Solche Ketten funktionieren, verlieren aber an den Übergaben Nuancen, etwa Ironie in der Stimme oder Zögern. OpenAI begründete den Bau von GPT-4o genau mit diesem Verlust: Frühere Sprachmodi ketteten drei Modelle und verloren dabei Tonfall, Hintergrundgeräusche und Mehrsprecher-Information [1]."
+  },
+  {
+   "t": "p",
+   "x": "Für die Einordnung hilft die Familiensprache aus dem [Glossar](/glossar): Ein [Vision-Language-Modell](/glossar#vision-language-modell) verbindet Bild und Text, ein [Audio-Language-Modell](/glossar#audio-language-modell) Klang und Text, ein [Text-to-Image-Modell](/glossar#text-to-image-modell) erzeugt aus Worten Bilder, ein [Text-to-Video-Modell](/glossar#text-to-video-modell) aus Worten Filme. Die Namen verraten schon die Richtung: Was vor dem „to“ steht, geht hinein, was dahinter steht, kommt heraus."
+  },
+  {
+   "t": "h2",
+   "x": "Warum die Richtung über Kosten und Qualität entscheidet"
+  },
+  {
+   "t": "p",
+   "x": "Für die Praxis zählt die Matrix aus drei Gründen. Erstens Kosten: Ein Modell, das Video einliest, verarbeitet enorme Datenmengen; Gemini 1.5 wirbt deshalb nicht zufällig mit „compute-effizient“ für seine Millionen-Token-Kontexte [2]. Zweitens Qualität: Wer Audio direkt versteht statt es zu transkribieren, behält Betonung und Pausen, die in der Übersetzung zu Text verloren gehen [1]. Drittens Erwartungsmanagement: Ein Modell, das Bilder „versteht“, kann meist keine erzeugen. Wer das verwechselt, bucht Sehschärfe und erwartet Malerei."
+  },
+  {
+   "t": "callout",
+   "title": "Marketing-Check in zehn Sekunden",
+   "x": "Wirbt ein Anbieter mit „multimodal“, frage immer zweigeteilt: Was geht hinein, was kommt heraus? „Versteht Bilder“ heißt fast nie „malt Bilder“. Und „verarbeitet Video“ heißt selten „erzeugt Video“, das können aktuell nur eigene Modelle wie Veo [6]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Matrix verändert sich schnell"
+  },
+  {
+   "t": "p",
+   "x": "Zum Schluss eine Warnung vor dem eigenen Dokument: Diese Matrix ist eine Momentaufnahme vom 20. Oktober 2026. Modellgrenzen verschieben sich mit jeder Veröffentlichung. Ein Beispiel, wie schnell: OpenAIs Text-zu-Video-Modell Sora, 2024 noch als Vorschau mit bis zu einer Minute Filmlänge vorgestellt, ist als Produkt laut Anbieterseite seit dem 26. April 2026 nicht mehr verfügbar [7]. Wer eine Kauf- oder Architekturentscheidung trifft, prüft die Matrix deshalb am besten an den verlinkten Originalquellen nach, statt sich auf eine Zusammenstellung zu verlassen, auch auf diese hier. Wer die Bauprinzipien hinter den Zeilen verstehen will, findet sie im [Architektur-Überblick](/architekturen-im-ueberblick), und wie aus verstehenden Modellen handelnde [Agenten](/glossar#agent) werden, erklären die [Agenten-Fundamente](/agenten-fundamente)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist der Unterschied zwischen multimodal und multimodaler Ausgabe?",
+   "a": "Multimodal sagt meist nur etwas über die Eingabe aus: Das Modell kann etwa Text, Bild und Audio einlesen. Was es ausgibt, steht separat. Gemini 1.5 liest vier Datentypen, antwortet aber mit Text [2]. Erst beide Angaben zusammen beschreiben das Modell ehrlich."
+  },
+  {
+   "q": "Ist CLIP ein Bildmodell?",
+   "a": "CLIP ist ein Vergleichsmodell: Es bringt Bilder und Texte in denselben Zahlenraum und misst ihre Ähnlichkeit. Es erzeugt weder Bilder noch Text, ermöglicht aber Suche und Klassifikation ohne Training auf der Zielaufgabe [4]."
+  },
+  {
+   "q": "Kann Whisper auch sprechen?",
+   "a": "Nein. Whisper wandelt nur Sprache in Text um (Speech-to-Text), in vielen Sprachen und ohne Feintuning auf die Zielaufgabe. Für die Gegenrichtung, Text zu Sprache, braucht es ein eigenes TTS-Modell [3]."
+  },
+  {
+   "q": "Warum ist Video die teuerste Modalität?",
+   "a": "Ein Video ist eine Folge vieler Bilder plus Zeitachse, oft mit Ton. Die Datenmenge pro Sekunde übersteigt Text um Größenordnungen. Deshalb betonen Anbieter bei Videomodellen die Recheneffizienz, und deshalb sind erzeugte Videos oft nur Sekunden bis etwa eine Minute lang [2][7]."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Hello GPT-4o",
+   "publisher": "OpenAI, 13. Mai 2024",
+   "url": "https://openai.com/index/hello-gpt-4o/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context",
+   "publisher": "arXiv:2403.05530 (Gemini Team, Google, 2024)",
+   "url": "https://arxiv.org/abs/2403.05530",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Robust Speech Recognition via Large-Scale Weak Supervision (Whisper)",
+   "publisher": "arXiv:2212.04356 (Radford u. a., OpenAI, 2022)",
+   "url": "https://arxiv.org/abs/2212.04356",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Learning Transferable Visual Models From Natural Language Supervision (CLIP)",
+   "publisher": "arXiv:2103.00020 (Radford u. a., OpenAI, ICML 2021)",
+   "url": "https://arxiv.org/abs/2103.00020",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis (Stable Diffusion 3)",
+   "publisher": "arXiv:2403.03206 (Esser u. a., Stability AI, ICML 2024)",
+   "url": "https://arxiv.org/abs/2403.03206",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Veo (Produktseite)",
+   "publisher": "Google DeepMind",
+   "url": "https://deepmind.google/models/veo/",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Creating video from text (Sora)",
+   "publisher": "OpenAI",
+   "url": "https://openai.com/index/sora/",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die Ankündigungsseiten von OpenAI zu GPT-4o und Sora, die Produktseite von Google DeepMind zu Veo sowie die arXiv-Seiten der Papers zu Gemini 1.5, Whisper, CLIP und Stable Diffusion 3 einschließlich der eingebetteten Volltexte. Jede Zeile der Matrix ist mit genau der Quelle belegt, aus der die Ein- und Ausgaben hervorgehen. Die Säulengrafik ist eine eigene Zählung aus denselben Quellen und als solche gekennzeichnet. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Matrix zeigt sechs Referenzmodelle, nicht den Markt. Anbieter schalten Funktionen schrittweise frei; die tatsächlich verfügbaren Ein- und Ausgaben können je nach Produkt, Tarif und Region enger sein als die hier dokumentierten Modellfähigkeiten. Video-Eingabe bei GPT-4o wurde zum Zugriffszeitpunkt laut Ankündigung nur für eine kleine Partnergruppe ausgerollt. Die Modalitätenzählung in der Grafik ist eine redaktionelle Vereinfachung (CLIP-Embeddings als ein Ausgabekanal). Keine eigenen Messungen oder Modelltests.",
+ "related": [
+  "architekturen-im-ueberblick",
+  "agenten-fundamente",
+  "llm-quantisierung-verfahren-grundlagen"
+ ]
+}

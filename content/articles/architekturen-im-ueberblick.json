@@ -1,0 +1,264 @@
+{
+ "slug": "architekturen-im-ueberblick",
+ "lang": "de",
+ "section": "architektur",
+ "type": "explainer",
+ "title": "Architekturen im Überblick: Transformer, MoE, Diffusion, SSM",
+ "dek": "Vier Architekturfamilien entscheiden, was KI-Modelle können und kosten und wo sie scheitern: Transformer, Mixture of Experts, Diffusion, State-Space-Modelle.",
+ "published": "2026-10-20T09:15:00+02:00",
+ "modified": "2026-10-20T09:15:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Transformer",
+  "Mixture of Experts",
+  "Diffusion",
+  "State-Space-Modelle",
+  "Mamba",
+  "Architektur"
+ ],
+ "key_takeaways": [
+  "Der [Transformer](/glossar#transformer) ersetzte 2017 Wiederholung und Faltung durch reine Aufmerksamkeit und machte das Training massiv parallelisierbar [1].",
+  "[Mixture of Experts](/glossar#mixture-of-experts-moe) entkoppelt Parameterzahl und Rechenkosten: Mixtral 8x7B nutzt von 47 Milliarden Parametern pro Token nur 13 Milliarden [3].",
+  "[Diffusionsmodelle](/glossar#diffusionsmodell) erzeugen Bilder, indem sie Rauschen schrittweise entfernen, und dominieren damit die Bildsynthese [4][5].",
+  "[State-Space-Modelle](/glossar#state-space-modell) wie Mamba arbeiten in linearer Zeit und erreichen im Paper den fünffachen Inferenz-Durchsatz von Transformern [6]."
+ ],
+ "hero": {
+  "alt": "Vier schematische Miniaturen nebeneinander: ein Transformer mit Vernetzungslinien zwischen Wörtern, ein MoE-Router, der zwei von acht Experten aktiviert, eine Diffusionsstrecke von Rauschen zu Bild und eine SSM-Zustandskette.",
+  "caption": "Vier Architekturideen in einer Grafik: alles mit allem verknüpfen, Experten schalten, Rauschen entfernen, Zustand weiterreichen. Eigene Darstellung.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Wenn von einem neuen KI-Modell die Rede ist, steht fast immer dieselbe Frage dahinter: Wie ist es gebaut? Die Antwort entscheidet über weit mehr als über die Fußnote in einem Paper. Sie bestimmt, wie schnell ein Modell antwortet, was ein [Token](/glossar#token) kostet, wie lang der Kontext sein darf und ob das Modell überhaupt Text, Bilder oder beides verarbeiten kann. Dieser Überblick stellt die vier Architekturfamilien vor, die die aktuelle Modelllandschaft tragen: den Transformer, Mixture of Experts, Diffusionsmodelle und State-Space-Modelle. Für jede Familie gilt dasselbe Muster: eine Kernidee, eine Stärke, ein Preis."
+  },
+  {
+   "t": "p",
+   "x": "Eine kurze Analogie für den ganzen Artikel: Architekturen sind wie Verkehrssysteme einer Stadt. Der Transformer baut an jeder Kreuzung eine Ampel mit Sicht auf alle anderen Kreuzungen. Mixture of Experts stellt Fachbetriebe bereit und schickt jeden Auftrag nur an die passenden zwei. Diffusion entwickelt ein Foto langsam aus dem Nebel. Und State-Space-Modelle führen Protokoll, statt bei jeder Frage die gesamte Akte erneut zu lesen."
+  },
+  {
+   "t": "h2",
+   "x": "Transformer: Alles schaut auf alles"
+  },
+  {
+   "t": "p",
+   "x": "Bis 2017 lasen Sprachmodelle Text wie ein Mensch eine Endlosurkunde: Wort für Wort, von vorne nach hinten, mit einem Gedächtnis, das unterwegs notierte, was wichtig schien. Diese sequenzielle Arbeitsweise ließ sich schlecht parallelisieren. Das Paper „Attention Is All You Need“ von Vaswani und Kollegen schlug einen radikalen Umbau vor: Verzichte ganz auf Wiederholung und Faltung und baue das Netz ausschließlich aus [Aufmerksamkeit](/glossar#attention-aufmerksamkeit). Jedes Wort schaut bei jedem Verarbeitungsschritt auf alle anderen Wörter des Satzes und entscheidet, welche davon für seine Bedeutung wichtig sind [1]."
+  },
+  {
+   "t": "p",
+   "x": "Der Effekt war doppelt. Erstens: Weil alle Wörter gleichzeitig verarbeitet werden statt nacheinander, ließ sich das Training massiv parallel beschleunigen. Das Paper berichtet für sein großes Modell 3,5 Tage Training auf acht Grafikkarten, „ein Bruchteil der Trainingskosten der besten Modelle der Literatur“. Zweitens stellte das Modell damals Rekorde auf: 28,4 BLEU auf der Übersetzungsaufgabe WMT 2014 Englisch–Deutsch, mehr als zwei Punkte über den bis dahin besten Ergebnissen inklusive Ensembles, und 41,8 BLEU auf Englisch–Französisch als neuer Bestwert für ein Einzelmodell [1]."
+  },
+  {
+   "t": "p",
+   "x": "Die Stärke ist zugleich der Flaschenhals. Wenn jedes Element auf jedes schaut, wächst der Aufwand der Aufmerksamkeit mit dem Quadrat der Sequenzlänge. Doppelter Kontext bedeutet vervielfachte Arbeit pro Schritt. Genau diese „Rechenineffizienz bei langen Sequenzen“ ist der Ausgangspunkt, an dem die Mamba-Autoren Jahre später ansetzen [6]. Bis dahin dominierte der Transformer praktisch unangefochten: Fast alle bekannten Sprach-, Bild- und Videomodelle der Gegenwart sind im Kern Transformer, wie das Mamba-Paper trocken feststellt [6]."
+  },
+  {
+   "t": "h2",
+   "x": "Mixture of Experts: Viele Fachkräfte, wenige im Einsatz"
+  },
+  {
+   "t": "p",
+   "x": "Ein normales (dichtes) Modell benutzt für jede Eingabe alle seine Parameter. Das ist, als würde für jeden Handwerksauftrag die gesamte Belegschaft einer Firma antreten. [Mixture of Experts](/glossar#mixture-of-experts-moe) (MoE) dreht das um: Das Modell enthält viele parallele Fachnetze, die „Experten“, und ein kleines [Router](/glossar#router-gating)-Netz entscheidet pro Token, welche Experten überhaupt arbeiten. Das Switch-Transformer-Paper von Google beschreibt das Ergebnis als „spärlich aktiviertes Modell mit einer ungeheuren Parameterzahl, aber konstanten Rechenkosten“ [2]."
+  },
+  {
+   "t": "p",
+   "x": "Der wichtigste Handgriff des Switch Transformers war eine Vereinfachung: Statt jedes Token an mehrere Experten zu verteilen, routet er jedes Token an genau einen Experten. Das spare Routing-Rechenarbeit, halbiere die nötige Stapelgröße pro Experte und senke die Kommunikationskosten, bei unveränderter Modellqualität, berichten die Autoren. Damit skalierten sie Modelle bis in den Billionen-Parameter-Bereich und maßen bis zu siebenfache Beschleunigung des Vortrainings gegenüber der starken T5-Baseline bei gleichem Rechenbudget [2]."
+  },
+  {
+   "t": "p",
+   "x": "Das bekannteste offene Beispiel ist Mixtral 8x7B von Mistral AI. Jede Schicht enthält acht Feed-Forward-Blöcke, und der Router wählt pro Token zwei davon aus. Über alle Schichten hat ein Token so Zugriff auf 47 Milliarden Parameter, verwendet aber bei der [Inferenz](/glossar#inferenz) nur 13 Milliarden [aktive Parameter](/glossar#aktive-parameter). Das Modell wurde mit 32.000 Tokens Kontext trainiert und erreichte laut Paper auf allen ausgewerteten Benchmarks mindestens das Niveau von Llama 2 70B und GPT-3.5, bei deutlich geringerem Rechenaufwand pro Antwort. Veröffentlicht wurde es unter der Apache-2.0-Lizenz [3]."
+  },
+  {
+   "t": "callout",
+   "title": "Warum MoE beim Preis zählt",
+   "x": "Beim Bezahlen pro Token zählt nicht die Gesamtparameterzahl, sondern die aktive. 47 Milliarden Parameter zum Preis von 13 Milliarden Rechenarbeit sind das Versprechen; der Nachteil liegt im Speicher: Alle Experten müssen vorgehalten werden, auch wenn pro Token nur zwei arbeiten. Wer MoE-Modelle selbst hostet, kauft also Speicher statt Rechenzeit."
+  },
+  {
+   "t": "h2",
+   "x": "Diffusion: Bilder entstehen durch Entrauschen"
+  },
+  {
+   "t": "p",
+   "x": "Diffusionsmodelle beantworten eine andere Frage als Sprachmodelle: Wie erzeugt man neue Daten, etwa Bilder? Die Idee lässt sich an einer Fotografie erklären, die langsam im Nebel versinkt. Der Vorwärtsprozess zerstört ein Bild Schritt für Schritt, indem er Rauschen hinzufügt, bis nur noch statisches Flimmern übrig ist. Das Modell lernt den umgekehrten Weg: Aus Rauschen ein Stück Ordnung zurückzugewinnen, Schritt für Schritt, bis ein sauberes Bild dasteht. Das DDPM-Paper von Ho, Jain und Abbeel zeigte 2020, dass dieses Verfahren Bilder in Referenzqualität erzeugt, darunter einen FID-Wert von 3,17 und einen Inception Score von 9,46 auf CIFAR-10, sowie eine Bildqualität auf LSUN (256 × 256) vergleichbar mit ProgressiveGAN [4]."
+  },
+  {
+   "t": "p",
+   "x": "Der Preis des Verfahrens liegt im Tempo. Während ein Sprachmodell Wort für Wort vorwärts läuft, muss ein Diffusionsmodell für ein einziges Bild viele kleine Verbesserungsschritte hintereinander ausführen. Jeder Schritt ist ein voller Netzwerkdurchlauf. Forschung an schnelleren Verfahren ist deshalb Alltag in diesem Bereich: Die Arbeit hinter Stable Diffusion 3 nutzt etwa „Rectified Flow“, eine Formulierung, die Daten und Rauschen auf einer geraden Linie verbindet und so kürzere Wege vom Rauschen zum Bild erlaubt. Derselbe Beitrag ersetzte den klassischen Diffusions-Baukasten durch einen Transformer, der Text- und Bildinformationen getrennt gewichtet, aber bidirektional austauscht, was Textverständnis, Typografie und die Bewertung durch menschliche Prüfer verbesserte [5]."
+  },
+  {
+   "t": "h2",
+   "x": "State-Space-Modelle: Protokoll statt Rückblick"
+  },
+  {
+   "t": "p",
+   "x": "State-Space-Modelle (SSM) greifen die quadratische Schwäche des Transformers frontal an. Ihre Grundfigur ist das Protokoll: Statt bei jeder neuen Frage die gesamte bisherige Sequenz erneut zu betrachten, führen sie einen verdichteten Zustand mit, der bei jedem neuen Element aktualisiert wird. Der Rechenaufwand wächst damit linear statt quadratisch mit der Sequenzlänge. Den Haken der frühen Vertreter dieser Familie benennt das Mamba-Paper ehrlich: Solche Modelle konnten nicht inhaltsbasiert denken, sie behandelten jedes Token nach demselben starren Schema [6]."
+  },
+  {
+   "t": "p",
+   "x": "Mamba löst das mit „selektiven“ Zustandsräumen: Die Parameter des Zustands hängen vom aktuellen Inhalt ab, sodass das Modell je nach Eingabe entscheidet, was es im Zustand behält und was es verwirft. Das Paper berichtet lineare Skalierung mit der Sequenzlänge, bis zum Fünffachen höheren Inferenz-Durchsatz als Transformer und Verbesserungen bei Sequenzen bis zu einer Million Elemente. Auf Sprachmodellierung übertraf das 3-Milliarden-Parameter-Modell Transformer gleicher Größe und erreichte das Niveau von Transformern doppelter Größe, gemessen an Vortrainings-Perplexität und Folgeaufgaben [6]."
+  },
+  {
+   "t": "h2",
+   "x": "Vier Familien im direkten Vergleich"
+  },
+  {
+   "t": "table",
+   "caption": "Kernidee, Stärke und Preis der vier Architekturfamilien. Eigene Zusammenstellung aus den Quellen [1] bis [6].",
+   "head": [
+    "Familie",
+    "Kernidee",
+    "Stärke",
+    "Preis",
+    "Beispiele"
+   ],
+   "rows": [
+    [
+     "Transformer",
+     "Jedes Element schaut auf alle (Aufmerksamkeit)",
+     "Parallelisierbar, universell, bestverstanden",
+     "Aufwand wächst quadratisch mit der Länge",
+     "GPT-4o, Gemini, Llama, Claude [1][6]"
+    ],
+    [
+     "Mixture of Experts",
+     "Router aktiviert pro Token wenige Fachnetze",
+     "Viele Parameter bei konstanten Rechenkosten",
+     "Hoher Speicherbedarf, komplexes Training",
+     "Switch Transformer, Mixtral 8x7B [2][3]"
+    ],
+    [
+     "Diffusion",
+     "Rauschen schrittweise entfernen",
+     "Referenzqualität bei Bildern und Video",
+     "Viele Netzwerkdurchläufe pro Ergebnis",
+     "DDPM, Stable Diffusion 3 [4][5]"
+    ],
+    [
+     "State-Space (Mamba)",
+     "Verdichteter Zustand wird weitergereicht",
+     "Lineare Kosten, fünffacher Durchsatz (Paper)",
+     "Jung, weniger erprobt als Transformer",
+     "Mamba-3B [6]"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Familien schließen sich nicht aus, sie kombinieren sich. Mixtral ist ein Transformer, dessen Feed-Forward-Schichten als Experten organisiert sind [3]. Stable Diffusion 3 ist ein Diffusionsmodell mit Transformer-Rückgrat [5]. Und die Gemini-1.5-Modelle kombinieren nach Angabe der Entwickler einen MoE-Ansatz mit Millionen-Token-Kontext [7]. Wer eine Modellkarte liest, sollte deshalb auf zwei Angaben achten: das Grundprinzip (wie wird Sequenz verarbeitet?) und die Sparmaßnahme (wo wird Rechenarbeit eingespart?)."
+  },
+  {
+   "t": "chart",
+   "kind": "line",
+   "title": "Warum lange Kontexte teuer werden",
+   "caption": "Relative Rechenarbeit pro Verarbeitungsschritt in Abhängigkeit von der Sequenzlänge, normiert auf 1.000 Elemente. Eigene Rechnung: Aufmerksamkeit wächst quadratisch (n²), ein Zustandsmodell linear (n); auf 100.000 Elementen liegt der Faktor 100 zwischen beiden Kurven.",
+   "alt": "Liniendiagramm: Bei 100.000 Elementen Sequenzlänge liegt die relative Rechenarbeit der Aufmerksamkeit bei 10.000 Einheiten, die des Zustandsmodells bei 100, Faktor 100 Unterschied; bei einer Million Elementen wächst die Aufmerksamkeitskurve auf eine Million gegenüber tausend.",
+   "x_label": "Sequenzlänge (Elemente)",
+   "y_label": "Relative Rechenarbeit (normiert)",
+   "labels": [
+    "1.000",
+    "10.000",
+    "100.000",
+    "1.000.000"
+   ],
+   "series": [
+    {
+     "name": "Aufmerksamkeit (quadratisch)",
+     "values": [
+      1,
+      100,
+      10000,
+      1000000
+     ]
+    },
+    {
+     "name": "Zustandsmodell (linear)",
+     "values": [
+      1,
+      10,
+      100,
+      1000
+     ]
+    }
+   ],
+   "source": "Eigene Rechnung auf Basis der in [1] und [6] beschriebenen Skalierung. Illustration der Größenordnung, keine Messung."
+  },
+  {
+   "t": "h2",
+   "x": "Was das für die Praxis bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "Drei Faustregeln genügen für die meisten Lektüren. Erstens: Sprachmodelle sind fast immer Transformer, oft mit MoE-Innenleben; die aktive Parameterzahl verrät mehr über die Kosten als die Gesamtzahl. Zweitens: Wer Bilder oder Videos erzeugt, arbeitet fast immer mit Diffusion und bezahlt dafür mit Wartezeit pro Ergebnis. Drittens: Wenn ein Anbieter mit extrem langen Kontexten oder niedrigen Kosten pro Token wirbt, lohnt der Blick, ob spärliche Aktivierung oder eine Zustandsarchitektur dahintersteckt, denn beide verschieben die Kosten an andere Stellen, etwa in den Speicher oder in die Erprobung. Wer tiefer einsteigen will, findet die zentralen Begriffe im [Glossar](/glossar), von [KV-Cache](/glossar#kv-cache) bis [Speicherbandbreite-Grenze](/glossar#speicherbandbreite-grenze). Und wer sehen will, welche Modelle welche Ein- und Ausgaben beherrschen, liest die [Modalitäten-Matrix](/modalitaeten-matrix)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ist Mixture of Experts eine eigene Architektur?",
+   "a": "Eher ein Baustein. MoE ersetzt meist die Feed-Forward-Schichten eines Transformers durch mehrere parallele Experten und einen Router. Mixtral zeigt das: Außen Transformer, innen acht Experten pro Schicht, von denen zwei pro Token arbeiten [3]."
+  },
+  {
+   "q": "Warum erzeugen Sprachmodelle Text Wort für Wort, Bildmodelle aber das ganze Bild auf einmal?",
+   "a": "Sprache hat eine feste Reihenfolge, daher erzeugen Sprachmodelle sequenziell das nächste Token. Ein Diffusionsmodell verbessert dagegen das gesamte Bild in vielen Schritten gleichzeitig, weil Bilder keine natürliche Leserichtung haben [4]."
+  },
+  {
+   "q": "Ersetzen State-Space-Modelle den Transformer?",
+   "a": "Derzeit nicht. Mamba zeigt im Paper starke Ergebnisse und fünffachen Durchsatz, ist aber jung. Praktisch alle großen Produktmodelle bleiben Transformer, teils mit MoE. Hybride, die beides mischen, sind der wahrscheinlichere Weg [6]."
+  },
+  {
+   "q": "Woher weiß ich, welche Architektur ein Modell nutzt?",
+   "a": "Aus der Modellkarte oder dem technischen Bericht des Anbieters. Verräterisch sind Angaben wie „aktive Parameter“ (MoE), „Diffusion“ oder „Denoising“ (Bilderzeugung) und „linear time“ oder „state space“ (SSM). Steht nichts da, handelt es sich fast sicher um einen dichten Transformer."
+  }
+ ],
+ "sources": [
+  {
+   "title": "Attention Is All You Need",
+   "publisher": "arXiv:1706.03762 (Vaswani u. a., NeurIPS 2017)",
+   "url": "https://arxiv.org/abs/1706.03762",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Switch Transformers: Scaling to Trillion Parameter Models with Simple and Efficient Sparsity",
+   "publisher": "arXiv:2101.03961 (Fedus, Zoph, Shazeer, JMLR 2022)",
+   "url": "https://arxiv.org/abs/2101.03961",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Mixtral of Experts",
+   "publisher": "arXiv:2401.04088 (Jiang u. a., Mistral AI, 2024)",
+   "url": "https://arxiv.org/abs/2401.04088",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Denoising Diffusion Probabilistic Models",
+   "publisher": "arXiv:2006.11239 (Ho, Jain, Abbeel, NeurIPS 2020)",
+   "url": "https://arxiv.org/abs/2006.11239",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Scaling Rectified Flow Transformers for High-Resolution Image Synthesis",
+   "publisher": "arXiv:2403.03206 (Esser u. a., Stability AI, ICML 2024)",
+   "url": "https://arxiv.org/abs/2403.03206",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces",
+   "publisher": "arXiv:2312.00752 (Gu, Dao, 2023)",
+   "url": "https://arxiv.org/abs/2312.00752",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Gemini 1.5: Unlocking multimodal understanding across millions of tokens of context",
+   "publisher": "arXiv:2403.05530 (Gemini Team, Google, 2024)",
+   "url": "https://arxiv.org/abs/2403.05530",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die arXiv-Seiten der sieben genannten Veröffentlichungen inklusive der dort eingebetteten Volltexte. Alle Zahlen (BLEU-Werte, Parameterbilanzen, Durchsatz- und Beschleunigungsangaben, FID und Inception Score) stammen aus diesen Quellen und sind im Text mit Beleg versehen. Das Längen-Kosten-Diagramm ist eine eigene Rechnung (quadratisches gegen lineares Wachstum, normiert) und als solche gekennzeichnet. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die Übersicht deckt vier Familien ab und lässt bewusst Varianten weg, etwa RetNet, Hyena oder hybride Modelle. Alle Leistungszahlen stammen aus den Papieren der jeweiligen Autoren auf deren Hardware und sind nicht unabhängig nachgemessen. Die Geschwindigkeitsaussagen zu Switch und Mamba beziehen sich auf die im Paper genannten Vergleichsbedingungen. Die Verkehrssystem-Analogie ist eine didaktische Vereinfachung, keine technische Beschreibung. Keine eigenen Messungen.",
+ "related": [
+  "modalitaeten-matrix",
+  "agenten-fundamente",
+  "muse-spark-open-offene-gewichte-analyse"
+ ]
+}

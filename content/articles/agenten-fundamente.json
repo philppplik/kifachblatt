@@ -1,0 +1,173 @@
+{
+ "slug": "agenten-fundamente",
+ "lang": "de",
+ "section": "agenten",
+ "type": "explainer",
+ "title": "Agenten-Fundamente: Loop, Werkzeuge, Gedächtnis, Planung, MCP",
+ "dek": "Ein KI-Agent ist ein Modell in einer Schleife. Fünf Bausteine machen den Helfer daraus: Loop, Werkzeuge, Gedächtnis, Planung und MCP.",
+ "published": "2026-10-20T09:21:00+02:00",
+ "modified": "2026-10-20T09:21:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "KI-Agenten",
+  "Agent-Loop",
+  "Function Calling",
+  "MCP",
+  "ReAct",
+  "Gedächtnis"
+ ],
+ "key_takeaways": [
+  "Die [Agent-Loop](/glossar#agent-loop) ist der Kern: Ziel, Schritt planen, Werkzeug aufrufen, Ergebnis lesen, neu entscheiden. [ReAct](/glossar#react) hat dieses Wechselspiel 2022 als Muster beschrieben [1].",
+  "Beim [Function Calling](/glossar#function-calling) führt das Modell nichts aus: Es schreibt einen Auftrag, ein Programm führt ihn aus. Das ist die wichtigste Sicherheitsgrenze.",
+  "[Memory](/glossar#memory-bei-agenten) heißt meist: Das Gedächtnis liegt außerhalb des Modells und wird in den Kontext geholt, wie ein Arbeitsspeicher mit Festplatte [3].",
+  "[MCP](/glossar#mcp) standardisiert den Anschluss von Werkzeugen und Datenquellen, vergleichbar mit einem USB-C-Anschluss für KI-Anwendungen [4][5]."
+ ],
+ "hero": {
+  "alt": "Kreisförmiges Flussdiagramm der Agent-Loop mit vier Stationen: Ziel und Plan, Werkzeugaufruf, Ausführung, Beobachtung, und einem Pfeil zurück an den Anfang.",
+  "caption": "Die Agent-Loop als Kreislauf: planen, aufrufen, ausführen, beobachten, wieder von vorn. Eigene Darstellung.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein Chatbot antwortet. Ein Agent handelt. Der Unterschied sitzt nicht im Modell, sondern drumherum: Der Agent bekommt ein Ziel, überlegt den nächsten Schritt, ruft ein Werkzeug auf, liest das Ergebnis und entscheidet neu, bis die Aufgabe erledigt ist oder ein Limit greift. Das haben wir in [Was ein KI-Agent wirklich ist](/was-ist-ein-ki-agent) skizziert. Diese Seite geht eine Etage tiefer und zerlegt den Bauplan in fünf Bausteine: die Schleife, die Werkzeuge, das Gedächtnis, die Planung und MCP, das Protokoll, das die Werkzeugwelt gerade standardisiert. Wer nur die Alltagsversion sucht, findet sie dort; wer baut oder kauft, bekommt hier die Prüfpunkte dazu."
+  },
+  {
+   "t": "h2",
+   "x": "Baustein 1: Die Schleife"
+  },
+  {
+   "t": "p",
+   "x": "Die [Agent-Loop](/glossar#agent-loop) lässt sich mit Kochen erklären. Ein Chatbot ist wie jemand, der ein Rezept einmal komplett aufsagt. Ein Agent ist der Koch, der zwischendurch abschmeckt: Er probiert, stellt fest, dass Salz fehlt, korrigiert und schmeckt erneut ab. Das Papier, das dieses Muster für Sprachmodelle prägte, heißt ReAct: Das Modell erzeugt abwechselnd Denkspuren und Handlungen. Die Denkspuren helfen, Pläne zu bilden, zu verfolgen und zu korrigieren; die Handlungen holen Informationen aus der Außenwelt, etwa aus einer Wissensdatenbank [1]."
+  },
+  {
+   "t": "p",
+   "x": "Der gemessene Unterschied ist beachtlich. Auf den Wissensaufgaben HotpotQA und Fever überwand ReAct laut Paper die üblichen Probleme von [Halluzination](/glossar#halluzination) und Fehlerfortpflanzung, weil das Modell Fakten per Wikipedia-Abfrage nachschlug statt sie zu raten. In den interaktiven Umgebungen ALFWorld und WebShop schlug ReAct Imitations- und Verstärkungslernen um 34 beziehungsweise 10 Prozentpunkte absolute Erfolgsquote, mit nur ein oder zwei Beispielen im [Prompt](/glossar#prompt) [1]. Die Schleife macht aus einem Antwortautomaten ein System, das seinen Weg korrigieren kann."
+  },
+  {
+   "t": "figure",
+   "file": "agenten-fundamente-ablauf.jpg",
+   "alt": "Ablaufdiagramm eines Werkzeugaufrufs in vier Schritten: Das Modell formuliert einen JSON-Auftrag, das Laufzeitprogramm führt das Werkzeug aus, das Ergebnis geht zurück ans Modell, das Modell antwortet dem Nutzer.",
+   "caption": "Ein Werkzeugaufruf im Detail: Das Modell schreibt nur den Auftrag, ausführen tut ihn das umgebende Programm. Eigene Darstellung nach [2] und [5]."
+  },
+  {
+   "t": "h2",
+   "x": "Baustein 2: Werkzeuge und Function Calling"
+  },
+  {
+   "t": "p",
+   "x": "Ein Werkzeug ist eine Funktion, die der Agent anfordern darf: eine Suche, ein Kalender, eine Datenbank, ein Taschenrechner. Der entscheidende Punkt wird gern übersehen: Das Modell führt das Werkzeug nie selbst aus. Beim [Function Calling](/glossar#function-calling) formuliert es einen strukturierten Auftrag, typischerweise ein kleines JSON-Dokument mit Name und Argumenten des Werkzeugs. Ein gewöhnliches Programm prüft diesen Auftrag, führt ihn aus und reicht das Ergebnis zurück in den Kontext. Anthropic nennt dieses Grundmuster das „augmented LLM“, ein Sprachmodell mit Abruf, Werkzeugen und Gedächtnis als Grundbaustein jedes agentischen Systems [2]."
+  },
+  {
+   "t": "code",
+   "lang": "json",
+   "x": "{\n  \"name\": \"wetter_abfragen\",\n  \"arguments\": { \"ort\": \"Bonn\", \"tag\": \"heute\" }\n}"
+  },
+  {
+   "t": "p",
+   "x": "Das stark vereinfachte Beispiel zeigt die Idee: Das Modell produziert nur den Auftrag oben. Ob `wetter_abfragen` existiert, ob „Bonn“ erlaubt ist und ob das Ergebnis stimmt, entscheidet die Laufzeitumgebung. Darin liegt die wichtigste Sicherheitsgrenze des ganzen Aufbaus: Was ein Agent kann, bestimmen die Werkzeuge, die man ihm gibt, und die Rechte dahinter. Ein Agent mit reinem Lesezugriff kann nichts löschen. Ein Agent mit Schreibzugriff auf alles kann sich gründlich irren, deshalb gehört vor unumkehrbaren Schritten ein [Human-in-the-Loop](/glossar#human-in-the-loop)-Freigabepunkt, und um den Rest kümmern sich [Guardrails](/glossar#guardrails)."
+  },
+  {
+   "t": "h2",
+   "x": "Baustein 3: Gedächtnis"
+  },
+  {
+   "t": "p",
+   "x": "Das [Kontextfenster](/glossar#kontextfenster) ist die Arbeitsfläche des Modells: Alles, woran es sich „erinnert“, muss dort hineinpassen. [Memory bei Agenten](/glossar#memory-bei-agenten) bedeutet deshalb fast nie, dass das Modell selbst etwas dazulernt. Es bedeutet, dass Information außerhalb abgelegt und bei Bedarf wieder in den Kontext geholt wird: Notizen aus früheren Schritten, Dateien, Datenbankeinträge. Das MemGPT-Paper hat das konsequent zu Ende gedacht und die Speicherhierarchie von Betriebssystemen kopiert: Wie ein Rechner zwischen Arbeitsspeicher und Festplatte seitenweise hin- und herschiebt, schiebt das System Information zwischen Kontext und externem Speicher und erzeugt so die Illusion eines fast unbegrenzten Gedächtnisses [3]."
+  },
+  {
+   "t": "p",
+   "x": "Die Analogie zum Schreibtisch trägt weit: Ein großes Kontextfenster ist eine größere Tischplatte, aber auch dort verliert sich Wichtiges in der Mitte des Stapels ([Lost in the Middle](/glossar#lost-in-the-middle)). Gutes Gedächtnis ist deshalb keine Frage der Größe, sondern der Buchführung: Was wird aufgeschrieben, wann wird es wieder hervorgeholt, und wer räumt auf."
+  },
+  {
+   "t": "h2",
+   "x": "Baustein 4: Planung"
+  },
+  {
+   "t": "p",
+   "x": "[Planung bei Agenten](/glossar#planung-bei-agenten) klingt nach dem kompliziertesten Baustein, ist aber vor allem eine Frage der Demut. Anthropic zieht nach der Arbeit mit Dutzenden Kundenteams eine klare Linie: Workflows sind Systeme, in denen Modelle und Werkzeuge über vorher festgelegte Codepfade laufen; Agenten dagegen steuern ihren Prozess und ihre Werkzeugnutzung selbst. Die Praxisempfehlung ist erstaunlich konservativ: Baue die einfachste Lösung, die funktioniert, und erhöhe die Komplexität nur, wenn nötig, denn agentische Systeme tauschen Latenz und Kosten gegen bessere Aufgabenlösung [2]."
+  },
+  {
+   "t": "p",
+   "x": "Für die Mitte zwischen starrem Ablauf und freiem Agenten beschreibt derselbe Bericht bewährte Muster: Aufgaben in feste Schrittfolgen zerlegen (Prompt Chaining), Eingaben an Spezialpfade verteilen (Routing), mehrere Modellaufrufe parallel laufen lassen oder einen Koordinator auf Unterarbeiter ansetzen (Orchestrator-Workers). Ein freier Agent lohnt sich erst, wenn das Problem offen ist und die Zahl der Schritte nicht vorhersehbar, und selbst dann braucht er Vertrauen in seine Entscheidungen und einen Boden, auf dem er sich bewegen darf [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Baustein 5: MCP, der gemeinsame Stecker"
+  },
+  {
+   "t": "p",
+   "x": "Bis vor Kurzem war jedes Werkzeug eine Sonderanfertigung: Wer ein Modell an Kalender, Dateien oder Datenbanken anschließen wollte, baute für jede Quelle und jedes Modell eine eigene Integration. Das [Model Context Protocol](/glossar#mcp) (MCP) greift genau diesen Flaschenhals an. Anthropic stellte es am 25. November 2024 als offenen Standard vor, der KI-Assistenten mit den Systemen verbindet, in denen Daten leben, mit Spezifikation und SDKs, lokaler Server-Unterstützung und einem offenen Verzeichnis von Servern [4]."
+  },
+  {
+   "t": "p",
+   "x": "Die offizielle Dokumentation benutzt den treffendsten Vergleich: MCP ist wie ein USB-C-Anschluss für KI-Anwendungen. So wie USB-C Geräte standardisiert ans Strom- und Datennetz bringt, verbindet MCP Anwendungen standardisiert mit Datenquellen, Werkzeugen und Arbeitsabläufen. Die Architektur ist dabei schlicht: Wer Daten bereitstellen will, baut einen MCP-Server; wer eine KI-Anwendung baut, implementiert einen MCP-Client, der sich mit diesen Servern verbindet [5]. Für Agenten heißt das: Der Werkzeugkasten wird austauschbar, und eine einmal gebaute Anbindung funktioniert überall dort, wo MCP gesprochen wird."
+  },
+  {
+   "t": "h2",
+   "x": "Wo Agenten scheitern und was das kostet"
+  },
+  {
+   "t": "p",
+   "x": "Agenten scheitern selten spektakulär, sie driften: Ein früher Fehler wird als Tatsache weitergetragen, die Schleife dreht Runden, die Aufgabe verschiebt sich. Je länger die Kette, desto mehr multiplizieren sich kleine Fehlerquoten. Die Gegenmittel sind unspektakulär: kurze, klar begrenzte Aufgaben, sichtbare Zwischenstände, dokumentierte Denkspuren wie bei ReAct [1], und eine menschliche Freigabe vor allem, was sich nicht rückgängig machen lässt. Anthropic bringt die Kostenfrage auf den Punkt: Agentische Systeme tauschen Latenz und Geld gegen Qualität, diese Rechnung sollte vor dem Bau stehen, nicht danach [2]. Wer die Leistung von Langzeit-Agenten in Zahlen sehen will, findet sie in unserer Analyse der [Long-Horizon-Terminal-Bench](/lhtb-2-langzeit-agenten-benchmark). Und die Bausteine dahinter, vom [Transformer](/glossar#transformer) bis zur [Modalität](/glossar#multimodal), erklären der [Architektur-Überblick](/architekturen-im-ueberblick) und die [Modalitäten-Matrix](/modalitaeten-matrix)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ist Function Calling dasselbe wie ein Agent?",
+   "a": "Nein. Function Calling ist die Technik, mit der ein Modell einen Werkzeugauftrag formuliert. Ein Agent entsteht erst, wenn dieser Aufruf in einer Schleife steckt: Ergebnis lesen, neu entscheiden, weitermachen. Ohne Schleife ist es ein einzelner, gut formatierter Aufruf [1][2]."
+  },
+  {
+   "q": "Lernt ein Agent aus Erfahrung?",
+   "a": "Nicht im Modell selbst. Was wie Lernen aussieht, ist fast immer Buchführung: Der Agent schreibt Ergebnisse in einen externen Speicher und holt sie später in den Kontext zurück, nach dem Vorbild von Betriebssystem-Speicher [3]."
+  },
+  {
+   "q": "Brauche ich MCP, um Werkzeuge anzuschließen?",
+   "a": "Nein, aber es spart Sonderanfertigungen. Ohne MCP baust du pro Datenquelle und Anwendung eine eigene Integration; mit MCP schließt ein Client jeden kompatiblen Server an, ähnlich wie USB-C jedes passende Gerät [4][5]."
+  },
+  {
+   "q": "Wann sollte ich lieber keinen Agenten bauen?",
+   "a": "Wenn der Ablauf vorher feststeht. Für feste Pfade ist ein Workflow oder ein einfacher Modellaufruf billiger, schneller und vorhersehbarer. Agenten tragen sich erst bei offenen Problemen mit unbekannter Schrittzahl [2]."
+  }
+ ],
+ "sources": [
+  {
+   "title": "ReAct: Synergizing Reasoning and Acting in Language Models",
+   "publisher": "arXiv:2210.03629 (Yao u. a., ICLR 2023)",
+   "url": "https://arxiv.org/abs/2210.03629",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Building effective agents",
+   "publisher": "Anthropic, 19. Dezember 2024",
+   "url": "https://www.anthropic.com/engineering/building-effective-agents",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "MemGPT: Towards LLMs as Operating Systems",
+   "publisher": "arXiv:2310.08560 (Packer u. a., UC Berkeley, 2023)",
+   "url": "https://arxiv.org/abs/2310.08560",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "Introducing the Model Context Protocol",
+   "publisher": "Anthropic, 25. November 2024",
+   "url": "https://www.anthropic.com/news/model-context-protocol",
+   "accessed": "2026-10-20"
+  },
+  {
+   "title": "What is the Model Context Protocol (MCP)?",
+   "publisher": "MCP-Dokumentation (modelcontextprotocol.io)",
+   "url": "https://modelcontextprotocol.io/docs/getting-started/intro",
+   "accessed": "2026-10-20"
+  }
+ ],
+ "method": "Gelesen wurden am 20. Oktober 2026 die arXiv-Seiten zu ReAct und MemGPT einschließlich der eingebetteten Volltexte, der Engineering-Bericht und die MCP-Ankündigung von Anthropic sowie die offizielle MCP-Dokumentation. Alle Zahlen (Erfolgsquoten, Prozentpunkte) und Zitate stammen aus diesen Quellen und sind im Text belegt. Das JSON-Beispiel ist ein didaktisches, stark vereinfachtes Beispiel und kein Protokollauszug. Der Text entstand mit KI-Unterstützung und wurde von der Redaktion verantwortet.",
+ "limitations": "Die fünf Bausteine sind eine redaktionelle Gliederung, keine Norm; andere Lehrbücher schneiden den Bauplan anders. Die Erfolgsquoten aus dem ReAct-Paper beziehen sich auf die dortigen Testumgebungen und Prompts und sind nicht auf beliebige Agenten übertragbar. Der Werkzeug- und MCP-Markt verändert sich schnell; Anthropic weist inzwischen selbst darauf hin, dass sich die beschriebene Werkzeuglandschaft seit Dezember 2024 gewandelt hat. Keine eigenen Messungen, kein selbst gebauter Agent als Beleg.",
+ "related": [
+  "architekturen-im-ueberblick",
+  "modalitaeten-matrix",
+  "lhtb-2-langzeit-agenten-benchmark"
+ ]
+}
