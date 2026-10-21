@@ -1,0 +1,385 @@
+{
+ "slug": "kv-cache-kompression-deepseek-analyse",
+ "lang": "de",
+ "section": "architektur",
+ "type": "analysis",
+ "title": "KV-Cache: Der stille Kostentreiber hinter langen KI-Kontexten",
+ "dek": "Eine Million Token Kontext klingt gratis, ist es aber nicht: Der KV-Cache frisst Speicher und Geld. Wie DeepSeek, Mistral und vLLM ihn drücken, mit Zahlen.",
+ "published": "2026-10-21T08:00:00+02:00",
+ "modified": "2026-10-21T08:00:00+02:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "KV-Cache",
+  "Inferenz",
+  "DeepSeek",
+  "Attention",
+  "Speicher"
+ ],
+ "key_takeaways": [
+  "DeepSeek drückt den globalen KV-Cache laut Modellkarte auf 890 Byte pro Token; das ist etwa ein Viertel von V4-Flash und rund 1/437 der ersten Generation [1].",
+  "Der Cache wächst linear mit der Kontextlänge. Bei einer Million Token entscheidet seine Größe, wie viele Konversationen auf einer GPU Platz finden (eigene Rechnung).",
+  "Die Gegenmittel im Überblick: geteilte Schlüsselköpfe (GQA), Kompression (MLA), Gleitfenster (SWA), Speicherverwaltung (PagedAttention) und Architekturen ganz ohne Cache (Mamba) [3][4][5][6][7].",
+  "Alle Faktoren stammen aus Herstellerkarten und Papers. Wir rechnen offen mit ihnen, messen aber nicht selbst nach."
+ ],
+ "hero": {
+  "alt": "Balkendiagramm mit logarithmischer Achse: Der globale KV-Cache pro Token fällt von rund 388.930 Byte bei DeepSeek-V1 über rund 3.560 Byte bei V4-Flash auf 890 Byte bei V4.1-Flash.",
+  "caption": "Drei Generationen DeepSeek-Architektur im Vergleich. Die Werte für V1 und V4-Flash sind aus den Herstellerfaktoren 1/437 und 1/4 zurückgerechnet (eigene Rechnung). Eigene Grafik, Quelle [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Ein Kontextfenster von einer Million Token ist bei aktuellen Modellen fast schon Standard. Was auf dem Datenblatt wie eine kostenlose Großzügigkeit wirkt, hat im Rechenzentrum einen konkreten Preis: Jedes Token im Kontext hinterlässt im [KV-Cache](/glossar#kv-cache) Zahlen, und dieser Speicher muss bei jedem einzelnen erzeugten Antwort-Token gelesen werden. DeepSeek hat mit der Modellkarte von V4.1-Flash jetzt eine Zahl in den Raum gestellt, die zeigt, wie weit die Optimierung gediehen ist: 890 Byte globaler KV-Cache pro Token, laut Hersteller etwa ein Viertel von V4-Flash und rund 1/437 der ersten Modellgeneration [1]."
+  },
+  {
+   "t": "p",
+   "x": "Dieser Artikel legt die Mechanik dahinter offen: Warum der Cache zum Engpass wird, welche Stellschrauben die Forschung dagegen gefunden hat und was die DeepSeek-Zahlen konkret bedeuten. Alle Architektur- und Effizienzangaben stammen aus den Modellkarten und Originalpapieren; wo wir daraus Folgerungen ableiten, ist das als eigene Rechnung mit Formel gekennzeichnet. Wer die Begriffe nachschlagen will: Der Artikel verlinkt an den wichtigen Stellen in unser [Glossar](/glossar)."
+  },
+  {
+   "t": "h2",
+   "x": "Warum der KV-Cache der Flaschenhals ist"
+  },
+  {
+   "t": "p",
+   "x": "Beim Erzeugen von Text arbeitet ein Sprachmodell Schritt für Schritt: Für jedes neue Token muss es auf alle bisherigen Token zurückblicken. Technisch passiert das über die [Attention](/glossar#attention-aufmerksamkeit): Für jedes vergangene Token wurden bei der Verarbeitung zwei Vektoren gespeichert, Schlüssel und Wert (Key und Value), und zwar pro Schicht und pro Attention-Kopf des Modells. Diese gespeicherten Vektoren sind der KV-Cache. Ohne ihn müsste das Modell bei jedem neuen Token den gesamten bisherigen Text von Grund auf neu rechnen, was unbezahlbar wäre. Mit ihm wird das Nachschlagen zum Speicherproblem."
+  },
+  {
+   "t": "p",
+   "x": "Der Cache hat drei unangenehme Eigenschaften. Erstens wächst er **linear mit der Kontextlänge**: Doppelt so viel Text heißt doppelt so viel Cache. Zweitens liegt er im schnellen, teuren Grafikspeicher (HBM) der GPU, denn nur dort ist er schnell genug abrufbar; die [Speicherbandbreite-Grenze](/glossar#speicherbandbreite-grenze) dieses Speichers ist der physikalische Rahmen, in dem alles Weitere stattfindet. Drittens muss er **bei jedem Decode-Schritt komplett gelesen werden**: Die Autoren des GQA-Papers beschreiben genau das als den Engpass des autoregressiven Dekodierens, nämlich die Speicherbandbreite, die das Laden der Modellgewichte und aller Schlüssel- und Wertvektoren bei jedem Schritt kostet [4]. Bei kurzen Antworten fällt das kaum ins Gewicht. Bei einem Kontext von einer Million Token und tausenden gleichzeitigen Nutzeranfragen wird der Cache zur zentralen Ressource, über die Durchsatz, [Latenz](/glossar#latenz) und Preis entschieden werden."
+  },
+  {
+   "t": "p",
+   "x": "Dazu kommt eine Asymmetrie, die DeepSeek in der V4.1-Karte explizit macht: Das Einlesen des Kontexts (Prefill) und das schrittweise Schreiben der Antwort (Decode) belasten das System unterschiedlich. Agentische Arbeitslasten sind eingabelastig: Ein Coding-Agent schiebt Repositories, Logs und Werkzeugausgaben in den Kontext und erzeugt vergleichsweise kurze Antworten. Genau dafür ist die neue Architektur ausgelegt, mit nur 8 Milliarden aktiven Parametern beim Einlesen gegenüber 16 Milliarden beim Schreiben [1]. Die Cache-Frage ist also nicht nur eine Speicherfrage, sondern eine Frage der gesamten Kostenstruktur von Agenten."
+  },
+  {
+   "t": "p",
+   "x": "Dass die Industrie diesen Punkt ernst nimmt, zeigt die Release-Logik der letzten zwei Jahre: Kaum eine Architekturankündigung kommt ohne Angabe zur Cache-Größe aus. DeepSeek bewirbt V4.1-Flash ausdrücklich mit der KV-Cache-Kompression im Titel der Modellkarte [1], und schon die V4-Serie führte ihre Hybrid-Attention mit der Angabe ein, bei einer Million Token nur noch 27 Prozent der Rechenoperationen und 10 Prozent des Cache von V3.2 zu benötigen [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Rechnung hinter dem Cache"
+  },
+  {
+   "t": "p",
+   "x": "Was bedeuten 890 Byte pro Token in der Praxis? Drei einfache Umrechnungen machen die Größenordnungen greifbar. Alle drei sind eigene Rechnungen auf Basis der Herstellerangaben; die Formeln stehen im Methodenteil."
+  },
+  {
+   "t": "callout",
+   "title": "Eigene Rechnung: Was eine Million Token wiegen",
+   "x": "DeepSeek-V1 (zurückgerechnet): 890 B mal 437 ergibt rund 388.930 Byte pro Token. DeepSeek-V4-Flash: 890 B mal 4 ergibt 3.560 Byte. DeepSeek-V4.1-Flash: 890 Byte (Herstellerangabe) [1]. Pro Konversation mit voller Million Token: 388,9 Gigabyte (V1), 3,6 Gigabyte (V4-Flash), 0,89 Gigabyte (V4.1-Flash). Auf einem 80-GB-Beschleuniger passen damit rechnerisch 0,2, 22 beziehungsweise 90 solcher Konversationen."
+  },
+  {
+   "t": "p",
+   "x": "Die letzte Zeile dieser Rechnung ist der wirtschaftliche Kern. Nicht die Frage, ob eine Million Token Kontext technisch möglich ist, entscheidet über den Alltag, sondern wie viele solcher Konversationen ein Betreiber gleichzeitig auf einer Karte unterbringt. Die Anzahl paralleler Konversationen bestimmt den [Durchsatz](/glossar#durchsatz) pro Hardware-Euro, und der wiederum fließt in den Preis pro Token. Zwischen V1- und V4.1-Niveau liegt bei sonst gleichen Bedingungen ein Faktor von rund 437 bei der gleichzeitig bedienbaren Nutzerzahl, jedenfalls was den Cache-Anteil betrifft. Modellgewichte, Aktivierungen und Systempuffer kommen noch obendrauf, ändern aber nichts an der Richtung."
+  },
+  {
+   "t": "p",
+   "x": "Zur Einordnung der Größenordnung: Eine gut gefüllte Konversation in einem Agenten-Einsatz hat eher 100.000 als eine Million Token. Dann wiegt der Cache pro Konversation bei V4.1-Flash noch rund 89 Megabyte, bei V1-Niveau dagegen schon rund 39 Gigabyte (ebenfalls eigene Rechnung, dieselbe Formel). Der Unterschied entscheidet darüber, ob ein Anbieter lange Kontexte als Standard oder als Premiumfunktion verkaufen kann."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "Wie viele 1-Mio.-Token-Konversationen passen auf eine 80-GB-GPU?",
+   "alt": "Säulendiagramm: Bei DeepSeek-V1-Niveau (rund 389 Gigabyte Cache pro Konversation) passt rechnerisch 0,2 Konversation auf eine 80-GB-GPU, bei V4-Flash (3,6 Gigabyte) rund 22, bei V4.1-Flash (0,89 Gigabyte) rund 90.",
+   "caption": "Eigene Rechnung: 80 GB geteilt durch Cache pro Konversation (Bytes pro Token mal 1.000.000 Token). Nur der Cache-Anteil, ohne Modellgewichte und Puffer; Basis sind die Herstellerfaktoren aus [1].",
+   "labels": [
+    "DeepSeek-V1 (eigene Rechnung)",
+    "DeepSeek-V4-Flash (eigene Rechnung)",
+    "DeepSeek-V4.1-Flash (Herstellerangabe)"
+   ],
+   "y_label": "Konversationen (rechnerisch)",
+   "series": [
+    {
+     "name": "Konversationen pro 80 GB",
+     "values": [
+      0.2,
+      22,
+      90
+     ]
+    }
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Stellschraube 1: Weniger Köpfe, geteilte Schlüssel (GQA und MQA)"
+  },
+  {
+   "t": "p",
+   "x": "Der erste Hebel sitzt in der Attention selbst. Ein klassischer Transformer speichert pro Attention-Kopf eigene Schlüssel- und Wertvektoren; bei 32, 64 oder 128 Köpfen multipliziert sich der Cache entsprechend. Multi-Query-Attention (MQA), 2019 von Noam Shazeer vorgeschlagen, radikalisiert die Idee des Teilens: Alle Abfrageköpfe nutzen **ein einziges** Schlüssel- und Wertpaar, der Cache schrumpft auf den Anteil eines Kopfes [4]. Der Preis: messbare Qualitätseinbußen, weil die Vielfalt der Perspektiven verloren geht, und der Zwang, das Modell von Grund auf so zu trainieren."
+  },
+  {
+   "t": "p",
+   "x": "Grouped-Query-Attention ([GQA](/glossar#grouped-query-attention)) wählt die Mitte: Gruppen von Abfrageköpfen teilen sich je ein Schlüssel-Wert-Paar. Das Paper von Ainslie und Kollegen lieferte zwei praxistaugliche Ergebnisse: Erstens lässt sich ein vorhandenes Multi-Head-Modell mit nur fünf Prozent des ursprünglichen Trainingsaufwands auf die neue Struktur umtrainieren; zweitens erreicht das so gewonnene GQA-Modell Qualität nahe am Ausgangsmodell bei Geschwindigkeit nahe an MQA [4]. Genau diese Kombination, geringe Umstellungskosten und kaum Qualitätsverlust, machte GQA zum Quasi-Standard."
+  },
+  {
+   "t": "p",
+   "x": "Praktisch jedes aktuelle offene Modell nutzt eine Variante davon. Mistral 7B kombinierte 2023 GQA mit Sliding-Window-Attention ausdrücklich für schnellere Inferenz, geringeren Speicherbedarf beim Dekodieren und damit höhere Stapelgrößen ([Batching](/glossar#batching)), was das Paper als entscheidend für Echtzeitanwendungen bezeichnet [5]. Für den Cache heißt das: Der Faktor, um den GQA den Speicher drückt, ist das Verhältnis von Abfrageköpfen zu Schlüsselköpfen. Acht Schlüsselköpfe statt 128 bedeuten ein Sechzehntel des Attention-Cache, ohne dass am Rest des Modells etwas geändert werden muss."
+  },
+  {
+   "t": "h2",
+   "x": "Stellschraube 2: Komprimieren statt teilen (DeepSeek MLA)"
+  },
+  {
+   "t": "p",
+   "x": "DeepSeek ging ab V2 einen anderen Weg: Statt Köpfe zu teilen, werden Schlüssel und Werte gemeinsam in einen **niedrigdimensionalen latenten Vektor** komprimiert (Multi-head Latent Attention, MLA). Im Cache liegt nur noch dieser komprimierte Vektor; die eigentlichen Schlüssel und Werte werden bei Bedarf daraus rekonstruiert. Laut V2-Paper senkte das den KV-Cache um 93,3 Prozent gegenüber dem Vorgänger DeepSeek 67B, steigerte den maximalen Generierungsdurchsatz auf das 5,76-Fache und senkte nebenbei die Trainingskosten um 42,5 Prozent [3]. Im produktiven Einsatz kam laut Papier noch eine [Quantisierung](/glossar#quantisierung) der Cache-Elemente auf durchschnittlich 6 Bit dazu [3]."
+  },
+  {
+   "t": "p",
+   "x": "Das Paper macht die Größenordnung der Einsparung auch in Hardware-Stunden greifbar: Pro Billion Trainings-Token brauchte DeepSeek 67B auf dem H800-Cluster 300.600 GPU-Stunden, DeepSeek-V2 nur 172.800 [3]. Im Einsatz erreichte V2 auf einem Knoten mit acht H800-GPUs über 50.000 erzeugte Token pro Sekunde, das 5,76-Fache des Vorgängers, bei über 100.000 Eingabe-Token pro Sekunde [3]."
+  },
+  {
+   "t": "p",
+   "x": "MLA ist bemerkenswert, weil es die übliche Tauschrelation bricht: GQA und MQA kaufen Speicher mit Qualitätsverlust, das V2-Paper berichtet dagegen für MLA gleichzeitig bessere Werte als klassische Multi-Head-Attention und einen kleineren Cache [3]. Diese Kombination erklärt, warum die DeepSeek-Linie seit V2 als Referenz für speichereffiziente Architektur gilt, und sie bildet die Vorgeschichte der Zahlen, mit denen V4.1-Flash jetzt wirbt [1][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Stellschraube 3: Fenster statt Vollgriff (Sliding-Window-Attention)"
+  },
+  {
+   "t": "p",
+   "x": "Die dritte Idee verzichtet auf Vollständigkeit: [Sliding-Window-Attention](/glossar#sliding-window-attention) lässt jedes Token nur auf ein festes Fenster der letzten W Token blicken statt auf die ganze Sequenz. Mistral 7B setzte W auf 4096. Weil die Schichten gestapelt sind, wandert Information trotzdem weiter: In jeder Schicht kann ein Token W Positionen zurückgreifen, nach k Schichten also k mal W; bei Mistral ergibt das einen theoretischen Aufmerksamkeitsradius von rund 131.000 Token [5]. Das Fenster begrenzt also die direkte Sicht, nicht den gesamten Informationsfluss."
+  },
+  {
+   "t": "p",
+   "x": "Der Cache-Effekt ist drastisch: Mit einem rollierenden Puffer (Rolling Buffer Cache), der alte Einträge einfach überschreibt, wächst der Cache gar nicht mehr mit der Sequenzlänge, sondern bleibt auf die Fenstergröße begrenzt. Mistral beziffert die Einsparung bei einer 32.000-Token-Sequenz auf das Achtfache, ohne messbare Qualitätseinbuße; dazu kamen rund zweifach schnellere Ausführung bei 16.000 Token durch angepasste Kernroutinen auf Basis von [FlashAttention](/glossar#flashattention) und xFormers [5]. Für das Einlesen langer Dokumente beschreibt das Paper außerdem das Chunking: Der Prompt wird in fenstergroße Stücke zerlegt und Stück für Stück in den Puffer gefüllt [5]."
+  },
+  {
+   "t": "p",
+   "x": "Der Haken liegt auf der Hand: Was außerhalb des Fensters liegt, ist für die direkte Aufmerksamkeit weg. Für Aufgaben, die jedes Wort des gesamten Kontexts brauchen, ist das Fenster ein Kompromiss, kein Gratisgewinn. DeepSeek wird dieses Prinzip später in verfeinerter Form wieder aufgreifen (dazu gleich mehr)."
+  },
+  {
+   "t": "h2",
+   "x": "Stellschraube 4: Aufräumen wie ein Betriebssystem (PagedAttention)"
+  },
+  {
+   "t": "p",
+   "x": "Die vierte Stellschraube ändert nichts am Modell, sondern an der Speicherverwaltung. Klassische Inferenzsysteme reservierten für jede Anfrage einen zusammenhängenden Speicherblock in der maximalen Antwortlänge. Das vLLM-Paper benennt drei Arten von Abfall, die dabei entstehen: Reservierung für nie erreichte Längen, interne Fragmentierung innerhalb des Blocks und externe Fragmentierung zwischen den Blöcken. Gemessen wurde das Ausmaß: Nur 20,4 bis 38,2 Prozent des reservierten KV-Speichers enthielten in den untersuchten Systemen tatsächlich Token-Zustände [6]."
+  },
+  {
+   "t": "p",
+   "x": "Die Lösung übernahm das Prinzip der virtuellen Speicherverwaltung aus Betriebssystemen: [PagedAttention](/glossar#pagedattention) teilt den Cache in Blöcke fester Größe, verteilt sie bei Bedarf nicht zusammenhängend und erlaubt das Teilen von Blöcken zwischen Sequenzen, etwa bei parallelem Sampling oder Beam Search, wo mehrere Kandidaten denselben Anfang teilen [6]. Das Ergebnis laut Paper: nahezu null Verschnitt und zwei- bis vierfacher Durchsatz gegenüber den damaligen Referenzsystemen, ohne jede Änderung an Modell oder Ergebnisqualität [6]. Die Lektion für die Praxis: Ein guter Teil der vermeintlichen Modellkosten war schlicht schlechte Speicherbuchhaltung. Wer heute Inferenz selbst betreibt, stellt diese Frage über den Serving-Stack, nicht über die Modellwahl."
+  },
+  {
+   "t": "chart",
+   "kind": "column",
+   "title": "Reservierter KV-Speicher: wie viel davon echte Token enthielt",
+   "alt": "Säulendiagramm: In untersuchten älteren Inferenzsystemen enthielten nur 20,4 bis 38,2 Prozent des reservierten KV-Speichers echte Token-Zustände; der Rest war Reservierung und Fragmentierung.",
+   "caption": "Messwerte aus dem vLLM-Paper (Profilbilder verschiedener Serving-Systeme); PagedAttention zielt laut den Autoren auf nahezu null Verschnitt [6].",
+   "labels": [
+    "Minimaler Anteil",
+    "Maximaler Anteil"
+   ],
+   "y_label": "Anteil am reservierten KV-Speicher in Prozent",
+   "series": [
+    {
+     "name": "Tatsächlich belegt",
+     "values": [
+      20.4,
+      38.2
+     ]
+    }
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Der aktuelle Stand: Was DeepSeek in V4 und V4.1 zusammenbaut hat"
+  },
+  {
+   "t": "p",
+   "x": "Vor diesem Hintergrund lesen sich die beiden jüngsten DeepSeek-Karten wie eine Zusammenfassung aller vier Stellschrauben. Die V4-Serie kombinierte zwei komprimierte Attention-Formen (Compressed Sparse Attention und Heavily Compressed Attention) zu einer Hybrid-Architektur und bezifferte den Effekt bei einer Million Token Kontext auf 27 Prozent der Rechenoperationen und 10 Prozent des KV-Cache von V3.2 [2]. Dazu kamen mit den Manifold-Constrained Hyper-Connections stabilisierte Restverbindungen und der Muon-Optimizer für das Training [2]."
+  },
+  {
+   "t": "p",
+   "x": "V4.1-Flash geht weiter und stapelt die Maßnahmen [1]:"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "**Causal Encoder-Decoder (CED):** 40 Schichten, aufgeteilt in 20 kausale Encoder- und 20 Decoder-Schichten. Der globale Cache des Decoders wird aus den Endzuständen des Encoders projiziert statt aus jeder eigenen Schicht. Das senkt die aktiven Parameter beim Einlesen auf 8 Milliarden und beim Schreiben auf 16 Milliarden pro Token, ausgelegt für eingabelastige Agenten-Arbeitslasten.",
+    "**Compressed Sparse Attention 2 (CSA2):** Jede Attention-Schicht bekommt einen von drei statischen Modi (Full, Reindex, Reuse), sodass Schichten Haupt-Cache und Index teilen und Sparse-Attention-Indizes wiederverwenden. Ein hierarchischer Index begrenzt die Kosten tiefer Schichten unabhängig von der Kontextlänge: Spätere Indexschichten suchen nur noch im Kandidatenpool der ersten Full-Mode-Schicht.",
+    "**FP4-Hauptcache:** Die Schlüssel- und Wertdaten liegen im E2M1-Format mit einem E4M3-Skalierungsfaktor pro 16 Kanäle vor, also auf etwa 4 Bit [quantisiert](/glossar#quantisierung).",
+    "**SWA Bounded Replay:** Fenster-Attention nach dem Mistral-Prinzip, aber so organisiert, dass fehlende Fensterzustände durch erneutes Abspielen nur der letzten n_win Token rekonstruiert werden, statt den Fenster-Cache dauerhaft auf Festplatte zu halten. Laut Karte senkt das den persistenten Cache auf etwa ein Achtel von V4-Flash.",
+    "**Engram-Speicher und DSpark:** Ein konditionaler Speicher mit 196 Milliarden Parametern, der pro Token nur stichprobenartig nachgeschlagene Einträge aktiviert, plus semi-autoregressives [Speculative Decoding](/glossar#speculative-decoding) mit vertrauensgesteuerter Verifikation runden das Paket ab."
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Heraus kommen die eingangs genannten 890 Byte pro Token globaler Cache, bei einer Million Token Kontext und einem auf 45 Billionen Token trainierten Modell, dessen Kontext erst bei 34 Billionen Token auf die volle Länge erweitert wurde [1]. Wichtig für die Einordnung: Der Wert ist eine Herstellerangabe aus der eigenen Karte, und die Faktoren 1/4 und 1/437 sind dort mit etwa formuliert [1]. Unsere Rückrechnung auf V1 und V4-Flash ist deshalb eine Größenordnung, keine Messung. Ebenfalls aus der Karte: Die Reasoning-Stärke ist stufenlos von 1 bis 100 einstellbar, und alle berichteten Werte gelten für die maximale Stufe; weniger Denkbudget heißt auch weniger gelesener Kontext pro Antwort."
+  },
+  {
+   "t": "h2",
+   "x": "Radikaler Ausweg: Modelle ganz ohne KV-Cache"
+  },
+  {
+   "t": "p",
+   "x": "Die konsequenteste Antwort auf das Cache-Problem ist, es nicht zu haben. [State-Space-Modelle](/glossar#state-space-modell) wie Mamba tragen den Kontext in einem Zustand fester Größe, der pro Token aktualisiert wird, statt alle Vergangenheitsvektoren zu speichern. Der Speicherbedarf wächst damit gar nicht mehr mit der Sequenzlänge. Der Trick des Mamba-Papers: Die Zustandsübergänge hängen selbst vom aktuellen Token ab (selektive Zustandsmodelle), sodass das Modell lernen kann, was es behalten und was es vergessen will. Das verhindert zwar den sonst üblichen effizienten Faltungstrick, wird aber durch einen hardwarenahen parallelen Algorithmus aufgefangen [7]."
+  },
+  {
+   "t": "p",
+   "x": "Das Ergebnis laut Paper: fünffacher Durchsatz gegenüber Transformern, lineare Skalierung mit der Sequenzlänge und brauchbare Ergebnisse bis zu Sequenzen von einer Million Elementen; ein Mamba-3B schlug demnach Transformer gleicher Größe und hielt mit doppelt so großen mit [7]."
+  },
+  {
+   "t": "p",
+   "x": "Warum ersetzt das den Transformer nicht flächendeckend? Weil der feste Zustand auch eine Verengung ist: Alles, was das Modell über die Vergangenheit weiß, muss in diesen einen Vektor passen. Attention kann gezielt auf eine beliebige frühere Stelle zugreifen; ein Zustandsmodell muss entschieden haben, was es sich merkt, bevor es weiß, was später gebraucht wird. Genau diese Schwäche, nämlich inhaltsbasiertes Nachschlagen, benennt das Mamba-Paper selbst als den historischen Grund, warum subquadratische Architekturen am Transformer bisher scheiterten [7]. In der Praxis laufen die erfolgreichen aktuellen Ansätze deshalb auf Mischformen hinaus: Transformer mit sparsamer Attention, Fenstern und Kompression, nicht auf den vollständigen Ersatz."
+  },
+  {
+   "t": "h2",
+   "x": "Was das für Preise und Praxis bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "Drei Folgen sind belastbar. Erstens: **Langer Kontext wird planbar billiger.** Der Cache ist bei Millionstoken-Kontexten der dominierende Speicherposten, und jede Halbierung der Bytes pro Token verdoppelt rechnerisch die Zahl bedienbarer Konversationen pro Karte. DeepSeeks Verlauf von V1 über V2/MLA zu V4.1 zeigt, dass dieser Hebel in zwei Jahren um den Faktor 437 gedreht wurde, Herstellerangaben vorausgesetzt [1][3]."
+  },
+  {
+   "t": "p",
+   "x": "Zweitens: **Der Serving-Stack ist Teil der Architekturfrage.** vLLM hat gezeigt, dass 60 bis 80 Prozent des reservierten Cache-Speichers in älteren Systemen Buchhaltungsabfall waren [6]. Wer Modelle selbst betreibt, gewinnt unter Umständen mehr durch die Speicherverwaltung als durch die Wahl einer anderen Modellversion. Drittens: **Vergleiche brauchen die Fußnoten.** Die 890 Byte von V4.1-Flash gelten für den globalen Cache einer bestimmten Architektur mit FP4-Quantisierung; die 93,3 Prozent von MLA galten gegenüber einem konkreten Vorgänger; die achtfache Einsparung von Mistral galt bei 32.000 Token [1][3][5]. Prozentangaben ohne Nenner und Kontextlänge sind Marketing, keine Metrik."
+  },
+  {
+   "t": "p",
+   "x": "Für Agenten-Workloads kommt ein vierter Punkt dazu: Reasoning-Modelle erzeugen vor der eigentlichen Antwort lange Denkketten, und jedes dieser Denk-Token liest den kompletten Cache erneut. [Test-Time Compute](/glossar#test-time-compute) multipliziert also die Cache-Kosten mit. Dass DeepSeek die Reasoning-Stärke bei V4.1-Flash stufenlos einstellbar macht, ist auch eine Preissteuerung: Wer die Stufe halbiert, halbiert grob die Anzahl der Cache-Lesevorgänge pro Antwort [1]."
+  },
+  {
+   "t": "table",
+   "caption": "Die Verfahren im Überblick: Prinzip und belegter Effekt",
+   "head": [
+    "Verfahren",
+    "Prinzip",
+    "Belegter Effekt",
+    "Quelle"
+   ],
+   "rows": [
+    [
+     "MQA / GQA",
+     "Abfrageköpfe teilen sich Schlüssel- und Wertvektoren",
+     "Qualität nahe Vollattention bei Geschwindigkeit nahe MQA; Uptraining mit 5 % des Trainingsaufwands",
+     "[4]"
+    ],
+    [
+     "MLA (DeepSeek-V2)",
+     "Schlüssel und Werte als latenter Vektor komprimiert",
+     "KV-Cache -93,3 %, Durchsatz x5,76 gegenüber DeepSeek 67B; 6-Bit-Cache im Einsatz",
+     "[3]"
+    ],
+    [
+     "SWA + Rolling Buffer (Mistral 7B)",
+     "Fenster von 4096 Token, Puffer fester Größe",
+     "8-fache Cache-Einsparung bei 32k Token, 2-fache Geschwindigkeit bei 16k",
+     "[5]"
+    ],
+    [
+     "PagedAttention (vLLM)",
+     "Blockweise Speicherverwaltung nach Betriebssystem-Vorbild",
+     "20,4 bis 38,2 % Nutzungsgrad in Altsystemen; nahezu null Verschnitt, 2- bis 4-facher Durchsatz",
+     "[6]"
+    ],
+    [
+     "CSA2 + FP4 + CED (DeepSeek V4.1-Flash)",
+     "Geteilte und wiederverwendete Indizes, 4-Bit-Cache, Encoder-Decoder-Aufbau",
+     "890 Byte globaler Cache pro Token, etwa 1/4 von V4-Flash",
+     "[1]"
+    ],
+    [
+     "Zustandsmodelle (Mamba)",
+     "Kontext in Zustand fester Größe, kein Cache",
+     "5-facher Durchsatz, lineare Skalierung bis 1 Mio. Sequenzlänge",
+     "[7]"
+    ]
+   ]
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung und Grenzen"
+  },
+  {
+   "t": "p",
+   "x": "Die Richtung der Entwicklung ist eindeutig: Der Cache pro Token fällt über Architektur-Generationen um Größenordnungen, und die Methoden kombinieren sich. Vorsicht ist bei drei Punkten geboten. Erstens stammen die spektakulärsten Zahlen (890 Byte, 1/437) von einer Herstellerkarte ohne unabhängige Replikation [1]. Zweitens sind Papierwerte systemabhängig: Die vLLM-Prozente beschreiben die 2023 untersuchten Systeme, die Mistral-Faktoren eine 7-Milliarden-Parameter-Konfiguration [5][6]. Drittens ist der Cache nur ein Kostenfaktor unter mehreren: Modellgewichte, Aktivierungsrechnung, Netzwerk und die Logik des Agenten obendrauf gehen in die gleiche Rechnung ein."
+  },
+  {
+   "t": "p",
+   "x": "Und ein vierter Punkt gehört der Ehrlichkeit halber dazu: Kompression ist selten völlig verlustfrei. Ob Sparse Attention, Fenster oder 4-Bit-Cache in jeder Anwendung die gleiche Trefferquote liefern wie die unkomprimierte Variante, entscheidet erst die eigene Messung an der eigenen Aufgabe. Die Hersteller-Benchmarks der Karten sind Selbstauskünfte; unsere [Benchmark-Portraits](/benchmarks) ordnen die wichtigsten Verfahren ein."
+  },
+  {
+   "t": "p",
+   "x": "Trotzdem bleibt die Kernbotschaft robust, weil sie von mehreren unabhängigen Arbeiten gestützt wird: Wer lange Kontexte wirtschaftlich betreiben will, muss den KV-Cache als erste Größe im Blick haben, und die Werkzeuge dafür (teilen, komprimieren, fenstern, verwalten, ersetzen) sind keine Laborspielerei mehr, sondern in Produktionsmodellen angekommen."
+  },
+  {
+   "t": "callout",
+   "title": "Zum Weiterlesen im Glossar",
+   "x": "[KV-Cache](/glossar#kv-cache), [Attention](/glossar#attention-aufmerksamkeit), [Grouped-Query-Attention](/glossar#grouped-query-attention), [Sliding-Window-Attention](/glossar#sliding-window-attention), [PagedAttention](/glossar#pagedattention), [State-Space-Modell](/glossar#state-space-modell), [Quantisierung](/glossar#quantisierung), [Speicherbandbreite-Grenze](/glossar#speicherbandbreite-grenze), [Kontextfenster](/glossar#kontextfenster), [Speculative Decoding](/glossar#speculative-decoding)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was genau ist der KV-Cache?",
+   "a": "Die gespeicherten Schlüssel- und Wertvektoren aller bisherigen Kontext-Token, pro Schicht und Attention-Kopf. Er erspart dem Modell, den ganzen Kontext bei jedem neuen Token neu zu rechnen, muss aber bei jedem Decode-Schritt gelesen werden und wächst linear mit der Kontextlänge."
+  },
+  {
+   "q": "Sind die 890 Byte pro Token von DeepSeek V4.1-Flash bewiesen?",
+   "a": "Es ist eine Herstellerangabe aus der offiziellen Modellkarte, dort mit den Faktoren etwa 1/4 gegenüber V4-Flash und etwa 1/437 gegenüber V1. Eine unabhängige Replikation liegt uns nicht bekannt; unsere Rückrechnungen daraus sind als eigene Rechnung gekennzeichnet."
+  },
+  {
+   "q": "Warum macht langer Kontext die Inferenz teurer?",
+   "a": "Weil bei jedem erzeugten Token der gesamte Cache gelesen wird. Die Speicherbandbreite, nicht die Rechenleistung, ist dabei laut GQA-Paper der Engpass des Dekodierens; doppelter Kontext heißt doppelte gelesene Daten pro Schritt."
+  },
+  {
+   "q": "Ist Mamba dann die Lösung, weil es gar keinen KV-Cache braucht?",
+   "a": "Nur teilweise. Zustandsmodelle wie Mamba skalieren linear und erreichen laut Paper fünffachen Durchsatz, müssen aber alles Relevante in einen Zustand fester Größe packen. Erfolgreiche Praxismodelle kombinieren deshalb meist Transformer-Attention mit Sparsamkeit, Fenstern und Kompression statt sie zu ersetzen."
+  },
+  {
+   "q": "Was kann ich als Anwenderin konkret mitnehmen?",
+   "a": "Bei der API-Nutzung: Preise und Kontextversprechen immer zusammen mit Cache- und Quantisierungsangaben lesen. Beim Eigenbetrieb: zuerst die Speicherverwaltung des Serving-Stacks prüfen (vLLM zeigte 60 bis 80 Prozent Buchhaltungsabfall in Altsystemen), erst dann über teurere Hardware nachdenken."
+  }
+ ],
+ "sources": [
+  {
+   "title": "DeepSeek-V4.1-Flash: Pushing the Limits of KV Cache Compression (Modellkarte)",
+   "publisher": "DeepSeek / Hugging Face",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+   "accessed": "2026-10-21"
+  },
+  {
+   "title": "DeepSeek-V4-Pro (Modellkarte der V4-Serie)",
+   "publisher": "DeepSeek / Hugging Face",
+   "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4-Pro",
+   "accessed": "2026-10-21"
+  },
+  {
+   "title": "DeepSeek-V2: A Strong, Economical, and Efficient Mixture-of-Experts Language Model",
+   "publisher": "arXiv:2405.04434",
+   "url": "https://arxiv.org/abs/2405.04434",
+   "accessed": "2026-10-21"
+  },
+  {
+   "title": "GQA: Training Generalized Multi-Query Transformer Models from Multi-Head Checkpoints (Ainslie et al.)",
+   "publisher": "arXiv:2305.13245",
+   "url": "https://arxiv.org/abs/2305.13245",
+   "accessed": "2026-10-21"
+  },
+  {
+   "title": "Mistral 7B (Jiang et al.)",
+   "publisher": "arXiv:2310.06825",
+   "url": "https://arxiv.org/abs/2310.06825",
+   "accessed": "2026-10-21"
+  },
+  {
+   "title": "Efficient Memory Management for Large Language Model Serving with PagedAttention (Kwon et al.)",
+   "publisher": "arXiv:2309.06180",
+   "url": "https://arxiv.org/abs/2309.06180",
+   "accessed": "2026-10-21"
+  },
+  {
+   "title": "Mamba: Linear-Time Sequence Modeling with Selective State Spaces (Gu & Dao)",
+   "publisher": "arXiv:2312.00752",
+   "url": "https://arxiv.org/abs/2312.00752",
+   "accessed": "2026-10-21"
+  }
+ ],
+ "method": "Grundlage sind die Modellkarten von DeepSeek-V4.1-Flash und DeepSeek-V4-Pro sowie fünf Originalpapiere (DeepSeek-V2/MLA, GQA, Mistral 7B, vLLM/PagedAttention, Mamba), alle am 21. Oktober 2026 abgerufen. Eigene Rechnungen: (1) V1-Cache = 890 Byte x 437 = 388.930 Byte; (2) V4-Flash-Cache = 890 Byte x 4 = 3.560 Byte; (3) Cache pro Konversation = Bytes pro Token x 1.000.000, also 388,93 GB / 3,56 GB / 0,89 GB; (4) Konversationen pro GPU = 80 GB / Cache pro Konversation, also rund 0,2 / 22 / 90. Die Faktoren 4 und 437 sind in der Karte mit etwa angegeben; die Rückrechnungen sind deshalb Größenordnungen. Hero-Grafik und Diagramme wurden redaktionell aus diesen Zahlen erzeugt.",
+ "limitations": "Alle Effizienzangaben sind Hersteller- oder Paperwerte ohne unabhängige Replikation durch uns. Die vLLM-Prozente beziehen sich auf 2023 untersuchte Systeme, die Mistral-Faktoren auf ein 7B-Modell; beides ist nicht ohne Weiteres auf aktuelle Modelle übertragbar. Der KV-Cache ist nur ein Teil der Inferenzkosten; Modellgewichte, Aktivierungen, Netzwerk und Agenten-Logik sind nicht Gegenstand dieser Analyse. Wir haben keine eigenen Messungen an den Modellen vorgenommen.",
+ "related": [
+  "tokens-und-kosten",
+  "llm-quantisierung-verfahren-grundlagen",
+  "inferenz-und-kosten-verstehen"
+ ]
+}

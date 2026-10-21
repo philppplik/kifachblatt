@@ -1,5 +1,53 @@
 [
   {
+    "title": "Mittwoch: Chinas Überbestellungen bei Nvidia, Börsenzweifel an Netflix-Wachstum",
+    "url": "https://www.heise.de/news/Mittwoch-Chinas-Ueberbestellungen-bei-Nvidia-Boersenzweifel-an-Netflix-Wachstum-11494952.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792556100.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Milliarden-Order für KI-Inferenz + Netflix-Ausblick mit Vorsicht + Microsoft-Tools für Cloud-Souveränität + Podcast zu Cyberrisiken in Kliniken + Bit-Rauschen",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-21T06:10:50.219206+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "USA verbannen DeepSeek aus allen zivilen Bundesbehörden",
+    "url": "https://www.heise.de/news/USA-verbannen-DeepSeek-aus-allen-zivilen-Bundesbehoerden-11494370.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792505220.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das US-Heimatschutzministerium verbietet zivilen Bundesbehörden alle DeepSeek-Produkte. Die weit gefasste Anordnung wirft Fragen zur praktischen Umsetzung auf.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-21T06:10:50.219880+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Wohltäter-Battle: Anthropic gründet Fund, Musk verschenkt Aktien an Kinder",
+    "url": "https://www.heise.de/news/KI-Wohltaeter-Battle-Anthropic-gruendet-Fund-Musk-verschenkt-Aktien-an-Kinder-11493199.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792501680.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic gründet eine Gemeinwohl-„Fund“. Elon Musk kann das nicht auf sich sitzen lassen und kündigt an, SpaceX-Aktien an Kinder verschenken zu wollen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-21T06:10:50.220234+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "MIT-Forscherin warnt: KI könnte bei Menschen falsche Erinnerungen erzeugen",
+    "url": "https://www.heise.de/news/MIT-Forscherin-warnt-KI-koennte-bei-Menschen-falsche-Erinnerungen-erzeugen-11493982.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792494120.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Ein Experiment zeigt, wie KI Erinnerungen beeinflusst. Professorin Pattie Maes hält das für gefährlich für Gerichtsverfahren und die Geschichtsschreibung.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-21T06:10:50.220656+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Cloud und KI: Amazon will 2027 16 Milliarden Euro in Deutschland investieren",
     "url": "https://www.heise.de/news/Cloud-und-KI-Amazon-will-2027-16-Milliarden-Euro-in-Deutschland-investieren-11493822.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792489980.0,

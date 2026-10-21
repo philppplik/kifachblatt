@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KV-Cache: Der stille Kostentreiber hinter langen KI-Kontexten](https://kifachblatt.de/kv-cache-kompression-deepseek-analyse): Eine Million Token Kontext klingt gratis, ist es aber nicht: Der KV-Cache frisst Speicher und Geld. Wie DeepSeek, Mistral und vLLM ihn drücken, mit Zahlen.
 - [Inferenz und Kosten verstehen: Tokens, KV-Cache, Quantisierung](https://kifachblatt.de/inferenz-und-kosten-verstehen): Was beim Antworten passiert, warum der KV-Cache so viel Speicher frisst und woraus sich ein API-Preis ergibt, mit eigenen Rechnungen zu Llama 3.
 - [Wie ein Sprachmodell lernt: von Pretraining bis RLVR](https://kifachblatt.de/wie-ein-sprachmodell-lernt): Pretraining, SFT, RLHF, DPO und RLVR einfach erklärt: Was jede Stufe leistet, warum Modelle so verschieden wirken und was die Begriffe in Modellkarten bedeuten.
 - [Agenten-Fundamente: Loop, Werkzeuge, Gedächtnis, Planung, MCP](https://kifachblatt.de/agenten-fundamente): Ein KI-Agent ist ein Modell in einer Schleife. Fünf Bausteine machen den Helfer daraus: Loop, Werkzeuge, Gedächtnis, Planung und MCP.
