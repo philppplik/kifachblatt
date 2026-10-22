@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Test-Time-Compute: Die zweite Skalierungsachse der KI](https://kifachblatt.de/test-time-compute-reasoning-modelle-analyse): Erst Chain-of-Thought, dann Verstärkungslernen, jetzt Budget Forcing: Warum Modelle mit mehr Denkzeit besser werden - und was die Forschung dazu belegt.
+- [Mercury 3: Diffusion-Sprachmodelle im Härtetest](https://kifachblatt.de/mercury-3-diffusion-sprachmodelle-analyse): 1.068 Token pro Sekunde, acht von zwölf Benchmarks gewonnen: Inception behauptet die Flucht nach vorn. Was die Technik kann, was die Tabelle wirklich zeigt.
 - [Hersteller-Benchmarks: Wie aus 25 Prozent 10 Prozent werden](https://kifachblatt.de/hersteller-benchmarks-vergleichbarkeit-analyse): OpenAI meldete für o3 über 25 Prozent auf FrontierMath, die unabhängige Nachmessung ergab rund 10. Dahinter stehen Compute, Scaffolds und Teilmengen.
 - [KV-Cache: Der stille Kostentreiber hinter langen KI-Kontexten](https://kifachblatt.de/kv-cache-kompression-deepseek-analyse): Eine Million Token Kontext klingt gratis, ist es aber nicht: Der KV-Cache frisst Speicher und Geld. Wie DeepSeek, Mistral und vLLM ihn drücken, mit Zahlen.
 - [Inferenz und Kosten verstehen: Tokens, KV-Cache, Quantisierung](https://kifachblatt.de/inferenz-und-kosten-verstehen): Was beim Antworten passiert, warum der KV-Cache so viel Speicher frisst und woraus sich ein API-Preis ergibt, mit eigenen Rechnungen zu Llama 3.
