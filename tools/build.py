@@ -581,6 +581,8 @@ if __name__ == '__main__':
     main()
     from portraits import render
     render('kfb', '.')
+    from modell_atlas import render as render_modell_atlas
+    render_modell_atlas('.')
     import footer; footer.main('.')
     from news_pages import build as build_news_pages
     build_news_pages()
