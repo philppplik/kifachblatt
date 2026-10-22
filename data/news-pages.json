@@ -1,5 +1,41 @@
 [
   {
+    "title": "HyperArmor: Broadcoms Antwort auf KI-Angriffe auf VMware ESX",
+    "url": "https://www.heise.de/news/VMware-HyperArmor-schuetzt-ESX-Hypervisor-vor-KI-Angriffen-11496495.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792656720.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Broadcom präsentierte den neuen Schutz HyperArmor für ESX-Hypervisor, der KI-beschleunigte Angriffe abwehren soll. Ein vSphere-8-Nachfolger blieb jedoch aus.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-22T10:19:22.168360+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Tado: KI soll offene Fenster besser erkennen – Heizpause weiter nur im Abo",
+    "url": "https://www.heise.de/news/Tado-KI-soll-offene-Fenster-besser-erkennen-Heizpause-weiter-nur-im-Abo-11495557.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792656000.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Tado will per Update mit KI die Fenster-Offen-Erkennung seiner X-Thermostate verbessern. Hebt das den Nachteil fehlender Kontaktsensoren auf?",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-22T10:19:22.168413+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Update kompakt: KI-Deepfake-Gesetz, Arbeitsberichte, Erinnerungen, Wohltäter",
+    "url": "https://www.heise.de/news/KI-Update-kompakt-KI-Deepfake-Gesetz-Arbeitsberichte-Erinnerungen-Wohltaeter-11495545.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792587600.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-22T10:19:22.168833+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Mittwoch: Chinas Überbestellungen bei Nvidia, Börsenzweifel an Netflix-Wachstum",
     "url": "https://www.heise.de/news/Mittwoch-Chinas-Ueberbestellungen-bei-Nvidia-Boersenzweifel-an-Netflix-Wachstum-11494952.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792556100.0,
