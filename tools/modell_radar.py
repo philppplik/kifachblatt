@@ -65,7 +65,7 @@ def build(root='.'):
 
     logo = logo_inline(str(root/'assets/logo.svg'))
     htm = render('KI Fachblatt', 'Modell-Radar', d['reviewed'], '#7040cd', '#3d2380', '#f5f1fc', '#dcd0f3', logo,
-                 'Modell-Radar', 'Prototyp · Preise und Datenschutz der Modelle im Vergleich', [p1, p2, p3], last)
+                 'Modell-Radar', 'Prototyp · Preise und Datenschutz der Modelle im Vergleich', [p1, p2], p3 + last)
     out_html = root/'berichte/prototyp-modell-radar.html'
     out_html.parent.mkdir(parents=True, exist_ok=True)
     out_html.write_text(htm, encoding='utf-8')
