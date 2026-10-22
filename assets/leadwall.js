@@ -20,7 +20,7 @@
     b.disabled=true;
     fetch(API+'/api/'+(f.getAttribute('data-ep')||'subscribe'),{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:em,consent:true,website:f.website.value})})
       .then(function(r){return r.json()}).then(function(j){b.disabled=false;
-        if(j.ok){var ep=f.getAttribute('data-ep');show(ep==='tksub'||ep==='atlassub'?'Fast geschafft: Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen), dann kannst du den Download starten.':'Fast geschafft: Wir haben dir eine Bestätigungsmail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen).');}
+        if(j.ok){var ep=f.getAttribute('data-ep');show(ep==='tksub'||ep==='atlassub'?'Fast geschafft: Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen), dann kannst du '+(ep==='atlassub'?'das Datenpaket':'das Toolkit')+' herunterladen.':'Fast geschafft: Wir haben dir eine Bestätigungsmail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen).');}
         else show('Das hat nicht geklappt. Bitte prüfe die Eingaben.',1)})
       .catch(function(){b.disabled=false;show('Verbindungsfehler. Bitte versuche es später erneut.',1)});
   });
