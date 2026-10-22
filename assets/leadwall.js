@@ -20,7 +20,7 @@
     b.disabled=true;
     fetch(API+'/api/'+(f.getAttribute('data-ep')||'subscribe'),{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({email:em,consent:true,website:f.website.value})})
       .then(function(r){return r.json()}).then(function(j){b.disabled=false;
-        if(j.ok)show(f.getAttribute('data-ep')==='tksub'?'Fast geschafft: Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen), dann kannst du das Toolkit herunterladen.':'Fast geschafft: Wir haben dir eine Bestätigungsmail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen).');
+        if(j.ok){var ep=f.getAttribute('data-ep');show(ep==='tksub'||ep==='atlassub'?'Fast geschafft: Wir haben dir eine E-Mail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen), dann kannst du den Download starten.':'Fast geschafft: Wir haben dir eine Bestätigungsmail geschickt. Bitte klicke auf den Link darin (auch im Spam-Ordner nachsehen).');}
         else show('Das hat nicht geklappt. Bitte prüfe die Eingaben.',1)})
       .catch(function(){b.disabled=false;show('Verbindungsfehler. Bitte versuche es später erneut.',1)});
   });
@@ -32,6 +32,13 @@
     if(th&&API){var tk=decodeURIComponent(th[1]);history.replaceState(null,'',location.pathname);tok.hidden=false;document.getElementById('lw-dl').href=API+'/api/tkdl?k='+encodeURIComponent(tk);
       document.getElementById('lw-keep').addEventListener('click',function(){set(tk);location.href=API+'/api/tkdl?k='+encodeURIComponent(tk)});
     }else tbad.hidden=false;
+  }
+  // 2d) Atlas data package confirmation page
+  if(path==='/atlas-daten-bestaetigt'){
+    var ah=/[#&]k=([^&]+)/.exec(location.hash),aok=document.getElementById('lw-ok'),abad=document.getElementById('lw-bad');
+    if(ah&&API){var ak=decodeURIComponent(ah[1]);history.replaceState(null,'',location.pathname);aok.hidden=false;document.getElementById('lw-dl').href=API+'/api/atlasdl?k='+encodeURIComponent(ak);
+      document.getElementById('lw-keep').addEventListener('click',function(){set(ak);location.href=API+'/api/atlasdl?k='+encodeURIComponent(ak)});
+    }else abad.hidden=false;
   }
   // 3) Confirmation page: token comes in the URL fragment; only an active click stores it (Option B).
   if(path==='/tagesbericht-bestaetigt'){

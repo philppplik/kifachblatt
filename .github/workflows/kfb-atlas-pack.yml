@@ -1,0 +1,30 @@
+name: KIFB Atlas-Datenpaket
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [main]
+    paths:
+      - 'content/modell-atlas.json'
+      - 'tools/modell_atlas_pack.py'
+      - 'tools/gate_atlas.py'
+      - 'tools/modell_radar.py'
+      - 'tools/report_core.py'
+
+permissions:
+  contents: read
+
+jobs:
+  pack:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build package (PDF via preinstalled Chrome)
+        run: |
+          google-chrome --version
+          python3 tools/modell_atlas_pack.py
+      - name: Upload to private Blob via lead-wall backend
+        env:
+          LW_SECRET: ${{ secrets.LW_SECRET }}
+        run: python3 tools/gate_atlas.py

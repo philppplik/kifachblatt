@@ -200,6 +200,7 @@ def render(out='.'):
              '<p id="macount" class="ma-count" role="status">%d Modelle</p>'
              '<div class="ma-tablewrap"><table class="ma-table"><thead><tr><th scope="col">Modell</th><th scope="col">Zugang</th><th scope="col" class="num">Kontext (Token)</th><th scope="col" class="num">Preis Ein-/Ausgabe</th><th scope="col">Benchmark-Belege</th><th scope="col">Datenschutz</th></tr></thead><tbody>%s</tbody></table></div>'
              '<p id="maempty" class="ma-empty" hidden>Keine passenden Modelle. Versuche einen anderen Begriff.</p>'
+             '<p class="ma-note"><b>Als Datenpaket mitnehmen:</b> Die komplette Auswertung als PDF, dazu alle Werte als CSV und JSON - <a href="/atlas-daten-anmelden">Modell-Atlas-Datenpaket gratis per E-Mail-Bestätigung laden</a>. Kein Kauf, kein Preis.</p>'
              '<p class="ma-stand">Ausführliche Porträts der Modelle stehen im <a href="/ki-modelle">KI-Verzeichnis</a>. Methodik und Pflegeprozess: jede Zahl trägt Quelle und Prüfdatum; Details auf den Modellseiten.</p>'
              '<script src="/assets/modell-atlas.js" defer></script>') % (
         intro, n_models, n_priced, n_weights, n_priv,
