@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """Generate the EU-KI-Toolkit pages (Gratis-Download hinter Lead-Wall) from korrekturen.html as shell.
-Run: python3 tools/toolkit.py. Pages are noindex and not in the sitemap until Philipp gives the go."""
+Run: python3 tools/toolkit.py. Landing page /toolkit is index,follow and in the sitemap since Philipp's go (22.10.2026); the confirmation page /toolkit-bestaetigt stays noindex."""
 import re, pathlib, importlib.util
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 T = (ROOT/'korrekturen.html').read_text()
@@ -69,7 +69,8 @@ for slug,(title,desc,body) in PAGES.items():
     t = re.sub(r'(<meta property="og:title" content=")[^"]*', lambda m:m.group(1)+title, t, 1)
     t = re.sub(r'(<meta property="og:description" content=")[^"]*', lambda m:m.group(1)+desc, t, 1)
     t = re.sub(r'(<meta property="og:url" content=")[^"]*', lambda m:m.group(1)+'https://kifachblatt.de/'+slug, t, 1)
-    t = t.replace('</head>', LWCSS+TKCSS+'<meta name="robots" content="noindex,nofollow"></head>', 1)
+    robots = 'index,follow,max-image-preview:large,max-snippet:-1' if slug == 'toolkit' else 'noindex,nofollow'
+    t = t.replace('</head>', LWCSS+TKCSS+'<meta name="robots" content="'+robots+'"></head>', 1)
     t = t.replace('</body>', '<script src="/assets/leadwall.js" defer></script></body>', 1)
     (ROOT/(slug+'.html')).write_text(t)
 print('ok', list(PAGES))
