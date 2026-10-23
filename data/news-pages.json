@@ -1,5 +1,53 @@
 [
   {
+    "title": "W3C: Ein Auftrag ist kein Freibrief für KI-Agenten",
+    "url": "https://www.heise.de/news/W3C-Ein-Auftrag-ist-kein-Freibrief-fuer-KI-Agenten-11497919.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792746420.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Wie bleiben Nutzer in Kontrolle, wenn KI-Agenten Websites bedienen? Das W3C-Strategieteam skizziert Anforderungen an sichere Webstandards.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T10:13:46.817754+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "software-architektur.tv: Spielt Struktur noch eine Rolle, wenn KI codet?",
+    "url": "https://www.heise.de/news/software-architektur-tv-Braucht-KI-generierter-Code-noch-saubere-Struktur-11497732.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792739880.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "In dieser Folge gehen Alexander von Zitzewitz und Ralf D. Müller der Frage nach, wie relevant eine saubere Software-Architektur im Zeitalter der KI ist.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T10:13:46.817897+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "AWS Continuum: KI findet und behebt Code-Schwachstellen",
+    "url": "https://www.heise.de/news/AWS-Continuum-KI-findet-und-behebt-Code-Schwachstellen-11497692.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792737480.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Amazon Web Services macht die KI-gestützte Erkennung und Behebung von Code-Schwachstellen in AWS Continuum allgemein verfügbar.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T10:13:46.817965+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "JFrog führt BYOK-Unterstützung für KI-Sicherheitsscans ein",
+    "url": "https://www.heise.de/news/JFrog-AI-Security-Mehr-Kontrolle-ueber-Schatten-KI-auf-Entwicklerrechnern-11496904.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792737120.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "JFrog erweitert die Erkennung von Schatten-KI in seiner KI-Sicherheitssuite AI Security. Ebenfalls neu ist BYOK für AI Asset Scanning.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T10:13:46.817989+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Studie: KI-Videos untergraben Vertrauen in Bewegtbild massiv",
     "url": "https://www.heise.de/news/Studie-KI-Videos-untergraben-Vertrauen-in-Bewegtbild-massiv-11497558.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792695240.0,
