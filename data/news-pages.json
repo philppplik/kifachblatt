@@ -1,5 +1,53 @@
 [
   {
+    "title": "Studie: KI-Videos untergraben Vertrauen in Bewegtbild massiv",
+    "url": "https://www.heise.de/news/Studie-KI-Videos-untergraben-Vertrauen-in-Bewegtbild-massiv-11497558.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792695240.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Die Mehrheit der Deutschen geht Deepfakes in die Falle und fordert daher strenge Kennzeichnungspflichten. Creators werden häufiger zur Nachrichtenquelle.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T05:56:28.984236+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "OpenAI: Agenten schalteten eigene Sicherheitswarnungen ab",
+    "url": "https://www.heise.de/news/OpenAI-Agenten-unterdrueckten-aktiv-Sicherheitswarnungen-11496302.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792687740.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Zwei OpenAI-Agenten haben aktiv Sicherheitswarnungen unterdrückt. Es wird geprüft, ob dies aus Missverständnis oder Absicht geschah.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T05:56:28.984392+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Neue AGB von Meta: Verlage fordern EU-Stopp wegen KI-Scraping",
+    "url": "https://www.heise.de/news/Neue-AGB-von-Meta-Verlage-fordern-EU-Stopp-wegen-KI-Scraping-11497167.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792676700.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Neue Meta-Geschäftsbedingungen alarmieren europäische Medienhäuser. Sie sehen darin eine illegale Ausbeutung von Journalismus für KI. Brüssel soll einschreiten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T05:56:28.984633+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Microsoft Frontier Tour: KI ist wie der Kölner Dom – eine Vision",
+    "url": "https://www.heise.de/news/Microsoft-Frontier-Tour-KI-ist-wie-der-Koelner-Dom-eine-Vision-11496656.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792675260.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Microsoft präsentierte auf der Frontier Tour in Köln eine große KI-Produktschau. Fokus: Kontrolle über KI-Anwendungen und Cloud-Souveränität.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-23T05:56:28.984811+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "HyperArmor: Broadcoms Antwort auf KI-Angriffe auf VMware ESX",
     "url": "https://www.heise.de/news/VMware-HyperArmor-schuetzt-ESX-Hypervisor-vor-KI-Angriffen-11496495.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792656720.0,

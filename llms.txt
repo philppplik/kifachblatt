@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [PHP2Shell: KI findet jahrzehntealte Kernfehler in PHP](https://kifachblatt.de/php2shell-analyse): Zwei kritische Speicherfehler im PHP-Kern betreffen fast jede Version seit 5.4. Entdeckt und ausnutzbar gemacht wurden sie mit Frontier-Modellen.
+- [Mistral Large 4: Eine Billion Parameter aus Europa](https://kifachblatt.de/mistral-large-4-analyse): Mistrals größtes Modell: 1,05 Billionen Parameter, 52 Milliarden aktiv, Million-Token-Kontext. Gewichte folgen Ende Oktober. Was belegt ist, was nicht.
 - [Test-Time-Compute: Die zweite Skalierungsachse der KI](https://kifachblatt.de/test-time-compute-reasoning-modelle-analyse): Erst Chain-of-Thought, dann Verstärkungslernen, jetzt Budget Forcing: Warum Modelle mit mehr Denkzeit besser werden - und was die Forschung dazu belegt.
 - [Mercury 3: Diffusion-Sprachmodelle im Härtetest](https://kifachblatt.de/mercury-3-diffusion-sprachmodelle-analyse): 1.068 Token pro Sekunde, acht von zwölf Benchmarks gewonnen: Inception behauptet die Flucht nach vorn. Was die Technik kann, was die Tabelle wirklich zeigt.
 - [Hersteller-Benchmarks: Wie aus 25 Prozent 10 Prozent werden](https://kifachblatt.de/hersteller-benchmarks-vergleichbarkeit-analyse): OpenAI meldete für o3 über 25 Prozent auf FrontierMath, die unabhängige Nachmessung ergab rund 10. Dahinter stehen Compute, Scaffolds und Teilmengen.

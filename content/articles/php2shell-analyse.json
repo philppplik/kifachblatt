@@ -1,0 +1,303 @@
+{
+  "slug": "php2shell-analyse",
+  "title": "PHP2Shell: KI findet jahrzehntealte Kernfehler in PHP",
+  "dek": "Zwei kritische Speicherfehler im PHP-Kern betreffen fast jede Version seit 5.4. Entdeckt und ausnutzbar gemacht wurden sie mit Frontier-Modellen.",
+  "section": "verlaesslichkeit",
+  "type": "analysis",
+  "published": "2026-10-23T07:56:00+02:00",
+  "modified": "2026-10-23T07:56:00+02:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "PHP2Shell",
+    "PHP",
+    "Remote Code Execution",
+    "Cybersicherheit",
+    "KI-Sicherheitsforschung"
+  ],
+  "key_takeaways": [
+    "CVE-2026-109618 und CVE-2026-109619 sind kritische Speicherfehler im PHP-Kern (jeweils CVSS 9.2): Sie erlauben unauthentifizierte Codeausführung und das Auslesen von Prozessspeicher, betroffen ist praktisch jede PHP-Version seit 5.4 [1][2].",
+    "Die fehlerhaften Codepfade existieren seit über einem Jahrzehnt. Erst Frontier-Modelle machten die extrem komplexe Exploit-Kette praktisch entwickelbar: ein Researcher in einer Woche statt eines Spitzenteams in Monaten [1].",
+    "Ausnutzungsversuche laufen bereits seit dem 17. Oktober 2026, vier Tage vor der Veröffentlichung; Amazon Threat Intelligence spricht inzwischen von breiter Ausnutzung in freier Wildbahn [2].",
+    "Gefixt sind PHP 8.5.12, 8.4.27, 8.3.36 und 8.2.35. Für PHP 7.4 bis 8.1 gibt es minimale Source-Backports, für PHP 5.4 bis 7.3 kommt kein Fix mehr [2]."
+  ],
+  "hero": {
+    "alt": "Zeitstrahl-Grafik: Von der Entdeckung am 19. August 2026 bis zum Patch am 21. Oktober vergehen 63 Tage; die erste beobachtete Ausnutzung fällt auf Tag 59, vier Tage vor der Veröffentlichung.",
+    "caption": "Von der KI-gestützten Entdeckung bis zur aktiven Ausnutzung: die PHP2Shell-Chronologie in Tagen seit dem ersten Fund. Eigene Grafik, Quellen [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Am 21. Oktober 2026 hat das PHP-Sicherheitsteam Updates veröffentlicht, die mehrere Speicherfehler im Kern der Sprache beheben, zusammengefasst unter den Kennungen CVE-2026-109618 und CVE-2026-109619 und dem Namen PHP2Shell [1][2]. Die Bewertung könnte kaum höher ausfallen: beide CVEs tragen einen CVSSv4-Score von 9.2, und nach Angaben von Wiz Research ist jede PHP-Version der letzten Dekade bis zurück zu 5.4 von mindestens einem der Fehler betroffen [1]. PHP treibt nach W3Techs-Zählung 69,3 Prozent aller Websites an, deren serverseitige Sprache bekannt ist, darunter WordPress, Drupal, Joomla, Laravel und Magento [2]."
+    },
+    {
+      "t": "p",
+      "x": "Zwei Dinge machen diesen Fall zu einem Wendepunkt. Erstens liegen die Fehler unterhalb der Anwendungsebene: Verwundbar ist PHP selbst, nicht ein bestimmtes Content-Management-System. Selbst eine triviale „Hello World“-Anwendung auf einer betroffenen Version ist angreifbar [1][3]. Zweitens wurden die Lücken mit Hilfe von Frontier-Sprachmodellen gefunden und zur vollen Codeausführung entwickelt, eine Arbeit, die nach Einschätzung der Beteiligten an der Grenze dessen lag, was menschliche Researcher praktisch leisten können [1]. Diese Analyse ordnet Technik, Chronologie und Ausnutzungslage ein und prüft, was an den großen Behauptungen belastbar ist."
+    },
+    {
+      "t": "h2",
+      "x": "Vier Bugs, zwei CVEs, ein Muster"
+    },
+    {
+      "t": "p",
+      "x": "Alle veröffentlichten Schwachstellen sind Speichersicherheitsfehler, die aus derselben Architekturentscheidung erwachsen: PHPs Behandlung fataler Fehler während der Request-Verarbeitung, insbesondere bei Speicherknappheit (Out-of-Memory, OOM). Bricht ein Request unerwartet ab, kann korrumpierter interner Zustand zurückbleiben. Ein späterer Request, denselben Worker-Prozess treffend, verwendet diesen veralteten Zustand weiter, was zur Offenlegung oder Korruption von Speicher führt [1]. Wiz hat vier konkrete Bugs an das PHP-Team gemeldet, die unter zwei CVEs gruppiert wurden; nach Einschätzung der Researcher existieren weitere getrackte und vermutlich ungetrackte Varianten desselben Musters, die der Patch an der Wurzel beseitigt [1]."
+    },
+    {
+      "t": "table",
+      "caption": "Die vier von Wiz gemeldeten Bugs und ihre demonstrierte Wirkung [1].",
+      "head": [
+        "Bug",
+        "CVE",
+        "Was ein Angreifer erreicht",
+        "Demonstriert"
+      ],
+      "rows": [
+        [
+          "Upload-Progress-Unserializer-UAF",
+          "CVE-2026-109618",
+          "Prozessspeicher korrumpieren und Code ausführen",
+          "Pre-Auth-RCE auf WordPress, Drupal und Joomla"
+        ],
+        [
+          "Remote-Prozessspeicher-Offenlegung",
+          "CVE-2026-109618",
+          "Speicher fremder Requests auslesen (Passwörter, Tokens, API-Schlüssel)",
+          "Applikationsunabhängige Memory Disclosure"
+        ],
+        [
+          "Fatal-Error-Backtrace-UAF",
+          "CVE-2026-109619",
+          "Prozessspeicher korrumpieren und Code ausführen",
+          "Pre-Auth-RCE auf Drupal"
+        ],
+        [
+          "OPcache-Type-Confusion",
+          "CVE-2026-109619",
+          "Geteilten PHP-Zustand korrumpieren und Code ausführen",
+          "Pre-Auth-RCE auf WordPress"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Wie die Angriffe technisch funktionieren"
+    },
+    {
+      "t": "p",
+      "x": "Der gemeinsame Nenner ist die Wiederverwendung von Zustand über Request-Grenzen hinweg. PHP verarbeitet mehrere Requests nacheinander in denselben Worker-Prozessen; eigentlich wird der gesamte Request-Zustand am Ende sauber abgeräumt. Ein fataler Fehler im falschen Moment, etwa eine fehlgeschlagene Allokation während der frühen Initialisierung, durchbricht diese Aufräumgarantie [1]."
+    },
+    {
+      "t": "p",
+      "x": "Beim Upload-Progress-Bug dekodiert das Session-Modul Session-Daten schon während der Upload-Fortschrittsverarbeitung, in einem Fenster vor der normalen Modulinitialisierung. Der Decoder hält request-eigene Buchhaltung in einer globalen Struktur. Eine fehlgeschlagene Allokation zerstört den Request-Heap und lässt den globalen Unserializer-Zustand veröffentlicht zurück. Beim nächsten Request desselben Workers kann PHP vom Angreifer zurückgeforderten Speicher als lebendige Unserializer-Buchhaltung lesen, ein starkes Korruptionsprimitiv, das Wiz mit der Memory Disclosure kombinierte, um Adressunsicherheit zu beseitigen und unauthentifizierte Codeausführung auf WordPress, Drupal und Joomla zu erreichen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die Memory Disclosure funktioniert über RFC1867-Multipart-Requests: PHP verarbeitet diese vor Abschluss der Modulinitialisierung, und die Upload-Fortschrittsbehandlung kann dabei eine Session-ID in PS(id) publizieren. Bricht ein OOM-Fehler den Request ab, bevor die Bereinigung läuft, zeigt PS(id) auf freigegebenen Speicher. Ein späterer Multipart-Request desselben Workers erreicht den Aufräumpfad, bevor die Session-Initialisierung den Zeiger zurücksetzt; PHP vertraut dem veralteten Zeiger und URL-kodiert zurückgeforderte Heap-Inhalte in ein PHPSESSID-Antwort-Cookie. Der Angriff funktioniert selbst dann, wenn die Anwendung nie session_start() aufruft, und liefert Passwörter, Tokens und API-Schlüssel aus fremden Requests [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die beiden Bugs hinter CVE-2026-109619 folgen demselben Muster auf anderen Pfaden: Ein Backtrace des letzten fatalen Fehlers überlebt als executor-globaler Zeiger den Request-Heap, den er referenziert, und kann beim nächsten Request als kontrollierte Use-after-Free-Korruption ausgenutzt werden (demonstriert gegen Drupal). Bei der OPcache-Type-Confusion rückt ein Worker während der Persistierung kompilierter Strukturen eine prozesslokale Grenze vor, bevor die geteilte Grenze publiziert wird; eine Allokationsfehler zwischen beiden Schritten hinterlässt teilpersistierte Objekte, deren Slots ein anderer Worker später mit einem Objekt falschen Typs belegt (demonstriert gegen WordPress) [1]."
+    },
+    {
+      "t": "callout",
+      "title": "Zum Weiterlesen im Glossar",
+      "x": "[Red Teaming](/glossar#red-teaming), [Inferenz](/glossar#inferenz), [Prompt Injection](/glossar#prompt-injection), [Benchmark](/glossar#benchmark)"
+    },
+    {
+      "t": "h2",
+      "x": "Warum jetzt: Die Exploit-Ökonomie hat sich gedreht"
+    },
+    {
+      "t": "p",
+      "x": "Der verwundbare Code lag mehr als zehn Jahre offen da, ohne dass ihn jemand fand und ausnutzte. Der Grund ist nicht Nachlässigkeit allein: Die Verkettung mehrerer Bugs erfordert präzises Wissen darüber, wie PHP Speicher über Requests hinweg alloziert und wiederverwendet. Unterschiede zwischen PHP-Versionen, Konfigurationen und Anwendungsverhalten brechen Annahmen, von denen ein Exploit abhängt; eine Kette, die gegen ein Deployment funktioniert, muss für das nächste oft mühsam angepasst, getestet und gedebuggt werden. Vor KI war diese Handarbeit schwer umzusetzen und noch schwerer zu skalieren [1]."
+    },
+    {
+      "t": "p",
+      "x": "Wiz setzte durchgehend drei Werkzeuge ein: den eigenen Security-Agenten Wiz Atlas sowie die Frontier-Modelle Gemini 4 Argon und GPT-5.6 Sol. Google zufolge trug Gemini 4 Argon maßgeblich zu Entdeckung, Exploit-Entwicklung, Angriffserkennung und Patch-Validierung bei [1]. Parallel fand das Unternehmen Calif einen der Fehler mit GPT-5.6 Sol, im Rahmen von OpenAIs Programm „Patch the Planet“; die PHP Foundation würdigte Calif, OpenAI und Wiz für die koordinierte Offenlegung [2][3]."
+    },
+    {
+      "t": "quote",
+      "x": "Mit Frontier-KI-Modellen und den richtigen Werkzeugen hat ein einzelner Researcher in einer Woche vollbracht, wofür früher ein Weltklasse-Team Monate gebraucht hätte.",
+      "cite": "Wiz Research, PHP2Shell-Bericht [1]"
+    },
+    {
+      "t": "p",
+      "x": "Der ökonomische Punkt ist zweischneidig. Dieselben Modelle, die Verteidigern erlauben, jahrzehntealte Fehler systematisch aufzuspüren, senken auch den Aufwand, alte, bislang als praktisch unausnutzbar geltende Fehler in funktionierende Angriffe zu übersetzen und auf neue Zielumgebungen anzupassen [1]. Wiz zieht den Vergleich zu Heartbleed und Log4Shell, Schwachstellen, deren eigentliche Gefahr erst Jahre nach ihrer Entstehung sichtbar wurde [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Der Zeitstrahl: 63 Tage von der Entdeckung zum Patch"
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "PHP2Shell-Chronologie in Tagen seit der Entdeckung (19. August 2026)",
+      "alt": "Säulendiagramm mit sechs Meilensteinen: RCE-Demonstration Drupal an Tag 1, RCE-Demonstration WordPress an Tag 2, Meldung an das PHP-Team an Tag 5, Bestätigung durch PHP an Tag 33, erste beobachtete Ausnutzung an Tag 59, Patch und Veröffentlichung an Tag 63.",
+      "caption": "Eigene Darstellung nach den Angaben von Wiz [1] und Tenable [2]. Tag 0 ist der 19. August 2026; die Ausnutzungsbeobachtung vom 17. Oktober (Tag 59) stammt von Amazon Threat Intelligence [2].",
+      "labels": [
+        "RCE-Demo Drupal",
+        "RCE-Demo WordPress",
+        "Meldung an PHP-Team",
+        "PHP bestätigt",
+        "Erste Ausnutzung",
+        "Patch + Disclosure"
+      ],
+      "series": [
+        {
+          "name": "Tage seit Entdeckung",
+          "values": [
+            1,
+            2,
+            5,
+            33,
+            59,
+            63
+          ]
+        }
+      ],
+      "unit": "Tage"
+    },
+    {
+      "t": "callout",
+      "title": "Eigene Rechnung: Wie knapp das Rennen war",
+      "x": "Vom ersten Fund (19. August) bis zur RCE-Demonstration gegen Drupal verging 1 Tag, bis WordPress fiel 2 Tage, bis zur Meldung an das PHP-Team 5 Tage [1]. PHP bestätigte die Reports nach 28 Tagen (21. September), der Patch erschien weitere 30 Tage später (21. Oktober), insgesamt 63 Tage nach der Entdeckung [1][2]. Die erste beobachtete Ausnutzung fiel auf Tag 59, nur 4 Tage vor der Veröffentlichung. Alle Differenzen sind eigene Kalenderrechnungen auf Basis der genannten Daten."
+    },
+    {
+      "t": "p",
+      "x": "Der ursprüngliche Release-Plan sah den 22. Oktober vor; nachdem die CVE-Kennungen am 20. Oktober auf Hacker News und in sozialen Medien durchgesickert waren, zog das PHP-Team die Veröffentlichung um einen Tag vor und kündigte an, bei konkreten Ausnutzungsbelegen noch früher zu liefern. CERT-EU veröffentlichte zeitgleich das Advisory 2026-018 [2]. Die vorschnell kursierenden CVE-Einträge trugen nach Angaben der PHP Foundation einen falschen CVSS-Score von 10.0; die offizielle Bewertung liegt bei 9.2 [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Verbreitung und aktive Ausnutzung"
+    },
+    {
+      "t": "p",
+      "x": "Zur Größenordnung der Angriffsfläche: Sicherheitsforscher Silas Cutler schätzt grob über 1,3 Millionen potenziell verwundbare, dem Internet ausgesetzte Hosts; eine Shodan-Auswertung von Henk Poley zählt über 1,9 Millionen exponierte PHP-Hosts [2]. PHP nennt als gefährdete Server-APIs PHP-FPM, Apache mit mod_php, php-cgi, FrankenPHP und LiteSpeed; das höchste Risiko sieht das Team bei mod_php, wo ein demonstrierter Exploit durch einen unauthentifizierten Request ausgelöst werden kann, bevor überhaupt Anwendungscode läuft [2]."
+    },
+    {
+      "t": "p",
+      "x": "Zur Ausnutzungslage liegen mittlerweile mehrere unabhängige Beobachtungen vor: Amazon Threat Intelligence registrierte am 17. Oktober einen Ausnutzungsversuch gegen sein MadPot-Honeypot-Netz, vier Tage vor der Veröffentlichung, mit ungeklärter Herkunft der Exploit-Information. Weitere Versuche folgten am 21. Oktober mit Payloads und Infrastruktur, die auf mehrere Akteure hindeuten; Amazon spricht inzwischen von breiter Ausnutzung in freier Wildbahn und empfiehlt, Untersuchungen mindestens ab dem 17. Oktober anzusetzen [2]. Cloudflare-CTO Dane Knecht meldete am 21. Oktober „early attacks“, watchTowr hat beide Lücken reproduziert und beobachtet ebenfalls Ausnutzungsversuche [2]. Zur Einordnung: Die PHP Foundation prüfte nach dem Leak kursierende PoCs und identifizierte zum Zeitpunkt der Veröffentlichung keinen funktionierenden öffentlichen Exploit; CISA hatte bei seinem Alert vom 21. Oktober noch keine Ausnutzung beobachtet [2]."
+    },
+    {
+      "t": "p",
+      "x": "CISA fordert in seinem Alert vom 21. Oktober zum sofortigen Patchen auf; Organisationen, die nicht aktualisieren können oder noch PHP 8.1 und älter einsetzen, sollen PHP-basierte Systeme offline nehmen, bis ein Update möglich ist. Eine Aufnahme in den Known-Exploited-Vulnerabilities-Katalog war Stand 22. Oktober noch nicht erfolgt [2]. Historisch ist das keine leere Drohkulisse: Der KEV-Katalog führt bereits drei PHP-Schwachstellen, darunter CVE-2024-4577 und CVE-2019-11043, die beide nachweislich in Ransomware-Kampagnen genutzt wurden [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Patches, Backports und Notfallmaßnahmen"
+    },
+    {
+      "t": "table",
+      "caption": "Betroffene und gefixte PHP-Versionen [2].",
+      "head": [
+        "Betroffene Versionen",
+        "Status"
+      ],
+      "rows": [
+        [
+          "PHP 8.5.x vor 8.5.12",
+          "Gefixt in 8.5.12"
+        ],
+        [
+          "PHP 8.4.x vor 8.4.27",
+          "Gefixt in 8.4.27"
+        ],
+        [
+          "PHP 8.3.x vor 8.3.36",
+          "Gefixt in 8.3.36"
+        ],
+        [
+          "PHP 8.2.x vor 8.2.35",
+          "Gefixt in 8.2.35"
+        ],
+        [
+          "PHP 7.4 bis 8.1",
+          "Kein offizielles Release; minimale Source-Backports des PHP-Sicherheitsteams"
+        ],
+        [
+          "PHP 5.4 bis 7.3",
+          "End-of-life, kein Fix vom PHP-Projekt"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Das Update ist nach Angaben des PHP-Teams die einzige vollständige Behebung. Wer nicht sofort aktualisieren kann, findet im Advisory Konfigurationsänderungen, die einzelne Angriffspfade reduzieren, aber keine Installation sicher machen: Für CVE-2026-109618 memory_limit=-1 so setzen, dass Anwendungen es nicht überschreiben können; für CVE-2026-109619 session.upload_progress.enabled=0 und unter PHP 8.5 zusätzlich fatal_error_backtraces=0. Nach jeder Änderung sind alle PHP-Worker neu zu starten. Ein Container- oder cgroup-Speicherlimit kann als Verfügbarkeitsgrenze dienen, ist aber ebenfalls keine vollständige Abmilderung [2]. CERT-EU rät, internetexponierte Anwendungen im Zweifel vom öffentlichen Netz zu isolieren, bis der Fix eingespielt und verifiziert ist [2]."
+    },
+    {
+      "t": "p",
+      "x": "Cloudflare hat WAF-Regeln für die bekannten Exploit-Vektoren für alle Kunden einschließlich des Gratis-Tarifs ausgerollt, bezeichnet das aber ausdrücklich als Überbrückung; geschützt ist zudem nur Traffic, der durch Cloudflare läuft [2]. Linux-Distributionen und LTS-Anbieter erhielten die Patches vorab; wer Distributionspakete nutzt, sollte deren Advisories prüfen [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Detection: Woran man Angriffe erkennt"
+    },
+    {
+      "t": "p",
+      "x": "Weil die Bugs unterhalb der Anwendungsebene liegen, liefern Anwendungslogs wenig Kontext. Bis zur Patch-Installation rät Wiz, besonders auf ungewöhnliche Multipart-Requests gefolgt von Memory-Limit-Fehlern oder wiederholten HTTP-500-Antworten zu achten, auf unerwartet große oder fehlgeformte PHPSESSID-Antwort-Cookies und auf unerklärliche PHP-Worker-Neustarts [1]. Amazon empfiehlt, die Untersuchung mindestens ab dem 17. Oktober zu beginnen, nicht erst ab dem Veröffentlichungsdatum [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung: Der Heartbleed-Moment der KI-Security-Forschung"
+    },
+    {
+      "t": "p",
+      "x": "PHP2Shell ist nicht die erste KI-gefundene Schwachstelle, aber die bisher folgenreichste: Infrastruktur, die etwa siebzig Prozent des Webs trägt, ein Jahrzehnt alter Fehler, zwei kritische CVEs und eine Exploit-Kette, die nach Einschätzung der Finder an der Grenze menschlicher Machbarkeit lag [1][3]. Erwarten lässt sich eine Serie ähnlicher Fälle: Fehler, die alt, bekannt schwierig und bislang praktisch unausnutzbar waren, werden zu realistischen Zielen. Für Verteidiger ist dieselbe Entwicklung eine Chance, Altlasten in Kernsoftware systematisch aufzuarbeiten, bevor Angreifer es tun; die koordinierte Arbeit von Wiz, Calif, OpenAI, dem PHP-Team und den großen Edge-Anbietern in diesem Fall zeigt, wie das aussehen kann [1][3]. Für Betreiber bleibt die unbequeme kurzfristige Wahrheit: Wer PHP im Internet betreibt, muss jetzt patchen, und wer nicht patchen kann, muss Systeme vom Netz nehmen [2]."
+    }
+  ],
+  "method": "Grundlage sind der technische Bericht von Wiz Research [1], das fortlaufend aktualisierte FAQ von Tenable Research (Stand 22. Oktober) [2] und die Morning-Tokens-Ausgabe vom 22. Oktober [3], alle am 23. Oktober 2026 selbst geöffnet. Eigene Rechnungen: alle Tagesdifferenzen im Zeitstrahl (z. B. 19. August bis 21. Oktober = 63 Tage); sie sind im Text als eigene Rechnungen gekennzeichnet. Technische Beschreibungen der vier Bugs folgen ausschließlich dem Wiz-Bericht.",
+  "limitations": [
+    "Die Exploit-Demonstrationen stammen von Wiz und wurden von keiner unabhängigen Stelle repliziert; watchTowr hat die Lücken reproduziert, aber nicht die vollständigen Ketten von Wiz verifiziert [2].",
+    "Aussagen zur Ausnutzung in freier Wildbahn beruhen auf Beobachtungen von Amazon, Cloudflare und watchTowr; wie viele Versuche gegen reale Systeme erfolgreich waren, ist offen [2].",
+    "Die Zahl der Varianten desselben Fehlermusters im PHP-Code ist unbekannt; Wiz spricht von weiteren getrackten und vermutlich ungetrackten Varianten [1].",
+    "Die Host-Schätzungen (1,3 beziehungsweise 1,9 Millionen exponierte Systeme) sind grobe Internet-Scans, keine Zählung tatsächlich verwundbarer Installationen [2]."
+  ],
+  "sources": [
+    {
+      "title": "PHP2Shell: AI uncovers critical RCE vulnerabilities affecting 70% of the Internet",
+      "publisher": "Wiz Blog",
+      "url": "https://www.wiz.io/blog/php2shell-php-rce",
+      "accessed": "2026-10-23"
+    },
+    {
+      "title": "php2shell (CVE-2026-109618, CVE-2026-109619): Frequently asked questions about critical PHP remote code execution vulnerabilities",
+      "publisher": "Tenable",
+      "url": "https://www.tenable.com/blog/php2shell-cve-2026-109618-cve-2026-109619-frequently-asked-questions-about-critical-php-remote",
+      "accessed": "2026-10-23"
+    },
+    {
+      "title": "AI News Oct 22, 2026: PHP2Shell, Railway breach, Claude Duet",
+      "publisher": "Morning Tokens",
+      "url": "https://morningtokens.com/issues/2026-10-22/",
+      "accessed": "2026-10-23"
+    }
+  ],
+  "related": [
+    "red-teaming-durchfuehren",
+    "angriffsmuster-llm",
+    "ki-dienste-absichern"
+  ],
+  "faq": [
+    {
+      "q": "Ist meine PHP-Installation betroffen?",
+      "a": "Sehr wahrscheinlich ja, wenn sie nicht auf einer der gepatchten Versionen läuft: Betroffen ist praktisch jede PHP-Version seit 5.4, über die Server-APIs PHP-FPM, Apache mod_php, php-cgi, FrankenPHP und LiteSpeed; das höchste Risiko sieht das PHP-Team bei mod_php [1][2]. Gefixt sind 8.5.12, 8.4.27, 8.3.36 und 8.2.35 [2]."
+    },
+    {
+      "q": "Reicht eine Web Application Firewall als Schutz?",
+      "a": "Nein. Cloudflare bezeichnet seine WAF-Regeln ausdrücklich als Überbrückung, und sie schützen nur Traffic, der durch Cloudflare läuft. Das PHP-Sicherheitsteam nennt das Update die einzige vollständige Behebung [2]."
+    },
+    {
+      "q": "Was gilt für PHP 8.1 und älter?",
+      "a": "Für PHP 7.4 bis 8.1 hat das Sicherheitsteam minimale Source-Backports veröffentlicht, relevant vor allem für alle, die PHP selbst kompilieren. Für PHP 5.4 bis 7.3 kommt kein Fix mehr. CISA empfiehlt, nicht patchbare PHP-Systeme offline zu nehmen, bis ein Update möglich ist [2]."
+    },
+    {
+      "q": "Wird PHP2Shell bereits aktiv ausgenutzt?",
+      "a": "Ja. Amazon Threat Intelligence beobachtete einen ersten Versuch am 17. Oktober, vier Tage vor der Veröffentlichung, und spricht inzwischen von breiter Ausnutzung; auch Cloudflare und watchTowr melden Angriffe. Einen funktionierenden öffentlichen Proof-of-Concept hatte die PHP Foundation zum Release-Zeitpunkt nicht gefunden; CISA hatte bei seinem Alert noch keine Ausnutzung beobachtet [2]."
+    },
+    {
+      "q": "Warum gilt der Fall als Wendepunkt für KI in der Sicherheitsforschung?",
+      "a": "Die Fehler steckten seit über einem Jahrzehnt im Code, ihre Ausnutzung galt als praktisch zu komplex. Frontier-Modelle haben Entdeckung, Exploit-Entwicklung und Patch-Validierung messbar beschleunigt; dieselbe Fähigkeit steht aber auch Angreifern zur Verfügung, alte Fehler nachträglich ausnutzbar zu machen [1][3]."
+    }
+  ]
+}
