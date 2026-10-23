@@ -5,7 +5,7 @@
   "section": "verlaesslichkeit",
   "type": "analysis",
   "published": "2026-10-23T07:56:00+02:00",
-  "modified": "2026-10-23T07:56:00+02:00",
+  "modified": "2026-10-23T08:10:00+02:00",
   "author": "philipp-paulik",
   "tags": [
     "PHP2Shell",
@@ -131,16 +131,16 @@
     },
     {
       "t": "chart",
-      "kind": "column",
+      "kind": "bar",
       "title": "PHP2Shell-Chronologie in Tagen seit der Entdeckung (19. August 2026)",
-      "alt": "Säulendiagramm mit sechs Meilensteinen: RCE-Demonstration Drupal an Tag 1, RCE-Demonstration WordPress an Tag 2, Meldung an das PHP-Team an Tag 5, Bestätigung durch PHP an Tag 33, erste beobachtete Ausnutzung an Tag 59, Patch und Veröffentlichung an Tag 63.",
+      "alt": "Balkendiagramm mit sechs Meilensteinen: RCE-Demonstration Drupal an Tag 1, RCE-Demonstration WordPress an Tag 2, Meldung an das PHP-Team an Tag 5, Bestätigung durch PHP an Tag 33, erste beobachtete Ausnutzung an Tag 59, Patch und Veröffentlichung an Tag 63.",
       "caption": "Eigene Darstellung nach den Angaben von Wiz [1] und Tenable [2]. Tag 0 ist der 19. August 2026; die Ausnutzungsbeobachtung vom 17. Oktober (Tag 59) stammt von Amazon Threat Intelligence [2].",
       "labels": [
         "RCE-Demo Drupal",
         "RCE-Demo WordPress",
         "Meldung an PHP-Team",
         "PHP bestätigt",
-        "Erste Ausnutzung",
+        "Erste Ausnutzung beobachtet",
         "Patch + Disclosure"
       ],
       "series": [
@@ -161,7 +161,7 @@
     {
       "t": "callout",
       "title": "Eigene Rechnung: Wie knapp das Rennen war",
-      "x": "Vom ersten Fund (19. August) bis zur RCE-Demonstration gegen Drupal verging 1 Tag, bis WordPress fiel 2 Tage, bis zur Meldung an das PHP-Team 5 Tage [1]. PHP bestätigte die Reports nach 28 Tagen (21. September), der Patch erschien weitere 30 Tage später (21. Oktober), insgesamt 63 Tage nach der Entdeckung [1][2]. Die erste beobachtete Ausnutzung fiel auf Tag 59, nur 4 Tage vor der Veröffentlichung. Alle Differenzen sind eigene Kalenderrechnungen auf Basis der genannten Daten."
+      "x": "Vom ersten Fund (19. August) bis zur RCE-Demonstration gegen Drupal verging 1 Tag, bis WordPress fiel 2 Tage, bis zur Meldung an das PHP-Team 5 Tage [1]. PHP bestätigte die Reports 28 Tage nach der Meldung, am 21. September - das sind 33 Tage nach der Entdeckung; der Patch erschien weitere 30 Tage später (21. Oktober), insgesamt 63 Tage nach der Entdeckung [1][2]. Die erste beobachtete Ausnutzung fiel auf Tag 59, nur 4 Tage vor der Veröffentlichung. Alle Differenzen sind eigene Kalenderrechnungen auf Basis der genannten Daten."
     },
     {
       "t": "p",

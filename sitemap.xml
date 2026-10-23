@@ -76,7 +76,7 @@
 
 
 
-<url><loc>https://kifachblatt.de/php2shell-analyse</loc><lastmod>2026-10-23T07:56:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/php2shell-analyse.jpg</image:loc><image:title>PHP2Shell: KI findet jahrzehntealte Kernfehler in PHP</image:title><image:caption>Zeitstrahl-Grafik: Von der Entdeckung am 19. August 2026 bis zum Patch am 21. Oktober vergehen 63 Tage; die erste beobachtete Ausnutzung fällt auf Tag 59, vier Tage vor der Veröffentlichung.</image:caption></image:image></url>
+<url><loc>https://kifachblatt.de/php2shell-analyse</loc><lastmod>2026-10-23T08:10:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/php2shell-analyse.jpg</image:loc><image:title>PHP2Shell: KI findet jahrzehntealte Kernfehler in PHP</image:title><image:caption>Zeitstrahl-Grafik: Von der Entdeckung am 19. August 2026 bis zum Patch am 21. Oktober vergehen 63 Tage; die erste beobachtete Ausnutzung fällt auf Tag 59, vier Tage vor der Veröffentlichung.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/mistral-large-4-analyse</loc><lastmod>2026-10-23T07:55:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/mistral-large-4-analyse.jpg</image:loc><image:title>Mistral Large 4: Eine Billion Parameter aus Europa</image:title><image:caption>Grafik mit zwei horizontalen Balken: 1.050 Milliarden Parameter gesamt bei Mistral Large 4, davon 52 Milliarden aktiv pro Token (49 Milliarden ohne Einbettungs- und Ausgabeschichten).</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/test-time-compute-reasoning-modelle-analyse</loc><lastmod>2026-10-22T08:05:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/test-time-compute-reasoning-modelle-analyse.jpg</image:loc><image:title>Test-Time-Compute: Die zweite Skalierungsachse der KI</image:title><image:caption>Säulendiagramm: Auf SWE-bench Lite löst DeepSeek-Coder-V2 mit einem Versuch 15,9 Prozent der Fälle, mit 250 Versuchen 56 Prozent; der damalige Einzelversuch-Bestwert lag bei 43 Prozent.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/mercury-3-diffusion-sprachmodelle-analyse</loc><lastmod>2026-10-22T08:00:00+02:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/mercury-3-diffusion-sprachmodelle-analyse.jpg</image:loc><image:title>Mercury 3: Diffusion-Sprachmodelle im Härtetest</image:title><image:caption>Balkendiagramm: Mercury 3 erzeugt 1.068 Token pro Sekunde, Claude Haiku 5.5 rund 240 und GPT-6 Luna rund 130, jeweils Herstellerangaben aus Inceptions Vergleichstabelle.</image:caption></image:image></url>
@@ -169,7 +169,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-10-23T07:55:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-23T07:56:00+02:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-23T08:10:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-10-23</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-10-23</lastmod></url>
 <url><loc>https://kifachblatt.de/suche</loc><lastmod>2026-10-23</lastmod></url>
