@@ -16,7 +16,7 @@ TKCSS = ('<style>.tk{max-width:760px}.tk h2{margin:36px 0 12px}.tk .tk-lead{font
 CONSENT = ('Ja, ich möchte das EU-KI-Toolkit des KI Fachblatts kostenlos herunterladen. Dafür erhalte ich per E-Mail den KI-Tagesbericht des KI Fachblatts, '
  'Hinweise auf neue Versionen des Toolkits und gelegentlich Hinweise auf neue Produkte des KI Fachblatts (jederzeit abbestellbar). '
  'Ich kann meine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen, z. B. über den Abmeldelink in jeder E-Mail oder per E-Mail an '
- '<a href="mailto:redaktion@kifachblatt.de">redaktion@kifachblatt.de</a>. Der Versand erfolgt über den Dienstleister Resend (PLUS FIVE FIVE, Inc., USA) als Auftragsverarbeiter; '
+ '<a href="mailto:redaktion@kifachblatt.de">redaktion@kifachblatt.de</a>. Der Versand erfolgt über den Dienstleister Resend (PLUS FIVE FIVE, Inc., USA); eine Übermittlung in die USA kann dabei stattfinden; '
  'Details in der <a href="/datenschutz#tagesbericht-anmeldung">Datenschutzerklärung</a>.')
 FORM = ('<form class="lw" id="lw-form" data-ep="tksub" method="post" novalidate><label for="lw-email">E-Mail-Adresse</label><input id="lw-email" name="email" type="email" autocomplete="email" inputmode="email" required>'
  '<div class="lw-hp" aria-hidden="true"><label>Nicht ausfüllen<input name="website" tabindex="-1" autocomplete="off"></label></div>'
