@@ -1,0 +1,211 @@
+{
+  "slug": "recursive-flint-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Flint: 40-Milliarden-Coding-Modell für den eigenen Rechner",
+  "dek": "Recursive Flint: 39,8 Milliarden Parameter, nur 2,5 Milliarden aktiv, Apache-2.0-Gewichte. Soll lokal über 125 Token pro Sekunde schaffen. Was die Karte belegt.",
+  "published": "2026-10-24T07:00:00+02:00",
+  "modified": "2026-10-24T07:00:00+02:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Recursive",
+    "Flint",
+    "Coding-Modell",
+    "Lokale KI",
+    "Offene Gewichte"
+  ],
+  "key_takeaways": [
+    "Recursive Flint ist ein offenes Coding-Modell (Apache 2.0) mit 39,8 Milliarden Parametern, von denen nur rund 2,5 Milliarden pro Token aktiv sind - gebaut für schnelle lokale Coding-Agenten.",
+    "Herstellerangaben: 74,2 Prozent auf SWE-bench Verified, 54,9 Prozent auf Terminal-Bench 2.1, über 125 Token pro Sekunde auf einem MacBook Pro (M4 Pro) - unabhängig noch nicht repliziert.",
+    "Bemerkenswert ist der Bauweg: Recursive sagt, ein kleines Team habe das Modell in unter vier Monaten weitgehend mit seinem automatisierten Forschungssystem Eureka Machine entwickelt - inklusive Architektur, 4-Bit-Quantisierung der Ausgabeschicht und Hardware-Kerneln.",
+    "Der volle Checkpoint braucht rund 80 Gigabyte und eine B300/H200-GPU; für Laptops und Workstations sind quantisierte Varianten vorgesehen."
+  ],
+  "hero": {
+    "alt": "Grafik mit zwei horizontalen Balken: 39,8 Milliarden Parameter gesamt bei Recursive Flint, davon nur rund 2,5 Milliarden aktiv pro Token.",
+    "caption": "Flint nach Modellkarte: 39,8 Milliarden Parameter gesamt, rund 2,5 Milliarden aktiv pro Token - der aktive Modellkörper allein etwa 2,2 Milliarden. Eigene Grafik, Quelle [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Mit Recursive Flint ist diese Woche ein Coding-Modell erschienen, das einen anderen Weg geht als die Frontier-Klasse: 39,8 Milliarden Parameter insgesamt, aber nur rund 2,5 Milliarden aktiv pro [Token](/glossar#token), Apache-2.0-Gewichte auf Hugging Face und das Versprechen, auf einem MacBook Pro über 125 Token pro Sekunde zu erreichen [1][2]. Entwickelt hat es ein kleines Team des Unternehmens Recursive in unter vier Monaten - maßgeblich mit Hilfe der eigenen „Eureka Machine“, eines Systems für automatisierte KI-Forschung [2]. Dieser Artikel legt die Modellkarte offen: Was ist belegt, was ist Herstellerangabe, für wen ist das Modell gedacht?"
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: extrem sparsam aktiviert"
+    },
+    {
+      "t": "p",
+      "x": "Flint ist ein Decoder-only-Transformer mit [Mixture-of-Experts](/glossar#mixture-of-experts-moe)-Aufbau: 49 Schichten (zwei dichte, dann 47 MoE-Schichten), 256 routbare Experten pro MoE-Schicht, von denen pro Token sechs gewählt werden, plus ein stets aktiver gemeinsamer Experte [1]. Die Aktivparameter liegen bei rund 2,5 Milliarden inklusive Ausgabeschicht; der aktive Modellkörper allein kommt auf etwa 2,2 Milliarden - „40B-A2.5B“ ist die gerundete Größenbezeichnung [1]."
+    },
+    {
+      "t": "p",
+      "x": "Bei der Attention mischt Flint 35 Sliding-Window-Schichten (Fenster: 513 Token) mit 14 Vollattention-Schichten; 32 Abfrageköpfe teilen sich 4 Schlüssel-Wert-Köpfe, dazu kommen pro Kopf eine QK-RMSNorm und gelernte Attention-Sinks [1]. Das dokumentierte Kontextfenster umfasst 262.144 Token inklusive Prompt und Ausgabe [1]; Recursive spricht auf der Ankündigungsseite von bis zu 512.000 Token, empfiehlt aber, für beste Ergebnisse innerhalb von 256.000 zu bleiben [2]. Der angegebene Wissensstand ist Juni 2026 [1]."
+    },
+    {
+      "t": "table",
+      "caption": "Flint: die Modellkarte im Überblick",
+      "head": [
+        "Merkmal",
+        "Angabe"
+      ],
+      "rows": [
+        [
+          "Parameter gesamt / aktiv",
+          "39,8 Mrd. / ~2,5 Mrd. pro Token (Körper ~2,2 Mrd.)"
+        ],
+        [
+          "Aufbau",
+          "49 Schichten: 2 dicht + 47 MoE; 256 Experten, 6 aktiv + 1 geteilter"
+        ],
+        [
+          "Attention",
+          "35 Sliding-Window- (513 Token) + 14 Vollattention-Schichten; 32 Q-/4 KV-Köpfe"
+        ],
+        [
+          "Kontext",
+          "262.144 Token dokumentiert; Hersteller empfiehlt ≤ 256.000"
+        ],
+        [
+          "Wissensstand",
+          "Juni 2026"
+        ],
+        [
+          "Checkpoint",
+          "BF16 (~80 GB), quantisierte Varianten für NVIDIA und Apple Silicon"
+        ],
+        [
+          "Lizenz",
+          "Apache 2.0"
+        ],
+        [
+          "Downloads im letzten Monat",
+          "1.904 (Stand 24.10.2026)"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Gemessene Leistung - und ihre Fußnoten"
+    },
+    {
+      "t": "p",
+      "x": "Auf der Modellkarte meldet Recursive drei zentrale Werte: 54,9 Prozent auf Terminal-Bench 2.1, 89,7 Prozent auf SWE-bench Pro v2 und 74,2 Prozent auf SWE-bench Verified [1]. Das Vorgehen ist ungewöhnlich genau dokumentiert: Temperatur 1,0, Top-p 0,95, Top-k 20; Terminal-Bench mit dem Terminus-2-Harness, SWE-bench mit mini-swe-agent; Agenten-Werte als mittleres Pass@1 über mindestens fünf Versuche [1]. Zwei Einschränkungen nennt die Karte selbst: Vergleichswerte anderer Modelle sind „developer-reported“, also den jeweiligen Herstellerangaben entnommen, und Flints Terminal-Bench-Wert wertet Lösungen, die über Websuche zustande kamen, als nicht erfolgreich - eine Strenge, die fremde Werte nicht unbedingt teilen [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "Flint: die drei Kopfwerte der Modellkarte (Herstellerangaben)",
+      "alt": "Säulendiagramm mit drei Werten: 54,9 Prozent auf Terminal-Bench 2.1, 89,7 Prozent auf SWE-bench Pro v2 und 74,2 Prozent auf SWE-bench Verified.",
+      "caption": "Herstellerangaben von der Modellkarte; jeweils mittleres Pass@1 über mindestens fünf Versuche, Temperatur 1.0 / Top-p 0.95 / Top-k 20. Terminal-Bench wertet per Websuche gefundene Lösungen als nicht erfolgreich. Quelle [1].",
+      "series": [
+        {
+          "name": "Pass@1 in Prozent",
+          "values": [
+            54.9,
+            89.7,
+            74.2
+          ]
+        }
+      ],
+      "labels": [
+        "Terminal-Bench 2.1",
+        "SWE-bench Pro v2",
+        "SWE-bench Verified"
+      ],
+      "y_label": "Pass@1 in Prozent"
+    },
+    {
+      "t": "p",
+      "x": "Zur Einordnung: Recursive positioniert Flint als bestes MoE-Modell unter 50 Milliarden Gesamtparametern auf agentischen Coding-Benchmarks und gibt an, die Coding-Leistung dichter Modelle mit 25 bis 40 Milliarden Parametern zu erreichen - bei mehr als fünffacher Geschwindigkeit [2]. Das sind Herstellerangaben; eine unabhängige Replikation steht mit knapp 2.000 Downloads im ersten Monat noch aus [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Tempo durch Quantisierung und eigene Kernel"
+    },
+    {
+      "t": "p",
+      "x": "Die Geschwindigkeitsangaben - über 125 Token pro Sekunde auf einem MacBook Pro mit M4 Pro, über 150 auf einer 64-GB-NVIDIA-RTX-Spark bei kurzen Kontexten - erklärt Recursive mit dem Zusammenspiel aus wenigen Aktivparametern, [Quantisierung](/glossar#quantisierung) und maßgeschneiderten Kerneln [2]. Ungewöhnlich: Die Eureka Machine quantisierte entgegen der üblichen Praxis auch die Ausgabeschicht (lm_head) auf 4 Bit - bei nur 2,5 Milliarden Aktivparametern mache die Ausgabeschicht einen großen Teil der pro Token gelesenen Gewichte aus [2]. Um die Genauigkeit zu halten, folgte eine Offline-Destillation, in der das quantisierte Modell an eigenen, vorgesampelten Antworten mit dem 16-Bit-Modell als Lehrer nachtrainiert wurde; das habe die Trainingsschritte gegenüber der quantisierungsbewussten Basislinie fast halbiert [2]. Das quantisierte NVFP4-Modell liege über alle Benchmarks gerechnet innerhalb von 0,7 Punkten des 16-Bit-Modells (Herstellerangabe) [2]."
+    },
+    {
+      "t": "p",
+      "x": "Für Apple-Chips der Generationen M4 und M5 erzeugte das System laut Recursive einen Metal-Megakernel, der den gesamten Decode-Vorwärtsdurchlauf in einem einzigen Kernel verschmilzt [2]. Betreiben lässt sich Flint über llama.cpp, Ollama, Unsloth, LM Studio, vLLM und SGLang; Recursive veröffentlicht zusätzlich „rec“, eine eigene schlanke Inferenz-Engine für M4- und M5-Macs [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Gebaut von einer Maschine, die Forschung baut"
+    },
+    {
+      "t": "p",
+      "x": "Das zweite Thema dieses Releases ist der Entstehungsprozess: Recursive beschreibt die Eureka Machine als System, das den Forschungskreislauf automatisiert - Ideen vorschlagen, implementieren, testen und aus den Ergebnissen die nächsten Versuche ableiten [2]. An Flint habe sie von Daten über Optimierer und Trainingsrezepte bis zu Infrastruktur und Inferenzleistung mitgearbeitet; die Architektur (40 Milliarden total, 2,5 Milliarden aktiv) sei das Ergebnis ihrer Suche über verschiedene Expertenkonfigurationen, ausgehend von einer Basislinie mit 35 Milliarden total und 3 Milliarden aktiv [2]. „Unser kleines Team aus Menschen und Agenten“ habe Flint in unter vier Monaten von Grund auf gebaut [2]. Das ist eine Herstellererzählung ohne unabhängige Bestätigung - aber ein konkretes, überprüfbares Artefakt: Das Modell existiert, die Gewichte liegen offen, die Messungen sind dokumentiert."
+    },
+    {
+      "t": "h2",
+      "x": "Für wen ist Flint gedacht?"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte selbst ist erfrischend nüchtern: Flint solle Codebases untersuchen, Fehler beheben, Features implementieren und Tests schreiben - lokal, ohne dass Daten den eigenen Rechner verlassen [1]. Für komplexe Aufgaben empfiehlt Recursive, die Arbeit in kleinere Teilaufgaben zu zerlegen und explizite Anweisungen zu geben; das Modell brauche möglicherweise mehr Führung als große geschlossene Coding-Modelle [2]. Zur Ausgabebudgetierung rät die Karte bei schweren Problemen zu mindestens 32.768 Tokens inklusive Reasoning, und sie warnt selbst: Langes Reasoning kann das Budget aufbrauchen, bevor die Antwort fertig ist, und die Kontextkonfiguration sei eine Kapazitätsgrenze, keine Genauigkeitsgarantie über alle Längen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Der BF16-Checkpoint beansprucht rund 80 Gigabyte; für den vorgesehenen SGLang-Betrieb genügt laut Karte eine B300- oder H200-GPU pro Replik [1]. Wer keine solche Karte hat, ist auf die quantisierten Varianten für NVIDIA- und Apple-Silicon-Laufzeiten angewiesen, die separat vorbereitet werden [1] - genau hier liegt die Zielgruppe: lokale Coding-[Agenten](/glossar#agent-loop) auf Workstation-Hardware, als Offline- und Datenschutz-Alternative zur API. Über Ollama ist das Modell seit dieser Woche ebenfalls verfügbar; die dort angebotene quantisierte Variante kommt auf rund 23 Gigabyte [3]."
+    },
+    {
+      "t": "callout",
+      "title": "Zum Weiterlesen im Glossar",
+      "x": "[Mixture of Experts](/glossar#mixture-of-experts-moe), [Quantisierung](/glossar#quantisierung), [Offene Gewichte](/glossar#offene-gewichte), [Token](/glossar#token), [Kontextfenster](/glossar#kontextfenster), [Agent-Loop](/glossar#agent-loop), [Benchmark](/glossar#benchmark), [Inferenz](/glossar#inferenz)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Recursive Flint?",
+      "a": "Ein quelloffenes Coding-Modell (Apache 2.0) des Unternehmens Recursive: 39,8 Milliarden Parameter in einer Mixture-of-Experts-Architektur, aber nur rund 2,5 Milliarden aktiv pro Token - ausgelegt auf schnelle lokale Coding-Agenten statt auf maximale Frontier-Leistung."
+    },
+    {
+      "q": "Läuft Flint wirklich auf einem MacBook?",
+      "a": "Laut Hersteller erreicht das quantisierte Modell auf einem MacBook Pro mit M4 Pro über 125 Token pro Sekunde (kurze Kontexte). Das ist eine Herstellerangabe; unabhängige Messungen stehen noch aus. Der volle BF16-Checkpoint benötigt rund 80 Gigabyte und ist für eine B300- oder H200-GPU gedacht."
+    },
+    {
+      "q": "Wie gut ist Flint beim Programmieren?",
+      "a": "Nach Herstellerangaben: 74,2 Prozent auf SWE-bench Verified, 89,7 Prozent auf SWE-bench Pro v2 und 54,9 Prozent auf Terminal-Bench 2.1, jeweils als Mittel über mindestens fünf Versuche. Vergleichswerte anderer Modelle auf der Karte sind den jeweiligen Herstellerangaben entnommen."
+    },
+    {
+      "q": "Was ist die Eureka Machine?",
+      "a": "Recursives System für automatisierte KI-Forschung: Es schlägt Ideen vor, implementiert und testet sie und wählt anhand der Ergebnisse die nächsten Schritte. Laut Recursive hat sie wesentliche Teile von Flints Architektur, Quantisierung und Kerneln beigesteuert. Diese Angaben sind nicht unabhängig bestätigt."
+    },
+    {
+      "q": "Unter welcher Lizenz steht Flint?",
+      "a": "Apache 2.0 - die Gewichte dürfen also auch kommerziell genutzt und angepasst werden. Nutzungsbedingungen einer etwaigen gehosteten API sind davon getrennt."
+    }
+  ],
+  "sources": [
+    {
+      "title": "RecursiveSI/flint (Modellkarte)",
+      "publisher": "Hugging Face / Recursive",
+      "url": "https://huggingface.co/RecursiveSI/flint",
+      "accessed": "2026-10-24"
+    },
+    {
+      "title": "Introducing Flint",
+      "publisher": "Recursive",
+      "url": "https://recursive.com/updates/introducing-recursive-flint",
+      "accessed": "2026-10-24"
+    },
+    {
+      "title": "flint:40b (Ollama Library)",
+      "publisher": "Ollama",
+      "url": "https://ollama.com/library/flint:40b",
+      "accessed": "2026-10-24"
+    }
+  ],
+  "method": "Grundlage sind die Hugging-Face-Modellkarte (Architektur, Benchmark-Werte mit Messbedingungen, Limitationen) und die Ankündigungsseite von Recursive (Geschwindigkeit, Quantisierungsverfahren, Eureka Machine), beide am 24. Oktober 2026 abgerufen. Die Benchmark-Darstellung übernimmt die Kartenwerte unverändert; Geschwindigkeits- und Prozessangaben sind als Herstellerangaben gekennzeichnet. Keine eigenen Messungen.",
+  "limitations": "Alle Leistungs-, Geschwindigkeits- und Prozessangaben stammen vom Hersteller und sind nicht unabhängig repliziert; Vergleichswerte anderer Modelle auf der Karte sind ebenfalls Herstellerangaben der jeweiligen Anbieter. Die Terminal-Bench-Wertung (Websuche zählt als nicht erfolgreich) erschwert den direkten Vergleich mit anders gewerteten Läufen. Das Modell ist sehr neu (rund 1.900 Downloads im ersten Monat), Praxisberichte fehlen noch.",
+  "related": [
+    "llm-quantisierung-verfahren-grundlagen",
+    "minimax-m3-1-flash-analyse",
+    "inferenz-und-kosten-verstehen"
+  ]
+}

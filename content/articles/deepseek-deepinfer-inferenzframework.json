@@ -1,0 +1,254 @@
+{
+  "slug": "deepseek-deepinfer-inferenzframework",
+  "lang": "de",
+  "section": "architektur",
+  "type": "analysis",
+  "title": "DeepInfer: DeepSeek legt seinen Inferenz-Stack offen",
+  "dek": "155 Billionen Token pro Tag aus einem Cluster: DeepSeek öffnet das Inferenzframework hinter V4.1-Flash. Was im Apache-2.0-Release steckt - und was fehlt.",
+  "published": "2026-10-24T07:00:00+02:00",
+  "modified": "2026-10-24T07:00:00+02:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "DeepSeek",
+    "DeepInfer",
+    "Inferenz",
+    "Open Source",
+    "KV-Cache"
+  ],
+  "key_takeaways": [
+    "DeepSeek hat DeepInfer, das Inferenzframework hinter dem Produktivbetrieb von V4.1-Flash, unter Apache 2.0 veröffentlicht - mit Kerneln, Parallelisierung, spekulativer Decodierung und strukturierten Ausgaben.",
+    "Im Release fehlen bewusst KV-Cache-System, Disaggregation und Lastausgleich; die Architektur dieser Komponenten ist stattdessen detailliert beschrieben.",
+    "Herstellerangaben zum Eigenbetrieb: 155 Billionen Token pro Tag aus einem Cluster, 38 US-Dollar Umsatz pro GPU-Stunde (Talstrompreis), KV-Cache über 72 Stunden in einem eigenen Speichercluster.",
+    "DSpark verifiziert bei spekulativer Decodierung nur lohnende Entwurfs-Tokens - laut Hersteller 30 Prozent weniger Verifikationsarbeit bei 4 bis 7 Prozent mehr Durchsatz unter Last."
+  ],
+  "hero": {
+    "alt": "Säulendiagramm: Durchsatzgewinn von DeepSeeks DSpark-Verfahren gegenüber fester Verifikationslänge, gemessen bei 16 bis 96 gleichzeitigen Sequenzen pro Rang - von minus 1,5 bis plus 11,0 Prozent.",
+    "caption": "DSpark (dynamische Verifikationslänge) gegenüber der festen Länge 5: Hersteller-Messwerte aus EP64/DP64-Benchmarkdaten. Eigene Grafik, Quelle [2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "DeepSeek hat mit DeepInfer das [Inferenz](/glossar#inferenz)-Framework veröffentlicht, das hinter dem Produktivbetrieb von DeepSeek-V4.1-Flash steht: Das Repository ist seit dem 16. Oktober 2026 öffentlich, steht unter der Apache-2.0-Lizenz und hat zuletzt rund 21.000 Sterne gesammelt [1]. Das Bemerkenswerte ist nicht nur der Code, sondern die Dokumentation: In einem ausführlichen Deployment-Q&A beschreibt DeepSeek, wie der eigene Großbetrieb organisiert ist - ein Cluster soll derzeit 155 Billionen [Token](/glossar#token) pro Tag ausliefern, bei einem Gesamtumsatz von 38 US-Dollar pro GPU-Stunde zum Talstrompreis (Herstellerangabe) [2]. Dieser Artikel sortiert, was im Release steckt, was bewusst fehlt und was die veröffentlichten Betriebsdetails wert sind."
+    },
+    {
+      "t": "h2",
+      "x": "Was im Release steckt"
+    },
+    {
+      "t": "p",
+      "x": "DeepInfer liefert Offline-[Inferenz](/glossar#inferenz) für genau ein Modell: DeepSeek-V4.1-Flash (Standard-Checkpoint V4.1-Flash-1017) [1]. Enthalten sind optimierte Kernel - darunter FlashMLA, DeepGEMM, DeepEP, TileKernels, DeepSelect und eigene TileLang-Kernel -, Parallelisierung über Attention-Datenparallelismus mit balanciertem Kontext-Parallelismus sowie MoE-Expertenparallelismus mit Lastausgleich (EP + EPLB), dazu ein Modell- und Sampler-Laufzeitsystem [1]. Unterstützte Hardware: NVIDIA-GPUs der Generation SM100 (Blackwell) und Huaweis Ascend 950 [1]."
+    },
+    {
+      "t": "ul",
+      "items": [
+        "**DSpark mit vertrauensgesteuerter Verifikation:** [Spekulative Decodierung](/glossar#speculative-decoding) mit variabler Länge - ein Confidence-Kopf schätzt die Akzeptanzrate jedes Entwurfs-Tokens, verifiziert wird nur die Teilmenge mit dem höchsten Grenznutzen [1][2].",
+        "**SWA Bounded Replay:** Beim erneuten Einlesen wird nur ein begrenztes Endstück des Kontexts neu gerechnet; für die V4.1-Standardeinstellungen sind 140 Tokens vorgesehen [1].",
+        "**Asynchrones Scheduling:** Die CPU-Batchplanung läuft überlappt zur GPU-Ausführung, standardmäßig aktiviert [1].",
+        "**Batch-invariante Inferenz und deterministisches Sampling:** identische Ergebnisse unabhängig von der Batch-Zusammensetzung beziehungsweise identische Ausgaben bei identischen Eingaben - beides derzeit nur auf NVIDIA [1].",
+        "**Strukturierte Ausgaben:** Generierung entlang regulärer Ausdrücke, JSON-Schema oder EBNF-Grammatik [1]."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Dazu gehört das parallel veröffentlichte Paket deepseek-recipe (MIT-Lizenz): eine Komponente zur Token-Kodierung und -Dekodierung, die API-Protokolle und Modell-Tokenfolgen so übersetzt, dass Dritt-Deployments dasselbe API-Verhalten wie die offizielle DeepSeek-API zeigen [2][4]. DeepSeek kündigt an, den Inferenzcode künftiger Modelle und weitere Leistungsarbeit ebenfalls in DeepInfer zu öffnen [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Was bewusst fehlt"
+    },
+    {
+      "t": "p",
+      "x": "Das Release ist die Engine, nicht das Produktionssystem. Nicht enthalten sind das KV-Cache-System, die Disaggregation von Vision-Encoder, Prefill und Decode (VE/P/D) sowie der Lastausgleich über Datenreplikate hinweg - laut DeepSeek, weil diese Komponenten zu eng mit der internen Infrastruktur verzahnt sind [1][2]. Statt des Codes veröffentlicht das Unternehmen die Architektur: Das Q&A-Dokument beschreibt Designziele, Parallelisierung, Speicherlayout und Lastausgleich im Detail, verweist für die beiden fehlenden Komponenten auf einen ausführlichen Blogbeitrag und soll laufend fortgeschrieben werden [2]."
+    },
+    {
+      "t": "table",
+      "caption": "DeepInfer: Release-Inhalt versus Produktionssystem",
+      "head": [
+        "Komponente",
+        "Im Release?",
+        "Quelle"
+      ],
+      "rows": [
+        [
+          "Kernel, Modell- und Sampler-Laufzeit",
+          "Ja",
+          "[1]"
+        ],
+        [
+          "Parallelisierung (Attention DP/CP, MoE EP + EPLB)",
+          "Ja",
+          "[1]"
+        ],
+        [
+          "DSpark, SWA Replay, asynchrones Scheduling",
+          "Ja",
+          "[1]"
+        ],
+        [
+          "Batch-invariante Inferenz, deterministisches Sampling",
+          "Ja (nur NVIDIA)",
+          "[1]"
+        ],
+        [
+          "Strukturierte Ausgaben",
+          "Ja",
+          "[1]"
+        ],
+        [
+          "KV-Cache-System",
+          "Nein (Architektur beschrieben)",
+          "[1][2]"
+        ],
+        [
+          "VE/Prefill/Decode-Disaggregation",
+          "Nein (Architektur beschrieben)",
+          "[1][2]"
+        ],
+        [
+          "Lastausgleich über Datenreplikate",
+          "Nein",
+          "[1]"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Die Skala des Originalbetriebs"
+    },
+    {
+      "t": "p",
+      "x": "Die Angaben zum Eigenbetrieb sind Herstellerangaben ohne unabhängige Prüfung, aber sie sind ungewöhnlich konkret: Ein einzelnes Cluster soll derzeit 155 Billionen Token pro Tag bedienen, der Gesamtumsatz werde mit 38 US-Dollar pro GPU-Stunde zum Talstrompreis beziffert [2]. Die Anlage sei um drei Ziele herum gebaut: Beschleuniger mehrerer Hersteller nutzen, Prefill und Decode auf Standardhardware organisieren (gewöhnliche 8-GPU-Maschinen für Prefill, 64- bis 128-GPU-Supernodes für Decode) und den [KV-Cache](/glossar#kv-cache) länger als 72 Stunden vorhalten, um wiederholtes Prefill zu vermeiden [2]."
+    },
+    {
+      "t": "p",
+      "x": "Für Prefill reichen laut Q&A kleine Konfigurationen (EP2-8/DP2-8, „so klein wie der HBM-Speicher erlaubt“), für Decode empfiehlt DeepSeek Wide-EP mit 64 bis 128 Expertenparallel-Rängen; die kleinste effiziente Einheit liegt damit bei 64 Prefill- plus 64 Decode-GPUs, ein 1P+1D-Aufbau sei aber prinzipiell lauffähig [2]. Tensor- und Kontext-Parallelismus werden derzeit nicht genutzt [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Der KV-Cache als separates Speichercluster"
+    },
+    {
+      "t": "p",
+      "x": "Der blockweise [KV-Cache](/glossar#kv-cache) liegt nicht im Maschinenspeicher, sondern in einem dedizierten 3FS-Speichercluster mit rund 100 PiB SSD-Kapazität; die Aufbewahrungszeit beträgt drei Tage für Agenten-Verkehr und sieben Tage für Chatbot-Verkehr, weil dort eine kleine Menge Cache sehr oft getroffen werde - eine Verkürzung auf drei Tage koste dem Chatbot-Verkehr erfahrungsgemäß 0,5 bis 1 Prozentpunkt Trefferrate [2]. Empfohlene Speicherserver: 20 SSDs à 30,73 TB mit mindestens 40 GB/s Lese- und 5 GB/s Schreibdurchsatz; logisch fallen etwa 14,4 TB pro GPU an [2]. Die Auslagerung entkoppelt laut DeepSeek zwei Dinge: Jede Prefill-Maschine kann jedes Präfix treffen, ohne dass Präfix-Affinität mit dem Lastausgleich kollidiert, und Speicher- und Rechenknoten skalieren unabhängig - Rechenknoten fielen mehr als zehnmal häufiger aus als Speicherknoten [2]. Der Sliding-Window-Anteil des Cache bleibt dagegen lokal: 20 Schichten à 134 Token à 528 Byte, also 1.415.040 Byte pro Sequenz im MXFP8-Format [2]."
+    },
+    {
+      "t": "h2",
+      "x": "DSpark: spekulative Decodierung mit Kostenbewusstsein"
+    },
+    {
+      "t": "p",
+      "x": "Bei klassischer [spekulativer Decodierung](/glossar#speculative-decoding) verifiziert das Hauptmodell pro Schritt eine feste Zahl von Entwurfs-Tokens. DeepSeek argumentiert: Die Akzeptanzwahrscheinlichkeit variiert je Anfrage und Position, also verpufft bei fester Länge Rechenarbeit an unwahrscheinlichen Tokens [2]. DSpark lässt einen Confidence-Kopf die Akzeptanzrate jedes Entwurfs schätzen und verifiziert nur die Präfix-Teilmenge mit dem höchsten erwarteten [Durchsatz](/glossar#durchsatz)-Beitrag [2]. Im Produktivbetrieb erzeugt das Entwurfsmodell fünf Tokens pro Runde [2]."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "DSpark: gemessener Durchsatzgewinn gegenüber fester Länge 5",
+      "alt": "Säulendiagramm: Der Durchsatzgewinn der dynamischen Verifikationslänge gegenüber der festen Länge fünf liegt bei 16 gleichzeitigen Sequenzen pro Rang bei minus 1,5 Prozent, bei 32 bei plus 1,6, bei 48 bei plus 3,6, bei 60 bei plus 5,4, bei 72 bei plus 6,7 und bei 96 bei plus 11,0 Prozent.",
+      "caption": "Hersteller-Messwerte aus EP64/DP64-Benchmarkdaten, geschätzter Durchsatz in Token/s/Rang. Unter Last steigt der Gewinn: Bei wenig Parallelität (16 Sequenzen) ist die feste Länge minimal schneller. Quelle [2].",
+      "series": [
+        {
+          "name": "Durchsatzgewinn in Prozent",
+          "values": [
+            -1.5,
+            1.6,
+            3.6,
+            5.4,
+            6.7,
+            11.0
+          ]
+        }
+      ],
+      "labels": [
+        "16",
+        "32",
+        "48",
+        "60",
+        "72",
+        "96"
+      ],
+      "y_label": "Durchsatzgewinn in Prozent"
+    },
+    {
+      "t": "p",
+      "x": "Die Zahlen dahinter: Die dynamische Länge senkt die verifizierten Entwurfs-Tokens pro Schritt um rund 30 Prozent (von 5,00 auf 3,2 bis 4,4), während die akzeptierte Länge nahezu gleich bleibt (3,29 gegenüber 3,20 im Mittel). Am Produktions-Arbeitspunkt von etwa 60 gleichzeitigen Sequenzen pro Rang ergibt das laut DeepSeek 4 bis 7 Prozent mehr [Durchsatz](/glossar#durchsatz) [2]. Der Mechanismus ist auch ein Beispiel für das Zusammenspiel mit dem asynchronen Scheduler: Weil die Confidence-Werte des Schritts N beim Planen von N+1 noch nicht vorliegen, legt die CPU nur das Gesamtbudget fest; die Verteilung auf einzelne Anfragen berechnet ein TileLang-Kernel direkt auf der GPU [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Reproduzierbarkeit als eigenes Thema"
+    },
+    {
+      "t": "p",
+      "x": "Zwei Funktionen zielen auf ein praktisches Ärgernis: Batch-invariante [Inferenz](/glossar#inferenz) hält Modellergebnisse unabhängig davon stabil, welche anderen Anfragen gerade im selben Batch laufen; deterministisches Sampling liefert bei identischen Eingabetokens und Parametern identische Ausgaben (beide derzeit nur auf NVIDIA, über Umgebungsvariablen aktivierbar) [1]. Für [Evaluierungen](/glossar#benchmark) und Fehlersuche ist das erheblich: Ergebnisse werden wiederholbar. Passend dazu liegt ein Evaluierungsrahmen bei, der Generierung und Bewertung strikt trennt - die Rohausgaben landen auf Platte, die Bewertung (etwa mit einem anderen Jurymodell) kann ohne erneute Generierung wiederholt werden [3]. Vorgesehen sind AIME 2026 (30 Aufgaben, 32 Samples je Aufgabe), Humanity's Last Exam (2.500 Aufgaben, davon 342 mit Bild) und GPQA Diamond (198 Aufgaben, 8 Samples), jeweils als Pass@1 [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung: Was heißt das für den Selbstbetrieb?"
+    },
+    {
+      "t": "p",
+      "x": "DeepInfer ist bemerkenswert offen und zugleich ehrlich unvollständig. Wer V4.1-Flash selbst betreiben will, bekommt die Engine mit den produktionserprobten Kerneln und exakt dokumentierten Konfigurationen - aber kein fertiges Großsystem: KV-Cache-Speicher, Disaggregation und Lastausgleich muss ein Betreiber selbst ergänzen, angeleitet durch die Architekturbeschreibung [1][2]. Die kleinste effiziente Einheit von 128 GPUs zeigt zudem, dass sich das Design an Anbieter mit echtem Skalenbedarf richtet; für kleinere Deployments bleibt die Engine nutzbar, verliert aber Teile ihres Vorteils [2]. Bemerkenswert ist die Transparenz selbst: Zahlen zu Verifikationslängen, Speicherbelegung und Lastausgleich (der Lastausgleich erreiche rund 80 Prozent eines perfekt balancierten Offline-Benchmarks [2]) liest man sonst kaum von einem Frontier-Anbieter. Die Anerkennung der Herkunft gehört zum Bild: DeepInfer basiere ursprünglich weitgehend auf vLLM, mit Anleihen bei SGLang und TensorRT-LLM [1]."
+    },
+    {
+      "t": "callout",
+      "title": "Zum Weiterlesen im Glossar",
+      "x": "[Inferenz](/glossar#inferenz), [KV-Cache](/glossar#kv-cache), [Spekulative Decodierung](/glossar#speculative-decoding), [Durchsatz](/glossar#durchsatz), [Latenz](/glossar#latenz), [Token](/glossar#token), [Benchmark](/glossar#benchmark)."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist DeepInfer?",
+      "a": "DeepInfer ist DeepSeeks quelloffenes Inferenzframework (Apache 2.0) für große Produktionsdienste. Es stellt Offline-Inferenz für DeepSeek-V4.1-Flash bereit - mit optimierten Kerneln, Parallelisierung, spekulativer Decodierung und strukturierten Ausgaben - und läuft auf NVIDIA-Blackwell- und Huawei-Ascend-950-Hardware."
+    },
+    {
+      "q": "Kann ich mit DeepInfer einen kompletten DeepSeek-Dienst nachbauen?",
+      "a": "Nicht direkt. Das Release enthält die Engine, aber nicht das KV-Cache-System, nicht die Disaggregation von Vision-Encoder, Prefill und Decode und nicht den Lastausgleich. DeepSeek beschreibt diese Teile in einem Architektur-Dokument, liefert aber keinen Code dafür."
+    },
+    {
+      "q": "Was ist DSpark?",
+      "a": "DeepSeeks Verfahren für spekulative Decodierung mit variabler Verifikationslänge: Ein Confidence-Kopf schätzt, welche Entwurfs-Tokens wahrscheinlich akzeptiert werden, und nur diese werden verifiziert. Laut Hersteller spart das rund 30 Prozent der Verifikationsarbeit und bringt am Produktions-Arbeitspunkt 4 bis 7 Prozent mehr Durchsatz."
+    },
+    {
+      "q": "Wie groß ist der DeepSeek-Betrieb wirklich?",
+      "a": "Nach Herstellerangabe bedient ein einzelnes Cluster derzeit 155 Billionen Token pro Tag bei einem Gesamtumsatz von 38 US-Dollar pro GPU-Stunde zum Talstrompreis. Diese Angaben sind nicht unabhängig geprüft."
+    },
+    {
+      "q": "Unter welcher Lizenz steht DeepInfer?",
+      "a": "Apache 2.0. Das begleitende Token-Kodierungspaket deepseek-recipe steht unter der MIT-Lizenz."
+    }
+  ],
+  "sources": [
+    {
+      "title": "deepseek-ai/DeepInfer (Repository und README)",
+      "publisher": "GitHub / DeepSeek-AI",
+      "url": "https://github.com/deepseek-ai/DeepInfer",
+      "accessed": "2026-10-24"
+    },
+    {
+      "title": "DeepSeek V4.1 Flash Inference Deployment Q&A",
+      "publisher": "GitHub / DeepSeek-AI",
+      "url": "https://github.com/deepseek-ai/DeepInfer/blob/main/doc/inference_deployment_qa.md",
+      "accessed": "2026-10-24"
+    },
+    {
+      "title": "DeepInfer eval/README (Benchmark-Methodik)",
+      "publisher": "GitHub / DeepSeek-AI",
+      "url": "https://github.com/deepseek-ai/DeepInfer/blob/main/eval/README.md",
+      "accessed": "2026-10-24"
+    },
+    {
+      "title": "deepseek-ai/deepseek-recipe (Repository)",
+      "publisher": "GitHub / DeepSeek-AI",
+      "url": "https://github.com/deepseek-ai/deepseek-recipe",
+      "accessed": "2026-10-24"
+    }
+  ],
+  "method": "Grundlage sind das DeepInfer-Repository mit README, das Deployment-Q&A-Dokument, das Evaluierungs-README und das Repository deepseek-recipe, alle am 24. Oktober 2026 abgerufen beziehungsweise gegen den Vortag unverändert re-verifiziert. Die DSpark-Werte stammen aus der Hersteller-Tabelle mit EP64/DP64-Benchmarkdaten; die Darstellung als Diagramm übernimmt die Werte unverändert. Keine eigenen Messungen.",
+  "limitations": "Alle Skalen- und Leistungsangaben (155 Billionen Token/Tag, 38 US-Dollar/GPU-Stunde, Durchsatzgewinne, Trefferraten) sind Herstellerangaben ohne unabhängige Replikation. Das Release deckt nur Offline-Inferenz ab; die fehlenden Komponenten sind beschrieben, aber nicht als Code verfügbar, ein Vergleich mit anderen Stacks wurde vom Hersteller nicht veröffentlicht.",
+  "related": [
+    "kv-cache-kompression-deepseek-analyse",
+    "inferenz-server-betrieb",
+    "inferenz-und-kosten-verstehen"
+  ]
+}

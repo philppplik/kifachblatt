@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [DeepInfer: DeepSeek legt seinen Inferenz-Stack offen](https://kifachblatt.de/deepseek-deepinfer-inferenzframework): 155 Billionen Token pro Tag aus einem Cluster: DeepSeek öffnet das Inferenzframework hinter V4.1-Flash. Was im Apache-2.0-Release steckt - und was fehlt.
+- [Flint: 40-Milliarden-Coding-Modell für den eigenen Rechner](https://kifachblatt.de/recursive-flint-analyse): Recursive Flint: 39,8 Milliarden Parameter, nur 2,5 Milliarden aktiv, Apache-2.0-Gewichte. Soll lokal über 125 Token pro Sekunde schaffen. Was die Karte belegt.
 - [PHP2Shell: KI findet jahrzehntealte Kernfehler in PHP](https://kifachblatt.de/php2shell-analyse): Zwei kritische Speicherfehler im PHP-Kern betreffen fast jede Version seit 5.4. Entdeckt und ausnutzbar gemacht wurden sie mit Frontier-Modellen.
 - [Mistral Large 4: Eine Billion Parameter aus Europa](https://kifachblatt.de/mistral-large-4-analyse): Mistrals größtes Modell: 1,05 Billionen Parameter, 52 Milliarden aktiv, Million-Token-Kontext. Gewichte folgen Ende Oktober. Was belegt ist, was nicht.
 - [Test-Time-Compute: Die zweite Skalierungsachse der KI](https://kifachblatt.de/test-time-compute-reasoning-modelle-analyse): Erst Chain-of-Thought, dann Verstärkungslernen, jetzt Budget Forcing: Warum Modelle mit mehr Denkzeit besser werden - und was die Forschung dazu belegt.
