@@ -1,5 +1,65 @@
 [
   {
+    "title": "Anthropic lässt KI-Agenten Verhandlungsregeln für Menschen lernen",
+    "url": "https://www.heise.de/news/Anthropic-laesst-KI-Agenten-Verhandlungsregeln-fuer-Menschen-lernen-11498981.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792829640.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic berät sich angeblich mit Anwaltskanzleien, wie KI-Agenten künftig Preise, Gehälter und Verträge für ihre Nutzer aushandeln sollten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-24T09:37:53.916956+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Nvidia-CEO nimmt KI-Entwickler in die Pflicht: Sollen keine Schäden anrichten",
+    "url": "https://www.heise.de/news/Nvidia-CEO-nimmt-KI-Entwickler-in-die-Pflicht-Sollen-keine-Schaeden-anrichten-11498634.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792769280.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Laut Jensen Huang macht nicht Regulierung KI sicher, sondern Engineering. Als Sicherheitsgurt für KI-Agenten empfiehlt Nvidia seine freie Software OpenShell.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-24T09:37:53.917184+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Google Maps für CarPlay: Mit Gemini sprechen bei der Fahrt",
+    "url": "https://www.heise.de/news/Google-Maps-fuer-CarPlay-Mit-Gemini-sprechen-bei-der-Fahrt-11497080.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792765080.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Wer von Googles Ki-Assistenz nicht genug bekommt, kann sie nun auch in CarPlay-Autos aufrufen, während Google Maps navigiert.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-24T09:37:53.917215+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Update Deep-Dive: Warum ControlAI ein Verbot von Superintelligenz fordert",
+    "url": "https://www.heise.de/news/KI-Update-Deep-Dive-Warum-ControlAI-ein-Verbot-von-Superintelligenz-fordert-11493868.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792760400.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Die NGO ControlAI warnt vor den Gefahren durch eine Superintelligenz, die den Menschen in allen Bereichen übertrifft, und fordert ein Entwicklungsverbot.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-24T09:37:53.917271+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Jetzt auch von Anthropic: Proaktiver KI-Agent für den Arbeitsalltag",
+    "url": "https://www.heise.de/news/Jetzt-auch-von-Anthropic-Proaktiver-KI-Agent-fuer-den-Arbeitsalltag-11498244.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792758600.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic veröffentlicht mit Claude Duet nun auch einen persönlichen Agenten. Er zielt zunächst auf Fachleute und Kleinunternehmer und startet als Preview.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-24T09:37:53.917309+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "W3C: Ein Auftrag ist kein Freibrief für KI-Agenten",
     "url": "https://www.heise.de/news/W3C-Ein-Auftrag-ist-kein-Freibrief-fuer-KI-Agenten-11497919.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792746420.0,
