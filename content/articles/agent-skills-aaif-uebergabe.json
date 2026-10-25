@@ -1,0 +1,196 @@
+{
+  "slug": "agent-skills-aaif-uebergabe",
+  "lang": "de",
+  "section": "agenten",
+  "type": "analysis",
+  "title": "Agent Skills: Anthropic übergibt den Standard an die Linux Foundation",
+  "dek": "Anthropic übergibt Agent Skills an die Linux Foundation: eine Million Skills, 280 Millionen Installationen, 70 Plattformen. Was sich ändert - und was nicht.",
+  "published": "2026-10-25T07:00:00+01:00",
+  "modified": "2026-10-25T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Agent Skills",
+    "Anthropic",
+    "Linux Foundation",
+    "AAIF",
+    "Open Standards"
+  ],
+  "key_takeaways": [
+    "Anthropic hat Agent Skills an die Agentic AI Foundation (AAIF) unter dem Dach der Linux Foundation übergeben - inklusive Name, Logo, GitHub-Organisation und der Domain agentskills.io [1].",
+    "Über 70 Agenten-Plattformen, darunter ChatGPT, Cursor, GitHub Copilot und VS Code, haben das Format seit Dezember 2025 integriert; eine Million Skills wurden veröffentlicht und knapp 280 Millionen installiert [1].",
+    "Zeitgleich nahm die AAIF drei weitere Projekte auf - Open Responses (OpenAI), OpenEnv (Hugging Face) und OpenSandbox (Alibaba) - und hostet damit in ihrem ersten Jahr zehn Projekte [2]."
+  ],
+  "hero": {
+    "alt": "Säulendiagramm zum Wachstum der Agentic AI Foundation von drei Projekten im Dezember 2025 auf zehn Projekte im Oktober 2026",
+    "caption": "Die Agentic AI Foundation ist in ihrem ersten Jahr von drei auf zehn Projekte gewachsen.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Anthropic hat am 22. Oktober angekündigt, Agent Skills - das offene Format, mit dem sich KI-[Agenten](/glossar#agent) spezialisiertes Wissen und Arbeitsabläufe beibringen lassen - an die Agentic AI Foundation (AAIF) zu übergeben [1]. Die AAIF ist eine Stiftung unter dem Dach der Linux Foundation, die Anthropic im vergangenen Jahr zusammen mit Block und OpenAI mitgegründet hat; bereits das [Model Context Protocol](/glossar#mcp) (MCP) hatte Anthropic dort abgelegt [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was genau übergeben wurde"
+    },
+    {
+      "t": "p",
+      "x": "Die Übergabe umfasst den Namen und das Logo von Agent Skills, die GitHub-Organisation und die Domain agentskills.io [1]. Wer den Standard nutzt oder daran mitarbeitet, muss dafür nicht Mitglied der AAIF werden [1]. Die AAIF soll dem Standard nach Anthropics Darstellung ein neutrales Zuhause geben und sicherstellen, dass die Community ein Mitspracherecht bei der Weiterentwicklung hat [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was ein Skill ist"
+    },
+    {
+      "t": "p",
+      "x": "Ein Skill ist ein Ordner, der eine Datei namens SKILL.md enthält - darin steht, wie ein Agent eine bestimmte Aufgabe oder Domäne behandelt - plus optional Skripte und Referenzmaterial [1]. Entstanden ist das Format bei der Arbeit an Claude Code: Das Modell beherrschte allgemeine Wissensarbeit gut, ihm fehlte aber das prozedurale Wissen für konkrete Geschäftsaufgaben [1]."
+    },
+    {
+      "t": "p",
+      "x": "Nach dem Launch im Oktober 2025 veröffentlichten Entwickler binnen Wochen tausende Skills auf GitHub und schrieben Lader für Codex, Cursor und OpenCode. Im Dezember 2025 stellte Anthropic Agent Skills als offenen Standard unter eigener GitHub-Organisation und Domain, damit jeder Agent das Format nutzen kann [1]. Die Spezifikation liegt weiterhin öffentlich auf agentskills.io [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Verbreitung in Zahlen"
+    },
+    {
+      "t": "p",
+      "x": "Nach Angaben von Anthropic haben mehr als 70 Agenten-Plattformen Agent Skills integriert, darunter ChatGPT, Cursor, GitHub Copilot und VS Code [1]. Bislang wurde eine Million Skills veröffentlicht und knapp 280 Millionen installiert [1]. Diese Zahlen stammen vom Hersteller; eine unabhängige Prüfung gibt es nicht."
+    },
+    {
+      "t": "h2",
+      "x": "Wer den Standard jetzt pflegt"
+    },
+    {
+      "t": "p",
+      "x": "Gepflegt wird der Standard künftig von Entwicklern aus Anthropic, Google, OpenAI und weiteren Unternehmen - ausdrücklich als Einzelpersonen, nicht als Firmendelegierte. Lead Maintainers sind David Soria Parra und Mahesh Murag [1]. Als Roadmap schlägt Anthropic versionierte Releases, einen formalen Prozess für Änderungsvorschläge und Sicherheitsrichtlinien für alle vor, die Skills schreiben oder installieren [1]. Der Sicherheitspunkt ist nicht akademisch: Wer fremde Skills installiert, lädt Anweisungen und Skripte in den Kontext eines Agenten - ein klassischer Angriffsvektor im Umfeld von [Prompt Injection](/glossar#prompt-injection)."
+    },
+    {
+      "t": "h2",
+      "x": "Vier neue Projekte auf einen Schlag"
+    },
+    {
+      "t": "p",
+      "x": "Die Übergabe war Teil einer größeren Ankündigung der Linux Foundation: Die AAIF nahm gleich vier neue Projekte auf - neben Agent Skills noch Open Responses (beigesteuert von OpenAI), OpenEnv (Hugging Face) und OpenSandbox (Alibaba) [2]. Damit hostet die Stiftung in ihrem ersten Jahr zehn Projekte, nach drei zum Start im Dezember 2025 [2]. Bekanntgegeben wurde das auf der AGNTCon + MCPCon North America in San Jose [2]."
+    },
+    {
+      "t": "table",
+      "caption": "Die vier neuen AAIF-Projekte im Überblick",
+      "head": [
+        "Projekt und Zweck",
+        "Beigesteuert von",
+        "Quelle"
+      ],
+      "rows": [
+        [
+          "Agent Skills: offenes Format, mit dem Agenten neue Fähigkeiten und Domänenwissen laden",
+          "Anthropic",
+          "[2]"
+        ],
+        [
+          "Open Responses: anbieterübergreifende LLM-Schnittstelle auf Basis der OpenAI Responses API - gemeinsames Schema, Streaming-Events, erweiterbares Tooling",
+          "OpenAI",
+          "[2]"
+        ],
+        [
+          "OpenEnv: offenes Framework für RL-Trainingsumgebungen als containerisierter Dienst mit MCP- und Gym-Schnittstellen",
+          "Hugging Face",
+          "[2]"
+        ],
+        [
+          "OpenSandbox: sichere Ausführungsumgebung für Agenten",
+          "Alibaba",
+          "[2]"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Die vier Projekte decken laut Linux Foundation vier Schichten des Agenten-Stacks ab: wie Agenten neue Fähigkeiten bekommen, wie Anwendungen anbieterübergreifend mit Modellen sprechen, wie Agenten trainiert und evaluiert werden und wo sie sicher laufen [2]. Sie reihen sich neben die bisherigen Projekte ein - darunter das Agent2Agent-Protokoll (A2A), AGENTS.md, goose und MCP [2]."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "AAIF: Gehostete Projekte im ersten Jahr",
+      "alt": "Säulendiagramm: Die Agentic AI Foundation hostete im Dezember 2025 drei Projekte, im Oktober 2026 zehn.",
+      "caption": "Quelle: Linux Foundation [2]",
+      "labels": [
+        "Dezember 2025",
+        "Oktober 2026"
+      ],
+      "series": [
+        {
+          "name": "Gehostete Projekte",
+          "values": [
+            3,
+            10
+          ]
+        }
+      ],
+      "y_label": "Anzahl Projekte"
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung: Das MCP-Muster wiederholt sich"
+    },
+    {
+      "t": "p",
+      "x": "Die Übergabe folgt demselben Muster wie beim Model Context Protocol: Ein einzelnes Unternehmen baut ein Format, das Format verbreitet sich über den eigenen Produktkontext hinaus, und sobald die Adoption breit genug ist, wandert die Governance in eine neutrale Stiftung [1]. Für Anwender ändert sich zunächst wenig: Der Standard bleibt offen, die Spezifikation öffentlich, und niemand muss der AAIF beitreten [1]."
+    },
+    {
+      "t": "p",
+      "x": "Spannend wird es bei der Roadmap: Versionierte Releases und ein formaler Proposal-Prozess sind bislang nur Vorschläge [1]. Ob die Stiftung es schafft, die Interessen der konkurrierenden Beiträger - Anthropic, OpenAI, Google, Alibaba, Hugging Face - in einem einzigen Standardisierungsprozess zu bündeln, wird sich erst zeigen. Dass OpenAI mit Open Responses gleichzeitig eine Spezifikation abgibt, die auf der eigenen Responses-API basiert [2], zeigt, wie eng offene Standards und Firmeninteressen hier beieinanderliegen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was sind Agent Skills?",
+      "a": "Ein Skill ist ein Ordner mit einer SKILL.md-Datei, die einem KI-Agenten eine bestimmte Aufgabe oder Domäne beibringt, plus optional Skripte und Referenzmaterial. Das Format stammt von Anthropic und wurde im Dezember 2025 als offener Standard veröffentlicht [1]."
+    },
+    {
+      "q": "Was ändert sich durch die Übergabe an die AAIF?",
+      "a": "Zunächst wenig: Der Standard bleibt offen, und Nutzer müssen nicht Mitglied der Agentic AI Foundation werden. Neu ist die neutrale Governance - die Weiterentwicklung liegt künftig bei Maintainers aus mehreren Unternehmen statt allein bei Anthropic [1]."
+    },
+    {
+      "q": "Wer pflegt den Agent-Skills-Standard jetzt?",
+      "a": "Entwickler aus Anthropic, Google, OpenAI und weiteren Unternehmen, ausdrücklich als Einzelpersonen. Lead Maintainers sind David Soria Parra und Mahesh Murag [1]."
+    },
+    {
+      "q": "Was hat das mit MCP zu tun?",
+      "a": "Anthropic hatte das Model Context Protocol (MCP) bereits zuvor an dieselbe Stiftung übergeben. Die AAIF wurde von Anthropic gemeinsam mit Block und OpenAI gegründet und beherbergt inzwischen zehn Projekte [1][2]."
+    },
+    {
+      "q": "Kann ich eigene Skills schreiben?",
+      "a": "Ja. Die Spezifikation ist öffentlich auf agentskills.io verfügbar; Beiträge zum Standard laufen über die GitHub-Organisation des Projekts [1][3]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Donating Agent Skills to the Agentic AI Foundation",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/news/donating-agent-skills-to-the-agentic-ai-foundation",
+      "accessed": "2026-10-25"
+    },
+    {
+      "title": "Agentic AI Foundation Announces Four New Projects: Agent Skills, Open Responses, OpenEnv, and OpenSandbox",
+      "publisher": "The Linux Foundation",
+      "url": "https://www.linuxfoundation.org/press/agentic-ai-foundation-announces-four-new-projects-agent-skills-open-responses-openenv-and-opensandbox",
+      "accessed": "2026-10-25"
+    },
+    {
+      "title": "Agent Skills Overview",
+      "publisher": "agentskills.io",
+      "url": "https://agentskills.io",
+      "accessed": "2026-10-25"
+    }
+  ],
+  "method": "Analyse auf Basis der Ankündigungen von Anthropic und der Linux Foundation sowie der Spezifikationsseite agentskills.io. Die genannten Verbreitungszahlen (integrierte Plattformen, veröffentlichte und installierte Skills) stammen von Anthropic und wurden nicht unabhängig geprüft.",
+  "limitations": "Dieser Artikel basiert auf den öffentlichen Ankündigungen der beteiligten Organisationen. Wie sich die neue Governance in der Praxis entwickelt - etwa bei versionierten Releases und Sicherheitsrichtlinien -, ist zum Zeitpunkt der Veröffentlichung offen; die entsprechende Roadmap ist bislang nur ein Vorschlag [1].",
+  "related": [
+    "mcp-verstehen",
+    "agenten-architekturen",
+    "agenten-fundamente"
+  ]
+}

@@ -1,0 +1,175 @@
+{
+  "slug": "dessa-sprachmodell-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Dessa: Block trainiert ein Sprachmodell ohne ein Wort Text",
+  "dek": "Blocks Forschungslabor hat ein Sprachmodell nur an menschlicher Konversation trainiert - ohne Textdaten, ohne Vormodell, auf einem einzigen GPU-Rack.",
+  "published": "2026-10-25T07:00:00+01:00",
+  "modified": "2026-10-25T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Dessa",
+    "Block",
+    "Sprachmodelle",
+    "Full-Duplex",
+    "Voice AI"
+  ],
+  "key_takeaways": [
+    "Block hat Dessa vorgestellt: ein Sprach-zu-Sprach-Modell, das von Grund auf nur an menschlicher Konversation trainiert wurde - ohne Textdaten und ohne vortrainierte Modelle [1].",
+    "Dessa arbeitet Full-Duplex, hört und spricht also gleichzeitig, und läuft laut Block lokal auf einem MacBook Pro mit M4 Max oder besser [1].",
+    "Trainiert wurde auf einem einzigen NVIDIA GB200 NVL72. Öffentlich verfügbar ist das Modell bislang nicht; Block sucht zunächst Safety-Forscher für einen frühen Zugang [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung zweier überlappender Audiowellen als Symbol für ein Full-Duplex-Gespräch zwischen Mensch und KI",
+    "caption": "Dessa hört und spricht gleichzeitig: Block hat das Modell nur an gesprochener Sprache trainiert.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Block, das Unternehmen hinter Square und Cash App, hat am 21. Oktober ein ungewöhnliches KI-Modell vorgestellt: Dessa ist ein Gesprächsmodell, das nach Angaben des Unternehmens von Grund auf ausschließlich an menschlicher Konversation trainiert wurde - ohne Textdaten und ohne vortrainierte Modelle [1]. Block bezeichnet Dessa als die erste KI, mit der man ein realistisches Live-Gespräch führen könne und die nur aus menschlicher Sprache gelernt habe [1]."
+    },
+    {
+      "t": "p",
+      "x": "Das Modell arbeitet Full-Duplex: Es hört zu und spricht gleichzeitig, so wie Menschen es in einem natürlichen Gespräch tun [1]. In den veröffentlichten Demo-Aufnahmen lacht Dessa mitten im Satz, wird auf Zuruf lauter, vervollständigt angefangene Sätze seines Gegenübers und reagiert mit einem überraschten Aufkeuchen [1]. Diese Aufnahmen sind nach Angaben von Block echte, unbearbeitete Live-Gespräche [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Warum Sprache ohne Text schwerer ist, als es klingt"
+    },
+    {
+      "t": "p",
+      "x": "Die gängige Architektur sprechender KI ist eine Kaskade: Die Sprache wird zunächst in Text transkribiert, ein [Sprachmodell](/glossar#sprachmodell-llm) formuliert die Antwort, und eine Sprachsynthese vertont sie wieder. Dabei geht genau das verloren, was ein Gespräch ausmacht: Der Transkribierungsschritt glättet Emotionen, Sarkasmus, Lachen und Pausen zu einfachem Text [1]. Block formuliert es auf der Modellseite so: 'The transcript says what you said. It misses how you said it' [1]."
+    },
+    {
+      "t": "p",
+      "x": "Dazu kommt ein statistisches Problem: Text wiederholt sich in Trainingskorpora ständig, gesprochene Sprache dagegen so gut wie nie. Ein einziges gesprochenes Wort enthält nach Blocks Rechnung tausende Byte mehr Information als ein Text-[Token](/glossar#token) - dieselbe Information ist also viel seltener verfügbar [1]. Und während Betonung die Bedeutung eines Satzes komplett verändern kann, ist Text dazu schlicht nicht in der Lage. Dessa soll genau diese Ebene direkt aus dem Audiosignal gelernt haben, statt sie nachträglich über Markup-Tags zu simulieren [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Training auf einem einzigen Rack"
+    },
+    {
+      "t": "p",
+      "x": "Bemerkenswert ist die Effizienzbehauptung: Trainiert wurde Dessa laut Block auf einem einzigen NVIDIA GB200 NVL72 [1][3]. Und obwohl das Modell aus 'hundertfach weniger Wörtern' gelernt habe als typische [Sprachmodelle](/glossar#sprachmodell-llm), habe es trotzdem Sprache gelernt [1]. Diese Stichprobeneffizienz nennt Block selbst eine der zentralen offenen Forschungsfragen: Wenn ein Modell mit so wenig Daten Sprache lernen kann, was bedeutet das für die Datenmengen, mit denen Textmodelle trainiert werden? [1]"
+    },
+    {
+      "t": "p",
+      "x": "Weitere offene Fragen, die Block selbst benennt: Kommen Modelle, die nur an Sprache trainiert wurden, mit der Skalierung der großen Textmodelle mit? Kann Dessa neue Sprachen lernen, und lernt es - wie große LLMs - im Kontext dazu? [1]"
+    },
+    {
+      "t": "h2",
+      "x": "Lokal statt Cloud"
+    },
+    {
+      "t": "p",
+      "x": "Dessa ist für den lokalen Betrieb ausgelegt: Das Modell läuft laut Block auf einem MacBook Pro mit M4 Max oder besser, und die [Inferenz](/glossar#inferenz) sei schneller als Echtzeit [1]. Ein Gesprächsmodell auf dem eigenen Rechner statt in der Cloud wäre ein deutlicher Unterschied zu den bisherigen Sprachassistenten der großen Anbieter, deren Modelle auf Serverinfrastruktur angewiesen sind. Ob und in welcher Form Block das Modell tatsächlich zum Download anbieten wird, ist der Ankündigung allerdings nicht zu entnehmen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Safety statt sofortigem Release"
+    },
+    {
+      "t": "p",
+      "x": "Öffentlich verfügbar ist Dessa bislang nicht. Auf der Modellseite gibt es eine Warteliste, und Block gibt einer kleinen Gruppe von Safety-Forschern frühen Zugang, um Risiken zu finden, die das Team selbst nicht antizipiert hat [1][2]. Der Sicherheitsaspekt ist Teil der Begründung für das Projekt: Eine Sprach-KI, die nicht hören kann, wie etwas gesagt wird, könne ein Sicherheitsproblem sein - etwa wenn sie Panik, Eile oder Zögern im Tonfall des Gegenübers nicht wahrnimmt. Eine der Demos zeigt genau das: ein Fahrer, der vor lauter E-Mails das Aufladen seines Elektroautos vergisst [1]."
+    },
+    {
+      "t": "p",
+      "x": "Hinter Dessa steht ein kleines KI-Forschungslabor bei Block, gegründet von früheren Mitgliedern des Torontoer Deep-Learning-Startups Dessa. Das Team arbeitet nach eigener Angabe seit über acht Jahren an generativen Sprachmodellen, wird von Ragavan Thurairatnam geleitet und berichtet direkt an Jack Dorsey [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung: nicht die erste emotionale Sprach-KI, aber ein anderer Weg"
+    },
+    {
+      "t": "p",
+      "x": "Dessa ist nicht der erste Versuch, Sprach-KI emotionaler zu machen. Das Startup Hume AI brachte im März 2024 mit EVI ein 'empathisches' Sprachinterface auf den Markt, das französische Labor Kyutai folgte im September 2024 mit Moshi, und das Open-Source-Projekt Open Empathic von LAION arbeitet seit Ende 2023 an empathischer Sprachsynthese [2]. OpenAI hat mit GPT-Live ebenfalls ein Full-Duplex-Sprachmodell vorgestellt; in einer Demo auf Blocks Seite führt Dessa ein Gespräch mit ihm [1][3]."
+    },
+    {
+      "t": "table",
+      "caption": "Drei Ansätze für sprechende KI im Vergleich",
+      "head": [
+        "Ansatz und Prinzip",
+        "Typ",
+        "Quelle"
+      ],
+      "rows": [
+        [
+          "Text-Kaskade: Sprache wird zu Text, ein Textmodell antwortet, die Ausgabe wird vertont - Emotionen gehen unterwegs verloren",
+          "Pipeline",
+          "[1][3]"
+        ],
+        [
+          "Tag-basierte Emotionssteuerung: Text-Pipeline mit Markup-Tags für Emotionen, per Fine-Tuning auf Expressivität trainiert (ElevenLabs v4, Fish Audio Drama 3)",
+          "Markup",
+          "[3]"
+        ],
+        [
+          "Speech-nativ, Full-Duplex: Modell verarbeitet und erzeugt direkt Audio, hören und sprechen gleichzeitig (Dessa, OpenAI GPT-Live, Kyutai Moshi)",
+          "Audio-nativ",
+          "[1][2][3]"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Was Dessa von den bisherigen Ansätzen unterscheidet, ist vor allem die Radikalität des Trainingsansatzes: kein Text, kein Vormodell, kein [Tokenizer](/glossar#tokenizer) für Sprache, sondern ein Modell, das Sprache als Klang gelernt hat. Dafür fehlt bislang fast alles, mit dem sich die Behauptungen prüfen ließen: Es gibt kein Paper, keine Parameterzahl, keine Angaben zum Datensatz, keine Benchmarks und keine öffentlich verfügbaren Gewichte [1]. Die Demo-Aufnahmen sind beeindruckend, aber vom Hersteller ausgewählt - sie zeigen, was Dessa kann, nicht, wo es scheitert."
+    },
+    {
+      "t": "callout",
+      "title": "Was fehlt",
+      "x": "Kein Paper, keine Parameterzahl, keine Angaben zu Trainingsdaten, keine Benchmarks, keine offenen Gewichte. Alle Leistungsangaben stammen ausschließlich von Block [1]. Die Warteliste und der Zugang für Safety-Forscher deuten auf einen kontrollierten Rollout hin; ein öffentlicher Download ist derzeit nicht verfügbar [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Dessa?",
+      "a": "Dessa ist ein Gesprächsmodell von Block, das laut Hersteller von Grund auf nur an menschlicher Konversation trainiert wurde - ohne Textdaten und ohne vortrainierte Modelle. Es arbeitet Full-Duplex, hört und spricht also gleichzeitig [1]."
+    },
+    {
+      "q": "Kann ich Dessa schon nutzen?",
+      "a": "Noch nicht. Block bietet eine Warteliste an und gibt einer kleinen Gruppe von Safety-Forschern frühen Zugang; ein öffentlicher Download ist derzeit nicht verfügbar [1][2]."
+    },
+    {
+      "q": "Was bedeutet Full-Duplex bei einem Sprachmodell?",
+      "a": "Full-Duplex bedeutet, dass das Modell hören und sprechen gleichzeitig kann - wie Menschen in einem natürlichen Gespräch. Herkömmliche Sprachassistenten arbeiten nacheinander: erst zuhören, dann transkribieren, dann antworten [1]."
+    },
+    {
+      "q": "Auf welcher Hardware läuft Dessa?",
+      "a": "Laut Block läuft Dessa lokal auf einem MacBook Pro mit M4 Max oder besser, und die Inferenz sei schneller als Echtzeit. Trainiert wurde das Modell auf einem einzigen NVIDIA GB200 NVL72 [1]."
+    },
+    {
+      "q": "Wer steht hinter Dessa?",
+      "a": "Ein kleines KI-Forschungslabor bei Block, gegründet von früheren Mitgliedern des Torontoer Startups Dessa. Teamlead ist Ragavan Thurairatnam; das Labor berichtet direkt an Jack Dorsey [1]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Dessa - The world's first AI you can have a realistic live conversation with trained only from human speech",
+      "publisher": "Block",
+      "url": "https://block.xyz/dessa",
+      "accessed": "2026-10-25"
+    },
+    {
+      "title": "Block's new AI model Dessa was trained entirely on human speech to catch emotions text-based models miss",
+      "publisher": "The Decoder",
+      "url": "https://the-decoder.com/blocks-new-ai-model-dessa-was-trained-entirely-on-human-speech-to-catch-emotions-text-based-models-miss/",
+      "accessed": "2026-10-25"
+    },
+    {
+      "title": "Block's new voice model sounds eerily human",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/24/blocks-new-voice-model-sounds-eerily-human/",
+      "accessed": "2026-10-25"
+    }
+  ],
+  "method": "Analyse auf Basis der von Block veröffentlichten Modellseite sowie zweier Presseberichte. Block nennt keine Parameterzahl, keine Angaben zum Datensatz und keine Benchmarks; sämtliche Leistungs- und Trainingsangaben stammen vom Hersteller und wurden nicht unabhängig geprüft. Die Demo-Aufnahmen wurden nicht selbst ausgewertet.",
+  "limitations": "Dieser Artikel basiert auf Herstellerangaben und Presseberichten. Dessa ist nicht öffentlich verfügbar; die beschriebenen Fähigkeiten konnten nicht selbst getestet werden. Die Behauptung, das 'weltweit erste' nur auf Sprache trainierte Gesprächsmodell zu sein, stammt von Block und lässt sich nicht abschließend verifizieren.",
+  "related": [
+    "audio-sprach-ki",
+    "multimodale-modelle",
+    "wie-ein-sprachmodell-lernt"
+  ]
+}

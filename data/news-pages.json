@@ -1,5 +1,17 @@
 [
   {
+    "title": "OpenAI stellt seine neue Trainingsumgebung vor – ohne Air Gap",
+    "url": "https://www.heise.de/news/OpenAI-stellt-seine-neue-Trainingsumgebung-vor-ohne-Air-Gap-11499163.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792841820.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "OpenAI verschärfte nach Hacking-Attacken durch seine KI die Sicherheits-Maßnahmen. Die „Offline-Welten“ dafür sind aber nicht offline.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-25T06:14:41.807858+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Anthropic lässt KI-Agenten Verhandlungsregeln für Menschen lernen",
     "url": "https://www.heise.de/news/Anthropic-laesst-KI-Agenten-Verhandlungsregeln-fuer-Menschen-lernen-11498981.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792829640.0,
