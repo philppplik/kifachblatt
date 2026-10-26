@@ -1,0 +1,234 @@
+{
+  "slug": "carbon-x-dna-sprachmodell-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Carbon-X: Ein offenes 14B-Modell, das DNA im Chat liest",
+  "dek": "Hugging Faces Carbon-X beantwortet Fragen zu DNA-Sequenzen im Chat - in Hersteller-Benchmarks nahe an Frontier-Modellen, bei einem Bruchteil der Kosten.",
+  "published": "2026-10-26T07:00:00+01:00",
+  "modified": "2026-10-26T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Carbon-X",
+    "Hugging Face",
+    "DNA",
+    "Bio-KI",
+    "Offene Modelle"
+  ],
+  "key_takeaways": [
+    "Carbon-X ist ein offenes 14,8-Milliarden-Parameter-Modell, das DNA-Sequenzen und natürliche Sprache in einem einzigen Tokenstrom verarbeitet - ohne separaten DNA-Encoder [1].",
+    "Über fünf DNA-Benchmarks erreicht Carbon-X im Schnitt 66,7 Prozent - nahe an GPT-6.1 Sol (67,5 Prozent) und laut Hersteller bei etwa 1/1.800 der Inferenzkosten pro Aufgabe [1].",
+    "Das Modell steht unter Apache 2.0, läuft in bfloat16 auf einer einzigen 80-GB-GPU und liegt als GGUF für llama.cpp vor - ist aber nicht klinisch validiert und ausdrücklich nicht für medizinische Entscheidungen gedacht [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung eines DNA-Doppelstrangs, dessen Basenpaare in Token einer Chat-Oberfläche übergehen",
+    "caption": "Carbon-X verarbeitet rohe DNA-Sequenzen direkt im Chat - ein DNA-Token deckt bis zu sechs Basenpaare ab.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Hugging Face hat mit Carbon-X ein ungewöhnliches [Sprachmodell](/glossar#sprachmodell-llm) veröffentlicht: Das offene Modell mit 14,8 Milliarden Parametern wurde gemeinsam auf DNA-Sequenzen und natürlichsprachlichem Text trainiert. Man gibt rohe DNA in einer ganz normalen Chat-Unterhaltung ein, und das Modell antwortet auf Englisch: Es schätzt ein, ob Mutationen harmlos oder krankheitserregend sind, erkennt Regionen, die Genaktivität steuern, ordnet Sequenzen Organismusgruppen zu, sagt die nächsten Basen einer Sequenz voraus und erklärt seine Begründung [1]."
+    },
+    {
+      "t": "p",
+      "x": "Architektonisch ist Carbon-X ein Decoder-only-[Transformer](/glossar#transformer) mit 40 Schichten, Hidden Size 5.120, Grouped Query Attention (40 Query-, 8 KV-Köpfe), SwiGLU und RMSNorm mit QK-Norm. DNA und Text teilen sich einen einzigen Tokenstrom in einem einzigen Decoder - einen separaten DNA-Encoder gibt es nicht [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Ein Tokenizer für zwei Alphabete"
+    },
+    {
+      "t": "p",
+      "x": "Der Kniff steckt im hybriden [Tokenizer](/glossar#tokenizer): Für Text nutzt Carbon-X das BPE-Vokabular von Qwen3, DNA wird als nicht überlappende 6-Mere kodiert - ein DNA-[Token](/glossar#token) deckt also sechs Basenpaare ab. Insgesamt kommen 5.515 DNA-Tokens zum Textvokabular: 4.096 6-Mere, 1.364 Rest-Tokens für Sequenzen, deren Länge kein Vielfaches von sechs ist, sowie Marker für Sequenzanfang und -ende. DNA im Prompt wird automatisch erkannt und markiert [1]. Damit llama.cpp den Hybrid-Tokenizer korrekt verarbeitet, ist mindestens Build b11742 nötig - ältere Builds laden das Modell, tokenisieren DNA aber falsch [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: nah an Frontier-Modellen, mit Ausreißern nach beiden Seiten"
+    },
+    {
+      "t": "p",
+      "x": "Über fünf DNA-Benchmarks - sie decken die Vorhersage von Mutationseffekten, Sequenzverständnis und die Vorhersage der nächsten Basen ab - erreicht Carbon-X ohne Reasoning-Modus im Mittel 66,7 Prozent. Das sind nach Herstellerangaben 27 Punkte mehr als Qwen3-14B, das Ausgangsmodell, und mehr als jedes andere getestete offene Modell. GPT-6.1 Sol liegt mit 67,5 Prozent nur knapp vorn - laut Hugging Face bei etwa 1/1.800 der Inferenzkosten pro Aufgabe [1]. Zwei der fünf Benchmarks (FrontierVEP und NextBase) stammen vom Carbon-X-Team selbst, BioReason und GenomeQA aus der Literatur [1][3]."
+    },
+    {
+      "t": "table",
+      "caption": "Carbon-X im Benchmark-Vergleich (Herstellerangaben, in Prozent)",
+      "head": [
+        "Benchmark (Aufgabe)",
+        "Carbon-X",
+        "Bester Vergleichswert",
+        "Von"
+      ],
+      "rows": [
+        [
+          "BioReason Coding (Mutationen in kodierenden Regionen)",
+          "74,9",
+          "71,0",
+          "GPT-6.1 Sol"
+        ],
+        [
+          "BioReason Non-SNV (Insertionen, Deletionen u.a.)",
+          "85,1",
+          "94,8",
+          "Opus 5.5"
+        ],
+        [
+          "GenomeQA (Sequenzverständnis, 6 Teilaufgaben)",
+          "63,6",
+          "67,2",
+          "GPT-6.1 Sol"
+        ],
+        [
+          "NextBase (nächste Basen vorhersagen)",
+          "39,4",
+          "32,9",
+          "GPT-6.1 Sol"
+        ],
+        [
+          "FrontierVEP (Einbasen-Varianten, lange Referenz)",
+          "70,4",
+          "76,2",
+          "Opus 5.5"
+        ],
+        [
+          "Durchschnitt",
+          "66,7",
+          "67,5",
+          "GPT-6.1 Sol"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Die Detailwerte zeigen, wo das Modell stark und wo es schwach ist: Bei Mutationen in kodierenden Regionen und bei der Vorhersage der nächsten Basen führt Carbon-X das gesamte Testfeld an. Bei Fragen zu Splice-Sites (29,8 Prozent) und Histon-Marken (34,6 Prozent) liegt es dagegen kaum über der Zufallsrate - die Hersteller nennen das selbst als Schwäche [1]. Als Chat-Assistent bleibt das Modell brauchbar: Auf IFEval erreicht es 79,3 Prozent im strengen Maßstab [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "Durchschnitt über fünf DNA-Benchmarks",
+      "alt": "Säulendiagramm: Durchschnittliche Benchmark-Werte von sieben Modellen. GPT-6.1 Sol 67,5 Prozent, Carbon-X 66,7, Opus 5.5 60,9, Kimi K3 50,4, Gemini 4 Argon 49,8, DeepSeek V4.1 Flash 47,1, GLM-5.3 39,8.",
+      "caption": "Herstellerangaben; Vergleichsmodelle jeweils mit der Reasoning-Stufe ihres besten Durchschnitts [1]",
+      "labels": [
+        "GPT-6.1 Sol",
+        "Carbon-X",
+        "Opus 5.5",
+        "Kimi K3",
+        "Gemini 4 Argon",
+        "DS V4.1 Flash",
+        "GLM-5.3"
+      ],
+      "series": [
+        {
+          "name": "Durchschnitt in Prozent",
+          "values": [
+            67.5,
+            66.7,
+            60.9,
+            50.4,
+            49.8,
+            47.1,
+            39.8
+          ]
+        }
+      ],
+      "y_label": "Prozent"
+    },
+    {
+      "t": "h2",
+      "x": "Kosten: die 300-Dollar-Rechnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Kostenargumentation der Modellkarte ist konkret: Carbon-X antwortet direkt, ohne ausgedehntes Reasoning, und verbraucht damit wenige Ausgabe-Tokens pro Aufgabe. Die Analyse der 2,4 Millionen Varianten unklarer Bedeutung (VUS) in der Datenbank ClinVar würde mit Carbon-X etwa 300 US-Dollar kosten, schätzt Hugging Face - mit den getesteten Frontier-Modellen dagegen 32.000 Dollar bis zu vier Millionen. Grundlage ist der gemessene Durchsatz pro H200-Stunde zu 5 Dollar [1]. Diese Rechnung stammt vom Hersteller und hängt an den eigenen Preis- und Durchsatzannahmen."
+    },
+    {
+      "t": "h2",
+      "x": "Training: Vokabular zuerst, dann 302 Milliarden Token"
+    },
+    {
+      "t": "p",
+      "x": "Carbon-X startet von Qwen3-14B [1][4]. Die neuen DNA-Tokens bekommen zufällig initialisierte Embeddings; rund zehn Milliarden Token lang bleibt der Transformer-Körper eingefroren, damit nur die DNA-Embeddings lernen. Danach folgt das eigentliche Mid-Training über 302 Milliarden Token: 55 Prozent rohe DNA, 20 Prozent Englisch, 15 Prozent Biologie-Text und 10 Prozent Instruktionsdaten. Die Lernrate war in den Ablationen der kritische Regler: zu niedrig, und die DNA-Werte bleiben auf Zufallsniveau; zu hoch, und das Modell verlernt Englisch [1]. Anschließend folgen Supervised Fine-Tuning (drei Epochen, rund 30 Prozent Varianten-Reasoning) und Reinforcement Learning mit verifizierbaren Belohnungen auf DNA-Aufgaben [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Offen und lokal: Apache 2.0, eine GPU, GGUF"
+    },
+    {
+      "t": "p",
+      "x": "Die Gewichte stehen unter Apache 2.0 [1]. In bfloat16 passen sie auf eine einzige GPU mit 80 GB; als Servingschicht genügt vLLM [1]. Für den lokalen Betrieb gibt es GGUF-Quantisierungen für llama.cpp - empfohlen wird Q8_0 mit 15,8 GB, dazu kleinere Varianten bis rund 9 GB [2]. Hugging Face hebt den Datenschutzaspekt hervor: Wer mit sensiblen oder unveröffentlichten Sequenzen arbeitet, kann das Modell auf eigener Infrastruktur halten, statt sie an eine API zu schicken [1]. Umgekehrt warnt die Karte davor, genetische Daten unbedarft in Drittanbieter-Demos oder Spaces zu geben [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Grenzen: kein klinisches Werkzeug"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte ist ungewöhnlich deutlich: Carbon-X ist nicht klinisch validiert und darf nicht für medizinische Entscheidungen genutzt werden [1]. Dazu kommen technische Grenzen: Exakte Sequenzoperationen (Zählen, Koordinaten, Edits) sind fehleranfällig, besonders bei langen Sequenzen; bei fehlendem Kontext kann das Modell Identität oder Funktion einer Sequenz erfinden - klassische [Halluzinationen](/glossar#halluzination); für das Design neuer Sequenzen wurde es nicht trainiert [1]. Das Kontextfenster beträgt zwar 40.960 Token, evaluiert wurde aber nur bis zu den im Training gesehenen Längen (8.192 Token, etwa 49 kbp DNA) [1]."
+    },
+    {
+      "t": "callout",
+      "title": "Hersteller-Benchmarks einordnen",
+      "x": "Alle Benchmark- und Kostenzahlen stammen von Hugging Face selbst; zwei der fünf Benchmarks hat das Team selbst gebaut. Eine unabhängige Reproduktion steht noch aus. Mit 807 Downloads im letzten Monat (Stand: 26. Oktober 2026) ist die Verbreitung bislang klein [1]."
+    },
+    {
+      "t": "p",
+      "x": "Entstanden ist Carbon-X als Kollaboration der Forschungsteams von Hugging Face, der Zhongguancun Academy und des Telethon Institute of Genetics and Medicine beziehungsweise der Universität Neapel 'Federico II' [1]. Für die Bioinformatik ist der Ansatz bemerkenswert, weil er die Trennung zwischen Sequenzmodellen und Sprachmodellen aufhebt: Statt DNA als bloße Eingabe für Spezialmodelle zu behandeln, wird sie zur zweiten Sprache eines normalen Chat-Modells - inklusive der Frage, ob sich biologisches Wissen ähnlich stichprobeneffizient lernen lässt wie Sprache."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Carbon-X?",
+      "a": "Ein offenes Sprachmodell mit 14,8 Milliarden Parametern von Hugging Face, das gemeinsam auf DNA-Sequenzen und Text trainiert wurde. Es beantwortet Fragen zu roher DNA auf Englisch - etwa ob eine Mutation harmlos oder krankheitserregend ist [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht Carbon-X?",
+      "a": "Apache 2.0. Die Gewichte sind frei verfügbar und laufen in bfloat16 auf einer einzigen 80-GB-GPU; GGUF-Quantisierungen für llama.cpp gibt es ab etwa 9 GB [1][2]."
+    },
+    {
+      "q": "Kann Carbon-X bei der Diagnose helfen?",
+      "a": "Nein. Das Modell ist nicht klinisch validiert und darf laut Modellkarte nicht für medizinische Entscheidungen eingesetzt werden. Es richtet sich an die Forschung [1]."
+    },
+    {
+      "q": "Wie gut ist Carbon-X im Vergleich zu Frontier-Modellen?",
+      "a": "Über fünf DNA-Benchmarks erreicht es im Hersteller-Vergleich 66,7 Prozent im Schnitt - knapp hinter GPT-6.1 Sol (67,5), bei laut Hersteller etwa 1/1.800 der Inferenzkosten pro Aufgabe. Unabhängig geprüft ist das noch nicht [1]."
+    },
+    {
+      "q": "Worauf basiert Carbon-X?",
+      "a": "Auf Qwen3-14B. Das Team erweiterte das Vokabular um 5.515 DNA-Tokens, trainierte zunächst nur die neuen Embeddings und dann das ganze Modell auf 302 Milliarden Token aus DNA, Biologie-Text und Englisch weiter [1][4]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "HuggingFaceBio/Carbon-X - Modellkarte",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/HuggingFaceBio/Carbon-X",
+      "accessed": "2026-10-26"
+    },
+    {
+      "title": "HuggingFaceBio/Carbon-X-GGUF - Modellkarte",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/HuggingFaceBio/Carbon-X-GGUF",
+      "accessed": "2026-10-26"
+    },
+    {
+      "title": "BIOREASON: Incentivizing Multimodal Biological Reasoning within a DNA-LLM Model",
+      "publisher": "NeurIPS 2025 Proceedings",
+      "url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/a1fd4072fa16e13bcaed21823a03c695-Paper-Conference.pdf",
+      "accessed": "2026-10-26"
+    },
+    {
+      "title": "Qwen/Qwen3-14B - Modellkarte",
+      "publisher": "Hugging Face / Qwen",
+      "url": "https://huggingface.co/Qwen/Qwen3-14B",
+      "accessed": "2026-10-26"
+    }
+  ],
+  "method": "Analyse auf Basis der von Hugging Face veröffentlichten Modellkarten (Carbon-X und GGUF-Variante), der Qwen3-14B-Karte sowie des BioReason-Papers (NeurIPS 2025) zur Herkunft der Benchmarks. Alle Benchmark- und Kostenzahlen stammen vom Hersteller und wurden nicht unabhängig reproduziert.",
+  "limitations": "Die Benchmark-Ergebnisse sind Herstellerangaben; zwei der fünf Benchmarks (FrontierVEP, NextBase) wurden vom Carbon-X-Team selbst entwickelt. Das Modell wurde von der Redaktion nicht selbst ausgeführt. Carbon-X ist nicht klinisch validiert; alle Angaben zur Variantenbewertung sind Forschungskontext, keine medizinische Aussage.",
+  "related": [
+    "multimodale-modelle",
+    "offene-gewichte-vs-open-source",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ]
+}

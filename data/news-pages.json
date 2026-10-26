@@ -1,5 +1,29 @@
 [
   {
+    "title": "Freiheit im Netz auf Talfahrt: Zensur, KI, Alterschecks und digitale Isolation",
+    "url": "https://www.heise.de/news/Freiheit-im-Netz-auf-Talfahrt-Zensur-KI-Alterschecks-und-digitale-Isolation-11499475.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792942680.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Der Freedom-on-the-Net-Bericht 2026 verweist auf weltweit sinkende Internetfreiheiten. Autokraten isolieren Netze; Altersgrenzen und KI schaffen neue Hürden.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-26T06:14:54.180182+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Mistral- und DeepL-Chefs warnen vor KI-Kapitulation Europas",
+    "url": "https://www.heise.de/news/KI-Streit-in-Europa-EU-Tech-Chefs-wehren-sich-gegen-Kapitulation-11499445.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1792934880.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "EU-Spitzenpolitiker wie von der Leyen setzen bei KI neuerdings vor allem auf Anwendungen. Mistral und DeepL warnen vor verstärkter technologischer Abhängigkeit.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-26T06:14:54.180272+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "OpenAI stellt seine neue Trainingsumgebung vor – ohne Air Gap",
     "url": "https://www.heise.de/news/OpenAI-stellt-seine-neue-Trainingsumgebung-vor-ohne-Air-Gap-11499163.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792841820.0,

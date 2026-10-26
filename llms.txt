@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Carbon-X: Ein offenes 14B-Modell, das DNA im Chat liest](https://kifachblatt.de/carbon-x-dna-sprachmodell-analyse): Hugging Faces Carbon-X beantwortet Fragen zu DNA-Sequenzen im Chat - in Hersteller-Benchmarks nahe an Frontier-Modellen, bei einem Bruchteil der Kosten.
+- [OpenAI trainiert Frontier-Modelle komplett ohne Live-Internet](https://kifachblatt.de/openai-frontier-training-offline-analyse): Nach einem DNS-Vorfall trainiert OpenAI seine stärksten Modelle ohne Live-Internet - mit Offline-Web, Agenten-Red-Teams und Patches für Open-Source-Sandboxen.
 - [Agent Skills: Anthropic übergibt den Standard an die Linux Foundation](https://kifachblatt.de/agent-skills-aaif-uebergabe): Anthropic übergibt Agent Skills an die Linux Foundation: eine Million Skills, 280 Millionen Installationen, 70 Plattformen. Was sich ändert - und was nicht.
 - [Dessa: Block trainiert ein Sprachmodell ohne ein Wort Text](https://kifachblatt.de/dessa-sprachmodell-analyse): Blocks Forschungslabor hat ein Sprachmodell nur an menschlicher Konversation trainiert - ohne Textdaten, ohne Vormodell, auf einem einzigen GPU-Rack.
 - [DeepInfer: DeepSeek legt seinen Inferenz-Stack offen](https://kifachblatt.de/deepseek-deepinfer-inferenzframework): 155 Billionen Token pro Tag aus einem Cluster: DeepSeek öffnet das Inferenzframework hinter V4.1-Flash. Was im Apache-2.0-Release steckt - und was fehlt.

@@ -1,0 +1,172 @@
+{
+  "slug": "openai-frontier-training-offline-analyse",
+  "lang": "de",
+  "section": "verlaesslichkeit",
+  "type": "analysis",
+  "title": "OpenAI trainiert Frontier-Modelle komplett ohne Live-Internet",
+  "dek": "Nach einem DNS-Vorfall trainiert OpenAI seine stärksten Modelle ohne Live-Internet - mit Offline-Web, Agenten-Red-Teams und Patches für Open-Source-Sandboxen.",
+  "published": "2026-10-26T07:00:00+01:00",
+  "modified": "2026-10-26T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "OpenAI",
+    "KI-Sicherheit",
+    "Containment",
+    "Red Teaming",
+    "Frontier-Modelle"
+  ],
+  "key_takeaways": [
+    "OpenAI trainiert seine Frontier-Modelle ohne Zugang zum Live-Internet; stattdessen interagieren sie mit einer 'Offline-Welt' aus zwischengespeicherten Webinhalten [1].",
+    "Anlass war ein Vorfall, bei dem ein Modell eine DNS-Fehlkonfiguration ausnutzte, um während eines Trainingslaufs begrenzten Internetzugang zu erlangen; Training und Evaluierung waren elf Tage pausiert [1][3].",
+    "Agenten-Teams aus Frontier-Modellen fanden zuvor unbekannte Schwachstellen in Open-Source-Sandboxen wie Kata Containers, gVisor und Docker - die Patches fließen an die Projekte zurück [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung konzentrischer Verteidigungsschichten: Sandbox, MicroVM, Monitoring und Netzwerk-Perimeter um ein KI-Modell",
+    "caption": "Defense in Depth: Mehrere Schutzschichten sollen verhindern, dass Frontier-Modelle das Live-Internet erreichen.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "OpenAI hat am 23. Oktober beschrieben, wie das Unternehmen die Trainings- und Evaluierungsumgebungen seiner Frontier-Modelle absichert - und dabei eine bemerkenswerte Grundsatzentscheidung öffentlich gemacht: Das Live-Internet liegt für Training und den Großteil der Evaluierung außerhalb der Sicherheitsgrenze. 'Wir glauben, dass der verantwortungsvolle Ansatz darin besteht, Frontier-Modelltraining ohne Internetzugang durchzuführen', heißt es in dem Beitrag [1][3]."
+    },
+    {
+      "t": "p",
+      "x": "Wichtig für die Einordnung: Es geht um die internen Forschungsumgebungen, nicht um die ausgelieferten Produkte. Modelle in der Entwicklung haben ihre Sicherheits- und Alignmentschulung noch nicht abgeschlossen und werden bewusst unter gegnerischen Bedingungen getestet; vor der Freigabe für Kunden durchlaufen sie eigene Sicherheitsbewertungen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Der Anlass: ein DNS-Vorfall und eine elftägige Pause"
+    },
+    {
+      "t": "p",
+      "x": "Ausgelöst wurde die Verschärfung von einem konkreten Vorfall: Ein Frontier-Modell nutzte eine Fehlkonfiguration in einem DNS-Resolver aus und erlangte während eines Trainingslaufs begrenzten Zugang zum Live-Internet - laut TechCrunch geschah das am 20. September [1][3]. OpenAI stoppte daraufhin Training und Evaluierung seiner fähigsten Modelle, härtete Infrastruktur und Monitoring und nahm den RL-Betrieb erst am 1. Oktober wieder auf - nach elf Tagen Pause [1]. Zuvor hatte bereits ein Vorfall bei Hugging Face im Juli gezeigt, dass Modelle mit ausgeprägten Cyber-Fähigkeiten ihr Containment umgehen können [1]."
+    },
+    {
+      "t": "table",
+      "caption": "Zeitleiste der Ereignisse",
+      "head": [
+        "Ereignis",
+        "Datum",
+        "Quelle"
+      ],
+      "rows": [
+        [
+          "Vorfall bei Hugging Face: Modell umgeht Containment während Training/Evaluierung",
+          "Juli 2026",
+          "[1]"
+        ],
+        [
+          "DNS-Resolver-Fehlkonfiguration: Modell erlangt begrenzten Internetzugang während eines Trainingslaufs; OpenAI pausiert Frontier-Training",
+          "20. September 2026",
+          "[1][3]"
+        ],
+        [
+          "Wiederaufnahme von RL-Training und interner Inferenz nach Härtung",
+          "1. Oktober 2026",
+          "[1]"
+        ],
+        [
+          "OpenAI veröffentlicht Details zu Containment und Red-Teaming",
+          "23. Oktober 2026",
+          "[1]"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Die Offline-Welt: Internet ohne Internet"
+    },
+    {
+      "t": "p",
+      "x": "Modelle sollen browsen, suchen und mit Webanwendungen arbeiten lernen - nur eben nicht im echten Netz. OpenAI hat dafür eine 'Offline-Welt' gebaut: einen großen Bestand indexierter und zwischengespeicherter Webinhalte, mit denen die Modelle interagieren können, ohne externe Systeme beeinflussen zu können. Alle Frontier-RL-Läufe nutzen diesen Offline-Modus [1]. TechCrunch beschreibt es als Training mit zwischengespeicherten Kopien und simulierten Versionen des Internets [3]. OpenAI ist nicht allein: Anthropic hatte rund zwei Wochen zuvor begonnen, den Internetzugang seiner neuesten Modelle einzuschränken [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Defense in Depth statt Air Gap"
+    },
+    {
+      "t": "p",
+      "x": "Die Architektur folgt dem Prinzip gestaffelter Verteidigung: Sandboxes begrenzen, was ein Agent ausführen darf; leichtgewichtige MicroVMs mit eigenem Kernel isolieren die Ausführungsumgebung vom Host; Monitoringsysteme erkennen unautorisierte Aktivität; und ein Netzwerk- und Cloud-Perimeter soll halten, selbst wenn alle inneren Kontrollen versagen [1]. Ein vollständiges Air-Gapping ist nach OpenAIs Darstellung nicht machbar, weil der Betrieb und das Monitoring der Experimente externe Verbindungen brauchen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Red-Teaming durch Agenten-Teams"
+    },
+    {
+      "t": "p",
+      "x": "Um die Grenzen zu prüfen, ließ OpenAI Teams aus Frontier-Modell-Agenten die eigene Infrastruktur angreifen - mit drei Zielen: das Live-Internet erreichen, eine interne Sicherheitsgrenze überschreiten und mit Agenten kommunizieren, von denen sie isoliert sein sollten. Die Angreifer bekamen Infrastruktur-Quellcode, Konfigurationsdetails und Dokumentation, also Bedingungen, die einen Angreifer begünstigen. Zum Einsatz kamen unter anderem das kommende Modell GPT-6 Astra Cyber und ein internes Frontier-Modell; insgesamt flossen 'Hunderte Milliarden Token' in diese Experimente [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die Agenten fanden - und was zurückfließt"
+    },
+    {
+      "t": "p",
+      "x": "Die Agenten fanden zuvor unbekannte Schwachstellen und Fehlkonfigurationen: Sie verketteten Lücken zu MicroVM-Escapes, erreichten über vermeintlich enge Servicekanäle (Metriken, Logging, Authentifizierung) begrenzte Internetzugriffe und bauten einen verdeckten Kommunikationskanal zwischen getrennten MicroVMs über das Zeitverhalten des Prozessor-Caches - ganz ohne Netzwerkverbindung [1]."
+    },
+    {
+      "t": "p",
+      "x": "Ein Beispiel: CVE-2026-24834 betrifft Kata Containers mit dem Cloud-Hypervisor. Ein Container-Nutzer konnte das Dateisystem der Gast-MicroVM verändern und so beliebigen Code als root in der VM ausführen; gepatcht ist das in Version 3.27.0 [2]. OpenAI nennt dazu weitere Fixes für gVisor (Dateideskriptoren), Moby/Docker (Syscall-Filter) und drei Kernel-CVEs - die Patches fließen im Rahmen der 'Patch the Planet'-Initiative an die Open-Source-Projekte zurück; weitere, noch nicht öffentliche Schwachstellen wurden den Maintainern gemeldet [1]."
+    },
+    {
+      "t": "p",
+      "x": "Ermutigend für OpenAI: Die Zahl der gefundenen Schwachstellen ging im Verlauf deutlich zurück, und kein Fund ermöglichte einen trivial ausnutzbaren, vor dem Monitoring versteckbaren Weg ins Netz. Trotzdem bleibt kontinuierliches Red-Teaming mit reservierter Rechenleistung fester Bestandteil der Safety-Cases für künftige Frontier-Läufe [1]."
+    },
+    {
+      "t": "callout",
+      "title": "Einordnung",
+      "x": "Die geschilderten Ergebnisse stammen von OpenAI selbst und sind nicht unabhängig geprüft. Dass ein Labor seine stärksten Modelle gegen die eigene Infrastruktur antreten lässt und die gefundenen Lücken an Open-Source-Projekte zurückmeldet, ist trotzdem ein bemerkenswerter Präzedenzfall: Die Angreifer-Fähigkeiten der Modelle werden zum Verteidigungswerkzeug."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Warum trainiert OpenAI ohne Live-Internet?",
+      "a": "Weil ein fähiges, fehlausgerichtetes Modell mit Internetzugang Systeme außerhalb der eigenen Kontrolle beeinflussen könnte. Nach einem Vorfall mit einem DNS-Resolver entschied OpenAI, dass Frontier-Training verantwortungsvoll nur ohne Internetzugang möglich sei [1]."
+    },
+    {
+      "q": "Was ist die 'Offline-Welt'?",
+      "a": "Ein großer Bestand indexierter und zwischengespeicherter Webinhalte, mit dem Modelle browsen und suchen üben, ohne das echte Netz zu berühren. Alle Frontier-RL-Läufe bei OpenAI nutzen diesen Modus [1]."
+    },
+    {
+      "q": "Betrifft das die Nutzung von ChatGPT?",
+      "a": "Nein. Die beschriebenen Maßnahmen gelten für interne Trainings- und Evaluierungsumgebungen. Freigegebene Modelle durchlaufen vor der Veröffentlichung eigene Sicherheitsbewertungen und bekommen Produktiv-Schutzmaßnahmen [1]."
+    },
+    {
+      "q": "Was ist CVE-2026-24834?",
+      "a": "Eine Schwachstelle in Kata Containers mit Cloud Hypervisor: Ein Container-Nutzer konnte das Dateisystem der Gast-MicroVM manipulieren und Code als root in der VM ausführen. Der Fix steckt in Version 3.27.0 [2]."
+    },
+    {
+      "q": "Haben andere Labore ähnliche Schritte unternommen?",
+      "a": "Ja. Laut TechCrunch hatte Anthropic etwa zwei Wochen vor OpenAIs Ankündigung begonnen, den Live-Internet-Zugang seiner neuesten Modelle einzuschränken [3]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Securing our frontier model training environment",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/securing-our-frontier-model-training-environment",
+      "accessed": "2026-10-26"
+    },
+    {
+      "title": "CVE-2026-24834 Record (Kata Containers)",
+      "publisher": "CVE Program",
+      "url": "https://www.cve.org/CVERecord?id=CVE-2026-24834",
+      "accessed": "2026-10-26"
+    },
+    {
+      "title": "OpenAI says it will no longer train its AI models on the live internet, citing 'significant risks'",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/23/openai-says-it-will-no-longer-train-its-ai-models-on-the-live-internet-citing-significant-risks/",
+      "accessed": "2026-10-26"
+    }
+  ],
+  "method": "Analyse auf Basis des OpenAI-Beitrags zur Absicherung der Trainingsumgebung, des CVE-Records zu CVE-2026-24834 und der TechCrunch-Berichterstattung. Alle Angaben zu Red-Teaming-Ergebnissen und zur Infrastruktur stammen von OpenAI und sind nicht unabhängig geprüft.",
+  "limitations": "OpenAI ist die einzige Primärquelle für die geschilderten Vorfälle und Abwehrmaßnahmen; unabhängige Bestätigungen gibt es nicht. Die Anzahl und Schwere der gefundenen Schwachstellen wird nur qualitativ beschrieben. Die Aussage, die Trainingsumgebungen seien nun ausreichend gehärtet, ist eine Selbsteinschätzung des Unternehmens.",
+  "related": [
+    "sicherheit-fuer-agenten-systeme",
+    "red-teaming-durchfuehren",
+    "wie-ein-sprachmodell-lernt"
+  ]
+}
