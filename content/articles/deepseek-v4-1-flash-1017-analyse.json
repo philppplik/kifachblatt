@@ -1,0 +1,217 @@
+{
+  "slug": "deepseek-v4-1-flash-1017-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "DeepSeek V4.1-Flash-1017: Mehr Tempo, kürzere Antworten",
+  "dek": "DeepSeek V4.1-Flash-1017 ist ein kleines Update mit großer Wirkung: bessere Agenten- und Coding-Werte bei kürzeren Antworten - MIT-lizenziert, mit 1M Kontext.",
+  "published": "2026-10-27T07:11:00+01:00",
+  "modified": "2026-10-27T07:11:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "DeepSeek",
+    "V4.1-Flash",
+    "Offene Gewichte",
+    "MIT-Lizenz",
+    "Agenten"
+  ],
+  "key_takeaways": [
+    "DeepSeek hat mit V4.1-Flash-1017 ein Update seines offenen Flash-Modells veröffentlicht: bessere Reasoning-, Coding-, Agenten- und Vision-Werte bei kürzerer Ausführungszeit und kürzeren Antworten [1].",
+    "Auf Terminal-Bench 4.0 springt das Modell von 31,2 auf 42,3 Prozent (Claude-Code-Harness); DeepSeek nennt weitere Sprünge bei ProgramBench (20,3 auf 29,1) und Agents' Last Exam (31,8 auf 35,4) [1].",
+    "Die Gewichte stehen unter MIT-Lizenz; empfohlen werden Temperatur 1.0, ein Kontextfenster von einer Million Tokens und mindestens 256K max_tokens [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung der CED-Architektur: 20 Encoder-Schichten gefolgt von 20 Decoder-Schichten, der KV-Cache wird aus dem Encoder projiziert",
+    "caption": "Causal Encoder-Decoder: Der Decoder bezieht seinen globalen KV-Cache aus den Encoder-Zuständen - Grundlage der Effizienz von V4.1-Flash.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "DeepSeek hat Mitte Oktober mit V4.1-Flash-1017 ein Update seines offenen Flash-Modells nachgelegt. Es ist ausdrücklich ein 'minor update' - aber eines mit klarer Richtung: bessere Werte bei Reasoning, Coding, Agenten- und visuellen Aufgaben, bei gleichzeitig kürzerer Ausführungszeit und kürzeren Antworten. Laut DeepSeek verschiebt das die Kosten-Fähigkeits-Pareto-Front über mehrere Agenten-Harnesses hinweg [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Zahlen des Updates"
+    },
+    {
+      "t": "p",
+      "x": "Der auffälligste Sprung: Auf Terminal-Bench 4.0 (im Claude-Code-Harness gemessen) steigt das Modell von 31,2 auf 42,3 Prozent - und liegt damit vor GPT-5.6 Sol (39,9) und GLM-5.3 (37,9), wenn auch hinter Opus 5 (51,8) [1]. DeepSWE v1.1 im Mini-SWE-V2-Harness steigt auf 77,0 Prozent und führt damit die Karten-Tabelle an [1]. Auch die Vision-Werte mit Tools steigen durchgängig, etwa Chartography auf 83,0 und BabyVision auf 92,5 Prozent [1]."
+    },
+    {
+      "t": "table",
+      "caption": "V4.1-Flash-1017 im Benchmark-Vergleich (Herstellerangaben)",
+      "head": [
+        "Benchmark",
+        "1017",
+        "V4.1-Flash",
+        "Bester anderer Wert"
+      ],
+      "rows": [
+        [
+          "Terminal-Bench 4.0",
+          "42,3",
+          "31,2",
+          "51,8 (Opus 5)"
+        ],
+        [
+          "DeepSWE v1.1",
+          "77,0",
+          "74,2",
+          "74,0 (Opus 5)"
+        ],
+        [
+          "ProgramBench",
+          "29,1",
+          "20,3",
+          "37,0 (Opus 5)"
+        ],
+        [
+          "NL2Repo-Bench",
+          "68,2",
+          "65,4",
+          "75,3 (Opus 5)"
+        ],
+        [
+          "Automation-Bench v1.0.6",
+          "60,5",
+          "54,8",
+          "50,3 (Opus 5)"
+        ],
+        [
+          "Agents' Last Exam",
+          "35,4",
+          "31,8",
+          "28,6 (Opus 5)"
+        ],
+        [
+          "Apex Bench v1.1",
+          "72,1",
+          "64,6",
+          "65,8 (Opus 5)"
+        ],
+        [
+          "HLE ohne Tools",
+          "42,6",
+          "36,8",
+          "56,3 (Opus 5)"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Auffällig an der Tabelle: Bei den Agenten-Benchmarks (Agents' Last Exam, Automation-Bench, Apex Bench) führt das 1017-Update das gesamte Vergleichsfeld an, bei den reinen Wissens- und Repo-Benchmarks bleibt Opus 5 vorn [1]. Wie immer bei Hersteller-Tabellen gilt: DeepSeek wählt Harness, Reasoning-Einstellungen und Vergleichsmodelle selbst."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "Terminal-Bench 4.0 (Claude-Code-Harness)",
+      "alt": "Säulendiagramm: Terminal-Bench-4.0-Werte. Opus 5: 51,8 Prozent, DeepSeek V4.1-Flash-1017: 42,3, GPT-5.6 Sol: 39,9, GLM-5.3: 37,9, V4.1-Flash: 31,2, Kimi K3: 12,6.",
+      "caption": "Herstellerangaben DeepSeek [1]",
+      "labels": [
+        "Opus 5",
+        "DS-1017",
+        "GPT-5.6 Sol",
+        "GLM-5.3",
+        "DS-Flash",
+        "Kimi K3"
+      ],
+      "series": [
+        {
+          "name": "Gelöste Aufgaben in Prozent",
+          "values": [
+            51.8,
+            42.3,
+            39.9,
+            37.9,
+            31.2,
+            12.6
+          ]
+        }
+      ],
+      "y_label": "Prozent"
+    },
+    {
+      "t": "h2",
+      "x": "Die Architektur dahinter"
+    },
+    {
+      "t": "p",
+      "x": "V4.1-Flash ist ein multimodales [Mixture-of-Experts](/glossar#mixture-of-experts-moe)-Modell mit 552 Milliarden Backbone-Parametern und Unterstützung für Kontexte bis zu einer Million Tokens; die Hugging-Face-Seite beziffert die Gesamtgröße der Gewichtsdateien auf 763 Milliarden Parameter [1][3]. Der Clou ist die CED-Architektur (Causal Encoder-Decoder): 20 kausale Encoder-Schichten gefolgt von 20 Decoder-Schichten, wobei der globale [KV-Cache](/glossar#kv-cache) des Decoders aus den letzten Encoder-Zuständen projiziert wird statt aus jeder Decoder-Schicht selbst [3]."
+    },
+    {
+      "t": "p",
+      "x": "Das Ergebnis: Pro Token aktiviert das Modell nur 8 Milliarden Parameter beim Prefill und 16 Milliarden beim Decode - teuer ist vor allem die Eingabe, und genau die wird bei Agenten-Workloads billig [3]. Dazu kommen SWA Bounded Replay, das den persistenten KV-Cache auf etwa ein Achtel von V4-Flash drückt, und Compressed Sparse Attention 2 mit drei statischen Modi (Full, Reindex, Reuse) [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Kein Jinja-Template - aber ein Rust-Toolkit"
+    },
+    {
+      "t": "p",
+      "x": "Praktisch relevant: Das Release enthält bewusst kein Jinja-Chat-Template. Stattdessen liefert DeepSeek eine eigenständige Python-Referenzimplementierung (encoding.py) mit Testfällen für Mehrfachdialoge, Tool-Aufrufe, Thinking-Modus und Bildinhalte [1]. Für den Produktivbetrieb empfiehlt DeepSeek deepseek-recipe: eine Sammlung von Rust-Bibliotheken mit Python-Bindings, die Messages-, Chat-Completions- und Responses-API-Anfragen in das Conversation-Format des Modells übersetzt - MIT-lizenziert, rund 2.500 GitHub-Sterne [1][2]. Modellinferenz, Tool-Ausführung und HTTP-Transport bleiben bewusst dem Aufrufer überlassen [2]."
+    },
+    {
+      "t": "p",
+      "x": "Für eigene Deployments nennt die Karte empfohlene Parameter: Temperatur 1.0, top_p 1.0, Kontextfenster 1M Tokens und mindestens 256K max_tokens [1]. Die Gewichte stehen unter der MIT-Lizenz - inklusive kommerzieller Nutzung [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung: Effizienz als Wettbewerbsachse"
+    },
+    {
+      "t": "p",
+      "x": "Das 1017-Update ist Mitte Oktober erschienen; gut eine Woche später hat auch OpenAI mit GPT-6.1 Terra ein Effizienz-Modell nachgelegt - die Richtung ist bei beiden gleich: kürzere, schnellere, billigere Agenten-Ausführung statt maximaler Einzelleistung. DeepSeeks Unterschied bleibt die Offenheit: MIT-Lizenz und 95.889 Downloads im letzten Monat (Stand: 27.10.2026) [1]. Wer V4.1-Flash bereits einsetzt, bekommt mit 1017 ein Drop-in-Update; die vollständige Architektur- und Kompressionsgeschichte steht in unseren früheren Analysen zum [KV-Cache](/kv-cache-kompression-deepseek-analyse) und zu DeepInfer [3]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist DeepSeek V4.1-Flash-1017?",
+      "a": "Ein Update des offenen DeepSeek-V4.1-Flash-Modells mit besseren Reasoning-, Coding-, Agenten- und Vision-Werten bei kürzerer Ausführungszeit und kürzeren Antworten. Veröffentlicht Mitte Oktober 2026 unter MIT-Lizenz [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht das Modell?",
+      "a": "Unter der MIT-Lizenz - die Gewichte und das Repository dürfen auch kommerziell genutzt werden [1]."
+    },
+    {
+      "q": "Wie groß ist das Kontextfenster?",
+      "a": "DeepSeek empfiehlt ein Kontextfenster von einer Million Tokens und mindestens 256K max_tokens pro Antwort [1]."
+    },
+    {
+      "q": "Brauche ich ein spezielles Chat-Template?",
+      "a": "Das Release enthält kein Jinja-Template. DeepSeek liefert eine Python-Referenz (encoding.py) und empfiehlt für Produktion das MIT-lizenzierte Rust-Toolkit deepseek-recipe, das API-Anfragen ins Modellformat übersetzt [1][2]."
+    },
+    {
+      "q": "Wie sehr verbessert sich das Modell gegenüber V4.1-Flash?",
+      "a": "Auf Terminal-Bench 4.0 von 31,2 auf 42,3 Prozent, auf ProgramBench von 20,3 auf 29,1 und auf Agents' Last Exam von 31,8 auf 35,4 - Herstellerangaben im jeweils genannten Harness [1]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "deepseek-ai/DeepSeek-V4.1-Flash-1017 - Modellkarte",
+      "publisher": "Hugging Face / DeepSeek",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash-1017",
+      "accessed": "2026-10-27"
+    },
+    {
+      "title": "deepseek-ai/deepseek-recipe - Repository",
+      "publisher": "GitHub / DeepSeek",
+      "url": "https://github.com/deepseek-ai/deepseek-recipe",
+      "accessed": "2026-10-27"
+    },
+    {
+      "title": "deepseek-ai/DeepSeek-V4.1-Flash - Modellkarte",
+      "publisher": "Hugging Face / DeepSeek",
+      "url": "https://huggingface.co/deepseek-ai/DeepSeek-V4.1-Flash",
+      "accessed": "2026-10-27"
+    }
+  ],
+  "method": "Analyse auf Basis der DeepSeek-Modellkarten (V4.1-Flash-1017 und V4.1-Flash) sowie des deepseek-recipe-Repositorys. Alle Benchmark-Zahlen stammen vom Hersteller und wurden in herstellereigenen Harness-Konfigurationen erhoben; sie wurden nicht unabhängig reproduziert.",
+  "limitations": "Die Vergleichswerte für andere Modelle (Opus 5, GPT-5.6 Sol, GLM-5.3, Kimi K3) stammen aus DeepSeeks eigener Tabelle, nicht aus unabhängigen Messungen. Das Modell wurde von der Redaktion nicht selbst ausgeführt; lokale Inferenz eines Modells dieser Größe ist ohne entsprechende GPU-Infrastruktur nicht praktikabel.",
+  "related": [
+    "kv-cache-kompression-deepseek-analyse",
+    "deepseek-deepinfer-inferenzframework",
+    "inferenz-und-kosten-verstehen"
+  ]
+}

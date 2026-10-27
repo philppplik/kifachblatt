@@ -1,5 +1,77 @@
 [
   {
+    "title": "Erste KI-Blase geplatzt? Chinas KI-Leitindex 40 Prozent unter dem Höchststand",
+    "url": "https://www.heise.de/news/Erste-KI-Blase-geplatzt-Chinas-KI-Leitindex-40-Prozent-unter-dem-Hoechststand-11501107.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793080380.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Chinas Aktienindex für KI- und Halbleiterfirmen hat seit dem Sommer massiv an Wert verloren. Dem ist aber eine viel größere Rallye vorausgegangen als anderswo.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-27T06:12:39.806997+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Space X: Vereinbarung zur Finanzierung von KI-Chips über 40 Milliarden US-Dollar",
+    "url": "https://www.heise.de/news/Space-X-Vereinbarung-zur-Finanzierung-von-KI-Chips-ueber-40-Milliarden-US-Dollar-11501039.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793074500.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das Raumfahrtunternehmen SpaceX schließt eine milliardenschwere Leasing-Vereinbarung mit dem Vermögensverwalter Apollo zur Finanzierung von Nvidia-Chips.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-27T06:12:39.807168+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Wenn KI wählen müsste: GPT und Grok liefern gegensätzliche Empfehlungen",
+    "url": "https://www.heise.de/news/KI-Wahlempfehlungen-GPT-waehlt-Demokraten-Grok-waehlt-Republikaner-11500825.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793034420.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Ein Forscherteam fragte GPT-6.1 Sol und Grok 4.7 per API nach Wahlempfehlungen. Das Ergebnis: GPT wählte fast nur demokratisch, Grok fast nur republikanisch.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-27T06:12:39.807395+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Podcast: „Die digitale Welt ist durch das Amoklaufen der KI-Konzerne gefährdet“",
+    "url": "https://www.heise.de/news/Podcast-Die-digitale-Welt-ist-durch-das-Amoklaufen-der-KI-Konzerne-gefaehrdet-11500763.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793028960.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "KI-Professorin Alke Martens warnt vor Weltuntergangserzählungen und sagt, wo die eigentliche Gefahr liegt: In dem, was Sprachmodelle mit unserem Denken machen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-27T06:12:39.807595+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Anthropic vor Börsengang: Umsatz vervierzehnfacht und enorme KI-Kosten",
+    "url": "https://www.heise.de/news/Anthropic-vor-Boersengang-Umsatz-vervierzehnfacht-und-enorme-KI-Kosten-11500707.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793027160.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic hat seinen Börsenantrag für die Nasdaq veröffentlicht. Trotz hohen Nettoverlusts erzielte der Claude-Entwickler zuletzt operativ Gewinn.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-27T06:12:39.807692+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Update kompakt: Nvidia GTC, KI-Agenten, Kimi K3.1 Pro, Perplexity Computer",
+    "url": "https://www.heise.de/news/KI-Update-kompakt-Nvidia-GTC-KI-Agenten-Kimi-K3-1-Pro-Perplexity-Computer-11499987.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793023200.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das „KI-Update“ liefert dreimal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-27T06:12:39.808314+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "US-Ökonom: Abseits der Magnificent Seven bringt KI „keinen finanziellen Nutzen“",
     "url": "https://www.heise.de/news/US-Oekonom-Abseits-der-Magnificent-Seven-bringt-KI-keinen-finanziellen-Nutzen-11499603.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1792998780.0,

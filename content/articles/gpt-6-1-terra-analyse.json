@@ -1,0 +1,168 @@
+{
+  "slug": "gpt-6-1-terra-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "GPT-6.1 Terra: OpenAIs Effizienz-Modell für Computer Use",
+  "dek": "GPT-6.1 Terra soll Computer-Use- und Büroaufgaben dreimal schneller erledigen - bei halbiertem Preis. Was hinter den Zahlen steckt.",
+  "published": "2026-10-27T07:11:00+01:00",
+  "modified": "2026-10-27T07:11:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "OpenAI",
+    "GPT-6.1 Terra",
+    "Computer Use",
+    "Agenten",
+    "API-Preise"
+  ],
+  "key_takeaways": [
+    "GPT-6.1 Terra ist OpenAIs neues Effizienz-Modell: 50 Prozent günstiger als GPT-5.6 Terra und GPT-6.1 Sol, bei 1 US-Dollar pro Million Eingabe- und 5 US-Dollar pro Million Ausgabe-Tokens [1].",
+    "In OpenAIs Agenten-Benchmark 'Agents' Last Exam' liegt Terra 15 Punkte über GPT-5.6 Terra bei etwa einem Drittel der Kosten und auf Augenhöhe mit GPT-6 Astra bei einem Zehntel dessen Token-Preises [1].",
+    "Die Fehlerrate bei fehleranfälligen Prompts sank herstellerintern von 53,6 auf 16,7 Prozent (niedrige Reasoning-Stufe); für die komplexesten Coding-Aufgaben empfiehlt OpenAI weiterhin GPT-6.1 Sol und GPT-6 Astra [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung eines Desktop-Fensters mit Formular, Tabelle und einem Mauszeiger, der Elemente bedient",
+    "caption": "GPT-6.1 Terra zielt auf Computer-Use-Aufgaben: Formulare ausfüllen, technische Zeichnungen lesen, Videos bearbeiten.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "OpenAI hat am 26. Oktober GPT-6.1 Terra vorgestellt - ein Modell, das explizit nicht an der Spitze der Fähigkeitsskala stehen soll, sondern an der Kosten-Nutzen-Front: 'schnell und fähig für Computer Use in der Breite' [1]. Es kombiniert visuelles Reasoning und präzise Rechnerbedienung mit klarerem Schreibstil und soll die Aufgaben abdecken, die den Arbeitstag füllen: Angebote entwerfen, technische Zeichnungen lesen, Formulare ausfüllen, Videos bearbeiten [1]."
+    },
+    {
+      "t": "p",
+      "x": "Verfügbar ist Terra seit dem 26. Oktober für Plus-, Pro-, Enterprise- und Edu-Nutzer in ChatGPT Work und Codex sowie über die API als 'gpt-6.1-terra' [1]. Zeitgleich meldete AWS die allgemeine Verfügbarkeit auf Amazon Bedrock - dort mit einem [Kontextfenster](/glossar#kontextfenster) von bis zu einer Million Eingabe-Tokens und Text- plus Bildeingaben [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Preisansage"
+    },
+    {
+      "t": "p",
+      "x": "Der API-Preis liegt bei 1 US-Dollar pro Million Eingabe-Tokens, 5 Cent für gecachte Eingabe und 5 US-Dollar pro Million Ausgabe-Tokens - 50 Prozent unter GPT-5.6 Terra und GPT-6.1 Sol [1]. In ChatGPT Work und Codex soll dasselbe Nutzungskontingent damit für mehr Aufgaben reichen als mit GPT-5.6 Terra und deutlich mehr als mit GPT-6.1 Sol oder GPT-6 Astra [1]. Die Zielgruppe ist klar: Entwickler, die Volumenaufgaben automatisieren - OpenAIs Beispiel ist das Einlesen eingehender Rechnungen samt Übertrag in die Buchhaltung [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Agenten-Benchmarks: auf Astra-Niveau, zu einem Zehntel des Preises"
+    },
+    {
+      "t": "p",
+      "x": "Auf 'Agents' Last Exam', einem Benchmark beruflicher Aufgaben - etwa eine Architekturzeichnung in ein 3D-Modell überführen oder einen Animationsfilm Einstellung für Einstellung protokollieren - liegt Terra bei mittlerer Reasoning-Stufe 15 Prozentpunkte über GPT-5.6 Terra bei rund einem Drittel der Kosten. Gegenüber GPT-6 Astra erreicht es dort Parität bei einem Zehntel des Token-Preises [1]. Gegenüber Claude Opus 5.5 sei Terra bei maximaler Stufe mehr als dreimal so Token-effizient; zusammen mit dem Viertel des Preises pro Token ergibt das laut OpenAI rund neunmal niedrigere Kosten pro Aufgabe [1]. Über dreimal schneller als GPT-6 Astra und GPT-6.1 Sol soll das Modell die Aufgaben ebenfalls absolvieren [1][3]."
+    },
+    {
+      "t": "p",
+      "x": "Auf OSWorld 2.1, einem Test für mehrstufige Desktop-Aufgaben, übertrifft Terra bei mittlerer Stufe den Bestwert seines Vorgängers 'bei einem Bruchteil der Kosten pro Aufgabe' [1]. Beim visuellen Reasoning (MMMU-Pro) übertrifft es GPT-5.6 Terra auf jeder Reasoning-Stufe und kommt nahe an GPT-6 Astra und GPT-6.1 Sol heran [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Faktizität: die größte Zahl der Ankündigung"
+    },
+    {
+      "t": "p",
+      "x": "Am meisten Bewegung zeigt der herstellerinterne Faktizitäts-Benchmark: Bei niedriger Reasoning-Stufe sank die Fehlerrate bei fehleranfälligen Prompts von 53,6 Prozent (GPT-5.6 Terra) auf 16,7 Prozent - minus fast 37 Prozentpunkte. Bei maximaler Stufe liegt Terra bei 4,3 Prozent und damit nahe an GPT-6 Astra und GPT-6.1 Sol [1]. OpenAI betont, in diesem Jahr stark in die Reduktion von [Halluzinationen](/glossar#halluzination) investiert zu haben [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "column",
+      "title": "Fehlerrate bei fehleranfälligen Prompts",
+      "alt": "Säulendiagramm: Fehlerrate von GPT-5.6 Terra bei niedriger Reasoning-Stufe 53,6 Prozent, GPT-6.1 Terra niedrig 16,7 Prozent, GPT-6.1 Terra maximal 4,3 Prozent.",
+      "caption": "Interner OpenAI-Benchmark, Herstellerangaben [1]",
+      "labels": [
+        "5.6 Terra low",
+        "6.1 Terra low",
+        "6.1 Terra max"
+      ],
+      "series": [
+        {
+          "name": "Fehlerrate in Prozent",
+          "values": [
+            53.6,
+            16.7,
+            4.3
+          ]
+        }
+      ],
+      "y_label": "Prozent"
+    },
+    {
+      "t": "h2",
+      "x": "Coding: deutlicher Sprung, aber nicht Spitzenklasse"
+    },
+    {
+      "t": "p",
+      "x": "Auf Terminal-Bench 4.0, das Coding-Agenten an der Kommandozeile prüft, löst Terra bei maximaler Reasoning-Stufe 50,3 Prozent der Aufgaben - mehr als doppelt so viele wie die 21,5 Prozent, die OpenAI für GPT-5.6 Terra publiziert hatte [1]. Auf dem wissenschaftlichen Ableger Terminal-Bench-Science 0.1 übertrifft Terra GPT-6.1 Sol und kommt bis auf fünf Punkte an Opus 5.5 heran - bei weniger als einem Fünftel der geschätzten Kosten [1]. Trotzdem ordnet OpenAI selbst ein: Für die komplexesten Coding-Aufgaben bleiben GPT-6.1 Sol und GPT-6 Astra die bessere Wahl [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Sicherheit: Critical-Schwelle Cybersecurity"
+    },
+    {
+      "t": "p",
+      "x": "Im Preparedness Framework erreicht Terra die 'Critical'-Schwelle für Cybersecurity und behält die für GPT-6 Astra entwickelten Schutzmaßnahmen [1]. In Prompt-Injection-Tests zeige das Modell starke Resistenz gegen bösartige Anweisungen, die es von der Nutzeraufgabe ablenken sollen; zudem bleibe es eher im Aufgabenrahmen und gebe eigene Grenzen ehrlicher an als GPT-5.6 Terra [1]. Details stehen in der System Card [1]. Der Kontext: OpenAI hatte erst Tage zuvor beschrieben, wie es das Training seiner Frontier-Modelle vom Live-Internet trennt - Effizienzmodelle wie Terra sind die andere Seite derselben Sicherheitsrechnung [1]."
+    },
+    {
+      "t": "callout",
+      "title": "Herstellerzahlen einordnen",
+      "x": "Alle genannten Benchmark- und Kostenvergleiche stammen von OpenAI; die Agenten-Benchmarks 'Agents' Last Exam' und die Faktizitätsmetrik sind herstellerintern. Vergleiche mit Claude Opus 5.5 basieren auf OpenAIs eigener Kostenschätzung. Unabhängige Messungen stehen zum Veröffentlichungszeitpunkt aus [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung: Die Effizienzklasse wird zum Hauptprodukt"
+    },
+    {
+      "t": "p",
+      "x": "Terra setzt die Logik fort, die OpenAI mit der Terra-Linie begonnen hat: nicht das stärkste, sondern das wirtschaftlichste Modell für die tägliche Arbeit. Die zeitgleiche Aufnahme in Amazon Bedrock - inklusive AWS-Governance und Audit-Optionen - zeigt, wo OpenAI das Volumengeschäft sieht [2]. Für Anwender heißt das: Wer Agenten-Workflows mit hohem Durchsatz plant, bekommt mit Terra eine eigenständige Preis-Fähigkeits-Klasse unterhalb der Frontier-Modelle; wer maximale Qualität bei Einzelaufgaben braucht, bleibt bei Sol oder Astra [1]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist GPT-6.1 Terra?",
+      "a": "OpenAIs Effizienz-Modell für Computer-Use- und Büroaufgaben: visuelles Reasoning, präzise Rechnerbedienung und natürlicheres Schreiben zu halbiertem Preis gegenüber GPT-5.6 Terra [1]."
+    },
+    {
+      "q": "Was kostet GPT-6.1 Terra in der API?",
+      "a": "1 US-Dollar pro Million Eingabe-Tokens, 5 Cent pro Million gecachter Eingabe-Tokens und 5 US-Dollar pro Million Ausgabe-Tokens [1]."
+    },
+    {
+      "q": "Wo kann ich GPT-6.1 Terra nutzen?",
+      "a": "In ChatGPT Work und Codex (Plus, Pro, Enterprise, Edu), über die OpenAI-API als gpt-6.1-terra und seit dem 26. Oktober auch auf Amazon Bedrock [1][2]."
+    },
+    {
+      "q": "Ist GPT-6.1 Terra das stärkste OpenAI-Modell?",
+      "a": "Nein. Für die komplexesten Coding-Aufgaben empfiehlt OpenAI selbst GPT-6.1 Sol und GPT-6 Astra. Terra zielt auf das beste Verhältnis von Geschwindigkeit, Fähigkeit und Kosten [1]."
+    },
+    {
+      "q": "Wie groß ist das Kontextfenster?",
+      "a": "Auf Amazon Bedrock unterstützt GPT-6.1 Terra bis zu eine Million Eingabe-Tokens und akzeptiert Text- und Bildeingaben [2]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing GPT-6.1 Terra",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-gpt-6-1-terra",
+      "accessed": "2026-10-27"
+    },
+    {
+      "title": "OpenAI GPT-6.1 Terra is now generally available on Amazon Bedrock",
+      "publisher": "AWS",
+      "url": "https://aws.amazon.com/about-aws/whats-new/2026/10/openai-gpt-6-1-terra-on-amazon-bedrock/",
+      "accessed": "2026-10-27"
+    },
+    {
+      "title": "OpenAI launches GPT-6.1 Terra with 3x faster AI agents, 50% lower pricing",
+      "publisher": "BleepingComputer",
+      "url": "https://www.bleepingcomputer.com/news/artificial-intelligence/openai-launches-gpt-61-terra-with-3x-faster-ai-agents-50-percent-lower-pricing/",
+      "accessed": "2026-10-27"
+    }
+  ],
+  "method": "Analyse auf Basis der OpenAI-Ankündigung, der AWS-Bedrock-Mitteilung und der BleepingComputer-Berichterstattung. Alle Benchmark-, Geschwindigkeits- und Kostenvergleiche sind Herstellerangaben von OpenAI und wurden nicht unabhängig geprüft; 'Agents' Last Exam' und die Faktizitätsmetrik sind herstellerinterne Benchmarks.",
+  "limitations": "Die System Card wurde nicht vollständig ausgewertet. Unabhängige Benchmarks oder Praxistests lagen zum Veröffentlichungszeitpunkt nicht vor. Kostenvergleiche mit Konkurrenzmodellen (etwa Claude Opus 5.5) beruhen auf OpenAIs eigener Schätzung.",
+  "related": [
+    "coding-agenten-alltag",
+    "api-preise-vergleichen",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ]
+}
