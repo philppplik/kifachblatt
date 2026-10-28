@@ -1,0 +1,96 @@
+name: KIFB IndexNow
+
+# KIFB deployed per Branch-Deploy (Repo-Root) ohne eigenen Deploy-Job. Die Meldung
+# laeuft daher NACH dem eingebauten Pages-Workflow, damit gemeldete URLs bereits
+# live sind. Zusaetzlich Backstop nach jedem News-Build, falls ein Pages-Lauf
+# nicht ausloest. Meldet nur neue/geaenderte Artikel (Delta aus
+# data/indexnow-urls.txt gegen data/indexnow-state.json), Status erst bei
+# HTTP 200/202 persistiert.
+on:
+  workflow_run:
+    workflows: ["pages build and deployment"]
+    types: [completed]
+  schedule:
+    - cron: '35 8,11,17 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: indexnow
+  cancel-in-progress: false
+
+jobs:
+  submit:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: IndexNow push (Bing, Yandex, Naver, Seznam - nicht Google)
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: |
+          if [ -z "$INDEXNOW_KEY" ]; then echo "INDEXNOW_KEY nicht gesetzt, uebersprungen"; exit 0; fi
+          python3 - <<'PY'
+          import json, os, time, urllib.request, urllib.error
+          key = os.environ['INDEXNOW_KEY'].strip()
+          if not os.path.exists('data/indexnow-urls.txt'):
+              print('keine URL-Liste'); raise SystemExit(0)
+          urls = [u.strip() for u in open('data/indexnow-urls.txt') if u.strip()]
+          if not urls:
+              print('keine neuen URLs'); raise SystemExit(0)
+          key_url = 'https://kifachblatt.de/%s.txt' % key
+          ok = False
+          for attempt in range(6):
+              try:
+                  body = urllib.request.urlopen(key_url, timeout=15).read().decode().strip()
+                  if body == key:
+                      ok = True; break
+              except Exception as e:
+                  print('Key-Check Versuch', attempt + 1, e)
+              time.sleep(20)
+          if not ok:
+              print('Key-Datei noch nicht oeffentlich verifizierbar, Push beim naechsten Lauf'); raise SystemExit(0)
+          payload = json.dumps({'host': 'kifachblatt.de', 'key': key,
+                                'keyLocation': key_url, 'urlList': urls}).encode()
+          req = urllib.request.Request('https://api.indexnow.org/indexnow', data=payload,
+                                       headers={'Content-Type': 'application/json; charset=utf-8'})
+          try:
+              r = urllib.request.urlopen(req, timeout=30)
+              print('IndexNow HTTP', r.status, '- gemeldet:', len(urls))
+          except urllib.error.HTTPError as e:
+              print('IndexNow HTTP-Fehler', e.code, '- Statusdatei bleibt, Retry beim naechsten Build'); raise SystemExit(0)
+          if r.status not in (200, 202):  # IndexNow beantwortet angenommene Meldungen mit 200 oder 202
+              raise SystemExit(0)
+          # Erfolg: gemeldete Artikel in der Statusdatei vermerken (slug -> modified)
+          import subprocess, glob
+          state = {}
+          if os.path.exists('data/indexnow-state.json'):
+              state = json.load(open('data/indexnow-state.json'))
+          arts = {}
+          for f in glob.glob('content/articles/*.json'):
+              try:
+                  a = json.load(open(f))
+                  if a.get('slug'):
+                      arts['https://kifachblatt.de/%s' % a['slug']] = a.get('modified') or ''
+              except Exception:
+                  pass
+          for u in urls:
+              if u in arts:
+                  state[u.rstrip('/').rsplit('/', 1)[-1]] = arts[u]
+          json.dump(state, open('data/indexnow-state.json', 'w'), ensure_ascii=False, indent=1, sort_keys=True)
+          # gemeldete URLs aus der Warteschlange nehmen, sonst meldet der naechste Lauf sie erneut
+          open('data/indexnow-urls.txt', 'w').write('')
+          subprocess.run(['git', 'config', 'user.name', 'site-bot'])
+          subprocess.run(['git', 'config', 'user.email', 'bot@users.noreply.github.com'])
+          subprocess.run(['git', 'add', 'data/indexnow-state.json', 'data/indexnow-urls.txt'])
+          subprocess.run(['git', 'commit', '-m', 'IndexNow: gemeldete URLs vermerkt'])
+          # parallele Bot-/Feature-Commits nicht ueberschreiben: rebase vor push, sonst Retry naechster Lauf
+          subprocess.run(['git', 'fetch', 'origin', 'main'])
+          rb = subprocess.run(['git', 'rebase', 'origin/main'])
+          if rb.returncode == 0:
+              subprocess.run(['git', 'push'])
+          print('Statusdatei aktualisiert')
+          PY

@@ -1,0 +1,53 @@
+name: KIFB News-Build (Ueberblicke)
+
+# Zusaetzliche Builds fuer die Nachrichtenueberblicke (3x/Tag zusaetzlich zum
+# Tagesbericht-Workflow um 05:20 UTC). Zeiten in UTC: 07:20/10:40/16:40 UTC =
+# 08:20/11:40/17:40 CET (Sommer: 09:20/12:40/18:40 CEST), jeweils nach den
+# redaktionellen Uebergabefenstern (08:00/11:15/17:15 Europe/Berlin).
+# Kein fester Berlin-Live-Slot: UTC-Cron verschiebt sich mit der Sommerzeit.
+# Erzeugt KEINE Berichte: build.py baut das Tages-PDF zwar mit, gate_reports.py
+# laedt es hinter die Lead-Wall und entfernt es VOR dem Push aus dem Tree;
+# ohne LW_SECRET bricht der Job fehlgeschlossen ab, es wird nichts veroeffentlicht.
+on:
+  schedule:
+    - cron: '20 7 * * *'
+    - cron: '40 10 * * *'
+    - cron: '40 16 * * *'
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: news-build
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build (rendert Artikel, Sitemaps, Feed, News-Seiten)
+        env:
+          INDEXNOW_KEY: ${{ secrets.INDEXNOW_KEY }}
+        run: python3 tools/build.py
+      - name: Gate PDFs (upload to private Blob, remove from public site)
+        env:
+          LW_SECRET: ${{ secrets.LW_SECRET }}
+        run: python3 tools/gate_reports.py
+      - name: Kein PDF im oeffentlichen Tree (fail-closed)
+        run: |
+          if ls berichte/*.pdf report-archive/*.pdf 2>/dev/null; then
+            echo "PDF im oeffentlichen Tree gefunden - Abbruch"; exit 1
+          fi
+      - name: Commit and push
+        run: |
+          git config user.name "Philipp Paulik"
+          git config user.email "philipp.paulik@users.noreply.github.com"
+          git add -A -- index.html '*.html' thema data news assets content sitemap.xml news-sitemap.xml feed.xml llms.txt search-index.json robots.txt modell-atlas licensed-news.css
+          if git diff --cached --quiet; then echo "no changes"; exit 0; fi
+          git commit -m "News-Build $(date -u +'%F %H:%M UTC')"
+          git fetch origin main
+          git rebase origin/main
+          git push
