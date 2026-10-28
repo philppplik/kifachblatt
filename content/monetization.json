@@ -1,15 +1,59 @@
 {
-  "version": 1,
-  "consentRevision": "2026-10-ga4-live-1",
+  "version": 2,
+  "consentRevision": "2026-11-ga4-rich-1",
   "analytics": {
     "enabled": true,
     "provider": "ga4",
     "measurementId": "G-75G1VNDHJW",
     "activationApproved": true,
     "privacyReviewed": true,
-    "eventRetentionMonths": 2,
+    "eventRetentionMonths": 14,
     "cookieLifetimeDays": 180,
-    "resetRetentionOnActivity": false
+    "resetRetentionOnActivity": false,
+    "attribution": "cleaned",
+    "excludePaths": [
+      "^/abmelden",
+      "^/tagesbericht-bestaetigt",
+      "^/atlas-daten-bestaetigt",
+      "^/toolkit-bestaetigt",
+      "^/atlas-daten-anmelden",
+      "^/tagesbericht-anmelden"
+    ],
+    "contentGroups": {
+      "^/$": "startseite",
+      "^/news/": "news",
+      "^/thema/": "thema",
+      "^/ki-modelle": "ki-modelle",
+      "^/unternehmen": "unternehmen",
+      "^/modell-atlas": "modell-atlas",
+      "^/benchmarks": "benchmarks",
+      "^/llm-kostenrechner": "rechner",
+      "^/(glossar|lernpfade)": "wissen",
+      "^/suche": "suche",
+      "^/(datenschutz|impressum|cookies)": "rechtliches",
+      "^/(redaktion|redakteur|transparenz|korrekturen|quellen|ueber|werben|werbung|ki-deklaration)": "service",
+      ".*": "fachartikel"
+    },
+    "downloadAllowlist": [
+      "^/portrait-pdf/"
+    ],
+    "outboundAllowlist": [],
+    "toolUsageAllowlist": [
+      "^/llm-kostenrechner"
+    ],
+    "campaignValues": {
+      "source": [
+        "newsletter",
+        "rss",
+        "x",
+        "linkedin"
+      ],
+      "medium": [
+        "email",
+        "social"
+      ],
+      "campaign": []
+    }
   },
   "advertising": {
     "enabled": false
