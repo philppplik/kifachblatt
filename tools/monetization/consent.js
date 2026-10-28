@@ -2,7 +2,7 @@
    Einzige Site-Anpassung wie bisher: Praefix fa/iw/kfb in den IDs und dem Storage-Key.
    Neu gegenueber live, alles nur nach erneuter Statistik-Einwilligung (consentRevision-Bump):
    - attribution-Modus aus cfg.analytics.attribution: "stripped" (eigene Kategorien) | "cleaned" (nur Herkunfts-Domain + feste Kampagnen, native GA4-Quellen)
-   - content_group, scroll_percent, outbound_click, file_download, contact_click
+   - content_group, scroll_percent, outbound_click, file_download
    - acquisition_bucket nur im Modus "stripped" (eigene grobe Herkunftskategorien)
    - excludePaths: Routen ohne jegliches Tag (Tokens, DOI, Abmeldung, /somnia/)
    Keine Formular-/Rechner-Eingaben, keine vollen externen Ziel-URLs, keine Werbung. */
@@ -134,8 +134,6 @@
       var a = e.target && e.target.closest ? e.target.closest('a[href]') : null;
       if (!a) return;
       var href = a.getAttribute('href') || '';
-      if (/^mailto:/i.test(href)) { gtag('event', 'contact_click', { contact_type: 'email', page_path: pagePath(), content_group: contentGroup() }); return; }
-      if (/^tel:/i.test(href)) { gtag('event', 'contact_click', { contact_type: 'phone', page_path: pagePath(), content_group: contentGroup() }); return; }
       var u;
       try { u = new URL(a.href); } catch (_) { return; }
       var host = u.hostname.replace(/^www\./, '');
