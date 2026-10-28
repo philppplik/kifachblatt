@@ -1,0 +1,234 @@
+{
+  "slug": "lfm3-liquid-ai-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "LFM3: Liquid AIs 2B-Familie für jede Modalität im Check",
+  "dek": "Sechs Modelle, ein Backbone: Liquid AIs LFM3 bringt Text, Bild, Audio und Entscheidungen aufs Gerät - mit 22 Billionen Trainings-Tokens und 256K Kontext.",
+  "published": "2026-10-28T07:00:00+01:00",
+  "modified": "2026-10-28T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Liquid AI",
+    "LFM3",
+    "Offene Gewichte",
+    "On-Device",
+    "Multimodal"
+  ],
+  "key_takeaways": [
+    "Liquid AI hat LFM3 veröffentlicht: sechs Modelle der 2B-Klasse - Text, Vision, Audio, Omni und zwei Entscheidungsmodelle -, alle abgeleitet vom gemeinsamen Backbone LFM3-1.7B-Base, [offene Gewichte](/glossar#offene-gewichte) unter der LFM Open License v1.0 [1][3].",
+    "Die neue Tri-Hybrid-Architektur (13 Faltungen, 5 Sliding-Window-Attention-, 6 Global-Attention-Schichten) soll LFM2.5-2.6B mit 35 Prozent weniger Parametern schlagen; das Textmodell passt in 4-Bit auf etwa 1 GB und bietet 256K Kontext [1][2].",
+    "In Liquids eigenen Agenten-Benchmarks liegt LFM3-1.7B klar vor dem Vorgänger und teils vor größeren Modellen - etwa WebArena-Verified 38,4 gegenüber 3,0 (LFM2.5-2.6B) und 28,9 (Qwen3.5-9B); unabhängig verifiziert ist das nicht [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung der LFM3-Familie: Ein zentraler Backbone-Block, von dem sechs Kacheln für Text, Vision, Audio, Omni und zwei Entscheidungsmodelle abzweigen",
+    "caption": "Ein Backbone, sechs Modelle: Die gesamte LFM3-Familie zweigt von LFM3-1.7B-Base ab - laut Liquid AI feintunbar auf einer einzelnen GPU.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Liquid AI hat am 27. Oktober 2026 LFM3 vorgestellt, die neue Generation seiner Liquid Foundation Models. Der Ansatz bleibt der gleiche wie beim Vorgänger LFM2 - kleine, effiziente Modelle für Geräte statt Cloud -, aber die Familie ist jetzt explizit [multimodal](/glossar#multimodal): Sechs Modelle rund um 2 Milliarden Parameter decken Text, Bild, Audio, eine Omni-Variante und zwei Entscheidungsmodelle ab, alle vom selben Backbone abgezweigt [1][2]."
+    },
+    {
+      "t": "table",
+      "caption": "Die LFM3-Familie im Überblick (Herstellerangaben) [1][2]",
+      "head": [
+        "Modell und Zweck",
+        "Eingabe",
+        "Ausgabe",
+        "Basis"
+      ],
+      "rows": [
+        [
+          "LFM3-1.7B - Textmodell für lokale Agenten, Werkzeugaufrufe und Fine-Tuning",
+          "Text",
+          "Text",
+          "LFM3-1.7B-Base"
+        ],
+        [
+          "LFM3-VL-2B - visuelles Verstehen, erstmals auch mit Video-Eingabe",
+          "Text, Bild, Video",
+          "Text",
+          "Backbone + Vision-Enc."
+        ],
+        [
+          "LFM3-Audio-2B - Sprachchat, Transkription und Audio-Verstehen in 18 Sprachen",
+          "Text, Audio",
+          "Text, Sprache",
+          "Backbone + LiquidCodec"
+        ],
+        [
+          "LFM3-Omni-2B - sieht, hört und antwortet in einem Modell",
+          "Text, Bild, Video, Audio",
+          "Text, Sprache",
+          "Backbone + Enc./Dec."
+        ],
+        [
+          "d1-2B - Entscheidungsmodell: beantwortet Fragenlisten in einem einzigen Forward-Pass",
+          "Text, Bild, Video",
+          "Kalibrierte Antworten",
+          "LFM3-VL-2B"
+        ],
+        [
+          "d1-Omni-2B - dasselbe, zusätzlich mit Audio-Eingabe",
+          "Text, Bild, Video, Audio",
+          "Kalibrierte Antworten",
+          "LFM3-Omni-2B"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Alle Gewichte stehen ab sofort auf Hugging Face, im Playground und über die Liquid AI API bereit - unter der LFM Open License v1.0 [1][3]. Native Unterstützung gibt es für llama.cpp, MLX, vLLM, SGLang, ONNX und GGUF; Launch-Partner sind unter anderem AMD, Intel (OpenVINO), NVIDIA, Qualcomm und OpenRouter [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: Tri-Hybrid mit 24 Schichten"
+    },
+    {
+      "t": "p",
+      "x": "Das Rückgrat ist LFM3-1.7B-Base mit 1,73 Milliarden Parametern und 24 Schichten: 13 gated Short Convolutions (Kernelgröße 7 statt 3 wie bei LFM2), 5 [Sliding-Window-Attention](/glossar#sliding-window-attention)-Schichten mit 256-Token-Fenster und 6 Global-Attention-Schichten [1][3]. Dazu kommen Head-wise Gating (eine Sigmoid-Gate kann einzelne Köpfe abschalten, was laut Liquid die [Quantisierung](/glossar#quantisierung) entlastet), Partial RoPE auf den Global-Attention-Schichten und eine Sandwich-Norm vor und nach jedem Block [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Die Architektur stammt aus Liquids Hardware-in-the-Loop-Suche, die jetzt 14 Geräte- und Backend-Kombinationen umfasst - vom Samsung Galaxy S26 Ultra über einen Raspberry Pi 5 bis zu Apple M4 Max, AMD Ryzen AI, Cloud-CPUs, GPUs und Qualcomms Hexagon-NPU [1][2]. Das Ergebnis: Pro Parameter erreicht LFM3-1.7B auf kurzen Prompts LFM2-1.2B-Niveau, bei 8K Tokens Kontext ist es rund 25 Prozent schneller [1]. Ein voller 128K-Kontext belegt nach Herstellerangabe 1,6 GB [KV-Cache](/glossar#kv-cache) - zum Vergleich: 4,3 GB bei Qwen3.5-4B und 5,6 GB bei MiniCPM5-2B [1]."
+    },
+    {
+      "t": "p",
+      "x": "Trainiert wurde das Basismodell auf 22 Billionen Tokens; die letzten 3,5 Billionen bilden eine Mid-Training-Phase mit kuratierten Daten, mehr Agenten-Spuren und Werkzeugaufrufen, die auch das [Kontextfenster](/glossar#kontextfenster) auf 256K Tokens erweitert [1][2]. Das Vokabular von 128.000 Tokens teilt sich das Modell mit LFM2.5-8B-A1B [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: deutliche Sprünge, Herstellerangaben"
+    },
+    {
+      "t": "p",
+      "x": "Liquids eigene Messungen zeigen vor allem bei Agenten-Aufgaben große Sprünge gegenüber dem Vorgänger: Auf WebArena-Verified erreicht LFM3-1.7B 38,42 Punkte gegenüber 3,02 (LFM2.5-2.6B) und liegt damit auch vor Qwen3.5-9B (28,94); bei BFCL V4 ([Werkzeugaufrufen](/glossar#werkzeugaufruf)) stehen 71,39 Punkte, auf ToolSandbox 80,36 [1]. Im Schnitt über Liquids Benchmark-Tabelle erreicht das 1,7B-Modell 49,37 Punkte, Qwen3.5-9B 47,24 [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Agenten-Benchmarks: LFM3-1.7B im Vergleich",
+      "alt": "Balkendiagramm: WebArena-Verified 38,4 für LFM3-1.7B gegenüber 3,0 für LFM2.5-2.6B, 17,1 für Gemma 4 E4B und 28,9 für Qwen3.5-9B; AutomationBench 41,3 gegenüber 0,9, 1,9 und 15,1",
+      "caption": "Zwei Agenten-Benchmarks aus Liquids Tabelle - Herstellerangaben, eigene Harness-Konfigurationen, nicht unabhängig verifiziert [1].",
+      "labels": [
+        "WA-Verified",
+        "AutomationB."
+      ],
+      "series": [
+        {
+          "name": "LFM3-1.7B",
+          "values": [
+            38.42,
+            41.29
+          ]
+        },
+        {
+          "name": "LFM2.5-2.6B",
+          "values": [
+            3.02,
+            0.94
+          ]
+        },
+        {
+          "name": "Qwen3.5-9B",
+          "values": [
+            28.94,
+            15.1
+          ]
+        },
+        {
+          "name": "Gemma 4 E4B",
+          "values": [
+            17.06,
+            1.92
+          ]
+        }
+      ],
+      "y_label": "Score"
+    },
+    {
+      "t": "p",
+      "x": "Wichtig ist die Einordnung: Alle Werte stammen aus Liquids eigener Tabelle mit herstellereigenen Harness-Konfigurationen (OpenClaw, OpenCode). Größere Modelle gewinnen laut Liquid weiterhin bei agentischem Coding und Wissensfragen; die eigene Modellkarte räumt ein, dass LFM3-1.7B für agentisches Coding und komplexes mehrstufiges Reasoning aufgrund der Größe 'nicht empfohlen' wird [1][3]. Der Praxisbericht eines externen Testers fällt positiv aus: MacPaw maß auf 65 Alltags-Agentenaufgaben unter macOS 64 Prozent Erfolg für LFM3-1.7B gegenüber 48 Prozent für Qwen3.5-2B, bei 58 Prozent weniger Tokens pro Aufgabe [1]."
+    },
+    {
+      "t": "p",
+      "x": "Das Post-Training lief in vier Stufen: 1,75 Billionen Tokens überwachtes [Fine-Tuning](/glossar#supervised-fine-tuning), gemischtes Reinforcement Learning mit Längenstrafe, Multi-Domain On-Policy Distillation von sechs RL-Speziallehrern und zuletzt agentisches RL in echten Harness-Umgebungen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Vision, Audio, Omni - und die Entscheidungsmodelle"
+    },
+    {
+      "t": "p",
+      "x": "LFM3-VL-2B ist das erste Vision-Modell der Reihe mit Video-Eingabe und liefert laut Liquid im Schnitt über 62 Vision-Benchmarks 71,4 Punkte (Vorgänger: 57,6) - auf Höhe von Gemma 4 12B (71,7) und zwei Punkte hinter GPT-5.6 Luna (73,4) [1][2]. Der neue hauseigene Vision-Encoder (164M Parameter) soll bei gleicher Genauigkeit 2,2-mal weniger Rechenleistung brauchen als Qwen3.5-2Bs Encoder [1]."
+    },
+    {
+      "t": "p",
+      "x": "LFM3-Audio-2B verarbeitet live Mikrofon-Eingang mit einer Time-to-First-Token von bis zu 50 Millisekunden; der neue Audio-Tokenizer LiquidCodec wandelt Tokens mit etwa 87-facher Echtzeitgeschwindigkeit auf einem einzelnen CPU-Thread in Sprache um [1]. LFM3-Omni-2B kombiniert beides zu einem Modell, das Bilder sieht, Sprache hört und gesprochen antwortet - in Liquids Omni-Tabelle führt es die 2B-Klasse etwa bei Video-plus-Audio-Verstehen (Daily-Omni 70,1) an [1]."
+    },
+    {
+      "t": "p",
+      "x": "Neu sind die Entscheidungsmodelle d1-2B und d1-Omni-2B: Sie beantworten eine Liste von Fragen zu einem Input in einem einzigen Forward-Pass, jeweils mit kalibrierter Wahrscheinlichkeit - neu mit typisierten Antworten wie Markieren im Bild, Extrahieren von Textstellen oder Schätzen mit Wertebereich. d1-2B ersetzt d1-3B bei einem Drittel weniger Parametern und besseren Werten [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Spezialisierung als Kernidee"
+    },
+    {
+      "t": "p",
+      "x": "Liquid positioniert LFM3 als Ausgangspunkt für 'spezialisierte Intelligenz': Jedes Modell lässt sich auf einer einzelnen GPU feintunen. Zwei Beispiele aus dem Blog: Ein paar Stunden Fine-Tuning auf rund 3.000 Drohnenfotos machten aus LFM3-VL-2B ein Inspektionsmodell für Windkraft-Schäden (Klassifikationsgenauigkeit von unter 10 auf 67 Prozent, Herstellerdemo); und ein 170-GPU-Stunden-Training verwandelte es in ein Vision-Language-Action-Modell mit 96,2 Prozent Erfolg auf den vier LIBERO-Suiten [1]. Ob sich das in fremden Händen reproduzieren lässt, wird die Praxis zeigen müssen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist LFM3?",
+      "a": "Die neue Modellfamilie von Liquid AI: sechs Modelle der 2B-Klasse für Text, Vision, Audio, Omni und Entscheidungen, alle abgeleitet vom gemeinsamen Backbone LFM3-1.7B-Base, mit offenen Gewichten unter der LFM Open License v1.0 [1][3]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht LFM3?",
+      "a": "Laut Modellkarte unter der LFM Open License v1.0. Die Gewichte stehen auf Hugging Face zum Download, auch das Basismodell [1][3]."
+    },
+    {
+      "q": "Wie groß ist das Kontextfenster?",
+      "a": "Das Textmodell LFM3-1.7B bietet 256K Tokens (Input plus Output). Laut Hersteller belegt ein voller 128K-Kontext nur 1,6 GB KV-Cache [1][3]."
+    },
+    {
+      "q": "Läuft LFM3 wirklich auf einem Handy?",
+      "a": "Laut Liquid passt das Textmodell in 4-Bit-Quantisierung auf etwa 1 GB Speicher; die Architektur wurde per Hardware-in-the-Loop-Suche auf 14 Geräteklassen optimiert, darunter aktuelle Samsung- und OnePlus-Phones, Raspberry Pi 5 und Laptops [1]."
+    },
+    {
+      "q": "Sind die Benchmarks vertrauenswürdig?",
+      "a": "Sie stammen vollständig vom Hersteller, inklusive eigener Harness-Konfigurationen, und wurden nicht unabhängig reproduziert. Ein externer Praxistest von MacPaw bestätigt die Richtung für einfache Agentenaufgaben, ist aber ebenfalls keine unabhängige Messung [1]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing LFM3: Every Modality for Specialized Intelligence",
+      "publisher": "Liquid AI",
+      "url": "https://www.liquid.ai/blog/lfm3",
+      "accessed": "2026-10-28"
+    },
+    {
+      "title": "Build specialized multimodal models with LFM3",
+      "publisher": "Hugging Face Blog / Liquid AI",
+      "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+      "accessed": "2026-10-28"
+    },
+    {
+      "title": "LiquidAI/LFM3-1.7B - Modellkarte",
+      "publisher": "Hugging Face / Liquid AI",
+      "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+      "accessed": "2026-10-28"
+    }
+  ],
+  "method": "Analyse auf Basis des Liquid-AI-Blogposts, des Hugging-Face-Blogposts und der offiziellen LFM3-1.7B-Modellkarte; alle drei Quellen wurden vollständig gelesen. Sämtliche Benchmark- und Latenzangaben sind Herstellerangaben in herstellereigenen Harness-Konfigurationen; die Modelle wurden von der Redaktion nicht selbst ausgeführt.",
+  "limitations": "Keine unabhängige Verifikation der Benchmarks; Vergleichswerte zu Qwen, Gemma, MiniCPM und GPT-5.6 Luna stammen aus Liquids eigener Tabelle. Die Modellkarte räumt selbst ein, dass LFM3-1.7B für agentisches Coding und komplexes mehrstufiges Reasoning nicht empfohlen wird [3].",
+  "related": [
+    "offene-gewichte-vs-open-source",
+    "multimodale-modelle",
+    "lora-fine-tuning-anleitung"
+  ]
+}
