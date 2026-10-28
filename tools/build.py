@@ -12,7 +12,7 @@ PUB_NAME = 'KI Fachblatt'
 SECTIONS = {  # key -> label
     'grundlagen': 'Grundlagen', 'architektur': 'Architektur', 'verlaesslichkeit': 'Verlässlichkeit', 'praxis': 'Praxis',
     'datenschutz': 'Datenschutz', 'methode': 'Methode', 'analyse': 'Analyse', 'modelle': 'Modelle', 'agenten': 'Agenten',
-    'forschung': 'Forschung', 'evals': 'Evaluation', 'recht': 'Recht & Regulierung'}
+    'forschung': 'Forschung', 'evals': 'Evaluation', 'recht': 'Recht & Regulierung', 'ueberblick': 'Überblick'}
 TYPES = {'news': 'NewsArticle', 'analysis': 'NewsArticle', 'explainer': 'Article'}
 SITEMAP_NEWS_TYPES = {'news', 'analysis'}
 REQ = ['slug', 'title', 'dek', 'section', 'type', 'published', 'modified', 'author', 'tags', 'key_takeaways', 'hero', 'body', 'sources']
@@ -576,6 +576,32 @@ def main():
         else: ll = ll.replace('## Beiträge\n\n', '## Lernpfade\n\n' + blk + '\n\n## Beiträge\n\n', 1)
     open('llms.txt', 'w', encoding='utf-8').write(ll)
     print('built %d article(s), %d section page(s); news-sitemap: %d; search-index: %d' % (len(arts), len(sections), len(recent), n_search))
+    export_indexnow(arts, now)
+
+
+def export_indexnow(arts, now):
+    """IndexNow-Export: nur neue/geaenderte Artikel (Status: data/indexnow-state.json).
+    Der Push erfolgt im IndexNow-Workflow NACH dem Pages-Deployment; erst dann aktualisiert
+    er data/indexnow-state.json. Schlaegt der Push fehl, werden die URLs beim naechsten Build
+    automatisch erneut exportiert. Erstlauf: nur Artikel der letzten 48h, kein Vollpush."""
+    try:
+        state = json.load(open('data/indexnow-state.json', encoding='utf-8'))
+    except Exception:
+        state = {}
+    new = []
+    for a in arts:
+        m = a.get('modified') or ''
+        if state.get(a['slug']) == m:
+            continue
+        if a['slug'] not in state and (now - a['_pub']).total_seconds() >= 172800:
+            continue
+        new.append('%s/%s' % (BASE, a['slug']))
+    open('data/indexnow-urls.txt', 'w', encoding='utf-8').write('\n'.join(sorted(new)) + ('\n' if new else ''))
+    key = os.environ.get('INDEXNOW_KEY', '').strip()
+    if key:
+        open(key + '.txt', 'w', encoding='utf-8').write(key + '\n')
+    print('indexnow_new', len(new))
+
 
 if __name__ == '__main__':
     main()
