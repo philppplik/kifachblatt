@@ -8,7 +8,7 @@ name: KIFB IndexNow
 # HTTP 200/202 persistiert.
 on:
   workflow_run:
-    workflows: ["pages-build-deployment"]
+    workflows: ["pages-build-deployment", "pages build and deployment"]
     types: [completed]
   schedule:
     - cron: '35 8,11,17 * * *'
