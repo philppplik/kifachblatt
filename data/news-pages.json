@@ -1,5 +1,17 @@
 [
   {
+    "title": "KI-Agenten an der kurzen Leine: PipesHub durchsucht das Firmenwissen",
+    "url": "https://www.heise.de/news/KI-Agenten-an-der-kurzen-Leine-PipesHub-durchsucht-das-Firmenwissen-11502811.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793186160.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "PipesHub bündelt Daten aus Slack, Jira oder GitHub für die interne Suche und KI-Agenten. Version 1.0.0 bringt unter anderem Code-Graphen und strengere Rechte.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-28T13:09:56.887657+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Google Genie 4: KI-Simulator für interaktive 3D-Umgebungen wird realistischer",
     "url": "https://www.heise.de/news/Google-Genie-4-KI-Simulator-fuer-interaktive-3D-Umgebungen-wird-realistischer-11502733.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793178180.0,
