@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Genie 4: DeepMinds Weltmodell spricht und lässt sich regieren](https://kifachblatt.de/genie-4-weltmodell-analyse): Genie 4 erzeugt als erstes DeepMind-Weltmodell passenden Ton, lässt sich live per Sprache steuern und wird von Gemini-Modellen wie ein Regieteam unterstützt.
+- [LFM3: Liquid AIs 2B-Familie für jede Modalität im Check](https://kifachblatt.de/lfm3-liquid-ai-analyse): Sechs Modelle, ein Backbone: Liquid AIs LFM3 bringt Text, Bild, Audio und Entscheidungen aufs Gerät - mit 22 Billionen Trainings-Tokens und 256K Kontext.
 - [DeepSeek V4.1-Flash-1017: Mehr Tempo, kürzere Antworten](https://kifachblatt.de/deepseek-v4-1-flash-1017-analyse): DeepSeek V4.1-Flash-1017 ist ein kleines Update mit großer Wirkung: bessere Agenten- und Coding-Werte bei kürzeren Antworten - MIT-lizenziert, mit 1M Kontext.
 - [GPT-6.1 Terra: OpenAIs Effizienz-Modell für Computer Use](https://kifachblatt.de/gpt-6-1-terra-analyse): GPT-6.1 Terra soll Computer-Use- und Büroaufgaben dreimal schneller erledigen - bei halbiertem Preis. Was hinter den Zahlen steckt.
 - [Carbon-X: Ein offenes 14B-Modell, das DNA im Chat liest](https://kifachblatt.de/carbon-x-dna-sprachmodell-analyse): Hugging Faces Carbon-X beantwortet Fragen zu DNA-Sequenzen im Chat - in Hersteller-Benchmarks nahe an Frontier-Modellen, bei einem Bruchteil der Kosten.

@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "GPT-6.1 Terra: OpenAIs Effizienz-Modell für Computer Use",
   "dek": "GPT-6.1 Terra soll Computer-Use- und Büroaufgaben dreimal schneller erledigen - bei halbiertem Preis. Was hinter den Zahlen steckt.",
-  "published": "2026-10-27T07:11:00+01:00",
-  "modified": "2026-10-27T07:11:00+01:00",
+  "published": "2026-10-27T07:15:00+01:00",
+  "modified": "2026-10-27T07:15:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "OpenAI",
@@ -159,7 +159,7 @@
     }
   ],
   "method": "Analyse auf Basis der OpenAI-Ankündigung, der AWS-Bedrock-Mitteilung und der BleepingComputer-Berichterstattung. Alle Benchmark-, Geschwindigkeits- und Kostenvergleiche sind Herstellerangaben von OpenAI und wurden nicht unabhängig geprüft; 'Agents' Last Exam' und die Faktizitätsmetrik sind herstellerinterne Benchmarks.",
-  "limitations": "Die System Card wurde nicht vollständig ausgewertet. Unabhängige Benchmarks oder Praxistests lagen zum Veröffentlichungszeitpunkt nicht vor. Kostenvergleiche mit Konkurrenzmodellen (etwa Claude Opus 5.5) beruhen auf OpenAIs eigener Schätzung.",
+  "limitations": "Die System Card wurde nicht vollständig ausgewertet. Für diese Analyse wurden keine unabhängigen Benchmarks oder Praxistests ausgewertet. Kostenvergleiche mit Konkurrenzmodellen (etwa Claude Opus 5.5) beruhen auf OpenAIs eigener Schätzung.",
   "related": [
     "coding-agenten-alltag",
     "api-preise-vergleichen",

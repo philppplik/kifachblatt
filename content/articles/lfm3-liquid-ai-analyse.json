@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "LFM3: Liquid AIs 2B-Familie für jede Modalität im Check",
   "dek": "Sechs Modelle, ein Backbone: Liquid AIs LFM3 bringt Text, Bild, Audio und Entscheidungen aufs Gerät - mit 22 Billionen Trainings-Tokens und 256K Kontext.",
-  "published": "2026-10-28T07:00:00+01:00",
-  "modified": "2026-10-28T07:00:00+01:00",
+  "published": "2026-10-28T07:16:00+01:00",
+  "modified": "2026-10-28T07:16:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Liquid AI",
@@ -17,7 +17,7 @@
   ],
   "key_takeaways": [
     "Liquid AI hat LFM3 veröffentlicht: sechs Modelle der 2B-Klasse - Text, Vision, Audio, Omni und zwei Entscheidungsmodelle -, alle abgeleitet vom gemeinsamen Backbone LFM3-1.7B-Base, [offene Gewichte](/glossar#offene-gewichte) unter der LFM Open License v1.0 [1][3].",
-    "Die neue Tri-Hybrid-Architektur (13 Faltungen, 5 Sliding-Window-Attention-, 6 Global-Attention-Schichten) soll LFM2.5-2.6B mit 35 Prozent weniger Parametern schlagen; das Textmodell passt in 4-Bit auf etwa 1 GB und bietet 256K Kontext [1][2].",
+    "Die neue Tri-Hybrid-Architektur (13 Faltungen, 5 Sliding-Window-Attention-, 6 Global-Attention-Schichten) soll LFM2.5-2.6B mit 35 Prozent weniger Parametern schlagen; die 4-Bit-Gewichte des Textmodells sind nach Herstellerangabe etwa 1 GB groß, dazu 256K Kontext [1][2].",
     "In Liquids eigenen Agenten-Benchmarks liegt LFM3-1.7B klar vor dem Vorgänger und teils vor größeren Modellen - etwa WebArena-Verified 38,4 gegenüber 3,0 (LFM2.5-2.6B) und 28,9 (Qwen3.5-9B); unabhängig verifiziert ist das nicht [1]."
   ],
   "hero": {
@@ -81,7 +81,7 @@
     },
     {
       "t": "p",
-      "x": "Alle Gewichte stehen ab sofort auf Hugging Face, im Playground und über die Liquid AI API bereit - unter der LFM Open License v1.0 [1][3]. Native Unterstützung gibt es für llama.cpp, MLX, vLLM, SGLang, ONNX und GGUF; Launch-Partner sind unter anderem AMD, Intel (OpenVINO), NVIDIA, Qualcomm und OpenRouter [1]."
+      "x": "Alle Gewichte stehen ab sofort auf Hugging Face, im Playground und über die Liquid AI API bereit - unter der LFM Open License v1.0 [1][3]. Kommerzielle Nutzung deckt die Lizenz nur bis zu einem Jahresumsatz von 10 Millionen US-Dollar ab [3]. Native Unterstützung gibt es für llama.cpp, MLX, vLLM, SGLang, ONNX und GGUF; Launch-Partner sind unter anderem AMD, Intel (OpenVINO), NVIDIA, Qualcomm und OpenRouter [1]."
     },
     {
       "t": "h2",
@@ -189,7 +189,7 @@
     },
     {
       "q": "Unter welcher Lizenz steht LFM3?",
-      "a": "Laut Modellkarte unter der LFM Open License v1.0. Die Gewichte stehen auf Hugging Face zum Download, auch das Basismodell [1][3]."
+      "a": "Laut Modellkarte unter der LFM Open License v1.0. Die Gewichte stehen auf Hugging Face zum Download, auch das Basismodell [1][3]. Kommerzielle Nutzung ist nur für Unternehmen unter 10 Millionen US-Dollar Jahresumsatz lizenziert; darüber ist sie nicht von der Lizenz gedeckt [3]."
     },
     {
       "q": "Wie groß ist das Kontextfenster?",
@@ -197,7 +197,7 @@
     },
     {
       "q": "Läuft LFM3 wirklich auf einem Handy?",
-      "a": "Laut Liquid passt das Textmodell in 4-Bit-Quantisierung auf etwa 1 GB Speicher; die Architektur wurde per Hardware-in-the-Loop-Suche auf 14 Geräteklassen optimiert, darunter aktuelle Samsung- und OnePlus-Phones, Raspberry Pi 5 und Laptops [1]."
+      "a": "Laut Liquid sind die 4-Bit-quantisierten Gewichte des Textmodells etwa 1 GB groß (die Gewichte, nicht der gesamte Laufzeitspeicher); die Architektur wurde per Hardware-in-the-Loop-Suche auf 14 Geräteklassen optimiert, darunter aktuelle Samsung- und OnePlus-Phones, Raspberry Pi 5 und Laptops [1]."
     },
     {
       "q": "Sind die Benchmarks vertrauenswürdig?",

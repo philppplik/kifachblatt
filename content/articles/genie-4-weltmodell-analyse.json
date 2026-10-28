@@ -4,9 +4,9 @@
   "section": "modelle",
   "type": "analysis",
   "title": "Genie 4: DeepMinds Weltmodell spricht und lässt sich regieren",
-  "dek": "Genie 4 erzeugt erstmals passenden Ton direkt mit, lässt sich live per Sprache steuern und wird von Gemini-Modellen wie ein Regieteam unterstützt.",
-  "published": "2026-10-28T07:00:00+01:00",
-  "modified": "2026-10-28T07:00:00+01:00",
+  "dek": "Genie 4 erzeugt als erstes DeepMind-Weltmodell passenden Ton, lässt sich live per Sprache steuern und wird von Gemini-Modellen wie ein Regieteam unterstützt.",
+  "published": "2026-10-28T07:16:00+01:00",
+  "modified": "2026-10-28T07:16:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Google DeepMind",
@@ -16,7 +16,7 @@
     "Simulation"
   ],
   "key_takeaways": [
-    "Google DeepMind hat Genie 4 vorgestellt: ein Weltmodell für Echtzeit-Simulationen, das erstmals passenden Ton - Musik, Umgebungsgeräusche und Dialoge - nativ miterzeugt [1].",
+    "Google DeepMind hat Genie 4 vorgestellt: ein Weltmodell für Echtzeit-Simulationen, das als DeepMinds erstes Echtzeit-Weltmodell passenden Ton - Musik, Umgebungsgeräusche und Dialoge - nativ miterzeugt [1].",
     "Nutzer können laufende Simulationen per Sprache steuern; im Hintergrund zerlegen Gemini-Modelle Ziele in Schritte und prüfen Bild für Bild, ob die Welt dem Plan folgt [1][2].",
     "Genie 4 startet als Research Preview für Trusted Tester; Google-AI-Ultra-Abonnenten in Project Genie sowie Partner der Gemini API und von AI Studio folgen [1][3]."
   ],
@@ -29,7 +29,7 @@
   "body": [
     {
       "t": "p",
-      "x": "Google DeepMind hat am 27. Oktober 2026 Genie 4 angekündigt, die nächste Generation seines [Weltmodells](/glossar#text-to-video-modell) für interaktive Echtzeit-Simulationen. Die zentralen Neuerungen: Das Modell erzeugt erstmals nativ passenden Ton - Musik, Umgebungsgeräusche und interaktive Dialoge - gemeinsam mit der Welt, und es lässt sich während der laufenden Simulation per natürlicher Sprache steuern [1]."
+      "x": "Google DeepMind hat am 27. Oktober 2026 Genie 4 angekündigt, die nächste Generation seines [Weltmodells](/glossar#text-to-video-modell) für interaktive Echtzeit-Simulationen. Die zentralen Neuerungen: Das Modell erzeugt als erstes DeepMind-Weltmodell nativ passenden Ton - Musik, Umgebungsgeräusche und interaktive Dialoge - gemeinsam mit der Welt, und es lässt sich während der laufenden Simulation per natürlicher Sprache steuern [1]."
     },
     {
       "t": "p",
@@ -67,7 +67,7 @@
     },
     {
       "t": "p",
-      "x": "Der Regie-Loop ist dabei der interessanteste Teil: Gemini beobachtet die von Genie 4 erzeugte Welt fortlaufend, bricht Ziele in Schrittfolgen und passt den Plan an, sobald die Welt oder der Nutzer eingreift [1]. In einem Forschungsexperiment mit Gemini 4 Argon und Gemini Robotics simulierte das Gespann etwa den humanoiden Roboter Apollo von Apptronik beim Dame-Spiel - die Aufgabe wurde in Echtzeit-Schritte zerlegt und Genie 4 als Text-Captions eingespeist [1]."
+      "x": "Der Regie-Loop ist dabei der interessanteste Teil: Gemini beobachtet die von Genie 4 erzeugte Welt fortlaufend, bricht Ziele in Schrittfolgen und passt den Plan an, sobald die Welt oder der Nutzer eingreift [1]. In einem Forschungsexperiment mit Gemini 4 Argon und Gemini Robotics simulierte das Gespann etwa den humanoiden Roboter Apollo von Apptronik beim Dame-Spiel - die Aufgabe wurde in Echtzeit-Schritte zerlegt und von Genie 4 in Echtzeit simuliert [1][3]."
     },
     {
       "t": "h2",
