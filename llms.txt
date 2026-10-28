@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Agenteneinfluss, Sicherheit und Werkzeuge](https://kifachblatt.de/news-ueberblick-abend-2026-10-28): Was Anthropics Entscheidungsstudie tatsächlich misst, wie der Sicherheitsbericht einzuordnen ist und was Hugging Faces Werkzeug-Update ändert.
 - [Genie 4: DeepMinds Weltmodell spricht und lässt sich regieren](https://kifachblatt.de/genie-4-weltmodell-analyse): Genie 4 erzeugt als erstes DeepMind-Weltmodell passenden Ton, lässt sich live per Sprache steuern und wird von Gemini-Modellen wie ein Regieteam unterstützt.
 - [LFM3: Liquid AIs 2B-Familie für jede Modalität im Check](https://kifachblatt.de/lfm3-liquid-ai-analyse): Sechs Modelle, ein Backbone: Liquid AIs LFM3 bringt Text, Bild, Audio und Entscheidungen aufs Gerät - mit 22 Billionen Trainings-Tokens und 256K Kontext.
 - [DeepSeek V4.1-Flash-1017: Mehr Tempo, kürzere Antworten](https://kifachblatt.de/deepseek-v4-1-flash-1017-analyse): DeepSeek V4.1-Flash-1017 ist ein kleines Update mit großer Wirkung: bessere Agenten- und Coding-Werte bei kürzeren Antworten - MIT-lizenziert, mit 1M Kontext.
