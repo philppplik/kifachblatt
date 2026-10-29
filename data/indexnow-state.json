@@ -1,7 +1,10 @@
 {
+ "clover-35b-diffusionsmodell-analyse": "2026-10-29T08:20:00+01:00",
  "deepseek-v4-1-flash-1017-analyse": "2026-10-27T07:15:00+01:00",
+ "gemini-4-carbon-analyse": "2026-10-29T08:20:00+01:00",
  "genie-4-weltmodell-analyse": "2026-10-28T07:19:00+01:00",
  "gpt-6-1-terra-analyse": "2026-10-27T07:15:00+01:00",
  "lfm3-liquid-ai-analyse": "2026-10-28T07:19:00+01:00",
- "news-ueberblick-abend-2026-10-28": "2026-10-28T16:05:00+01:00"
+ "news-ueberblick-abend-2026-10-28": "2026-10-28T16:05:00+01:00",
+ "news-ueberblick-morgen-2026-10-29": "2026-10-29T08:20:00+01:00"
 }
