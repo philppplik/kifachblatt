@@ -33,6 +33,9 @@
 ## Beiträge
 
 <!--GEN-->
+- [Clover-35B-A3B: Diffusions-Sprachmodell im Agenten-Check](https://kifachblatt.de/clover-35b-diffusionsmodell-analyse): DiffuSpace öffnet mit Clover-35B-A3B-Preview ein Diffusions-Sprachmodell, das gleich große autoregressive Modelle schlagen soll - und schneller generiert.
+- [Gemini 4 Carbon: Googles Frontier-Modell mit Cybersecurity-Fokus](https://kifachblatt.de/gemini-4-carbon-analyse): Gemini 4 Carbon verspricht Spitzenwerte bei Sicherheits-Benchmarks und weniger Täuschungsversuche - doch vorerst ist das Modell nur für Cyber-Verteidiger offen.
+- [KI-Fachüberblick: Agenten-Telemetrie, Datenwege und offene Firmware](https://kifachblatt.de/news-ueberblick-morgen-2026-10-29): Was GitHubs Octoverse-Daten tatsächlich belegen, welche Zugriffsänderung Chromes Gmail-Autofill bedeutet und wie Akais Open-Source-Ankündigung einzuordnen ist.
 - [KI-Fachüberblick: Agenteneinfluss, Sicherheit und Werkzeuge](https://kifachblatt.de/news-ueberblick-abend-2026-10-28): Was Anthropics Entscheidungsstudie tatsächlich misst, wie der Sicherheitsbericht einzuordnen ist und was Hugging Faces Werkzeug-Update ändert.
 - [Genie 4: DeepMinds Weltmodell spricht und lässt sich regieren](https://kifachblatt.de/genie-4-weltmodell-analyse): Genie 4 erzeugt als erstes DeepMind-Weltmodell passenden Ton, lässt sich live per Sprache steuern und wird von Gemini-Modellen wie ein Regieteam unterstützt.
 - [LFM3: Liquid AIs 2B-Familie für jede Modalität im Check](https://kifachblatt.de/lfm3-liquid-ai-analyse): Sechs Modelle, ein Backbone: Liquid AIs LFM3 bringt Text, Bild, Audio und Entscheidungen aufs Gerät - mit 22 Billionen Trainings-Tokens und 256K Kontext.

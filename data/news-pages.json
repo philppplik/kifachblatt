@@ -1,5 +1,53 @@
 [
   {
+    "title": "Samsung erzielt Rekordgewinn dank KI-Boom",
+    "url": "https://www.heise.de/news/Samsung-erzielt-Rekordgewinn-dank-KI-Boom-11503953.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793257680.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Südkoreas größtes Unternehmen Samsung Electronics hat seinen Betriebsgewinn fast verneunfacht. Die Anleger reagieren dennoch enttäuscht.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-29T07:52:47.755921+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "#heiseshow: Apple-Experience, KI-Profit bleibt aus, Cookie-Banner",
+    "url": "https://www.heise.de/news/heiseshow-Apple-Experience-KI-Profit-bleibt-aus-Cookie-Banner-11503402.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793250900.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "In der #heiseshow: Apple-Experience zeigt neue Macs, nur große Tech-Unternehmen profitieren von KI und EU möchte keine technische Lösung für Cookie-Banner.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-29T07:52:47.756010+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Neues LLM: Gemini 4 Carbon ist Exploit-Experte",
+    "url": "https://www.heise.de/news/Gemini-Argon-war-gestern-jetzt-kommt-Carbon-11503849.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793220840.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Erst vor 4 Wochen hat Google sein Sprachmodell Gemini Argon freigegeben, da lässt es schon das nächste Spitzenmodell vom Stapel laufen. Es heißt Carbon.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-29T07:52:47.756049+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "GitHub: TypeScript bleibt dank KI-Agenten populärste Programmiersprache",
+    "url": "https://www.heise.de/news/GitHub-TypeScript-bleibt-dank-KI-Agenten-populaerste-Programmiersprache-11493892.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793203800.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Die Plattform verzeichnet dem jüngsten Aktivitätsbericht zufolge 3,5 Millionen Merges – am Tag. TypeScript bleibt die populärste Programmiersprache.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-29T07:52:47.756132+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "KI-Update kompakt: Anthropics Börsengang, Wahlhilfe, DeepMind Genie, Magnetband",
     "url": "https://www.heise.de/news/KI-Update-kompakt-Anthropics-Boersengang-Wahlhilfe-DeepMind-Genie-Magnetband-11503080.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793196000.0,
