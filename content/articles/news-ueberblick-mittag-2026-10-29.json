@@ -1,0 +1,131 @@
+{
+  "slug": "news-ueberblick-mittag-2026-10-29",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: Sprachmodell, Benchmarks und Plattformpolitik",
+  "dek": "Was Nemotron 3.5 Transcribe messtechnisch belegt, warum der neue Intelligence Index Platzierungen verschiebt und wie Valves Klone-Antwort einzuordnen ist.",
+  "published": "2026-10-29T10:01:00+01:00",
+  "modified": "2026-10-29T10:01:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Sprachmodelle",
+    "Methodik",
+    "Benchmarks"
+  ],
+  "key_takeaways": [
+    "Nemotron 3.5 Transcribe zeigt starke Leaderboard-Werte über vier Sprachaufgaben. Die Evidenz sind Anbieter- und Drittbenchmarks mit unterschiedlichen Maßzahlen, keine einheitliche unabhängige Prüfung.",
+    "Intelligence Index v5 verlagert 60 Prozent des Gewichts auf private Testsätze. Das erschwert Benchmark-Training, entzieht die Tests aber der externen Fehlerprüfung.",
+    "Valves Empfehlung gegen KI-Klone ist eine Plattformentscheidung gegen Gatekeeping. Die berichteten Erpressungsfälle dokumentiert bislang nur ein Konferenzbericht."
+  ],
+  "hero": {
+    "alt": "Vier horizontale Balken mit Fehlerraten: Open ASR Englisch 5,3 Prozent, mehrsprachig 4,6 Prozent, Langform 11,0 Prozent, David-AI-Diarization 18,3 Prozent.",
+    "caption": "Eigene Darstellung nach NVIDIA/Leaderboards (28.10.2026). WER, mehrsprachige WER, Langform-WER und DER messen Verschiedenes auf eigenen Testsets; nur innerhalb einer Bestenliste vergleichbar.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: NVIDIA / Leaderboards"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Mittag, 29. Oktober 2026. Quellenstand: 09:55 Uhr MEZ.** Diese Ausgabe behandelt drei Veröffentlichungen vom 28. und 29. Oktober: NVIDIAs offenes Sprachmodell Nemotron 3.5 Transcribe mit dem Datensatz Granary v2, die Umstellung des Artificial Analysis Intelligence Index auf Version 5 und Valves Stellungnahme zu KI-Klonen auf Steam. Verbindendes Thema ist die Frage, wie sich Verlässlichkeit jeweils herstellt: durch offene Gewichte, durch geheime Tests oder durch Plattformregeln."
+    },
+    {
+      "t": "h2",
+      "x": "1. Nemotron 3.5 Transcribe: Vier Aufgaben, ein Checkpoint, viele Maßzahlen"
+    },
+    {
+      "t": "p",
+      "x": "Das Modell vereint Transkription in 40 Sprachen, Übersetzung von und ins Englische für 31 Sprachen, Sprecherzuordnung in 13 Sprachen und Audio-Fragebeantwortung in einem offenen Checkpoint. Aufnahmen bis zu einer Stunde und acht Sprechern sind spezifiziert. Architektonisch koppelt ein Sortformer-Modul die Sprecherhinweise mit einem hybriden Mamba-Transformer-MoE-Sprachmodell; von 30 Milliarden Parametern sind pro Token etwa 4 Milliarden aktiv. Das erklärt die Position auf der Pareto-Front aus Genauigkeit und aktiven Parametern [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Für die Bewertung ist die Vielfalt der Maßzahlen entscheidend. Auf Hugging Faces Open ASR Leaderboard erreicht das Modell im englischen Track 5,33 Prozent mittlere Wortfehlerrate (WER), im mehrsprachigen Track über sieben Sprachen 4,62 Prozent und im Langform-Track 10,98 Prozent. Der David-AI-Diarization-Benchmark misst dagegen Sprecherzeitfehler (DER) über 21 Sprachen: 18,26 Prozent, bester Wert von 14 Systemen. VoiceArenas cpWER bestraft Wortfehler nach optimaler Sprecherzuordnung: 32,4 Prozent, ebenfalls Rang eins. Diese Werte sind nicht untereinander vergleichbar; jede Zahl gehört zu ihrem Testset [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Die medizinische Fallstudie ist methodisch sauberer als übliche Anbieterdemos: 855 Clips dienten der Auswahl von Prompt und Checkpoints, 2.764 Clips mit anderen Sprechern wurden genau einmal dekodiert. Dort senkt Feintuning die WER von 22,44 auf 12,17 Prozent, relativ 45,8 Prozent. Auf allgemeinem Englisch steigt die WER leicht von 1,54 auf 1,69 Prozent. Der Durchsatzwert von 100 Stunden Audio in unter drei Minuten ist ein Herstellerbenchmark auf einem einzelnen Server mit noch nicht veröffentlichter Quantisierung und kurzen Clips unter hoher Parallelität; die Übertragbarkeit auf eigene Aufnahmen ist begrenzt. Für Live-Streaming ist das Modell nicht gebaut [^1]."
+    },
+    {
+      "t": "h2",
+      "x": "2. Intelligence Index v5: Messgovernance mit bekannten Kosten"
+    },
+    {
+      "t": "p",
+      "x": "Artificial Analysis hat die fünfte Version seines Index veröffentlicht: neun Evaluationen in vier Kategorien zu je 25 Prozent. Erstmals liegt 60 Prozent des Gewichts auf privaten Testsätzen, darunter AA-Briefcase, FrontierCode, CritPt und AA-Omniscience. Die Methodik-Seite dokumentiert Gewichte, Wiederholungen und Scoring je Evaluation [^2]. Ziel ist der Schutz vor \"Benchmaxxing\", dem gezielten Training auf bekannte Testfragen."
+    },
+    {
+      "t": "p",
+      "x": "Die Ranglistenbewegungen sind beträchtlich: Kimi K3.1 Pro fällt von Platz vier auf neun, Grok 4.7 verliert zwölf Punkte, der gemessene Abstand offener Modelle zur Spitze wächst von drei auf zwölf Punkte. Diese Verschiebungen belegen zunächst nur, dass frühere Werte teilweise auf prüfbaren Tests beruhten, nicht wie groß der Trainingsanteil tatsächlich war. Nathan Lambert verweist zudem darauf, dass moderne Verstärkungslernumgebungen Benchmarks ohnehin strukturell ähneln; dahinter stehe eine Infrastrukturfrage, die sich kleine Labore schwer leisten könnten [^3]."
+    },
+    {
+      "t": "p",
+      "x": "Der Preis der Geheimhaltung ist der Verlust externer Fehlerprüfung. Dass das kein theoretisches Risiko ist, zeigt ausgerechnet der eigene Bestand: Für AA-Omniscience mussten mehrdeutige und fehlerhafte Fragen überarbeitet werden. Bei privaten Sätzen kann ein Dritter solche Fehler weder finden noch ausschließen. Fazit für die Berichterstattung: Indexversion und Testanteile gehören künftig zur Minimalangabe jeder Platzierung [^2][^3]."
+    },
+    {
+      "t": "h2",
+      "x": "3. Valve: Plattformpolitik statt Werkzeugverbot"
+    },
+    {
+      "t": "p",
+      "x": "Auf der Entwicklerveranstaltung Steam Indie Connect berichteten koreanische Studios von Erpressermails: Ohne Zahlung werde das eigene Spiel per KI nachgebaut und vor dem Original veröffentlicht. Valves Steam-Team, vertreten durch Tom Giardino, lehnte Werkzeugverbote und Gatekeeping ab. KI-Klone beschleunigten ein älteres Phänomen; Verteidigungslinien seien Community-Vertrauen und kontinuierliche Weiterentwicklung, analog zur Piraterie-Strategie, das legitime Produkt zur besten Version zu machen. Erpressung sei ein Fall für Strafverfolgung; gemeldete Fälle wolle Valve nachgehen [^4]."
+    },
+    {
+      "t": "p",
+      "x": "Zwei Kontexte gehören zur Einordnung. Erstens bleibt die Aussagebasis dünn: ein Konferenzbericht über eine Fragerunde, keine schriftliche Richtlinie. Zweitens ist die Position konsistent mit der bestehenden Praxis: Seit Anfang 2024 müssen Entwickler KI-Einsatz auf Steam deklarieren, die Zulassungspraxis blieb davon unberührt. Die ergänzende Erklärung zum Next Fest, wonach Demos in den ersten zwei Tagen praktisch zufällig ausgespielt werden, benennt ein Design-Trade-off zwischen fairer Sichtbarkeit und Qualitätskontrolle, das die AI-Slop-Wahrnehmung teilweise erklärt [^4]."
+    },
+    {
+      "t": "h2",
+      "x": "Unsere Einordnung: Drei Antworten auf dasselbe Vertrauensproblem"
+    },
+    {
+      "t": "p",
+      "x": "NVIDIA antwortet mit offenen Gewichten und offenen Daten, Artificial Analysis mit geheimen Tests, Valve mit Markt und Community. Keine Antwort eliminiert das Prüfproblem, jede verlagert es: auf eigene Hardware, auf die Integrität des Benchmark-Betreibers oder auf die Schwarmintelligenz der Käufer. Für Bewertungen empfehlen wir, bei jeder Kennzahl Testset, Version und Prüfbarkeit mitzunennen; bei Plattformentscheidungen zählt die dokumentierte Praxis mehr als die Konferenzaussage."
+    },
+    {
+      "t": "callout",
+      "title": "Quellen und Methode",
+      "x": "Eigene Synthese aus einer Anbieterveröffentlichung, einer Methodik-Dokumentation, einem Fachbericht und einem Konferenzbericht. Keine eigenen Modell- oder Benchmarkläufe, keine Volltextübernahme. Stand der Quellenprüfung: 29.10.2026, 09:55 Uhr MEZ."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Warum sind die Nemotron-Prozentwerte nicht direkt vergleichbar?",
+      "a": "WER, DER und cpWER messen Verschiedenes: Wortfehler, Sprecherzeitfehler und Wortfehler nach Sprecherzuordnung, jeweils auf eigenen Testsets. Nur Werte innerhalb derselben Bestenliste sind vergleichbar."
+    },
+    {
+      "q": "Macht der private Testanteil den Index unbrauchbar?",
+      "a": "Nein, aber er verlagert das Vertrauen auf den Betreiber. Fehler in privaten Testsätzen sind von außen nicht prüfbar, wie die Überarbeitung von AA-Omniscience zeigt."
+    }
+  ],
+  "sources": [
+    {
+      "title": "NVIDIA Nemotron 3.5 Transcribe and Granary v2: Intelligent Multilingual Transcription You Can Prompt and Adapt",
+      "publisher": "NVIDIA / Hugging Face Blog",
+      "url": "https://huggingface.co/blog/nvidia/nemotron-transcribe-granary",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Artificial Analysis Intelligence Index: Methodik",
+      "publisher": "Artificial Analysis",
+      "url": "https://artificialanalysis.ai/methodology/intelligence-benchmarking",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "New Artificial Analysis index widens the gap between open and closed models",
+      "publisher": "The Decoder",
+      "url": "https://the-decoder.com/new-artificial-analysis-index-widens-the-gap-between-open-and-closed-models/",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Valve zu KI-Klonen: Community und Updates sollen Indie-Spiele schützen",
+      "publisher": "heise online",
+      "url": "https://www.heise.de/news/Valve-zu-KI-Klonen-Community-und-Updates-sollen-Indie-Spiele-schuetzen-11504029.html",
+      "accessed": "2026-10-29"
+    }
+  ],
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "lhtb-2-langzeit-agenten-benchmark"
+  ]
+}
