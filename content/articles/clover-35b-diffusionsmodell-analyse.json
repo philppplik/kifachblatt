@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Clover-35B-A3B: Diffusions-Sprachmodell im Agenten-Check",
   "dek": "DiffuSpace öffnet mit Clover-35B-A3B-Preview ein Diffusions-Sprachmodell, das gleich große autoregressive Modelle schlagen soll - und schneller generiert.",
-  "published": "2026-10-29T07:00:00+01:00",
-  "modified": "2026-10-29T07:00:00+01:00",
+  "published": "2026-10-29T08:20:00+01:00",
+  "modified": "2026-10-29T08:20:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "DiffuSpace",
@@ -148,7 +148,11 @@
     }
   ],
   "method": "Analyse auf Basis des DiffuSpace-Launch-Blogs, der Hugging-Face-Modellkarte und des GitHub-Repositories; alle drei Quellen wurden vollständig gelesen. Sämtliche Benchmark- und Geschwindigkeitsangaben sind Herstellerangaben; das Modell wurde von der Redaktion nicht selbst ausgeführt.",
-  "limitations": "Keine unabhängige Verifikation der Benchmarks oder Geschwindigkeiten; Vergleichswerte für Qwen, MiniCPM, LFM, Nemotron und Gemma stammen aus DiffuSpaces eigener Tabelle. Es handelt sich um eine Preview-Version; das angekündigte Entscheidungsmodell ist noch nicht veröffentlicht. Die Dream-7B-Downloadzahl ist eine Herstellerangabe.",
+  "limitations": [
+    "Keine unabhängige Verifikation der Benchmarks oder Geschwindigkeiten; Vergleichswerte für Qwen, MiniCPM, LFM, Nemotron und Gemma stammen aus DiffuSpaces eigener Tabelle.",
+    "Es handelt sich um eine Preview-Version; das angekündigte Entscheidungsmodell ist noch nicht veröffentlicht.",
+    "Die Dream-7B-Downloadzahl ist eine Herstellerangabe."
+  ],
   "related": [
     "mercury-3-diffusion-sprachmodelle-analyse",
     "offene-gewichte-vs-open-source",

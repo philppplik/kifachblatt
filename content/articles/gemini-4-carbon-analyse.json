@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Gemini 4 Carbon: Googles Frontier-Modell mit Cybersecurity-Fokus",
   "dek": "Gemini 4 Carbon verspricht Spitzenwerte bei Sicherheits-Benchmarks und weniger Täuschungsversuche - doch vorerst ist das Modell nur für Cyber-Verteidiger offen.",
-  "published": "2026-10-29T07:00:00+01:00",
-  "modified": "2026-10-29T07:00:00+01:00",
+  "published": "2026-10-29T08:20:00+01:00",
+  "modified": "2026-10-29T08:20:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Google",
@@ -144,7 +144,11 @@
     }
   ],
   "method": "Analyse auf Basis der Google-Ankündigung sowie der Berichte von The Verge und Ars Technica; alle drei Quellen wurden vollständig gelesen. Sämtliche Benchmark-, Alignment- und Preisangaben sind Herstellerangaben; die Redaktion hatte keinen Zugang zum Modell.",
-  "limitations": "Carbon ist zum Verkündungszeitpunkt nicht öffentlich verfügbar - keine unabhängige Verifikation möglich. Die Vergleichswerte für Opus 5.5 und GPT-6 Astra stammen aus Googles eigener Grafik. Das Chrome-Team-Vergleichsstatement ('10x besser') nennt das Vergleichsmodell nicht. Googles Platz-1-Behauptung auf dem Artificial-Analysis-Index wurde nicht übernommen, da diese Quelle für unsere Berichterstattung gesperrt ist.",
+  "limitations": [
+    "Carbon ist zum Verkündungszeitpunkt nicht öffentlich verfügbar - eine unabhängige Verifikation der genannten Werte war daher nicht möglich.",
+    "Die Vergleichswerte für Opus 5.5 und GPT-6 Astra stammen aus Googles eigener Grafik. Das Chrome-Team-Vergleichsstatement ('10x besser') nennt das Vergleichsmodell nicht.",
+    "Googles Platz-1-Behauptung auf dem Artificial-Analysis-Index konnten wir nicht gegenprüfen; sie ist deshalb nicht Teil dieses Artikels."
+  ],
   "related": [
     "sicherheit-fuer-agenten-systeme",
     "red-teaming-durchfuehren",
