@@ -1,0 +1,144 @@
+{
+  "slug": "news-ueberblick-abend-2026-10-29",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: Gewichtsfreigabe mit Lizenzvorbehalt",
+  "dek": "Was Mistrals Open-Weight-Release belegt und was nicht, wie Deepgram Pipecat absichern will und welche Governance Oracles ChatGPT-Zugang verspricht.",
+  "published": "2026-10-29T16:08:00+01:00",
+  "modified": "2026-10-29T16:08:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Open Weights",
+    "Sprach-KI",
+    "Governance"
+  ],
+  "key_takeaways": [
+    "Mistrals Gewichte sind verifiziert ladbar; die Lizenz ist ein abgewandeltes MIT mit Zusatzlizenzpflicht für Model-as-a-Service. Open weight ist damit nicht gleichbedeutend mit frei für jeden Anbieter.",
+    "Mistrals Benchmark-Werte stammen aus der eigenen Veröffentlichung; der behauptete Open-Weight-Vorsprung bei Terminal-Bench 4.0 widerspricht der von heise zitierten AA-Rangliste und ist zum Quellenstand ungeklärt.",
+    "Oracles AI Workspace verspricht Zugriff auf Geschäftsdaten unter bestehenden Berechtigungen. Modellversionen, Verfügbarkeitstermine und das Zusammenspiel mit dem Fusion Companion bleiben offen."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik: Terminal-Bench 4.0 nach Anbieterangabe - Mistral Large 4 in der Vorabversion 28 und im Release 41 Prozent, dazu 30 Prozent weniger Output-Token. Kein Modellvergleich wegen ungeklärter Setup-Kompatibilität.",
+    "caption": "Terminal-Bench 4.0 laut Mistrals eigener Veröffentlichung vom 29.10.2026. Ein Vergleich mit anderen Modellen wird nicht dargestellt, weil die Kompatibilität der Messaufbauten zum Quellenstand ungeklärt ist.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: Mistral AI (Anbieterangaben)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Abend, 29. Oktober 2026. Quellenstand: 16:05 Uhr MEZ.** Diese Ausgabe behandelt drei Veröffentlichungen vom 27. bis 29. Oktober: die Gewichtsfreigabe von Mistral Large 4, Deepgrams Übernahme von Daily samt Pipecat und Oracles ChatGPT-Anbindung an Geschäftssysteme. Die verbindende Frage lautet, welche Offenheits- und Kontrollzusagen jeweils bereits überprüfbar sind."
+    },
+    {
+      "t": "h2",
+      "x": "1. Mistral Large 4: Verfügbarkeit verifiziert, Werte nicht"
+    },
+    {
+      "t": "p",
+      "x": "Die Verfügbarkeit lässt sich diesmal direkt bestätigen: Die Gewichte von Mistral Large 4 (\"Le Chonk\", eine Billion Parameter, nativ multimodal) sind auf Hugging Face ladbar, der Hugging-Face-Blogbeitrag mit Modellkarte und Lizenz ist live. Dazu existieren GGUF-Quantisierungen von Unsloth und llama.cpp, Day-0-Support für transformers, vLLM und llama.cpp sowie ein Referenz-Deployment auf acht H200-GPUs mit FP8-Gewichten und 131K Kontext. Vertrieben wird das Modell zusätzlich über Mistral Studio, API, OpenRouter, Microsoft Foundry und NVIDIA NIM [^1][^2]."
+    },
+    {
+      "t": "p",
+      "x": "Die Lizenz ordnet den Release ein: Die Mistral Ecosystem Open-Weight License ist ein abgewandeltes MIT. Nutzung, Modifikation, Fine-Tuning und kommerzielle Verwendung sind frei; einzig Betreiber eines Model-as-a-Service-Angebots benötigen eine separate kommerzielle Lizenz. Für Selbsthoster und Produktbauer ändert sich nichts, für Wettbewerber mit Hosting-Modell schon. Open weight ist hier eine Lizenzklasse mit Ausnahme, kein Freifahrtschein [^2]."
+    },
+    {
+      "t": "p",
+      "x": "Bei den Leistungsdaten ist Trennung nötig. Aus Mistrals eigener Veröffentlichung stammen: Terminal-Bench 4.0 von 28 auf 41 Prozent bei 30 Prozent weniger Output-Token, Vorsprung auf Cognitions privatem FrontierCode 2.0 (19,7 Prozent), 48 Prozent auf Artificial Analysis Coding Agent Index bei angeblich 47 Prozent weniger Token als GLM-5.3, 51 Prozent auf AAs Cyber Index, 96,6 Prozent Ablehnung schädlicher Cyber-Anfragen sowie BrowseComp 84,5 und B3-Angriffsresistenz 97,1 Prozent [^1]. Der behauptete Open-Weight-Vorsprung bei Terminal-Bench 4.0 steht in Spannung zur von heise zitierten AA-Rangliste, die Kimi K3.1 Pro mit 67, GLM-5.3 mit 42 und Gemini 4 Carbon mit 65 Prozent führt; ob Versionen oder Messaufbauten differieren, war zum Quellenstand nicht aufzuklären [^3]. Der Hugging-Face-Blog nennt das Modell den fünftbesten offenen Weight auf AAs Intelligence Index, Stand 29.10. [^2]. Erwähnenswert ist Mistrals eigene Risikoangabe: Im Livetraffic sei ein Potenzial für reale Angriffe beobachtet worden, die Guardrails würden angepasst; eine spezialisierte Variante für Pentesting gibt es nur für geprüfte Partner [^1]."
+    },
+    {
+      "t": "h2",
+      "x": "2. Deepgram und Daily: Vertikale Integration mit Offenheitszusagen"
+    },
+    {
+      "t": "p",
+      "x": "Deepgram übernimmt Daily, dessen Framework Pipecat als meistgenutzte Open-Source-Orchestrierung für produktive Sprach-Agenten gilt. Die Mitteilung bindet die Offenheit an drei Mechanismen: Pipecat bleibt unter der BSD-V2-Lizenz, eine unabhängige Pipecat Foundation mit Beitragenden und Nutzenden soll gegründet werden, und Dailys Mitgründer Kwindla Hultman Kramer besetzt bei Deepgram eigens die Rolle Head of Open Source. Das sind Zusagen, keine beobachteten Zustände; ihre Tragfähigkeit entscheidet sich an Releases und Foundation-Statuten [^4]."
+    },
+    {
+      "t": "p",
+      "x": "Fachlich relevant ist der parallel angekündigte Real-Time Context Standard. Er adressiert einen echten Systembruch: Zwischen Spracherkennung, Sprachmodell und Synthese geht der paralinguistische Kontext verloren, etwa Flüstern, Sprecherwechsel oder Hintergrundereignisse. RCS definiert dafür drei Metadatenklassen (Audiokontext, Verwendungshinweise fürs Modell, Vorgaben für die Antwortausgabe) und Adapter je Modellanbieter. Der Ansatz ähnelt dem von MCP für Werkzeugaufrufe, ist aber eine Ankündigung ohne öffentliche Spezifikationshistorie [^4]."
+    },
+    {
+      "t": "h2",
+      "x": "3. Oracle und OpenAI: Agentischer Datenzugriff unter Bestandsrechten"
+    },
+    {
+      "t": "p",
+      "x": "Oracles AI Workspace, am 27. Oktober auf der AI World angekündigt, soll Beschäftigten über ChatGPT Zugriff auf Fusion Applications, NetSuite, Oracle AI Database und OCI geben. Der entscheidende Architekturpunkt: Bestehende Berechtigungen, Freigaben und Kontrollmechanismen sollen unverändert gelten, und kritische Aktionen laufen über menschliche Freigabe. Damit adressiert Oracle das Hauptargument gegen agentischen Datenzugriff, nämlich die Umgehung etablierter Rechtekonzepte [^5]."
+    },
+    {
+      "t": "p",
+      "x": "Die Beleglage ist dagegen dünn. Wie Workspace und der separat vorgestellte Fusion Companion zusammenspielen, erläutern die Ankündigungen nicht; für den Security-Mesh-Dienst nennt Oracle weder Modellnamen noch -versionen; App Composer befindet sich in Limited Availability, für Workspace ist ein solcher Zugang erst angekündigt; Termine für allgemeine Verfügbarkeit fehlen [^5]. OpenAI ergänzt eigene Angaben: 130.000 aktive ChatGPT- und 95.000 Codex-Nutzende bei Oracle sowie ein Recruiting-Beispiel, in dem Marktrecherche von zwei bis vier Tagen auf 15 bis 20 Minuten gesunken sei. Solche Anbietercases zeigen die Zielrichtung, sind aber keine Wirksamkeitsnachweise [^6]."
+    },
+    {
+      "t": "h2",
+      "x": "Unsere Einordnung: Drei Governance-Antworten, eine Prüffrage"
+    },
+    {
+      "t": "p",
+      "x": "Mistral setzt auf Gewichtsfreigabe mit Lizenzvorbehalt, Deepgram auf Foundation und offenes Protokoll, Oracle auf die Vererbung bestehender Berechtigungen in eine neue Zugriffsschicht. Alle drei Ansätze lassen sich an derselben Frage messen: Was kann ein unabhängiger Dritter heute bereits prüfen? Bei Mistral die Gewichte und die Lizenz selbst, nicht jedoch die Leistungswerte; bei Pipecat vorerst nur die Lizenz und die Ankündigung; bei Oracle bis auf weiteres nur das eigene Berechtigungssystem. Solange Benchmark-Setups ungeklärt sind, gehören Anbieterwerte als solche gekennzeichnet, nicht als Befund."
+    },
+    {
+      "t": "p",
+      "x": "Vertiefend: Unsere [erste Analyse von Mistral Large 4](/artikel/mistral-large-4-analyse/) aus der API-Phase, [MCP verstehen](/artikel/mcp-verstehen/) als Referenz für Protokollstandards wie RCS und [Modelle und Agenten richtig evaluieren](/artikel/modelle-und-agenten-evaluieren/) für den Umgang mit Anbieterbenchmarks."
+    },
+    {
+      "t": "callout",
+      "title": "So ist dieser Überblick entstanden",
+      "x": "Eigene Zusammenfassung tatsächlich gelesener Quellen: Mistrals Veröffentlichung, der Hugging-Face-Blogbeitrag mit Lizenztext, die Pressemitteilung von Deepgram, zwei heise-Artikel und die Ankündigung von OpenAI, keine übernommenen RSS-Anrisstexte. Benchmark- und Nutzungszahlen sind Anbieterangaben; wir haben weder Modelle gemessen noch Systeme getestet. Quellenstand 29.10.2026, 16:05 Uhr MEZ."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Widerspricht Mistral den Vergleichswerten von Artificial Analysis?",
+      "a": "Teilweise. Mistral meldet bei Terminal-Bench 4.0 mit 41 Prozent die Open-Weight-Spitze; die von heise zitierte AA-Rangliste führt Kimi K3.1 Pro mit 67 Prozent. Ob Benchmarkversionen oder Messaufbauten differieren, war zum Quellenstand nicht aufklärbar."
+    },
+    {
+      "q": "Darf ich Mistral Large 4 kommerziell nutzen?",
+      "a": "In eigenen Produkten und auf eigener Infrastruktur ja. Wer das Modell als gehosteten Dienst für Dritte anbietet, benötigt eine separate kommerzielle Lizenz von Mistral."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Mistral Large 4 (Le Chonk) is now open weight",
+      "publisher": "Mistral AI",
+      "url": "https://mistral.ai/news/mistral-large-4-oss/",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Mistral Large 4 on Hugging Face",
+      "publisher": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/mistral-large4",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Mistral Large 4: Modellgewichte veröffentlicht, Coding-Leistung verbessert",
+      "publisher": "heise online",
+      "url": "https://www.heise.de/news/Mistral-Large-4-Modellgewichte-veroeffentlicht-Coding-Leistung-verbessert-11504965.html",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Deepgram is acquiring Daily, makers of Pipecat",
+      "publisher": "Deepgram (Pressemitteilung)",
+      "url": "https://deepgram.com/blog/daily-pipecat-deepgram",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Oracle lässt ChatGPT an die Geschäftsdaten",
+      "publisher": "heise online",
+      "url": "https://www.heise.de/news/Oracle-laesst-ChatGPT-an-die-Geschaeftsdaten-11504915.html",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "OpenAI expands partnership with Oracle to bring its apps to ChatGPT",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/oracle-apps-in-chatgpt/",
+      "accessed": "2026-10-29"
+    }
+  ],
+  "related": [
+    "mistral-large-4-analyse",
+    "mcp-verstehen",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
