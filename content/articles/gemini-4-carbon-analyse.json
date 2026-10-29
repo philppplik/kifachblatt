@@ -1,0 +1,153 @@
+{
+  "slug": "gemini-4-carbon-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Gemini 4 Carbon: Googles Frontier-Modell mit Cybersecurity-Fokus",
+  "dek": "Gemini 4 Carbon verspricht Spitzenwerte bei Sicherheits-Benchmarks und weniger Täuschungsversuche - doch vorerst ist das Modell nur für Cyber-Verteidiger offen.",
+  "published": "2026-10-29T07:00:00+01:00",
+  "modified": "2026-10-29T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Google",
+    "Gemini 4 Carbon",
+    "Cybersecurity",
+    "Frontier-Modell",
+    "Agenten"
+  ],
+  "key_takeaways": [
+    "Google hat Gemini 4 Carbon angekündigt: das neue Frontier-Modell soll bei Cybersicherheit und langen, mehrstufigen Aufgaben Spitzenwerte liefern - SEC-bench Pro 88,2 Prozent, ExploitGym 54,8, CWE-bench 71,0 (Herstellerangaben) [1].",
+    "Beim Alignment meldet Google: erfolgreiche Täuschungsversuche auf Terminal-Bench 4.0 auf 0,0 Prozent gesenkt, Prompt-Injection-Angriffe im Gray-Swan-Benchmark vollständig abgewehrt (0,0 Prozent Erfolgsrate) [1][3].",
+    "Der Rollout ist gestuft: zunächst nur Cyber-Verteidiger, dann Partner des Fairwind-Programms; Entwickler und Verbraucher folgen zu einem nicht genannten Zeitpunkt. Einführungspreis: 2 Dollar pro Million Input-, 10 pro Million Output-Tokens [1][3]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Ein Schild mit Schloss-Symbol über Codezeilen, dahinter ein Balkendiagramm mit steigenden Werten",
+    "caption": "Gemini 4 Carbon soll Sicherheitslücken finden, validieren und patchen - vorerst im gestuften Rollout für Verteidiger.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Google hat am 28. Oktober 2026 Gemini 4 Carbon vorgestellt - nur zwei Wochen nach Gemini 4 Argon. Carbon sei das stärkste Modell des Unternehmens, mit Spitzenwerten bei Cybersicherheit und sogenannten Long-Horizon-Aufgaben, also langen, mehrstufigen Arbeitsabläufen [1]. Intern habe man beobachtet, wie Carbon über Tage an komplexen Engineering-Problemen arbeitet, etwa beim Aufspüren und Patchen subtiler Fehler in großen Codebasen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Cybersecurity: drei Benchmarks, drei Spitzenwerte"
+    },
+    {
+      "t": "p",
+      "x": "Google positioniert Carbon entlang des gesamten Abwehr-Zyklus - Finden, Validieren, Beheben - und nennt drei externe [Benchmarks](/glossar#benchmark), jeweils ohne Guardrails evaluiert [1]:"
+    },
+    {
+      "t": "ul",
+      "items": [
+        "Finden: 88,2 Prozent auf SEC-bench Pro - das Modell spürt eigenständig komplexe Schwachstellen in echter Software auf.",
+        "Validieren: 54,8 Prozent auf ExploitGym - das Modell prüft, welche Lücken tatsächlich ausnutzbar sind, und hilft so bei der Priorisierung.",
+        "Beheben: 71,0 Prozent auf CWE-bench (Collinear) - validierte Befunde werden direkt in funktionierende Patches übersetzt."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Hinzu kommen interne Messungen: Bei der Erzeugung sicheren Codes meldet Google eine mehr als doppelte Erfolgsrate gegenüber Argon; das Chrome-Team attestiert Carbon mehr als zehnmal bessere hochwertige Patches als einem Frontier-Modell eines anderen Labors (welchem, sagt Google nicht). Die Cloud-Sicherheitsplattform Wiz beobachte Spitzenwerte bei Web-Penetrationstests [1]. Bei WebDev Arena legt Carbon um 89 Elo-Punkte auf Platz 4 (1768) zu [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Alignment: weniger Tricksen, weniger Fabulieren"
+    },
+    {
+      "t": "p",
+      "x": "Der zweite Schwerpunkt ist das Verhalten des Modells. Auf Terminal-Bench 4.0 habe Carbon erfolgreiche Täuschungsversuche ('cheating') auf 0,0 Prozent reduziert, die Versuche selbst auf 0,4 Prozent - bei gleichzeitig gestiegener Genauigkeit. In Live-Coding-Umgebungen interner Teams seien schwerwiegende Misalignment-Warnungen um fast 80 Prozent gesunken [1]. Unbelegte Behauptungen halbierten sich gegenüber Argon; statt zu fabulieren schreibe das Modell methodische Vorbehalte ins Ergebnis oder benenne, was zur Klärung fehlt [1]. Überschreitungen ('overreach') sanken um 26 Prozent, Nichterfüllung ('under-service') um 29 Prozent [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Prompt-Injection-Abwehr (Gray Swan IPI, Angriffserfolg in %)",
+      "alt": "Balkendiagramm: Gemini 4 Carbon 0,0 Prozent, Gemini 4 Argon 0,7, Claude Opus 5.5 1,0, GPT-6 Astra 8,5 Prozent Angriffserfolg im Gray-Swan-IPI-Benchmark",
+      "caption": "Erfolgsquote von Prompt-Injection-Angriffen im Gray-Swan-Benchmark - Werte aus Googles Vorstellung, Herstellerangaben [1][3].",
+      "labels": [
+        "Carbon",
+        "Argon",
+        "Opus 5.5",
+        "GPT-6 Astra"
+      ],
+      "series": [
+        {
+          "name": "Angriffserfolg in %",
+          "values": [
+            0.0,
+            0.7,
+            1.0,
+            8.5
+          ]
+        }
+      ],
+      "y_label": "%"
+    },
+    {
+      "t": "p",
+      "x": "Bei der Abwehr indirekter [Prompt-Injection](/glossar#prompt-injection) führte Argon den Gray-Swan-IPI-Benchmark bislang mit 0,7 Prozent Angriffserfolg an; Carbon liegt laut Google bei 0,0 Prozent - kein einziger evaluierter Angriff ging durch [1]. Zum Vergleich nennt die Google-Grafik 1,0 Prozent für Claude Opus 5.5 und 8,5 Prozent für GPT-6 Astra (Herstellergrafik, übernommen aus der Berichterstattung von Ars Technica) [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Verfügbarkeit und Preise"
+    },
+    {
+      "t": "p",
+      "x": "Carbon startet gestuft: Ab dieser Woche erhalten zunächst ausgewählte Cyber-Verteidiger Zugang, danach schrittweise weitere Partner über das Fairwind-Programm. Google verweist auf den freiwilligen Prüfprozess der US-Regierung für Modelle vor der Veröffentlichung; Entwickler, Unternehmen und Verbraucher sollen 'so bald wie möglich' folgen - ein Datum nennt Google auf Nachfrage nicht [1][3]. Der Einführungspreis entspricht dem von Argon: 2 Dollar pro Million Input-Tokens, 10 Dollar pro Million Output-Tokens, gecachter Input 95 Prozent günstiger. Nach der Einführungsphase steigen die Preise auf 4 beziehungsweise 20 Dollar [1]."
+    },
+    {
+      "t": "callout",
+      "x": "Einordnung: Ars Technica weist darauf hin, dass Carbon Argon in den gezeigten Tests jeweils nur knapp schlägt und möglicherweise eher ein Post-Training-Upgrade als ein völlig neues Modell ist - die Abstände zur Konkurrenz liegen im einstelligen Punktebereich [3]. Alle genannten Werte sind Herstellerangaben; ein unabhängiger Test war zum Verkündungszeitpunkt mangels Zugang nicht möglich."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Gemini 4 Carbon?",
+      "a": "Googles neues Frontier-Modell, zwei Wochen nach Gemini 4 Argon vorgestellt. Schwerpunkte: Cybersicherheit (Schwachstellen finden, validieren, patchen) und lange, mehrstufige Agentenaufgaben [1]."
+    },
+    {
+      "q": "Wer kann Gemini 4 Carbon nutzen?",
+      "a": "Zunächst nur ausgewählte Cyber-Verteidiger, danach Partner des Fairwind-Programms. Für Entwickler, Unternehmen und Verbraucher gibt es noch keinen Termin [1][3]."
+    },
+    {
+      "q": "Was kostet Gemini 4 Carbon?",
+      "a": "Zum Einführungspreis 2 Dollar pro Million Input- und 10 Dollar pro Million Output-Tokens (gecachter Input 95 Prozent günstiger). Nach der Einführungsphase: 4 beziehungsweise 20 Dollar [1]."
+    },
+    {
+      "q": "Wie sicher ist das Modell gegen Prompt Injection?",
+      "a": "Laut Google wehrte Carbon im Gray-Swan-IPI-Benchmark sämtliche evaluierten Angriffe ab (0,0 Prozent Erfolgsrate; Argon: 0,7). Die Angabe stammt vom Hersteller und wurde nicht unabhängig geprüft [1]."
+    },
+    {
+      "q": "Lohnt sich ein Wechsel von Argon?",
+      "a": "Das lässt sich ohne eigenen Zugang nicht beurteilen. Ars Technica merkt an, dass Carbon Argon in den gezeigten Tests nur knapp schlägt; Google betont vor allem die Sicherheits- und Alignment-Gewinne [1][3]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing Gemini 4 Carbon",
+      "publisher": "Google (The Keyword)",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/gemini-models/introducing-gemini-4-carbon/",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Google launches Gemini 4 Carbon with a 'significant leap' in cybersecurity",
+      "publisher": "The Verge",
+      "url": "https://www.theverge.com/tech/1021339/google-gemini-4-carbon-cybersecurity-frontier",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Google announces Gemini 4 Carbon, its latest frontier AI model that you can't use",
+      "publisher": "Ars Technica",
+      "url": "https://arstechnica.com/ai/2026/10/google-announces-gemini-4-carbon-its-latest-frontier-ai-model-that-you-cant-use/",
+      "accessed": "2026-10-29"
+    }
+  ],
+  "method": "Analyse auf Basis der Google-Ankündigung sowie der Berichte von The Verge und Ars Technica; alle drei Quellen wurden vollständig gelesen. Sämtliche Benchmark-, Alignment- und Preisangaben sind Herstellerangaben; die Redaktion hatte keinen Zugang zum Modell.",
+  "limitations": "Carbon ist zum Verkündungszeitpunkt nicht öffentlich verfügbar - keine unabhängige Verifikation möglich. Die Vergleichswerte für Opus 5.5 und GPT-6 Astra stammen aus Googles eigener Grafik. Das Chrome-Team-Vergleichsstatement ('10x besser') nennt das Vergleichsmodell nicht. Googles Platz-1-Behauptung auf dem Artificial-Analysis-Index wurde nicht übernommen, da diese Quelle für unsere Berichterstattung gesperrt ist.",
+  "related": [
+    "sicherheit-fuer-agenten-systeme",
+    "red-teaming-durchfuehren",
+    "coding-agenten-alltag"
+  ]
+}
