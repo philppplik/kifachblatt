@@ -76,7 +76,7 @@
 
 
 
-<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-10-29</loc><lastmod>2026-10-29T16:08:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-10-29.jpg</image:loc><image:title>KI-Fachüberblick: Gewichtsfreigabe mit Lizenzvorbehalt</image:title><image:caption>Eigene Grafik: Terminal-Bench 4.0 nach Anbieterangabe - Mistral Large 4 in der Vorabversion 28 und im Release 41 Prozent, dazu 30 Prozent weniger Output-Token. Kein Modellvergleich wegen ungeklärter Setup-Kompatibilität.</image:caption></image:image></url>
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-10-29</loc><lastmod>2026-10-29T16:13:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-10-29.jpg</image:loc><image:title>KI-Fachüberblick: Gewichtsfreigabe mit Lizenzvorbehalt</image:title><image:caption>Eigene Grafik: Terminal-Bench 4.0 nach Anbieterangabe - Mistral Large 4 in der Vorabversion 28 und im Release 41 Prozent, dazu 30 Prozent weniger Output-Token. Kein Modellvergleich wegen ungeklärter Setup-Kompatibilität.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-10-29</loc><lastmod>2026-10-29T10:09:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-10-29.jpg</image:loc><image:title>KI-Fachüberblick: Sprachmodell, Benchmarks und Plattformpolitik</image:title><image:caption>Vier horizontale Balken mit Fehlerraten: Open ASR Englisch 5,3 Prozent, mehrsprachig 4,6 Prozent, Langform 11,0 Prozent, David-AI-Diarization 18,3 Prozent.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/clover-35b-diffusionsmodell-analyse</loc><lastmod>2026-10-29T08:56:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/clover-35b-diffusionsmodell-analyse.jpg</image:loc><image:title>Clover-35B-A3B: Diffusions-Sprachmodell im Agenten-Check</image:title><image:caption>Schematische Darstellung der Block-Diffusion: Maskierte Token-Blöcke werden parallel aufgelöst, daneben ein Kleeblatt-Symbol</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/gemini-4-carbon-analyse</loc><lastmod>2026-10-29T08:56:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/gemini-4-carbon-analyse.jpg</image:loc><image:title>Gemini 4 Carbon: Googles Frontier-Modell mit Cybersecurity-Fokus</image:title><image:caption>Schematische Darstellung: Ein Schild mit Schloss-Symbol über Codezeilen, dahinter ein Balkendiagramm mit steigenden Werten</image:caption></image:image></url>
@@ -185,7 +185,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-10-29T08:56:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-10-29T16:08:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-10-29T16:13:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-26T07:00:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-10-29</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-10-29</lastmod></url>
