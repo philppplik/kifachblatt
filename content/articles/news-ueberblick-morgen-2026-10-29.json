@@ -1,0 +1,133 @@
+{
+  "slug": "news-ueberblick-morgen-2026-10-29",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: Agenten-Telemetrie, Datenwege und offene Firmware",
+  "dek": "Was GitHubs Octoverse-Daten tatsächlich belegen, welche Zugriffsänderung Chromes Gmail-Autofill bedeutet und wie Akais Open-Source-Ankündigung einzuordnen ist.",
+  "published": "2026-10-29T06:48:03+01:00",
+  "modified": "2026-10-29T06:48:03+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Agenten",
+    "Methodik",
+    "GitHub"
+  ],
+  "key_takeaways": [
+    "Der Octoverse-Bericht ist Plattformtelemetrie mit deklariertem Methodenteil. Seine Aussagen sind beobachtete Nutzung auf einer Plattform, keine Kausalnachweise und keine Qualitätsmessungen.",
+    "Chromes erweitertes Autofill verlagert Formularvorschläge von lokalen Stammdaten auf Inhalte aus Gmail. Die Beleglage ist bislang eine einzige Produktankündigung ohne unabhängige Prüfung.",
+    "Akais Firmware-Öffnung beruht auf einem Interviewbericht über ein nicht offiziell angekündigtes Produkt. SDK-Umfang und Auslieferung sind offen."
+  ],
+  "hero": {
+    "alt": "Vier horizontale Balken: Pull Requests mit Agenten-Start im März 17 und im September über 40 Prozent; innerhalb von zwei Wochen gemergt 90 Prozent mit Agent gegenüber 86 Prozent ohne erkannte Agentenbeteiligung.",
+    "caption": "Eigene Darstellung nach GitHub Octoverse 2026 (28.10.2026). Agentensignal ist die erkannte Untergrenze; Merge-Werte sind Prozesskennzahlen, keine Qualitätsmessung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: GitHub Octoverse 2026"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Morgen, 29. Oktober 2026. Quellenstand: 07:30 Uhr MEZ.** Diese Ausgabe behandelt drei Veröffentlichungen vom 28. Oktober: GitHubs Octoverse-Bericht, die Ankündigung von Chromes Gmail-gestütztem Autofill und einen Interviewbericht über Akais offene Sampler-Firmware. Die gemeinsame Frage lautet, welche Belegart jeweils vorliegt und welche Schlussfolgerungen sie trägt."
+    },
+    {
+      "t": "h2",
+      "x": "1. Octoverse 2026: Telemetrie mit deklariertem Messfenster"
+    },
+    {
+      "t": "p",
+      "x": "Das Berichtsjahr läuft vom 1. Oktober 2025 bis zum 30. September 2026 und umfasst öffentliche und private Repositories. GitHub hat die Vorjahreswerte nach denselben Definitionen neu berechnet, weil frühere Berichte ein anderes Zeitfenster nutzten; Vergleiche mit älteren Octoverse-Ausgaben sind daher nur begrenzt direkt möglich. Berichtet werden 17,9 Milliarden Pushes, 34,3 Milliarden Commits, 45,4 Milliarden Actions-Jobs und 1,3 Milliarden gemergte Pull Requests [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Im September begannen erkennbare Agenten mehr als 40 Prozent der Pull Requests mit einem ersten Entwurf, im März 17 Prozent; das Volumen lag im September bei 110 Millionen. Die Methode nennt ihre zentrale Grenze selbst: Das Agentensignal ist eine Untergrenze, weil nicht jede Agentennutzung detektierbar ist. Umgekehrt kann die Vergleichsgruppe ohne erkannte Beteiligung unerkannte Agentennutzung enthalten. Beide Richtungen verkleinern die Präzision des Kontrasts [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Zwei weitere Werte verdienen eine vorsichtige Lesart. Dass 90 Prozent der Agenten-PRs im September binnen zwei Wochen gemergt wurden gegenüber 86 Prozent der Vergleichsgruppe, ist ein Prozesswert, keine Aussage über Codequalität. Und die achtmal höhere Commit-Zahl in Repositories mit Agenten-Konfigurationsdatei ist eine Korrelation mit naheliegender Selbstselektion: Teams, die solche Dateien pflegen, arbeiten ohnehin agentennah. GitHub deklariert auch die Prognoseunsicherheit offen: Von 43 Projektionsmodellen erwarten 21 mindestens eine Verdreifachung der Entwicklerzahl bis 2031, drei weniger als eine Verdopplung [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Die Modellwahl bleibt verteilt: 61 Prozent der Copilot-Nutzer mit eigener Modellwahl verwendeten im September mehr als ein Modell, vier Monate zuvor 50 Prozent. Von 100 selbst gewählten Anfragen gingen 38 an General-Purpose-Modelle, 37 an Modelle für Reasoning und Planung und 25 an schnelle, leichte Modelle; kein einzelnes Modell trug mehr als 25 Prozent der Anfragen. Gezählt werden nur selbst gewählte Anfragen, ohne Auto-Auswahl, ohne Nutzung durch GitHub- und Microsoft-Mitarbeitende und ohne eigene API-Schlüssel. Die Daten beschreiben damit Rotation zwischen Modellklassen, nicht die Bindung an ein Spitzenmodell [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Bei den Sprachen hielt sich die Reihenfolge TypeScript, Python, JavaScript; TypeScript gewann 3,62 Millionen monatliche Kontributoren hinzu. Der Anteil gemergter Pull Requests mit erkannter KI-Beteiligung liegt bei TypeScript bei 44,1 Prozent, bei Python 41,1 und bei Rust 40,4 Prozent, bei Java nur bei 21,2 Prozent. Auch hier gilt das Detektierbarkeitsargument; eine Aussage darüber, welche Sprache Agenten besser beherrschen, ist das nicht [^1]."
+    },
+    {
+      "t": "h2",
+      "x": "2. Chrome: Der Datenweg ändert sich, nicht nur die Funktion"
+    },
+    {
+      "t": "p",
+      "x": "Bisher bezog Autofill lokale Stammdaten: Name, Adresse, Kreditkarte. Die erweiterte Version schlägt erstmals Inhalte aus Gmail in fremden Webformularen vor, konkret Bestellnummern, Sendungsverfolgung und Flugbuchungen. Technisch steht dahinter Gemini mit Personal Intelligence. Damit entsteht ein neuer Datenfluss zwischen dem Postfach und Formularen auf beliebigen Websites [^2]."
+    },
+    {
+      "t": "p",
+      "x": "Die Beleglage ist dünn und klar zu benennen: eine Produktankündigung der zuständigen Produktmanagerin vom 28. Oktober. Sie nennt Verschlüsselung sensibler Daten, eine Steuerung in den Chrome-Einstellungen und einen Opt-in-Kontext, weil Personal Intelligence aktiviert sein muss. Eine unabhängige Prüfung dieser Zusagen liegt nicht vor. Der Rollout beginnt in den USA; Angaben zu EU oder Deutschland fehlen, und damit auch jede Aussage zum regulatorischen Rahmen hierzulande [^2]."
+    },
+    {
+      "t": "p",
+      "x": "Für Fachteams folgt daraus eine Prüfliste für den Fall einer Ausweitung: Umfang des Postfachzugriffs dokumentieren, Verhalten bei Firmenkonten klären und die Einstellungslage in verwalteten Browser-Flotten festlegen. Das ist unsere Ableitung aus der Ankündigung, nicht deren Inhalt."
+    },
+    {
+      "t": "h2",
+      "x": "3. Akai: Open-Source-Firmware als einzelquellenbasierte Ankündigung"
+    },
+    {
+      "t": "p",
+      "x": "The Verge berichtet unter Berufung auf ein Interview mit inMusic-CEO Jack O’Donnell über den MPC Sample Key: 37 Tasten, keine Pads, offene Firmware, noch ohne formelle Produktankündigung. Modder erhielten Geräte vorab; kuratierte Videos zeigen per Vibe Coding erstellte Erweiterungen, darunter den Synthesizer Massive, Virtual-Analog- und FM-Klänge sowie ein vollständig eigenes Betriebssystem. Die Community-Funktionen sollen auch auf das reguläre MPC Sample kommen; ein SDK ist angekündigt [^3]."
+    },
+    {
+      "t": "p",
+      "x": "Die Evidenzklassen sind zu trennen: Die Videos sind Anbieterkuration, die CEO-Aussagen sind Absichtserklärungen, ausgelieferte Firmware oder ein SDK liegen nicht vor. Fachlich relevant ist die Richtung: Generative Codewerkzeuge senken die Einstiegshürde für Firmware-Modding so weit, dass ein Hersteller kontrollierte Öffnung der Konfrontation vorzieht. Ob daraus ein belastbares Entwicklerprogramm wird, entscheidet sich an Lizenztext, SDK-Umfang und Update-Politik, nicht an Videos [^3]."
+    },
+    {
+      "t": "h2",
+      "x": "Unsere Einordnung: Drei Belegarten, eine Prüffrage"
+    },
+    {
+      "t": "p",
+      "x": "Der Tag liefert Plattformtelemetrie mit Methodenteil, eine Produktankündigung ohne Außenprüfung und einen Interviewbericht über ein unausgegorenes Produkt. Die gemeinsame Prüffrage lautet: Was davon ist unabhängig überprüfbar, und ab wann? Für Octoverse über die deklarierten Definitionen, für Chrome über die ausgelieferte Einstellungsrealität, für Akai über Lizenz und SDK. Bis dahin sind alle drei Nachrichten Arbeitsstände, keine Befunde."
+    },
+    {
+      "t": "callout",
+      "title": "Quellen und Methode",
+      "x": "Eigene Synthese aus zwei gelesenen Primärveröffentlichungen und einem Interviewbericht. Keine Volltext- oder Anrissspiegelung, keine eigenen Messungen. GitHub-Zahlen sind Anbieter-Telemetrie mit Detektierbarkeitsgrenzen. Stand der Quellenprüfung: 29.10.2026, 07:30 Uhr MEZ."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ist der Anstieg auf über 40 Prozent kausal den Agenten zuzuschreiben?",
+      "a": "Es ist der beobachtete Anteil erkannter Agenten-Starts an Pull Requests auf einer Plattform. Er sagt nichts über Codequalität oder Produktivität und erfasst unerkannte Agentennutzung nicht."
+    },
+    {
+      "q": "Warum gilt das Gmail-Autofill nicht als geprüfte Datenschutzzusage?",
+      "a": "Verschlüsselung und Kontrollumfang stammen aus einer Herstellerankündigung. Eine unabhängige Prüfung liegt nicht vor, und der Rollout gilt zunächst nur für die USA."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Octoverse: Commits, pushes, reach new highs in 2026 as developers build with agents",
+      "publisher": "GitHub Blog",
+      "url": "https://github.blog/news-insights/octoverse/octoverse-commits-pushes-reach-new-highs-in-2026-as-developers-build-with-agents/",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Chrome enhanced autofill now pulls data from Gmail",
+      "publisher": "Google Blog (Chrome)",
+      "url": "https://blog.google/products-and-platforms/products/chrome/enhanced-autofill-gmail/",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Akai is embracing vibe-coded mods with an open-source MPC",
+      "publisher": "The Verge",
+      "url": "https://www.theverge.com/gadgets/1021405/akai-open-source-mpc-sample-key",
+      "accessed": "2026-10-29"
+    }
+  ],
+  "related": [
+    "coding-agenten-alltag",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ]
+}
