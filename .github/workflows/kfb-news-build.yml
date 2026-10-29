@@ -46,7 +46,7 @@ jobs:
           git config user.name "Philipp Paulik"
           git config user.email "philipp.paulik@users.noreply.github.com"
           # scoped wie gehabt + Gate-Verzeichnisse, damit deren PDF-Loeschungen staged werden (fail-closed bleibt)
-          git add -A -- index.html '*.html' '*.txt' thema data news assets content sitemap.xml news-sitemap.xml feed.xml llms.txt search-index.json robots.txt modell-atlas licensed-news.css berichte report-archive
+          git add -A -- .generated.json index.html '*.html' '*.txt' thema data news assets content sitemap.xml news-sitemap.xml feed.xml llms.txt search-index.json robots.txt modell-atlas licensed-news.css berichte report-archive
           if git diff --cached --quiet; then echo "no changes"; exit 0; fi
           git commit -m "News-Build $(date -u +'%F %H:%M UTC')"
           git fetch origin main
