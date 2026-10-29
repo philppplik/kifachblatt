@@ -1,0 +1,157 @@
+{
+  "slug": "clover-35b-diffusionsmodell-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Clover-35B-A3B: Diffusions-Sprachmodell im Agenten-Check",
+  "dek": "DiffuSpace öffnet mit Clover-35B-A3B-Preview ein Diffusions-Sprachmodell, das gleich große autoregressive Modelle schlagen soll - und schneller generiert.",
+  "published": "2026-10-29T07:00:00+01:00",
+  "modified": "2026-10-29T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "DiffuSpace",
+    "Clover",
+    "Diffusionsmodelle",
+    "Offene Gewichte",
+    "MoE"
+  ],
+  "key_takeaways": [
+    "DiffuSpace hat Clover-35B-A3B-Preview veröffentlicht: ein [Diffusions](/glossar#diffusionsmodell)-Sprachmodell mit 35 Milliarden Parametern, rund 3 Milliarden [aktiven](/glossar#aktive-parameter) pro Token und Apache-2.0-Lizenz [1][3].",
+    "In den Hersteller-Benchmarks liegt Clover in allen sechs Agenten-Tests vorn: SWE-bench Verified 73,6, Terminal-Bench 2.1 51,7, τ³ 65,3 - vor den Diffusionsmodellen LLaDA2.2 flash und Mercury 2.5 sowie den gleich großen Qwen-Modellen [1].",
+    "Der Geschwindigkeitsvorteil der Block-Diffusion: 680 Tokens/s auf einer GB300 (interne Agenten-Last), 515 Tokens/s auf einer H200 gegenüber 365 für ein DFlash2-beschleunigtes Qwen-Modell; INT4-quantisiert läuft Clover auf einer RTX 5070 Ti mit 16 GB [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung der Block-Diffusion: Maskierte Token-Blöcke werden parallel aufgelöst, daneben ein Kleeblatt-Symbol",
+    "caption": "Block-Diffusion: Clover füllt maskierte Positionen parallel statt Token für Token - das soll die Generierung deutlich beschleunigen.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "DiffuSpace - ein Team aus dem Umfeld des HKU-NLP-Labors, das mit Dream 7B eines der bekanntesten offenen Diffusions-Sprachmodelle geschaffen hat (2,7 Millionen Hugging-Face-Downloads der Dream-Familie) - hat am 28. Oktober 2026 Clover-35B-A3B-Preview veröffentlicht [1]. Die Leitfrage: Können Diffusionsmodelle auch bei größerer Paramterzahl mit autoregressiven Modellen mithalten, ohne ihren Geschwindigkeitsvorteil zu verlieren? [1]"
+    },
+    {
+      "t": "p",
+      "x": "Clover ist ein textbasiertes [Mixture-of-Experts](/glossar#mixture-of-experts-moe)-Modell mit 35 Milliarden Parametern gesamt und etwa 3 Milliarden aktiven pro Token, abgeleitet von Qwen3.6-35B-A3B: hybride Gated-DeltaNet-/Full-Attention-Architektur, 40 Schichten, 256 geroutete Experten, Top-8-Routing, ein geteilter Experte pro Schicht, Thinking-Modus [2][3]. Das [Kontextfenster](/glossar#kontextfenster) umfasst 128K Tokens für Prompt und Antwort zusammen [2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: Block-Diffusion mit bidirektionalem Gated DeltaNet"
+    },
+    {
+      "t": "p",
+      "x": "Statt strikt von links nach rechts zu generieren, arbeitet Clover in Blöcken: Jeder Block startet mit maskierten Tokens; Positionen, deren Konfidenz über der Schwelle liegt, werden parallel gefüllt (Standard: block_size=32, Schwellwert 0,95). Aufgelöste Blöcke werden Teil des Präfix für den nächsten Block [2]."
+    },
+    {
+      "t": "p",
+      "x": "Die Struktur dahinter ist ein neu entworfenes bidirektionales Gated DeltaNet: Bereits generierter Kontext wird in den Rekurrenz-Zustand des GDN komprimiert, die Tokens im aktuellen Block interagieren über bidirektionale Softmax-Attention. Den Speicher-Readout behandelt das Modell als eigene Informationseinheit in derselben Softmax - es lernt selbst, wann es auf Historie und wann auf den aktuellen Block setzt. Eine lernbare Blockgrößen-Kalibrierung und ein null-initialisierter Faltungszweig für den rechten Kontext ergänzen das Design [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: Bestwerte in der Vergleichsgruppe"
+    },
+    {
+      "t": "p",
+      "x": "In DiffuSpaces eigener Tabelle erreicht Clover in allen sechs Agenten-Benchmarks die höchsten Werte der verglichenen Modelle: SWE-bench Verified 73,6, [Terminal-Bench](/glossar#terminal-bench) 2.1 51,7 und τ³ Overall 65,3 - vor den Diffusionsmodellen LLaDA2.2 flash und Mercury 2.5 sowie vor Qwen3.6-35B-A3B und Qwen3.5-35B-A3B [1]. Bei den allgemeinen Fähigkeiten nennt der Hersteller GPQA Diamond 83,8, ZebraLogic 95,8, AA-LCR 72,0, MMLU-Pro 84,8 und BFCL-v4 67,9 [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Clover-35B-A3B-Preview: ausgewählte Benchmark-Ergebnisse",
+      "alt": "Balkendiagramm mit Clover-Ergebnissen: SWE-bench Verified 73,6, Terminal-Bench 2.1 51,7, τ³ Overall 65,3, GPQA Diamond 83,8",
+      "caption": "Ergebnisse aus DiffuSpaces Launch-Tabelle - Herstellerangaben, nicht unabhängig verifiziert [1].",
+      "labels": [
+        "SWE-b. V.",
+        "TB 2.1",
+        "τ³ Over.",
+        "GPQA D."
+      ],
+      "series": [
+        {
+          "name": "Clover-35B-A3B-Preview",
+          "values": [
+            73.6,
+            51.7,
+            65.3,
+            83.8
+          ]
+        }
+      ],
+      "y_label": "Score"
+    },
+    {
+      "t": "p",
+      "x": "Im Vergleich mit dem gleich großen MiniCPM-V 4.7 (ebenfalls 35B-A3B) liegt Clover um 15,7 Punkte auf Terminal-Bench 2.1 und 28,0 Punkte auf SWE-bench Verified vorn; gegen LFM2.5, Nemotron 3.5 Lightning und Gemma 4 gewinnt es sechs von neun Tests [1]. Wichtig: Alle Werte stammen vom Hersteller; die Modellkarte formuliert entsprechend vorsichtig 'state-of-the-art among open-source diffusion language models at release on the benchmarks reported in our launch blog' [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Geschwindigkeit als Kernargument"
+    },
+    {
+      "t": "p",
+      "x": "Der eigentliche Vorteil der Diffusionsarchitektur ist Tempo: Auf einer einzelnen NVIDIA GB300 (BF16, Batch 1) misst DiffuSpace 680 Tokens/s in internen Agenten-Workloads; auf einer H200 erreicht Clover 515 Tokens/s gegenüber 365 für ein DFlash2-beschleunigtes Qwen-Modell [1]. INT4-[quantisiert](/glossar#quantisierung) läuft das Modell auf einer RTX 5070 Ti mit nur 16 GB VRAM und erreicht auf MATH-500 101,8 Tokens/s gegenüber 48,5 in der Hersteller-Kontrolle [1]. Für Agenten sei Tempo selbst eine Fähigkeit: Jede Generierungs-Verzögerung multipliziere sich über die Entscheidungsschleifen eines Agenten [1]."
+    },
+    {
+      "t": "p",
+      "x": "Praktisch: Die BF16-Gewichte belegen rund 69 GB; empfohlen wird die offizielle SGLang-Implementierung, da kleine numerische Abweichungen zur HF-Transformers-Referenz zu anderen Generierungen führen können. Inferenz läuft auch über llama.cpp [2][3]. Eine SFT-Spur liegt dem GitHub-Repository bei [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Ausblick: Entscheidungsmodell mit Parallel-Modus"
+    },
+    {
+      "t": "p",
+      "x": "Angekündigt ist zudem ein Entscheidungsmodell auf Clover-Basis, das mehrere Fragen zum selben Dokument in einem gemeinsamen Denoising-Durchlauf beantwortet (bis zu acht parallel). In einer internen Validierung mit 500 Gruppen und 2.420 verknüpften Fragen traf der Gemeinschaftsmodus 95,0 Prozent der Einzelfragen gegenüber 89,8 Prozent bei unabhängiger Beantwortung; DiffuSpace argumentiert, gemeinsam erzeugte Urteile widersprächen sich seltener [1]. Das Entscheidungsmodell soll zu einem späteren Zeitpunkt folgen [1]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Clover-35B-A3B-Preview?",
+      "a": "Das erste Modell von DiffuSpace: ein offenes Diffusions-Sprachmodell mit 35 Milliarden Parametern (rund 3 Milliarden aktiv), 128K Kontext, Thinking-Modus und Apache-2.0-Lizenz, abgeleitet von Qwen3.6-35B-A3B [1][2][3]."
+    },
+    {
+      "q": "Was unterscheidet ein Diffusions-Sprachmodell von klassischen LLMs?",
+      "a": "Klassische LLMs erzeugen Tokens strikt nacheinander. Diffusionsmodelle starten mit maskierten Blöcken und füllen sichere Positionen parallel - das macht die Generierung deutlich schneller, erfordert aber eigene Architektur- und Dekodierungslösungen [1][2]."
+    },
+    {
+      "q": "Wo bekomme ich die Gewichte?",
+      "a": "Auf Hugging Face und ModelScope; der Code liegt auf GitHub. Unterstützt werden SGLang (empfohlen), llama.cpp und eine HF-Transformers-Referenzimplementierung [1][2][3]."
+    },
+    {
+      "q": "Lässt sich Clover lokal betreiben?",
+      "a": "In BF16 braucht es rund 69 GB Speicher - eher Server-Hardware. INT4-quantisiert demonstriert DiffuSpace den Betrieb auf einer RTX 5070 Ti mit 16 GB VRAM [1][2]."
+    },
+    {
+      "q": "Sind die Benchmarks belastbar?",
+      "a": "Sie stammen vollständig vom Hersteller und wurden nicht unabhängig reproduziert. Die Modellkarte selbst beschränkt den Spitzenanspruch ausdrücklich auf 'die im Launch-Blog berichteten Benchmarks' [1][2]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Clover-35B-A3B-Preview: A New Way for Intelligence",
+      "publisher": "DiffuSpace",
+      "url": "https://diffuspace.ai/blog/clover-35b/",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "Diffuspace/Clover-35B-A3B-Preview - Modellkarte",
+      "publisher": "Hugging Face / DiffuSpace",
+      "url": "https://huggingface.co/Diffuspace/Clover-35B-A3B-Preview",
+      "accessed": "2026-10-29"
+    },
+    {
+      "title": "DiffuSpace/Clover-35B-A3B-Preview - Repository",
+      "publisher": "GitHub / DiffuSpace",
+      "url": "https://github.com/DiffuSpace/Clover-35B-A3B-Preview",
+      "accessed": "2026-10-29"
+    }
+  ],
+  "method": "Analyse auf Basis des DiffuSpace-Launch-Blogs, der Hugging-Face-Modellkarte und des GitHub-Repositories; alle drei Quellen wurden vollständig gelesen. Sämtliche Benchmark- und Geschwindigkeitsangaben sind Herstellerangaben; das Modell wurde von der Redaktion nicht selbst ausgeführt.",
+  "limitations": "Keine unabhängige Verifikation der Benchmarks oder Geschwindigkeiten; Vergleichswerte für Qwen, MiniCPM, LFM, Nemotron und Gemma stammen aus DiffuSpaces eigener Tabelle. Es handelt sich um eine Preview-Version; das angekündigte Entscheidungsmodell ist noch nicht veröffentlicht. Die Dream-7B-Downloadzahl ist eine Herstellerangabe.",
+  "related": [
+    "mercury-3-diffusion-sprachmodelle-analyse",
+    "offene-gewichte-vs-open-source",
+    "coding-agenten-alltag"
+  ]
+}
