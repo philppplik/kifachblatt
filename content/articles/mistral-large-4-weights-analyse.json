@@ -87,14 +87,14 @@
     },
     {
       "t": "p",
-      "x": "Mistral positioniert Large 4 für Cybersicherheit, Coding-Agenten und Multimodalität [1]. Die gemeldeten Werte stammen aus dem Hugging-Face-Blog zum Release (Anbieter- und Release-Begleitwerte ohne unabhängige Nachmessung): DeepSWE v1.1 61,7 Prozent, SWE-Atlas-QnA 59,4, Terminal-Bench 4 28,3, AutomationBench 59,9; Cybench löst das Modell 93 Prozent von 40 Wettbewerbs-Challenges, und auf Lakeras B3-[Benchmark](/glossar#benchmark) wehrt es 93,3 Prozent der Prompt-Injection-Angriffe ab [1]. Mistrals eigene Release-Seite nennt für Terminal-Bench 4.0 dagegen 41 Prozent - die Abweichung ist zum Quellenstand nicht aufgeklärt [4]."
+      "x": "Mistral positioniert Large 4 für Cybersicherheit, Coding-Agenten und Multimodalität [1]. Die gemeldeten Werte stammen aus dem Hugging-Face-Blog zum Release (Anbieter- und Release-Begleitwerte ohne unabhängige Nachmessung): DeepSWE v1.1 61,7 Prozent, SWE-Atlas-QnA 59,4, Terminal-Bench 4 28,3, AutomationBench 59,9; Cybench löst das Modell 93 Prozent von 40 Wettbewerbs-Challenges, und auf Lakeras B3-[Benchmark](/glossar#benchmark) wehrt es 93,3 Prozent der Prompt-Injection-Angriffe ab [1]. Mistrals eigene Release-Seite nennt für Terminal-Bench 4.0 41 Prozent; ob beide Angaben unter vergleichbaren Bedingungen (Modellversion, Test-Harness, Setup) erhoben wurden, ist den Quellen nicht zu entnehmen - die Vergleichbarkeit der beiden Zahlen ist damit nicht gesichert [4]."
     },
     {
       "t": "chart",
       "kind": "bar",
-      "title": "Mistral Large 4: ausgewählte Benchmark-Ergebnisse",
-      "alt": "Balkendiagramm: DeepSWE 61,7; SWE-Atlas-QnA 59,4; AutomationBench 59,9; Terminal-Bench 4 28,3; Cybench 93,0",
-      "caption": "Ergebnisse aus dem Hugging-Face-Launch-Beitrag - Herstellerangaben, nicht unabhängig verifiziert [1].",
+      "title": "Mistral Large 4: ausgewählte Benchmark-Ergebnisse (je Test eigener Score)",
+      "alt": "Balkendiagramm: DeepSWE 61,7; SWE-Atlas-QnA 59,4; AutomationBench 59,9; Terminal-Bench 4 28,3; Cybench 93,0 - jeder Wert ist der Score des jeweiligen Tests, nicht testübergreifend vergleichbar",
+      "caption": "Ergebnisse aus dem Hugging-Face-Launch-Beitrag - Herstellerangaben, nicht unabhängig verifiziert [1]. Jeder Balken ist der Score des jeweiligen Tests; die Werte sind testübergreifend nicht vergleichbar und bilden keine allgemeine Leistungsrangfolge.",
       "labels": [
         "DeepSWE",
         "SWE-Atl.",
