@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Mistral Large 4: Die offenen Gewichte sind da](https://kifachblatt.de/mistral-large-4-weights-analyse): Mistral veröffentlicht Large 4: rund eine Billion Parameter, Million-Token-Kontext und eine eigene Lizenz. Was die offenen Gewichte ändern.
+- [OpenAIs Model Spec: Fünf Werte, weniger Stilregeln](https://kifachblatt.de/openai-model-spec-oktober-2026-analyse): OpenAI ordnet seinen Model Spec um fünf Werte, ergänzt Kontext- und Handlungsregeln und streicht viele Stilvorgaben. Zielverhalten ist noch kein Praxistest.
 - [KI-Fachüberblick: Wertekanon, Dateizugriff und Relay-Risiken](https://kifachblatt.de/news-ueberblick-morgen-2026-10-30): OpenAIs überarbeiteter Model Spec, Geminis In-Chat-Dateibearbeitung mit Formatmatrix und die Befundlage zu unautorisierten Codex- und Claude-Code-Relays.
 - [KI-Fachüberblick: Gewichtsfreigabe mit Lizenzvorbehalt](https://kifachblatt.de/news-ueberblick-abend-2026-10-29): Was Mistrals Open-Weight-Release belegt und was nicht, wie Deepgram Pipecat absichern will und welche Governance Oracles ChatGPT-Zugang verspricht.
 - [KI-Fachüberblick: Sprachmodell, Benchmarks und Plattformpolitik](https://kifachblatt.de/news-ueberblick-mittag-2026-10-29): Was Nemotron 3.5 Transcribe messtechnisch belegt, warum der neue Intelligence Index Platzierungen verschiebt und wie Valves Klone-Antwort einzuordnen ist.

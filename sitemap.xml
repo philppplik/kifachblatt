@@ -76,6 +76,8 @@
 
 
 
+<url><loc>https://kifachblatt.de/mistral-large-4-weights-analyse</loc><lastmod>2026-10-30T07:16:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/mistral-large-4-weights-analyse.jpg</image:loc><image:title>Mistral Large 4: Die offenen Gewichte sind da</image:title><image:caption>Schematische Darstellung eines Mixture-of-Experts-Modells: Ein Router wählt aus 128 Expert-Kästchen vier aktive plus einen geteilten Experten aus</image:caption></image:image></url>
+<url><loc>https://kifachblatt.de/openai-model-spec-oktober-2026-analyse</loc><lastmod>2026-10-30T07:16:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/openai-model-spec-oktober-2026-analyse.jpg</image:loc><image:title>OpenAIs Model Spec: Fünf Werte, weniger Stilregeln</image:title><image:caption>Schematische Pyramide der Befehlshierarchie: Root oben, darunter System, Developer, User, Guideline und unten Quellen ohne Autorität</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-10-30</loc><lastmod>2026-10-30T06:46:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-10-30.jpg</image:loc><image:title>KI-Fachüberblick: Wertekanon, Dateizugriff und Relay-Risiken</image:title><image:caption>Eigene Grafik: Drei Meldungen vom 29.10.2026 im Kontrollvergleich, normative Selbstbindung (OpenAI Model Spec), Chat-eingebettete Produktfunktion (Gemini Dateibearbeitung) und konfigurative Manipulation mit veröffentlichten Indikatoren (unautorisierte Relays).</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-10-29</loc><lastmod>2026-10-29T16:13:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-10-29.jpg</image:loc><image:title>KI-Fachüberblick: Gewichtsfreigabe mit Lizenzvorbehalt</image:title><image:caption>Eigene Grafik: Terminal-Bench 4.0 nach Anbieterangabe - Mistral Large 4 in der Vorabversion 28 und im Release 41 Prozent, dazu 30 Prozent weniger Output-Token. Kein Modellvergleich wegen ungeklärter Setup-Kompatibilität.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-10-29</loc><lastmod>2026-10-29T10:09:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-10-29.jpg</image:loc><image:title>KI-Fachüberblick: Sprachmodell, Benchmarks und Plattformpolitik</image:title><image:caption>Vier horizontale Balken mit Fehlerraten: Open ASR Englisch 5,3 Prozent, mehrsprachig 4,6 Prozent, Langform 11,0 Prozent, David-AI-Diarization 18,3 Prozent.</image:caption></image:image></url>
@@ -183,11 +185,11 @@
 <url><loc>https://kifachblatt.de/thema/forschung</loc><lastmod>2026-10-22T08:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/grundlagen</loc><lastmod>2026-10-20T09:31:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/methode</loc><lastmod>2026-10-20T10:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-10-29T08:56:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-10-30T07:16:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-10-30T06:46:00+01:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-26T07:00:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:16:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-10-30</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-10-30</lastmod></url>
 <url><loc>https://kifachblatt.de/suche</loc><lastmod>2026-10-30</lastmod></url>
