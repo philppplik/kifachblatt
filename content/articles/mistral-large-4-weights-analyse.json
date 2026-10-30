@@ -1,0 +1,187 @@
+{
+  "slug": "mistral-large-4-weights-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Mistral Large 4: Die offenen Gewichte sind da",
+  "dek": "Mistral veröffentlicht Large 4: rund eine Billion Parameter, Million-Token-Kontext und eine eigene Lizenz. Was die offenen Gewichte ändern.",
+  "published": "2026-10-30T07:16:00+01:00",
+  "modified": "2026-10-30T07:16:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Mistral",
+    "Large 4",
+    "Offene Gewichte",
+    "MoE",
+    "Cybersecurity"
+  ],
+  "key_takeaways": [
+    "Mistral hat Large 4 ('Le Chonk') am 29. Oktober als offene Gewichte veröffentlicht: rund 1 Billion Parameter gesamt, 49 Milliarden aktiv pro Token, 1 Million Tokens Kontext, multimodal (Text + Bild) [1][2].",
+    "Die Architektur kombiniert 128 geroutete Experten (4 aktiv plus ein geteilter) mit Multi-head Latent Attention und einem DeepSeek-Sparse-Attention-Indexer, der pro Query bis zu 2.048 Schlüsselpositionen auswählt [1][2].",
+    "Lizenz: Mistral Ecosystem Open-Weight License - ein MIT-Derivat, kommerzielle Nutzung erlaubt, aber Model-as-a-Service-Angebote brauchen eine separate Lizenz [2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung eines Mixture-of-Experts-Modells: Ein Router wählt aus 128 Expert-Kästchen vier aktive plus einen geteilten Experten aus",
+    "caption": "128 Experten, 4 aktiv + 1 geteilt: Mistral Large 4 kombiniert MoE-Sparsity mit sparsem Attention-Indexing.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Mistral hat am 29. Oktober 2026 die Gewichte von Mistral Large 4 veröffentlicht - auch genannt 'Le Chonk'. Nach der Public Preview Anfang des Monats ist das Modell jetzt auf Hugging Face verfügbar, in zwei offiziellen Varianten (FP8 sowie NVFP4, Letzteres für Blackwell-GPUs) sowie als GGUF-Quantisierungen von Unsloth und dem llama.cpp-Team [1][3]. Was wir in unserer [Analyse der Ankündigung](/mistral-large-4-analyse) noch als Zusage notiert hatten, ist damit eingelöst."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "table",
+      "caption": "Mistral Large 4 im Überblick (Herstellerangaben) [1][2]",
+      "head": [
+        "Eigenschaft",
+        "Wert"
+      ],
+      "rows": [
+        [
+          "Parameter gesamt / aktiv pro Token",
+          "~1 Billion / 49 Mrd. (52 Mrd. inkl. Einbettungen und Ausgabeschicht)"
+        ],
+        [
+          "Expertenarchitektur",
+          "128 geroutete Experten, 4 aktiv pro Token + 1 geteilter Experte"
+        ],
+        [
+          "Kontextfenster",
+          "1 Million Tokens"
+        ],
+        [
+          "Modalitäten / Sprachen",
+          "Text + Bild rein, Text raus; 160+ Sprachen, darunter alle Amtssprachen der EU"
+        ],
+        [
+          "Training",
+          "Von Grund auf trainiert auf 3.800 NVIDIA Grace Blackwell GPUs in Mistrals eigenen EU-Rechenzentren"
+        ],
+        [
+          "Lizenz",
+          "Mistral Ecosystem Open-Weight License (MIT-Derivat; MaaS-Betrieb nur mit separater Lizenz)"
+        ],
+        [
+          "Varianten",
+          "FP8 und NVFP4 offiziell; GGUF-Quants von Unsloth/llama.cpp; eingebetteter DSpark-Speculative-Decoding-Kopf"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: zweifache Sparsity"
+    },
+    {
+      "t": "p",
+      "x": "Der Text-Decoder hat 72 Schichten, eine Hidden-Dimension von 6.144 und 64 Attention-Köpfe. Zwei Sparsity-Ideen greifen ineinander: Der MoE-Router wählt pro Token vier von 128 Experten (plus einen immer laufenden geteilten), und die Attention wählt Kontextpositionen aus - Multi-head Latent Attention hält eine komprimierte KV-Repräsentation, während ein DeepSeek-Sparse-Attention-Indexer (DSA) pro Query bis zu 2.048 Schlüsselpositionen bestimmt [1]. Dazu ein 3:1-Muster aus RoPE- und NoPE-Schichten, über Schichten geteilter KV-Zustand und 'LeRope', ein YaRN-skaliertes RoPE mit einem gelernten Multiplikator pro Frequenz [1]. Die erste Schicht nutzt ein dichtes Feed-Forward-Netz [1]. Der Pixtral-Vision-Encoder (1,6 Mrd. Parameter, 30 Schichten, 14x14-Patches) verarbeitet variable Bildgrößen [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks und der Cyber-Fokus"
+    },
+    {
+      "t": "p",
+      "x": "Mistral positioniert Large 4 für Cybersicherheit, Coding-Agenten und Multimodalität [1]. Die gemeldeten Werte stammen aus dem Hugging-Face-Blog zum Release (Anbieter- und Release-Begleitwerte ohne unabhängige Nachmessung): DeepSWE v1.1 61,7 Prozent, SWE-Atlas-QnA 59,4, Terminal-Bench 4 28,3, AutomationBench 59,9; Cybench löst das Modell 93 Prozent von 40 Wettbewerbs-Challenges, und auf Lakeras B3-[Benchmark](/glossar#benchmark) wehrt es 93,3 Prozent der Prompt-Injection-Angriffe ab [1]. Mistrals eigene Release-Seite nennt für Terminal-Bench 4.0 dagegen 41 Prozent - die Abweichung ist zum Quellenstand nicht aufgeklärt [4]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Mistral Large 4: ausgewählte Benchmark-Ergebnisse",
+      "alt": "Balkendiagramm: DeepSWE 61,7; SWE-Atlas-QnA 59,4; AutomationBench 59,9; Terminal-Bench 4 28,3; Cybench 93,0",
+      "caption": "Ergebnisse aus dem Hugging-Face-Launch-Beitrag - Herstellerangaben, nicht unabhängig verifiziert [1].",
+      "labels": [
+        "DeepSWE",
+        "SWE-Atl.",
+        "Autom.B.",
+        "TB 4",
+        "Cybench"
+      ],
+      "series": [
+        {
+          "name": "Mistral Large 4",
+          "values": [
+            61.7,
+            59.4,
+            59.9,
+            28.3,
+            93.0
+          ]
+        }
+      ],
+      "y_label": "Score in %"
+    },
+    {
+      "t": "p",
+      "x": "Bei Sicherheitsaufgaben argumentiert Mistral mit dem Defensiv-Profil: Schwachstellen reproduzieren und patchen, Malware-Analyse, Erstellung von Detection Rules - Aufgaben, bei denen geschlossene Modelle mit API-Filtern blockieren können. Gleichzeitig soll Large 4 schädliche Cyber-Anfragen häufiger ablehnen als jedes andere offene Modell (Mistral-Angabe zu JailbreakBench, StrongREJECT und AgentHarm) [1]. Die Veröffentlichung macht unabhängige Nachmessungen dieser Behauptungen möglich. Offene Gewichte sind dabei kein Nachweis für sichere Anwendung: Ein Betreiber muss sein konkretes System selbst prüfen."
+    },
+    {
+      "t": "h2",
+      "x": "Betrieb und Feinabstimmung"
+    },
+    {
+      "t": "p",
+      "x": "Day-0-Support gibt es für transformers, vLLM (empfohlen, fertiges Docker-Image), SGLang und llama.cpp; Fine-Tuning über Axolotl, Unsloth oder TRL [1][2]. Bemerkenswert: Das Reasoning lässt sich nicht abschalten [1] - die Stufen low, medium und high (Standard: high) steuern den Aufwand; empfohlen werden Temperatur 1,0 und top_p 0,95 [1][2]. Der NVFP4-Checkpoint zielt auf Blackwell-Hardware und verspricht gleiche Qualität bei kleinerem Speicherfußabdruck [2]. Wer nicht selbst hosten will: Das Modell läuft auch als 'mistral-large-4' in Mistrals API [2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wo bekomme ich Mistral Large 4?",
+      "a": "Auf Hugging Face als FP8- und NVFP4-Checkpoint, dazu GGUF-Quantisierungen von Unsloth und llama.cpp. Alternativ über die Mistral API als 'mistral-large-4' [1][2]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht das Modell?",
+      "a": "Mistral Ecosystem Open-Weight License - ein abgeleitetes MIT, das kommerzielle Nutzung erlaubt. Wer das Modell selbst als Model-as-a-Service anbieten will, braucht eine separate kommerzielle Lizenz von Mistral [2]."
+    },
+    {
+      "q": "Wie groß ist Mistral Large 4 wirklich?",
+      "a": "Rund 1 Billion Parameter gesamt; pro Token sind 49 Milliarden aktiv (52 Milliarden, wenn man Einbettungen und Ausgabeschicht mitzählt) [2]."
+    },
+    {
+      "q": "Welche Hardware setzt NVFP4 voraus?",
+      "a": "Mistrals NVFP4-Checkpoint zielt ausdrücklich auf NVIDIA-Blackwell-GPUs. Daneben gibt es FP8 und GGUF-Quantisierungen. Welche Konfiguration für einen konkreten Einsatz reicht, haben wir nicht selbst getestet [1][2]."
+    },
+    {
+      "q": "Was ist neu gegenüber der Ankündigung?",
+      "a": "Die Gewichte sind tatsächlich verfügbar, inklusive NVFP4-Variante, GGUFs und Framework-Support ab Tag eins. Neu sind auch Details zur Architektur (72 Schichten, DSA-Indexer, LeRope) und konkrete Benchmark-Zahlen [1][2]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Welcome Le Chonk: Mistral Large 4 on Hugging Face",
+      "publisher": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/mistral-large4",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "mistralai/Mistral-Large-4-1T-A52B - Modellkarte",
+      "publisher": "Hugging Face / Mistral AI",
+      "url": "https://huggingface.co/mistralai/Mistral-Large-4-1T-A52B",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "Mistral AI has officially released its Large 4 (Le Chonk) model",
+      "publisher": "The Verge",
+      "url": "https://www.theverge.com/ai-artificial-intelligence/1022184/mistral-ai-has-officially-released-its-large-4-le-chonk-model",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "Mistral AI: Announcing Mistral Large 4",
+      "publisher": "Mistral AI",
+      "url": "https://mistral.ai/news/mistral-large-4-oss/",
+      "accessed": "2026-10-30"
+    }
+  ],
+  "method": "Analyse auf Basis des Hugging-Face-Launch-Beitrags, der offiziellen Modellkarte und der Verge-Meldung; alle drei Quellen wurden vollständig gelesen. Sämtliche Benchmark-Angaben sind Herstellerangaben; das Modell wurde von der Redaktion nicht selbst ausgeführt.",
+  "limitations": "Keine eigenen Modelltests oder unabhängige Verifikation der Benchmarks. Der Ablehnungs-Vergleich bei Cyber-Anfragen ist eine Herstellerangabe. Die Verge-Meldung ist knapp und enthält keine eigenen Messungen. Hardwarebedarf, Durchsatz und Kosten eines konkreten Deployments wurden nicht gemessen.",
+  "related": [
+    "mistral-large-4-analyse",
+    "offene-gewichte-vs-open-source",
+    "multimodale-modelle"
+  ]
+}

@@ -1,0 +1,134 @@
+{
+  "slug": "openai-model-spec-oktober-2026-analyse",
+  "lang": "de",
+  "section": "verlaesslichkeit",
+  "type": "analysis",
+  "title": "OpenAIs Model Spec: Fünf Werte, weniger Stilregeln",
+  "dek": "OpenAI ordnet seinen Model Spec um fünf Werte, ergänzt Kontext- und Handlungsregeln und streicht viele Stilvorgaben. Zielverhalten ist noch kein Praxistest.",
+  "published": "2026-10-30T07:16:00+01:00",
+  "modified": "2026-10-30T07:16:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "OpenAI",
+    "Model Spec",
+    "Alignment",
+    "Modellverhalten",
+    "Richtlinien"
+  ],
+  "key_takeaways": [
+    "OpenAI hat den Model Spec am 29. Oktober 2026 aktualisiert: Das Verhaltensregelwerk für GPT-Modelle ist jetzt um fünf Werte organisiert - Treue zur menschlichen Absicht, Schadensminimierung, Ehrlichkeit und Transparenz, menschliche Handlungsfähigkeit und Sorgfalt [1][2].",
+    "Die Befehlshierarchie ('chain of command') beschreibt sechs Stufen von Root bis 'keine Autorität'; Assistant- und Tool-Nachrichten sowie zitierte Inhalte haben standardmäßig keine eigene Autorität; maßgebliche Anweisungen können ihnen begrenzt Autorität übertragen [2].",
+    "Gestrichen wurden die meisten detaillierten Stilvorgaben: Stil soll sich an Nutzerpräferenzen anpassen statt zentral vorgegeben zu werden; die Objektivitäts-Defaults bleiben [1]. OpenAI räumt ein, dass die aktuellen Modelle den Spec noch nicht vollständig abbilden [1][2][3]."
+  ],
+  "hero": {
+    "alt": "Schematische Pyramide der Befehlshierarchie: Root oben, darunter System, Developer, User, Guideline und unten Quellen ohne Autorität",
+    "caption": "Autoritätsstufen im Model Spec vom 29. Oktober 2026: Höhere Anweisungen haben im Konflikt Vorrang.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "OpenAI hat am 29. Oktober 2026 eine umfassend überarbeitete Fassung seines Model Spec veröffentlicht - des öffentlichen Dokuments, das beschreibt, wie sich GPT-Modelle in Produkten und API verhalten sollen [1]. Der Anlass laut OpenAI: Je leistungsfähiger Modelle werden und je folgenreicher ihre Aktionen, desto weniger reicht es, nur Anweisungen wörtlich zu befolgen - Modelle müssten Absichten und Werte verstehen, um in nicht abgedeckten Situationen angemessen zu urteilen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Fünf Werte als Gerüst"
+    },
+    {
+      "t": "p",
+      "x": "Der Spec ist jetzt um fünf Grundwerte organisiert [1][2]:"
+    },
+    {
+      "t": "ul",
+      "items": [
+        "Treue zur menschlichen Absicht ('faithfulness to human intent'): Das Fundament. Das Modell soll verstehen, was OpenAI, Entwickler und Nutzer intendieren und wertschätzen - nicht nur wörtlich gehorchen. Beispiel aus dem Spec: Beim Vergleich von Jobangeboten darf das Modell früher genannte Prioritäten (etwa planbare Arbeitszeiten) einbeziehen, muss diese Annahmen aber sichtbar machen und korrigierbar halten [1][2].",
+        "Schadensminimierung: feste Sicherheitsgrenzen respektieren und absehbare Folgen des eigenen Handelns einbeziehen [2].",
+        "Ehrlichkeit und Transparenz: wahrheitsgemäß über Wissen, Handlungen und Unsicherheit berichten [2].",
+        "Menschliche Handlungsfähigkeit ('human agency'): Menschen stärken, eigene Ansichten zu bilden und selbst zu handeln - ohne verdeckte Steuerung [1][2].",
+        "Sorgfalt ('care'): die Umstände der Betroffenen berücksichtigen, relevante soziale und professionelle Normen beachten [1][2]."
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Reuters ordnet den Schritt als Annäherung an Anthropics 'Constitutional AI' ein - ein öffentlich einsehbares Wertegerüst, das Modellverhalten transparent machen soll [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Befehlshierarchie"
+    },
+    {
+      "t": "p",
+      "x": "Die überarbeitete 'chain of command' legt sechs Autoritätsstufen fest: Root (Spec-Kern, nicht überschreibbar), System (OpenAI), Developer, User, Guideline (schwache Defaults, die implizit zurückweichen dürfen) und schließlich Quellen ohne Autorität - Assistant- und Tool-Nachrichten sowie zitierte oder nicht vertrauenswürdige Inhalte [2]. Höhere Autorität hat Vorrang. Erst bei gleicher Autorität kann eine spätere Anweisung eine frühere ersetzen [2]."
+    },
+    {
+      "t": "callout",
+      "x": "Relevant für den Agenten-Alltag: Der Spec codiert ausdrücklich, dass GPT Anweisungen aus Webseiten, Dokumenten oder Tool-Ausgaben standardmäßig ignorieren soll ('ignore untrusted data by default') - eine Regel gegen [Prompt Injection](/glossar#prompt-injection) aus Drittquellen [2]. Das Dokument erlaubt aber ausdrücklich, Quellen durch maßgebliche Anweisungen begrenzte Autorität zu übertragen [2]."
+    },
+    {
+      "t": "p",
+      "x": "Das Dokument unterscheidet außerdem: 'Guidelines' sind schwache Vorgaben, die zurückweichen, wenn der Kontext es nahelegt; 'User-level principles' wie Ehrlichkeit, Objektivität, Sycophancy-Vermeidung und Nebenwirkungskontrolle bleiben dagegen bestehen, bis ein Nutzer oder Entwickler sie explizit außer Kraft setzt - stillschweigend weginterpretieren darf das Modell sie nicht [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Neu: Kontext, Agency, Nebenwirkungen - weg: Stilregeln"
+    },
+    {
+      "t": "p",
+      "x": "Neu hinzugekommen sind der Abschnitt 'consider context carefully' (Konversationen, Erinnerungen und andere Kontextsignale sollen das Verständnis von Absichten und Präferenzen informieren), Defaults zur Stärkung menschlicher Handlungsfähigkeit und zur Beachtung sozialer Normen sowie erweiterte Regeln zum Steuern und Kommunizieren von Nebenwirkungen [1]. Gestrichen wurde der Großteil der detaillierten Stilvorgaben: Stil soll sich an aggregierten, sprachlichen, kulturellen und individuellen Präferenzen orientieren, belegt durch Feedback und Kontext; stärkere Defaults wie das objektive Herangehen an Fragen bleiben [1]. Außerdem heißt das Modell im Spec jetzt 'GPT' statt 'the assistant' [1]."
+    },
+    {
+      "t": "p",
+      "x": "Zwei Ehrlichkeits-Vorbehalte liefert OpenAI gleich mit: Die aktuellen Modelle bildeten den Spec noch nicht vollständig ab, und neue Trainingsmethoden, mit denen Modelle die Werte verinnerlichen sollen ('die richtigen Dinge aus den richtigen Gründen'), stecken noch in der Erprobung [1][3]. Der Spec selbst steht unter CC0 in der Public Domain; OpenAI bittet um öffentliches Feedback [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist der Model Spec?",
+      "a": "OpenAIs öffentliches Regelwerk für das Verhalten seiner GPT-Modelle in Produkten und API - ergänzt um Usage Policies und Sicherheitsprotokolle. Er steht unter CC0 und wird laufend aktualisiert [2]."
+    },
+    {
+      "q": "Was sind die fünf Werte?",
+      "a": "Treue zur menschlichen Absicht, Schadensminimierung, Ehrlichkeit und Transparenz, menschliche Handlungsfähigkeit und Sorgfalt [1][2]."
+    },
+    {
+      "q": "Was legt die Befehlshierarchie fest?",
+      "a": "Sechs Stufen ordnen Anweisungen: Root, System, Developer, User, Guideline und standardmäßig keine Autorität. Höhere Autorität geht vor; bei gleicher Autorität kann eine spätere Anweisung eine frühere ersetzen. Tools und zitierte Inhalte können begrenzt Autorität erhalten, wenn eine maßgebliche Anweisung sie ausdrücklich überträgt [2]."
+    },
+    {
+      "q": "Ändert sich ChatGPT damit sofort?",
+      "a": "Der veröffentlichte Text belegt keine sofortige Verhaltensänderung in ChatGPT. OpenAI sagt selbst, die Modelle bildeten den Spec noch nicht vollständig ab. Ob die neuen Vorgaben im konkreten Produkt greifen, müsste separat getestet werden [1][3]."
+    },
+    {
+      "q": "Warum wurden Stilregeln gestrichen?",
+      "a": "OpenAI argumentiert, Stil solle sich an dem orientieren, was Menschen bevorzugen - aggregiert, sprachlich-kulturell und individuell - statt zentral festgelegt zu werden. Behalten bleiben Defaults wie objektives Herangehen an Fragen [1]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "An updated Model Spec for more capable and beneficial AI",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/updated-model-spec",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "Model Spec (2026/10/29)",
+      "publisher": "OpenAI",
+      "url": "https://model-spec.openai.com/2026-10-29.html",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "OpenAI says human intent at center of updated AI model guidelines",
+      "publisher": "Reuters (via Investing.com)",
+      "url": "https://www.investing.com/news/stock-market-news/openai-says-human-intent-at-center-of-updated-ai-model-guidelines-4984893",
+      "accessed": "2026-10-30"
+    }
+  ],
+  "method": "Analyse auf Basis des OpenAI-Blogposts, des vollständigen Model-Spec-Dokuments (Fassung 2026-10-29) und der Reuters-Meldung; alle drei Quellen wurden geöffnet und gelesen, das Spec-Dokument in den für diesen Artikel zitierten Abschnitten vollständig.",
+  "limitations": "Der Model Spec beschreibt Zielverhalten, nicht gemessenes Ist-Verhalten - OpenAI sagt selbst, die Modelle bildeten ihn noch nicht vollständig ab. Wir haben nicht getestet, wie die neuen Prinzipien in der Praxis wirken. Die Reuters-Meldung enthält keine eigenen Tests.",
+  "related": [
+    "system-prompts",
+    "guardrails-sichere-prompts",
+    "angriffsmuster-llm"
+  ]
+}
