@@ -1,5 +1,65 @@
 [
   {
+    "title": "OpenAI verdoppelt ausgewählte Nutzungslimits und aktualisiert KI-Ziele",
+    "url": "https://www.heise.de/news/OpenAI-verdoppelt-ausgewaehlte-Nutzungslimits-und-aktualisiert-KI-Ziele-11506206.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793368920.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "OpenAI verdoppelt anscheinend die Nutzungskontingente für einige Pro- und Business-Kunden. Zudem wurden die Modellspezifikationen für KI aktualisiert.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-30T14:18:41.244773+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Update kompakt: Mistral ML4, Cohere, KI-Empfehlungen, KI klont Indie-Spiele",
+    "url": "https://www.heise.de/news/KI-Update-kompakt-Mistral-ML4-Cohere-KI-Empfehlungen-KI-klont-Indie-Spiele-11506040.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793368800.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-30T14:18:41.244841+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Claude-Code-Erweiterung im Cursor-Marktplatz mit Malware infiziert",
+    "url": "https://www.heise.de/news/Claude-Code-Erweiterung-im-Cursor-Marktplatz-mit-Malware-infiziert-11506368.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793365680.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Im Marktplatz der Entwicklungsumgebung Cursor steckte in der offiziellen Claude-Code-Erweiterung eine SSH-Backdoor.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-30T14:18:41.244886+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Oracle Fusion: ChatGPT soll Geschäftsabläufe starten statt nur erklären",
+    "url": "https://www.heise.de/news/Oracle-Fusion-ChatGPT-soll-Geschaeftsablaeufe-starten-statt-nur-erklaeren-11505931.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793360460.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Oracle erweitert seine Cloud-Unternehmenssoftware Fusion mit KI-Assistenten. Fusion Companion und Agentic Home sollen Aufgaben vereinfachen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-30T14:18:41.244990+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "86 Prozent der Experten übernehmen KI-Meinungen, mehrheitlich auch unbewusst",
+    "url": "https://www.heise.de/news/Untersuchung-Experten-uebernehmen-oft-unbewusst-KI-Entscheidungen-11505781.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793359260.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Eine Studie von Anthropic zeigt, dass Experten KI-Empfehlungen in 86 Prozent der Fälle übernehmen, oft ohne sich dessen bewusst zu sein.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-10-30T14:18:41.245021+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Niedergang von Stack Overflow: Moderation und KI als Ursachen",
     "url": "https://www.heise.de/news/Kaum-Fragen-veraltete-Antworten-Stack-Overflow-in-der-Krise-11505968.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793357940.0,
