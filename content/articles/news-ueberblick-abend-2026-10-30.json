@@ -1,0 +1,127 @@
+{
+  "slug": "news-ueberblick-abend-2026-10-30",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: Sprache lokal, Sensorik daheim, Zählfehler im Test",
+  "dek": "Offene Sprach- und Entscheidungsmodelle für Apple-Plattformen mit Messprotokoll, Amazons neue Geräte-Sensorik und DecoyCount samt Methodikvorbehalt.",
+  "published": "2026-10-30T16:10:00+01:00",
+  "modified": "2026-10-30T16:10:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "On-Device",
+    "Benchmarks",
+    "Sensorik"
+  ],
+  "key_takeaways": [
+    "AnySpeechRecognizer abstrahiert Apples SpeechAnalyzer-API auf austauschbare Engines: Parakeet v3/Ultra/Unified und Qwen3-ASR lokal per Core ML, dazu Sortformer-Diarisierung für bis zu vier Sprecher. Konvertierungen sind mit Prüfsummen und festen Revisionen auf dem Hub dokumentiert.",
+    "Die mitgelieferte Messung ist eng begrenzt: LibriSpeech auf einem M4 Max unter macOS 27, Wortfehlerraten 1,43 bis 2,12 Prozent; auf AMI-Meeting-Daten scheitern alle Engines über 23 Prozent. AnyDecisionModel liest Entscheidungen in einem Forward-Pass aus Label-Wahrscheinlichkeiten, ohne Textgenerierung.",
+    "DecoyCount trennt Seh- von Zählfehlern über sieben Mechanismen; keines der im Paper verglichenen Spitzenmodelle über 50 Prozent. Glimpses 50,48 Prozent stammen aus einem internen Einzellauf ohne Harness und sind mit den Drei-Lauf-Mitteln der Konkurrenz nur eingeschränkt vergleichbar."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zum DecoyCount-Benchmark: Ergebnisse von Glimpse und vier Spitzenmodellen mit gekennzeichneter Methodik-Asymmetrie zwischen internem Einzellauf und Drei-Lauf-Mitteln.",
+    "caption": "DecoyCount, 1.660 Aufgaben: Der Glimpse-Wert stammt aus einem internen Einzellauf ohne Harness, die übrigen Werte aus Drei-Lauf-Mitteln der Begleitveröffentlichung; die Balken sind daher nur eingeschränkt direkt vergleichbar.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: Elorian/Mercor (Autorenangaben)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Abend, 30. Oktober 2026. Quellenstand: 16:01 Uhr MEZ.** Diese Ausgabe behandelt drei Veröffentlichungen vom 28. und 29. Oktober: Hugging Faces Swift-Pakete für offene Sprach- und Entscheidungsmodelle auf Apple-Plattformen, Amazons neue Gerätegeneration mit erweiterter Sensorik und den DecoyCount-Benchmark von Elorian und Mercor. Die verbindende Frage lautet, wie belastbar die jeweils mitgelieferte Evidenz ist."
+    },
+    {
+      "t": "h2",
+      "x": "1. AnySpeechRecognizer und AnyDecisionModel: Engine-Wahl statt Systembindung"
+    },
+    {
+      "t": "p",
+      "x": "AnySpeechRecognizer bildet Apples SpeechAnalyzer-API (iOS 26/macOS 26) nach, ersetzt aber die einzige darunterliegende Engine durch wählbare Modelle: Nvidias Parakeet v3 (25 europäische Sprachen, automatische Spracherkennung), Moondreams nachjustiertes Parakeet Ultra, Nvidias englisch-only Parakeet Unified und Alibabas Qwen3-ASR (30 Sprachen, 22 chinesische Dialekte, segmentweise bis 40 Sekunden, GPU-gebunden und langsamer). Die Parakeet-Varianten laufen auf einer eigenen Core-ML-Laufzeit mit Datei- und Liveeingang, Wortzeitstempeln und Konfidenzwerten; ein 8-Sekunden-Encoder senkt die Live-Analysezeit um etwa ein Drittel bei leicht höherer Fehlerrate. Eine Sortformer-basierte Diarisierung ordnet bis zu vier Sprecher zu, auch überlappend, eine Funktion, die Apples Framework nicht anbietet. Alle Konvertierungen liegen mit Quell-Checkpoint, Prüfsummen und fester Revision auf dem Hub, Lizenzen: CC BY 4.0, Apache 2.0 und NVIDIA Open Model License [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Die Messlage ist transparent und eng: Auf einem M4 Max unter macOS 27.0.1 erreichen die Parakeet-Varianten auf LibriSpeech test-clean 1,43 bis 1,66 Prozent Wortfehlerrate (Apples Engine 2,12), auf test-other 2,19 bis 2,78 (Apple 3,97). Auf AMI-Meeting-Aufnahmen mit Überschneidungen liegen alle Engines über 23 Prozent. Es handelt sich um eine Ein-Maschinen-Selbstmessung, die sich mit dem mitgelieferten Werkzeug reproduzieren lässt; iOS wurde bisher nicht getestet. AnyDecisionModel schließlich beantwortet Ja-Nein-, Mehrfachauswahl- und Skalenfragen, indem es die Wahrscheinlichkeiten der Antwort-Labels in einem einzigen Forward-Pass ausliest; Ergebnisse sind typisiert, mit Wahrscheinlichkeiten und Konfidenz, Fragen sind untereinander unabhängig [^1]."
+    },
+    {
+      "t": "h2",
+      "x": "2. Amazon Echo: Sensorik als Produktgrenze"
+    },
+    {
+      "t": "p",
+      "x": "Amazons Geräteankündigung zeigt, wo die Verarbeitung künftig stattfindet: Der Echo Dot bekommt den eigenen AZ3-Chip mit KI-Beschleuniger für Gesprächserkennung und Geräuschfilterung auf dem Gerät, dazu Smart-Home-Hub und eero-Erweiterung. Der Echo Studio erhält erstmals eine Kamera; beworben werden das Vorlesen von Spielregeln vom Karton, das Wiedererkennen von Produkten für Nachbestellungen und ein Fernzugriff auf den Raum per App. Der Wecker Echo Time verzichtet bewusst auf eine Kamera und misst per Ultraschall (Omnisense) Atmung und Schlafphasen, mit Zertifizierung der National Sleep Foundation. Fotorahmen und Echo Show 16 bleiben vorerst US-Markt; Studio, Time und Dot kommen auch nach Deutschland. Viele Funktionen setzen Alexa+ voraus [^2][^3]. Welche Sensordaten das Gerät jeweils verlassen und welche lokal bleiben, beantwortet die Ankündigung nicht; das ist zum Quellenstand nicht belegt und vor einer Bewertung im eigenen Haushalt zu klären."
+    },
+    {
+      "t": "h2",
+      "x": "3. DecoyCount: Sehfehler und Denkfehler getrennt gemessen"
+    },
+    {
+      "t": "p",
+      "x": "Der von Elorian und Mercor veröffentlichte DecoyCount-Benchmark prüft über 1.660 Aufgaben und sieben Täuschungsmechanismen, ob Modelle Objekte wirklich zählen oder Heuristiken folgen, etwa Spiegelungen, Verpackungsangaben oder erwartete Stückzahlen. Methodisch bemerkenswert ist die Fehlertrennung: Ein übersehenes Objekt (Sehfehler) und eine doppelt gezählte Spiegelung (Denkfehler) werden nicht zur selben Fehlerklasse addiert. Ergebnis der Begleitveröffentlichung: Keines der im Paper verglichenen Spitzenmodelle kommt über 50 Prozent; GPT-6 Astra erreicht 43,17, Gemini-3.8-flash 32,71, Qwen3.8-max 28,31 und Claude Fable 5.1 25,22 Prozent. Der Schluss der Autoren: Stärkeres allgemeines Reasoning generalisiert nicht von selbst zu ausgerichtetem visuellen Reasoning [^4]."
+    },
+    {
+      "t": "p",
+      "x": "Zur Bewertung des Spitzenwerts: Elorian meldet für Glimpse 50,48 Prozent, gemessen in einem internen Einzellauf ohne Agenten- oder Werkzeug-Harness, während die sechs Vergleichsmodelle über jeweils drei Läufe gemittelt wurden. Die Evaluationsbilder seien laut CEO Andrew Dai aus dem Training ausgeschlossen und per Kontaminationsprüfung verifiziert worden, ein externer Beleg steht aus. Hinzu kommt die Interessenlage: Benchmark und Spitzenmodell stammen vom selben Anbieter. Der Befund zur Fehlertrennung bleibt davon unberührt und ist unabhängig von Glimpses Platzierung verwertbar [^4]."
+    },
+    {
+      "t": "h2",
+      "x": "Unsere Einordnung: Drei Evidenzgrade am selben Tag"
+    },
+    {
+      "t": "p",
+      "x": "Hugging Face liefert die stärkste Position: eine Selbstmessung mit veröffentlichtem Werkzeug, die sich auf eigener Hardware falsifizieren lässt, inklusive der ehrlichen Meeting-Grenze. Amazon liefert eine Produktankündigung, deren Sensorik-Fakten prüfbar sind, deren Datenwege aber unbeschrieben bleiben. DecoyCount liefert einen methodisch wertvollen Benchmark mit einem Spitzenwert, dessen Bedingungen die Vergleichbarkeit einschränken. Die Prüffrage bleibt die der letzten Ausgaben: Was ist reproduzierbar, was ist belegt, was ist vorerst Behauptung?"
+    },
+    {
+      "t": "p",
+      "x": "Vertiefend: [Wie Bildmodelle lernen: Diffusion, Tokenizer und Stile](/artikel/wie-bildmodelle-lernen/) und [Eigene KI-Dienste absichern: Zugriff, Datenflüsse, Updates](/artikel/ki-dienste-absichern/)."
+    },
+    {
+      "t": "callout",
+      "title": "So ist dieser Überblick entstanden",
+      "x": "Eigene Zusammenfassung tatsächlich gelesener Quellen: Hugging-Face-Blogbeitrag mit Messprotokoll, Amazons Geräteankündigung, das heise KI-Update und der Latent-Space-Artikel zu DecoyCount, keine übernommenen RSS-Anrisstexte. Quellenstand 30.10.2026, 16:01 Uhr MEZ."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Sind die Wortfehlerraten unabhängig geprüft?",
+      "a": "Nein, sie stammen aus der Selbstmessung der Paket-Entwickler auf einem einzelnen Gerät. Die Messwerkzeuge sind jedoch veröffentlicht, sodass sich die Werte mit eigenem Audio und eigener Hardware überprüfen lassen."
+    },
+    {
+      "q": "Ist Glimpse jetzt das beste visuelle Reasoning-Modell?",
+      "a": "Das lässt sich aus den vorliegenden Zahlen nicht ableiten: Glimpses Wert stammt aus einem internen Einzellauf ohne Harness, die Vergleichswerte aus Drei-Lauf-Mitteln unter eigenen Bedingungen. Belastbar ist nur der Befund, dass alle im Paper verglichenen Spitzenmodelle unter 50 Prozent liegen."
+    },
+    {
+      "q": "Welche Echo-Geräte kommen nach Deutschland?",
+      "a": "Laut heise KI-Update zunächst Echo Studio mit Home Camera, Echo Time und Echo Dot. Der Alexa Photo Frame und das Echo Show 16 starten vorerst nur in den USA."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Introducing AnySpeechRecognizer and AnyDecisionModel: Open Models for Speech and Decisions on Apple Platforms",
+      "publisher": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/anydecisionmodel",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "Amazon unveils its newest lineup of Alexa devices",
+      "publisher": "About Amazon",
+      "url": "https://www.aboutamazon.com/news/devices/new-alexa-devices-2026",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "Can Frontier Models See Past a Decoy? Elorian Tests Visual Reasoning",
+      "publisher": "Latent Space",
+      "url": "https://latent.space/p/elorian/",
+      "accessed": "2026-10-30"
+    },
+    {
+      "title": "KI-Update kompakt: Mistral ML4, Cohere, KI-Empfehlungen, KI klont Indie-Spiele",
+      "publisher": "heise online",
+      "url": "https://www.heise.de/news/KI-Update-kompakt-Mistral-ML4-Cohere-KI-Empfehlungen-KI-klont-Indie-Spiele-11506040.html",
+      "accessed": "2026-10-30"
+    }
+  ],
+  "related": [
+    "wie-bildmodelle-lernen",
+    "ki-dienste-absichern"
+  ]
+}
