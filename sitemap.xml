@@ -76,7 +76,7 @@
 
 
 
-<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-10-30</loc><lastmod>2026-10-30T16:10:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-10-30.jpg</image:loc><image:title>KI-Fachüberblick: Sprache lokal, Sensorik daheim, Zählfehler im Test</image:title><image:caption>Eigene Grafik zum DecoyCount-Benchmark: Ergebnisse von Glimpse und vier Spitzenmodellen mit gekennzeichneter Methodik-Asymmetrie zwischen internem Einzellauf und Drei-Lauf-Mitteln.</image:caption></image:image></url>
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-10-30</loc><lastmod>2026-10-30T16:14:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-10-30.jpg</image:loc><image:title>KI-Fachüberblick: Sprache lokal, Sensorik daheim, Zählfehler im Test</image:title><image:caption>Eigene Grafik zum DecoyCount-Benchmark: Ergebnisse von Glimpse und vier Spitzenmodellen mit gekennzeichneter Methodik-Asymmetrie zwischen internem Einzellauf und Drei-Lauf-Mitteln.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-10-30</loc><lastmod>2026-10-30T10:02:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-10-30.jpg</image:loc><image:title>KI-Fachüberblick: Agenten-Monitoring, Dot-Messaging, Such-Referrals</image:title><image:caption>Eigene Grafik: OpenAIs Misalignment-Monitoring als Schichtenmodell, von Aktivierungsproben über modellbasierte Reviewer und Ermittlungs-Agenten bis zum Telemetrie-Abgleich mit menschlichen Respondern.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/mistral-large-4-weights-analyse</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/mistral-large-4-weights-analyse.jpg</image:loc><image:title>Mistral Large 4: Die offenen Gewichte sind da</image:title><image:caption>Schematische Darstellung eines Mixture-of-Experts-Modells: Ein Router wählt aus 128 Expert-Kästchen vier aktive plus einen geteilten Experten aus</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/openai-model-spec-oktober-2026-analyse</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/openai-model-spec-oktober-2026-analyse.jpg</image:loc><image:title>OpenAIs Model Spec: Fünf Werte, weniger Stilregeln</image:title><image:caption>Schematische Pyramide der Befehlshierarchie: Root oben, darunter System, Developer, User, Guideline und unten Quellen ohne Autorität</image:caption></image:image></url>
@@ -190,7 +190,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-10-30T16:10:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-10-30T16:14:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-10-30</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-10-30</lastmod></url>
