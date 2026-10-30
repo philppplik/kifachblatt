@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Wertekanon, Dateizugriff und Relay-Risiken](https://kifachblatt.de/news-ueberblick-morgen-2026-10-30): OpenAIs überarbeiteter Model Spec, Geminis In-Chat-Dateibearbeitung mit Formatmatrix und die Befundlage zu unautorisierten Codex- und Claude-Code-Relays.
 - [KI-Fachüberblick: Gewichtsfreigabe mit Lizenzvorbehalt](https://kifachblatt.de/news-ueberblick-abend-2026-10-29): Was Mistrals Open-Weight-Release belegt und was nicht, wie Deepgram Pipecat absichern will und welche Governance Oracles ChatGPT-Zugang verspricht.
 - [KI-Fachüberblick: Sprachmodell, Benchmarks und Plattformpolitik](https://kifachblatt.de/news-ueberblick-mittag-2026-10-29): Was Nemotron 3.5 Transcribe messtechnisch belegt, warum der neue Intelligence Index Platzierungen verschiebt und wie Valves Klone-Antwort einzuordnen ist.
 - [Clover-35B-A3B: Diffusions-Sprachmodell im Agenten-Check](https://kifachblatt.de/clover-35b-diffusionsmodell-analyse): DiffuSpace öffnet mit Clover-35B-A3B-Preview ein Diffusions-Sprachmodell, das gleich große autoregressive Modelle schlagen soll - und schneller generiert.
