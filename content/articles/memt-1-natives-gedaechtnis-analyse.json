@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "MemT-1.0: Gedächtnis als Teil der Modellrechnung",
   "dek": "MemTensors MemT-1.0 verlagert das Langzeitgedächtnis von Sprachmodellen in feste Speicherzustände - statt den Kontext immer weiter wachsen zu lassen.",
-  "published": "2026-10-31T07:16:05+01:00",
-  "modified": "2026-10-31T07:16:05+01:00",
+  "published": "2026-10-31T07:18:34+01:00",
+  "modified": "2026-10-31T07:18:34+01:00",
   "author": "philipp-paulik",
   "tags": [
     "MemT-1.0",

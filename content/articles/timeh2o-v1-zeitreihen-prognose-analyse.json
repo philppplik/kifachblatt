@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "TimeH2O-v1: 108 Millionen Parameter für Zeitreihen",
   "dek": "H2O.ai veröffentlicht ein kompaktes Foundation-Modell für Zeitreihenprognosen: zero-shot, mit Kovariaten - und laut Anbieter vorn auf fev-bench und GIFT-Eval.",
-  "published": "2026-10-31T07:16:05+01:00",
-  "modified": "2026-10-31T07:16:05+01:00",
+  "published": "2026-10-31T07:18:34+01:00",
+  "modified": "2026-10-31T07:18:34+01:00",
   "author": "philipp-paulik",
   "tags": [
     "H2O.ai",
