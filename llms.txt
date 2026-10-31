@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [MemT-1.0: Gedächtnis als Teil der Modellrechnung](https://kifachblatt.de/memt-1-natives-gedaechtnis-analyse): MemTensors MemT-1.0 verlagert das Langzeitgedächtnis von Sprachmodellen in feste Speicherzustände - statt den Kontext immer weiter wachsen zu lassen.
+- [TimeH2O-v1: 108 Millionen Parameter für Zeitreihen](https://kifachblatt.de/timeh2o-v1-zeitreihen-prognose-analyse): H2O.ai veröffentlicht ein kompaktes Foundation-Modell für Zeitreihenprognosen: zero-shot, mit Kovariaten - und laut Anbieter vorn auf fev-bench und GIFT-Eval.
 - [KI-Fachüberblick: Inferenz im Orbit, Intent-Routing im Auto](https://kifachblatt.de/news-ueberblick-morgen-2026-10-31): Googles Suncatcher rechnet erstmals im Orbit, Rivians Agenten-Framework geht an VW, und DoorDash misst die reale Nutzung von Bestell-Agenten.
 - [KI-Fachüberblick: Sprache lokal, Sensorik daheim, Zählfehler im Test](https://kifachblatt.de/news-ueberblick-abend-2026-10-30): Offene Sprach- und Entscheidungsmodelle für Apple-Plattformen mit Messprotokoll, Amazons neue Geräte-Sensorik und DecoyCount samt Methodikvorbehalt.
 - [KI-Fachüberblick: Agenten-Monitoring, Dot-Messaging, Such-Referrals](https://kifachblatt.de/news-ueberblick-mittag-2026-10-30): OpenAIs ausgebautes Misalignment-Monitoring im Schichtenmodell, ChatGPT Dot per iMessage und RCS sowie Reddits Referral-Rückgang als Verteilungsproblem.
