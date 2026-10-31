@@ -8,13 +8,18 @@ CSS='''
 '''
 def render(c,d,technical):
  p=c['rich'];sources=d['sources']
+ def _fd(dt):
+  return dt[8:10]+'.'+dt[5:7]+'.'+dt[0:4]
+ stand=_fd(c.get('checked') or d['reviewed'])
  def ref(key):
   src=sources[key];return '<a class="co-ref" href="'+E(src['url'])+'">Quelle: '+E(src['title'])+'</a>'
  out='<section class="co-rich"><div class="co-eyebrow">'+E(p['eyebrow'])+'</div><h2>'+E(p['headline'])+'</h2><p class="co-intro">'+E(p['intro'])+'</p>'
- svg='<svg viewBox="0 0 650 285" role="img" aria-label="'+E('; '.join(a+': '+b for a,b in p['layers']))+'"><title>Organisation, Entwicklung und Anwendung</title>'
- for i,(a,b) in enumerate(p['layers']):
-  y=i*96;svg+='<rect x="1" y="%d" width="648" height="76" rx="12" fill="white" stroke="#d8d8e0"/><text x="24" y="%d" fill="#151519" font-size="23">%s</text><text x="24" y="%d" fill="#64646f" font-size="16">%s</text>'%(y+1,y+32,E(a),y+58,E(b))
- svg+='</svg><div class="co-layers-text">'+''.join('<div><b>'+E(a)+'</b><span>'+E(b)+'</span></div>' for a,b in p['layers'])+'</div>';out+='<div class="co-stack">'+svg+'<p>Redaktionelles Orientierungsbild, keine rechtliche Organigramm-Gesamtdarstellung. '+ref(p['primary'])+'</p></div><div class="co-grid">'
+ if p.get('layers'):
+  svg='<svg viewBox="0 0 650 285" role="img" aria-label="'+E('; '.join(a+': '+b for a,b in p['layers']))+'"><title>Organisation, Entwicklung und Anwendung</title>'
+  for i,(a,b) in enumerate(p['layers']):
+   y=i*96;svg+='<rect x="1" y="%d" width="648" height="76" rx="12" fill="white" stroke="#d8d8e0"/><text x="24" y="%d" fill="#151519" font-size="23">%s</text><text x="24" y="%d" fill="#64646f" font-size="16">%s</text>'%(y+1,y+32,E(a),y+58,E(b))
+  svg+='</svg><div class="co-layers-text">'+''.join('<div><b>'+E(a)+'</b><span>'+E(b)+'</span></div>' for a,b in p['layers'])+'</div>';out+='<div class="co-stack">'+svg+'<p>Redaktionelles Orientierungsbild, keine rechtliche Organigramm-Gesamtdarstellung. '+ref(p['primary'])+'</p></div>'
+ out+='<div class="co-grid">'
  for title,text,key in p['sections']:out+='<article class="co-block"><h3>'+E(title)+'</h3><p>'+E(text)+'</p>'+ref(key)+'</article>'
  out+='</div>'
  if p['milestones']:out+='<h2>Wichtige Stationen</h2><ol class="co-timeline">'
@@ -36,7 +41,7 @@ def render(c,d,technical):
   for value,label in [(n(r['stargazers_count']),'GitHub-Stars'),(n(r['forks_count']),'Forks'),(r['license']['spdx_id'] if r['license'] else 'Nicht erkannt','Repository-Lizenz laut API')]:out+='<div class="co-stat"><strong>'+E(value)+'</strong><span>'+E(label)+'</span></div>'
   out+='</div><p class="co-foot">Letzter Push laut API: '+E(r['pushed_at'])+' · Snapshot abgerufen: '+E(snap['retrieved_at'])+'. Kein Aktualisierungsversprechen und keine Aussage über ein Release. <a href="'+E(snap['source'])+'">GitHub-API-Primärquelle</a>. Lokal versionierter Datenstand; kein externer Abruf beim Lesen. Die Repository-Lizenz ist keine Lizenz für Modelle oder den GitHub-Dienst.</p>'
  models=[m for m in d['models'] if m['company']==c['slug']]
- out+='<h2>Modelle im lokalen Verzeichnis</h2><div class="co-models">'+''.join('<a href="/ki-modelle/'+m['slug']+('' if technical else '/')+'">'+E(m['name'])+' ↗</a>' for m in models)+'</div><p class="co-foot">Kuratierter Bestand dieser Website. Anzahl und Auswahl sind keine vollständige Produktliste des Anbieters. Unternehmensangaben sind Primärquellen-Selbstauskünfte, keine unabhängigen Audits. Quellenstand: 20.10.2026.</p></section>'
+ out+='<h2>Modelle im lokalen Verzeichnis</h2><div class="co-models">'+''.join('<a href="/ki-modelle/'+m['slug']+('' if technical else '/')+'">'+E(m['name'])+' ↗</a>' for m in models)+'</div><p class="co-foot">Kuratierter Bestand dieser Website. Anzahl und Auswahl sind keine vollständige Produktliste des Anbieters. Unternehmensangaben sind Primärquellen-Selbstauskünfte, keine unabhängigen Audits. Quellenstand: '+stand+'.</p></section>'
  return out
 
 def ecosystem(x,d):
