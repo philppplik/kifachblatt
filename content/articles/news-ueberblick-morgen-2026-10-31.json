@@ -1,0 +1,131 @@
+{
+  "slug": "news-ueberblick-morgen-2026-10-31",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: Inferenz im Orbit, Intent-Routing im Auto",
+  "dek": "Googles Suncatcher rechnet erstmals im Orbit, Rivians Agenten-Framework geht an VW, und DoorDash misst die reale Nutzung von Bestell-Agenten.",
+  "published": "2026-10-31T06:42:39+01:00",
+  "modified": "2026-10-31T06:42:39+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Infrastruktur",
+    "Agenten",
+    "Sprachassistenten"
+  ],
+  "key_takeaways": [
+    "Suncatcher hat den Inferenz-Meilenstein im Orbit erreicht: Gemma 4 lief auf einer TPU und antwortete per Bodenstations-Downlink. Das Energiebudget von etwa einem Kilowatt begrenzt den Betrieb auf eine von vier TPUs für rund 20 Minuten; Strahlungstests stehen noch aus.",
+    "Rivians Sprachassistent ist kein Chat-Frontend, sondern ein Intent-Router: Ein hauseigenes agentisches Framework bildet gesprochene Absichten auf Fahrzeug-Softwarekomponenten ab. VW lizenziert die Technik, Zielarchitektur und Dritt-Agenten-Perspektive inklusive.",
+    "DoorDash quantifiziert erstmals die reale Nutzung fremder Bestell-Agenten: einige hundert Bestellungen insgesamt gegenüber drei Millionen Lieferungen täglich im Jahresschnitt 2025. Die Zeiträume sind nicht direkt vergleichbar."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zu Bestell-Agenten bei DoorDash: einige hundert Bestellungen über Dritt-Agenten insgesamt seit Start sowie drei Millionen Lieferungen pro Tag im Durchschnitt 2025, mit Hinweis auf die nicht vergleichbaren Zeiträume.",
+    "caption": "DoorDash: Bestellungen über fremde KI-Agenten (gesamt, seit Start) neben allen Lieferungen (Tagesdurchschnitt 2025). Achtung: Die Zeiträume sind nicht direkt vergleichbar.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: DoorDash via TechCrunch (Unternehmensangaben)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Morgen, 31. Oktober 2026. Quellenstand: 06:36 Uhr MEZ.** Diese Ausgabe behandelt drei Ereignisse vom 29. und 30. Oktober: Googles erste KI-Antwort aus dem Orbit, die Lizenzierung von Rivians Sprachassistenten an Volkswagen und DoorDashs Zahlen zur tatsächlichen Nutzung von Bestell-Agenten. Gemeinsam skizzieren sie, wo KI-Systeme gerade physikalisch und wirtschaftlich ankommen."
+    },
+    {
+      "t": "h2",
+      "x": "1. Suncatcher: Inferenz unter Orbit-Bedingungen"
+    },
+    {
+      "t": "p",
+      "x": "Der von Planet Labs gebaute Prototyp war am 1. Oktober an Bord einer Falcon 9 mit über hundert weiteren Raumfahrzeugen gestartet. Nach rund drei Wochen Inbetriebnahme, in denen Host- und TPU-Trays hochgefahren und erste ML-Tests gelaufen waren, erfolgte diese Woche der eigentliche Meilenstein: Per Uplink erhielt das vorinstallierte offene Modell Gemma 4 einen Prompt, die Antwort ging während eines Überflugs über Svalbard zur Bodenstation. Anschließend testete das Team Telemetrie-Prompts zum Systemzustand [^1][^2]."
+    },
+    {
+      "t": "p",
+      "x": "Die ingenieurstechnische Lage: Der Satellit erzeugt bis zu etwa ein Kilowatt; das reicht, um jeweils nur eine der vier TPUs für rund 20 Minuten zu betreiben, was die ohnehin enge Bodenstations-Kommunikation zusätzlich verkompliziert. Die nächste Testreihe gilt thermischem Stress und Strahlung: Bitflips können Speicherinhalte ohne Alarm korrumpieren. Beschleunigertests am Boden deuteten laut Bericht auf geringe Auswirkungen bei Inferenz, größere bei Training, jetzt folgt die Messung unter Realbedingungen. Für 2027 sind zwei weitere Satelliten mit höherer Leistung und optischen Inter-Satelliten-Links geplant; Suncatcher zielt damit als eines der wenigen Konzepte auf kohärent verteilte Workloads statt Einzelsatelliten-Inferenz, wie sie etwa Starcloud oder Cowboy Space planen. Ein Sprecher bezeichnete den Zustand des Satelliten nach den ersten Tests als nominell [^1][^2]."
+    },
+    {
+      "t": "h2",
+      "x": "2. Rivian/VW: Intent-Routing statt Cloud-Chatbot"
+    },
+    {
+      "t": "p",
+      "x": "Rivian lizenziert Elemente seines KI-Sprachassistenten an Volkswagen, bestätigt über die Quartalspräsentation für Investoren; Gebühren und Zielfahrzeuge wurden nicht genannt, der ID EVERY1 gilt als erster Kandidat, weil er ohnehin als erstes VW-Modul die Rivian-Elektrik nutzen soll. Der Assistent selbst läuft seit Mai 2026 in R1S und R1T, seit Oktober im R2. Technisch relevant ist die Architektur: Ein selbst entwickeltes agentisches Framework interpretiert die gesprochene Absicht und routet sie an die zuständige Fahrzeugkomponente, statt nur Text zu beantworten. Rivian spricht davon, dass dieselbe Schnittstelle künftig auch Agenten anderer Anbieter, Beispiel Anthropic, im Fahrzeug ausführen könnte [^3]."
+    },
+    {
+      "t": "p",
+      "x": "Die Entwicklungsgeschichte erklärt die Lizenzlogik: Rivian hat rund zwei Jahre an dem Assistenten gebaut, ihn im vergangenen Jahr gezeigt und später als geplant ausgerollt; die Erweiterung auf VW bezeichnet das Unternehmen als Beleg für die Erweiterbarkeit der eigenen Plattform. Auf seiner Entwicklerkonferenz hatte Gründer RJ Scaringe das Framework als Kern einer Strategie beschrieben, Hard- und Software aus einer Hand zu liefern. Voraussetzung dafür ist die vertikale Integration: Rivian hat die Zahl der Steuergeräte von 17 auf 7 reduziert und kontrolliert Compute, Sensorik und Displays, was fahrzeugweite OTA-Updates erst praktikabel macht. Welche Verarbeitung lokal im Fahrzeug und welche in der Cloud stattfindet, geht aus den veröffentlichten Unterlagen zum Quellenstand nicht hervor; das ist vor einer Datenschutz-Bewertung zu klären [^3]."
+    },
+    {
+      "t": "h2",
+      "x": "3. DoorDash: Erste belastbare Adoptionszahl für Agenten-Commerce"
+    },
+    {
+      "t": "p",
+      "x": "Auf die Analystenfrage nach KI-Bestellagenten antwortete CEO Tony Xu mit einer selten konkreten Zahl: Über Dritt-Agenten seien bislang insgesamt einige hundert Bestellungen eingegangen, während die Mehrheit der Kunden weiterhin in der eigenen App bestellt. Dem steht der Unternehmenswert von durchschnittlich drei Millionen Lieferungen täglich für 2025 gegenüber; Gesamtmenge und Tagesschnitt stammen aus unterschiedlichen Zeiträumen und sind nicht direkt vergleichbar. Xus Strategie: den Trend weder bekämpfen noch überschätzen. Zugleich hält er es für möglich, dass DoorDash künftig innerhalb fremder Agenten wirbt, die Plattform will also an der Schnittstelle verdienen, statt sie zu sperren [^4]."
+    },
+    {
+      "t": "p",
+      "x": "Parallel baut DoorDash eigene Agenten-Schnittstellen: einen Chatbot (Juni), einen CLI-Agenten (Juli), Text-to-Order (September) und einen MCP-Endpunkt, über den fremde Chatbots Firmenbestellungen auslösen können. Die Plattformlandschaft divergiert damit sichtbar: Amazon blockiert persönliche Einkaufs-Agenten, Walmart öffnet gezielt. Für Architektur-Entscheider ist die Botschaft, dass Schnittstellen-Politik und Messbarkeit derzeit mehr über Agenten-Commerce entscheiden als Modellqualität [^4]."
+    },
+    {
+      "t": "h2",
+      "x": "Unsere Einordnung: Zwischen Mondschuss und Alltagszählung"
+    },
+    {
+      "t": "p",
+      "x": "Drei Meldungen, drei Reifegrade: Suncatcher belegt Machbarkeit unter harten Randbedingungen, nicht mehr. Rivian/VW zeigt, dass Agenten-Architektur dort produktiv wird, wo ein Hersteller den ganzen Stack kontrolliert. DoorDash liefert mit einigen hundert Bestellungen über Dritt-Agenten insgesamt eine selten konkrete Unternehmensangabe zur tatsächlichen Nutzung von Bestell-Agenten. Wer Agenten-Strategien plant, sollte sich an solchen gemessenen Zahlen orientieren statt an Demos, und Vergleiche immer auf ihre Zeiträume prüfen."
+    },
+    {
+      "t": "p",
+      "x": "Vertiefend: [Modelle und Agenten richtig evaluieren](/artikel/modelle-und-agenten-evaluieren/) und [Sicherheit für Agenten-Systeme: von Prompt Injection bis Sandbox](/artikel/sicherheit-fuer-agenten-systeme/)."
+    },
+    {
+      "t": "callout",
+      "title": "So ist dieser Überblick entstanden",
+      "x": "Eigene Zusammenfassung tatsächlich gelesener Quellen: Googles Blogbeitrag zu Suncatcher, die TechCrunch-Artikel zum Satelliten, zu Rivian/VW und zu DoorDash, keine übernommenen RSS-Anrisstexte. Quellenstand 31.10.2026, 06:36 Uhr MEZ."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was beweist der Suncatcher-Meilenstein technisch?",
+      "a": "Dass eine Rechenzentrums-TPU im Orbit hochfährt, Inferenz ausführt und die Antwort zur Bodenstation liefert. Nicht belegt ist die Dauerhaftigkeit: Strahlungs- und Thermiktests laufen erst, und das Energiebudget erlaubt nur rund 20 Minuten Laufzeit für eine von vier TPUs."
+    },
+    {
+      "q": "Wie belastbar ist die DoorDash-Zahl?",
+      "a": "Sie stammt aus der offiziellen Bilanzpressekonferenz und ist damit eine gesicherte Unternehmensangabe. Einschränkung: Einige hundert Bestellungen insgesamt und drei Millionen Lieferungen pro Tag stammen aus unterschiedlichen Zeiträumen; für Wachstums- oder Adoptionsraten taugt der Vergleich nicht."
+    },
+    {
+      "q": "Ist der Rivian-Assistent ein Chatbot fürs Auto?",
+      "a": "Nein, nach Anbieterbeschreibung ein Intent-Router: Er bildet gesprochene Absichten auf konkrete Fahrzeugfunktionen ab. Ob und welche Daten dabei das Fahrzeug verlassen, ist aus den veröffentlichten Unterlagen nicht belegt."
+    }
+  ],
+  "sources": [
+    {
+      "title": "We’ve received our first response from the Project Suncatcher prototype satellite",
+      "publisher": "Google Blog",
+      "url": "https://blog.google/innovation-and-ai/models-and-research/google-research/project-suncatcher-satellite-response/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "Google's first data center satellite is online and writing poetry",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "Rivian expands joint venture with VW to include AI assistant",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/29/rivian-expands-joint-venture-with-vw-to-include-ai-assistant/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "DoorDash said it's only received 'several hundred' orders from AI agents",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "sicherheit-fuer-agenten-systeme"
+  ]
+}
