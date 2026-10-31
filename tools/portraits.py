@@ -48,7 +48,7 @@ def portrait_mark(x,detail=False):
  return '<span class="p-logo%s"><img src="/assets/portrait-logos/%s" alt="%s" width="160" height="64" decoding="async"></span>'%(cls,E(asset['file']),E(logo['label']))
 def logo_note(x):
  logo=x.get('logo')
- if logo and not logo.get('asset'):return '<p class="p-source">'+E(logo.get('label',''))+' Monogramm-Darstellung, kein Logo-Asset uebernommen.</p>'
+ if logo and not logo.get('asset'):return '<p class="p-source">'+E(logo.get('label',''))+' Monogramm-Darstellung, kein Logo-Asset übernommen.</p>'
  if not logo:return '<p class="p-source">Monogramm: kein eindeutig zugeordnetes Modelllogo in der geprüften Auswahl.</p>' if x.get('company') else ''
  asset=logo_manifest()[logo['asset']]
  return '<p class="p-source">%s · <a href="%s">Logo-Quelle / Rechtehinweis</a>. Marken gehören ihren jeweiligen Inhabern. Redaktionelle Identifikation, keine Partnerschaft oder Empfehlung durch den Markeninhaber.</p>'%(E(logo['label']),E(asset['source']))
