@@ -60,7 +60,7 @@
     },
     {
       "t": "p",
-      "x": "Ollie stellt am 6. November ein. Der Familien-Assistent mit E-Mail- und Kalenderanbindung, Buchungs-, Essensplanungs- und Rechnungszahlungsfunktionen war laut TechCrunch einer der ersten Mainstream-Assistenten mit einem unabhängigen SOC-2-Audit, also einer externen Prüfung der internen Kontrollen des Unternehmens, typischerweise zu Sicherheit und Vertraulichkeit. Der genaue Prüfungsumfang des Berichts geht aus der Meldung nicht hervor; das Audit bescheinigt geprüfte Prozesse, sagt aber nichts über Modellqualität oder Marktchancen. CEO Bill Lennon nennt als Grund den Wettbewerbsdruck: Mit dem Eintritt von Anbietern wie Muse und Instinct sei es schwerer geworden herauszustechen, zu wachsen und Kapital zu sichern [^3]. Der Abwicklungsprozess ist bemerkenswert sauber: Nutzer erhalten ihren Datenexport per SMS zur Übergabe an einen anderen Assistenten, Abos werden beendet und anteilig erstattet [^4]."
+      "x": "Ollie stellt am 6. November ein. Der Familien-Assistent mit E-Mail- und Kalenderanbindung, Buchungs-, Essensplanungs- und Rechnungszahlungsfunktionen war laut TechCrunch einer der ersten Mainstream-Assistenten mit einem unabhängigen SOC-2-Audit, also einer externen Prüfung der internen Kontrollen des Unternehmens. Der genaue Prüfungsumfang des Berichts geht aus der Meldung nicht hervor; das Audit bescheinigt geprüfte Prozesse, sagt aber nichts über Modellqualität oder Marktchancen. CEO Bill Lennon nennt als Grund den Wettbewerbsdruck: Mit dem Eintritt von Anbietern wie Muse und Instinct sei es schwerer geworden herauszustechen, zu wachsen und Kapital zu sichern [^3]. Der Abwicklungsprozess ist bemerkenswert sauber: Nutzer erhalten ihren Datenexport per SMS zur Übergabe an einen anderen Assistenten, Abos werden beendet und anteilig erstattet [^4]."
     },
     {
       "t": "p",
@@ -91,7 +91,7 @@
     },
     {
       "q": "Was heißt SOC 2 hier konkret?",
-      "a": "Ein unabhängiges Audit der internen Kontrollen des Anbieters, etwa zu Sicherheit und Vertraulichkeit, kein Gütesiegel für Modellqualität und keine Datenschutzgarantie. Der genaue Prüfungsumfang des Ollie-Berichts ist aus der Meldung nicht ersichtlich."
+      "a": "Ein unabhängiges Audit interner Kontrollen des Anbieters, kein Gütesiegel für Modellqualität und keine Datenschutzgarantie. Der genaue Prüfungsumfang des Ollie-Berichts ist aus der Meldung nicht ersichtlich."
     },
     {
       "q": "Kommt Style Sketch nach Deutschland?",
