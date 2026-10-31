@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Inferenz im Orbit, Intent-Routing im Auto](https://kifachblatt.de/news-ueberblick-morgen-2026-10-31): Googles Suncatcher rechnet erstmals im Orbit, Rivians Agenten-Framework geht an VW, und DoorDash misst die reale Nutzung von Bestell-Agenten.
 - [KI-Fachüberblick: Sprache lokal, Sensorik daheim, Zählfehler im Test](https://kifachblatt.de/news-ueberblick-abend-2026-10-30): Offene Sprach- und Entscheidungsmodelle für Apple-Plattformen mit Messprotokoll, Amazons neue Geräte-Sensorik und DecoyCount samt Methodikvorbehalt.
 - [KI-Fachüberblick: Agenten-Monitoring, Dot-Messaging, Such-Referrals](https://kifachblatt.de/news-ueberblick-mittag-2026-10-30): OpenAIs ausgebautes Misalignment-Monitoring im Schichtenmodell, ChatGPT Dot per iMessage und RCS sowie Reddits Referral-Rückgang als Verteilungsproblem.
 - [Mistral Large 4: Die offenen Gewichte sind da](https://kifachblatt.de/mistral-large-4-weights-analyse): Mistral veröffentlicht Large 4: rund eine Billion Parameter, Million-Token-Kontext und eine eigene Lizenz. Was die offenen Gewichte ändern.
