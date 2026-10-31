@@ -2439,8 +2439,8 @@
    "slug": "amazon",
    "name": "Amazon Web Services",
    "initials": "AM",
-   "summary": "Stellt die Amazon-Nova-Modellfamilie ueber Amazon Bedrock als verwalteten Dienst bereit.",
-   "detail": "Cloud-Plattform von Amazon; Nova-Modelle basieren laut AWS auf Technologien, die urspruenglich fuer interne Anwendungen wie Alexa+ entwickelt wurden.",
+   "summary": "Stellt die Amazon-Nova-Modellfamilie über Amazon Bedrock als verwalteten Dienst bereit.",
+   "detail": "Cloud-Plattform von Amazon; Nova-Modelle basieren laut AWS auf Technologien, die ursprünglich für interne Anwendungen wie Alexa+ entwickelt wurden.",
    "limits": "Ein AWS-Dienst wie Amazon Bedrock ist nicht dasselbe wie ein einzelnes Nova-Modell; Verfuegbarkeit, Regionen und Kontingente unterscheiden sich je Modell.",
    "sources": [
     "amazon-nova",
@@ -2450,23 +2450,23 @@
    "facts": [
     {
      "label": "Einordnung",
-     "value": "Cloud-Plattform von Amazon; Bereitstellung der Nova-Modelle ueber Amazon Bedrock.",
+     "value": "Cloud-Plattform von Amazon; Bereitstellung der Nova-Modelle über Amazon Bedrock.",
      "source": "amazon-nova"
     },
     {
      "label": "Modellfamilie",
-     "value": "Amazon Nova, ergaenzt um Dienste wie Nova Act und Nova Forge.",
+     "value": "Amazon Nova, ergänzt um Dienste wie Nova Act und Nova Forge.",
      "source": "amazon-nova"
     },
     {
      "label": "Nutzungsgrundlage",
-     "value": "AWS Customer Agreement und AWS Service Terms; keine offene Gewichtslizenz fuer Nova-Modelle.",
+     "value": "AWS Customer Agreement und AWS Service Terms; keine offene Gewichtslizenz für Nova-Modelle.",
      "source": "aws-service-terms"
     }
    ],
    "logo": {
     "asset": null,
-    "label": "Kein geprueftes Anbieterlogo; Monogramm-Fallback (AWS-Logo auf Wikimedia Commons als urheberrechtlich geschuetzt und markenrechtlich markiert eingestuft, kein PD-Textlogo)"
+    "label": "Kein geprüftes Anbieterlogo; Monogramm-Fallback (AWS-Logo auf Wikimedia Commons als urheberrechtlich geschützt und markenrechtlich markiert eingestuft, kein PD-Textlogo)"
    },
    "rich": {
     "eyebrow": "Cloud-Plattform · Nova-Modellfamilie · Amazon Bedrock",
@@ -4589,10 +4589,10 @@
    "company": "minimax",
    "initials": "H3",
    "summary": "Offenes, omni-modales Videomodell von MiniMax: versteht Text, Bild, Video und Audio und erzeugt Video mit nativem Stereo-Ton, 4-15 Sekunden, laut Hersteller bis 2K.",
-   "detail": "H3 ist kein reines Text-zu-Video-Modell. Laut MiniMax verarbeitet es gemischten Kontext aus Text, Bildern, Videos und Audio und liefert Video samt 32-kHz-Stereoton in einem Durchgang. Das Gesamtsystem besteht aus drei Modulen: H3-Context-IR (gehosteter Vorverarbeiter, nicht Open Source), H3-Base (768p, offene Gewichte) und H3-Regenerate-2K (2K, bisher nur per API). Veroeffentlicht wurde es laut Release Notes am 31.07.2026, die Open-Source-Meldung ist vom 03.08.2026.",
-   "access": "Offene Gewichte auf Hugging Face (zwei Checkpoints, BF16); gehostete API auf platform.minimax.io; Hailuo-AI-App. Gewichte-Lizenz gilt NICHT in EU, UK, USA und Suedkorea. Die API ist laut Hersteller weltweit verfuegbar.",
-   "license": "MiniMax H3 Community License (eigene Lizenz, kein Apache/MIT). Tantiemefrei, kommerziell nutzbar im Geltungsbereich; Ausschlussgebiete EU, UK, Republik Korea, USA (Lizenztext). Laut Hersteller-FAQ: ab 20 Mio. USD Jahresumsatz separate Freigabe, Hinweis 'Powered by MiniMax H3' in Produkten, Acceptable Use Policy, kein Training/Distillation anderer Modelle mit Gewichten oder Outputs. Lizenztext Punkt 33a bestaetigt den Hinweis; Umsatzgrenze nur aus FAQ gelesen, nicht im Lizenztext geprueft.",
-   "limits": "Context-IR und 2K-Regenerate nicht offen. Offener Release nur mit Full Attention (Sparse Attention angekuendigt, nicht enthalten). Audio nie als alleinige Eingabe. Lokales Beispiel nutzt 4 GPUs (SGLang-Befehl der Model Card); konkrete VRAM-Angabe nicht belegt. Automatische Moderation auf gehosteter Seite.",
+   "detail": "H3 ist kein reines Text-zu-Video-Modell. Laut MiniMax verarbeitet es gemischten Kontext aus Text, Bildern, Videos und Audio und liefert Video samt 32-kHz-Stereoton in einem Durchgang. Das Gesamtsystem besteht aus drei Modulen: H3-Context-IR (gehosteter Vorverarbeiter, nicht Open Source), H3-Base (768p, offene Gewichte) und H3-Regenerate-2K (2K, bisher nur per API). Veröffentlicht wurde es laut Release Notes am 31.07.2026, die Open-Source-Meldung ist vom 03.08.2026.",
+   "access": "Offene Gewichte auf Hugging Face (zwei Checkpoints, BF16); gehostete API auf platform.minimax.io; Hailuo-AI-App. Gewichte-Lizenz gilt NICHT in EU, UK, USA und Südkorea. Die API ist laut Hersteller weltweit verfügbar.",
+   "license": "MiniMax H3 Community License (eigene Lizenz, kein Apache/MIT). Tantiemefrei, kommerziell nutzbar im Geltungsbereich; Ausschlussgebiete EU, UK, Republik Korea, USA (Lizenztext). Laut Hersteller-FAQ: ab 20 Mio. USD Jahresumsatz separate Freigabe, Hinweis 'Powered by MiniMax H3' in Produkten, Acceptable Use Policy, kein Training/Distillation anderer Modelle mit Gewichten oder Outputs. Lizenztext Punkt 33a bestätigt den Hinweis; Umsatzgrenze nur aus FAQ gelesen, nicht im Lizenztext geprüft.",
+   "limits": "Context-IR und 2K-Regenerate nicht offen. Offener Release nur mit Full Attention (Sparse Attention angekündigt, nicht enthalten). Audio nie als alleinige Eingabe. Lokales Beispiel nutzt 4 GPUs (SGLang-Befehl der Model Card); konkrete VRAM-Angabe nicht belegt. Automatische Moderation auf gehosteter Seite.",
    "sources": [
     "mm-news",
     "mm-hf",
@@ -4617,23 +4617,23 @@
      "source": "mm-news"
     },
     {
-     "label": "Aufloesung",
-     "value": "Standard: kurze Seite 768 px; 2K ueber H3-Regenerate-2K (API)",
+     "label": "Auflösung",
+     "value": "Standard: kurze Seite 768 px; 2K über H3-Regenerate-2K (API)",
      "source": "mm-news"
     },
     {
-     "label": "Seitenverhaeltnisse",
+     "label": "Seitenverhältnisse",
      "value": "u.a. 21:9, 16:9, 4:3, 1:1, 3:4, 9:16",
      "source": "mm-news"
     },
     {
      "label": "Dialogsprachen (stabil)",
-     "value": "11: Arabisch, Chinesisch, Englisch, Franzoesisch, Deutsch, Italienisch, Japanisch, Koreanisch, Portugiesisch, Russisch, Spanisch",
+     "value": "11: Arabisch, Chinesisch, Englisch, Französisch, Deutsch, Italienisch, Japanisch, Koreanisch, Portugiesisch, Russisch, Spanisch",
      "source": "mm-news"
     },
     {
      "label": "Transformer",
-     "value": "33B dichter Single-Stream-Transformer (ca. 13B in AdaLN-Zweigen, fuer reine Inferenz cachebar)",
+     "value": "33B dichter Single-Stream-Transformer (ca. 13B in AdaLN-Zweigen, für reine Inferenz cachebar)",
      "source": "mm-news"
     },
     {
@@ -4908,11 +4908,11 @@
    "name": "Nova 2.5 Sonic",
    "company": "amazon",
    "initials": "NS",
-   "summary": "Speech-to-Speech-Modell von Amazon fuer Echtzeit-Sprachdialoge mit Werkzeugnutzung in Amazon Bedrock.",
-   "detail": "Die offizielle Bedrock-Modellkarte beschreibt Nova 2.5 Sonic als Nachfolger von Nova 2 Sonic: besseres Reasoning, Instruction Following und Tool-Calling bei geringerer Latenz. Ein- und Ausgabe sind Sprache und Text in derselben Sitzung; Bild, Video und Einbettungen sind nicht vorgesehen. Die Eignung fuer agentische Sprachanwendungen ist Herstellerpositionierung, kein hier ermitteltes Urteil.",
-   "access": "Ueber Amazon Bedrock mit der Modell-ID amazon.nova-2-5-sonic, ausschliesslich ueber die bidirektionale Streaming-API (InvokeModelWithBidirectionalStream) am bedrock-runtime-Endpunkt. Laut Modellkarte nur In-Region in us-east-1, us-west-2, eu-north-1 und ap-northeast-1, ohne Geo- oder Global-Inference. Voraussetzung ist ein AWS-Konto mit Modellzugang in der jeweiligen Region.",
-   "license": "Proprietaerer, verwalteter Dienst ohne offene Gewichte. Nutzung nach AWS Customer Agreement und AWS Service Terms; AWS nennt fuer Ausgaben allgemein verfuegbarer Nova-Modelle eine IP-Freistellung in Abschnitt 50.10 der Service Terms (Herstellerangabe).",
-   "limits": "Kein eigener Modelltest. Sicherheits- und Qualitaetsangaben stammen aus der AWS-Servicekarte und sind Herstellerangaben. Standardkontingent laut Modellkarte: 20 gleichzeitige Streaming-Sitzungen je Konto und Region; Erhoehung ueber das AWS-Kontoteam. Die Sicherheitsfilter lassen sich nach Herstellerangabe nicht konfigurieren oder deaktivieren. Offiziell unterstuetzt sind sieben Sprachen; andere Sprachen empfiehlt AWS nicht.",
+   "summary": "Speech-to-Speech-Modell von Amazon für Echtzeit-Sprachdialoge mit Werkzeugnutzung in Amazon Bedrock.",
+   "detail": "Die offizielle Bedrock-Modellkarte beschreibt Nova 2.5 Sonic als Nachfolger von Nova 2 Sonic: besseres Reasoning, Instruction Following und Tool-Calling bei geringerer Latenz. Ein- und Ausgabe sind Sprache und Text in derselben Sitzung; Bild, Video und Einbettungen sind nicht vorgesehen. Die Eignung für agentische Sprachanwendungen ist Herstellerpositionierung, kein hier ermitteltes Urteil.",
+   "access": "Ueber Amazon Bedrock mit der Modell-ID amazon.nova-2-5-sonic, ausschliesslich über die bidirektionale Streaming-API (InvokeModelWithBidirectionalStream) am bedrock-runtime-Endpunkt. Laut Modellkarte nur In-Region in us-east-1, us-west-2, eu-north-1 und ap-northeast-1, ohne Geo- oder Global-Inference. Voraussetzung ist ein AWS-Konto mit Modellzugang in der jeweiligen Region.",
+   "license": "Proprietärer, verwalteter Dienst ohne offene Gewichte. Nutzung nach AWS Customer Agreement und AWS Service Terms; AWS nennt für Ausgaben allgemein verfügbarer Nova-Modelle eine IP-Freistellung in Abschnitt 50.10 der Service Terms (Herstellerangabe).",
+   "limits": "Kein eigener Modelltest. Sicherheits- und Qualitätsangaben stammen aus der AWS-Servicekarte und sind Herstellerangaben. Standardkontingent laut Modellkarte: 20 gleichzeitige Streaming-Sitzungen je Konto und Region; Erhöhung über das AWS-Kontoteam. Die Sicherheitsfilter lassen sich nach Herstellerangabe nicht konfigurieren oder deaktivieren. Offiziell unterstützt sind sieben Sprachen; andere Sprachen empfiehlt AWS nicht.",
    "sources": [
     "nova-2-5-sonic-card",
     "nova-2-5-sonic-service-card",
@@ -4942,8 +4942,8 @@
      "source": "nova-2-5-sonic-card"
     },
     {
-     "label": "Veroeffentlichung",
-     "value": "5. Oktober 2026 (allgemein verfuegbar)",
+     "label": "Veröffentlichung",
+     "value": "5. Oktober 2026 (allgemein verfügbar)",
      "source": "nova-2-5-sonic-whatsnew"
     },
     {
@@ -4953,17 +4953,17 @@
     },
     {
      "label": "Stimmen und Sprachen",
-     "value": "18 Stimmen; offiziell unterstuetzt: Englisch (US, GB, IN, AU), Spanisch, Deutsch, Franzoesisch, Italienisch, Portugiesisch (BR), Hindi",
+     "value": "18 Stimmen; offiziell unterstützt: Englisch (US, GB, IN, AU), Spanisch, Deutsch, Französisch, Italienisch, Portugiesisch (BR), Hindi",
      "source": "nova-2-5-sonic-service-card"
     },
     {
-     "label": "Vorgaenger",
-     "value": "Nova 2 Sonic; gleiche API-Oberflaeche, Stimmen und Sprachunterstuetzung laut AWS",
+     "label": "Vorgänger",
+     "value": "Nova 2 Sonic; gleiche API-Oberfläche, Stimmen und Sprachunterstützung laut AWS",
      "source": "nova-2-5-sonic-service-card"
     },
     {
      "label": "Lebenszyklus",
-     "value": "EOL fruehestens 5. Oktober 2027, mindestens 6 Monate Legacy-Phase",
+     "value": "EOL frühestens 5. Oktober 2027, mindestens 6 Monate Legacy-Phase",
      "source": "nova-2-5-sonic-card"
     },
     {
@@ -4974,7 +4974,7 @@
    ],
    "logo": {
     "asset": null,
-    "label": "Kein geprueftes Modell- oder Anbieterlogo; Monogramm-Fallback (AWS-Logo auf Wikimedia Commons als urheberrechtlich geschuetzt und markenrechtlich markiert eingestuft, kein PD-Textlogo)"
+    "label": "Kein geprüftes Modell- oder Anbieterlogo; Monogramm-Fallback (AWS-Logo auf Wikimedia Commons als urheberrechtlich geschützt und markenrechtlich markiert eingestuft, kein PD-Textlogo)"
    },
    "checked": "2026-10-31",
    "published": "2026-10-31"
@@ -5252,10 +5252,10 @@
    "company": "google-deepmind",
    "initials": "GC",
    "summary": "Angekündigtes Frontier-Modell mit Schwerpunkt Cybersicherheit und lange Aufgabenhorizonte; gestaffelter Rollout.",
-   "detail": "Gemini 4 Carbon baut laut Google-Blog auf Gemini 4 Argon auf und soll das staerkste Google-Modell fuer Cybersecurity-Verteidigung und mehrtaegige agentische Aufgaben sein. Kontextfenster, Modalitaeten und API-Modellname sind in den geprueften Quellen noch nicht dokumentiert.",
-   "access": "Noch nicht allgemein verfuegbar: zunaechst ausgewaehlte Cyber-Defender ueber Googles Fairwind-Programm; API-, Unternehmens- und Verbraucherzugang sind angekuendigt, die API-Modellliste fuehrt Carbon zum Pruefzeitpunkt nicht.",
+   "detail": "Gemini 4 Carbon baut laut Google-Blog auf Gemini 4 Argon auf und soll das stärkste Google-Modell für Cybersecurity-Verteidigung und mehrtägige agentische Aufgaben sein. Kontextfenster, Modalitäten und API-Modellname sind in den geprüften Quellen noch nicht dokumentiert.",
+   "access": "Noch nicht allgemein verfügbar: zunächst ausgewählte Cyber-Defender über Googles Fairwind-Programm; API-, Unternehmens- und Verbraucherzugang sind angekündigt, die API-Modellliste führt Carbon zum Prüfzeitpunkt nicht.",
    "license": "Keine offene Gewichtslizenz dokumentiert.",
-   "limits": "Alle Messwerte sind Herstellerangaben, die Benchmarks laut Blog ohne Guardrails evaluiert. Der Einfuehrungspreis ist zeitlich befristet; allgemeine Verfuegbarkeit und finale technische Daten stehen noch aus.",
+   "limits": "Alle Messwerte sind Herstellerangaben, die Benchmarks laut Blog ohne Guardrails evaluiert. Der Einführungspreis ist zeitlich befristet; allgemeine Verfügbarkeit und finale technische Daten stehen noch aus.",
    "sources": [
     "google-blog-carbon",
     "google-models-liste",
