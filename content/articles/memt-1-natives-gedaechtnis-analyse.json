@@ -1,0 +1,209 @@
+{
+  "slug": "memt-1-natives-gedaechtnis-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "MemT-1.0: Gedächtnis als Teil der Modellrechnung",
+  "dek": "MemTensors MemT-1.0 verlagert das Langzeitgedächtnis von Sprachmodellen in feste Speicherzustände - statt den Kontext immer weiter wachsen zu lassen.",
+  "published": "2026-10-31T07:16:05+01:00",
+  "modified": "2026-10-31T07:16:05+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "MemT-1.0",
+    "MemTensor",
+    "Gedächtnis",
+    "Agenten",
+    "Offene Gewichte"
+  ],
+  "key_takeaways": [
+    "MemT-1.0 ist eine Modellfamilie mit nativem Gedächtnis: MemT-1.0-Nano (36 Mrd. Parameter, 3 Mrd. aktiv) und MemT-1.0-Flash (288 Mrd., 17 Mrd. aktiv) speichern Verlaufsinformation in einem Zustand fester Größe statt im wachsenden Kontextfenster [1][2].",
+    "Bei 128.000 Tokens Verlauf braucht MemT-1.0-Nano laut Technical Report rund 66-mal weniger persistenten Speicher als ein voller KV-Cache und ist etwa 1,86-mal schneller (Herstellerangabe) [1].",
+    "In elf Gedächtnis-Benchmarks liegen Nano und Flash vorn unter den parametrischen Speichermethoden - starke textbasierte Speichersysteme bleiben aber insgesamt vorn, besonders bei langen Verläufen mit Detailfragen [2][3].",
+    "Lizenzlage: Code unter PolyForm Noncommercial, Paper unter CC BY-NC-SA; für die Gewichte nennt das Repository eigene, noch zu veröffentlichende Bedingungen - kommerzielle Nutzung ist nicht pauschal abgedeckt [2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Ein Backbone-Attention-Block läuft parallel zu einem Native Memory Block, der aus lokalem dynamischem Speicher und trainierbarem Hyper-Speicher besteht",
+    "caption": "Parallel zur Backbone-Attention: MemT-1.0 koppelt dynamischen lokalen Speicher und trainierbaren Hyper-Speicher an jeden ausgewählten Transformer-Block.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Wer heute mit einem Sprachmodell lange Gespräche führt oder Agenten über viele Schritte arbeiten lässt, bezahlt dafür mit Kontext: Der Verlauf landet im Prompt, der KV-Cache wächst, und mit ihm Speicherbedarf und Latenz. MemTensor will diesen Trade-off mit MemT-1.0 an der Wurzel angehen: Die Modellfamilie macht ein persistentes, sich weiterentwickelndes Gedächtnis zu einem festen Bestandteil der Modellrechnung, statt Information ausschließlich im Kontextfenster zu halten [1][2]. Veröffentlicht wurden Technical Report, Code und Checkpoints; der unabhängige Release-Tracker AIFOD datiert die Veröffentlichung auf den 26. Oktober [4]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Modellfamilie im Überblick"
+    },
+    {
+      "t": "table",
+      "caption": "MemT-1.0-Nano und MemT-1.0-Flash (Herstellerangaben) [1][2]",
+      "head": [
+        "Eigenschaft",
+        "MemT-1.0-Nano",
+        "MemT-1.0-Flash"
+      ],
+      "rows": [
+        [
+          "Backbone",
+          "Qwen3.6-35B-A3B",
+          "DeepSeek-V4-Flash"
+        ],
+        [
+          "Parameter gesamt / aktiv pro Token",
+          "36 Mrd. / 3 Mrd.",
+          "288 Mrd. / 17 Mrd."
+        ],
+        [
+          "Trainierbare Speicherparameter",
+          "451 Mio.",
+          "3,61 Mrd."
+        ],
+        [
+          "Dynamischer Speicherzustand",
+          "10 Mio. Elemente",
+          "336 Mio. Elemente"
+        ]
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Beide Modelle sind MoE-Modelle: Pro Token ist nur ein Bruchteil der Parameter aktiv. Entscheidend ist die letzte Zeile der Tabelle - der dynamische Speicherzustand hat eine feste, konfigurierte Größe. Wächst der Verlauf, wird der Zustand aktualisiert, nicht länger [1][2]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "MemT-1.0: Parameter im Überblick",
+      "alt": "Balkendiagramm: Nano hat 36 Milliarden Parameter gesamt, 3 Milliarden aktiv und 0,45 Milliarden Speicherparameter; Flash hat 288 Milliarden gesamt, 17 Milliarden aktiv und 3,6 Milliarden Speicherparameter",
+      "caption": "Herstellerangaben aus Technical Report und Repository [1][2]. Die Speicherparameter sind trainierbar; der dynamische Zustand kommt hinzu (Nano: 10 Mio. Elemente, Flash: 336 Mio.).",
+      "labels": [
+        "Gesamt",
+        "Aktiv/Token",
+        "Speicher (train.)"
+      ],
+      "series": [
+        {
+          "name": "MemT-1.0-Nano",
+          "values": [
+            36,
+            3,
+            0.451
+          ]
+        },
+        {
+          "name": "MemT-1.0-Flash",
+          "values": [
+            288,
+            17,
+            3.61
+          ]
+        }
+      ],
+      "y_label": "Mrd. Parameter"
+    },
+    {
+      "t": "h2",
+      "x": "Wie das native Gedächtnis arbeitet"
+    },
+    {
+      "t": "p",
+      "x": "Der Kern ist ein Native Memory Block, der parallel zur gewöhnlichen Attention des Backbones läuft und aus zwei Komponenten besteht: Ein Local Memory Block führt eine dynamische, mehrkanalige Speichermatrix, die sich über die Interaktionsschritte weiterentwickelt. Ein Hyper Memory Block enthält trainierbare Projektionen für Schlüssel, Werte und Anfragen sowie Gatter zum Löschen, Schreiben und Vergessen [1][2]. Während der Generierung liest eine Memory-Attention aus dem aktuellen Zustand; am Ende jeder Runde oder jedes Segments aktualisiert ein stabilisiertes GDN-2-Verfahren (Gated DeltaNet-2) den Speicher tokenweise für die folgenden Schritte [1]."
+    },
+    {
+      "t": "p",
+      "x": "Für mehr Speicherkapazität führt das Paper Mixture-of-Storage (MoS) ein: Jeder Speicherblock wird in mehrere Speicher-Experten aufgeteilt, über die - anders als bei klassischem MoE - dense geroutet wird. Alle Experten beteiligen sich an jeder Speicheroperation; separate Router für Lesen und Schreiben teilen sich eine gemeinsame, trainierbare Adressmatrix [1]."
+    },
+    {
+      "t": "p",
+      "x": "Trainiert wurde in zwei Stufen - Continued Pre-Training und Post-Training - auf insgesamt 34 Milliarden Tokens. Zuvor wurde das Backbone gezielt vorbereitet: Die finale Mischung umfasst 126.500 Trajektorien (2,4 Mrd. Tokens), davon gut 90 Prozent der loss-tragenden Tokens aus agentischen Aufgaben. Nach Angaben der Autoren verbessert das vorbereitete Backbone alle sechs überwachten Benchmarks um durchschnittlich 6,3 Punkte gegenüber dem öffentlichen Release [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die Evaluation zeigt - und was nicht"
+    },
+    {
+      "t": "p",
+      "x": "Über elf Gedächtnis-Benchmarks hinweg belegen MemT-1.0-Flash und -Nano nach Herstellerangaben die Plätze eins und zwei unter den evaluierten parametrischen Speichermethoden - also Verfahren, die Gedächtnis in Modellparametern oder -zuständen halten. Gleichzeitig räumen die Autoren ein: Starke textbasierte Speichersysteme, die den Originaltext nachschlagen können, bleiben insgesamt vorn, insbesondere bei langen Verläufen, die das Wiederfinden konkreter Details verlangen [2][3]. Der feste Zustand ist also ein Kompromiss: Er spart Speicher, verliert aber irgendwann Feinheiten."
+    },
+    {
+      "t": "p",
+      "x": "Die Effizienzrechnung im Paper: Bei 128.000 Tokens Verlauf erreicht MemT-1.0-Nano eine rund 1,86-fache Beschleunigung der End-to-End-Inferenz und eine etwa 66-fache Reduktion des persistenten Speichers gegenüber dem vollen KV-Cache. Bei 64.000 Tokens Verlauf liegt die Reduktion des logischen Zustands pro Trajektorie bei etwa dem 33-Fachen. Alle Werte stammen aus dem Technical Report und wurden nicht unabhängig nachgemessen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Erfahrung als Speicher: Agentic Coding"
+    },
+    {
+      "t": "p",
+      "x": "Über das reine Erinnern hinaus demonstriert das Paper einen Agenten-Anwendungsfall: Gelöste Teilaufgaben aus früheren Coding-Aufgaben werden als prozedurale Erfahrung in den nativen Speicher überführt und bei neuen Aufgaben über die Memory-Attention abgerufen - ohne dass der Erfahrungstext im Kontext mitgeschleppt wird. Auf SWE-bench Verified und SWE-bench Multilingual steigere das laut Paper die durchschnittliche Erfolgsrate und die Konsistenz über wiederholte Läufe gegenüber Agenten ohne Erfahrung und liege auf dem Niveau explizit mitgegebenen Erfahrungstexts [1]. Konkrete Prozentwerte nennt die Zusammenfassung nicht."
+    },
+    {
+      "t": "h2",
+      "x": "Verfügbarkeit und Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Das Repository beschreibt den Betrieb über SGLang mit einem eigenen Python-Client (memt_sglang): Sessions lassen sich mit Memory-Snapshots speichern und später ohne Konversationsverlauf wieder aufnehmen; das Nano-Beispiel läuft auf zwei GPUs [2]. Checkpoints sind auf Hugging Face verfügbar [3]. Bei der Lizenz gilt Vorsicht: Der Code steht unter der PolyForm Noncommercial License, das Paper unter CC BY-NC-SA 4.0. Für Gewichte, Datensätze und Benchmark-Assets verweist das Repository auf separate Bedingungen, die mit den jeweiligen Veröffentlichungen kommen sollen. Kommerzielle Nutzung ist damit aktuell nicht pauschal erlaubt [2]."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: MemT-1.0 adressiert ein reales Kostenproblem langlebiger Agenten und liefert ein durchdachtes, offen dokumentiertes Design. Die zentralen Aussagen zu Benchmark-Rängen und Effizienz sind jedoch durchweg Herstellerangaben; unabhängige Reproduktionen stehen aus. Wer produktiv mit langen Verläufen arbeitet, sollte das Versprechen 'konstanter Speicher' gegen die eingeräumte Schwäche bei Detailfragen abwägen - und die Lizenzlage vor jeder kommerziellen Nutzung klären."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist an MemT-1.0 neu?",
+      "a": "Das Gedächtnis ist Teil der Modellrechnung: Ein Speicherzustand fester Größe wird nach jeder Runde aktualisiert und bei der Generierung gelesen, statt den gesamten Verlauf im Kontextfenster zu halten [1][2]."
+    },
+    {
+      "q": "Welche Modelle gibt es?",
+      "a": "MemT-1.0-Nano (36 Mrd. Parameter, 3 Mrd. aktiv, Backbone Qwen3.6-35B-A3B) und MemT-1.0-Flash (288 Mrd., 17 Mrd. aktiv, Backbone DeepSeek-V4-Flash) [1][2]."
+    },
+    {
+      "q": "Ist MemT-1.0 besser als RAG oder Textspeicher?",
+      "a": "Nach Herstellerangaben führt MemT-1.0 unter den parametrischen Speichermethoden, bleibt aber hinter starken textbasierten Systemen zurück - vor allem bei langen Verläufen mit Detailfragen [2][3]."
+    },
+    {
+      "q": "Was bringt der Ansatz an Effizienz?",
+      "a": "Laut Technical Report bei 128K Verlauf etwa 1,86-fach schnellere Inferenz und rund 66-fach weniger persistenter Speicher als ein voller KV-Cache. Nicht unabhängig verifiziert [1]."
+    },
+    {
+      "q": "Darf ich MemT-1.0 kommerziell nutzen?",
+      "a": "Nicht pauschal: Der Code steht unter PolyForm Noncommercial, das Paper unter CC BY-NC-SA; für die Gewichte sollen separate Bedingungen folgen. Für kommerzielle Nutzung verweist das Team auf direkte Anfrage [2]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "MemT-1.0: Towards Memory-Native Evolution (Technical Report)",
+      "publisher": "arXiv / MemTensor",
+      "url": "https://arxiv.org/abs/2610.26825",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "MemTensor/MemT-1.0 - offizielles Repository",
+      "publisher": "GitHub / MemTensor",
+      "url": "https://github.com/MemTensor/MemT-1.0",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "MemTensor/MemT-1.0-Flash - Modellkarte",
+      "publisher": "Hugging Face / MemTensor",
+      "url": "https://huggingface.co/MemTensor/MemT-1.0-Flash",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "AI Model Releases - October 2026 (Live Tracker)",
+      "publisher": "AIFOD",
+      "url": "https://af.net/realtime/ai-model-releases-october-2026/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "method": "Analyse auf Basis des Technical Reports (arXiv), des offiziellen GitHub-Repositorys und der Hugging-Face-Modellkarte; alle Quellen wurden gelesen. Benchmark-, Effizienz- und Trainingsangaben sind durchweg Herstellerangaben; das Modell wurde von der Redaktion nicht selbst ausgeführt. Der Release-Tracker dient der Einordnung von Datum und Verfügbarkeit.",
+  "limitations": "Keine eigenen Modelltests und keine unabhängige Verifikation der Benchmarks oder Effizienzwerte. Die vollständige Evaluationstabelle des Papers war im abrufbaren HTML nur teilweise einsehbar; einzelne Benchmark-Scores werden daher nicht zitiert. Die Lizenzbedingungen der Gewichte sind noch nicht final veröffentlicht.",
+  "related": [
+    "rag-oder-langer-kontext",
+    "kv-cache-kompression-deepseek-analyse",
+    "coding-agenten-alltag"
+  ]
+}
