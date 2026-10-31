@@ -168,7 +168,7 @@ def render(site,out):
    text=text.replace('</main>',teaser+'</main>',1) if technical else text.replace('<footer',teaser+'<footer',1)
    if '/assets/portraits.css' not in text:text=text.replace('</head>','<link rel="stylesheet" href="/assets/portraits.css"></head>')
   if f==out/'index.html':
-   text=re.sub(r'(<section[^>]+id="portrait-verzeichnis".*?<p>)\d+ Unternehmen, \d+ Modelle',lambda m:m.group(1)+str(len(d['companies']))+' Unternehmen, '+str(len(d['models']))+' Modelle',text,flags=re.S)
+   text=re.sub(r'(<section[^>]+id="portrait-verzeichnis".*?<p>)\d+ Unternehmen, \d+ Modelle(, \d+ Benchmark-Portraits)?',lambda m:m.group(1)+str(len(d['companies']))+' Unternehmen, '+str(len(d['models']))+' Modelle'+((', %d Benchmark-Portraits'%len(d['benchmarks'])) if m.group(2) else ''),text,flags=re.S)
   if text!=old:f.write_text(text)
  print('%s portraits: %d pages, %d search documents'%(site,len(urls),len(docs)))
 if __name__=='__main__':render(sys.argv[1],sys.argv[2])
