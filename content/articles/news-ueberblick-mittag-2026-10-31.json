@@ -1,0 +1,131 @@
+{
+  "slug": "news-ueberblick-mittag-2026-10-31",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: SMS-Concierge, Kleiderschrank-KI, Ollies Aus",
+  "dek": "Zest verlagert Restaurantbuchung in den SMS-Kanal, Meta koppelt eine Mode-App an Instagram, und Ollies Aus wirft die Frage auf, wie viel ein Audit als Produktvorteil zählt.",
+  "published": "2026-10-31T11:15:00+01:00",
+  "modified": "2026-10-31T11:15:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Agenten",
+    "Datenstrategie",
+    "Produkte"
+  ],
+  "key_takeaways": [
+    "Zest startet einen SMS-basierten Restaurant-Concierge mit Buchungsanbindung an OpenTable, Resy und SevenRooms, Gruppenchat-Abstimmung inklusive. Das Geschmacksprofil entsteht aus Kartentransaktionen via Plaid, gefiltert auf die Kategorien Essen und Trinken.",
+    "Metas Style Sketch nutzt Instagram-Fotos als Kleiderschrank-Datengrundlage und generiert Outfits sowie Anproben auf körperangepassten Modellen; Rollout vorerst Indonesien, Singapur, Thailand. Fotos und App kommen aus Metas eigenem Ökosystem; welche Verarbeitungsschritte wo stattfinden, legt Meta nicht offen.",
+    "Ollie, laut TechCrunch einer der ersten Mainstream-Assistenten mit unabhängigem SOC-2-Audit, stellt am 6. November ein; Datenexport per SMS und anteilige Erstattungen sind geregelt. Ob der Prozessstandard als Produktvorteil getragen hätte, lässt sich aus der Einstellung allein nicht ablesen."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik: Gegenüberstellung der Datenquellen dreier persönlicher Assistenten - Zest (Kartentransaktionen), Style Sketch (Instagram-Fotos), Ollie (E-Mail und Kalender) - mit Status und Kanal.",
+    "caption": "Woher die Assistenten ihre Nutzer kennen: Zest aus Kartenzahlungen (via Plaid, nur Essen/Trinken), Style Sketch aus Instagram-Fotos, Ollie aus E-Mail und Kalender. Kanäle: SMS, eigene App, SMS. Ollie stellt am 6.11. ein.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: TechCrunch, ollie.ai (Anbieterangaben)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Mittag, 31. Oktober 2026. Quellenstand: 09:50 Uhr MEZ.** Drei Produktmeldungen vom 29. und 30. Oktober beleuchten dieselbe Frage aus drei Richtungen: Welche Datengrundlage macht einen persönlichen Assistenten nützlich, und welche Schnittstelle trägt ihn in den Alltag? Zest setzt auf Zahlungsdaten und SMS, Meta auf Instagram-Bilder, und Ollies Einstellung betrifft ein Produkt, das geprüfte Prozesse zum Verkaufsargument gemacht hatte."
+    },
+    {
+      "t": "h2",
+      "x": "1. Zest: Transaktionsdaten als Gedächtnis, SMS als Oberfläche"
+    },
+    {
+      "t": "p",
+      "x": "Architektonisch kombiniert Zest zwei bemerkenswerte Entscheidungen. Erstens die Datenbasis: Über Plaid werden Kartentransaktionen importiert und auf die Händlerkategorien Essen und Trinken gefiltert; daraus entsteht eine Historie tatsächlicher Restaurantbesuche, die das übliche Kaltstartproblem von Empfehlungssystemen umgeht, keine Befragung, keine Wartezeit, sondern Verhaltensdaten als Initialisierung. Zweitens der Kanal: Der Concierge läuft in SMS statt in der App, ist in Gruppenchats einladbar, moderiert dort eine Abstimmung und führt die Buchung über die Schnittstellen von OpenTable, Resy und SevenRooms aus. Gründer Mario Gomez-Hall formuliert es als „Der Agent ist jetzt das Produkt“ [^1]."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Die Buchungsstrecke ist etablierte Technik; neu ist die Bündelung aus transaktionsbasiertem Profil, Konversations-UI und Gruppenkoordination in einem Thread. TechCrunchs Kurztest bescheinigt brauchbare Ergebnisse bei Uhrzeit, Personenzahl und Ort; eine unabhängige Dauerevaluation liegt zum Quellenstand nicht vor. Der Datenschutz-Trade-off ist strukturell: Wer die Empfehlungsqualität will, gibt Kontobewegungen frei, wenn auch kategorienbeschränkt. Perspektivisch will das Startup über Restaurants hinaus, Empfehlungen für Geschäfte und Einkäufe stehen auf der Liste; damit würde das Transaktionsprofil noch breiter und die Abwägung entsprechend wichtiger [^1]."
+    },
+    {
+      "t": "h2",
+      "x": "2. Style Sketch: Instagram als Kleiderschrank-Datenbank"
+    },
+    {
+      "t": "p",
+      "x": "Metas stille Veröffentlichung in Indonesien, Singapur und Thailand nutzt einen Datenvorteil, den kein Startup hat: die jahrelange visuelle Selbstdokumentation der Nutzer auf Instagram. Style Sketch baut daraus automatisch einen digitalen Kleiderschrank, ergänzbar per Foto, Video oder Upload, generiert Outfits aus vorhandenen Teilen, rendert Anproben auf ein an Körperform und Hautfarbe angepasstes Modell und erstellt tagesgenaue Reisepläne unter Einbezug der Wettervorhersage. Meta kommentiert weder den leisen Start noch Expansionspläne [^2]."
+    },
+    {
+      "t": "p",
+      "x": "Wettbewerblich relevant ist weniger die Funktionsliste, digitale Kleiderschränke und Outfit-Generatoren bieten etwa Alta oder Google Photos bereits, sondern die Datenintegration: Der Kleiderschrank existiert faktisch schon auf Metas Servern, die App formalisiert nur den Zugriff. Fotos und App stammen aus demselben Konzern; ob und unter welchen Bedingungen die App nach Europa kommt, ist offen und angesichts der dortigen Datenschutzauflagen eine eigene Frage. Der Start passt zur berichteten Konzernstrategie, deutlich mehr Apps schneller zu veröffentlichen: In den vergangenen Monaten erschienen bereits das Tamagotchi-artige Waddle World, das Coding-Werkzeug Pocket und die Video-App Vibes [^2]."
+    },
+    {
+      "t": "h2",
+      "x": "3. Ollie: Audit als Verkaufsargument - und jetzt das Aus"
+    },
+    {
+      "t": "p",
+      "x": "Ollie stellt am 6. November ein. Der Familien-Assistent mit E-Mail- und Kalenderanbindung, Buchungs-, Essensplanungs- und Rechnungszahlungsfunktionen war laut TechCrunch einer der ersten Mainstream-Assistenten mit einem unabhängigen SOC-2-Audit, also einer externen Prüfung der internen Kontrollen des Unternehmens, typischerweise zu Sicherheit und Vertraulichkeit. Der genaue Prüfungsumfang des Berichts geht aus der Meldung nicht hervor; das Audit bescheinigt geprüfte Prozesse, sagt aber nichts über Modellqualität oder Marktchancen. CEO Bill Lennon nennt als Grund den Wettbewerbsdruck: Mit dem Eintritt von Anbietern wie Muse und Instinct sei es schwerer geworden herauszustechen, zu wachsen und Kapital zu sichern [^3]. Der Abwicklungsprozess ist bemerkenswert sauber: Nutzer erhalten ihren Datenexport per SMS zur Übergabe an einen anderen Assistenten, Abos werden beendet und anteilig erstattet [^4]."
+    },
+    {
+      "t": "p",
+      "x": "Unsere Einschätzung: Ein unabhängiges Audit ist ein Vertrauensmerkmal; ob es als Differenzierer trägt, wenn Konkurrenten mit größerer Modell- und Vertriebsmacht denselben Kanal besetzen, lässt sich aus diesem einen Fall nicht ableiten. Gleichzeitig zeigt der Fall, wie eine verantwortungsvolle Einstellung aussieht, Datenportabilität und Erstattung statt stillem Abschalten. Bemerkenswert ist auch der Marktkontext: Der Markt textbasierter Assistenten ist im vergangenen Jahr schnell gewachsen, weil leistungsfähigere Modelle Alltagsaufgaben zuverlässiger erledigen; genau dieselbe Entwicklung, die solche Produkte erst brauchbar machte, zieht nun große Konkurrenten an und erhöht den Druck auf spezialisierte Anbieter [^3]."
+    },
+    {
+      "t": "h2",
+      "x": "Unsere Einordnung: Datenbasis entscheidet, Kanal entscheidet, Zertifikat allein nicht"
+    },
+    {
+      "t": "p",
+      "x": "Zest und Meta gewinnen ihre Personalisierung aus Daten, die der Nutzer längst erzeugt hat, Zahlungen beziehungsweise Fotos; beide verlagern die Interaktion in bereits genutzte Kanäle. Ollie hatte weder die eine Datenbasis noch den anderen Kanal im selben Maß und stellt das Produkt trotz geprüfter Prozesse ein. Für Produktentscheider heißt das: Personalisierungsqualität aus Bestandsdaten schlägt Befragung, und Datenschutz muss kommunizierbarer Mehrwert sein, nicht nur Audit."
+    },
+    {
+      "t": "p",
+      "x": "Vertiefend: [Sicherheit für Agenten-Systeme: von Prompt Injection bis Sandbox](/artikel/sicherheit-fuer-agenten-systeme/) und [Eigene KI-Dienste absichern: Zugriff, Datenflüsse, Updates](/artikel/ki-dienste-absichern/)."
+    },
+    {
+      "t": "callout",
+      "title": "So ist dieser Überblick entstanden",
+      "x": "Eigene Zusammenfassung tatsächlich gelesener Quellen: TechCrunch-Artikel zu Zest, Ollie und Style Sketch sowie Ollies Abschiedsbrief, keine übernommenen RSS-Anrisstexte. Finanzierungszahlen haben wir bewusst weggelassen. Quellenstand 31.10.2026, 09:50 Uhr MEZ."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ist die Kartennutzung bei Zest Pflicht?",
+      "a": "Sie ist die Grundlage der Personalisierung: Über Plaid importiert Zest Transaktionen und filtert auf Essen und Trinken. Ohne diese Historie fehlt dem System das Verhaltensgedächtnis, das es vom generischen Empfehlungsdienst unterscheidet."
+    },
+    {
+      "q": "Was heißt SOC 2 hier konkret?",
+      "a": "Ein unabhängiges Audit der internen Kontrollen des Anbieters, etwa zu Sicherheit und Vertraulichkeit, kein Gütesiegel für Modellqualität und keine Datenschutzgarantie. Der genaue Prüfungsumfang des Ollie-Berichts ist aus der Meldung nicht ersichtlich."
+    },
+    {
+      "q": "Kommt Style Sketch nach Deutschland?",
+      "a": "Zum Quellenstand unklar: Meta kommentiert die Veröffentlichung nicht, und die App ist nur in Indonesien, Singapur und Thailand verfügbar. Eine Europa-Einführung würde zusätzlich datenschutzrechtliche Fragen aufwerfen."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Zest's new AI agent finds restaurants and books reservations over text",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/30/zests-new-ai-agent-finds-restaurants-and-books-reservations-over-text/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "Meta quietly launches an AI fashion app called Style Sketch",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/29/meta-quietly-launches-an-ai-fashion-app-called-style-sketch/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "Ollie, a privacy-focused AI assistant, is shutting down",
+      "publisher": "TechCrunch",
+      "url": "https://techcrunch.com/2026/10/30/ollie-a-privacy-focused-ai-assistant-is-shutting-down/",
+      "accessed": "2026-10-31"
+    },
+    {
+      "title": "A farewell to Ollie",
+      "publisher": "Ollie",
+      "url": "https://ollie.ai/farewell/",
+      "accessed": "2026-10-31"
+    }
+  ],
+  "related": [
+    "sicherheit-fuer-agenten-systeme",
+    "ki-dienste-absichern"
+  ]
+}
