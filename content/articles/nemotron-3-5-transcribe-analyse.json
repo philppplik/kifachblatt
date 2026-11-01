@@ -1,0 +1,184 @@
+{
+  "slug": "nemotron-3-5-transcribe-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Nemotron 3.5 Transcribe: 40 Sprachen, eine Stunde Audio",
+  "dek": "NVIDIAs offenes Sprachmodell transkribiert auf Zuruf: verbatim oder geglättet, mit Sprecher-Zuordnung und Wort-Zeitstempeln - kommerziell nutzbar.",
+  "published": "2026-11-01T07:14:00+01:00",
+  "modified": "2026-11-01T07:14:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "NVIDIA",
+    "Nemotron",
+    "Transkription",
+    "Speech",
+    "Offene Gewichte"
+  ],
+  "key_takeaways": [
+    "Nemotron 3.5 Transcribe ist ein offenes Speech-Augmented Language Model: Ein Sprach-Encoder und ein Sprecher-Encoder speisen das Nemotron-3.5-Lightning-Sprachmodell (30B-A3B, Mamba-Transformer-Hybrid); das Gesamtmodell kommt auf rund 4,3 Mrd. aktive Parameter [1][2].",
+    "Ein Modell, viele Aufgaben: verbatim oder geglättete Transkripte, kontextuelle Transkription mit Begriffsliste, Sprecher-Zuordnung, Übersetzung, Sprachenerkennung und Audio-Fragen - gesteuert per natürlichsprachlicher Anweisung, ohne Umrüstung [1][2].",
+    "Nach Herstellerangaben (Messstand 12.10.2026) liegt das Modell auf den Open ASR Leaderboards vorn unter den offenen Modellen: 4,71 % mittlere Wortfehlerrate auf neun englischen und 4,62 % auf sieben mehrsprachigen Testsets [1][2].",
+    "Lizenz OpenMDW-1.1, kommerzielle Nutzung ausdrücklich erlaubt; Checkpoints in BF16, FP8, NVFP4 und GGUF. Die schnellste Serving-Variante (NIM, bis zu 2.238 Audiosekunden pro Sekunde) ist noch nicht Teil des Open-Source-Release [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Wellenform links, Pfeil in der Mitte, Transkript-Zeilen mit Sprecher-Markierungen und Zeitstempeln rechts",
+    "caption": "Rein Audio, raus Transkript: Nemotron 3.5 Transcribe liefert auf Wunsch Sprecher-Markierungen und Wort-Zeitstempel - der Stil folgt der Anweisung im Prompt.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Es gibt nicht das eine richtige Transkript: Für Untertitel sollen Füllwörter verschwinden, für die forensische Auswertung sollen sie bleiben, für Fachaufnahmen zählt die richtige Schreibweise von Eigennamen. Herkömmliche Spracherkennung legt sich beim Training auf eine Konvention fest. NVIDIA geht mit Nemotron 3.5 Transcribe, veröffentlicht am 28. Oktober, den anderen Weg: Der Transkriptionsstil wird pro Anfrage als natürlichsprachliche Anweisung mitgegeben - ohne Nachtraining [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "table",
+      "caption": "Nemotron 3.5 Transcribe im Überblick (Herstellerangaben) [1][2]",
+      "head": [
+        "Eigenschaft",
+        "Wert"
+      ],
+      "rows": [
+        [
+          "Architektur",
+          "Speech-Augmented Language Model: Transformer-ASR-Encoder (ca. 600 Mio. Parameter) + eingefrorener Nemotron-3-Diarization-Sprecher-Encoder (ca. 99 Mio.) + Nemotron-3.5-Lightning-30B-A3B-Sprachmodell (Mamba-2-Transformer-Hybrid-MoE)"
+        ],
+        [
+          "Parameter",
+          "34 Mrd. gesamt, ca. 4,3 Mrd. aktiv (3,5 Mrd. Sprachmodell + ca. 800 Mio. Audio-Encoder)"
+        ],
+        [
+          "Audio / Kontext",
+          "Aufnahmen bis 1 Stunde; 65.536 Tokens Kontext"
+        ],
+        [
+          "Sprachen",
+          "40 (Support-Matrix); Audio-Fragen und Reasoning nur auf Englisch evaluiert"
+        ],
+        [
+          "Checkpoints",
+          "BF16, FP8, NVFP4 (Blackwell), GGUF für NeMo-Speech.cpp; optionaler DFlash2-Draft für spekulatives Decoding"
+        ],
+        [
+          "Lizenz / Betrieb",
+          "OpenMDW-1.1, kommerziell nutzbar; 1x H100 80 GB"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Transkribieren auf Zuruf"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte dokumentiert die Prompts konkret: 'Wording: verbatim, including fillers and repetitions' für wörtliche Transkripte, 'omit fillers and accidental repetitions' für lesbare Texte, Sprecher-Tags und Zahlen in Schreibform auf Anweisung. Bei der kontextuellen Transkription übergibt man eine Liste erwarteter Begriffe; laut NVIDIA sinken die Eigennamen-Fehler auf ContextASR-Bench damit auf ein Sechstel. Die Trainingsmischung enthält zudem kleine Anteile Text-Instruktionen sowie PII-Markierung und -Schwärzung [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Für die Sprecher-Zuordnung nutzt das Modell einen Parallel Expert Encoder: Die Sprecheraktivität aus dem eingefrorenen Diarization-Modell wird in die Repräsentationen des ASR-Encoders eingespeist - ohne Architekturänderung am Sprachmodell. Nach Herstellerangabe ist es das erste SALM, das bei sprecher-attribuierter Transkription spezialisierte kaskadierte Systeme übertrifft. Wort-Zeitstempel entstehen über einen leichtgewichtigen CTC-Adapter, der das fertige Transkript nachträglich aufs Audio ausrichtet [2]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Nemotron 3.5 Transcribe: gemeldete Fehlerraten (je Test eigene Metrik)",
+      "alt": "Balkendiagramm: Englisch Open ASR 4,71 Prozent WER; Mehrsprachig 4,62 Prozent WER; Langform 10,98 Prozent WER; Mehrsprecher 15,80 Prozent cpWER - je Test eigene Metrik, nicht testübergreifend vergleichbar",
+      "caption": "Herstellerangaben aus der Modellkarte, Messstand 12.10.2026, nicht unabhängig verifiziert [1]. Niedriger ist besser; die Metriken unterscheiden sich (WER vs. cpWER), die Werte sind daher nicht testübergreifend vergleichbar.",
+      "labels": [
+        "Englisch (WER)",
+        "Mehrsprachig (WER)",
+        "Langform (WER)",
+        "Mehrsprecher (cpWER)"
+      ],
+      "series": [
+        {
+          "name": "Fehlerrate in %",
+          "values": [
+            4.71,
+            4.62,
+            10.98,
+            15.8
+          ]
+        }
+      ],
+      "y_label": "Fehlerrate in %"
+    },
+    {
+      "t": "h2",
+      "x": "Wie trainiert wurde"
+    },
+    {
+      "t": "p",
+      "x": "Drei Trainingsentscheidungen hebt NVIDIA hervor: Erstens eine supervisions-balancierte Datenmischung - Trainingsdaten werden nach ihrer Antwort-Token-Masse gesampelt, und jedes ASR-Beispiel kann mit einer von vielen Aufgaben-Anweisungen auftauchen, sodass neue Fähigkeiten mit Sampling-Raten unter einem Prozent hinzukommen. Zweitens folgt auf das Supervised Fine-Tuning eine kurze Reinforcement-Learning-Phase, die die Transkriptionsgenauigkeit optimiert. Drittens wird das Modell direkt mit dem Multi-Token-Prediction-Ziel trainiert, sodass die eigene MTP-Schicht als Draft für spekulatives Decoding dient [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Tempo und Serving - mit Einschränkung"
+    },
+    {
+      "t": "p",
+      "x": "Für das Decoding ist das Modell direkt mit Multi-Token-Prediction trainiert (zwei trainierte Tiefen, bis zu acht spekulative Tokens); alternativ gibt es ein separates DFlash2-Draft-Modell. Die spektakuläre Serving-Zahl - bis zu 2.238 Audiosekunden pro Sekunde auf einer RTX PRO 6000 Blackwell im NVFP4-Checkpoint mit DFlash2, eine 30-Sekunden-Aufnahme in 0,13 Sekunden - gilt allerdings nur über das Nemotron Transcribe NIM. NVIDIA weist selbst darauf hin, dass diese Optimierungen noch nicht Teil des Open-Source-Release sind; die mitgelieferte vLLM-Integration sei vorerst rund zwei Mal langsamer [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Das Paket ist ungewöhnlich rund: offene Gewichte unter einer Lizenz, die kommerzielle Nutzung ausdrücklich erlaubt, vier Checkpoint-Formate, ein Fine-Tuning-Toolkit in NeMo Speech - laut NVIDIA lassen sich neue Sprachen, Domänen und Aufgaben auf einer einzigen GPU anpassen, typischerweise in 0,5 bis 2,3 GPU-Stunden pro Aufgabe [2]. Zwei Grenzen sollte man kennen: Es ist ein Offline-Modell, kein Echtzeit-Streaming-Dienst, und Audio-Verstehen sowie Reasoning wurden nur auf Englisch evaluiert. Und natürlich sind alle Fehlerraten Herstellerangaben; wer ernsthaft auswählt, transkribiert einen Tag eigener Aufnahmen mit zwei Kandidaten und vergleicht."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was kann Nemotron 3.5 Transcribe?",
+      "a": "Transkription in 40 Sprachen (verbatim oder geglättet), kontextuelle Transkription mit Begriffsliste, Sprecher-Zuordnung, Wort-Zeitstempel, Übersetzung, Sprachenerkennung und Audio-Fragen - gesteuert per Anweisung im Prompt [1][2]."
+    },
+    {
+      "q": "Wie gut ist die Erkennung?",
+      "a": "Nach Herstellerangaben (Messstand 12.10.2026) beste Werte unter offenen Modellen auf den Open ASR Leaderboards: 4,71 % WER englisch, 4,62 % mehrsprachig. Unabhängig verifiziert ist das nicht [1][2]."
+    },
+    {
+      "q": "Ist das Modell kommerziell nutzbar?",
+      "a": "Ja, ausdrücklich: Die OpenMDW-1.1-Lizenz erlaubt kommerzielle und nicht-kommerzielle Nutzung [1][2]."
+    },
+    {
+      "q": "Welche Hardware brauche ich?",
+      "a": "NVIDIA nennt eine H100 mit 80 GB als Deployment-Referenz. Checkpoints gibt es in BF16, FP8, NVFP4 und GGUF; Fine-Tuning ist laut Anbieter auf einer einzelnen GPU möglich [1][2]."
+    },
+    {
+      "q": "Ist das Modell ein Echtzeit-Dienst?",
+      "a": "Nein. Es ist ein Offline-Modell für Aufnahmen bis zu einer Stunde; die interne Chunking-Verarbeitung macht es nicht zu einem Streaming-ASR-Dienst [1]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B - Modellkarte",
+      "publisher": "Hugging Face / NVIDIA",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-3.5-Transcribe-30B-A4B",
+      "accessed": "2026-11-01"
+    },
+    {
+      "title": "NVIDIA Nemotron 3.5 Transcribe: Intelligent Transcription with a Speech LLM",
+      "publisher": "NVIDIA Research",
+      "url": "https://research.nvidia.com/labs/nemotron/NVIDIA-Nemotron-3.5-Transcribe/",
+      "accessed": "2026-11-01"
+    },
+    {
+      "title": "AI Model Releases - October 2026 (Live Tracker)",
+      "publisher": "AIFOD",
+      "url": "https://af.net/realtime/ai-model-releases-october-2026/",
+      "accessed": "2026-11-01"
+    }
+  ],
+  "method": "Analyse auf Basis der Hugging-Face-Modellkarte, der NVIDIA-Research-Seite und des unabhängigen Release-Trackers; alle Quellen wurden gelesen. Sämtliche Benchmark- und Serving-Werte sind Herstellerangaben; das Modell wurde von der Redaktion nicht selbst ausgeführt.",
+  "limitations": "Keine eigenen Transkriptions-Tests und keine unabhängige Verifikation der Fehlerraten oder Durchsatzwerte. Die Open-ASR-Leaderboards waren zum Redaktionsschluss technisch nicht direkt abrufbar; die Platzierung stützt sich auf die Herstellerdarstellung. Der NIM-Speedup ist noch nicht Teil des Open-Source-Release.",
+  "related": [
+    "audio-sprach-ki",
+    "transkription-zusammenfassung",
+    "nemotron-3-5-super-lightning-analyse"
+  ]
+}
