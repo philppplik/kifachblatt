@@ -6,7 +6,7 @@
   "title": "KI-Fachüberblick: Wasserzeichen, Daybreak-Training, Agent-Desktop",
   "dek": "Anthropic markiert ältere Claude-Modelle unsichtbar, OpenAI macht Daybreak-Sessions trainierbar, und Agent Desktop ersetzt Pixelraten durch OS-Strukturen.",
   "published": "2026-11-01T07:00:00+01:00",
-  "modified": "2026-11-01T07:00:00+01:00",
+  "modified": "2026-11-01T07:06:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "KI-Überblick",
@@ -40,7 +40,7 @@
     },
     {
       "t": "p",
-      "x": "Neu ist die Ausweitung auf vier Altmodelle: Mythos 5, Opus 4.7, Opus 4.6 und Sonnet 4.6, laut Kunden-E-Mail, über die am 31. Oktober berichtet wurde. Der operative Punkt: Auf Opus 4.6 und Sonnet 4.6 gilt das Wasserzeichen nur bei unveränderten Standardwerten von temperature, top_p und top_k - jede Abweichung umgeht es. Anthropic warnt in der E-Mail selbst, die Defaults beizubehalten, wenn man sich auf die Markierung verlässt. Wer Claude in eigenen Produkten einsetzt und Artikel-50-Nachweise braucht, sollte diese Einschränkung in der eigenen Compliance-Bewertung berücksichtigen. Die Erkennungs-API bleibt eine private Preview für berechtigte Stellen nach EU-Recht (Regulierer, Medien, Faktenchecker, Forschende, Bildung, Zivilgesellschaft) plus Unternehmen mit eigener Prüfpflicht. Dateien erhalten separat C2PA-Content-Credentials; Anthropic begründet die Nachrüstung der Altmodelle laut dem Bericht vom 31. Oktober mit einer Dezember-Frist im Zusammenhang des EU-AI-Act. Die Pflicht selbst steht in Artikel 50 Absatz 2: Anbieter generativer KI-Systeme müssen KI-erzeugte Inhalte maschinell lesbar kennzeichnen; Ausnahmen gelten unter anderem für unterstützende Standardbearbeitung und rein maschinell verarbeitete Ausgaben (Leitlinien der EU-Kommission)."
+      "x": "Neu ist die Ausweitung auf vier Altmodelle: Mythos 5, Opus 4.7, Opus 4.6 und Sonnet 4.6, laut Kunden-E-Mail, über die am 31. Oktober berichtet wurde. Der operative Punkt: Auf Opus 4.6 und Sonnet 4.6 gilt das Wasserzeichen nur bei unveränderten Standardwerten von temperature, top_p und top_k - jede Abweichung umgeht es. Anthropic warnt in der E-Mail selbst, die Defaults beizubehalten, wenn man sich auf die Markierung verlässt. Wer Claude in eigenen Produkten einsetzt und Artikel-50-Nachweise braucht, sollte diese Einschränkung in der eigenen Compliance-Bewertung berücksichtigen. Die Erkennungs-API bleibt eine private Preview für berechtigte Stellen nach EU-Recht (Regulierer, Medien, Faktenchecker, Forschende, Bildung, Zivilgesellschaft) plus Unternehmen mit eigener Prüfpflicht. Dateien erhalten separat C2PA-Content-Credentials; Anthropic begründet die Nachrüstung der Altmodelle laut dem Bericht vom 31. Oktober mit einer Dezember-Frist im Zusammenhang des EU-AI-Act. Die Pflicht selbst steht in Artikel 50 Absatz 2: Anbieter generativer KI-Systeme müssen KI-erzeugte Inhalte maschinell lesbar kennzeichnen; Ausnahmen gelten laut Artikel 50 Absatz 2, soweit Systeme eine unterstützende Funktion für die Standardbearbeitung ausführen oder die Eingabedaten oder deren Semantik nicht wesentlich verändern; die Leitlinien der Kommission präzisieren den Anwendungsbereich."
     },
     {
       "t": "h2",
