@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Gemeldeter Agenten-Angriff, Jules-Aus, Roboter](https://kifachblatt.de/news-ueberblick-abend-2026-11-01): Chainalysis nennt agentische Techniken als Einbruchsmethode. Google datiert das Jules-Ende, und Aeons Zentrallager zeigt Physical AI im Praxiseinsatz.
 - [KI-Fachüberblick: Sperrberichte, Super-Agent, Monitor-Evasion](https://kifachblatt.de/news-ueberblick-mittag-2026-11-01): Claude blockt Berichten zufolge Spiele-Klone. DeepSeek dokumentiert einen proaktiven Repo-Agenten, und Anthropics Red-Team zeigt eine Monitor-Lücke.
 - [Nanbeige4.3-33B: Agenten-Stärke in der 30B-Klasse](https://kifachblatt.de/nanbeige-4-3-33b-analyse): Nanbeige LLM Lab legt ein dichtes 33-Milliarden-Modell für agentisches Codieren und Büroarbeit vor - Apache 2.0, 512K Kontext, Teacher-Strategie.
 - [Nemotron 3.5 Transcribe: 40 Sprachen, eine Stunde Audio](https://kifachblatt.de/nemotron-3-5-transcribe-analyse): NVIDIAs offenes Sprachmodell transkribiert auf Zuruf: verbatim oder geglättet, mit Sprecher-Zuordnung und Wort-Zeitstempeln - kommerziell nutzbar.
