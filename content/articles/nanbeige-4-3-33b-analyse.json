@@ -1,0 +1,178 @@
+{
+  "slug": "nanbeige-4-3-33b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Nanbeige4.3-33B: Agenten-Stärke in der 30B-Klasse",
+  "dek": "Nanbeige LLM Lab legt ein dichtes 33-Milliarden-Modell für agentisches Codieren und Büroarbeit vor - Apache 2.0, 512K Kontext, Teacher-Strategie.",
+  "published": "2026-11-01T07:14:00+01:00",
+  "modified": "2026-11-01T07:14:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Nanbeige",
+    "Agenten",
+    "Coding",
+    "Offene Gewichte",
+    "Apache 2.0"
+  ],
+  "key_takeaways": [
+    "Nanbeige4.3-33B ist ein dichtes 33-Milliarden-Parameter-Modell (Llama-Architektur, 52 Schichten, GQA) mit 524.288 Tokens Kontext, das als Teacher für kommende kleinere Modelle der Nanbeige4.3-Serie dienen soll [1][3].",
+    "Nach Herstellerangaben erreicht das Modell 80,9 auf Terminal-Bench 2.1, 65,5 auf DeepSWE und 60,3 auf SWE-Bench Pro; alle Werte stammen aus Nanbeiges eigener Tabelle, je Benchmark mit dem dort genannten Harness [1].",
+    "Die Chat-Vorlage kennt zwei Reasoning-Schalter: enable_thinking für die aktuelle Antwort, preserve_thinking dafür, ob Reasoning früherer Runden im Verlauf bleibt - für mehrstufige Tool-Nutzung empfiehlt der Hersteller True [1].",
+    "Lizenz: Apache 2.0, kommerzielle Nutzung erlaubt; lauffähig mit Transformers, SGLang oder vLLM [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung der Teacher-Strategie: Ein großer Kasten Nanbeige4.3-33B links, Pfeile zu kleineren Kästchen rechts für die angekündigte Destillation",
+    "caption": "Erst der Teacher, dann die kleinen Modelle: Nanbeige4.3-33B soll die Agenten-Fähigkeiten für die Destillation in kleinere Modelle liefern.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Das Nanbeige LLM Lab verfolgt mit der Nanbeige4.3-Serie eine Teacher-Strategie: Zuerst ein leistungsfähiges Lehrer-Modell bauen, dann die Agenten-Fähigkeiten in kleinere Modelle destillieren. Den Anfang macht Nanbeige4.3-33B, ein dichtes Modell mit 33 Milliarden Parametern, das auf agentisches Codieren und professionelle Cowork-Aufgaben spezialisiert ist. Das Gewichts-Repository wurde am 24. Oktober angelegt; der unabhängige Release-Tracker AIFOD listet die Veröffentlichung auf den 25. Oktober [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "table",
+      "caption": "Nanbeige4.3-33B im Überblick (Herstellerangaben und Modellkonfiguration) [1][3]",
+      "head": [
+        "Eigenschaft",
+        "Wert"
+      ],
+      "rows": [
+        [
+          "Architektur",
+          "Dichtes Llama-Modell: 52 Schichten, Hidden Size 7.168, 56 Query- und 8 Key-Value-Köpfe (GQA), Vokabular 166.912"
+        ],
+        [
+          "Kontextfenster",
+          "bis 524.288 Tokens (512K)"
+        ],
+        [
+          "Positionierung",
+          "Flagship-Teacher der Nanbeige4.3-Serie; Destillation in kleinere Modelle (z. B. 4.3-3B) angekündigt"
+        ],
+        [
+          "Schwerpunkte",
+          "Agentic Coding und professionelle Cowork-Aufgaben"
+        ],
+        [
+          "Lizenz",
+          "Apache 2.0"
+        ],
+        [
+          "Betrieb",
+          "Transformers (trust_remote_code), SGLang oder vLLM; Startbeispiele mit Tensor-Parallelismus über 4 GPUs"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Was die Benchmark-Tabelle zeigt"
+    },
+    {
+      "t": "p",
+      "x": "Nanbeige vergleicht das Modell in seiner Modellkarte mit drei anderen offenen Modellen der 30B-Klasse - wichtig: Sämtliche Zahlen, auch die der Vergleichsmodelle, stammen aus Nanbeiges eigener Tabelle. Der Hersteller betont, alle Modelle mit gleichen Inferenz-Einstellungen und demselben Harness je Benchmark gemessen zu haben [1]. Für das eigene Modell meldet die Karte unter anderem: 80,9 auf Terminal-Bench 2.1 (Harness Terminus 2), 23,8 auf Terminal-Bench 4.0 (mini-swe-agent v2.4.6), 65,5 auf DeepSWE, 60,3 auf SWE-Bench Pro, 61,1 auf SkillsBench, 70,4 auf Toolathlon-Verified, 84,8 auf GDPval, 89,5 auf GPQA Diamond und 95,2 auf AIME 2026. Bei den Cowork-Benchmarks fällt YC-bench aus dem Rahmen: Dort wird kein Prozentwert, sondern ein simulierter Geschäftserlös gemeldet - 1.025.437 Dollar für Nanbeige4.3-33B [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Nanbeige4.3-33B: ausgewählte Benchmark-Ergebnisse (je Test eigener Score)",
+      "alt": "Balkendiagramm: Terminal-Bench 2.1 80,9; Terminal-Bench 4.0 23,8; DeepSWE 65,5; SWE-Bench Pro 60,3; GPQA Diamond 89,5 - jeder Wert ist der Score des jeweiligen Tests, nicht testübergreifend vergleichbar",
+      "caption": "Herstellerangaben aus der Modellkarte, nicht unabhängig verifiziert [1]. Jeder Balken ist der Score des jeweiligen Tests mit dem dort genannten Harness; die Werte sind testübergreifend nicht vergleichbar und bilden keine allgemeine Leistungsrangfolge.",
+      "labels": [
+        "TB 2.1",
+        "TB 4.0",
+        "DeepSWE",
+        "SWE-B. Pro",
+        "GPQA"
+      ],
+      "series": [
+        {
+          "name": "Nanbeige4.3-33B",
+          "values": [
+            80.9,
+            23.8,
+            65.5,
+            60.3,
+            89.5
+          ]
+        }
+      ],
+      "y_label": "Score"
+    },
+    {
+      "t": "p",
+      "x": "Zwei Einordnungen gehören dazu. Erstens unterscheiden sich die Harness-Konfigurationen je Benchmark: Terminal-Bench 2.1 lief mit Terminus 2, Terminal-Bench 4.0 und DeepSWE mit mini-swe-agent v2.4.6, SWE-Atlas-QnA wurde zusätzlich mit einem anderen Modell als Judge bewertet. Wer die Zahlen mit Ergebnissen aus anderen Quellen vergleichen will, muss die jeweilige Konfiguration mitvergleichen - der Harness-Unterschied zwischen Terminal-Bench 2.1 und 4.0 zeigt, wie stark Setup und Version das Ergebnis prägen. Zweitens ist die Tabelle eine Hersteller-Selektion; unabhängige Messungen liegen bislang nicht vor [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Reasoning-Steuerung und Tool-Nutzung"
+    },
+    {
+      "t": "p",
+      "x": "Praktisch interessant ist die Chat-Vorlage: enable_thinking schaltet Reasoning für die aktuelle Antwort, preserve_thinking entscheidet, ob das Reasoning früherer Assistenten-Runden im Verlauf erhalten bleibt. Für allgemeinen Chat empfiehlt Nanbeige preserve_thinking=False, für mehrstufige Tool-Nutzung, Büro- und Code-Agenten True. Für Tool-Aufrufe empfiehlt der Hersteller das XML-Format (tool_call_format='xml'), JSON wird aus Kompatibilitätsgründen ebenfalls unterstützt. Die empfohlenen Sampling-Einstellungen unterscheiden sich je Szenario: Agenten- und Tool-Aufgaben mit Temperatur 1,0 und bis zu 65.536 neuen Tokens, Reasoning- und Chat-Aufgaben mit 0,6 und bis zu 262.144 neuen Tokens [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Verfügbarkeit und Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Gewichte stehen unter Apache 2.0 auf Hugging Face, kommerzielle Nutzung ist erlaubt; die Startbeispiele der Modellkarte für SGLang und vLLM laufen mit Tensor-Parallelismus über vier GPUs [1][2]. Die Benchmark-Führung innerhalb der eigenen Tabelle ist ein starkes Signal, aber eben nur das: Entscheidend ist die Leistung auf den eigenen Aufgaben mit dem eigenen Agenten-Setup. Wer evaluiert, sollte die Harness-Frage (Terminus, mini-swe-agent oder Claude Code) von Anfang an mitplanen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Nanbeige4.3-33B?",
+      "a": "Ein dichtes, offenes 33-Milliarden-Parameter-Sprachmodell des Nanbeige LLM Lab, spezialisiert auf agentisches Codieren und Cowork-Aufgaben, mit 512K Kontext und Apache-2.0-Lizenz [1][2]."
+    },
+    {
+      "q": "Wie stark ist das Modell?",
+      "a": "Nach Herstellerangaben 80,9 auf Terminal-Bench 2.1, 65,5 auf DeepSWE und 60,3 auf SWE-Bench Pro. Alle Werte stammen aus Nanbeiges eigener Tabelle und sind nicht unabhängig verifiziert; je Benchmark gilt ein eigenes Harness [1]."
+    },
+    {
+      "q": "Was bedeutet die Teacher-Strategie?",
+      "a": "Das 33B-Modell ist als Lehrer gedacht: Seine Agenten-Fähigkeiten sollen anschließend in kleinere Modelle der Nanbeige4.3-Serie destilliert werden, etwa ein angekündigtes 4.3-3B [1]."
+    },
+    {
+      "q": "Was ist preserve_thinking?",
+      "a": "Ein Schalter der Chat-Vorlage, der festlegt, ob Reasoning früherer Runden im Gesprächsverlauf erhalten bleibt. Für mehrstufige Tool-Nutzung empfiehlt der Hersteller True, für normalen Chat False [1]."
+    },
+    {
+      "q": "Kann ich das Modell kommerziell nutzen?",
+      "a": "Ja. Es steht unter Apache 2.0 und läuft mit Transformers, SGLang oder vLLM [1][2]."
+    }
+  ],
+  "sources": [
+    {
+      "title": "Nanbeige/Nanbeige4.3-33B - Modellkarte",
+      "publisher": "Hugging Face / Nanbeige LLM Lab",
+      "url": "https://huggingface.co/Nanbeige/Nanbeige4.3-33B",
+      "accessed": "2026-11-01"
+    },
+    {
+      "title": "AI Model Releases - October 2026 (Live Tracker)",
+      "publisher": "AIFOD",
+      "url": "https://af.net/realtime/ai-model-releases-october-2026/",
+      "accessed": "2026-11-01"
+    },
+    {
+      "title": "Nanbeige4.3-33B - config.json (Modellkonfiguration)",
+      "publisher": "Hugging Face / Nanbeige LLM Lab",
+      "url": "https://huggingface.co/Nanbeige/Nanbeige4.3-33B/raw/main/config.json",
+      "accessed": "2026-11-01"
+    }
+  ],
+  "method": "Analyse auf Basis der Hugging-Face-Modellkarte, der rohen Modellkonfiguration (config.json, Lizenz-Metadaten per HF-API geprüft) und des unabhängigen Release-Trackers; alle Quellen wurden gelesen. Sämtliche Benchmark-Werte sind Herstellerangaben aus Nanbeiges eigener Tabelle; das Modell wurde von der Redaktion nicht selbst ausgeführt.",
+  "limitations": "Keine eigenen Modelltests und keine unabhängige Verifikation der Benchmarks. Die Vergleichswerte anderer Modelle stammen ebenfalls aus Nanbeiges Tabelle und werden hier nicht als eigenständige Werte für diese Modelle wiedergegeben. Harness-Konfigurationen unterscheiden sich je Benchmark; ein technischer Bericht zum Training lag zum Redaktionsschluss nicht vor.",
+  "related": [
+    "coding-agenten-alltag",
+    "lokale-modelle",
+    "minimax-m3-1-flash-analyse"
+  ]
+}
