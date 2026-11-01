@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Nanbeige4.3-33B: Agenten-Stärke in der 30B-Klasse](https://kifachblatt.de/nanbeige-4-3-33b-analyse): Nanbeige LLM Lab legt ein dichtes 33-Milliarden-Modell für agentisches Codieren und Büroarbeit vor - Apache 2.0, 512K Kontext, Teacher-Strategie.
+- [Nemotron 3.5 Transcribe: 40 Sprachen, eine Stunde Audio](https://kifachblatt.de/nemotron-3-5-transcribe-analyse): NVIDIAs offenes Sprachmodell transkribiert auf Zuruf: verbatim oder geglättet, mit Sprecher-Zuordnung und Wort-Zeitstempeln - kommerziell nutzbar.
 - [KI-Fachüberblick: Wasserzeichen, Daybreak-Training, Agent-Desktop](https://kifachblatt.de/news-ueberblick-morgen-2026-11-01): Anthropic markiert ältere Claude-Modelle unsichtbar, OpenAI macht Daybreak-Sessions trainierbar, und Agent Desktop ersetzt Pixelraten durch OS-Strukturen.
 - [KI-Fachüberblick: Siris Gedächtnis, Tape-Archiv, Vibe-Genomik](https://kifachblatt.de/news-ueberblick-abend-2026-10-31): Apple scopet Siris Datenzugriffe pro App, Fujifilm baut LTO-Kapazität für KI-Archive aus, und Pinal zeigt ehrlich, wie weit Text-zu-Protein ist.
 - [KI-Fachüberblick: SMS-Concierge, Kleiderschrank-KI, Ollies Aus](https://kifachblatt.de/news-ueberblick-mittag-2026-10-31): Zest verlagert Restaurantbuchung in die SMS, Meta koppelt eine Mode-App an Instagram, und Ollies Aus wirft die Frage auf, was ein Audit als Vorteil zählt.
