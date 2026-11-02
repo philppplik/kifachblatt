@@ -125,7 +125,7 @@
     },
     {
       "t": "p",
-      "x": "GDPx positioniert sich als Antwort auf OpenAIs GDPval: dessen Aufgaben seien nicht-interaktiv, ohne Arbeitsumgebung, mit dem Kontext direkt im Prompt; die Übereinstimmung menschlicher Gutachter auf der Gold-Teilmenge lag laut SemiAnalysis bei nur 71 Prozent [1]. Doch auch GDPx hat Flanken: Die meisten Aufgaben sind privat und nicht nachprüfbar, die 14 Partner verkaufen selbst RL-Umgebungen und Evaluationsdaten an KI-Labore, und die Ergebnisse lagen zum Recherchezeitpunkt (2. November 2026, der Veröffentlichungstag) noch in keiner Drittreplikation vor. Der Begleitbericht von Wisevoter/AIFOD merkt an, dass ungeklärt bleibe, wie die Aufgabenbewertung über die Partner hinaus validiert wurde [3]. Bis sich das Bild stabilisiert, ist GDPx ein harter, glaubwürdig dokumentierter Realitätsabgleich - aber ein Hersteller-Benchmark im weiteren Sinne, kein unabhängiger Standard."
+      "x": "GDPx positioniert sich als Antwort auf OpenAIs GDPval: dessen Aufgaben seien nicht-interaktiv, ohne Arbeitsumgebung, mit dem Kontext direkt im Prompt; die Übereinstimmung menschlicher Gutachter auf der Gold-Teilmenge lag laut SemiAnalysis bei nur 71 Prozent [1]. Doch auch GDPx hat Flanken: Die meisten Aufgaben sind privat und nicht nachprüfbar, die 14 Partner verkaufen selbst RL-Umgebungen und Evaluationsdaten an KI-Labore, und eine unabhängige Drittreplikation wurde für diesen Artikel nicht geprüft. Der Begleitbericht von Wisevoter/AIFOD merkt an, dass ungeklärt bleibe, wie die Aufgabenbewertung über die Partner hinaus validiert wurde [3]. Bis sich das Bild stabilisiert, ist GDPx ein harter, glaubwürdig dokumentierter Realitätsabgleich - aber ein Hersteller-Benchmark im weiteren Sinne, kein unabhängiger Standard."
     }
   ],
   "faq": [
@@ -176,5 +176,5 @@
     }
   ],
   "method": "Analyse auf Basis des SemiAnalysis-Methodikartikels (vollständig gelesen), der Live-Bestenliste auf gdpx.semianalysis.com und des Begleitberichts von Wisevoter/AIFOD. Alle Werte stammen aus diesen Quellen und sind als Angaben des Benchmark-Betreibers gekennzeichnet.",
-  "limitations": "Keine eigenen Benchmark-Läufe. Die meisten Aufgaben sind privat und nicht nachprüfbar; die Ergebnisse lagen zum Recherchezeitpunkt (2. November 2026) noch in keiner Drittreplikation vor. Die 14 Partner haben ein kommerzielles Interesse am Verkauf von RL-Umgebungen an KI-Labore."
+  "limitations": "Keine eigenen Benchmark-Läufe. Die meisten Aufgaben sind privat und nicht nachprüfbar; eine unabhängige Drittreplikation wurde für diesen Artikel nicht geprüft. Die 14 Partner haben ein kommerzielles Interesse am Verkauf von RL-Umgebungen an KI-Labore."
 }
