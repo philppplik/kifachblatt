@@ -1,0 +1,180 @@
+{
+  "slug": "gdpx-semianalysis-analyse",
+  "lang": "de",
+  "section": "evals",
+  "type": "analysis",
+  "title": "GDPx: Bei 206 Profi-Aufgaben schafft das beste Modell 12 Prozent",
+  "dek": "SemiAnalysis testet Agenten in elf Domänen von Chipdesign bis Quant Trading - mit realen Arbeitsumgebungen statt Prompt-Aufgaben. Bestwert: 12,0.",
+  "published": "2026-11-02T07:00:00+01:00",
+  "modified": "2026-11-02T07:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "SemiAnalysis",
+    "GDPx",
+    "Benchmark",
+    "Agenten",
+    "Evaluation"
+  ],
+  "key_takeaways": [
+    "GDPx ist ein neuer Agenten-Benchmark von SemiAnalysis: 206 Aufgaben in 11 Domänen, gebaut mit 14 spezialisierten Partner-Startups, gemeldet als pass@1 über drei Versuche [1][2].",
+    "Bestwert der v1.0-Bestenliste: 12,0 Prozent für Claude Opus 5.5 vor Gemini 4 Carbon (10,9) und GPT-6 Astra (9,6); Finanzen und Recht löst praktisch kein Modell [1][2].",
+    "Jede Aufgabe bringt eine eigene Arbeitsumgebung mit - etwa einen Datenraum mit rund 4.000 Dateien aus einer echten, anonymisierten Transaktion [1].",
+    "GDPx ist seit dem 2. November 2026 öffentlich und soll alle drei bis sechs Monate aktualisiert werden; die Partner verkaufen selbst RL-Umgebungen an KI-Labore - ein Interessenkonflikt, den man kennen sollte [1][3]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: drei Bausteine Chipdesign, Finanzen und Cybersicherheit führen zu einem GDPx-Block, daraus ein Ergebnis-Pfeil mit 12 Prozent",
+    "caption": "206 Aufgaben aus elf Domänen, ein strenger Maßstab: Auf der ersten GDPx-Liste erreicht das beste Modell 12,0 Prozent [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Wie gut erledigen KI-Agenten echte Facharbeit? Der neue Benchmark GDPx von SemiAnalysis, veröffentlicht am 2. November 2026, misst das mit 206 Aufgaben in elf Domänen - von Chipdesign über Cybersicherheit und Biologie bis zu Finanzen, Recht und Quant Trading. Die These der Autoren Max Kan, Andrew Megalaa und Dylan Patel: Die erste Billion Dollar KI-Umsatz entsteht in wenigen ertragreichen Branchen, also gehören genau diese auf den Prüfstand - eine Gewichtung nach Branchengröße oder Berufsstatistik lehnen sie ab. Staat, Immobilien und Versicherungen sind bewusst ausgenommen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "table",
+      "caption": "GDPx im Überblick (Angaben von SemiAnalysis) [1][2][3]",
+      "head": [
+        "Eigenschaft",
+        "Wert"
+      ],
+      "rows": [
+        [
+          "Umfang",
+          "206 Aufgaben, 11 Domänen, 14 Partner-Startups, 20 Modelle auf der Liste"
+        ],
+        [
+          "Domänen",
+          "Chipdesign, Cybersicherheit, Biologie, Finanzen, Recht, Quant Trading, rekursive Selbstverbesserung (RSI), Hardware-Design, Materialwissenschaft, Alignment, Software-Engineering"
+        ],
+        [
+          "Bewertung",
+          "pass@1 über drei Versuche; je Domäne binär oder partiell; alle Domänen gleich gewichtet"
+        ],
+        [
+          "Zeitlimit",
+          "8 Stunden pro Aufgabe (Standard), einzelne Aufgaben kürzer"
+        ],
+        [
+          "Agenten-Harness",
+          "nativ, wo verfügbar (Claude Code, Codex, Antigravity), sonst OpenCode"
+        ],
+        [
+          "Update-Rhythmus",
+          "alle 3 bis 6 Monate geplant"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Die erste Bestenliste"
+    },
+    {
+      "t": "p",
+      "x": "Auf der v1.0-Liste führt Claude Opus 5.5 mit 12,0 Prozent vor Gemini 4 Carbon (10,9) und GPT-6 Astra (9,6); Muse Wonder Full liegt bei 9,0, das Schlusslicht GLM 5.3 bei 2,7 [2]. SemiAnalysis hebt hervor, dass Sicherheitsfilter die Gesamtwerte von Opus 5.5 und Astra drücken: Ohne die drei Domänen Cyber, Biologie und Alignment, in denen die Filter anspringen, verschiebt sich die Reihenfolge. Domänen-Sieger sind Opus 5.5 (Quant Trading, Hardware-Design, Chipdesign), Gemini 4 Carbon (Biologie, Software-Engineering) und GPT-6 Astra (RSI, Materialwissenschaft); im Cyber-Bereich führt Muse Wonder Full deutlich [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "GDPx v1.0: die Bestenliste (Erfolgsquote in Prozent)",
+      "alt": "Balkendiagramm: Claude Opus 5.5 mit 12,0 Prozent Erfolgsquote, Gemini 4 Carbon 10,9, GPT-6 Astra 9,6, Muse Wonder Full 9,0, Claude Fable 5.1 8,5, GPT 6.1 Sol 8,4, Claude Sonnet 5.5 8,2, Gemini 4 Argon 7,3",
+      "caption": "v1.0-Bestenliste von gdpx.semianalysis.com, abgerufen am 02.11.2026 [2]. GDPx-Score = Erfolgsquote in Prozent (pass@1 über drei Versuche, Domänen gleich gewichtet). Sicherheitsfilter können einzelne Modelle in den Domänen Cyber, Biologie und Alignment ausbremsen [1].",
+      "labels": [
+        "Claude Opus 5.5",
+        "Gemini 4 Carbon",
+        "GPT-6 Astra",
+        "Muse Wonder Full",
+        "Claude Fable 5.1",
+        "GPT 6.1 Sol",
+        "Claude Sonnet 5.5",
+        "Gemini 4 Argon"
+      ],
+      "series": [
+        {
+          "name": "GDPx-Score (Erfolgsquote in %)",
+          "values": [
+            12.0,
+            10.9,
+            9.6,
+            9.0,
+            8.5,
+            8.4,
+            8.2,
+            7.3
+          ]
+        }
+      ],
+      "y_label": "Erfolgsquote in %"
+    },
+    {
+      "t": "h2",
+      "x": "Warum die Aufgaben so schwer sind"
+    },
+    {
+      "t": "p",
+      "x": "Anders als bei Prompt-Prüfungen bekommt das Modell eine ganze Arbeitsumgebung: Die Finanzaufgaben sitzen in einem Datenraum mit rund 4.000 anonymisierten Dateien aus einer echten Transaktion; Cyber-Aufgaben bauen auf echten Zero-Day-Lücken in verbreiteter Open-Source-Software (nur etwa 5 Prozent der gefundenen Lücken werden Aufgaben); Hardware-Aufgaben laufen in lizenzierten Werkzeugen wie Siemens NX oder KiCad, mit Tests auf echten FPGA-Instanzen [1]. Wie hart das ist, zeigt die öffentliche Finanzaufgabe Bellwood-QoE (Qualitätsprüfung eines Ergebnis-Workbooks): Von 25 Versuchen löste kein Modell die Aufgabe vollständig, der beste Einzellauf bestand 8 von 11 Prüfpunkten [1]. Alle Partner mussten die automatisierte Qualitätsprüfung von SemiAnalysis im ersten Anlauf bestehen; dieselbe Prüfung markiert laut den Autoren fast 50 Prozent der Aufgaben von Terminal Bench 4.0 als fehlerhaft [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Kritik an GDPval - und die eigenen Flanken"
+    },
+    {
+      "t": "p",
+      "x": "GDPx positioniert sich als Antwort auf OpenAIs GDPval: dessen Aufgaben seien nicht-interaktiv, ohne Arbeitsumgebung, mit dem Kontext direkt im Prompt; die Übereinstimmung menschlicher Gutachter auf der Gold-Teilmenge lag laut SemiAnalysis bei nur 71 Prozent [1]. Doch auch GDPx hat Flanken: Die meisten Aufgaben sind privat und nicht nachprüfbar, die 14 Partner verkaufen selbst RL-Umgebungen und Evaluationsdaten an KI-Labore, und die Ergebnisse sind einen Tag nach Veröffentlichung von keinem Dritten repliziert. Der Begleitbericht von Wisevoter/AIFOD merkt an, dass ungeklärt bleibe, wie die Aufgabenbewertung über die Partner hinaus validiert wurde [3]. Bis sich das Bild stabilisiert, ist GDPx ein harter, glaubwürdig dokumentierter Realitätsabgleich - aber ein Hersteller-Benchmark im weiteren Sinne, kein unabhängiger Standard."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was misst GDPx?",
+      "a": "Agentische Fähigkeiten von Sprachmodellen an 206 praxisnahen Aufgaben in elf wirtschaftlich bedeutenden Domänen, vom Chipdesign bis zur Finanzanalyse. Gemeldet wird die Erfolgsquote als pass@1 über drei Versuche [1][2]."
+    },
+    {
+      "q": "Warum schafft das beste Modell nur 12 Prozent?",
+      "a": "Die Aufgaben sind bewusst auf Frontier-Niveau gebaut: reale Arbeitsumgebungen mit tausenden Dateien, laufenden Diensten und achtstündigem Zeitlimit. Selbst Claude Opus 5.5 löst nur 12,0 Prozent [1][2]."
+    },
+    {
+      "q": "Wie unterscheidet sich GDPx von OpenAIs GDPval?",
+      "a": "GDPval reicht den Kontext direkt im Prompt und ist nicht interaktiv; GDPx stellt jeder Aufgabe eine simulierte Arbeitsumgebung, in der der Agent selbst recherchieren und handeln muss [1]."
+    },
+    {
+      "q": "Sind die GDPx-Aufgaben öffentlich?",
+      "a": "Überwiegend nicht. SemiAnalysis nennt einzelne öffentliche Beispiele - darunter die Finanzaufgabe Bellwood-QoE, die Cyber-Aufgabe Watchtower und eine CAD-Aufgabe zum Spritzgussgehäuse [1]."
+    },
+    {
+      "q": "Wie oft wird GDPx aktualisiert?",
+      "a": "SemiAnalysis plant Aktualisierungen alle drei bis sechs Monate, mit neuen Partnern und Branchen-Feedback [3]."
+    }
+  ],
+  "related": [
+    "lhtb-2-langzeit-agenten-benchmark",
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "coding-agenten-alltag"
+  ],
+  "sources": [
+    {
+      "title": "GDPx: Measuring Frontier Model Capabilities Across the Most Valuable Domains",
+      "publisher": "SemiAnalysis Newsletter",
+      "url": "https://newsletter.semianalysis.com/p/gdpx-measuring-frontier-model-capabilities",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "GDPx: The General Agentic Benchmark - Bestenliste",
+      "publisher": "SemiAnalysis",
+      "url": "https://gdpx.semianalysis.com/",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "SemiAnalysis Launches GDPx AI Benchmark as Claude Opus 5.5 Leads with 12% Success Rate",
+      "publisher": "Wisevoter via af.net",
+      "url": "https://af.net/realtime/semianalysis-launches-gdpx-ai-benchmark-as-claude-opus-5-5-leads-with-12-success-rate/",
+      "accessed": "2026-11-02"
+    }
+  ],
+  "method": "Analyse auf Basis des SemiAnalysis-Methodikartikels (vollständig gelesen), der Live-Bestenliste auf gdpx.semianalysis.com und des Begleitberichts von Wisevoter/AIFOD. Alle Werte stammen aus diesen Quellen und sind als Angaben des Benchmark-Betreibers gekennzeichnet.",
+  "limitations": "Keine eigenen Benchmark-Läufe. Die meisten Aufgaben sind privat und nicht nachprüfbar; die Ergebnisse wurden zum Veröffentlichungszeitpunkt von keinem Dritten repliziert. Die 14 Partner haben ein kommerzielles Interesse am Verkauf von RL-Umgebungen an KI-Labore."
+}
