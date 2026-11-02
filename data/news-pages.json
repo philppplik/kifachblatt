@@ -1,5 +1,53 @@
 [
   {
+    "title": "Claude Code: Anthropic verschärft Regeln gegen Spieleklone",
+    "url": "https://www.heise.de/news/Claude-Code-Anthropic-verschaerft-Regeln-gegen-Spieleklone-11508349.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793630940.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "KI-Werkzeuge erleichtern den Nachbau von Spielen und Software. Anthropic reagiert mit neuen Regeln für Claude Code, die laut einigen Entwicklern zu weit gehen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-02T15:23:58.938009+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "robots.txt auf Diät: Ein einziger Befehl soll alle KI-Trainer stoppen",
+    "url": "https://www.heise.de/news/KI-Training-Ein-Eintrag-in-der-robots-txt-soll-bald-fuer-alle-Bots-reichen-11508208.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793629320.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Google will ab 2027 ein anbieterübergreifendes IETF-Token fürs KI-Training in der robots.txt auswerten. Google-Extended bleibt für Ausnahmen erhalten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-02T15:23:58.938073+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Update kompakt: Linux-Lücke, Audio Intelligence, KI-Operation, KI-Satellit",
+    "url": "https://www.heise.de/news/KI-Update-kompakt-Linux-Luecke-Audio-Intelligence-KI-Operation-KI-Satellit-11507948.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793628000.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-02T15:23:58.938154+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Herdr Desktop-App: Schaltzentrale für KI-Coding-Agenten",
+    "url": "https://www.heise.de/news/Herdr-Desktop-App-Schaltzentrale-fuer-KI-Coding-Agenten-11507856.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793627820.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Herdr hat eine Desktop-App als Schaltzentrale für KI-Coding-Agenten veröffentlicht. Sie läuft auf Linux, macOS und Windows.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-02T15:23:58.938210+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "USA halten Prüfregeln für KI-Modelle unter Verschluss",
     "url": "https://www.heise.de/news/USA-halten-Pruefregeln-fuer-KI-Modelle-unter-Verschluss-11507982.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793625360.0,
