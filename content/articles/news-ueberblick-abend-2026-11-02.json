@@ -1,0 +1,131 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-02",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "KI-Fachüberblick: Agenten-OP, Hyra 2.0, Meta-Roboter Max",
+  "dek": "Exin ließ Claude Sonnet eine Gentherapie an der Maus wählen und injizieren - mit Vet-Gate. Tencent meldet Hyra 2.0; Metas Roboter Max bleibt intern.",
+  "published": "2026-11-02T16:23:00+01:00",
+  "modified": "2026-11-02T16:23:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Agenten",
+    "Anthropic",
+    "Tencent",
+    "Robotik"
+  ],
+  "key_takeaways": [
+    "Exin Therapeutics ließ einen Claude-Sonnet-Agenten Wirkstoff, Hirnregion und Koordinaten für eine Injektion bei einer Epilepsie-Maus wählen und die stereotaktische Injektion (250 nl) ausführen - mit Tierarzt-Freigabe jedes irreversiblen Schritts und physischem Kill-Switch. Opus 5.5 verweigerte komplett, Opus 5 nur die Live-Ausführung. Alle Angaben vom Startup, keine unabhängige Prüfung, n=1.",
+    "Tencent Hyra 2.0 (heute via WeChat angekündigt) verschiebt Forschungs-Agenten vom Lösen zum Bauen wiederverwendbarer Tools: Overall/Mission/Worker-Architektur, Worker dürfen Mission widersprechen, Retrospektiven destillieren Skills. Alle Resultatzahlen (HyInv 57x ProteinMPNN, HyQEC +48%, Yau-Vermutung) sind Anbieterangaben ohne unabhängige Replikation.",
+    "Meta hat laut The Information mit Fourier den humanoiden Prototypen Max gebaut (ca. 1,50 m, 48 kg, Jetson Thor, Fünf-Finger-Hände). Kein Produkt, kein Verkauf - internes Forschungsprojekt; Max 2 seit September in Arbeit. Metas Muse-Agent soll damit physisch werden."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zur Hyra-2.0-Architektur: Ebene Overall kommuniziert mit menschlichen Forschenden, Ebene Mission steuert langfristig eine Forschungsfrage, mehrere Worker führen Experimente aus und dürfen Mission widersprechen; daneben drei getrennte Speicher inklusive Wissensbasis Books.",
+    "caption": "Hyra 2.0 nach Unternehmensangaben: Drei Ebenen (Overall, Mission, Worker) plus getrennte Speicher für Projektstatus, Agenten-Gedächtnis und die Wissensbasis Books; aus Projekt-Retrospektiven werden wiederverwendbare Skills abgelegt. Vereinfachte Darstellung, nicht maßstäblich.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: ithome / PANews (Tencent-WeChat)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Abendüberblick vom 2. November 2026. Quellenstand: 16:08 Uhr MEZ.** Drei Meldungen mit unterschiedlichem Belastbarkeitsgrad: eine von einem Startup selbst dokumentierte Agenten-Operation an einer Maus, eine Anbieter-Ankündigung aus China mit ausschließlich selbst berichteten Zahlen und ein geleakter Roboter-Prototyp. Entsprechend ist jede Zahl unten an ihre Quelle gebunden. Alle Quellen vollständig gelesen."
+    },
+    {
+      "t": "h2",
+      "x": "1. Exin Therapeutics: Agent wählt Therapie und führt stereotaktische Injektion aus"
+    },
+    {
+      "t": "p",
+      "x": "Der Ablauf nach Angaben von Exin-CEO Gabriel Ocana-Santero (X-Thread vom 28.10., zusammengefasst von Tom's Hardware und heise): Ein Claude-Sonnet-Agent erhielt ein Epilepsie-Mausmodell, eine Tabelle mit 19 Gentherapie-Vektoren und die Kontrolle über ein motorisiertes stereotaktisches Gestänge mit Kameras. Der Agent wählte einen hemmenden Signalweg verstärkenden Kandidaten, bestimmte die Zielregion aus der Fachliteratur, leitete Koordinaten aus drei Studien ab und injizierte 250 Nanoliter, während er die Einstichstelle per Kamera auf Blutungen überwachte. Die Kraniotomie nahm der anwesende approbierte Tierarzt selbst vor; jeder irreversible Schritt erforderte dessen Freigabe, ein physischer Notschalter trennt die Motoren. Das Tier habe sich gut erholt."
+    },
+    {
+      "t": "p",
+      "x": "Für die Agenten-Governance sind zwei Beobachtungen relevanter als der Eingriff selbst. Erstens die Verweigerungsstaffel: Opus 5.5 lehnte jede Mitarbeit ab (erkanntes Bioexperiment), Opus 5 plante auf dem Papier mit, verweigerte aber die Live-Ausführung mit der Begründung, ein Abbruch mit Nadel im Gehirn sei schlimmer als gar nicht zu starten - die Ausführung übernahm das mittlere Sonnet-Modell. Zweitens das Verhalten nach einem Verbindungsabbruch mitten im Eingriff: Der Agent erkannte einen Kalibrierungsfehler und verweigerte das Weitermachen, auch gegen den ausdrücklichen Willen des CEOs; erst ein Code-Fix löste den Zustand. Guardrails, die sich nicht per Prompt überstimmen lassen, sind hier Feature, nicht Bug - sie zeigen aber auch, wie abhängig ein physischer Prozess vom Modellzustand wird."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Sämtliche Fakten stammen vom Startup; es gibt keine Fachpublikation, keine unabhängige Kontrolle und genau ein Tier. Die Präzedenzfall-Behauptung (erster Agent, der Behandlung und Zielort wählte und in ein lebendes Säugetier applizierte) ist die Einschätzung des CEOs. Gleichzeitig ist der Versuch bewusst als Werbung für Exins Konzept des vollautomatischen In-vivo-Labors angelegt. Wer das als Blaupause liest, sollte die Vet-Gates und den Kill-Switch als Mindeststandard mitdenken, nicht als Beiwerk."
+    },
+    {
+      "t": "h2",
+      "x": "2. Tencent Hyra 2.0: Forschungs-Agenten sollen wiederverwendbare Werkzeuge bauen"
+    },
+    {
+      "t": "p",
+      "x": "Tencent Hunyuan hat Hyra 2.0 heute über seinen offiziellen WeChat-Kanal veröffentlicht; die chinesischen Portale ithome und PANews fassen die Mitteilung zusammen. Die Richtungsänderung gegenüber Hyra 1.0 (das im Juli laut Anbieter ein offenes Modell ein über 50 Jahre altes Problem der additiven Kombinatorik lösen ließ): Weg vom wiederholten Problemlösen, hin zum Bau wiederverwendbarer Modelle, Workflows und Software-Tools - Tencent spricht von sich ansammelndem Nutzen über Projekte hinweg."
+    },
+    {
+      "t": "p",
+      "x": "Die Architektur nach der Ankündigung: Overall kommuniziert mit den menschlichen Forschenden und richtet die Ziele aus; Mission trägt langfristig eine einzelne Forschungsfrage und entscheidet Routenwechsel; Worker lesen Code, führen Experimente durch, analysieren Fehlschläge und dürfen Missions Entscheidungen explizit widersprechen. Drei getrennte Speicher (Projektstatus, hierarchisches Agenten-Gedächtnis, geteilte Wissensbasis Books) strukturieren den Zustand; in Projekt-Retrospektiven werden übertragbare Methoden als Skills abgelegt und späteren Tasks direkt verfügbar gemacht."
+    },
+    {
+      "t": "p",
+      "x": "Die mitgelieferten Resultate sind vollständig Anbieterangaben: HyInv, ein von Grund auf von Hyra trainiertes Protein-Inverse-Folding-Modell mit 1,96 Millionen Parametern, soll 57-mal schneller generieren als ProteinMPNN; HyQEC konstruierte einen Quantencode, dessen Kodiereffizienz um etwa 48 Prozent über dem bisherigen Bestwert der qLDPC-Challenge liegen soll; HyProver schloss nach Tencent-Angaben Beweise unter anderem zu Shing-Tung Yaus Kreiswirkungs-Vermutung ab, die Mathematiker verifiziert hätten; dazu 5,79 Prozent mehr Leistung pro GHz beim RISC-V-Prozessor XiangShan. Verifizierbar ist derzeit nichts davon - Tencent kündigt Veröffentlichungen auf GitHub an, die die Zahlen prüfbar machen würden."
+    },
+    {
+      "t": "h2",
+      "x": "3. Metas Haushaltsroboter Max: interner Prototyp, kein Produkt"
+    },
+    {
+      "t": "p",
+      "x": "The Information berichtet über Metas humanoiden Prototypen Max, gebaut mit dem chinesischen Robotik-Unternehmen Fourier in rund drei Monaten: etwa 1,50 Meter groß, 48 Kilogramm, Display-Gesicht, fünf Lautsprecher, Fünf-Finger-Hände für kleine Objekte, NVIDIA Jetson Thor als Plattform. Laut heise ordnet Meta das Projekt als interne Forschung ein, eingebettet in die Arbeit am persönlichen Agenten Muse; Verkaufspläne gebe es nicht. Ein Nachfolger Max 2 sei bereits seit September in Arbeit - mit überarbeitetem Torso und Händen, Projektor und Sensoren für Treppen. Relevanz: Der Roboter ist weniger Produktankündigung als Beleg, dass Meta seine Agenten-Strategie in Hardware verlängert; Details stammen durchgehend aus Berichten, nicht von Meta selbst."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie belastbar sind die Angaben zur Maus-Operation?",
+      "a": "Alle Details stammen vom Startup selbst (X-Thread des CEOs vom 28.10., keine Fachpublikation). Es war eine Einzeltier-Demonstration unter Tierarzt-Aufsicht mit Freigabe jedes irreversiblen Schritts und physischem Notschalter. Unabhängig geprüft ist nichts davon."
+    },
+    {
+      "q": "Sind die Hyra-2.0-Zahlen nachprüfbar?",
+      "a": "Derzeit nicht. Sämtliche Resultate (HyInv, HyQEC, HyProver, XiangShan) stammen aus Tencents eigener Ankündigung via WeChat. Das Unternehmen kündigt Veröffentlichungen auf GitHub an; erst damit wären die Angaben extern prüfbar."
+    },
+    {
+      "q": "Wird Metas Roboter Max ein Produkt?",
+      "a": "Nach jetzigem Stand nicht. Meta bezeichnet Max als internes Forschungsprojekt ohne Verkaufspläne. Laut The Information läuft seit September die Arbeit an Max 2 mit verbesserten Händen und Treppen-Sensoren."
+    }
+  ],
+  "related": [
+    "sicherheit-fuer-agenten-systeme",
+    "red-teaming-durchfuehren"
+  ],
+  "sources": [
+    {
+      "title": "AI agent used to perform controversial brain surgery on a mouse (mit Zitaten aus dem X-Thread des CEOs)",
+      "publisher": "Tom's Hardware",
+      "url": "https://www.tomshardware.com/tech-industry/artificial-intelligence/startup-uses-ai-agent-to-perform-controversial-brain-surgery-on-a-mouse-anthropic-sonnet-controlled-motorized-surgery-rig-ai-given-free-reign-to-treat-epilepsy-with-a-range-of-gene-therapy-vectors-after-opus-5-5-refused-to-conduct-biological-experiment",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "KI-Update kompakt: Linux-Lücke, Audio Intelligence, KI-Operation, KI-Satellit",
+      "publisher": "heise online",
+      "url": "https://www.heise.de/news/KI-Update-kompakt-Linux-Luecke-Audio-Intelligence-KI-Operation-KI-Satellit-11507948.html",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "Tencent Hunyuan veröffentlicht Hyra 2.0 (chinesisch)",
+      "publisher": "IT Home (ithome)",
+      "url": "https://www.ithome.com/1/021/266.htm",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "Tencent Hunyuan Releases Hyra 2.0, Where Agents Develop Reusable Scientific Models and Tools",
+      "publisher": "PANews",
+      "url": "https://www.panews.io/articles/01a19bc7-cc3b-76ab-884f-0629186cd7ce",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "Meta Built Humanoid Prototype With Chinese Startup To Ramp Robotics Push",
+      "publisher": "The Information",
+      "url": "https://www.theinformation.com/articles/meta-built-humanoid-prototype-chinese-startup-ramp-robotics-push",
+      "accessed": "2026-11-02"
+    },
+    {
+      "title": "Meta reportedly built a humanoid robot prototype that can do household chores",
+      "publisher": "Engadget",
+      "url": "https://www.engadget.com/2303434/meta-reportedly-built-a-humanoid-robot-prototype-that-can-do-household-chores/",
+      "accessed": "2026-11-02"
+    }
+  ]
+}
