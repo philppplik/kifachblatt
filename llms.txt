@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Drex Max v1: Antworten als Wahrscheinlichkeit, nicht als Text](https://kifachblatt.de/drex-max-v1-analyse): Nace AI öffnet sein 27-Milliarden-Entscheidungsmodell: Ein Forward-Pass liefert Wahrscheinlichkeiten für bis zu 255 Optionen - generiert wird nichts.
+- [GDPx: Bei 206 Profi-Aufgaben schafft das beste Modell 12 Prozent](https://kifachblatt.de/gdpx-semianalysis-analyse): SemiAnalysis testet Agenten in elf Domänen von Chipdesign bis Quant Trading - mit realen Arbeitsumgebungen statt Prompt-Aufgaben. Bestwert: 12,0.
 - [KI-Fachüberblick: Spieleregel bestätigt, Quoten-Merge, SDK 3.42](https://kifachblatt.de/news-ueberblick-morgen-2026-11-02): Anthropic bestätigt die Claude-Code-Spieleregel. OpenAI fusioniert ChatGPT- und Codex-Kontingente, und SDK 3.42.0 macht Compaction konfigurierbar.
 - [KI-Fachüberblick: Gemeldeter Agenten-Angriff, Jules-Aus, Roboter](https://kifachblatt.de/news-ueberblick-abend-2026-11-01): Chainalysis nennt agentische Techniken als Einbruchsmethode. Google datiert das Jules-Ende, und Aeons Zentrallager zeigt Physical AI im Praxiseinsatz.
 - [KI-Fachüberblick: Sperrberichte, Super-Agent, Monitor-Evasion](https://kifachblatt.de/news-ueberblick-mittag-2026-11-01): Claude blockt Berichten zufolge Spiele-Klone. DeepSeek dokumentiert einen proaktiven Repo-Agenten, und Anthropics Red-Team zeigt eine Monitor-Lücke.
