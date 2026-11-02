@@ -1,0 +1,145 @@
+{
+ "slug": "news-ueberblick-mittag-2026-11-02",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "title": "KI-Fachüberblick: Wasserzeichen-Umbau, Mage-VL-Cowork, EditAgent",
+ "dek": "Ab 3.11. Wasserzeichen auf vier älteren Claude-Modellen - mit Sampling-Lücke. Microsoft öffnet Mage-VL-Cowork (4B); Adobes EditAgent prüft per Messdaten.",
+ "published": "2026-11-02T10:07:00+01:00",
+ "modified": "2026-11-02T10:07:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "KI-Überblick",
+  "Anthropic",
+  "Microsoft",
+  "Open Source",
+  "Computer Use"
+ ],
+ "key_takeaways": [
+  "Anthropic erweitert laut Kunden-Mail ab 3.11. das SynthID-basierte Text-Wasserzeichen auf Mythos 5, Opus 4.7, Opus 4.6 und Sonnet 4.6. Bei den beiden 4.6-Modellen greift es nur bei Default-Sampling (temperature, top_p, top_k); Anthropic selbst rät Compliance-Nutzern, die Defaults nicht zu ändern. Bedrock-Rollout kann Tage länger dauern.",
+  "Microsoft hat Mage-VL-Cowork (4B, Apache 2.0) auf Hugging Face veröffentlicht: ein einzelnes VLM für GUI- und Terminal-Kontrolle ohne externen Orchestrator. OSWorld-Verified 66,0% (Zwei-Läufe-Schnitt, 361 Tasks, 50 Schritte), Mensch-Referenz 72,4% - alles Herstellerangaben ohne unabhängige Replikation.",
+  "Adobes EditAgent (mit UC San Diego) zeigt: Ein unverändertes VLM mit Verifikationsdaten (Ausschnitt, Änderungskarte, Helligkeits-/Farbmessung) schlägt feingetunte Judge-Modelle (81,3% vs. 74,8% usable picks). Kostenpunkt: rund 10x Compute; Nutzen laut Paper auch als Datenquelle für schnellere Editoren."
+ ],
+ "hero": {
+  "alt": "Eigene Grafik zu Mage-VL-Cowork: Balken mit 66,0 Prozent OSWorld-Verified für das 4B-Modell gegen 13,9 Prozent für Fara1.5-4B und gestrichelte Mensch-Referenz bei 72,4 Prozent. Herstellerangaben.",
+  "caption": "Mage-VL-Cowork erreicht laut Microsoft 66,0 Prozent im OSWorld-Verified-Test - bester 4B-Wert, aber unter der Mensch-Referenz von 72,4 Prozent. Herstellerangaben ohne unabhängige Nachmessung, Darstellung nicht maßstäblich.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion), Daten: Hugging-Face-Modellkarte Microsoft"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "**Mittagsüberblick vom 2. November 2026. Quellenstand: 09:57 Uhr MEZ.** Drei Entwicklungen mit Praxisbezug: eine Kennzeichnungspflicht mit implementierungsbedingter Lücke, ein quelloffener Computer-Use-Agent in der 4B-Klasse und ein Forschungsansatz, der Bewertungsmodelle durch Messdaten ersetzt. Alle Primärquellen vollständig gelesen."
+  },
+  {
+   "t": "h2",
+   "x": "1. Wasserzeichen-Ausweitung ab morgen - die Sampling-Lücke ist der relevante Teil"
+  },
+  {
+   "t": "p",
+   "x": "Anthropic erweitert ab dem 3. November sein Text-Wasserzeichen auf Claude Mythos 5, Opus 4.7, Opus 4.6 und Sonnet 4.6. Das berichten The Decoder und Mashable übereinstimmend aus einer E-Mail an API-Kunden; die Modelle nach dem 2. August 2026 tragen die Markierung laut Anthropics Hilfeseite bereits seit Launch. Technisch handelt es sich um eine SynthID-Text-Variante: ein statistisches Muster in der Token-Auswahl, ohne Zusatzzeichen und laut Anbieter ohne Einfluss auf Sinn, Qualität oder Lesbarkeit."
+  },
+  {
+   "t": "p",
+   "x": "Der operativ wichtige Punkt steht bei The Decoder: Auf Opus 4.6 und Sonnet 4.6 greift das Wasserzeichen nur, wenn temperature, top_p und top_k auf ihren Defaultwerten bleiben. Jede Abweichung bei einem der drei Sampling-Parameter reicht demnach, die Markierung zu vermeiden. Anthropic selbst warnt in der Mail: \"If you rely on the watermark for your own compliance, keep these settings at their defaults.\" Für Mythos 5 und Opus 4.7 wird diese Einschränkung in der Mail nicht genannt - ob das Wasserzeichen dort parametrisch robuster ist, ist unbelegt. Auf Amazon Bedrock kann der Rollout wenige Tage länger dauern."
+  },
+  {
+   "t": "p",
+   "x": "Als Begründung für die Nachrüstung älterer Modelle nennt Anthropic die Dezember-Frist der EU-KI-Verordnung; das Unternehmen hat den Verhaltenskodex zu Artikel 50(2) unterzeichnet. Die Detection-API läuft als Private Preview für Regulierer, Medien, Forschende und Compliance-verpflichtete Unternehmen - ein öffentlicher Nachweis ist nicht möglich. The Decoder ordnet ein: OpenAIs Vergleichssystem textGrain ist nur in der EU default-aktiv, Googles SynthID-Text ist quelloffen. Kritik kommt von John Gruber (Wortwahl-Eingriffe seien nie qualitätsneutral) und von Artificial Lawyer (Kanzlei-Szenarien mit KI-Verboten). Beides sind Meinungsbeiträge, keine Messungen."
+  },
+  {
+   "t": "h2",
+   "x": "2. Mage-VL-Cowork: Microsofts 4B-Agent fusioniert GUI- und Terminal-Kontrolle"
+  },
+  {
+   "t": "p",
+   "x": "Microsoft hat Mage-VL-Cowork heute auf Hugging Face unter Apache 2.0 veröffentlicht. Das Besondere laut Modellkarte: Ein einzelnes 4B-Vision-Language-Modell entscheidet selbst, wann es per Screenshot und Mausaktionen (computer_use) und wann es per Code und Terminal (bash) arbeitet - ohne externen Orchestrator. Basis ist Qwen3-4B-Instruct-2507 mit einem eigenen Vision-Backbone (Mage-ViT); Speicherbedarf rund 9,5 Gigabyte in bfloat16."
+  },
+  {
+   "t": "p",
+   "x": "Die Kernzahl: 66,0 Prozent auf OSWorld-Verified (361 gehaltene Tasks, 50-Schritte-Budget), ermittelt als Schnitt zweier kompletter Benchmark-Durchläufe (65,33% und 66,75%). Das ist laut Microsoft der beste Wert in der 4B-Klasse - zum Vergleich nennt die Modellkarte Fara1.5-4B mit 13,9 Prozent - und liegt unter der menschlichen Referenz von 72,4 Prozent. Alle Werte sind Herstellerangaben; unabhängige Replikationen stehen aus."
+  },
+  {
+   "t": "p",
+   "x": "Für das Training nennt Microsoft bemerkenswerte Details: eine fünfstufige Pipeline (+20,44 Prozentpunkte von GUI-SFT bis Online-RL), Online-Verstärkungslernen mit +10,16 Punkten gegenüber reinem SFT bei gleichzeitig 13,0 Prozent weniger Modellaufrufen und 25,4 Prozent weniger Ausgabetokens, sowie Mage-CUA-Forge, eine Synthese-Engine, die 293.806 Aufgaben über 6.915 atomare Fähigkeiten erzeugte. Auch der Teacher (GPT-5.4 in einem bereinigten Harness, 92,0%) ist dokumentiert. Wer eigene Computer-Use-Agenten baut, bekommt hier ein vollständiges Rezept statt nur Gewichte."
+  },
+  {
+   "t": "h2",
+   "x": "3. EditAgent: Verifikationsdaten schlagen trainierte Bewertungsmodelle"
+  },
+  {
+   "t": "p",
+   "x": "Adobe Research und UC San Diego legen mit EditAgent (arXiv 2610.39664) eine Antwort auf ein bekanntes Problem vor: Agentische Bildbearbeitung scheitert oft an der Selbstbewertung. In ihrem 600-Edits-Benchmark (blind bewertet von fünf Profis) lieferte der General-Editor Flux-2-Klein-9B in 42,7 Prozent der Fälle kein brauchbares Ergebnis; spezialisierte Werkzeuge lösten rund zwei Drittel dieser Versager, weitere Wiederholungen mit demselben Editor fast nichts. Parallele Varianten aus dem Original schlugen iterative Verfeinerung in 78,5 Prozent der Vergleiche - bei halbiertem Evaluationsaufwand."
+  },
+  {
+   "t": "p",
+   "x": "Der zentrale Befund betrifft den Judge: Sieben unveränderte VLMs, die statt des Gesamtbilds einen Verifikationsdatensatz sehen (Ausschnitt des editierten Bereichs, Änderungskarte, gemessene Helligkeits- und Farbstatistik), übertrafen allesamt jedes feingetunte Bewertungsmodell. Bestwert: Qwen3.8-27B mit 81,3 Prozent usable picks gegenüber EditScore-72B mit 74,8 Prozent. Eine History-Prüfung fängt zudem Fälle ab, in denen spätere Schritte frühere Edits still rückgängig machen."
+  },
+  {
+   "t": "p",
+   "x": "Die Kehrseite: EditAgent braucht laut Paper rund zehnmal so viel Rechenleistung wie ein Einzeleditor, und die Qualität hängt vom angeschlossenen Werkzeugpool ab. Als Datengenerator ist der Ansatz dagegen validiert: Aus 25.700 verifizierten Ergebnissen feingetunte Editoren verbesserten sich auf allen drei Benchmarks, während direkt von FLUX erzeugte Trainingsdaten das eigene Modell verschlechterten. Einordnung: eigener Benchmark der Forscher, Prototyp ohne Produktzusage - aber methodisch relevant für alle, die Agenten-Output automatisiert bewerten."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Gilt die Sampling-Lücke beim Wasserzeichen für alle vier Modelle?",
+   "a": "Nein. Laut The Decoder nennt die Kunden-Mail die Default-Bedingung nur für Opus 4.6 und Sonnet 4.6. Für Mythos 5 und Opus 4.7 wird sie nicht erwähnt; ob das Wasserzeichen dort bei verändertem Sampling weiter trägt, ist unbelegt."
+  },
+  {
+   "q": "Ist Mage-VL-Cowork produktionsreif?",
+   "a": "Das Modell ist ein Forschungs-Release unter Apache 2.0 mit offenem Trainingsrezept. Die 66,0 Prozent OSWorld-Verified sind Herstellerangaben ohne unabhängige Replikation, und ein Rechner-Agent braucht ohnehin eine isolierte Testumgebung. Für Experimente und Evaluierung ist es sofort nutzbar."
+  },
+  {
+   "q": "Was ist der praktische Nutzen von EditAgent, wenn es zehnmal so viel Compute braucht?",
+   "a": "Laut Paper vor allem als Datenquelle: Die verifizierten Ergebnisse (rund 26.000 Beispiele) verbesserten feingetunte Editoren auf allen drei getesteten Benchmarks. Direkte Bearbeitung in Echtzeit ist wegen des Aufwands nicht der Fokus."
+  }
+ ],
+ "related": [
+  "sicherheit-fuer-agenten-systeme",
+  "mistral-large-4-weights-analyse"
+ ],
+ "sources": [
+  {
+   "title": "How Claude marks AI-generated content (Hilfeseite)",
+   "publisher": "Anthropic",
+   "url": "https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content",
+   "accessed": "2026-11-02"
+  },
+  {
+   "title": "Anthropic's watermark rollout leaves a loophole on two older Claude models",
+   "publisher": "The Decoder",
+   "url": "https://the-decoder.com/anthropics-watermark-rollout-leaves-a-loophole-on-two-older-claude-models/",
+   "accessed": "2026-11-02"
+  },
+  {
+   "title": "Anthropic expands text watermarking to older Claude versions beginning November 3",
+   "publisher": "Mashable",
+   "url": "https://mashable.com/tech/anthropic-expands-text-watermarking-to-older-claude-versions",
+   "accessed": "2026-11-02"
+  },
+  {
+   "title": "microsoft/Mage-VL-Cowork (Modellkarte, Apache 2.0)",
+   "publisher": "Hugging Face / Microsoft",
+   "url": "https://huggingface.co/microsoft/Mage-VL-Cowork",
+   "accessed": "2026-11-02"
+  },
+  {
+   "title": "Mage-VL-Cowork: 4B Hybrid GUI + Code Computer-Use Agent (Projektseite)",
+   "publisher": "Microsoft",
+   "url": "https://microsoft.github.io/Mage/cowork/",
+   "accessed": "2026-11-02"
+  },
+  {
+   "title": "EditAgent: Rethinking Agentic Image Editing (Paper)",
+   "publisher": "arXiv (Adobe Research / UC San Diego)",
+   "url": "https://arxiv.org/abs/2610.39664",
+   "accessed": "2026-11-02"
+  },
+  {
+   "title": "Adobe is testing how well AI agents can use editing tools like a Photoshop professional would",
+   "publisher": "The Decoder",
+   "url": "https://the-decoder.com/adobe-is-testing-how-well-ai-agents-can-use-editing-tools-like-a-photoshop-professional-would/",
+   "accessed": "2026-11-02"
+  }
+ ]
+}
