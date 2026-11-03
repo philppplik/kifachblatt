@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Offene Computer-Agenten, LifeVal und EU-Inferenz am Morgen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-03): NorthCUA bringt eine Apache-2.0-Agentenfamilie bis 397B, OpenAI misst Alltagstauglichkeit mit LifeVal, und Flower Labs meldet Frontier-Anspruch mit EU-Inferenz.
 - [KI-Fachüberblick: Agenten-OP, Hyra 2.0, Meta-Roboter Max](https://kifachblatt.de/news-ueberblick-abend-2026-11-02): Exin ließ Claude Sonnet eine Gentherapie an der Maus wählen und injizieren - mit Vet-Gate. Tencent meldet Hyra 2.0; Metas Roboter Max bleibt intern.
 - [KI-Fachüberblick: Wasserzeichen-Umbau, Mage-VL-Cowork, EditAgent](https://kifachblatt.de/news-ueberblick-mittag-2026-11-02): Ab 3.11. Wasserzeichen auf vier älteren Claude-Modellen - mit Sampling-Lücke. Microsoft öffnet Mage-VL-Cowork (4B); Adobes EditAgent prüft per Messdaten.
 - [Drex Max v1: Antworten als Wahrscheinlichkeit, nicht als Text](https://kifachblatt.de/drex-max-v1-analyse): Nace AI öffnet sein 27-Milliarden-Entscheidungsmodell: Ein Forward-Pass liefert Wahrscheinlichkeiten für bis zu 255 Optionen - generiert wird nichts.
