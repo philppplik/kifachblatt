@@ -1,0 +1,186 @@
+{
+  "slug": "longcat-2-5-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "LongCat-2.5: Meituans 1,6-Billionen-Modell für Agentenarbeit",
+  "dek": "Nativ multimodal, rund 48 Milliarden aktive Parameter, ein Million-Token-Kontext - und eine Benchmark-Tabelle, die ihre Fremdwerte sauber kennzeichnet.",
+  "published": "2026-11-03T07:20:00+01:00",
+  "modified": "2026-11-03T07:20:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Meituan",
+    "LongCat",
+    "Agenten",
+    "Coding",
+    "Multimodal"
+  ],
+  "key_takeaways": [
+    "LongCat-2.5 ist Meituans neues Agenten-Modell: 1,6 Billionen Parameter gesamt, rund 48 Milliarden aktiv pro Token (MoE), nativ multimodal über diskrete visuelle Tokens [1].",
+    "Schwerpunkt agentisches Programmieren: groß angelegtes asynchrones RL mit Umgebungen aus echten GitHub-Pull-Requests, verifiziert über Fail-to-Pass- und Pass-to-Pass-Tests [1].",
+    "Nach Herstellerangaben 88,4 Prozent auf Terminal Bench v2.1 und 91,9 auf BrowseComp; Fremdwerte in der Tabelle sind mit Sternchen als übernommen markiert - alles Anbieterangaben ohne Fremdprüfung [1].",
+    "Verfügbar über die LongCat-API und Vercel AI Gateway mit 1-Million-Token-Kontext; zu Gewichten und Lizenz macht der Hersteller keine Angabe, uns ist kein offenes Repository bekannt [1][2][3]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Text- und Bild-Token laufen in einen gemeinsamen Token-Strom, daneben die Angaben 1,6 Billionen Parameter und 48 Milliarden aktiv",
+    "caption": "Ein Token-Strom für Text und Bild: LongCat-2.5 verarbeitet visuelle Signale als diskrete Tokens im selben Backbone - 1,6 Billionen Parameter, rund 48 Milliarden aktiv [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Meituan hat LongCat-2.5 vorgestellt, sein Modell für lange agentische Aufgaben: 1,6 Billionen Parameter gesamt, rund 48 Milliarden aktiv pro Token. Der Blog-Beitrag trägt das Datum 1. November; über das AI-Gateway von Vercel und die LongCat-Plattform ist das Modell seit dem 2. November abrufbar. Der Schwerpunkt liegt auf agentischem Programmieren - vom Planen über das Umsetzen bis zum Prüfen kompletter Projekte [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "table",
+      "caption": "LongCat-2.5 im Überblick (Herstellerangaben) [1][2]",
+      "head": [
+        "Eigenschaft",
+        "Wert"
+      ],
+      "rows": [
+        [
+          "Architektur",
+          "Mixture-of-Experts, 1,6 Bio. Parameter gesamt, ca. 48 Mrd. aktiv pro Token"
+        ],
+        [
+          "Multimodalität",
+          "Visuelle Signale als mehrstufige diskrete Tokens (Residuen-Vektorquantisierung über nativ aufgelöste Merkmale), verarbeitet im selben Backbone wie Text"
+        ],
+        [
+          "Kontext",
+          "1 Mio. Tokens (laut Vercel AI Gateway)"
+        ],
+        [
+          "Training",
+          "Langsequenz-Midtraining und -SFT; groß angelegtes asynchrones agentisches RL; Multi-Teacher-Distillation (MOPD)"
+        ],
+        [
+          "Inferenz",
+          "W4A4-Quantisierung auf inländischen Beschleunigern; laut Online-Stresstest +43,3 Prozent Prefill- und +42,77 Prozent Decode-Durchsatz gegenüber W8A8"
+        ],
+        [
+          "Zugang",
+          "LongCat-API (longcat.chat) und Vercel AI Gateway (Modellname meituan/longcat-2.5), Text- und Bildeingaben"
+        ],
+        [
+          "Gewichte / Lizenz",
+          "Keine Angabe; das Lizenzfeld des unabhängigen Trackers bleibt leer [3]"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "Meituan meldet für LongCat-2.5 unter anderem 88,4 Prozent auf Terminal Bench v2.1 (Claude-Code-Harness, 512K Kontext, Mittel aus drei Läufen; LongCat-2.0 lag bei 70,8), 64,6 auf DeepSWE v1.1 (9,7), 91,9 auf BrowseComp (79,9) und 63,1 auf HLE mit Werkzeugen (37,5) [1]. Die Tabelle kennzeichnet Fremdwerte sauber: Sternchen markiert Werte aus öffentlichen Berichten oder offiziellen Leaderboards, alle übrigen Fremdmessungen sind selbst gelaufen und laut Hersteller nur indikativ. Wir geben die Vergleichswerte anderer Modelle aus dieser Herstellertabelle nicht als deren eigene Werte wieder."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "LongCat-2.5: gemeldete Werte in Prozent (je Test eigene Metrik)",
+      "alt": "Balkendiagramm: Terminal Bench v2.1 mit 88,4 Prozent, BrowseComp 91,9, MCP Atlas 83,1, DeepSWE 64,6, HLE mit Werkzeugen 63,1 - je Test eigene Metrik",
+      "caption": "Herstellerangaben aus dem LongCat-Blog (Einstellung enable_thinking=on, Temperatur 1,0), nicht unabhängig verifiziert [1]. Je Benchmark eigene Aufgaben und Harnesses - die Werte sind nicht testübergreifend vergleichbar.",
+      "labels": [
+        "Terminal Bench v2.1",
+        "BrowseComp",
+        "MCP Atlas",
+        "DeepSWE v1.1",
+        "HLE mit Werkzeugen"
+      ],
+      "series": [
+        {
+          "name": "Gemeldeter Wert in %",
+          "values": [
+            88.4,
+            91.9,
+            83.1,
+            64.6,
+            63.1
+          ]
+        }
+      ],
+      "y_label": "Gemeldeter Wert in %"
+    },
+    {
+      "t": "h2",
+      "x": "Nativ multimodal statt angedockt"
+    },
+    {
+      "t": "p",
+      "x": "Anders als Modelle mit angeschlossenem Bild-Encoder bildet LongCat-2.5 visuelle Signale als mehrstufige diskrete Tokens ab: Eine Residuen-Vektorquantisierung zerlegt nativ aufgelöste Bildmerkmale in Token-Sequenzen, die das Backbone genauso verarbeitet wie Text. Weil der Tokenizer feststeht, lassen sich Bild-Token offline vorberechnen und zwischenspeichern - das vereinfacht laut Meituan das Packen langer Sequenzen und die Lastverteilung im Training. In t-SNE-Bildern eines kleineren Testmodells (etwa 3 Milliarden aktive Parameter) vermischen sich visuelle und textuelle Einbettungen im selben semantischen Raum - ein früher Beleg, kein Ergebnis am großen Modell [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Wie trainiert wurde"
+    },
+    {
+      "t": "p",
+      "x": "Für das agentische RL baut eine Pipeline aus echten GitHub-Pull-Requests automatisch Aufgaben, interaktive Umgebungen und verifizierbare Tests (Fail-to-Pass und Pass-to-Pass); Live-Erfolgsquoten steuern das Nachschärfen der Testfälle. Gegen Reward-Hacking werden Netzwerkzugang und Git-Historie in den Umgebungen entfernt und ein LLM-Prüfer auditet Trajektorien auf Tricks. Asynchrone Teil-Rollouts kürzen veraltete Gradientenbeiträge, und eine numerische Gleichschaltung von Training und Inferenz soll Kernel-Unterschiede ausschließen. Spezialfähigkeiten kommen per Multi-Teacher-Distillation aus den Expertengruppen von LongCat-2.0 [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "LongCat-2.5 ist ein API-Release, kein Gewichte-Release: Wer das Modell will, geht über longcat.chat oder Vercels AI Gateway mit 1-Million-Token-Kontext; zu Gewichten und Lizenz schweigt der Hersteller, und der unabhängige Tracker lässt das Feld leer [1][2][3]. Auffällig ist die Infrastrukturseite: Training und W4A4-Inferenz laufen auf inländischen Beschleunigern - für Meituan ein Kosten- und Unabhängigkeitsthema. Alle Zahlen stammen aus einem einzigen Herstellerbeitrag; sie sind plausibel dokumentiert (Harness-Versionen, Laufanzahlen, Sternchen-Praxis), aber von uns nicht geprüft. Wer Werte wie Terminal Bench v4.0 (38,5 Prozent) liest, sollte das Niveau des Tests bedenken: Selbst der Hersteller-Spitzenwert bleibt weit unter der Hälfte."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist LongCat-2.5?",
+      "a": "Meituans neues MoE-Modell für lange agentische Aufgaben: 1,6 Billionen Parameter gesamt, rund 48 Milliarden aktiv pro Token, nativ multimodal über diskrete visuelle Tokens [1]."
+    },
+    {
+      "q": "Gibt es offene Gewichte zu LongCat-2.5?",
+      "a": "Der Hersteller macht dazu keine Angabe, der unabhängige Tracker lässt das Lizenzfeld leer, und uns ist kein Gewichts-Repository bekannt. Zugang gibt es über die LongCat-API und Vercel AI Gateway [1][2][3]."
+    },
+    {
+      "q": "Wie groß ist das Kontextfenster?",
+      "a": "Eine Million Tokens, laut der Ankündigung von Vercel AI Gateway [2]."
+    },
+    {
+      "q": "Wie belastbar sind die Benchmark-Werte?",
+      "a": "Es sind Herstellerangaben aus einem Blog-Beitrag; Fremdwerte sind dort mit Sternchen als übernommen markiert, eigene Fremdmessungen nennt der Hersteller indikativ. Unabhängig geprüft ist davon nichts, uns ist auch keine Fremdmessung bekannt [1]."
+    },
+    {
+      "q": "Was bedeutet W4A4?",
+      "a": "Gewichte und Aktivierungen werden auf 4 Bit quantisiert; Meituan meldet dafür auf inländischen Beschleunigern rund 43 Prozent mehr Prefill-Durchsatz als mit 8-Bit-Gewichten - Herstellerangabe aus einem Online-Stresstest [1]."
+    }
+  ],
+  "related": [
+    "coding-agenten-alltag",
+    "nanbeige-4-3-33b-analyse",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ],
+  "sources": [
+    {
+      "title": "Introducing LongCat-2.5 - Native Multimodality for Agentic Tasks",
+      "publisher": "Meituan / LongCat",
+      "url": "https://longcat.ai/blog/longcat-2.5/",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "LongCat 2.5 now available on AI Gateway",
+      "publisher": "Vercel",
+      "url": "https://vercel.com/changelog/longcat-2-5-now-available-on-ai-gateway",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "AI Model Releases - November 2026 (Live Tracker)",
+      "publisher": "AIFOD / af.net",
+      "url": "https://af.net/realtime/ai-model-releases-november-2026/",
+      "accessed": "2026-11-03"
+    }
+  ],
+  "method": "Analyse auf Basis des vollständig gelesenen Hersteller-Blogs, des Vercel-Changelogs und des unabhängigen Release-Trackers; Hugging-Face-Suche nach Gewichts-Repositories ohne Treffer. Alle Benchmark- und Durchsatzwerte sind Herstellerangaben; Vergleichswerte anderer Modelle aus der Herstellertabelle werden nicht als deren eigene Werte wiedergegeben.",
+  "limitations": "Keine eigenen Tests und kein eigener API-Zugriff. Sämtliche Messwerte stammen aus einem einzigen Herstellerbeitrag. Uns ist keine unabhängige Fremdmessung bekannt; zur Verfügbarkeit offener Gewichte liegt keine Herstellerangabe vor."
+}

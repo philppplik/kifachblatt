@@ -1,0 +1,178 @@
+{
+  "slug": "northcua-computer-use-analyse",
+  "lang": "de",
+  "section": "agenten",
+  "type": "analysis",
+  "title": "NorthCUA: Offene Computer-Use-Modelle von 9B bis 397B",
+  "dek": "Drei Größen, Apache 2.0, ein 121-seitiger Bericht - und eine Modellkarte, die ungewöhnlich offen sagt, was ihre Zahlen nicht belegen.",
+  "published": "2026-11-03T07:20:00+01:00",
+  "modified": "2026-11-03T07:20:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Computer Use",
+    "NorthCUA",
+    "Agenten",
+    "Offene Gewichte",
+    "Qwen"
+  ],
+  "key_takeaways": [
+    "NorthCUA ist eine offene Computer-Use-Familie auf Qwen3.5-Basis: Nano (9B, dicht), Mini (35B, MoE mit 3B aktiv) und Pro (397B, MoE mit 17B aktiv), Gewichte unter Apache 2.0 [1][2][3].",
+    "Laut Modellkarte, die den technischen Bericht zitiert, erreicht Pro nach dem RL-Training 88,64 Prozent Erfolgsquote auf OSWorld-Verified und 73,89 auf WebArena-Verified - Herstellerangaben, die ausdrücklich nicht am veröffentlichten Export nachgemessen wurden [1].",
+    "Ungewöhnliche Transparenz: Die Karte markiert WebTestBench als ausstehend, nennt OSWorld-2.0-Werte nur als Teilpunkte und dokumentiert ein Grounding-Beispiel mit einem im Training gesehenen Bedienelement [1].",
+    "Der Betrieb ist an das offizielle NorthCUA Harness gekoppelt: Koordinaten strikt im Format normalized_1000 (0 bis 1000 statt Pixeln); der Pro-Export belegt rund 794 GB [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: ein Fenster mit Screenshot links, Pfeil zum NorthCUA-Modellblock, rechts ein Mauszeiger mit Koordinatenangabe 500/500",
+    "caption": "Sehen, denken, klicken: NorthCUA-Modelle antworten auf Screenshots mit Tool-Aufrufen - Koordinaten strikt normiert auf 0 bis 1000 [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Computer-Use-Modelle steuern Rechner so, wie Menschen es tun: Sie sehen Screenshots und erzeugen Klicks, Tastatureingaben und Tool-Aufrufe. Bisher kamen die stärksten dieser Modelle fast ausschließlich hinter APIs. NorthCUA legt eine offene Gegenposition vor: drei Modellgrößen auf Qwen3.5-Basis, veröffentlicht unter Apache 2.0, dazu ein 121-seitiger technischer Bericht. Die Gewichts-Repositories stehen seit dem 30. Oktober (Pro) beziehungsweise 1. November (Nano und Mini) auf Hugging Face; die Organisation firmiert inzwischen als china-beipo [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "table",
+      "caption": "Die NorthCUA-Familie im Überblick (Herstellerangaben) [1][2][3]",
+      "head": [
+        "Eigenschaft",
+        "Wert"
+      ],
+      "rows": [
+        [
+          "Modelle",
+          "Nano: 9B dicht (32 Schichten, ca. 18,84 GB); Mini: 35B MoE mit 3B aktiv (40 Schichten, ca. 70,23 GB); Pro: 397B MoE mit 17B aktiv (60 Schichten, ca. 793,63 GB)"
+        ],
+        [
+          "Basis / Export",
+          "Qwen3.5 (Pro: Qwen3.5-397B-A17B); Safetensors BF16, Pro in 122 Shards; Release r13, Checkpoint 975; ohne MTP-Gewichte"
+        ],
+        [
+          "Kontext",
+          "262.144 Tokens konfiguriert - laut Karte keine Qualitätsgarantie bei dieser Länge"
+        ],
+        [
+          "Ein-/Ausgabe",
+          "Anfragen, Screenshots und Interaktionshistorie hinein; Reasoning, Antworten und Tool-Aufrufe heraus"
+        ],
+        [
+          "Betrieb",
+          "Offizielles NorthCUA Harness erforderlich; Koordinaten strikt normalized_1000 (0-1000), Umrechnung in Pixel erst bei der Ausführung"
+        ],
+        [
+          "Lizenz",
+          "Apache 2.0 für Gewichte und Dokumentation, mit NOTICE-Attribution"
+        ]
+      ]
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "Laut Modellkarte meldet der technische Bericht nach dem Reinforcement-Learning-Training Erfolgsquoten von 88,64 Prozent (Pro), 85,30 (Mini) und 78,90 (Nano) auf OSWorld-Verified - 361 Aufgaben, acht Google-Drive-Aufgaben ausgenommen, 100-Schritte-Limit. Auf WebArena-Verified (812 Aufgaben, offizielle Ergebnisprüfungen) liegen die Werte bei 73,89, 70,43 und 67,16 Prozent. Grounding-Messungen liefen auf SFT-Checkpoints: 93,30 Prozent (Pro) auf ScreenSpot-Pro und 90,96 auf OSWorld-G. Der Sprung vom SFT- zum RL-Checkpoint ist moderat (Pro auf OSWorld: 85,87 auf 88,64) [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "NorthCUA: gemeldete Erfolgsquote auf OSWorld-Verified in Prozent (nach RL)",
+      "alt": "Balkendiagramm: Nano 9B mit 78,90 Prozent, Mini 35B mit 85,30 Prozent, Pro 397B mit 88,64 Prozent Erfolgsquote auf OSWorld-Verified nach dem RL-Training",
+      "caption": "Herstellerangaben aus der Modellkarte, die den technischen Bericht zitiert [1]. Erfolgsquote in Prozent auf OSWorld-Verified (361 Aufgaben, 100-Schritte-Limit), nicht von uns nachgemessen; die Karte betont selbst, dass die Werte nicht am exportierten Checkpoint verifiziert sind.",
+      "labels": [
+        "Nano 9B",
+        "Mini 35B",
+        "Pro 397B"
+      ],
+      "series": [
+        {
+          "name": "Erfolgsquote OSWorld-Verified in % (RL)",
+          "values": [
+            78.9,
+            85.3,
+            88.64
+          ]
+        }
+      ],
+      "y_label": "Erfolgsquote in %"
+    },
+    {
+      "t": "h2",
+      "x": "Was die Karte selbst einräumt"
+    },
+    {
+      "t": "p",
+      "x": "Das Bemerkenswerteste an dieser Veröffentlichung ist ihre Ehrlichkeit. Die Karte sagt ausdrücklich: Die Berichtswerte stammen aus Forschungs-Checkpoints und wurden nicht an den exportierten Modelldateien nachgemessen. Für OSWorld 2.0 (108 Aufgaben, 500-Schritte-Limit) liegt nur eine mittlere Teilpunkte-Quote von 66,80 Prozent für Pro vor, keine Abschlussquote; Nano und Mini fehlen dort ganz. Die WebTestBench-Tabelle markiert NorthCUA als ausstehend - kein Wert wird behauptet. Der Bericht dokumentiert zudem ein Grounding-Beispiel, bei dem ein Bedienelement im Training vorkam und in verändertem Zustand wiedererkannt wurde; die Werte seien daher nicht als Beweis zu lesen, dass jedes geprüfte Element ungesehen war. Der Bericht selbst ist öffentlich nicht verlinkt; dokumentierende Quelle ist die Modellkarte. Auch der erwähnte Ultrafast-Modus gilt nicht als auf die veröffentlichten Gewichte übertragbar [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Training laut Modellkarte"
+    },
+    {
+      "t": "p",
+      "x": "Drei Stufen: ein breites GUI-Midtraining mit mehr als 100.000 Trajektorien und 4 Millionen Interaktionsschritten (plus rund 40.000 Grounding-Beispiele), dann verifiziertes Long-Horizon-SFT mit etwa 3.000 geprüften Trajektorien (310.000 GUI-Schritte), schließlich gemeinsames Desktop-Web-RL (GRPO) aus einem Pool von rund 1.500 Desktop- und 500 Web-Aufgaben. Die Karte kennzeichnet diese Zahlen als gerundete Korpus-Angaben, nicht als Verbrauch pro Modell [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Eine Apache-2.0-Familie bis 397B für Computer Use ist ein Angebot an Forschung und an Teams, die Agenten selbst hosten wollen. Praktisch bleibt der Einstieg anspruchsvoll: Der Pro-Export belegt rund 794 GB, und Modell wie Harness bilden eine Einheit - wer ein anderes Agenten-Interface anschließt, bricht den Koordinatenvertrag. Die Verbreitung ist gering (Pro: 361 Downloads im letzten Monat, Nano und Mini jeweils 0). Dennoch setzt die Karte einen Standard, den man sich öfter wünschen würde: Sie trennt Berichtswerte von Export-Werten, markiert Lücken und benennt Kontaminationsrisiken selbst [1][2][3]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist NorthCUA?",
+      "a": "Eine offene Familie von Computer-Use-Modellen (Nano 9B, Mini 35B, Pro 397B) auf Qwen3.5-Basis: Sie verarbeiten Screenshots und Interaktionshistorie und erzeugen Reasoning, Antworten und Tool-Aufrufe für Desktop- und Browser-Laufzeiten. Gewichte unter Apache 2.0 [1][2][3]."
+    },
+    {
+      "q": "Wie gut ist NorthCUA?",
+      "a": "Nach Herstellerangaben 88,64 Prozent Erfolgsquote (Pro) auf OSWorld-Verified und 73,89 auf WebArena-Verified - Werte aus dem technischen Bericht, die laut Karte nicht am veröffentlichten Export nachgemessen wurden [1]."
+    },
+    {
+      "q": "Kann ich NorthCUA mit meinem eigenen Agenten-Framework nutzen?",
+      "a": "Der Hersteller verlangt das offizielle NorthCUA Harness: Prompts, Tool-Definitionen und das strikte Koordinatenformat normalized_1000 (0-1000 statt Pixel) sind aufeinander abgestimmt [1]."
+    },
+    {
+      "q": "Was brauche ich an Hardware für NorthCUA-Pro?",
+      "a": "Allein die Gewichtsdateien belegen rund 794 GB (BF16); dazu kommen Aktivierungen und KV-Cache. Die Karte nennt keine fertige Serving-Konfiguration und warnt, dass aktive Parameter nichts über den Speicherbedarf der Gewichte sagen [1]."
+    },
+    {
+      "q": "Sind die Benchmark-Werte unabhängig geprüft?",
+      "a": "Uns ist keine Fremdmessung bekannt; wir haben selbst keine durchgeführt. Die Karte weist selbst darauf hin, dass Berichtswerte und Export nicht deckungsgeprüft sind [1]."
+    }
+  ],
+  "related": [
+    "coding-agenten-alltag",
+    "sicherheit-fuer-agenten-systeme",
+    "offene-gewichte-vs-open-source"
+  ],
+  "sources": [
+    {
+      "title": "china-beipo/NorthCUA-Pro - Modellkarte",
+      "publisher": "Hugging Face / NorthCUA Team",
+      "url": "https://huggingface.co/beipo-ai/NorthCUA-Pro",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "china-beipo/NorthCUA-Mini - Modellkarte",
+      "publisher": "Hugging Face / NorthCUA Team",
+      "url": "https://huggingface.co/china-beipo/NorthCUA-Mini",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "china-beipo/NorthCUA-Nano - Modellkarte",
+      "publisher": "Hugging Face / NorthCUA Team",
+      "url": "https://huggingface.co/china-beipo/NorthCUA-Nano",
+      "accessed": "2026-11-03"
+    }
+  ],
+  "method": "Analyse auf Basis der drei Hugging-Face-Modellkarten (Pro, Mini, Nano), jeweils vollständig gelesen; Erstellungs- und Änderungsdaten der Repositories über die Hugging-Face-API geprüft. Alle Benchmark-Werte sind Herstellerangaben aus den Karten, die ihrerseits den 121-seitigen technischen Bericht zitieren.",
+  "limitations": "Keine eigenen Agenten- oder Grounding-Tests. Der technische Bericht ist öffentlich nicht verlinkt; wir geben nur Werte wieder, die die Modellkarte aus ihm zitiert. Der offizielle NorthCUA-Harness-Code wurde nicht geprüft. Uns ist keine unabhängige Fremdmessung der Erfolgsquoten bekannt."
+}
