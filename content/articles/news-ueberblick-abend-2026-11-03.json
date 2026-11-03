@@ -1,0 +1,135 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-03",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-03T16:08:00+01:00",
+  "modified": "2026-11-03T16:08:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Designing responsible AI for learning",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/education/ai-learning-era-updates-2026/",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "New research shows how Guided Learning supports students",
+      "publisher": "Google",
+      "url": "https://blog.google/products-and-platforms/products/education/guided-learning-uk-japan/",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "Introducing Hume's Audio Decision API: A decision layer for speech and sound",
+      "publisher": "Hume AI",
+      "url": "https://www.hume.ai/blog/introducing-hume-audio-decision-api",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "Audio Decisions API launch",
+      "publisher": "Hume API-Dokumentation",
+      "url": "https://dev.hume.ai/audio-decisions/changelog/2026/11/2",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "Hume AI launches the Jev of voice AI",
+      "publisher": "The Deep View",
+      "url": "https://www.thedeepview.com/articles/hume-ai-launches-the-jev-of-voice-ai",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "AGIBOT Unveils GO-3 Preview, Takes Top Spot on Three Embodied AI Benchmarks",
+      "publisher": "AGIBOT, Pressemitteilung bei PR Newswire",
+      "url": "https://www.prnewswire.com/apac/news-releases/agibot-unveils-go-3-preview-takes-top-spot-on-three-embodied-ai-benchmarks-302927277.html",
+      "accessed": "2026-11-03"
+    }
+  ],
+  "title": "KI-Fachüberblick: Hume-API, GO-3 und Guided Learning",
+  "dek": "Hume liefert Audio-Urteile als Wahrscheinlichkeiten. AGIBOT beschreibt eine Robotik-Lernschleife; Google startet Guided Learning in Classroom.",
+  "tags": [
+    "KI-Überblick",
+    "Audio-KI",
+    "Robotik",
+    "Bildung",
+    "Hume AI"
+  ],
+  "key_takeaways": [
+    "Hume dokumentiert POST /v0/decisions/file für Fragen an eine Audiodatei. Mögliche Antwortformen umfassen Auswahl, Skala und Zeitspannen; der Blog verweist für API-Zugang auf eine Warteliste.",
+    "GO-3 Preview verbindet laut AGIBOT WRAM, das hybride Nachtraining Genie Evolver und das Agenten-Framework Genie Master. Die Open-Source-Freigabe ist bis Ende 2026 angekündigt, die Benchmark-Spitzenplätze sind Herstellerangaben.",
+    "Google beginnt den globalen Classroom-Rollout von Guided Learning. Die im Blog berichteten Lernzuwächse von 5,3 beziehungsweise 8,1 Prozentpunkten betreffen eine einzelne Statistik-Lernsitzung, keine allgemeine Langzeitwirkung."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik der von AGIBOT beschriebenen drei Lernphasen: WRAM für Vortraining, Genie Evolver für Nachtraining mit 100 Robotern, Simulation und Weltmodellen, Genie Master für Erfahrungen im Einsatz. Open Source ist bis Ende 2026 angekündigt.",
+    "caption": "GO-3 Preview nach AGIBOTs Pressemitteilung: Vortraining, hybrides Nachtraining und Erfahrung im Einsatz. Herstellerbeschreibung, kein eigener Test - vereinfachte Darstellung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: AGIBOT / PR Newswire"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Abend des 3. November 2026. Quellenstand: 16:01 Uhr MEZ.** Drei technische Ansätze: frei formulierte Fragen mit strukturierten Audio-Antworten, eine Robotik-Architektur mit Rückkopplung aus dem Einsatz und eine schulisch gesteuerte Lernhilfe. Leistungsangaben bleiben jeweils den Anbietern zugeordnet."
+    },
+    {
+      "t": "h2",
+      "x": "Hume: Audiofragen mit festgelegtem Antwortschema"
+    },
+    {
+      "t": "p",
+      "x": "Hume beschreibt die Audio Decision API als Entscheidungsschicht für Sprache und Geräusche. Eine Anfrage enthält Roh-Audio, Fragen in natürlicher Sprache und vorgegebene Antwortmöglichkeiten. Die Ausgabe liefert Wahrscheinlichkeiten, die eine Anwendung gewichten oder mit Schwellenwerten verbinden kann. Der Anbieter nennt Ja/Nein-Fragen, Auswahlantworten, Skalen und Zeitspannen etwa für Lachen oder Seufzen. Das Changelog dokumentiert POST /v0/decisions/file sowie Python- und TypeScript-SDKs."
+    },
+    {
+      "t": "p",
+      "x": "Der Blog meldet 70,7 Prozent Übereinstimmung mit dem durchschnittlichen Urteil eines menschlichen Panels gegenüber einer Individual-Rater-Basis von 56,5 Prozent. Das ist ein herstellereigener Wahrnehmungsvergleich und keine allgemeine Audio-Genauigkeit. Hume unterscheidet selbst zwischen eher objektiven Fragen wie Sprecherzahl und subjektiven Urteilen wie Empathie oder Frustration. Für eigene Anwendungen sollten diese Urteile deshalb mit passenden menschlichen Bewertungen validiert werden."
+    },
+    {
+      "t": "p",
+      "x": "Zugang und Echtzeitbetrieb sind getrennt zu lesen: Der Blog verweist für API-Zugang auf eine Warteliste, während das Changelog den Dateiendpunkt als gestartet beschreibt. Zwar nennt Hume ein Echtzeit-Playground-Erlebnis, bezeichnet Live- und Umgebungsanwendungen aber zugleich als längerfristige Möglichkeit mit noch entstehenden Echtzeitfähigkeiten. Ein uneingeschränkt verfügbarer Streaming-Endpunkt ist durch diese Quellen nicht belegt. The Deep View berichtet über eine vorab gesehene Demo; das ersetzt keine unabhängige Benchmark-Nachmessung."
+    },
+    {
+      "t": "h2",
+      "x": "GO-3 Preview: Hersteller beschreibt drei Lernphasen"
+    },
+    {
+      "t": "p",
+      "x": "In seiner heutigen Pressemitteilung verbindet AGIBOT drei Bausteine. WRAM (World Reasoning Action Model) soll im Vortraining Aufgabenverständnis, künftige Zustände und Aktionen zusammenführen. CoAE extrahiert visuelle Merkmale für die Steuerung; SVP prognostiziert künftige Zustände in einem Schritt; KASO wählt für das gemeinsame Training solche Vorhersagen aus, die besser zu tatsächlich ausgeführten Aktionen passen. Diese Beschreibung stammt vom Hersteller, nicht aus einem von uns geprüften unabhängigen Experiment."
+    },
+    {
+      "t": "p",
+      "x": "Genie Evolver kombiniert laut AGIBOT im Nachtraining 100 physische Roboter, Physiksimulation und Weltmodelle. Genie Master soll anschließend Planung, Ausführung, Rückmeldung und Erfahrungsspeicherung verbinden. Sein Embodied Execution Protocol ordnet Schnittstellen in Fähigkeiten, Anleitung, Rückmeldung und Fortführung ein. Erfahrung soll auf zwei Wegen nutzbar werden: als abrufbares Langzeitwissen und als Daten für weiteres Training der Aktionsregeln. Eine Store-Demonstration mit Genie G2 bezeichnet AGIBOT als physische rekursive Selbstverbesserung. Das ist eine Herstellerinterpretation, kein Nachweis allgemeiner autonomer Selbstverbesserung."
+    },
+    {
+      "t": "p",
+      "x": "Die gemeldeten Spitzenplätze auf RoboDojo, RoboTwin und RoboColiseum übernehmen wir nicht als unabhängig bestätigtes Ranking. Die Pressemitteilung kündigt vollständiges Open Source bis Ende 2026 an. Sie ist kein Beleg, dass Gewichte, Code und Trainingsdetails bereits vollständig verfügbar sind."
+    },
+    {
+      "t": "h2",
+      "x": "Guided Learning: Rollout und Messgrenzen auseinanderhalten"
+    },
+    {
+      "t": "p",
+      "x": "Google startet heute nach eigenen Angaben den weltweiten Classroom-Rollout. Lehrkräfte können Lernaktivitäten an Kursmaterial binden und erhalten Einblicke in die Nutzung. Der Search-Pilot beginnt dagegen erst später im November an ausgewählten US-Schulen. Die angekündigte Umstellung auf ausdrückliche Admin-Freigabe für K-12-Konten betrifft Gemini, Gemini Notebook, Gemini in Classroom und Google Search; Details sollen Schulen in den kommenden Monaten vor dem Rollout erhalten."
+    },
+    {
+      "t": "p",
+      "x": "Googles begleitender Blog beschreibt einen randomisierten Versuch mit mehr als 300 Studierenden in Tokio: Nach einem halben Tag Statistiklernen verbesserten sich Testwerte mit Standard-Webwerkzeugen um 5,3 Prozentpunkte, mit zusätzlichem Guided Learning um 8,1 Prozentpunkte. Das ist ein kurzfristiger Vorher-nachher-Zuwachs, kein absoluter Testscore und kein Langzeitnachweis. Ein vierwöchiger Pilot an drei britischen Sekundarschulen lieferte laut Google Rückmeldungen zu Materialbindung und Einblicken für Lehrkräfte. Wir haben die Blogdarstellung gelesen, nicht die zugrunde liegenden Studien unabhängig nachgeprüft."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ist Humes Audio Decision API ein Transkriptionsmodell?",
+      "a": "Die beschriebene Schnittstelle beantwortet Fragen über Roh-Audio mit strukturierten Wahrscheinlichkeiten. Sie ist damit eine andere Schicht als die reine Verschriftlichung; ein Workflow kann beides kombinieren."
+    },
+    {
+      "q": "Was ist an AGIBOTs Selbstverbesserung belegt?",
+      "a": "Die Pressemitteilung beschreibt Erfahrungsspeicherung und weiteres Training aus Einsatzdaten sowie eine Store-Demonstration. Das sind Herstellerangaben. Eine allgemeine autonome Selbstverbesserung haben wir nicht unabhängig geprüft."
+    },
+    {
+      "q": "Sind 8,1 Prozentpunkte ein allgemeiner Lernvorteil?",
+      "a": "Nein. Google berichtet diesen Testwert-Zuwachs für eine einzelne halbtägige Statistik-Lernsitzung; die Vergleichsgruppe gewann 5,3 Prozentpunkte. Daraus folgt weder eine pauschale Verbesserung um 8,1 Prozent noch ein dauerhaft besserer Lernerfolg."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "agenten-architekturen"
+  ]
+}
