@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [LongCat-2.5: Meituans 1,6-Billionen-Modell für Agentenarbeit](https://kifachblatt.de/longcat-2-5-analyse): Nativ multimodal, rund 48 Milliarden aktive Parameter, ein Million-Token-Kontext - und eine Benchmark-Tabelle, die ihre Fremdwerte sauber kennzeichnet.
+- [NorthCUA: Offene Computer-Use-Modelle von 9B bis 397B](https://kifachblatt.de/northcua-computer-use-analyse): Drei Größen, Apache 2.0, ein 121-seitiger Bericht - und eine Modellkarte, die ungewöhnlich offen sagt, was ihre Zahlen nicht belegen.
 - [Offene Computer-Agenten, LifeVal und EU-Inferenz am Morgen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-03): NorthCUA bringt eine Apache-2.0-Agentenfamilie bis 397B, OpenAI misst Alltagstauglichkeit mit LifeVal, und Flower Labs meldet Frontier-Anspruch mit EU-Inferenz.
 - [KI-Fachüberblick: Agenten-OP, Hyra 2.0, Meta-Roboter Max](https://kifachblatt.de/news-ueberblick-abend-2026-11-02): Exin ließ Claude Sonnet eine Gentherapie an der Maus wählen und injizieren - mit Vet-Gate. Tencent meldet Hyra 2.0; Metas Roboter Max bleibt intern.
 - [KI-Fachüberblick: Wasserzeichen-Umbau, Mage-VL-Cowork, EditAgent](https://kifachblatt.de/news-ueberblick-mittag-2026-11-02): Ab 3.11. Wasserzeichen auf vier älteren Claude-Modellen - mit Sampling-Lücke. Microsoft öffnet Mage-VL-Cowork (4B); Adobes EditAgent prüft per Messdaten.
