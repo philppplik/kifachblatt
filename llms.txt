@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Message Threads, Aktivierungs-Sonden und Pando am Mittag](https://kifachblatt.de/news-ueberblick-mittag-2026-11-03): Anthropic senkt die Latenz langer Agenten-Sessions, OpenAI erklärt seine Aktivierungs-Klassifikatoren, und Pando skaliert den eigenen Monorepo-Git.
 - [LongCat-2.5: Meituans 1,6-Billionen-Modell für Agentenarbeit](https://kifachblatt.de/longcat-2-5-analyse): Nativ multimodal, rund 48 Milliarden aktive Parameter, ein Million-Token-Kontext - und eine Benchmark-Tabelle, die ihre Fremdwerte sauber kennzeichnet.
 - [NorthCUA: Offene Computer-Use-Modelle von 9B bis 397B](https://kifachblatt.de/northcua-computer-use-analyse): Drei Größen, Apache 2.0, ein 121-seitiger Bericht - und eine Modellkarte, die ungewöhnlich offen sagt, was ihre Zahlen nicht belegen.
 - [Offene Computer-Agenten, LifeVal und EU-Inferenz am Morgen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-03): NorthCUA bringt eine Apache-2.0-Agentenfamilie bis 397B, OpenAI misst Alltagstauglichkeit mit LifeVal, und Flower Labs meldet Frontier-Anspruch mit EU-Inferenz.
