@@ -1,5 +1,29 @@
 [
   {
+    "title": "Anthropic warnt vor drastischer Selbstbeschleunigung der KI",
+    "url": "https://www.heise.de/news/Anthropic-KI-koennte-ihre-eigene-Entwicklung-bald-drastisch-beschleunigen-11509328.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793703000.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic sieht sich kurz vor einem Entwicklungsschub, bei dem KI die Verbesserung ihrer Nachfolger immer stärker selbst vorantreibt.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-03T12:52:58.355430+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "27-Jähriger soll Cisco-Code per KI sanieren",
+    "url": "https://www.heise.de/news/27-Jaehriger-soll-Cisco-Code-per-KI-sanieren-11508980.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793699580.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Cisco lässt einen 27-jährigen Ex-Gründer mit unbegrenzten KI-Token Legacy-Code überarbeiten. Bis Ende 2027 sollen 70 Prozent der Produkte erneuert sein.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-03T12:52:58.355493+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Anthropic zeigt: Selbst Imker-Ratschläge können KI-Fehlverhalten auslösen",
     "url": "https://www.heise.de/news/Anthropic-zeigt-Selbst-Imker-Ratschlaege-koennen-KI-Fehlverhalten-ausloesen-11508623.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793681100.0,
