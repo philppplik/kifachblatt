@@ -1,0 +1,121 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-03",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "title": "Offene Computer-Agenten, LifeVal und EU-Inferenz am Morgen",
+  "dek": "NorthCUA bringt eine Apache-2.0-Agentenfamilie bis 397B, OpenAI misst Alltagstauglichkeit mit LifeVal, und Flower Labs meldet Frontier-Anspruch mit EU-Inferenz.",
+  "published": "2026-11-03T06:44:00+01:00",
+  "modified": "2026-11-03T06:44:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "KI-Überblick",
+    "Computer-Use-Agenten",
+    "Benchmarks",
+    "Open Source",
+    "EU-Inferenz"
+  ],
+  "key_takeaways": [
+    "NorthCUA (Nano 9B / Mini 35B / Pro 397B, MoE mit 17B aktiven Parametern, auf Qwen3.5) erscheint unter Apache-2.0; laut technischem Bericht erreicht Pro 88,64 Prozent auf OSWorld-Verified und 73,89 Prozent auf WebArena-Verified - Berichtswerte, nicht an den exportierten Gewichten nachgemessen.",
+    "Die Modellkarte dokumentiert die Grenzen selbst: Der OSWorld-2.0-Wert ist nur ein mittlerer Teilpunktestand (66,80 Prozent), WebTestBench-Ergebnisse stehen aus, und der Ultrafast-Mechanismus ist nicht auf die veröffentlichten Gewichte übertragbar.",
+    "Flower Labs verspricht für Endeavor 1.1 EU-Inferenz, einsehbare Denkspuren und Eigentum an Ausgaben inklusive Trainingsrecht; der Spitzenwert 97,18 beruht auf einem selbst gewählten Benchmark-Mix (Anbieterangaben ohne Fremdprüfung)."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik mit den NorthCUA-Berichtswerten: Auf OSWorld-Verified erreichen Nano 78,90, Mini 85,30 und Pro 88,64 Prozent; auf WebArena-Verified 67,16, 70,43 und 73,89 Prozent.",
+    "caption": "Erfolgsquoten der NorthCUA-Familie auf OSWorld-Verified und WebArena-Verified nach dem technischen Bericht des Teams (Tabellen 6 und 12-13). Berichtsangaben, keine Nachmessung an den veröffentlichten Gewichten - vereinfachte Darstellung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Daten: NorthCUA Technical Report via Hugging Face"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Morgenüberblick vom 3. November 2026. Quellenstand: 06:37 Uhr MEZ.** Drei Meldungen zum Wochenstart: Eine offene Computer-Use-Familie bis 397 Milliarden Parameter erscheint unter Apache-2.0, OpenAI legt einen Eval für Alltagsaufgaben vor, und Flower Labs verbindet Frontier-Anspruch mit EU-Inferenz und Ausgaben-Eigentum."
+    },
+    {
+      "t": "h2",
+      "x": "NorthCUA: offene Computer-Use-Familie bis 397B"
+    },
+    {
+      "t": "p",
+      "x": "NorthCUA umfasst drei Größen - Nano (9B), Mini (35B) und Pro (397B total, 17B aktiv pro Token, MoE) - aufgebaut auf Qwen3.5 und unter Apache-2.0 veröffentlicht (Hugging Face, Organisation beipo-ai). Der 121-seitige technische Bericht (\"Turbocharging Computer-Use Agents through Experience at Scale\") meldet nach dem Reinforcement-Learning-Training Erfolgsquoten auf OSWorld-Verified von 78,90 (Nano), 85,30 (Mini) und 88,64 Prozent (Pro) sowie auf WebArena-Verified von 67,16, 70,43 und 73,89 Prozent. Das Protokoll: 361 OSWorld-Aufgaben (ohne acht Google-Drive-Aufgaben) und 812 WebArena-Aufgaben mit 100-Schritt-Limit; das Grounding-Ergebnis OSWorld-G (SFT, 564 verfeinerte Anweisungen, best-of-3 statt Mittelwert) liegt bei 82,98, 87,94 und 90,96 Prozent."
+    },
+    {
+      "t": "p",
+      "x": "Bemerkenswert ist die Transparenz der Modellkarte: Sie betont ausdrücklich, dass die Berichtswerte nicht an den exportierten Modelldateien nachgemessen wurden; für OSWorld 2.0 (108 Aufgaben, 500-Schritt-Limit) liegt nur ein mittlerer Teilpunktestand von 66,80 Prozent für Pro vor, keine volle Abschlussquote; WebTestBench-Ergebnisse sind als ausstehend markiert; und der erforschte Ultrafast-Modus (direkte Aktionsauswahl) ist nicht auf die veröffentlichten Gewichte übertragbar. Die sekundär verbreitete Behauptung, Pro schlage geschlossene Billionen-Parameter-Modelle, ist an der Karte nicht belegt."
+    },
+    {
+      "t": "h2",
+      "x": "LifeVal: OpenAIs Eval für den Alltag"
+    },
+    {
+      "t": "p",
+      "x": "OpenAI hat am 2. November LifeVal veröffentlicht: ein Eval für Alltagsaufgaben, aufgebaut auf der American Time Use Survey, der Multinational Time Use Study und einer eigenen demografisch repräsentativen Umfrage unter 3.995 Teilnehmenden. Die Aufgabenbereiche: Betreuung, Gesundheit, Bildung, Haushaltsverwaltung, persönliche Finanzen, Einkaufen und Behördengänge. Gezeigt werden fünf Beispielaufgaben mit Ergebnisquoten der aktuellen Modelle zwischen 90,4 und 100 Prozent. OpenAI gibt an, den Eval seit einem Jahr intern zur Modellverbesserung zu nutzen, mit Fokus auf Browser-Nutzung, Computer-Nutzung und Connectoren."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Alle Werte sind Anbieterangaben ohne Fremdprüfung; OpenAI zeigt eine Auswahl und veröffentlicht weder Gesamtscore noch Modellvergleich. Ein in einem News-Digest kursierender Gesamtwert von 80 Prozent für ein künftiges Modell ließ sich an der Primärquelle nicht bestätigen."
+    },
+    {
+      "t": "h2",
+      "x": "Endeavor 1.1: Frontier-Anspruch mit EU-Option"
+    },
+    {
+      "t": "p",
+      "x": "Flower Labs meldet für Endeavor 1.1 einen Spitzenwert von 97,18 in einem selbst definierten \"Intelligence Composite\" (gleich gewichtet: GPQA, AIME 2026, HumanEval, IFEval), vor GPT-5.6 Sol (96,25), Claude Fable 5 (95,30), Kimi K3 (94,83) und Nemotron 3 Ultra (92,28). Gegenüber Endeavor 1.0 steigt GPQA von 92,0 auf 94,4 (laut Flower rund 30 Prozent weniger Fehler) und HumanEval von 98,2 auf 99,9; MMMU-Pro wird separat mit 81,12 angegeben. Alle Werte sind Anbieterangaben aus dem eigenen Blog, ohne unabhängige Prüfung."
+    },
+    {
+      "t": "p",
+      "x": "Jenseits der Benchmarks: Inferenz wahlweise auf GPUs in der EU mit SLAs und Support (weitere Regionen wie Großbritannien, Naher Osten, Asien und Afrika angekündigt), Multimodalität durch Bildeingaben, einsehbare Denkspuren sowie das Recht, alle Ausgaben und Spuren zu behalten und eigene Modelle darauf zu trainieren. Flowers Vergleich, OpenAI zeige nur Zusammenfassungen und Anthropic halte Rohspuren meist zurück, ist Anbieterdarstellung."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Sind die NorthCUA-Werte unabhängig bestätigt?",
+      "a": "Nein. Sie stammen aus dem technischen Bericht des NorthCUA-Teams. Die Modellkarte betont selbst, dass die Werte nicht an den veröffentlichten Modelldateien nachgemessen wurden und teilweise (WebTestBench) noch ausstehen."
+    },
+    {
+      "q": "Was heißt 397B mit 17B aktiv?",
+      "a": "Es ist ein Mixture-of-Experts-Modell: Insgesamt 397 Milliarden Parameter sind gespeichert, aber pro Token rechnen nur rund 17 Milliarden. Das senkt die Rechenkosten pro Anfrage, nicht aber den Speicherbedarf für die Gesamtgewichte."
+    },
+    {
+      "q": "Ist Endeavor 1.1 das stärkste Modell auf dem Markt?",
+      "a": "Das lässt sich nicht sagen. Flower Labs belegt den Spitzenwert nur mit einem selbst definierten Mix aus vier Benchmarks; unabhängige Vergleiche gibt es bislang nicht."
+    }
+  ],
+  "related": [
+    "lhtb-2-langzeit-agenten-benchmark",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ],
+  "sources": [
+    {
+      "title": "NorthCUA-Pro (Modellkarte)",
+      "publisher": "Hugging Face (beipo-ai)",
+      "url": "https://huggingface.co/beipo-ai/NorthCUA-Pro",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "NorthCUA: Open 397B Computer-Use Model (Alert)",
+      "publisher": "AI Weekly",
+      "url": "https://aiweekly.co/alerts/northcua-open-397b-computer-use-model-beats-trillion-param-closed-rivals-on",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "Introducing LifeVal",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/lifeval/",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "OpenAI LifeVal: Everyday tasks as a personal assistant benchmark",
+      "publisher": "neuralbrew",
+      "url": "https://neuralbrew.ai/en/articles/2026/11/openai-lifeval-everyday-tasks-personal-assistant-benchmark/",
+      "accessed": "2026-11-03"
+    },
+    {
+      "title": "Introducing Endeavor 1.1",
+      "publisher": "Flower Labs",
+      "url": "https://flower.ai/blog/2026-11-03-introducing-endeavor-1.1",
+      "accessed": "2026-11-03"
+    }
+  ]
+}
