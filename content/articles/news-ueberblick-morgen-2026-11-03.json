@@ -6,7 +6,7 @@
   "title": "Offene Computer-Agenten, LifeVal und EU-Inferenz am Morgen",
   "dek": "NorthCUA bringt eine Apache-2.0-Agentenfamilie bis 397B, OpenAI misst Alltagstauglichkeit mit LifeVal, und Flower Labs meldet Frontier-Anspruch mit EU-Inferenz.",
   "published": "2026-11-03T06:53:00+01:00",
-  "modified": "2026-11-03T06:53:00+01:00",
+  "modified": "2026-11-03T07:20:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "KI-Überblick",
@@ -37,7 +37,7 @@
     },
     {
       "t": "p",
-      "x": "NorthCUA umfasst drei Größen - Nano (9B), Mini (35B) und Pro (397B total, 17B aktiv pro Token, MoE) - aufgebaut auf Qwen3.5 und unter Apache-2.0 veröffentlicht (Hugging Face, Organisation beipo-ai). Der 121-seitige technische Bericht (\"Turbocharging Computer-Use Agents through Experience at Scale\") meldet nach dem Reinforcement-Learning-Training Erfolgsquoten auf OSWorld-Verified von 78,90 (Nano), 85,30 (Mini) und 88,64 Prozent (Pro) sowie auf WebArena-Verified von 67,16, 70,43 und 73,89 Prozent. Das Protokoll: 361 OSWorld-Aufgaben (ohne acht Google-Drive-Aufgaben) und 812 WebArena-Aufgaben mit 100-Schritt-Limit; das Grounding-Ergebnis OSWorld-G (SFT, 564 verfeinerte Anweisungen, best-of-3 statt Mittelwert) liegt bei 82,98, 87,94 und 90,96 Prozent."
+      "x": "NorthCUA umfasst drei Größen - Nano (9B), Mini (35B) und Pro (397B total, 17B aktiv pro Token, MoE) - aufgebaut auf Qwen3.5 und unter Apache-2.0 veröffentlicht (Hugging Face, Organisation inzwischen china-beipo). Laut Modellkarte meldet der 121-seitige technische Bericht (\"Turbocharging Computer-Use Agents through Experience at Scale\") meldet nach dem Reinforcement-Learning-Training Erfolgsquoten auf OSWorld-Verified von 78,90 (Nano), 85,30 (Mini) und 88,64 Prozent (Pro) sowie auf WebArena-Verified von 67,16, 70,43 und 73,89 Prozent. Das Protokoll: 361 OSWorld-Aufgaben (ohne acht Google-Drive-Aufgaben) und 812 WebArena-Aufgaben mit 100-Schritt-Limit; das Grounding-Ergebnis OSWorld-G (SFT, 564 verfeinerte Anweisungen, best-of-3 statt Mittelwert) liegt bei 82,98, 87,94 und 90,96 Prozent."
     },
     {
       "t": "p",
