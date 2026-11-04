@@ -1,0 +1,135 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-04",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-04T06:46:00+01:00",
+  "modified": "2026-11-04T06:46:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Progress on provable inference for large language models",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/provable-inference",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "FlashProve (Open-Source-Repository)",
+      "publisher": "Anthropic / GitHub",
+      "url": "https://github.com/anthropics/FlashProve",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Transformers Model Integration Contracts",
+      "publisher": "Hugging Face Blog",
+      "url": "https://huggingface.co/blog/transformers-mic",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Tencent Hunyuan Hy4 full version released (chinesisch)",
+      "publisher": "Ithome",
+      "url": "https://www.ithome.com/1/022/035.htm",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Tencent Hunyuan veröffentlicht Hy4 (chinesisch)",
+      "publisher": "Sina Tech",
+      "url": "https://finance.sina.com.cn/tech/shenji/2026-11-04/doc-inixpvuw9459767.shtml",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Open Source Model (offizielle Modellübersicht)",
+      "publisher": "Tencent Hy",
+      "url": "https://hy.tencent.ai/model/open-source-model",
+      "accessed": "2026-11-04"
+    }
+  ],
+  "title": "KI-Fachüberblick: FlashProve, Mini-Fixtures und Hy4",
+  "dek": "Anthropic veröffentlicht einen zkSNARK-Prototypen für Inferenzbeweise. Hugging Face testet mit geschrumpften Fixtures; Tencent meldet Hy4 mit Vision.",
+  "tags": [
+    "KI-Überblick",
+    "Inferenz",
+    "Transformers",
+    "Open Weights",
+    "Anthropic"
+  ],
+  "key_takeaways": [
+    "FlashProve erzeugt laut Anthropic zkSNARK-Beweise mit rund 110 Token pro Sekunde auf einer H100 für Llama 4 Maverick (400B, 4-Bit). Der Overhead liegt bei etwa dem 70- bis 95-Fachen der GPU-Zeit von vLLM - Anbietermessung.",
+    "Model Integration Contracts bündeln Fixture, Usage Path und Baselines. Im Replay markierte der UMT5-Vertrag den SDPA-Fehler an jedem betroffenen Commit; der Whisper-Vertrag übersah einen echten Assisted-Decoding-Bug.",
+    "Hy4 ist auf Tencent Cloud und OpenRouter verfügbar; Open-Source-Gewichte und System Card sind erst angekündigt und auf der offiziellen Modellseite bislang nicht gelistet (Stand: 06:38 Uhr MEZ)."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zu Hugging Faces Model Integration Contracts: Fixture als geschrumpftes Modell mit echter Konfiguration, Usage Path als ausführbares Beispiel und Baselines als menschlich geprüfte Referenz. Grenze: Ein echter Whisper-Fehler blieb unentdeckt.",
+    "caption": "Die drei Bestandteile eines Model Integration Contract nach Hugging Face. Beschreibung des Verfahrens, kein eigener Test - vereinfachte Darstellung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: Hugging Face"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Morgen des 4. November 2026. Quellenstand: 06:38 Uhr MEZ.** Drei Themen für Entwicklerinnen und Entwickler: kryptografische Inferenzbeweise, ein Fixture-basiertes Regressionstest-Verfahren und Tencents Hy4 mit neuen Fähigkeiten. Alle Messwerte bleiben den Anbietern zugeordnet."
+    },
+    {
+      "t": "h2",
+      "x": "FlashProve: zkSNARK-Beweise über Llama 4 Maverick"
+    },
+    {
+      "t": "p",
+      "x": "Anthropics Frontier Red Team hat FlashProve als Open-Source-Prototyp unter Apache 2.0 veröffentlicht. Der Ablauf: Im Offline-Schritt publiziert der Anbieter ein Commitment auf die Gewichte, einen kurzen Fingerabdruck, der die Gewichte selbst verborgen hält. Zu jeder Antwort erzeugt der Anbieter anschließend einen Beweis; wer Commitment, Prompt und Antwort kennt, prüft ihn ohne Gewichte und ohne GPU. Das Commitment gilt laut Blogbeitrag für etwa 16 Millionen Anfragen, die Offline-Phase dauert rund 39 Minuten pro Modell."
+    },
+    {
+      "t": "p",
+      "x": "Gemessen an Llama 4 Maverick (400B MoE, etwa 17B aktiv pro Token, 4-Bit): Eine H100 mit 24 CPU-Kernen beweist einen Batch von 24 Anfragen in rund 223 Sekunden, also etwa 110 Token pro Sekunde; der Beweis ist 18,78 MB pro 1.024-Token-Fenster groß. Der Verifier läuft auf CPU: 6,5 MB Commitment-Download, etwa 17 Sekunden Prüfzeit auf 24 Threads, 21 Sekunden auf einem. Verglichen mit vLLM auf acht H100 (FP8) kostet das Beweisen laut Anthropic pro GPU das 66- bis 77-Fache, bei maximaler Last das 94-Fache. Es sind Anbietermessungen an einem einzigen Setup."
+    },
+    {
+      "t": "p",
+      "x": "Die Sicherheitsaussagen - Vollständigkeit, Soundness, Nullwissen - sind in Lean 4 formalisiert; ein langsamer, beweisbar korrekter Lean-Verifier existiert neben dem schnellen C++-Verifier ohne formale Garantie. Einschränkungen: Der Beweis gilt für die Ganzzahl-Variante mit Greedy-Decoding, Kontexte bis 1.024 Token und nur MoE-Architekturen; Seitenkanäle sind ausdrücklich ausgenommen. Laut Blogbeitrag stammen Entwurf und Protokollspezifikation weitgehend von Claude. Das Repository ist als ungepflegtes Forschungsartefakt markiert."
+    },
+    {
+      "t": "h2",
+      "x": "Model Integration Contracts: Fixtures statt Vollmodelle"
+    },
+    {
+      "t": "p",
+      "x": "Hugging Face schlägt mit transformers-mic ein Paketformat für Integrationstests vor. Ein Contract besteht aus einem Fixture (einmalig publiziertes, verkleinertes Modell mit echter Konfiguration, unverändertem Tokenizer und allen Schichtarten), einem Usage Path (ausführbares Markdown-Beispiel) und Baselines (menschlich geprüfte Referenzausgaben). Ein Contract deckt eine Architektur und einen Anwendungspfad ab, keinen einzelnen Checkpoint. Die Verträge liegen im Hub-Bereich huggingface-mic; ein Fleet-Datensatz pinnt Revisionen und Paketversionen."
+    },
+    {
+      "t": "p",
+      "x": "Auslöser war eine UMT5-Regression: Die SDPA-Aktivierung für T5 am 30. Juli 2026 ließ den Decoder auf zukünftige Token schauen; behoben wurde der Fehler erst am 28. September. Im Replay über fünf Monate Commits schlug das 66-MB-Fixture (Original: 1.227 MB) bei jedem betroffenen Commit an: Die Label-Log-Wahrscheinlichkeiten wichen um 1,22 ab, der Trainingsverlust um etwa 0,20. Entscheidend war der Standardpfad - nur mit SDPA, nicht mit der Eager-Variante, zeigte sich der Fehler. In der CI scheiterte der testweise rückgängig gemachte Fix mit denselben Abweichungen; der Runner-Schritt des ausgewählten T5-Vertrags lief dabei in 13,4 Sekunden auf CPU, ohne Einrichtung der Testumgebung."
+    },
+    {
+      "t": "p",
+      "x": "Die Grenzen bleiben relevant: Beim Whisper-Fixture fanden Zufallsgewichte 18 von 24 injizierten Fehlern, überangepasste Gewichte alle 24 - doch beide Varianten übersahen einen Assisted-Decoding-Fehler, den nur der echte Whisper-Checkpoint zeigte. Seit 1. November meldet der MIC-Job in der Transformers-CI Fehler, blockiert aber noch keine Pull Requests; ob er blockieren soll, ist laut Blog offen. Das CLI tmic erzeugt Verträge halbautomatisch: Ein Sprachmodell entwirft Code und Manifest, geänderte Erwartungen erfordern menschliche Freigabe."
+    },
+    {
+      "t": "h2",
+      "x": "Hy4: verfügbar, aber Gewichte noch nicht offen"
+    },
+    {
+      "t": "p",
+      "x": "Tencent hat Hy4 vorgestellt, wie Ithome und Sina Tech unter Berufung auf den Konzern berichten. Gegenüber der Vorschau vom August (770B Parameter, 49B aktiv, 1M Kontext) seien Vor- und Nachtraining deutlich erweitert worden; neu sind Bildverstehen und Computer Use mit Kommandozeile und grafischer Oberfläche, mit Spezialtraining für Blender, CAD und die Spiele-Engines UE, Unity und Godot. Für Büroprozesse meldet Tencent in eigener Auswertung 83,18 Punkte im Mittel und 96,15 Prozent bestandene Aufgaben; in selbst gebauten Tests sank die Halluzinationsrate von 12,95 auf 7,2 Prozent, die Fehlerquote durch Raten von 23,1 auf 5,6 Prozent. Alle Werte stammen aus internen Tests des Herstellers."
+    },
+    {
+      "t": "p",
+      "x": "Die Gewichte sind noch nicht verfügbar: Tencent kündigt die Open-Source-Freigabe samt System Card lediglich an; auf der offiziellen Modellseite steht bislang nur Hy4 preview (Stand: 06:38 Uhr MEZ). Nutzbar ist Hy4 über Tencent Cloud Tokenhub, WorkBuddy/CodeBuddy, Yuanbao und per API über OpenRouter, Hermes und OpenCode. Der Konzern räumt selbst Abstand zu führenden geschlossenen Modellen ein, besonders in schwierigen internen Testreihen. Hy4 flash, eine sparsamere Variante, soll in Kürze folgen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was beweist FlashProve konkret - und was nicht?",
+      "a": "Der Beweis bindet eine Antwort an ein Commitment auf bestimmte Gewichte: Das zugesicherte Modell erzeugt exakt diese Token. Nicht abgedeckt sind Floating-Point-Ausführung, Sampling, Kontexte über 1.024 Token und Nicht-MoE-Architekturen; Seitenkanäle sind ausgenommen."
+    },
+    {
+      "q": "Blockieren die Hugging-Face-Verträge jetzt Pull Requests?",
+      "a": "Noch nicht. Seit 1. November 2026 meldet der MIC-Job Fehler in der CI, ohne zu blockieren. Hugging Face will erst messen, wie viele echte Fehler die Verträge in PRs finden und wie viele Fehlalarme sie erzeugen."
+    },
+    {
+      "q": "Ist Hy4 ein offenes Modell?",
+      "a": "Bislang nicht vollständig: Die Freigabe der Gewichte und einer System Card ist angekündigt, auf Tencents Open-Source-Modellseite ist Hy4 noch nicht gelistet (Stand: 06:38 Uhr MEZ). Per API ist das Modell bereits verfügbar."
+    }
+  ],
+  "related": [
+    "offene-gewichte-vs-open-source",
+    "red-teaming-durchfuehren"
+  ]
+}
