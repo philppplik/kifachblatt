@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Hydrogen-1.0: 753 Milliarden Parameter für die Forschung](https://kifachblatt.de/hydrogen-1-0-analyse): Deep Principle trainiert GLM-5.3 mit Laborbüchern und Entdeckungspfaden nach - und legt das Ergebnis als offene Gewichte unter der MIT-Lizenz vor.
+- [SenseNova-Loop-9B: 32 Schichten, 56 Schicht-Ausführungen](https://kifachblatt.de/sensenova-loop-9b-preview-analyse): SenseTimes Preview-Modell führt einen Block aus 24 Schichten zweimal mit denselben Gewichten aus - 9 Milliarden Parameter, Apache 2.0, multimodal.
 - [KI-Fachüberblick: FlashProve, Mini-Fixtures und Hy4](https://kifachblatt.de/news-ueberblick-morgen-2026-11-04): Anthropic veröffentlicht einen zkSNARK-Prototypen für Inferenzbeweise. Hugging Face testet mit geschrumpften Fixtures; Tencent meldet Hy4 mit Vision.
 - [KI-Fachüberblick: Hume-API, GO-3 und Guided Learning](https://kifachblatt.de/news-ueberblick-abend-2026-11-03): Hume liefert Audio-Urteile als Wahrscheinlichkeiten. AGIBOT beschreibt eine Robotik-Lernschleife; Google startet Guided Learning in Classroom.
 - [Message Threads, Aktivierungs-Sonden und Pando am Mittag](https://kifachblatt.de/news-ueberblick-mittag-2026-11-03): Anthropic senkt die Latenz langer Agenten-Sessions, OpenAI erklärt seine Aktivierungs-Klassifikatoren, und Pando skaliert den eigenen Monorepo-Git.
