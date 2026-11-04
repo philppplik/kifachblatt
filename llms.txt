@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: FlashProve, Mini-Fixtures und Hy4](https://kifachblatt.de/news-ueberblick-morgen-2026-11-04): Anthropic veröffentlicht einen zkSNARK-Prototypen für Inferenzbeweise. Hugging Face testet mit geschrumpften Fixtures; Tencent meldet Hy4 mit Vision.
 - [KI-Fachüberblick: Hume-API, GO-3 und Guided Learning](https://kifachblatt.de/news-ueberblick-abend-2026-11-03): Hume liefert Audio-Urteile als Wahrscheinlichkeiten. AGIBOT beschreibt eine Robotik-Lernschleife; Google startet Guided Learning in Classroom.
 - [Message Threads, Aktivierungs-Sonden und Pando am Mittag](https://kifachblatt.de/news-ueberblick-mittag-2026-11-03): Anthropic senkt die Latenz langer Agenten-Sessions, OpenAI erklärt seine Aktivierungs-Klassifikatoren, und Pando skaliert den eigenen Monorepo-Git.
 - [LongCat-2.5: Meituans 1,6-Billionen-Modell für Agentenarbeit](https://kifachblatt.de/longcat-2-5-analyse): Nativ multimodal, rund 48 Milliarden aktive Parameter, ein Million-Token-Kontext - und eine Benchmark-Tabelle, die ihre Fremdwerte sauber kennzeichnet.
