@@ -1,0 +1,127 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-04",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-04T09:57:00+01:00",
+  "modified": "2026-11-04T09:57:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Mage-VL-Cowork: A Full Training Recipe to Learn Hybrid Computer Use from Evolved Harnesses",
+      "publisher": "Microsoft (Projektseite)",
+      "url": "https://microsoft.github.io/Mage/cowork/",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "microsoft/Mage-VL-Cowork (Modellkarte)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/microsoft/Mage-VL-Cowork",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Agentic cheminformatics with Google Antigravity",
+      "publisher": "Google DeepMind",
+      "url": "https://deepmind.google/blog/agentic-cheminformatics-with-google-antigravity/",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "IndiaAI Mission Released Indigenous Foundation Models EKA-1 and Dhīr 2B & Dhīr 5B",
+      "publisher": "Press Information Bureau, Indien",
+      "url": "https://www.pib.gov.in/PressReleseDetailm.aspx?PRID=2332315&lang=1&reg=3",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Dhīr 2B and Dhīr 5B MoE",
+      "publisher": "ZenteiQ",
+      "url": "https://zenteiq.ai/dhir/",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "Eka (Projekt-Charter und Early Access)",
+      "publisher": "Soket AI",
+      "url": "https://eka.soket.ai/",
+      "accessed": "2026-11-04"
+    }
+  ],
+  "title": "KI-Fachüberblick: Mage-VL-Cowork, RDKit-Agent und Dhīr",
+  "dek": "Mage-VL-Cowork verbindet GUI- und Terminal-Aktionen in einer 4B-Policy. Cheminformatics-Skills für Antigravity; EKA-1 und Dhīr aus Indien.",
+  "tags": [
+    "KI-Überblick",
+    "Computer Use",
+    "Cheminformatik",
+    "Open Weights",
+    "Benchmarks"
+  ],
+  "key_takeaways": [
+    "Mage-VL-Cowork-4B erreicht laut Microsoft 66,0 % auf OSWorld-Verified (361 Tasks, 50 Schritte, Mittel aus zwei Läufen). Online-RL brachte +10,16 pp bei 13,0 % weniger Modellaufrufen und 25,4 % weniger Ausgabe-Token.",
+    "DeepMinds Cheminformatics-Skills koppeln Antigravity an RDKit, ChEMBL und PubChem; das LLM orchestriert, deterministische Tools rechnen. Die Macrocycle-Demo ist Hersteller-Material, Entwürfe bleiben zu validierende Hypothesen.",
+    "EKA-1 (26,3B, ~7,5T Token, 22+1 Sprachen) und Dhīr 2B/5B (Offline, 16k Kontext) sind laut IndiaAI-Mission veröffentlicht - öffentliche Gewichte aber nicht nachweisbar; Soket: Freigabe angekündigt, ZenteiQ Enterprise-Lizenz (Stand: 09:52 Uhr MEZ)."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zur Arbeitsteilung in DeepMinds Cheminformatics-Skills: Das Sprachmodell plant und recherchiert, RDKit rechnet deterministisch, ChEMBL und PubChem liefern kuratierte Daten. Entwürfe sind Hypothesen, keine fertigen Wirkstoffe.",
+    "caption": "Arbeitsteilung in DeepMinds Cheminformatics-Skills laut Hersteller. Demo-Angaben ohne unabhängige Nachprüfung - vereinfachte Darstellung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: Google DeepMind"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Mittag des 4. November 2026. Quellenstand: 09:52 Uhr MEZ.** Drei Releases mit Substanz: ein hybrider Computer-Use-Agent mit offenen Gewichten, ein agentisches Chemie-Setup und zwei indische Modellfamilien. Alle Benchmark-Werte bleiben Anbieterangaben."
+    },
+    {
+      "t": "h2",
+      "x": "Mage-VL-Cowork: hybride Kanäle in einer 4B-Policy"
+    },
+    {
+      "t": "p",
+      "x": "Microsofts Mage-Team hat Mage-VL-Cowork mit Gewichten (Apache 2.0 auf Hugging Face) und Code veröffentlicht. Eine einzige 4B-Vision-Language-Policy wählt pro Zug zwischen GUI-Aktionen (Screenshot-basiertes Klicken und Tippen) und Terminal-Aktionen (Code, CLI, Anwendungsbibliotheken) - ohne externen Orchestrator. Microsoft meldet 66,0 % auf OSWorld-Verified: 361 Held-out-Tasks ohne Google Drive, 50-Schritte-Budget, Mittel aus zwei Läufen. Zum Vergleich nennt die Seite Mensch 72,4 %, GPT-5.5 78,7 % und ScaleCUA-Qwen3.5-9B 68,7 %; bei OS- (87,5 %) und Multi-App-Workflow-Tasks (62,7 %) liegt das 4B-Modell demnach vorn. WebVoyager-Static (SFT-Checkpoint, vor RL): 58,6 %, hinter dem spezialisierten Fara1.5-4B (68,0 %)."
+    },
+    {
+      "t": "p",
+      "x": "Das Training folgt einem fünfstufigen Curriculum: GUI-Midtraining, GUI-SFT, Coding- und Terminal-SFT, hybrides CUA-SFT, dann Online-RL (GRPO, asynchrone Rollouts). Die Stufen ergeben 45,56 %, dann 55,84 %, schließlich 66,0 %; RL senkt dabei die mittleren Modellaufrufe von 21,57 auf 18,77 und die Ausgabe-Token von 7.374 auf 5.499 pro Task. Die Synthese-Pipeline Mage-CUA-Forge erzeugte 293.806 Desktop- und Web-Tasks über 6.915 Skills und senkt laut Microsoft die wiederkehrenden Erzeugungskosten pro Task um 82,6 % (0,906 auf 0,158 US-Dollar). Bemerkenswert ist das Harness-Experiment: Mit identischem Teacher-Modell erzielte das aufgeräumte GUI+Coding-Harness 92,0 % gegenüber 89,6 % mit zusätzlichem Accessibility-Kanal - die darauf trainierten 4B-Students lagen bei 37,6 % gegenüber 25,1 %. Das technische Paper (arXiv:2610.40747) haben wir nicht eigenständig gelesen; alle Werte stammen von Microsofts Projektseite und Modellkarte."
+    },
+    {
+      "t": "h2",
+      "x": "Cheminformatics in Antigravity: LLM orchestriert, RDKit rechnet"
+    },
+    {
+      "t": "p",
+      "x": "DeepMinds neue Skills binden den Antigravity-Agenten an RDKit sowie kuratierte Ressourcen von ChEMBL und PubChem an. Das Sprachmodell übernimmt Workflow-Orchestrierung, Datenbanknavigation und Reasoning; molekulare Berechnungen laufen in deterministischen Werkzeugen. DeepMind begründet das mit der Fehleranfälligkeit von Molekülrepräsentationen - ein einzelnes verändertes Atom beschreibt eine andere Verbindung. Verfügbar ab sofort: Antigravity-App plus Science-Plugin, Enterprise-Zugang über Google-Cloud-Konten; 10.000 Forschende sollen gestaffelt sechs Monate die höchste Nutzungsstufe kostenlos erhalten."
+    },
+    {
+      "t": "p",
+      "x": "Die vorgeführte Rigidifizierungs-Analyse (Crizotinib mit fünf rotierbaren Bindungen versus zyklisiertes Lorlatinib) zeigt den Ablauf: Literatur- und Patentrecherche mit Extraktion Tausender Verbindungen, Filterung und Quellendoku (568 kuratierte Substanzen im Beispiel), Matched-Molecular-Pair-Analyse, dann Potenzmodelle mit chronologischen oder Scaffold-Splits über vier Readouts und zuletzt neue Makrozyklus-Entwürfe samt Syntheserouten und Elektronenschiebe-Diagrammen. DeepMind spricht von etwa einer Stunde statt mehrerer Tage pro Iteration - eine Hersteller-Demo. Die eigene Einordnung des Teams bleibt wichtig: Entwürfe sind testbare Hypothesen, keine fertigen Medikamente; Assay-Rauschen und dünne Daten begrenzen die Vorhersagegüte."
+    },
+    {
+      "t": "h2",
+      "x": "EKA-1 und Dhīr: vorgestellt, Download in geprüften Quellen offen"
+    },
+    {
+      "t": "p",
+      "x": "Die IndiaAI-Mission (MeitY) hat EKA-1 von Soket Labs und Dhīr 2B/5B von ZenteiQ vorgestellt. EKA-1: 26,3 Milliarden Parameter, rund 7,5 Billionen Trainings-Token, laut Pressemitteilung ein offenes, sparsam aktiviertes Hybridmodell für Mathematik, Code, Reasoning und agentische Aufgaben in 22 indischen Sprachen plus Englisch. Dhīr 2B (dicht, 2,03B) und Dhīr 5B MoE (5,09B gesamt, 1,79B aktiv, 2 von 12 Experten) teilen Tokenizer (131k Einträge, eigenentwickelt) und Rezept, haben 16.384 Token Kontext und wurden laut ZenteiQ mit über 6 Billionen Token auf TPU v6e in Mumbai von Grund auf trainiert - das Unternehmen nennt sie die ersten indischen Milliarden-Parameter-Modelle komplett von null, was wir nicht unabhängig verifiziert haben."
+    },
+    {
+      "t": "p",
+      "x": "ZenteiQ meldet auf 41 Benchmarks gegen 24 offene Modelle (1-7B): Dhīr 2B insgesamt 61,4 %, Dhīr 5B MoE 64,6 %; Dhīr 2B führe seine Klasse bei 13 von 15 Indic-Benchmarks an. Gemessene Dekodiergeschwindigkeit (llama.cpp, 4-Bit): für Dhīr 5B MoE 20,5 Token/s auf Intel Iris Xe, 39,9 auf Jetson Orin NX und 2,8 auf Raspberry Pi 4. Die selbst genannten Grenzen: Faktenabruf ohne Quelle ist die schwächste Stelle, kein Reasoning-Modus, nur Text, Instruction-Following nur auf Englisch gemessen. Zur Verfügbarkeit: Trotz der Open-Source-Bezeichnung war in den geprüften Anbieterquellen kein öffentlicher Gewichtsdownload verlinkt - Soket beschreibt eine künftige offene Freigabe, ZenteiQ auf Enterprise-Lizenzen und Piloten (Stand: 09:52 Uhr MEZ). Dhīr 9B ist angekündigt."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ist Mage-VL-Cowork der beste offene Computer-Agent?",
+      "a": "Nach Microsofts eigener Tabelle liegt das 4B-Modell bei OSWorld-Verified vor den gelisteten größeren offenen Agenten, aber hinter ScaleCUA-Qwen3.5-9B (68,7 %) insgesamt - und klar hinter Frontier-Modellen. Wir haben die Werte nicht selbst nachgemessen."
+    },
+    {
+      "q": "Was bedeutet Harness-Evolution bei Microsoft?",
+      "a": "Vor der Datensammlung wurde das Gerüst um das Teacher-Modell verbessert und verschlankt. Mit weniger Aktionswegen schnitt der Teacher besser ab (92,0 statt 89,6 %) - und die davon lernenden Studenten deutlich besser (37,6 statt 25,1 %), alles laut Microsoft."
+    },
+    {
+      "q": "Warum zählt die Indien-Veröffentlichung trotz fehlender Downloads?",
+      "a": "Die Ankündigung dokumentiert Spezifikationen und lokale Einsatzmöglichkeiten zweier in Indien entwickelter Modellfamilien. Sie ersetzt keinen verfügbaren Gewichtsdownload und keinen geprüften Lizenztext. Die geprüften Anbieterquellen beschreiben eine künftige offene Freigabe beziehungsweise Enterprise-Angebote; daraus folgt keine heute allgemein verfügbare Open-Source-Veröffentlichung."
+    }
+  ],
+  "related": [
+    "lhtb-2-langzeit-agenten-benchmark",
+    "offene-gewichte-vs-open-source"
+  ]
+}
