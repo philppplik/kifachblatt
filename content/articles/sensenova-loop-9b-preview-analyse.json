@@ -1,0 +1,201 @@
+{
+  "slug": "sensenova-loop-9b-preview-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "SenseNova-Loop-9B: 32 Schichten, 56 Schicht-Ausführungen",
+  "dek": "SenseTimes Preview-Modell führt einen Block aus 24 Schichten zweimal mit denselben Gewichten aus - 9 Milliarden Parameter, Apache 2.0, multimodal.",
+  "published": "2026-11-04T07:19:00+01:00",
+  "modified": "2026-11-04T07:19:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "SenseTime",
+    "SenseNova",
+    "Architektur",
+    "Offene Gewichte",
+    "Multimodal"
+  ],
+  "key_takeaways": [
+    "SenseNova-Loop-9B-Preview ist SenseTimes offenes multimodales Modell: Text und Bilder hinein, Text heraus, Gewichte unter Apache 2.0 [1].",
+    "Architektur-Kern: 24 Decoder-Schichten laufen zweimal mit geteilten Gewichten - 56 Schicht-Ausführungen aus 32 gespeicherten Schichten, dazu Zwei-Strom-Hyperverbindungen und hybride Aufmerksamkeit [1].",
+    "SenseTime zeigt Werte auf acht agentisch geprägten Benchmarks; nicht auf jedem Test liegt das Modell vorn. Wir geben nur seine eigenen Werte wieder, jeweils mit testspezifischer Metrik [1].",
+    "Preview mit Einschränkungen: Der technische Bericht ist noch nicht veröffentlicht, der Betrieb erfordert eigenen Modellcode, und vLLM- beziehungsweise SGLang-Unterstützung steckt in offenen Pull-Requests [1][3]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Eingabe läuft durch Schichten 0 bis 3, dann zweimal durch denselben Block der Schichten 4 bis 27 mit Schleifenpfeil, dann durch Schichten 28 bis 31 zur Ausgabe",
+    "caption": "Dieselben Gewichte, zweimal durchlaufen: Der Block der Schichten 4 bis 27 wird mit geteilten Gewichten zwei Mal ausgeführt - 56 Ausführungen aus 32 gespeicherten Schichten [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "SenseTime hat SenseNova-Loop-9B-Preview veröffentlicht, ein multimodales Modell für lange Kontexte und agentische Arbeitsabläufe. Der News-Eintrag in der Modellkarte trägt das Datum 30. Oktober; das Hugging-Face-Repository wurde laut Plattform-API am 28. Oktober angelegt. Das Modell verarbeitet Text und Bilder und erzeugt Text - Zielanwendungen sind Dokumentenverständnis, Programmieren und der Umgang mit externen Werkzeugen. Die Gewichte stehen unter Apache 2.0, das Training umfasste Sequenzen bis 262.144 Tokens [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "SenseNova-Loop-9B-Preview im Überblick (Herstellerangaben) [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Parameter"
+    },
+    {
+      "t": "p",
+      "x": "ca. 9 Mrd. gespeichert; die Karte nennt ca. 14,6 Mrd. Ausführungsparameter durch den doppelten Durchlauf"
+    },
+    {
+      "t": "h3",
+      "x": "Schichten"
+    },
+    {
+      "t": "p",
+      "x": "32 gespeicherte Decoder-Schichten, 56 Ausführungen pro Durchlauf; Schleife über Schicht 4 bis 27, zwei Pässe"
+    },
+    {
+      "t": "h3",
+      "x": "Restströme"
+    },
+    {
+      "t": "p",
+      "x": "Zwei-Strömige mHC (manifold-constrained hyper-connections), Sinkhorn-Normalisierung mit 20 Iterationen"
+    },
+    {
+      "t": "h3",
+      "x": "Aufmerksamkeit"
+    },
+    {
+      "t": "p",
+      "x": "Hybrid: je Vierergruppe drei lineare und eine volle Schicht; 16 Köpfe, 4 KV-Köpfe"
+    },
+    {
+      "t": "h3",
+      "x": "Weitere Werte"
+    },
+    {
+      "t": "p",
+      "x": "Hidden 4.096, Feed-Forward 12.288, Vokabular 248.320; BF16-Backbone, FP32-Routing-Parameter"
+    },
+    {
+      "t": "h3",
+      "x": "Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Apache 2.0 (Gewichte und Code), Eingabe Text/Bild, Ausgabe Text"
+    },
+    {
+      "t": "h2",
+      "x": "Wie die Schleife funktioniert"
+    },
+    {
+      "t": "p",
+      "x": "Der Decoder verarbeitet die Eingabe zunächst durch die Schichten 0 bis 3. Dann läuft derselbe Block der Schichten 4 bis 27 zweimal hintereinander - die Karte schreibt das als B(B(h)), der zweite Pass bekommt die Ausgabe des ersten als Eingabe. Erst danach folgen die Schichten 28 bis 31 und der Ausgabekopf. Gespeichert werden also 32 Schichtgewichte, gerechnet wird mit 56 Schicht-Ausführungen. Die Schleifengrenzen liegen auf ganzen Vierergruppen, damit das Aufmerksamkeitsmuster über beide Pässe erhalten bleibt. Innerhalb der Schleife führen zwei Restströme Informationen an den Schichten vorbei; gelernte Abbildungen steuern, was eine Schicht aus den Strömen liest und zurückschreibt. Schleifenbereich, Passzahl und Routing-Parameter sind Teil des Checkpoints - eine Inferenz-Implementierung muss exakt diese Reihenfolge nachbauen [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte zeigt eine Balkengrafik mit acht Benchmarks und sechs Vergleichsmodellen. SenseNova-Loop-9B-Preview führt das Vergleichsfeld nicht auf jedem Test an; insbesondere bei Terminal Bench 2.1 und T³-Banking liegen andere Balken höher. Die Werte des Modells: BIRD-Dev 71,38, WorkBuddy Bench 66,89, AIDABench 58,87, TeamBench 48,89, Terminal Bench 2.1 40,45, T³-Banking 18,56 und AutomationBench 13,72. Auf dem achten Test, RaccoonPPTBench, erreicht es 70,70 - laut Fußnote ein intern entwickeltes Präsentations-Benchmark. Alle Angaben stammen aus der Herstellergrafik; die Fremdwerte der Vergleichsmodelle geben wir nicht wieder [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "SenseNova-Loop-9B-Preview: gemeldete Werte (je Test eigene Metrik)",
+      "alt": "Balkendiagramm: BIRD-Dev 71,38, WorkBuddy Bench 66,89, AIDABench 58,87, TeamBench 48,89, Terminal Bench 2.1 40,45 - Herstellerangaben, jeder Test mit eigener Metrik",
+      "caption": "Herstellerangaben aus der Benchmark-Grafik der Modellkarte, nicht unabhängig verifiziert [1]. Je Benchmark eigene Aufgaben und Metriken - die Werte sind nicht testübergreifend vergleichbar.",
+      "labels": [
+        "BIRD-Dev",
+        "WorkBuddy Bench",
+        "AIDABench",
+        "TeamBench",
+        "Terminal Bench 2.1"
+      ],
+      "series": [
+        {
+          "name": "Gemeldeter Wert",
+          "values": [
+            71.38,
+            66.89,
+            58.87,
+            48.89,
+            40.45
+          ]
+        }
+      ],
+      "y_label": "Gemeldeter Wert (je Test eigene Metrik)",
+      "x": ""
+    },
+    {
+      "t": "h2",
+      "x": "Praxis: Voraussetzungen und offene Punkte"
+    },
+    {
+      "t": "p",
+      "x": "Der Betrieb verlangt eigenen Modellcode: Das Laden läuft über trust_remote_code, geprüft ist die Kombination aus Transformers 5.18.0 und PyTorch 2.11.0 mit CUDA 13.0. Für vLLM und SGLang verweist die Karte auf die Pull-Requests 64832 beziehungsweise 47281 - beide sind zum Redaktionszeitpunkt offen, nicht Teil einer Veröffentlichung; der SGLang-Request beschreibt die Implementierung als auf Qwen3.5 aufbauend. Eine LightLLM-Variante läuft per Docker auf vier GPUs. Multi-Token-Prediction ist verfügbar, die Speculative-Decoding-Entwürfe Dspark und Dflash2 befinden sich laut Karte noch im Training. Den technischen Bericht markiert die Karte als ausstehend. Die Verbreitung: 2.221 Downloads im letzten Monat und 215 Likes (Plattform-Zähler, Stand 4. November) [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Schleifen-Architektur ist ein Speicher- und Rechentausch: mehr Ausführungstiefe ohne mehr gespeicherte Gewichte, bezahlt mit doppelter Rechenzeit im Schleifenblock. Dass im Vergleichsfeld mit IQuest-Coder-V1-40B-Loop ein zweites Loop-Modell auftaucht, zeigt: Die Idee liegt in der Luft. Die Aussagekraft der Zahlen ist begrenzt - alle Werte kommen aus einer Hand, ein technischer Bericht fehlt, und der Preview-Status ist Teil des Namens. Wer die Architektur studieren will, findet mit Apache-2.0-Gewichten, Trainings- und Draft-Skripten auf GitHub aber ungewöhnlich viel Material zum Anfassen [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist SenseNova-Loop-9B-Preview?",
+      "a": "SenseTimes offenes multimodales Modell: Text und Bilder hinein, Text heraus, Gewichte unter Apache 2.0. Kern ist ein Decoder-Block, der zweimal mit denselben Gewichten durchlaufen wird [1]."
+    },
+    {
+      "q": "Wie entstehen aus 32 Schichten 56 Schicht-Ausführungen?",
+      "a": "Das Modell speichert 32 Decoder-Schichten, führt die Schichten 4 bis 27 aber zweimal hintereinander aus. Ergebnis: 56 Ausführungen pro Durchlauf bei 9 Milliarden gespeicherten Parametern [1]."
+    },
+    {
+      "q": "Kann ich das Modell einfach laden?",
+      "a": "Nur mit eigenem Modellcode (trust_remote_code). Geprüft ist Transformers 5.18.0 mit PyTorch 2.11.0 und CUDA 13.0; vLLM- und SGLang-Unterstützung steckt in offenen Pull-Requests, eine LightLLM-Variante läuft per Docker [1][3]."
+    },
+    {
+      "q": "Wie gut ist das Modell?",
+      "a": "Die Herstellergrafik zeigt acht Benchmarks, darunter 71,38 auf BIRD-Dev. Nicht auf jedem Test liegt das Modell im Vergleichsfeld vorn. Alle Zahlen sind Herstellerangaben mit je Test eigener Metrik; wir haben sie nicht unabhängig nachgemessen [1]."
+    },
+    {
+      "q": "Gibt es einen technischen Bericht?",
+      "a": "Noch nicht. Die Modellkarte markiert den Tech-Report als ausstehend (TBD); verfügbar sind die Karte selbst, der Code und Trainings- beziehungsweise Draft-Skripte auf GitHub [1][2]."
+    }
+  ],
+  "related": [
+    "nanbeige-4-3-33b-analyse",
+    "architekturen-im-ueberblick",
+    "hugging-face-lesen"
+  ],
+  "sources": [
+    {
+      "title": "sensenova/SenseNova-Loop-9B-Preview (Modellkarte und Repository-API)",
+      "publisher": "Hugging Face / SenseTime",
+      "url": "https://huggingface.co/sensenova/SenseNova-Loop-9B-Preview",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "OpenSenseNova/SenseNova-Loop (Code, Trainings- und Draft-Skripte)",
+      "publisher": "GitHub / OpenSenseNova",
+      "url": "https://github.com/OpenSenseNova/SenseNova-Loop",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "SGLang Pull Request 47281: sensenova_loop - Add multimodal Loop and mHC inference",
+      "publisher": "GitHub / sgl-project",
+      "url": "https://github.com/sgl-project/sglang/pull/47281",
+      "accessed": "2026-11-04"
+    }
+  ],
+  "method": "Analyse auf Basis der vollständig gelesenen Hugging-Face-Modellkarte (englische README), der Hugging-Face-Repository-API (Anlagedatum, Download-Zähler), des GitHub-Repositories und des SGLang-Pull-Requests 47281 (Status: offen). Die Benchmark-Werte wurden aus der Balkengrafik der Modellkarte abgelesen und sind Herstellerangaben; Fremdwerte der Vergleichsmodelle werden nicht als deren eigene Werte wiedergegeben.",
+  "limitations": "Keine eigenen Tests. Sämtliche Messwerte stammen aus einer Herstellergrafik; ein technischer Bericht liegt nicht vor. Die Angabe zu Ausführungsparametern (ca. 14,6 Mrd.) ist keine zweite Modellgröße, sondern Folge des doppelten Durchlaufs. Uns ist keine unabhängige Fremdmessung bekannt."
+}

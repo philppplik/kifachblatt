@@ -1,0 +1,199 @@
+{
+  "slug": "hydrogen-1-0-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Hydrogen-1.0: 753 Milliarden Parameter für die Forschung",
+  "dek": "Deep Principle trainiert GLM-5.3 mit Laborbüchern und Entdeckungspfaden nach - und legt das Ergebnis als offene Gewichte unter der MIT-Lizenz vor.",
+  "published": "2026-11-04T07:19:00+01:00",
+  "modified": "2026-11-04T07:19:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Deep Principle",
+    "Hydrogen",
+    "Wissenschaft",
+    "Offene Gewichte",
+    "GLM"
+  ],
+  "key_takeaways": [
+    "Hydrogen-1.0 ist ein Wissenschaftsmodell von Deep Principle: ein Post-Training von GLM-5.3 (753 Milliarden Parameter laut dessen Modellkarte) mit Daten aus Chemie, Material- und Lebenswissenschaften [1][2][3].",
+    "Die Gewichte stehen unter der MIT-Lizenz auf Hugging Face und ModelScope - auf Hugging Face nach einer Zugangsanfrage [1][2].",
+    "Interne Messungen melden Vorteile gegenüber GPT-6-Astra auf FrontierScience-Research und gegenüber dem Ausgangsmodell auf GPQA-Diamond; absolute Werte nennt der Blog nicht [1].",
+    "Trainingsdatensätze und vollständige Rezepte werden nicht veröffentlicht; uns ist keine unabhängige Fremdmessung bekannt [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: GLM-5.3 mit 753 Milliarden Parametern, Pfeil zum Post-Training mit Laborbüchern und Entdeckungspfaden, Pfeil zu Hydrogen-1.0 unter MIT-Lizenz",
+    "caption": "Vom Basismodell zum Forschungsmodell: Hydrogen-1.0 entsteht durch Post-Training von GLM-5.3 mit Domänendaten, Laborbuch-Aufzeichnungen und Entdeckungspfaden [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Deep Principle hat Hydrogen-1.0 vorgestellt, ein offenes Modell für wissenschaftliche Fragestellungen. Grundlage ist GLM-5.3 von Z.AI mit 753 Milliarden Parametern laut dessen Modellkarte; Deep Principle trainiert es mit Domänendaten aus Chemie, Material- und Lebenswissenschaften sowie mit Aufzeichnungen aus eigenen Laboren nach. Das Gewichts-Repository wurde laut Plattform-API am 31. Oktober angelegt; dieses Datum belegt nicht den Veröffentlichungszeitpunkt des Modells. Der Download auf Hugging Face erfordert eine Zugangsanfrage [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Hydrogen-1.0 im Überblick (Herstellerangaben) [1][2][3]"
+    },
+    {
+      "t": "h3",
+      "x": "Basis"
+    },
+    {
+      "t": "p",
+      "x": "GLM-5.3 (Z.AI), 753 Mrd. Parameter laut Basiskarte; vollständiges MoE-Post-Training"
+    },
+    {
+      "t": "h3",
+      "x": "Kontext"
+    },
+    {
+      "t": "p",
+      "x": "1 Mio. Tokens konfiguriert; maximale Ausgabe 128.000 Tokens"
+    },
+    {
+      "t": "h3",
+      "x": "Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "MIT für die Gewichte laut Modellkarte; die Lizenzdateien selbst sind ohne Zugang nicht abrufbar"
+    },
+    {
+      "t": "h3",
+      "x": "Varianten"
+    },
+    {
+      "t": "p",
+      "x": "BF16 unquantisiert (303 Shards); NVFP4 für NVIDIA B200/B300; MXFP4 für AMD MI350X/355X"
+    },
+    {
+      "t": "h3",
+      "x": "Zugang"
+    },
+    {
+      "t": "p",
+      "x": "Hugging Face und ModelScope (Gewichte), NeuroSpark (API), Mira (AI-Scientist-Produkt)"
+    },
+    {
+      "t": "h3",
+      "x": "Betrieb"
+    },
+    {
+      "t": "p",
+      "x": "Mit SGLang auf 8 GPUs getestet; die generation_config.json ist Pflicht, sonst stoppt die Ausgabe nicht am Antwortende"
+    },
+    {
+      "t": "h2",
+      "x": "Was der Hersteller meldet"
+    },
+    {
+      "t": "p",
+      "x": "Der Tech-Blog berichtet ausschließlich interne Auswertungen: Hydrogen-1.0 schlage GPT-6-Astra auf FrontierScience-Research (Erfolgsquote) und verbessere GLM-5.3 auf GPQA-Diamond, ungefähr auf dem Niveau von Kimi-K3. Absolute Werte nennt der Beitrag nicht. In drei internen Szenarien bei maximaler Denkstufe liegt Hydrogen-1.0 demnach beim wissenschaftlichen Rechnen 5,13 Prozentpunkte und bei der einstufigen Vorwärtsreaktion 4,76 Prozentpunkte vor GPT-6-Astra; bei der NMR-Strukturaufklärung liegt Astra 3,33 Punkte vorn. Der Blog warnt selbst, die absoluten Werte zwischen den Aufgaben nicht als Modellvergleich zu lesen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Zwei weitere Angaben: Bei der Experimentplanung (117 gemeinsame Fragen, Rubrik 0 bis 10) meldet der Blog einen Vorteil gegenüber Kimi-K3; GPT-6-Astra und Opus-5.5 seien ausgenommen worden, weil sie mehr als die Hälfte der Anfragen abgelehnt hätten. Und beim Design von Übergangsmetallkomplexen erreicht Hydrogen-1.0 nach fünf Runden einen mittleren besten HOMO-LUMO-Abstand von 4,318 Elektronenvolt - die Vergleichswerte der beiden Referenzmodelle aus derselben Grafik geben wir nicht wieder [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Hydrogen-1.0: gemeldeter Vorsprung vor GPT-6-Astra in Prozentpunkten",
+      "alt": "Balkendiagramm: wissenschaftliches Rechnen plus 5,13 Prozentpunkte, einstufige Vorwärtsreaktion plus 4,76 Prozentpunkte - interne Messung des Herstellers bei maximaler Denkstufe",
+      "caption": "Herstellerangaben aus dem Tech-Blog (interne Auswertung, maximale Denkstufe), nicht unabhängig verifiziert [1]. Absolute Werte nennt der Blog nicht; bei der Kernresonanz-Strukturaufklärung (NMR) liegt GPT-6-Astra 3,33 Punkte vorn - siehe Text.",
+      "labels": [
+        "Wissenschaftliches Rechnen",
+        "Vorwärtsreaktion (ein Schritt)"
+      ],
+      "series": [
+        {
+          "name": "Vorsprung in Prozentpunkten",
+          "values": [
+            5.13,
+            4.76
+          ]
+        }
+      ],
+      "y_label": "Prozentpunkte gegenüber GPT-6-Astra",
+      "x": ""
+    },
+    {
+      "t": "h2",
+      "x": "Beispiele aus dem Blog"
+    },
+    {
+      "t": "p",
+      "x": "Vier Demonstrationen zeigen den Arbeitsmodus: Das Modell schreibt eine Molekulardynamik-Simulation einer Polyethylen-Schmelze in GROMACS, erkennt einen Topologie-Fehler, repariert ihn und wertet die 40-Nanosekunden-Trajektorie aus. Es erkundet ein Ireland-Claisen-Reaktionsnetzwerk mit 27 Strukturen über 30 Reaktionen. Es arbeitet sich durch ein 1H-NMR-Spektrum, um unter sieben Monoformylierungs-Kandidaten von 2-Bromnaphthalin eine Struktur zu begründen. Und es schreibt ein JSON-Protokoll für eine Suzuki-Kopplung mit zwölf Gefäßen; eine virtuelle Laborprobe fängt dabei einen Pipettierschritt ohne frische Spitze ab, bevor reale Ressourcen gebunden werden [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Wie trainiert wurde"
+    },
+    {
+      "t": "p",
+      "x": "Die Pipeline kombiniert überwachtes Feintuning und bestärkendes Lernen auf vier Datenkategorien: Domänenwissen, Forschungsszenarien mit Feedback eigener Wissenschaftler, vollständige Laborbuch-Aufzeichnungen (elektronisch, über das hauseigene System Mira dokumentiert) und Entdeckungspfade, also Sequenzen aus Wahl, Ergebnis und Revision. Die Infrastruktur baut auf Megatron und SGLang, läuft auf NVIDIA-CUDA- und AMD-ROCm-Hardware, lagert den Muon-Optimiererzustand backendabhängig aus und kann RL-Rollouts fortsetzen: Jedes Token behält die Wahrscheinlichkeit der Politik, die es erzeugt hat. Bevor ein Trainingseffekt verbucht wird, messen die Autoren Export- und Quantisierungsdrift. Vollständige Datensätze und Rezepte veröffentlicht Deep Principle ausdrücklich nicht; beteiligt waren UniPat, Mind Lab und NeuroSpark [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Kombination ist selten: offene Gewichte unter der MIT-Lizenz in dieser Größenklasse, dazu ein ungewöhnlich detaillierter Blick in Trainingsinfrastruktur und Datenkategorien. Die Grenzen sind aber klar: Sämtliche Messwerte stammen aus einer Hand, absolute Ergebnisse fehlen, Trainingsdaten bleiben geschlossen, und der Download setzt eine Zugangsanfrage voraus. Der Betrieb bleibt Großrechner-Sache - die unquantisierte BF16-Variante belegt rund 1,5 Terabyte in 303 Shards, getestet ist eine 8-GPU-SGLang-Konfiguration. Die Verbreitung ist bislang gering: 56 Downloads im letzten Monat zählt die Plattform (Stand 4. November). Wer damit arbeiten will, sollte die Ausgaben wie der Hersteller selbst einordnen: als Material zur Prüfung, nicht als verifiziertes Ergebnis [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Hydrogen-1.0?",
+      "a": "Ein offenes Wissenschaftsmodell von Deep Principle: GLM-5.3 (753 Milliarden Parameter) wurde mit Daten aus Chemie, Material- und Lebenswissenschaften sowie mit Laborbuch-Aufzeichnungen und Entdeckungspfaden nachtrainiert. Die Gewichte stehen unter der MIT-Lizenz [1][2]."
+    },
+    {
+      "q": "Sind die Gewichte wirklich offen?",
+      "a": "Die Lizenz ist MIT, das Repository auf Hugging Face ist aber zugangsbeschränkt: Der Download setzt eine Freischaltung per Anfrage voraus. Zusätzlich liegen die Gewichte auf ModelScope; eine API bietet NeuroSpark [1][2]."
+    },
+    {
+      "q": "Wie gut ist das Modell?",
+      "a": "Dazu liegen nur interne Messungen des Herstellers vor: Vorteile gegenüber GPT-6-Astra auf FrontierScience-Research und gegenüber GLM-5.3 auf GPQA-Diamond, ohne absolute Werte. Uns ist keine unabhängige Fremdmessung bekannt [1]."
+    },
+    {
+      "q": "Was kostet der Betrieb an Hardware?",
+      "a": "Die unquantisierte BF16-Variante belegt rund 1,5 Terabyte in 303 Shards; getestet ist SGLang auf acht GPUs. Quantisierte Varianten gibt es für NVIDIA B200/B300 (NVFP4) und AMD MI350X/355X (MXFP4) [2]."
+    },
+    {
+      "q": "Sind Trainingsdaten und Rezept offen?",
+      "a": "Nein. Der Blog beschreibt Datenkategorien und Infrastruktur im Detail, vollständige Datensätze und Rezepte werden ausdrücklich nicht veröffentlicht [1][2]."
+    }
+  ],
+  "related": [
+    "carbon-x-dna-sprachmodell-analyse",
+    "offene-gewichte-vs-open-source",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ],
+  "sources": [
+    {
+      "title": "Introducing Hydrogen-1.0",
+      "publisher": "Deep Principle",
+      "url": "https://blog.deepprinciple.com/introducing-hydrogen-1.0/",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "deep-principle/Hydrogen-1.0 (Modellkarte und Repository-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/deep-principle/Hydrogen-1.0",
+      "accessed": "2026-11-04"
+    },
+    {
+      "title": "zai-org/GLM-5.3 (Modellkarte)",
+      "publisher": "Hugging Face / Z.AI",
+      "url": "https://huggingface.co/zai-org/GLM-5.3",
+      "accessed": "2026-11-04"
+    }
+  ],
+  "method": "Analyse auf Basis des vollständig gelesenen Tech-Blogs von Deep Principle, der vollständig gelesenen Hugging-Face-Modellkarte (README; Lizenzangabe laut Modellkarte, Lizenzdateien nicht separat abrufbar), der Hugging-Face-Repository-API (Anlagedatum, Shard-Zahl, Download-Zähler) und der GLM-5.3-Modellkarte für die Parameterzahl. Alle Messwerte sind Herstellerangaben; Vergleichswerte anderer Modelle aus Herstellergrafiken werden nicht als deren eigene Werte wiedergegeben.",
+  "limitations": "Keine eigenen Tests und kein eigener Zugriff auf die Gewichte (Repository mit Zugangsbeschränkung). Sämtliche Leistungsangaben stammen aus Herstellerquellen und nennen teils keine absoluten Werte. Trainingsdatensätze und vollständige Rezepte sind nicht veröffentlicht. Uns ist keine unabhängige Fremdmessung bekannt."
+}
