@@ -102,6 +102,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-04</loc><lastmod>2026-11-04T16:13:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-04.jpg</image:loc><image:title>KI-Fachüberblick: Eval-Lücke, GroundingPI und SenseNova-Loop</image:title><image:caption>Eigene Grafik zur SenseNova-Loop-Architektur: 32 gespeicherte Decoder-Schichten werden zu 56 Ausführungen, weil der Block der Schichten 4 bis 27 zweimal durchlaufen wird - 9 Milliarden gespeicherte Parameter, 14,6 Milliarden Inferenzparameter.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-04</loc><lastmod>2026-11-04T10:02:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-04.jpg</image:loc><image:title>KI-Fachüberblick: Mage-VL-Cowork, RDKit-Agent und Dhīr</image:title><image:caption>Eigene Grafik zur Arbeitsteilung in DeepMinds Cheminformatics-Skills: Das Sprachmodell plant und recherchiert, RDKit rechnet deterministisch, ChEMBL und PubChem liefern kuratierte Daten. Entwürfe sind Hypothesen, keine fertigen Wirkstoffe.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/hydrogen-1-0-analyse</loc><lastmod>2026-11-04T07:22:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/hydrogen-1-0-analyse.jpg</image:loc><image:title>Hydrogen-1.0: 753 Milliarden Parameter für die Forschung</image:title><image:caption>Schematische Darstellung: GLM-5.3 mit 753 Milliarden Parametern, Pfeil zum Post-Training mit Laborbüchern und Entdeckungspfaden, Pfeil zu Hydrogen-1.0 unter MIT-Lizenz</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/sensenova-loop-9b-preview-analyse</loc><lastmod>2026-11-04T07:22:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/sensenova-loop-9b-preview-analyse.jpg</image:loc><image:title>SenseNova-Loop-9B: 32 Schichten, 56 Schicht-Ausführungen</image:title><image:caption>Schematische Darstellung: Eingabe läuft durch Schichten 0 bis 3, dann zweimal durch denselben Block der Schichten 4 bis 27 mit Schleifenpfeil, dann durch Schichten 28 bis 31 zur Ausgabe</image:caption></image:image></url>
@@ -240,7 +241,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-04T07:22:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-04T10:02:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-04T16:13:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-04</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-04</lastmod></url>
