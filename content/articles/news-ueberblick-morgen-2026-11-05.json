@@ -1,0 +1,125 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-05",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-05T06:43:00+01:00",
+  "modified": "2026-11-05T06:43:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Kimi K3.1 Pro (Modellkarte)",
+      "publisher": "Moonshot AI / Hugging Face",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Kimi K3.1 Pro Tech Blog: Advancing Open Intelligence",
+      "publisher": "Moonshot AI",
+      "url": "https://www.kimi.ai/blog/kimi-k3-1-pro",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Kimi K3.1-Pro License (Lizenztext)",
+      "publisher": "Moonshot AI / Hugging Face",
+      "url": "https://huggingface.co/moonshotai/Kimi-K3.1-Pro/raw/main/LICENSE",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Introducing SWE-2 Flash",
+      "publisher": "Cognition",
+      "url": "https://cognition.com/blog/swe-2-flash",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Investigating vault particles with Claude",
+      "publisher": "Anthropic",
+      "url": "https://www.anthropic.com/research/investigating-vault-particles-with-claude",
+      "accessed": "2026-11-05"
+    }
+  ],
+  "title": "KI-Fachüberblick: Kimi K3.1 Pro, SWE-2 Flash und Vaults",
+  "dek": "Kimi K3.1 Pro: 2,8T MoE mit Schwellen-Lizenz. SWE-2 Flash per Mid-Training von 0,9 auf 20,0 in Terminal-Bench 4.0. Anthropic kartiert prokaryotisches Vault.",
+  "tags": [
+    "KI-Überblick",
+    "Open Weights",
+    "MoE",
+    "Coding-Modelle",
+    "KI-Forschung"
+  ],
+  "key_takeaways": [
+    "Kimi K3.1 Pro: Gewichte verfügbar, 2,8T MoE/104B aktiv, 93 Schichten, 896 Experten mit 16 ausgewählten plus 2 geteilten pro Token, 1M Kontext. Lizenzschwellen und Ausnahmen gelten exakt wie im Lizenzabschnitt erläutert; keine Standard-MIT-Lizenz.",
+    "SWE-2 Flash (Cognition): 276B-A12B, erstes Mid-Training auf Thinking Machines Inkling-Small, dann RL; Terminal-Bench 4.0 0,9→20,0, FrontierCode 2.0 3,2→24,0. Nur via Devin, 1/5 Preis und 3x Tempo vs. SWE-2 (Herstellerangaben); Gewichte nicht öffentlich, Partnerprogramm angekündigt.",
+    "Anthropic berichtet erste prokaryotische Vault-Struktur (L05, Phagenprotein): 96 Kopien, ~9,5 MDa, 54x45 nm; Aufreinigung 3 Tage→~90 Minuten, erstes Modell in 34 Stunden. Eigendarstellung; bioRxiv-Preprint eingereicht, noch nicht live; Funktion offen."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zu Kimi K3.1 Pro: 2,8 Billionen Parameter gesamt, 104 Milliarden aktiv pro Token, Kontextfenster von 1.048.576 Token, Lizenz weitgehend frei mit Schwellen für große Anbieter.",
+    "caption": "Kimi K3.1 Pro laut Moonshots Modellkarte und Lizenz. Die Grafik nennt die Schwellen; MaaS-Definition, verbundene Unternehmen und Ausnahmen stehen im Lizenzabschnitt. Anbieterwerte ohne eigene Nachmessung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: Moonshot AI"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Morgen des 5. November 2026. Quellenstand: 06:38 Uhr MEZ.** Open-Weights-Release der 3T-Klasse, ein Mid-Training-Experiment von Cognition und ein agentischer Strukturbiologie-Bericht von Anthropic. Zahlen sind durchgehend Anbieter- beziehungsweise Teamangaben."
+    },
+    {
+      "t": "h2",
+      "x": "Kimi K3.1 Pro: Gewichte offen, Lizenz mit Schwellen"
+    },
+    {
+      "t": "p",
+      "x": "Moonshot hat wie angekündigt die Gewichte von Kimi K3.1 Pro freigegeben (auf Hugging Face verfügbar, Vollzug der Ankündigung vom 3. November; erstes Modell der K3.1-Serie). Die Architektur: MoE mit 2,8 Billionen Parametern, 104 Milliarden aktiviert, 93 Schichten mit 69 KDA- und 24 Gated-DSA-Aufmerksamkeitsschichten sowie einer dichten Feedforward-Schicht; Gated DSA ersetzt die Gated-MLA-Vollaufmerksamkeit von K3, 896 Experten mit 16 aktiven plus 2 geteilten, Vokabular 160.000, Kontext 1.048.576 Token. Der Vision-Encoder MoonViT-V2 hat 401 Millionen Parameter; quantisiert ist auf MXFP4 (Gewichte) und MXFP8 (Aktivierungen), jeweils quantization-aware trainiert. Post-Training von K3 mit gemeinsamem RL über laut Moonshot hunderte Domänen. Eine Highspeed-Variante soll zwei- bis dreimal schneller sein."
+    },
+    {
+      "t": "p",
+      "x": "Die Benchmark-Tabelle der Karte (grundsätzlich reasoning effort max, Temperatur 1,0, top-p 0,95, mit testspezifischen Abweichungen; Fremdwerte teils aus Blogs und Leaderboards): Terminal-Bench 4.0 65,7 (Claude-Opus-5.5 66,4; GPT-6 Astra 58,2), SWE-Marathon v1.1 51,7, OfficeQA Pro v2 64,4 (Spitze im Feld). Gegenläufig: HLE-Diamond 39,4 (GPT-6 Astra 65,8), HLE-Full 51,1 (Opus 5.5 59,8), ExploitBench 74,7 (GPT-6 Astra 100). Die Karte verweist für den Betrieb auf vLLM, SGLang und TokenSpeed. Die Lizenz erlaubt auch kommerzielle Nutzung, enthält aber genaue Bedingungen: Betreibt der Lizenznehmer oder ein verbundenes Unternehmen Model-as-a-Service und übersteigt ihr gemeinsamer Gesamtumsatz in beliebigen aufeinanderfolgenden zwölf Monaten 20 Millionen US-Dollar, ist vor kommerzieller Nutzung eine Zusatzvereinbarung nötig. Kommerzielle Produkte oder Dienste mit mehr als 100 Millionen monatlich aktiven Nutzern ODER mehr als 20 Millionen US-Dollar Monatsumsatz müssen \"Kimi K3.1-Pro\" prominent in ihrer Oberfläche zeigen. Beide Anforderungen gelten nicht für rein interne Nutzung oder Zugang über offizielle Moonshot-Produkte beziehungsweise zertifizierte Inferenzpartner. Eingebettete Endnutzerfunktionen und bloße Weiterleitung fremdgehosteter Modellanfragen zählen laut Lizenz nicht als MaaS."
+    },
+    {
+      "t": "h2",
+      "x": "SWE-2 Flash: Mid-Training als Hebel"
+    },
+    {
+      "t": "p",
+      "x": "Cognition beschreibt erstmals eine Mid-Training-Stufe vor dem RL: Ausgangspunkt ist Inkling-Small von Thinking Machines (276B gesamt, 12B aktiv), auf dem eine dreistufige Phase mit wenigen Billionen Token aus wissenschaftlichen Artikeln, Blogs und Code lief; die Datenmischung wurde über Token-Effizienz-Kurven gegen eine Baseline optimiert. Der Vergleich des fertigen Modells nach Mid-Training UND anschließendem RL mit dem Basismodell laut Cognitions Tabelle: Terminal-Bench 4.0 von 0,9 auf 20,0, FrontierCode 2.0 von 3,2 auf 24,0, DeepSWE 1.1 von 17,4 auf 60,1. Verfügbar ist das Modell seit dem 4. November in Devin Desktop und CLI - laut Anbieter zu einem Fünftel des Preises und dreifachem Tempo von SWE-2 (200 vs. 60 Token/s, simulierte Wiedergabe)."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung der Selbstaussage \"übertrifft alle amerikanischen Open-Weight-Modelle\": Innerhalb der eigenen Tabelle stimmt das gegen Inkling-Small, Beam 1.0 und Muse Spark Open - teils knapp (DeepSWE 60,1 zu 60,0). Nicht-amerikanische offene Modelle liegen vorn: GLM 5.3 Flash erreicht 41,8 in Terminal-Bench 4.0, DeepSeek V4.1 Flash 42,3 beziehungsweise 77,0 in DeepSWE 1.1; auch Claude Haiku 5.5 (39,2) und GPT-6 Luna liegen in einzelnen Tests vor SWE-2 Flash. Gewichte gibt Cognition wegen Cyber-Risiken vorerst nicht heraus (ExploitBench gezielt von 11,3 auf 34,8 trainiert); ein Freigabeprogramm für Industriepartner und Forschungslabore ist angekündigt, Details \"in ein paar Wochen\"."
+    },
+    {
+      "t": "h2",
+      "x": "Anthropic: Erste prokaryotische Vault-Struktur mit Claude"
+    },
+    {
+      "t": "p",
+      "x": "Anthropics Biologie-Team berichtet die Kartierung des Vault-Partikels L05, eines Bakteriophagen-Proteins: 96 Kopien (48 pro Hälfte, menschliche Vaults: 39), rund 9,5 Megadalton, 54 x 45 Nanometer (menschlich 67 x 40) bei etwa 25 Prozent mehr Volumen; die Wand besteht aus sieben statt neun Wiederholsegmenten. Eine künstlich auf neun Segmente erweiterte Variante bildete größere Partikel mit rund 20 Prozent mehr Volumen - laut Team ein Hinweis, wie Vaults in der Evolution wachsen konnten. Nach Darstellung des Teams fand Claude in rund 15 Milliarden vorhergesagten Proteinen Vault-Verwandte in 29 Bakterien- und 4 Archaeen-Phyla, aber in unter 1 Prozent sequenzierter Spezies; aus 44 zunächst getesteten Kandidaten entstanden später 15 lösliche Proteine; 7 bildeten Vault-artige Partikel, 4 wurden per Kryo-EM bestätigt."
+    },
+    {
+      "t": "p",
+      "x": "Die Tempoangaben: Aufreinigung in etwa 90 Minuten statt rund drei Tagen (optimierte Größenausschluss-Chromatographie, Vorschlag von Claude nach anfänglicher Skepsis des Teams), erstes Strukturmodell in 34 Stunden statt Wochen (RELION, von Claude in einem Multi-Agenten-Harness durchlaufen), finale Karten nach etwa einer Woche, Gesamtprojekt unter vier Monaten. Offene Punkte benennt der Bericht selbst: ein unidentifiziertes Molekül in einer Tasche jeder Proteinkopie (Formähnlichkeit zu Coenzym A, von Claude bemerkt, unbestätigt); Fehler wie ein ungeeignetes Nährmedium (zwei Wochen Verlust) und eine spiegelbildlich vermischte Karte; der bioRxiv-Preprint ist eingereicht, aber noch nicht abrufbar; Strukturdaten sollen folgen. Die biologische Funktion der Vaults ist weiterhin unbekannt."
+    },
+    {
+      "t": "p",
+      "x": "Anthropic hat die Partikel bislang nur in E. coli hergestellt. Ob sie sich auch in den Bakterien und Phagen bilden, aus denen die Sequenzen stammen, wurde laut Bericht noch nicht getestet. Die 90 Minuten und 34 Stunden betreffen einzelne Arbeitsschritte, nicht die gesamte Forschungsdauer; das Gesamtprojekt dauerte nach Teamangaben knapp vier Monate."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie frei ist die Kimi-K3.1-Pro-Lizenz?",
+      "a": "Die Lizenz erlaubt auch kommerzielle Nutzung, enthält aber genaue Bedingungen: Betreibt der Lizenznehmer oder ein verbundenes Unternehmen Model-as-a-Service und übersteigt ihr gemeinsamer Gesamtumsatz in beliebigen aufeinanderfolgenden zwölf Monaten 20 Millionen US-Dollar, ist vor kommerzieller Nutzung eine Zusatzvereinbarung nötig. Kommerzielle Produkte oder Dienste mit mehr als 100 Millionen monatlich aktiven Nutzern ODER mehr als 20 Millionen US-Dollar Monatsumsatz müssen \"Kimi K3.1-Pro\" prominent in ihrer Oberfläche zeigen. Beide Anforderungen gelten nicht für rein interne Nutzung oder Zugang über offizielle Moonshot-Produkte beziehungsweise zertifizierte Inferenzpartner. Eingebettete Endnutzerfunktionen und bloße Weiterleitung fremdgehosteter Modellanfragen zählen laut Lizenz nicht als MaaS."
+    },
+    {
+      "q": "Ist SWE-2 Flash ein Open-Weight-Modell?",
+      "a": "Nein. Es läuft ausschließlich in Devin Desktop und CLI. Cognition begründet das mit Cyber-Risiken und kündigt ein kontrolliertes Zugangsprogramm für Partner und Forschungslabore an; Details sollen in einigen Wochen kommen."
+    },
+    {
+      "q": "Wie belastbar ist der Anthropic-Vault-Befund?",
+      "a": "Es ist Anthropics eigener Forschungsbericht. Der bioRxiv-Preprint ist laut Blog eingereicht, aber noch nicht öffentlich verlinkt; wir haben ihn nicht gelesen. Die Partikel wurden bislang nur in E. coli hergestellt. Funktion und natürliche Bildung in den Herkunftsorganismen bleiben offen; die Zeitvergleiche sind Schätzungen des Teams."
+    }
+  ],
+  "related": [
+    "kimi-k3-1-pro-open-weights",
+    "lhtb-2-langzeit-agenten-benchmark"
+  ]
+}
