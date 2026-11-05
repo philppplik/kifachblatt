@@ -1,0 +1,139 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-05",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-05T16:10:00+01:00",
+  "modified": "2026-11-05T16:10:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "inclusionAI/Ling-3.1-flash (Modellkarte)",
+      "publisher": "inclusionAI / Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "webAI-Official/TwIL-8B (Modellkarte)",
+      "publisher": "webAI / Hugging Face",
+      "url": "https://huggingface.co/webAI-Official/TwIL-8B",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16 (Modellkarte)",
+      "publisher": "NVIDIA / Hugging Face",
+      "url": "https://huggingface.co/nvidia/NVIDIA-Nemotron-Labs-Dory1.0-4B-BF16",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Dory1.0-4B: A Looped Normalized-GPT (Paper, arXiv 2611.03998)",
+      "publisher": "NVIDIA / arXiv",
+      "url": "https://arxiv.org/html/2611.03998v1",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "TwIL webAI Non-Commercial License 1.0",
+      "publisher": "webAI / Hugging Face",
+      "url": "https://huggingface.co/webAI-Official/TwIL-8B/raw/main/LICENSE.md",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "OpenMDW License 1.1",
+      "publisher": "OpenMDW",
+      "url": "https://openmdw.ai/license/1-1/",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "vLLM PR #60149: merged 25.10.2026",
+      "publisher": "vLLM / GitHub",
+      "url": "https://github.com/vllm-project/vllm/pull/60149",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Ling commit history (kein Release-Nachweis)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/Ling-3.1-flash/commits/main",
+      "accessed": "2026-11-05"
+    }
+  ],
+  "title": "KI-Fachüberblick: Ling-3.1-flash, TwIL-8B, Dory1.0-4B",
+  "dek": "560B-MoE unter MIT, ein 8B-Reasoner mit NC-Lizenz und NVIDIAs gelooptes 4B-Modell: drei Modelle mit offenen Gewichten, drei Lizenzklassen.",
+  "tags": [
+    "KI-Überblick",
+    "Open Weights",
+    "Lizenzen",
+    "MoE",
+    "Inferenz"
+  ],
+  "key_takeaways": [
+    "Ling-3.1-flash (inclusionAI/Ant, Hub-Stand 03.11.): 560B-A25B hybrid-linear MoE (63 KDA + 9 Gated MLA, 512 Experten top-8 + 1 shared), 1M Kontext, MIT laut Hub-Metadaten, keine separate Lizenzdatei gefunden. Anbieterwerte: TB 2.1 81,18; SWE-bench Pro 68,74; SWE-bench Multilingual 88,5; HLE 37,44.",
+    "TwIL-8B (webAI, Hub-Stand 04.11.): 8,79B dicht auf IBM Granite 4.2 8B, SFT + GRPO/DAPO, Varianten balanced/verbose, 128K Kontext, Q4_K_M 4,98 GiB. MATH-500 98,2 und LiveCodeBench 81,6 † (nur verbose, laut Karte Gruppenspitze), aber: webAI Non-Commercial License 1.0 - nur nichtkommerzielle Forschung/Bildung; †-Werte nur auf verbose gemessen, Konkurrenzwerte nicht nachgemessen.",
+    "Dory1.0-4B (NVIDIA, Gewichte seit 16.10., Paper 11/2026): gelooptes nGPT (Karte 8/20/8 Blöcke, Paper 16/40/16 physische Schichten; R-Block k-fach), 6T Pretraining-Token + 0,3T Kontexterweiterung (4,5T nativ NVFP4), 256K Kontext, OpenMDW 1.1 (kommerziell ok). Schnitt über 12 Benchmarks: 35,2/39,7/40,6 bei 1/2/4 Loops (Paper-Angaben); vLLM-PR #60149 seit 25.10. gemergt; installierte Release-Version separat prüfen."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik: Ling MIT laut Metadaten; TwIL ausschließlich nichtkommerzielle Forschung und Bildung; Dory OpenMDW 1.1 mit kommerzieller Nutzung.",
+    "caption": "TwIL-Lizenztext und OpenMDW 1.1 geprüft; Ling-MIT nur laut Hub-Metadaten, keine separate Lizenzdatei gefunden. Vereinfachte Darstellung, keine Rechtsberatung.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: Hugging Face"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Abend des 5. November 2026. Quellenstand: 16:05 Uhr MEZ.** Drei offene Modellveröffentlichungen dieser Tage, gelesen an den Primärquellen: Modellkarten auf Hugging Face und das Dory-Papier auf arXiv. Alle Benchmark-Werte sind Anbieterangaben ohne eigene Nachmessung."
+    },
+    {
+      "t": "h2",
+      "x": "Ling-3.1-flash: 560B, MIT laut Metadaten"
+    },
+    {
+      "t": "p",
+      "x": "inclusionAI (Ant Group) hat Ling-3.1-flash bereitgestellt (letzter Hub-Stand 3. November; bereits Oktober-Commits, daher kein daraus abgeleiteter Releasetag; auch ModelScope und OpenRouter): 560B Gesamtparameter, 25B aktiviert, hybride lineare MoE-Architektur aus 63 KDA- und 9 Gated-MLA-Schichten (7:1) plus 4 Dense-Schichten, 512 Routing-Experten (top-8) plus 1 geteilter, 64 Attention-Heads, Hidden Size 4096, Vokabular 157.184, Kontextfenster 1M Token, schaltbares Reasoning. Gegenüber Ling-3.0-flash verspricht der Anbieter bessere agentische und Office-Fähigkeiten; das begleitende Coding-Harness LingCode (auf dem offenen Agenten Pi) soll eventuell später ebenfalls offengelegt werden."
+    },
+    {
+      "t": "p",
+      "x": "Die Karten-Benchmarks (Firmenangaben): Terminal-Bench 2.1 81,18; Terminal-Bench 4.0 46,03; DeepSWE 59,7; SWE-bench Pro 68,74; SWE-bench Multilingual 88,5; SkillsBench 68,7; HLE 37,44. Betrieb: Day-0-SGLang-Image mit NEXTN-Speculative-Decoding, Referenzsetup 8x H200 oder 4x GB300. Lizenzangabe: MIT laut Hub-Metadaten; grundsätzlich kommerziell nutzbar. Keine separate Lizenzdatei im geprüften Repository gefunden."
+    },
+    {
+      "t": "h2",
+      "x": "TwIL-8B: Contest-Stärke, ehrliche Einschränkungen"
+    },
+    {
+      "t": "p",
+      "x": "webAI hat TwIL-8B veröffentlicht (Hub-Stand 4. November): 8,79B Parameter, dichte Granite-Architektur (40 Schichten, Hidden 4096, 32/8 Attention-KV-Heads, Vokabular 100.352, 128K Kontext vom Basismodell geerbt), post-trainiert aus IBMs Granite 4.2 8B mit Full-Parameter-SFT und GRPO/DAPO-RL. Zwei Varianten: balanced (Standard, kürzere Reasoning-Spuren) und verbose (längere, für Wettkampfsaufgaben). BF16-Checkpoint 16,38 GiB pro Variante, dazu GGUF-Builds (Q4_K_M 4,98 GiB) für lokale Inferenz."
+    },
+    {
+      "t": "p",
+      "x": "Die Karte ist bemerkenswert transparent: MATH-500 98,2 und LiveCodeBench 81,6 † sind die besten Werte der Vergleichsgruppe (Qwen3.5-9B, Gemma 4 12B/31B), bei Contest-Mathe liegt TwIL-8B auf Augenhöhe mit Qwen3.5-9B bei rund 38 Prozent weniger Ausgabetoken pro AIME-2026-Problem; bei Wissen (GPQA 70,2 vs. 81,7/84,3; MMLU-Pro 76,5; HLE 12,6) liegt es klar zurück. Caveats aus der Karte selbst: Alle mit † markierten Werte stammen von der verbose-Variante und liefen noch nicht auf balanced; Konkurrenzwerte wurden aus Fremdkarten übernommen (Stand 03.11.), nicht nachgemessen; AIME/HMMT mit 30-33 Aufgaben bedeuten rund 3 Punkte Rauschen; HLE-Scoring unterschiedlich; Dekontaminationslücken bei HMMT Nov 2025 und den Code-Suiten; kein zusätzliches Safety-/Preference-Tuning über Granite 4.2 hinaus. Lizenz: webAI Non-Commercial License 1.0, Abschnitt 3.3 - ausschließlich nichtkommerzielle Forschung und Bildung (Basismodell Apache 2.0, IBM). Alle TwIL-Werte wurden auf BF16 gemessen, nicht auf den GGUF-Dateien. Bei TwILs LiveCodeBench-Lauf fehlen laut Karte Version und Zeitfenster, daher ist der Vergleich zur v6 der Konkurrenz nicht exakt gleichgesetzt."
+    },
+    {
+      "t": "h2",
+      "x": "Dory1.0-4B: Latente Loops statt längerer Antworten"
+    },
+    {
+      "t": "p",
+      "x": "NVIDIAs Nemotron Labs haben zu Dory1.0-4B jetzt das Paper veröffentlicht (arXiv, November 2026); die Gewichte selbst liegen bereits seit dem 16. Oktober auf dem Hub. Dory ist ein gelooptes (latent-rekurrentes) normalisiertes GPT: Die Karte zählt Input/Recurrent/Output als 8/20/8. Das Paper zählt 16/40/16 physische Attention- und MLP-Schichten und erklärt 36 reine MLP-Schichten zwischen 36 Attention-Schichten. Wir geben beide Zählweisen an; der geteilte Recurrent-Block läuft k-fach, mit erneuter Input-Einspeisung je Loop. Pre-Training auf 6 Billionen Token, die ersten 4,5 Billionen in einem gemischten NVFP4-Verfahren; weitere rund 0,3 Billionen Token zur Kontexterweiterung auf 256K (rund 6,3T insgesamt); Post-Training mit SFT und RLVR plus schwierigkeitsabhängigem Loop-Curriculum. Verfügbar in BF16, MXFP8, NVFP4 und Q5_K_M-GGUF."
+    },
+    {
+      "t": "p",
+      "x": "Kernbefund des Papiers: Elastische Inferenz aus einem Checkpoint - der Schnitt über 12 Benchmarks steigt von 35,2 (1 Loop) auf 39,7 (2) und 40,6 (4 Loops); ab zwei Loops liegt das 4B-Modell im Mittel über Qwen3.5-9B, Gemma 4 12B und Gemma 4 26B-A4B und kommt auf 1,7 Punkte an Qwen3.6-35B-A3B heran (rund neunfache Parameter); vier Loops senken die generierten Token pro Versuch auf agentischen Benchmarks um Faktor 1,3-2,5. Wenn aktiviert, hält Last-Loop-KV-Caching den Attention-Cache auf Ein-Loop-Niveau; gegenüber Per-Loop-Caching meldet das Paper bei vier Loops Änderungen von -2,12 bis +0,42 Punkten, also keinen verlustfreien Ersatz. Messungen aus NVIDIAs eigener Harness (NeMo Gym); in der Karten-Tabelle verliert Dory erwartbar bei Wissen (GPQA 72,2 bei 4 Loops vs. 80,9 für Qwen3.5-9B). Aktueller Praxisstand: vLLM-PR #60149 wurde am 25. Oktober gemergt. Daraus folgt keine Zusage für jede installierte Release-Version. Lizenz: OpenMDW 1.1. Der gelesene Text erlaubt kommerzielle Nutzung, verlangt bei Weitergabe Lizenz und Herkunftshinweise und lässt die Prüfung von Fremdrechten beim Nutzer. Der ungewichtete Mittelwert normalisiert GDPval-Elo als (Elo - 500) / 20 und ist keine einheitliche Genauigkeitsquote. Nicht jeder Einzeltest verbessert sich: GPQA und HLE fallen von zwei auf vier Loops leicht. Kürzere Ausgaben sind kein Beleg für geringere Latenz oder Energie: Das Paper schätzt bei vier Loops je nach agentischer Aufgabe 1,07- bis 2,04-fache Generierungsrechenarbeit gegenüber einem Loop."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Welche Lizenz gilt wo?",
+      "a": "Ling-3.1-flash: MIT laut Hub-Metadaten, keine separate Lizenzdatei gefunden. TwIL-8B: webAI Non-Commercial License 1.0 - nur nichtkommerzielle Forschung/Bildung; Basismodell Apache 2.0 (IBM). Dory1.0-4B: OpenMDW 1.1 - kommerziell erlaubt laut Karte. Im Zweifel gelten die Lizenztexte der Repos."
+    },
+    {
+      "q": "Sind die Benchmarks vergleichbar?",
+      "a": "Bedingt. Alle Werte sind Anbieterangaben aus eigenen Harnesses. webAI kennzeichnet selbst, dass †-Werte nur auf der verbose-Variante liefen und Konkurrenzwerte nicht nachgemessen wurden; NVIDIAs Dory-Tabelle stammt aus der eigenen NeMo-Gym-Harness. Wir haben keine unabhängigen Nachmessungen geprüft."
+    },
+    {
+      "q": "Was bringt das Loopen bei Dory praktisch?",
+      "a": "Ein Checkpoint bietet mehrere Rechenbudgets. Laut Paper steigt der ungewichtete, teils normalisierte Zwölf-Test-Mittelwert von 35,2 bei einem auf 40,6 bei vier Loops. Einzeltests verbessern sich nicht alle. Weniger Ausgabetoken bedeuten nicht automatisch weniger Rechenarbeit oder kürzere Wartezeit."
+    }
+  ],
+  "related": [
+    "muse-spark-open-offene-gewichte-analyse",
+    "offene-gewichte-vs-open-source"
+  ]
+}
