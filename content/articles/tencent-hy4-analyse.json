@@ -1,0 +1,209 @@
+{
+  "slug": "tencent-hy4-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Tencent Hy4: Bildverständnis und Computer-Use, Gewichte angekündigt",
+  "dek": "Die neue Generation von Tencents Hy-Reihe läuft bereits über die API - offene Gewichte und Systemkarten sollen in den kommenden Tagen folgen.",
+  "published": "2026-11-05T07:21:00+01:00",
+  "modified": "2026-11-05T07:21:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Tencent",
+    "Hy4",
+    "Offene Gewichte",
+    "Agenten",
+    "Multimodal"
+  ],
+  "key_takeaways": [
+    "Tencent hat Hy4 vorgestellt: erstmals mit visuellem Verständnis und Computer-Use; die API läuft bereits, die Preise bleiben unverändert [1].",
+    "Offene Gewichte und Systemkarten sind für die kommenden Tage angekündigt; zum Prüfzeitpunkt lag auf Hugging Face nur die Hy4 Preview vor, unter Apache 2.0, Repositories im August angelegt [1][2].",
+    "Interne Fehlerraten sind laut Tencent deutlich gesunken (Halluzinationen von 12,95 auf 7,2 Prozent); wir haben die Vollversion nicht selbst gemessen [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Ein Pfeil führt von einem Kasten 'Hy4 Preview' zu einem Kasten 'Hy4', darunter drei Felder mit den Neuheiten visuelles Verständnis, Computer-Use und lange Kontexte; ein Hinweis kennzeichnet die angekündigten offenen Gewichte",
+    "caption": "Von der Preview zu Hy4: Die Vollversion ergänzt laut Tencent visuelles Verständnis und Computer-Use; offene Gewichte und Systemkarten sind angekündigt [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Tencent hat am 4. November 2026 Hy4 vorgestellt, die neue Generation seiner Hy-Modellreihe [1]. Das Modell bringt erstmals visuelles Verständnis und Computer-Use-Fähigkeiten mit und ist bereits über Tencents Plattformen und die API erreichbar. Offene Gewichte und Systemkarten sollen 'in den kommenden Tagen' folgen [1]; zum Prüfzeitpunkt (5. November, früher Morgen) listete Tencents Hugging-Face-Organisation nur die bereits am 27. August angelegten Preview-Repositories [2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Tencent Hy4 im Überblick (Herstellerangaben aus der Pressemitteilung) [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Modell"
+    },
+    {
+      "t": "p",
+      "x": "Neue Generation der Hy-Reihe, Nachfolger der Hy4 Preview. Zur Architektur der Vollversion macht die Mitteilung keine Angaben. Die Preview ist ein MoE-Modell mit 770 Mrd. Backbone-Parametern und 49 Mrd. aktiven (ohne zusätzliche MTP-Schicht mit 10 Mrd. Parametern), 78 Schichten, 256 Routing-Experten (Top-8 pro Token) plus ein geteilter Experte, eine Million Token Kontext, Apache 2.0 [2]"
+    },
+    {
+      "t": "h3",
+      "x": "Neue Fähigkeiten"
+    },
+    {
+      "t": "p",
+      "x": "Erstmals visuelles Verständnis (feine Bildverarbeitung, Diagrammanalyse, mathematisches visuelles Schlussfolgern) und erstmals Computer-Use: Bedienung von Kommandozeile und grafischen Oberflächen, mit Zusatztraining auf der Profisoftware Blender und CAD [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Interne Fehlerraten"
+    },
+    {
+      "t": "p",
+      "x": "Halluzinationsrate laut interner Auswertung von 12,95 Prozent (Preview) auf 7,2 Prozent gesenkt; Fehler durch unbelegte Annahmen von 23,1 auf 5,6 Prozent [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Preise"
+    },
+    {
+      "t": "p",
+      "x": "Unverändert gegenüber der Preview: rund 0,90 US-Dollar je Million Eingabe-Token, 2,70 US-Dollar je Million Ausgabe-Token, 0,045 US-Dollar je Million gecachter Eingabe-Token [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Verfügbarkeit"
+    },
+    {
+      "t": "p",
+      "x": "Tencent Cloud TokenHub, WorkBuddy, CodeBuddy, Yuanbao, der WeCom-Assistent Dayuan und ima; die API wird auch über Drittplattformen angeboten. Aktionszeiträume: WorkBuddy und CodeBuddy vom 4. bis 15. November kostenlos, TokenHub bis zum 31. Dezember 2026 zum halben Preis [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Offene Gewichte"
+    },
+    {
+      "t": "p",
+      "x": "Für 'die kommenden Tage' angekündigt, ebenso Systemkarten mit Schwerpunkt Cyber- und Biosicherheit (Stand der Mitteilung 4.11.) [1]. Zum Prüfzeitpunkt fanden sich unter Tencents Hugging-Face-Organisation nur Hy4-preview und Hy4-preview-FP8 (beide am 27.8.2026 angelegt, nicht zugangsbeschränkt, Apache 2.0) [2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Was neu ist gegenüber der Preview"
+    },
+    {
+      "t": "p",
+      "x": "Neben Bildverständnis und Computer-Use nennt Tencent besseres Befolgen von Anweisungen, Verständnis langer Kontexte und langfristig agentische Aufgaben [1]. In der Frontend- und Spieleentwicklung, trainiert mit Profis aus Tencents Interactive Entertainment Group und angebunden an Unreal Engine, Unity und Godot, meldet der Hersteller interne Zuwächse von 19,1 Prozent (GameDev) und 9,8 Prozent (GameLogic) gegenüber der Preview [1]. Eine gezielte Suchoptimierung soll aktuelle Informationen abrufen, mehrere Quellen zusammenführen und faktische Konsistenz prüfen - hierher gehören auch die gesenkten Fehlerraten [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "Auf Tencents Arbeitsplatz-Produkt WorkBuddy meldet der Hersteller einen Durchschnittswert von 83,18 und eine Bestehensquote von 96,15 Prozent; in neun von zwölf Szenarien des chinesischen Festlandmarkts liege Hy4 vorn [1]. In einer Blindevaluation zu Finanzaufgaben, durchgeführt vom Tencent-Hy-Team mit Tencent Financial Technology, bewerteten 213 Finanzprofis (153 von externen Institutionen, rund 70 Prozent mit mehr als fünf Jahren Erfahrung) 579 reale Aufgaben: Hy4 erzielte 3,04 Punkte und lag laut Tencent vor DeepSeek-V4.1-Flash-1017 (2,97), Kimi K3.1 Pro (2,68) und GLM-5.3 (2,68) - Angaben aus Tencents eigener Auswertung [1]. Im Investment Research Agent Benchmark (iRaB) des Finanz-KI-Unternehmens Rabyte verbesserte sich Hy4 gegenüber der Preview um 12,03 Prozentpunkte [1]. Der wissenschaftliche Test TenureTrail mit 123 ausführbaren Aufgaben aus sieben Disziplinen wird ohne konkrete Zahl erwähnt [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Interne Fehlerraten: Hy4 Preview im Vergleich zu Hy4",
+      "alt": "Balkendiagramm mit zwei Gruppen: Halluzinationsrate interner Test, Preview 12,95 Prozent und Hy4 7,2 Prozent; Fehler durch unbelegte Annahmen, Preview 23,1 Prozent und Hy4 5,6 Prozent - niedriger ist besser",
+      "caption": "Interne Angaben aus Tencents Pressemitteilung, nicht unabhängig verifiziert [1]. Niedrigere Werte sind besser; Testaufbau und Stichprobe nennt die Mitteilung nicht.",
+      "labels": [
+        "Halluzinationsrate (interner Test)",
+        "Fehler durch unbelegte Annahmen (interner Test)"
+      ],
+      "series": [
+        {
+          "name": "Hy4 Preview",
+          "values": [
+            12.95,
+            23.1
+          ]
+        },
+        {
+          "name": "Hy4",
+          "values": [
+            7.2,
+            5.6
+          ]
+        }
+      ],
+      "y_label": "Fehlerrate in Prozent (niedriger ist besser)",
+      "x": ""
+    },
+    {
+      "t": "h2",
+      "x": "Sicherheit: Cyber und Bio"
+    },
+    {
+      "t": "p",
+      "x": "Hy4 wurde laut Tencent auf defensive Sicherheitsdaten trainiert, mit Schwerpunkt auf Proof-of-Concept-Entwicklung und Schwachstellenbehebung; offensives Exploit-Material sei explizit aus den Trainingsdaten ausgeschlossen worden [1]. Tencents Xuanwu Lab und Keen Security Lab hätten die Bereiche kryptografisches Reverse Engineering, Binär-Deobfuskation und Schwachstellen-Ausnutzung geprüft und keine wesentlichen Bedenken zu offensiven Fähigkeiten festgestellt [1]. Zur Biosicherheit schreibt der Hersteller: starkes Grundlagenwissen, aber im offenen Experimentdesign eingeschränkter als Spitzenmodelle [1]. Beide Aussagen stammen aus herstellereigenen Prüfungen."
+    },
+    {
+      "t": "h2",
+      "x": "Ökosystem und angekündigte Gewichte"
+    },
+    {
+      "t": "p",
+      "x": "Hy4 ist eng in Tencents Produkte eingebunden; Anbindungen für QQ, Honor of Kings, Game of Peace, WeRead und Tencent News sind in Arbeit [1]. Die Variante Hy4 Flash ist für demnächst angekündigt und soll die Kosteneffizienz verbessern [1]. Das Hy-Team hat zudem zwei mit Hy4 und dem Trainingsprogramm Hyra 2.0 entwickelte Basismodelle offengelegt: HyCell für Einzelzell-Repräsentationen und HyPDE für physikalische Felder [1]. Wer sofort mit offenen Gewichten arbeiten will, findet derzeit nur die Preview: 770 Mrd. Backbone-Parameter, 131 Safetensors-Dateien plus FP8-Variante, Apache 2.0; das Repository wurde am 27. August angelegt [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Der 4. November war vor allem ein Produkt- und API-Start: Das Modell läuft, die offenen Gewichte sind eine Zusage mit grober Frist. Ohne Gewichte und Systemkarten ist eine unabhängige Prüfung des Eigenbetriebs der Vollversion noch nicht möglich - und fast alle genannten Zahlen stammen aus internen oder herstellernahen Auswertungen, darunter die Finanz-Blindevaluation aus dem eigenen Haus. Die Architekturwerte im Text beziehen sich auf die Preview; ob die Vollversion daran festhält, wird erst das angekündigte Repository zeigen. Wer den Launch bewerten will, sollte auf das Erscheinen der Gewichte warten und dann die Kartenangaben gegen die Preview abgleichen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Tencent Hy4?",
+      "a": "Die neue Generation von Tencents Hy-Modellreihe, vorgestellt am 4. November 2026: erstmals mit visuellem Verständnis und Computer-Use, verbessert bei Anweisungen, langen Kontexten und agentischen Aufgaben [1]."
+    },
+    {
+      "q": "Sind die Gewichte von Hy4 offen?",
+      "a": "Die Mitteilung kündigt Gewichte und Systemkarten für die kommenden Tage an. Unsere Prüfung der Tencent-Hugging-Face-Organisation fand nur die Preview-Modelle unter Apache 2.0; ihre Repositories wurden am 27. August 2026 angelegt [1][2][3]."
+    },
+    {
+      "q": "Was kostet die Hy4-API?",
+      "a": "Rund 0,90 US-Dollar je Million Eingabe-Token, 2,70 US-Dollar je Million Ausgabe-Token und 0,045 US-Dollar je Million gecachter Eingabe-Token - unverändert gegenüber der Preview. Die Mitteilung vom 4. November kündigt bis 31. Dezember 2026 50 Prozent Rabatt über Tencent Cloud TokenHub [1]."
+    },
+    {
+      "q": "Was kann Hy4 neu?",
+      "a": "Visuelles Verständnis (Bilder, Diagramme, mathematisch-visuelles Schlussfolgern) und Computer-Use: Das Modell bedient Kommandozeilen und grafische Oberflächen und wurde zusätzlich auf Blender und CAD trainiert [1]."
+    },
+    {
+      "q": "Wo kann man Hy4 nutzen?",
+      "a": "Über Tencent Cloud TokenHub, WorkBuddy, CodeBuddy, Yuanbao, den WeCom-Assistenten Dayuan und ima sowie über Drittplattformen. WorkBuddy und CodeBuddy sind vom 4. bis 15. November kostenlos [1]."
+    }
+  ],
+  "related": [
+    "northcua-computer-use-analyse",
+    "deepseek-v4-1-flash-1017-analyse",
+    "offene-gewichte-vs-open-source"
+  ],
+  "sources": [
+    {
+      "title": "Tencent Launches Hy4, Joining the Ranks of the World's Leading Open-Source AI Models (Pressemitteilung, 4.11.2026)",
+      "publisher": "Tencent",
+      "url": "https://www.tencent.com/tencent-launches-hy4-joining-the-ranks-of-the-worlds-leading-open-source-ai-models/",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "tencent/Hy4-preview (Modellkarte und Repository-API)",
+      "publisher": "Hugging Face / Tencent",
+      "url": "https://huggingface.co/tencent/Hy4-preview",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Hugging-Face-Organisations-API: Modellliste von tencent (Abfrage 'Hy4')",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/api/models?author=tencent&search=Hy4",
+      "accessed": "2026-11-05"
+    }
+  ],
+  "method": "Analyse auf Basis der vollständig gelesenen Pressemitteilung von Tencent (4.11.2026), der vollständig gelesenen Hugging-Face-Modellkarte der Hy4 Preview sowie der Hugging-Face-Repository- und Organisations-API (Anlagedaten, Dateilisten, vorhandene Repositories). Sämtliche Messwerte sind Herstellerangaben; die Vergleichswerte anderer Modelle stammen aus Tencents eigener Blindevaluation und sind als solche gekennzeichnet. Keine eigenen Tests.",
+  "limitations": "Keine eigenen Tests. Zur Architektur der Vollversion (Parameter, Kontextlänge) macht die Mitteilung keine Angaben; Architekturwerte im Text beziehen sich auf die Preview. In der geprüften Tencent-Hugging-Face-Organisationsliste fanden sich nur Preview-Repositories; die Freigabe der Vollversionsgewichte ist eine Herstellerzusage. Die meisten Messwerte stammen aus internen oder herstellernahen Auswertungen; die Finanz-Blindevaluation wurde vom Tencent-Hy-Team mit Tencent Financial Technology durchgeführt. Für diesen Artikel wurde keine unabhängige Fremdmessung vorgenommen."
+}
