@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Tencent Hy4: Bildverständnis und Computer-Use, Gewichte angekündigt](https://kifachblatt.de/tencent-hy4-analyse): Die neue Generation von Tencents Hy-Reihe läuft bereits über die API - offene Gewichte und Systemkarten sollen in den kommenden Tagen folgen.
+- [Kimi K3.1 Pro: 2,8 Billionen Parameter, offene Gewichte, eigene Lizenz](https://kifachblatt.de/kimi-k3-1-pro-analyse): Moonshots erstes Modell der K3.1-Serie kommt mit 104 Milliarden aktiven Parametern, einer Million Token Kontext und einer eigenen Lizenz mit Umsatzschwellen.
 - [KI-Fachüberblick: Kimi K3.1 Pro, SWE-2 Flash und Vaults](https://kifachblatt.de/news-ueberblick-morgen-2026-11-05): Kimi K3.1 Pro: 2,8T MoE mit Schwellen-Lizenz. SWE-2 Flash nach Mid-Training und RL. Anthropics Vault-Befund im Eigenbericht.
 - [KI-Fachüberblick: Eval-Lücke, GroundingPI und SenseNova-Loop](https://kifachblatt.de/news-ueberblick-abend-2026-11-04): OpenAI misst 10,2 bis 37,4 Prozentpunkte Abstand zwischen Eval und Produktion. GroundingPI für Physical AI; SenseNova-Loop-9B mit geteilten Gewichten.
 - [KI-Fachüberblick: Mage-VL-Cowork, RDKit-Agent und Dhīr](https://kifachblatt.de/news-ueberblick-mittag-2026-11-04): Mage-VL-Cowork verbindet GUI- und Terminal-Aktionen in einer 4B-Policy. Cheminformatics-Skills für Antigravity; EKA-1 und Dhīr aus Indien.
