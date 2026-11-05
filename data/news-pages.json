@@ -1,5 +1,65 @@
 [
   {
+    "title": "Apple kürzt interne KI-Budgets für Beschäftigte deutlich",
+    "url": "https://www.heise.de/news/Apple-kuerzt-interne-KI-Budgets-fuer-Beschaeftigte-deutlich-11513091.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793883060.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Apple senkt die Ausgabenlimits für die KI-Nutzung seiner Mitarbeiter um ein Drittel. Für manche Teams soll das Budget sogar auf 25 US-Dollar pro Tag sinken.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-05T13:19:36.483987+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Modelle: Apple-Entwickler sollen sparen",
+    "url": "https://www.heise.de/news/KI-Modelle-Apple-Entwickler-sollen-sparen-11513333.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793879700.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nichts mehr mit „Tokenmaxxing“: Bei Apple sind interne KI-Sparmaßnahmen angesagt. Laut einem Bericht sinkt das tägliche Budget um ein Drittel.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-05T13:19:36.484055+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Pangram Image ist da: KI-Bilder und -Videos aufspüren",
+    "url": "https://www.heise.de/news/Pangram-Image-ist-da-KI-Bilder-und-Videos-aufspueren-11513019.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793876160.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Pangram Labs führt die neuen Modelle Image 1.0 und Image Flash 1.0 ein. Sie sollen KI-generierte Bilder und Videos zuverlässig erkennen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-05T13:19:36.484162+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "heise+ | So soll KI-Deutschland in 4 Jahren aussehen - eine Analyse der Regierungsziele",
+    "url": "https://www.heise.de/news/KI-Task-Force-Bericht-der-Bundesregierung-eine-Analyse-was-drin-steht-11510291.html?wt_mc=rss.red.ho.ho.atom.beitrag_plus.beitrag_plus",
+    "ts": 1793875200.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Der Bericht der KI-Task-Force der Regierung träumt ein Deutschland herbei, das toll klingt – sich aber wenig kritisch mit KI auseinander setzt, so die Analyse.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-05T13:19:36.484204+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Meta kauft Spezialisten für KI-Coding-Agenten",
+    "url": "https://www.heise.de/news/Meta-kauft-Spezialisten-fuer-KI-Coding-Agenten-11513119.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1793872560.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Mit der Übernahme von Conductor will Meta seine KI-Entwicklerwerkzeuge stärken und im Wettbewerb mit OpenAI und Anthropic aufholen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-05T13:19:36.484239+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Noch kein „iPhone-Moment“: Nothings erstes KI-natives Produkt kommt im Dezember",
     "url": "https://www.heise.de/news/Noch-kein-iPhone-Moment-Nothings-erstes-KI-natives-Produkt-kommt-im-Dezember-11512924.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793868600.0,
