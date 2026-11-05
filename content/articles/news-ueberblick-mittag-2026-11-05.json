@@ -1,0 +1,135 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-05",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-05T09:58:00+01:00",
+  "modified": "2026-11-05T09:58:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "baidu/ERNIE-5.5-Flash-Base (Modellkarte)",
+      "publisher": "Baidu / Hugging Face",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "ERNIE 5.5 Flash Base Model License Agreement v1.0",
+      "publisher": "Baidu / Hugging Face",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base/resolve/main/LICENSE",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Introducing Ripple-65B Preview, a Frontier Open-Weight Model",
+      "publisher": "Ricursive Intelligence",
+      "url": "https://www.ricursive.com/ripple",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "ricursiveAI/Ripple-65B-Preview (Modellkarte)",
+      "publisher": "Ricursive Intelligence / Hugging Face",
+      "url": "https://huggingface.co/ricursiveAI/Ripple-65B-Preview",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Introducing Images 2.6",
+      "publisher": "OpenAI",
+      "url": "https://openai.com/index/introducing-images-2-6/",
+      "accessed": "2026-11-05"
+    },
+    {
+      "title": "Ripple BF16-Instruct LICENSE",
+      "publisher": "Ricursive / Hugging Face",
+      "url": "https://huggingface.co/ricursiveAI/Ripple-65B-Preview/raw/main/LICENSE",
+      "accessed": "2026-11-05"
+    }
+  ],
+  "title": "KI-Fachüberblick: ERNIE 5.5 Flash Base, Ripple-65B, Images 2.6",
+  "dek": "Baidu öffnet ein 280B-Basismodell, dessen Lizenz die EU ausnimmt. Ripple-65B: dicht statt MoE, Apache 2.0. OpenAI Images 2.6 mit GIFs.",
+  "tags": [
+    "KI-Überblick",
+    "Open Weights",
+    "Lizenzen",
+    "MoE",
+    "Bildgenerierung"
+  ],
+  "key_takeaways": [
+    "ERNIE 5.5 Flash Base (05.11.): 280B-A14B, 43 Schichten (37 HCA + 6 MLA-DSA), 512 Experten top-10, 33,5T Token, 128K Training / 1M Inferenz, FP8+BF16, Base ohne Post-Training. Lizenz v1.0: Territory = weltweit OHNE EU, UK und Südkorea; innerhalb des Gebiets kommerziell ohne Modell-Lizenzgebühr bis einschließlich 50 Mio. USD rollierendem Zwölfmonatsumsatz der betroffenen Produkte/Verbundgruppe (Meldung + \"Powered by ERNIE\"), darüber schriftliche Genehmigung.",
+    "Ripple-65B Preview (Apache 2.0): 65B dicht, 80 Schichten, d_model 5120, 12T Pretrain-Tokens, 1M Kontext. Anbieter meldet 80,52 in Terminal-Bench 2.1 (US-Open-Weight-Bestwert, eigene Harness) bei 32 Mio. USD Gesamtentwicklungskosten - beides ungeprüfte Firmenangaben.",
+    "OpenAI Images 2.6 (04.11.): GIF-Ausgabe in ChatGPT, Codex und API; laut OpenAI \"50 % schneller\" (nicht: halbe Wartezeit); API-Modelle Flare (ab ~6 s bei Qualität \"low\") und Sunburst (Konsistenz über Edits); Bild-Markup und SVG-Export in der API; OpenAI nennt 4 Mrd. Bilder pro Woche als Nutzungsstand."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik zur ERNIE-Lizenz: nur außerhalb EU, UK und Südkorea; Gebührenfreiheit unter Bedingungen, kommerziell bis einschließlich 50 Millionen USD rollierendem Verbundumsatz betroffener Produkte.",
+    "caption": "Die Nutzungsbedingungen von ERNIE 5.5 Flash Base nach dem Lizenztext v1.0 vom 5.11.2026 - vereinfachte Darstellung, im Zweifel gilt der Lizenztext.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: Baidu"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Fachüberblick am Mittag des 5. November 2026. Quellenstand: 09:52 Uhr MEZ.** Ein offenes Basismodell mit territorialer Lizenzlücke, ein dichtes US-Modell gegen den MoE-Mainstream und OpenAIs Bildupdate. Zahlen sind durchgehend Anbieterangaben; die Lizenzangaben stammen aus dem vollständig gelesenen Lizenztext."
+    },
+    {
+      "t": "h2",
+      "x": "ERNIE 5.5 Flash Base: offene Gewichte, geschlossene Landkarte"
+    },
+    {
+      "t": "p",
+      "x": "Baidu veröffentlicht ERNIE 5.5 Flash Base als reinen Pre-Training-Checkpoint (kein Mid-/Post-Training, nur Text): 280B Gesamtparameter, 14B aktiviert, 43 Schichten (1 Dense-FFN + 42 Multi-Router-Latent-MoE), hybride Aufmerksamkeit aus 37 HCA-Schichten (Kopfdimension 512, ein Cache-Eintrag pro 128 Token) und 6 MLA-Schichten mit DSA (Kopfdimension 256), 512 Routing-Experten (top-10) plus 1 geteilter, latente Expertendimension 2048, Vokabular 201.216, 33,5 Billionen Pre-Training-Token mit Muon, Trainingskontext 128K, Fine-Tuning/Inferenz bis 1M, Gewichte in FP8 und BF16. ECHO ersetzt das MTP-Modul durch die eigene letzte Schicht (0,36B Zusatzparameter, nicht mitgezählt). Betrieb über SGLang oder vLLM mit Baidu-Plugin."
+    },
+    {
+      "t": "p",
+      "x": "Die Benchmark-Tabelle der Karte vergleicht unter einheitlicher Pipeline mit DeepSeek-V4-Flash-Base, Hy3-preview-Base und MiMo-V2.5-Base: ERNIE führt die meisten Reihen (MMLU 93,3; MMLU-Pro 78,4; HumanEval+ 82,3; RepoQA 91,7), liegt aber in Einzeltests hinten (ChineseSimpleQA 73,0 vs. 75,3; FullStackBench 54,6 vs. 56,7; HELMET-Rerank 56,2 vs. 60,0; InfiniteBench 46,5 vs. 48,0). Entscheidend ist die Lizenz v1.0 (Datum 05.11.2026): Das \"Territory\", in dem Rechte gewährt werden, umfasst die ganze Welt außer EU, Großbritannien und Südkorea - Nutzung, Vervielfältigung und Verbreitung außerhalb des Territoriums sind ausdrücklich nicht autorisiert. Innerhalb des Territoriums: nicht-kommerziell frei; kommerziell kostenlos bis einschließlich 50 Mio. USD fortlaufender Zwölfmonatsumsatz der betroffenen Produkte samt verbundenen Einheiten mit einmaliger Meldung an Baidu und \"Powered by ERNIE\"-Branding; über der Schwelle ist vorab eine schriftliche Genehmigung nötig; Gründe für die Gebietsausnahme nennt der Text nicht."
+    },
+    {
+      "t": "p",
+      "x": "Die 50-Millionen-Grenze gilt einschließlich exakt 50 Millionen US-Dollar. Gezählt werden fortlaufend die vorausgehenden zwölf Monate, nicht ein Kalenderjahr: der gesamte Umsatz aller Produkte und Dienste, die das Modell oder Derivate nutzen, einschließlich unter gemeinsamer Kontrolle stehender Einheiten. Auch bei Kombination mit anderen Modellen zählt der ganze Produktumsatz. Vor der ersten kommerziellen Nutzung dieser Modellversion muss eine einmalige Meldung mit Betreiber, Modell/Version, Produkten, Zweck und gültigem Kontakt an Baidu_ERNIE@baidu.com gesendet werden; innerhalb der Schwelle braucht es danach keine Antwort oder Zustimmung. Das Branding bleibt Pflicht. Bei drohender Überschreitung ist vorher schriftliche Erlaubnis nötig; Antrag oder laufende Gespräche reichen nicht. Der Text beschränkt auch Derivate und Outputs auf das Gebiet und enthält weitere Pflichten, etwa AUP und Weitergabehinweise. Ab 50 Millionen kann Baidu eine Compliance-Erklärung und angemessene Nachweise anfordern, regulär höchstens jährlich, bei begründetem Verdacht öfter; unterhalb ist eine kurze Bestätigung der Einstufung möglich. Datierungshinweis: Der abgerufene Text nennt für Exhibit A bereits den 6. November 2026, also den Folgetag. Wir geben die aktuell abrufbaren Bedingungen wieder; diese Datumsabweichung bleibt ungeklärt."
+    },
+    {
+      "t": "h2",
+      "x": "Ripple-65B Preview: dicht, klein, Apache 2.0"
+    },
+    {
+      "t": "p",
+      "x": "Ricursive Intelligence - ein Labor mit Chip-Design-Plattform - stellt Ripple-65B Preview vor: ein dichtes 65B-Modell (keine MoE), 80 Schichten bei d_model 5120, Gemma-3N-ähnliche Architektur mit SWA, globalem NoPE, Value-Residuals, Gated Attention und FFN-Clipping. Pre-Training auf 12 Billionen Token (8K), danach 200B Mid-Training (64K), 6,5B Long-Context (2M), 183B SFT und 700 RL-Schritte. Veröffentlicht werden Instruct (BF16 und NVFP4) und Base (BF16); Lizenzdatei des BF16-Instruct-Repositorys: Apache 2.0; Bezug über Hugging Face, Together AI, GMI Cloud und OpenRouter, Fireworks angekündigt. Laut Karte 250 Token/s auf 2x B200 (Batch 8, BF16)."
+    },
+    {
+      "t": "p",
+      "x": "Die Leistungsbehauptungen sauber einordnen: 80,52 in Terminal-Bench 2.1 nennt Ricursive US-Open-Weight-SOTA für agentisches Coding - die eigene Tabelle zeigt zugleich, dass das Modell bei SWE-bench Verified (76,5 vs. 81,6 Beam), DeepSWE (44,3 vs. 60,0 Muse Spark Open) und MMLU (89,6, alle MoE-Rivalen höher) zurückliegt; die Vergleichswerte stammen teils aus Ricursives eigener Harness, die der Anbieter offen als \"best effort\" beschreibt. Die Kostenangabe von 32 Mio. USD für die gesamte Entwicklung (inklusive Datenrezepte und Post-Training, Team von 1 auf 5 Personen, MFU 40 %) ist eine Firmendarstellung ohne Beleg; der Vergleich \"ein Zehntel des bisherigen SOTA\" fußt auf einer Schätzung des Anbieters. Das \"Preview\" im Namen ist Programm: Das Post-Training sei bewusst leicht gehalten."
+    },
+    {
+      "t": "h2",
+      "x": "OpenAI Images 2.6: GIFs, Tempo, zwei API-Modelle"
+    },
+    {
+      "t": "p",
+      "x": "OpenAI rollt Images 2.6 in ChatGPT, Codex und der API aus (seit 04.11., alle Tarife). Kernpunkte: GIF-Erzeugung (Sprite-Sheet-Workflow mit konsistenten Frames), \"50 % schneller\" laut OpenAI (kein Beleg für halbierte Wartezeit), zwei API-Modelle - GPT-Image-2.6 Flare (Tempo; bei Qualität \"low\" laut OpenAI ab rund sechs Sekunden) und GPT-Image-2.6 Sunburst (höhere Detailtreue und Konsistenz über Bearbeitungsrunden). Neu in der API: Bild-Markup zur punktgenauen Editierung, SVG-Export und ein Complexity-Parameter für die Planungstiefe. Als Nutzungsstand nennt OpenAI 4 Milliarden erzeugte Bilder pro Woche über alle Produkte."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Geschwindigkeits- und Nutzungszahlen sind Anbieterangaben ohne unabhängige Messung; zur Sicherheitsseite verweist OpenAI auf eine Systemkarte, die wir nicht eigenständig ausgewertet haben. Für Redaktionen relevant ist weniger das GIF-Gimmick als die Konsistenz über Edits - sie entscheidet, ob sich das Modell für wiederkehrende Marken- und Produktmotive eignet."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Warum schließt Baidus Lizenz die EU aus?",
+      "a": "Der Lizenztext begründet das nicht. Fakt ist nur: Das Geltungsgebiet umfasst die Welt ohne EU, Großbritannien und Südkorea, und Nutzung außerhalb ist nicht autorisiert. Ob Baidu später EU-Bedingungen nachreicht, ist offen."
+    },
+    {
+      "q": "Ist Ripple-65B wirklich konkurrenzlos günstig?",
+      "a": "Die 32 Millionen Dollar und der Vergleich mit fremden Entwicklungskosten sind Anbieterangaben. Die Parameterzahl allein belegt keinen Hardwarevorteil: Präzision, aktivierte Parameter, Kontext, KV-Cache und Laufzeit sind separat zu vergleichen. Wir haben keinen Hardwaretest durchgeführt."
+    },
+    {
+      "q": "Brauche ich für GIFs in ChatGPT ein bestimmtes Abo?",
+      "a": "Nein. Laut OpenAI ist Images 2.6 seit dem 4. November weltweit in allen ChatGPT- und Codex-Tarifen verfügbar, Desktop, Mobil und Web. In der API stehen Flare und Sunburst separat bereit."
+    },
+    {
+      "q": "Bedeutet 50 Prozent schneller halbierte Wartezeit?",
+      "a": "Nein. OpenAI schreibt \"50% faster\", ohne hier einen eindeutigen Messnenner offenzulegen. Daraus machen wir weder 50 Prozent weniger Latenz noch eine halbierte Wartezeit."
+    }
+  ],
+  "related": [
+    "muse-spark-open-offene-gewichte-analyse",
+    "offene-gewichte-vs-open-source"
+  ]
+}
