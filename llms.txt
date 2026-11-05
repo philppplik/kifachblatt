@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Kimi K3.1 Pro, SWE-2 Flash und Vaults](https://kifachblatt.de/news-ueberblick-morgen-2026-11-05): Kimi K3.1 Pro: 2,8T MoE mit Schwellen-Lizenz. SWE-2 Flash per Mid-Training von 0,9 auf 20,0 in Terminal-Bench 4.0. Anthropic kartiert prokaryotisches Vault.
 - [KI-Fachüberblick: Eval-Lücke, GroundingPI und SenseNova-Loop](https://kifachblatt.de/news-ueberblick-abend-2026-11-04): OpenAI misst 10,2 bis 37,4 Prozentpunkte Abstand zwischen Eval und Produktion. GroundingPI für Physical AI; SenseNova-Loop-9B mit geteilten Gewichten.
 - [KI-Fachüberblick: Mage-VL-Cowork, RDKit-Agent und Dhīr](https://kifachblatt.de/news-ueberblick-mittag-2026-11-04): Mage-VL-Cowork verbindet GUI- und Terminal-Aktionen in einer 4B-Policy. Cheminformatics-Skills für Antigravity; EKA-1 und Dhīr aus Indien.
 - [Hydrogen-1.0: 753 Milliarden Parameter für die Forschung](https://kifachblatt.de/hydrogen-1-0-analyse): Deep Principle trainiert GLM-5.3 mit Laborbüchern und Entdeckungspfaden nach - und legt das Ergebnis als offene Gewichte unter der MIT-Lizenz vor.
