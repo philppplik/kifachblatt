@@ -4,7 +4,7 @@
   "section": "ueberblick",
   "type": "news",
   "published": "2026-11-05T06:47:00+01:00",
-  "modified": "2026-11-05T06:47:00+01:00",
+  "modified": "2026-11-05T06:53:00+01:00",
   "author": "philipp-paulik",
   "sources": [
     {
@@ -39,7 +39,7 @@
     }
   ],
   "title": "KI-Fachüberblick: Kimi K3.1 Pro, SWE-2 Flash und Vaults",
-  "dek": "Kimi K3.1 Pro: 2,8T MoE mit Schwellen-Lizenz. SWE-2 Flash per Mid-Training von 0,9 auf 20,0 in Terminal-Bench 4.0. Anthropic kartiert prokaryotisches Vault.",
+  "dek": "Kimi K3.1 Pro: 2,8T MoE mit Schwellen-Lizenz. SWE-2 Flash nach Mid-Training und RL. Anthropics Vault-Befund im Eigenbericht.",
   "tags": [
     "KI-Überblick",
     "Open Weights",
