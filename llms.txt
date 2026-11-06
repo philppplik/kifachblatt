@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: GPT-6 Cyber, TailSteer, ToyBlocks](https://kifachblatt.de/news-ueberblick-morgen-2026-11-06): Cyber-Variante von GPT-6 Astra mit Daybreak-Red-Zugang. TailSteer stabilisiert Multi-Turn-Bildedits. Ai2s VLA-Stack stapelt Klötze.
 - [KI-Fachüberblick: Ling-3.1-flash, TwIL-8B, Dory1.0-4B](https://kifachblatt.de/news-ueberblick-abend-2026-11-05): 560B-MoE unter MIT, ein 8B-Reasoner mit NC-Lizenz und NVIDIAs gelooptes 4B-Modell: drei Modelle mit offenen Gewichten, drei Lizenzklassen.
 - [KI-Fachüberblick: ERNIE 5.5 Flash Base, Ripple-65B, Images 2.6](https://kifachblatt.de/news-ueberblick-mittag-2026-11-05): Baidu öffnet ein 280B-Basismodell, dessen Lizenz die EU ausnimmt. Ripple-65B: dicht statt MoE, Apache 2.0. OpenAI Images 2.6 mit GIFs.
 - [Kimi K3.1 Pro: 2,8 Billionen Parameter, offene Gewichte, eigene Lizenz](https://kifachblatt.de/kimi-k3-1-pro-analyse): Moonshots erstes Modell der K3.1-Serie kommt mit 104 Milliarden aktiven Parametern, einer Million Token Kontext und einer eigenen Lizenz mit Umsatzschwellen.
