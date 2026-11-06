@@ -1,0 +1,230 @@
+{
+  "slug": "toyblocks-ai2-analyse",
+  "lang": "de",
+  "section": "agenten",
+  "type": "analysis",
+  "title": "ToyBlocks: Ai2s offener Versuchsstand für Roboter-Grundmodelle",
+  "dek": "Zwei offene Modelle teilen sich das Stapeln: Ein 4,5-Milliarden-VLM plant und zeigt, eine 322-Millionen-Fluss-Policy führt aus.",
+  "published": "2026-11-06T07:19:00+01:00",
+  "modified": "2026-11-06T07:19:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Ai2",
+    "Robotik",
+    "Vision-Language-Modelle",
+    "Offene Gewichte",
+    "Agenten"
+  ],
+  "key_takeaways": [
+    "ToyBlocks ist Ai2s bewusst kleiner, offener Teststand für Roboter-Grundmodelle: ein Tisch, drei Blöcke, ein Franka-Arm - mit veröffentlichten Gewichten, Code und verlinkten Daten [1][2].",
+    "Die Arbeit ist geteilt: Molmo2-4B-tb (ca. 4,5 Mrd. Parameter) bewertet den Fortschritt und zeigt aufs Ziel, ManiFlow-tb (322,5 Mio. Parameter) erzeugt die Bewegung [1][2].",
+    "Gewichte und Code stehen unter Apache 2.0, doch das Basismodell wurde auf Drittdatensätzen trainiert, die nur akademische und nichtkommerzielle Forschung erlauben - vor produktiver Nutzung prüfen [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: Ein Roboterarm über einem Tisch mit drei gestapelten Blöcken; darüber zwei Kästen für das planende Sprach-Bild-Modell und die ausführende Fluss-Policy, verbunden durch einen Zielpunkt",
+    "caption": "Geteilte Arbeit bei ToyBlocks: Das Vision-Language-Modell plant und zeigt auf den Zielpunkt, die Fluss-Policy führt die Bewegung des Arms aus [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Das Allen Institute for AI (Ai2) hat ToyBlocks veröffentlicht, einen bewusst minimal gehaltenen, offenen Versuchsstand für Roboter-Grundmodelle: ein Tisch, drei Blöcke, ein Franka-Arm [1][2]. Zwei Modelle teilen sich das Stapeln - ein Vision-Language-Modell plant und zeigt auf das Ziel, eine kleine Fluss-Policy führt die Bewegung aus. Gewichte, Code und Trainingsdaten sind offen, und die Modellkarten dokumentieren Testaufbau und Grenzen."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "ToyBlocks im Überblick (Herstellerangaben aus den Modellkarten) [1][2]"
+    },
+    {
+      "t": "h3",
+      "x": "Systemaufbau"
+    },
+    {
+      "t": "p",
+      "x": "Zwei Modelle: Molmo2-4B-tb (High-Level, ca. 4,5 Mrd. Parameter, rund 6 Hz, etwa 20 GB GPU-Speicher in BF16) plant; ManiFlow-tb (Low-Level, 322,5 Mio. Parameter) führt aus [1][2]"
+    },
+    {
+      "t": "h3",
+      "x": "High-Level-Modell"
+    },
+    {
+      "t": "p",
+      "x": "Feinabstimmung von Molmo2-4B: SigLIP-2-so400m/14-Bildencoder (378 px, 27 Schichten) plus Qwen3-4B als Sprachmodell (36 Schichten, 32 Abfrage- und 8 KV-Köpfe, Grouped-Query-Attention). Eingabe: ein 640x360-Kamerabild und ein Textziel. Ausgabe: Fortschritt des Ziels, nächste Aktion (pick, place, flip, rotate, done) und ein Zielpunkt in 0-bis-1000-Koordinaten [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Low-Level-Modell"
+    },
+    {
+      "t": "p",
+      "x": "DiTX-Aktionskopf (12 Schichten, 8 Köpfe, Breite 768) mit Flow Matching und Konsistenztraining, 12 Integrationsschritte bei der Inferenz. Eingaben: Front- und Greiferkamera (224x224, CLIP ViT-B/16), 9-dim Roboterzustand, Aufgabenname (T5-small) und ein Ziel-Heatmap-Token des High-Level-Modells. Ausgabe: Aktionschunks von 25 Schritten (Vorhersagehorizont 50) [2]"
+    },
+    {
+      "t": "h3",
+      "x": "Training"
+    },
+    {
+      "t": "p",
+      "x": "High-Level: 6.000 Schritte bei Batch 256 auf simulierten Drei-Block-Episoden, gemischt mit 25 Prozent allgemeinen Zeige-Daten (PixMo-Points, PixMo-Count, CoSyn-Point), damit die Zeigefähigkeit erhalten bleibt. Low-Level: 200.000 Schritte auf 8 GPUs, AdamW, Cosine-Schedule [1][2]"
+    },
+    {
+      "t": "h3",
+      "x": "Kosten und Umwelt"
+    },
+    {
+      "t": "p",
+      "x": "Rund acht Stunden auf einem Knoten mit acht H100-GPUs für das High-Level-Modell. Die Karte rechnet mit ihren Annahmen (8 kW, PUE 1,2, 0,4 kg CO2e pro kWh) auf 30,7 kg CO2e und verdoppelt diesen Wert auf rund 61 kg pro Lauf [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Apache 2.0 für Gewichte und Code beider Modelle [1][2][3]. Einschränkung: Das Basismodell Molmo2-4B wurde auf Drittdatensätzen trainiert, die nur akademische und nichtkommerzielle Forschungsnutzung erlauben; die Karte rät ausdrücklich, das vor produktivem Einsatz zu prüfen [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Verfügbarkeit"
+    },
+    {
+      "t": "p",
+      "x": "Die Hugging-Face-Repositories wurden laut Plattform-API am 5. November 2026 angelegt und sind nicht zugangsbeschränkt; die Code-Repositories github.com/allenai/toyblocks und github.com/allenai/maniflow-tb stehen unter Apache 2.0 [1][2][3]. Der in den Karten verlinkte Blogbeitrag und der als Entwurf zitierte Technikbericht konnten bei unserem Abruf nicht gelesen werden."
+    },
+    {
+      "t": "h2",
+      "x": "Wie das Zusammenspiel funktioniert"
+    },
+    {
+      "t": "p",
+      "x": "Das Ziel nennt den Turm von oben nach unten: 'stack A 4 B. plan. point to target. predict action.' Das High-Level-Modell antwortet mit Lage, nächstem Schritt und Zielpunkt, etwa 'now: A not on 4, 4 on B. next: move A to 4. Do: block A <points> pick' [1]. Der Zielpunkt liegt fünf Pixel unter der Blockmitte, damit er auf die der Kamera zugewandte Fläche zeigt; optional kann die vorherige Aktion vorangestellt werden. Das Low-Level-Modell bekommt diesen Punkt als Heatmap-Token und erzeugt die Arm-Bewegung; eine eigene Aktionsdimension (1 = ausführen, 0 = pausieren, -1 = fertig) muss bei den Werten 1 und 0 zurückgeführt werden [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "In der Simulation gibt es drei Teststände mit je exakt 200 Episoden: Leicht (stapeln), Mittel (umdrehen und stapeln), Schwer (suchen, umdrehen, stapeln). Mit einem klassischen Bewegungsplaner als Low-Level erreicht das VLM bei gesehenen Blöcken 97,5/53,5/31,5 Prozent, mit ungesehenen 81,0/36,5/14,5 Prozent. Mit ManiFlow als Low-Level: 55,5/35,5/17,0 Prozent (gesehen) und 44,5/12,5/10,0 Prozent (ungesehen) [1]. Auf einem echten Roboter gelangen mit ManiFlow 60 Prozent von zehn Versuchen [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "ToyBlocks-Simulation: Erfolgsquote nach Schwierigkeit (gesehene Blöcke)",
+      "alt": "Balkendiagramm mit zwei Serien: bei Leicht VLM mit Bewegungsplaner 97,5 und VLM mit ManiFlow 55,5; bei Mittel 53,5 und 35,5; bei Schwer 31,5 und 17,0 Prozent",
+      "caption": "Anbieterangaben aus den Modellkarten, je Teststand exakt 200 Episoden, von uns nicht unabhängig nachgemessen [1]. 'Gesehen' heißt: Blöcke aus dem Training in neuen Konfigurationen; die Werte für ungesehene Blöcke liegen deutlich darunter (im Text).",
+      "labels": [
+        "Leicht (gesehene Blöcke)",
+        "Mittel (gesehene Blöcke)",
+        "Schwer (gesehene Blöcke)"
+      ],
+      "series": [
+        {
+          "name": "VLM + Bewegungsplaner",
+          "values": [
+            97.5,
+            53.5,
+            31.5
+          ]
+        },
+        {
+          "name": "VLM + ManiFlow",
+          "values": [
+            55.5,
+            35.5,
+            17.0
+          ]
+        }
+      ],
+      "y_label": "Erfolgsquote in Prozent",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "ManiFlow allein, mit aufgezeichnetem Plan als High-Level (Oracle), liegt in vier Läufen à 128 Episoden bei 54 bis 59 Prozent [2]. Zwei Details zeigen, wie genau hier gemessen wird: Das Standard-Zeitlimit von 30 Sekunden lässt nur 26 bis 28 von 128 Episoden erfolgreich enden - laut Karte misst das eher das Limit als das Modell, die Auswertung nutzt daher das Dreifache der längsten Expertendemonstration (hier 194 Sekunden). Und die Simulation ist nicht bitgenau deterministisch: Dieselbe Episode kann zwischen zwei Läufen zwischen Erfolg und Misserfolg kippen, zwei Läufe stimmen nur in 82 bis 97 der 128 Episoden überein [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Ehrliche Grenzen"
+    },
+    {
+      "t": "p",
+      "x": "Der Geltungsbereich ist bewusst eng: Blöcke auf einem Tisch bewegen, alles andere ist laut Karte außerhalb des Einsatzbereichs; Sicherheitsbenchmarks wurden nicht angepasst, weil sie für ToyBlocks-Aufgaben als nicht relevant eingestuft werden [1]. Der Leistungsabfall bei ungesehenen Blöcken ist deutlich (im Schwer-Stand von 31,5 auf 14,5 Prozent mit Planer) [1]. Und das High-Level-Gewicht liegt als Float32-Datei im nativen Molmo2-Format vor, nicht als Transformers-Modell - die Inferenz läuft über den ToyBlocks-Code [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Reproduzierbarkeit"
+    },
+    {
+      "t": "p",
+      "x": "Die Karten beschreiben die ausgelieferten Dateien: Beim High-Level-Modell liegen Gewichte (model.pt) und die komplette Konfiguration (config.yaml), beim Low-Level-Modell Gewichte als Safetensors, Konfiguration und Normalisierungsstatistik der Trainingsdaten (stats.json) [1][2]. Auswertung und Training laufen über die offenen Skripte der Code-Repositories; der Trainingsdatensatz ist als allenai/toyblocks-data verlinkt [2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "ToyBlocks ist kein Leistungsrekord, sondern Infrastruktur: ein kompletter, kleiner Stack - VLM, Policy, Daten, Code -, an dem sich Ideen für Roboter-Grundmodelle gegenseitig vergleichbar prüfen lassen. Bemerkenswert ist die Dokumentationskultur: Zeitlimit-Effekte, Lauf-zu-Lauf-Varianz und die Lizenzfalle in den Trainingsdaten stehen in den Karten, nicht im Kleingedruckten. Wer damit kommerziell arbeiten will, muss vor allem die Drittdatensätze des Basismodells prüfen; wer forscht, bekommt einen Versuchsstand mit ausdrücklich dokumentierten Fehlversuchen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist ToyBlocks?",
+      "a": "Ein offener, bewusst kleiner Versuchsstand von Ai2 für Roboter-Grundmodelle: ein simulierter oder echter Franka-Arm stapelt drei Blöcke auf einem Tisch. Gewichte, Code und Daten sind offen [1][2][3]."
+    },
+    {
+      "q": "Aus welchen Modellen besteht ToyBlocks?",
+      "a": "Molmo2-4B-tb (ca. 4,5 Mrd. Parameter) liest Kamerabild und Stapelziel, bewertet den Fortschritt und zeigt auf den Zielpunkt; ManiFlow-tb (322,5 Mio. Parameter, Flow Matching) erzeugt daraus die Arm-Bewegung [1][2]."
+    },
+    {
+      "q": "Wie gut stapelt das System?",
+      "a": "In der Simulation mit Bewegungsplaner 97,5 Prozent im leichten Stand (gesehene Blöcke), mit der gelernten ManiFlow-Policy 55,5 Prozent; auf dem echten Roboter 60 Prozent von zehn Versuchen. Bei ungesehenen Blöcken fallen die Werte deutlich [1]."
+    },
+    {
+      "q": "Darf ich ToyBlocks kommerziell nutzen?",
+      "a": "Gewichte und Code stehen unter Apache 2.0, aber das Basismodell wurde auf Drittdatensätzen trainiert, die nur akademische und nichtkommerzielle Forschung erlauben. Die Karte rät zur eigenen Prüfung vor produktivem Einsatz [1]."
+    },
+    {
+      "q": "Was brauche ich zum Nachbau?",
+      "a": "Für das High-Level-Modell rund 20 GB GPU-Speicher (BF16) und den ToyBlocks-Code; das Low-Level-Modell läuft über das mitgelieferte Evaluierungsskript. Ein echter Arm ist optional - die Auswertung läuft in der Simulation [1][2]."
+    }
+  ],
+  "related": [
+    "agenten-architekturen",
+    "multimodale-modelle",
+    "offene-gewichte-vs-open-source"
+  ],
+  "sources": [
+    {
+      "title": "allenai/Molmo2-4B-tb (Modellkarte und Repository-API)",
+      "publisher": "Hugging Face / Ai2",
+      "url": "https://huggingface.co/allenai/Molmo2-4B-tb",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "allenai/maniflow-tb (Modellkarte und Repository-API)",
+      "publisher": "Hugging Face / Ai2",
+      "url": "https://huggingface.co/allenai/maniflow-tb",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "allenai/toyblocks und allenai/maniflow-tb (Code-Repositories, GitHub-API)",
+      "publisher": "GitHub / Ai2",
+      "url": "https://github.com/allenai/toyblocks",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "allenai/maniflow-tb: ManiFlow-Code-Repository",
+      "publisher": "GitHub / Ai2",
+      "url": "https://github.com/allenai/maniflow-tb",
+      "accessed": "2026-11-06"
+    }
+  ],
+  "method": "Analyse auf Basis der vollständig gelesenen Hugging-Face-Modellkarten beider Modelle, der Hugging-Face-Repository-API (Anlagedaten, Dateilisten) und der geöffneten GitHub-Code-Repositories (Aufbau und Lizenzhinweise). Sämtliche Messwerte sind Herstellerangaben aus den Karten. Keine eigenen Tests.",
+  "limitations": "Keine eigenen Tests. Der verlinkte Blogbeitrag und der als Entwurf zitierte Technikbericht konnten bei unserem Abruf nicht gelesen werden - Angaben über die Karten hinaus konnten wir nicht prüfen. Die Real-Roboter-Auswertung umfasst nur zehn Versuche. Die Simulationswerte sind laut Karte nicht bitgenau deterministisch (Lauf-zu-Lauf-Varianz im Text). Wir haben keine unabhängige Fremdmessung ausgewertet."
+}

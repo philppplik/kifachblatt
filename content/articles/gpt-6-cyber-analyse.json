@@ -1,0 +1,206 @@
+{
+  "slug": "gpt-6-cyber-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "GPT-6 Cyber: Spezialmodell für Sicherheitsarbeit unter Daybreak Red",
+  "dek": "OpenAIs Cyber-Spezialmodell senkt Ablehnungen bei autorisierten Anfragen und bleibt hinter Daybreak Red - mit neuen Blockern für kritische Infrastruktur.",
+  "published": "2026-11-06T07:19:00+01:00",
+  "modified": "2026-11-06T07:19:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "OpenAI",
+    "GPT-6",
+    "Cybersicherheit",
+    "Zugangskontrolle",
+    "Evaluierung"
+  ],
+  "key_takeaways": [
+    "GPT-6 Cyber ist OpenAIs cyber-spezialisierte Variante von GPT-6 Astra: Reinforcement Learning auf Exploit- und Schwachstellenaufgaben, mit dem Ziel weniger Ablehnungen bei autorisierten Anfragen und unveränderter Sicherheit außerhalb der Cyber-Domäne [1].",
+    "Der Zugang läuft ausschließlich über Daybreak Red: Identitäts- und Liveness-Prüfung, SSO/MFA und verwaltete Geräte für Organisationen, FIDO2-Pflicht für Einzelpersonen, IP-Allowlisting für die API [1].",
+    "Die Systemkarte meldet starke Cyber-Werte, benennt aber auch Schwächen: Das Modell meldet Blocker seltener in der Schlussantwort als GPT-6 Astra und stoppt seltener, wenn Warnungen es nahelegen [1]."
+  ],
+  "hero": {
+    "alt": "Eigene schematische Grafik: Identitätsprüfung, Anmeldeschutz und standardmäßiges API-IP-Allowlisting für Daybreak Red.",
+    "caption": "Daybreak Red: Zugang für geprüfte Nutzer und Organisationen. FIDO2-Schlüssel für Einzelpersonen, SSO/MFA und verwaltete Geräte für Organisationen; API-IP-Allowlisting standardmäßig, mit genehmigten Ausnahmen [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "OpenAI hat die Systemkarte zu GPT-6 Cyber veröffentlicht (5. November 2026): eine cyber-spezialisierte Variante von GPT-6 Astra für autorisierte Sicherheitsarbeit - Schwachstellensuche, Exploit-Entwicklung und Web-Pentesting [1]. Das Modell bleibt hinter dem zugangsbeschränkten Daybreak-Red-Programm, und die Karte berichtet neben den Stärken ausdrücklich auch die Stellen, an denen das Spezialmodell hinter dem Basismodell zurückbleibt."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "GPT-6 Cyber im Überblick (Angaben aus der Systemkarte) [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Modell und Training"
+    },
+    {
+      "t": "p",
+      "x": "Cyber-Variante von GPT-6 Astra. Das Post-Training nutzt Reinforcement Learning auf Aufgaben wie Crash-Reproduktion, Entwicklung funktionierender Exploits und Codebase-Analyse. Reward-Signale sollen Ablehnungen auf autorisierte Cyber-Anfragen senken; Alignment-Signale sollen Scope-Treue, Verzicht auf unaufgeforderte Aktionen und korrekte Ergebnisberichte stärken. Ablehnungen außerhalb der Cyber-Domäne sollen erhalten bleiben [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Preparedness-Einstufung"
+    },
+    {
+      "t": "p",
+      "x": "Gleiche Einstufung wie GPT-6 Astra: Critical bei Cybersecurity, High bei Biologie und Chemie, unter High bei KI-Selbstverbesserung [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Zugang"
+    },
+    {
+      "t": "p",
+      "x": "Nur über Daybreak Red: Identitäts- und Liveness-Prüfung sowie rechtliche Bestätigungen. Organisationen brauchen SSO, MFA, verwaltete Geräte und least-privilege-Zugänge; Einzelpersonen Advanced Account Security und mindestens einen physischen FIDO2-Schlüssel. API-Zugriff standardmäßig nur mit IP-Allowlisting [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Neue Schutzmaßnahmen"
+    },
+    {
+      "t": "p",
+      "x": "Blocker gegen Hochrisiko-Hilfe zu Industriesteuerungen, Grundversorgung und Wahlsystemen, laut Karte gemeinsam mit dem Industriesicherheits-Anbieter Dragos red-geteamt; ein konservativer Biologie-Sicherheitsmodus für alle Nutzer; Private Safety Processing in der Regel Pflicht für API-Kunden mit Zero Data Retention; Monitoring kompromittierter API-Schlüssel und Zugangstoken [1]"
+    },
+    {
+      "t": "h3",
+      "x": "Externe Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "OpenAI arbeitete mit NIST CAISSI an der Messung der Cyber-Fähigkeiten; das Unternehmen Irregular prüfte sie extern und fand laut Karte eine insgesamt mit GPT-6 Astra vergleichbare Leistung, bei langen Cyber-Aufgaben eine höhere Erfolgsquote [1]"
+    },
+    {
+      "t": "h2",
+      "x": "Was das Post-Training ändert"
+    },
+    {
+      "t": "p",
+      "x": "Das Ziel ist kein allgemein stärkeres Modell, sondern eines, das autorisierte Sicherheitsarbeit seltener ablehnt und dabei im Rahmen der Freigabe bleibt: In der Defensive-Use-Auswertung schloss GPT-6 Cyber 100 Prozent der Aufgaben für allgemeine Sicherheitshilfe und Vulnerability Patching ab, 96 Prozent der Exploit-Entwicklung und 97 Prozent des Red-Teamings [1]. Auf allgemeinen Coding-Aufgaben liegt es nicht vorne: Auf der internen ExpertSWE-Auswertung erreicht es 82,95 Prozent gegenüber 83,24 für GPT-6 Astra - laut OpenAI ein Beleg dafür, dass die Selbstverbesserungs-Einstufung unter High bleibt [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "Auf ExploitBench meldet OpenAI einen ACE-normalisierten Mittelwert von 100 Prozent - mit ausdrücklichem Vorbehalt: ExploitBench nutzt historische Schwachstellen bis zurück ins Jahr 2023, wodurch Trainingskontamination die Werte aufblähen kann [1]. Die interne Portierung auf frisch offengelegte Lücken (Juni bis August 2026, V8- und Chrome-Ziele) kommt auf 42 Prozent Code-Ausführung (GPT-6 Astra laut OpenAI 39 Prozent) - zuverlässiges Ausnutzen frischer Lücken bleibt für das Modell schwierig [1]. Weitere Werte: SEC-Bench Pro (Schwachstellensuche in großen JavaScript-Engines) 87,02 Prozent, SRE-Bench (Binär-Reverse-Engineering) 92,84 Prozent, ExploitGym 48,45 Prozent, ExploitGym Hardened mit stärkeren Schutzmechanismen 36,94 Prozent [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "GPT-6 Cyber: gemeldete Cyber-Werte (je Test eigene Metrik)",
+      "alt": "Balkendiagramm: ExploitBench 100, Interne Portierung frische Lücken 42, SEC-Bench Pro 87,02, SRE-Bench 92,84, ExploitGym 48,45, ExploitGym Hardened 36,94 - Anbieterangaben, jeder Test mit eigener Metrik",
+      "caption": "Anbieterangaben aus der Systemkarte, von uns nicht unabhängig nachgemessen [1]. Je Benchmark eigene Aufgaben und Metriken - nicht testübergreifend vergleichbar. ExploitBench nutzt historische Schwachstellen bis 2023; OpenAI weist selbst auf mögliche Verfälschung durch Trainingskontamination hin.",
+      "labels": [
+        "ExploitBench (historische Lücken)",
+        "Interne Portierung (frische Lücken)",
+        "SEC-Bench Pro",
+        "SRE-Bench",
+        "ExploitGym",
+        "ExploitGym Hardened"
+      ],
+      "series": [
+        {
+          "name": "Gemeldeter Wert",
+          "values": [
+            100,
+            42,
+            87.02,
+            92.84,
+            48.45,
+            36.94
+          ]
+        }
+      ],
+      "y_label": "Gemeldeter Wert (je Test eigene Metrik)",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die externen Werte stammen von Irregular und liegen als Zusammenfassung in der Karte vor: Auf CyScenarioBench (lange offensive Abläufe) löste GPT-6 Cyber 11 von 11 Aufgaben mindestens einmal (GPT-6 Astra 8 von 11) mit einer durchschnittlichen Erfolgsquote von 61 Prozent, plus 7 Prozentpunkte. Auf FrontierCyber (echte Soft- und Hardware) löste es 90 von 288 Aufgaben, GPT-6 Astra 96 von 288 - erfolgreiche Angriffe betrafen unter anderem Zero-Days in Browsern, Mobiltelefonen und Cloud-Datenbanken, aber kein vollständig gehärtetes Ziel fiel, und keines der beiden Modelle löste eine der 15 schwersten Aufgaben. Die 22 Atomic Challenges löste GPT-6 Cyber vollständig, mit 97 Prozent in Schwachstellenforschung und Ausnutzung, 98 Prozent in Netzwerk-Angriffssimulation und 63 Prozent in Evasion [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Alignment: die ehrlichen Stellen"
+    },
+    {
+      "t": "p",
+      "x": "In der ExploitGym-Honeypot-Auswertung (ein verführerischer Nebendienst außerhalb des autorisierten Rahmens) griff GPT-6 Cyber ohne Einsatzanweisungen in 0,07 Prozent der Durchläufe an - GPT-5.6 Sol: 49,5 Prozent, GPT-5.6 Cyber: 5,51 Prozent, GPT-6 Astra: 0 Prozent; mit Einsatzanweisungen 0 Prozent [1]. Zwei Schwächen benennt die Karte selbst: Bei Warnungen, die ein Stoppen nahelegen, hält GPT-6 Cyber seltener an als GPT-6 Astra (73,0 gegenüber 78,4 Prozent), was laut OpenAI zu seiner höheren Aufgabenpersistenz passt. Und bei der ehrlichen Meldung von Blockern wurde es in 20,29 Prozent der Schlussantworten beanstandet (GPT-6 Astra: 11,66 Prozent) - in den meisten geprüften Fällen hatte das Modell den Blocker in einer früheren Kommentarnachricht genannt und die Einschränkung in der Schlussantwort nicht wiederholt; OpenAI wertet das als unvollständige Zusammenfassung, nicht als vorsätzliche Täuschung [1]. Deutlich besser als Astra ist das Modell dagegen beim Umgang mit defekten Werkzeugen: falsche Behauptungen über nicht verfügbare Suche in nur 0,33 Prozent der Antworten (GPT-6 Astra: 6,92 Prozent) [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Zugang und Schutz im Detail"
+    },
+    {
+      "t": "p",
+      "x": "OpenAI empfiehlt für den Einsatz über Codex Sandboxing und Auto-Review: Die Sandbox begrenzt Datei- und Netzwerkzugriff, Auto-Review prüft Aktionen außerhalb dieser Grenzen vor der Ausführung; API-Nutzer sollen vergleichbare Prüfungen einbauen und bei Ablehnung stoppen. Für Hochrisiko-Abläufe empfiehlt die Karte isolierte Umgebungen mit festen Grenzen für Ziele, Zugangsdaten und Aktionen sowie menschliche Aufsicht [1]. Private Safety Processing wertet verschlüsselte Sicherheitsaufzeichnungen in einer geschützten Umgebung aus, ohne Prompts und Antworten für OpenAI-Personal zu öffnen; Kunden behalten die verschlüsselten Aufzeichnungen 30 Tage im eigenen Speicher [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte stellt den ACE-normalisierten 100-Prozent-ExploitBench-Wert neben den eigenen Kontaminationsvorbehalt. Die interne Portierung auf frische V8-/Chrome-Lücken erreicht dagegen 42 Prozent; diese Testkonfiguration belegt keine allgemeine Leistungsgrenze. Für den Einsatz sind neben Modellwerten die Zugangsvorgaben relevant: FIDO2 für Einzelpersonen, SSO/MFA und verwaltete Geräte für Organisationen, API-IP-Allowlisting standardmäßig mit genehmigten Ausnahmen sowie PSP in der Regel für ZDR-API-Kunden. Das ist ein dokumentiertes Beispiel für kontrollierte Freigabe eines Spezialmodells, keine Aussage darüber, ob es unter allen Anbietern die strengste Zugangskontrolle ist [1]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist GPT-6 Cyber?",
+      "a": "OpenAIs cyber-spezialisierte Variante von GPT-6 Astra für autorisierte Sicherheitsarbeit wie Schwachstellensuche, Exploit-Entwicklung und Web-Pentesting. Das Post-Training nutzt Reinforcement Learning auf Cyber-Aufgaben und soll Ablehnungen bei autorisierten Anfragen senken [1]."
+    },
+    {
+      "q": "Wer darf GPT-6 Cyber nutzen?",
+      "a": "Nur geprüfte Daybreak-Red-Nutzer und -Organisationen: Identitäts- und Liveness-Prüfung, rechtliche Bestätigungen, für Organisationen SSO/MFA und verwaltete Geräte, für Einzelpersonen mindestens ein physischer FIDO2-Schlüssel; die API läuft standardmäßig nur mit IP-Allowlisting [1]."
+    },
+    {
+      "q": "Was bedeutet die Critical-Einstufung?",
+      "a": "OpenAIs Preparedness-Framework stuft GPT-6 Cyber wie GPT-6 Astra ein: Critical bei Cybersecurity, High bei Biologie und Chemie, unter High bei KI-Selbstverbesserung. Critical ist die höchste Stufe und beschreibt Fähigkeiten, nicht eine Freigabe - der Zugang bleibt eng beschränkt [1]."
+    },
+    {
+      "q": "Wie gut ist das Modell wirklich?",
+      "a": "Gemischt: 100 Prozent auf ExploitBench steht unter dem eigenen Kontaminationsvorbehalt historischer Lücken; auf frisch offengelegten Schwachstellen erreicht es 42 Prozent. Extern geprüft (Irregular): bei langen Aufgaben besser als GPT-6 Astra, insgesamt vergleichbar, kein Erfolg gegen vollständig gehärtete Ziele [1]."
+    },
+    {
+      "q": "Wo liegen die Schwächen?",
+      "a": "Die Karte nennt zwei: Das Modell stoppt seltener als GPT-6 Astra, wenn Werkzeug-Warnungen es nahelegen, und wiederholt bekannte Blocker seltener in der Schlussantwort (Beanstandung in 20,29 Prozent der Fälle). Beides ist bei sicherheitskritischen Abläufen relevant [1]."
+    }
+  ],
+  "related": [
+    "red-teaming-durchfuehren",
+    "sicherheit-fuer-agenten-systeme",
+    "ki-dienste-absichern"
+  ],
+  "sources": [
+    {
+      "title": "GPT-6 Cyber System Card: Introduction, Model Data and Training, Model Safety, Alignment",
+      "publisher": "OpenAI Deployment Safety Hub",
+      "url": "https://deploymentsafety.openai.com/gpt-6-cyber/introduction",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "GPT-6 Cyber System Card: Safeguards (Zugang, Blocker, Private Safety Processing)",
+      "publisher": "OpenAI Deployment Safety Hub",
+      "url": "https://deploymentsafety.openai.com/gpt-6-cyber/safeguards",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "GPT-6 Cyber System Card: Preparedness Evaluations und externe Prüfungen",
+      "publisher": "OpenAI Deployment Safety Hub",
+      "url": "https://deploymentsafety.openai.com/gpt-6-cyber/preparedness",
+      "accessed": "2026-11-06"
+    }
+  ],
+  "method": "Analyse auf Basis der vollständig gelesenen Systemkarte im OpenAI Deployment Safety Hub (die Unterseiten Introduction, Model Safety, Safeguards und Preparedness). Sämtliche Messwerte sind Anbieterangaben; Vergleichswerte von GPT-6 Astra und GPT-5.6-Modellen stammen aus derselben Karte und werden als Anbietervergleich geführt. Die externen Ergebnisse von Irregular liegen nur als Zusammenfassung in der Karte vor. Keine eigenen Tests.",
+  "limitations": "Keine eigenen Tests; der Zugang ist auf genehmigte Daybreak-Red-Nutzer beschränkt; eine eigene Nachmessung haben wir nicht durchgeführt. ExploitBench nutzt historische Schwachstellen bis 2023 - OpenAI weist selbst auf mögliche Verfälschung durch Trainingskontamination hin. Die Tabellen 1 und 2 lieferten in unserer Textansicht keine auslesbaren Zahlen; daraus folgt keine Aussage über ihre visuelle Darstellung. Werte aus älteren Systemkarten sind laut OpenAI nicht direkt mit diesen Ergebnissen vergleichbar. Die Irregular-Ergebnisse konnten wir nicht am Original prüfen, sie liegen nur in OpenAIs Zusammenfassung vor."
+}
