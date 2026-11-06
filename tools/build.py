@@ -551,18 +551,23 @@ def main():
     open('sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + '\n'.join(static + gen) + '</urlset>\n')
     # news sitemap (last 2 days)
     recent = [a for a in arts if a['type'] in SITEMAP_NEWS_TYPES and now - a['_pub'] <= datetime.timedelta(hours=48)][:1000]
-    ns = ''.join('<url><loc>%s/%s</loc><news:news><news:publication><news:name>%s</news:name><news:language>de</news:language></news:publication><news:publication_date>%s</news:publication_date><news:title>%s</news:title></news:news></url>\n' % (BASE, a['slug'], PUB_NAME, a['published'], esc(a['title'])) for a in recent)
-    open('news-sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">\n' + ns + '</urlset>\n')
+    ns = ''.join('<url><loc>%s/%s</loc><news:news><news:publication><news:name>%s</news:name><news:language>de</news:language></news:publication><news:publication_date>%s</news:publication_date><news:title>%s</news:title></news:news><image:image><image:loc>%s/assets/articles/%s.jpg</image:loc><image:title>%s</image:title></image:image></url>\n' % (BASE, a['slug'], PUB_NAME, a['published'], esc(a['title']), BASE, a['slug'], esc(a['title'])) for a in recent)
+    open('news-sitemap.xml', 'w', encoding='utf-8').write('<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">\n' + ns + '</urlset>\n')
     # robots
     rb = open('robots.txt').read()
     if 'news-sitemap.xml' not in rb: open('robots.txt', 'w').write(rb.rstrip('\n') + '\nSitemap: %s/news-sitemap.xml\n' % BASE)
     # feed
     fd = open('feed.xml', encoding='utf-8').read()
     old = [m for m in re.findall(r'<item>.*?</item>', fd, re.S) if not any('<guid>%s/%s</guid>' % (BASE, a['slug']) in m for a in arts)]
-    items = ''.join('<item><title>%s</title><link>%s/%s</link><guid>%s/%s</guid><pubDate>%s</pubDate><category>%s</category><dc:creator>Philipp Paulik</dc:creator><description>%s</description></item>' % (
-        esc(a['title']), BASE, a['slug'], BASE, a['slug'], a['_pub'].strftime('%a, %d %b %Y %H:%M:%S %z'), SECTIONS[a['section']], esc(a['dek'])) for a in arts)
+    # Alt-Eintraege stammen teils aus Builds ohne Escaping (z. B. "Recht & Regulierung")
+    # und machten den Feed ungueltig: nackte & beim Uebernehmen escapen, Entitaeten bleiben.
+    old = [re.sub(r'&(?!(amp|lt|gt|quot|apos|#[0-9]+|#x[0-9a-fA-F]+);)', '&amp;', m) for m in old]
+    items = ''.join('<item><title>%s</title><link>%s/%s</link><guid>%s/%s</guid><pubDate>%s</pubDate><category>%s</category><dc:creator>Philipp Paulik</dc:creator><description>%s</description><media:content url="%s/assets/articles/%s.jpg" medium="image" /></item>' % (
+        esc(a['title']), BASE, a['slug'], BASE, a['slug'], a['_pub'].strftime('%a, %d %b %Y %H:%M:%S %z'), esc(SECTIONS[a['section']]), esc(a['dek']), BASE, a['slug']) for a in arts)
     head_ = fd[:fd.index('<item>')] if '<item>' in fd else fd[:fd.index('</channel>')]
     head_ = head_.replace('<rss version="2.0">', '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/">')
+    if 'xmlns:dc=' not in head_: head_ = head_.replace('<rss version="2.0"', '<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/"', 1)
+    if 'xmlns:media=' not in head_: head_ = head_.replace('<rss version="2.0"', '<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/"', 1)
     open('feed.xml', 'w', encoding='utf-8').write(head_ + items + ''.join(old) + '</channel></rss>\n')
     # llms.txt
     ll = open('llms.txt', encoding='utf-8').read()
