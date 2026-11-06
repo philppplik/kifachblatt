@@ -102,6 +102,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-06</loc><lastmod>2026-11-06T16:16:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-06.jpg</image:loc><image:title>KI-Fachüberblick: Omni 1.2, Claude Finance, ElevenMusic</image:title><image:caption>Tabelle mit drei Produkt-Updates des Tages: Gemini Omni 1.2 Flash mit 15-Sekunden-Clips, Claude Personal Finance als US-Beta mit Lesezugriff, ElevenMusic-Direktupload zu SoundCloud mit Herkunftslabel</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-06</loc><lastmod>2026-11-06T10:06:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-06.jpg</image:loc><image:title>KI-Fachüberblick: Ling-3.2, Kanana-Decide, WeLM-Image</image:title><image:caption>Eigene Grafik mit unterschiedlichen Parameterzählungen: Ling-3.2-flash 560B/25B aktiv, WeLM-Image 31,7B gespeichert und 5,4B im Generierungspfad pro Ziel-Latent-Token, Kanana 3,67B insgesamt.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/gpt-6-cyber-analyse</loc><lastmod>2026-11-06T07:25:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/gpt-6-cyber-analyse.jpg</image:loc><image:title>GPT-6 Cyber: Spezialmodell für Sicherheitsarbeit unter Daybreak Red</image:title><image:caption>Eigene schematische Grafik: Identitätsprüfung, Anmeldeschutz und standardmäßiges API-IP-Allowlisting für Daybreak Red.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/toyblocks-ai2-analyse</loc><lastmod>2026-11-06T07:25:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/toyblocks-ai2-analyse.jpg</image:loc><image:title>ToyBlocks: Ai2s offener Versuchsstand für Roboter-Grundmodelle</image:title><image:caption>Schematische Darstellung: Ein Roboterarm über einem Tisch mit drei gestapelten Blöcken; darüber zwei Kästen für das planende Sprach-Bild-Modell und die ausführende Fluss-Policy, verbunden durch einen Zielpunkt</image:caption></image:image></url>
@@ -250,7 +251,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-06T07:25:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-06T10:06:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-06T16:16:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-06</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-06</lastmod></url>
