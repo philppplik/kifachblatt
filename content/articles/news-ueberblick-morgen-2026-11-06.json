@@ -1,0 +1,115 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-06",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-06T06:46:00+01:00",
+  "modified": "2026-11-06T06:46:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "GPT-6 Cyber System Card (Introduction, Model Safety, Safeguards, Preparedness)",
+      "publisher": "OpenAI Deployment Safety Hub",
+      "url": "https://deploymentsafety.openai.com/gpt-6-cyber/introduction",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "sensenova/SenseNova-U1.5-8B-MoT-TailSteer (Modellkarte)",
+      "publisher": "SenseTime / Hugging Face",
+      "url": "https://huggingface.co/sensenova/SenseNova-U1.5-8B-MoT-TailSteer",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "allenai/Molmo2-4B-tb (Modellkarte)",
+      "publisher": "Ai2 / Hugging Face",
+      "url": "https://huggingface.co/allenai/Molmo2-4B-tb",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "allenai/maniflow-tb (Modellkarte)",
+      "publisher": "Ai2 / Hugging Face",
+      "url": "https://huggingface.co/allenai/maniflow-tb",
+      "accessed": "2026-11-06"
+    }
+  ],
+  "title": "KI-Fachüberblick: GPT-6 Cyber, TailSteer, ToyBlocks",
+  "dek": "Cyber-Variante von GPT-6 Astra mit Daybreak-Red-Zugang. TailSteer stabilisiert Multi-Turn-Bildedits. Ai2s VLA-Stack stapelt Klötze.",
+  "tags": [
+    "KI-Überblick",
+    "OpenAI",
+    "Preparedness",
+    "Bildbearbeitung",
+    "Vision-Language-Action"
+  ],
+  "key_takeaways": [
+    "GPT-6 Cyber: Cyber-spezialisierte GPT-6-Astra-Variante mit RL-Nachtraining; laut Systemkarte Preparedness-Einstufung Critical (Cyber) und Zugang nur über Daybreak Red mit FIDO2, IP-Allowlisting ; Private Safety Processing in der Regel für API-Kunden mit Zero Data Retention.",
+    "SenseNova-U1.5-8B-MoT-TailSteer (Apache 2.0): Abschluss-Trainingsphase gegen Drift in Multi-Turn-Edits; im eigenen Add-&-Preserve-Benchmark plus 6,99 dB PSNR in unveränderten Bereichen nach zehn Runden, Einzel-Edit-Qualität weitgehend stabil.",
+    "ToyBlocks (Ai2, Apache 2.0): Molmo2-4B-tb plant mit Pointing, ManiFlow-tb (322,5M, Flow Matching) führt aus; Simulations-Quoten und Datenlizenz-Vorbehalt des Basismodells beachten."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik: ToyBlocks-Erfolgsquoten in der Simulation mit bisher ungesehenen Blöcken: Motion Planner 81,0/36,5/14,5 Prozent, ManiFlow 44,5/12,5/10,0 Prozent (leicht/mittel/schwer).",
+    "caption": "Ai2s eigene Simulationsevaluierung, je 200 Episoden, mit ungesehenen Blöcken; mit gesehenen Blöcken liegen die Quoten höher. Reale Robotertests: 60 Prozent von 10 Versuchen. Anbieterangaben.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quelle: Ai2 / Hugging Face"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Morgenüberblick vom 6. November 2026. Quellenstand: 06:38 Uhr MEZ.** Drei Veröffentlichungen mit Substanz: OpenAIs Cyber-Spezialmodell unter verschärfter Zugriffskontrolle, SenseTimes Trainingsmethode gegen Editor-Drift und Ai2s offener Roboter-Versuchsstand."
+    },
+    {
+      "t": "h2",
+      "x": "GPT-6 Cyber: Cyber-RL mit Critical-Einstufung und Daybreak Red"
+    },
+    {
+      "t": "p",
+      "x": "Laut Systemkarte (veröffentlicht am 5. November) ist GPT-6 Cyber eine cyber-spezialisierte Variante von GPT-6 Astra für autorisierte Sicherheitsarbeit: Vulnerability Discovery, Exploit-Entwicklung, Web-Pentesting. Das Post-Training nutzt Reinforcement Learning auf Aufgaben wie Crash-Reproduktion, funktionierende Exploits und Codebase-Analyse; Reward-Signale sollen Refusals auf autorisierte Anfragen senken, Alignment-Signale Scope-Treue und korrekte Ergebnisberichte stärken. In der eigenen Defensive-Use-Eval erreicht das Modell Abschlussquoten von 100 Prozent (allgemeine Sicherheitshilfe, Vulnerability Patching), 96 Prozent (Exploit-Entwicklung) und 97 Prozent (Red-Teaming). Preparedness-Einstufung wie GPT-6 Astra: Critical in Cybersecurity, High für Bio/Chem, unter High bei AI Self-Improvement."
+    },
+    {
+      "t": "p",
+      "x": "Der Zugang ist mehrschichtig abgesichert: nur approved Daybreak-Red-Nutzer und -Organisationen, mit Identitäts- und Liveness-Prüfung, rechtlichen Bestätigungen, SSO/MFA/managed Devices für Organisationen und mindestens einem physischen FIDO2-Key für Einzelpersonen. API-Zugriff standardmäßig nur mit IP-Allowlisting; Kunden mit Zero Data Retention benötigen in der Regel Private Safety Processing, bei dem Sicherheitsprüfungen verschlüsselte Aufzeichnungen in einer geschützten Umgebung auswerten. Neu sind Blocker für Hochrisiko-Hilfe gegen Industriesteuerungen, Grundversorgung und Wahlsysteme, laut Karte gemeinsam mit Dragos red-geteamt, sowie ein konservativer Biologie-Sicherheitsmodus für alle Nutzer. OpenAI empfiehlt Codex-Sandboxing mit Auto-Review und isolierte Umgebungen mit menschlicher Aufsicht für Hochrisiko-Workflows."
+    },
+    {
+      "t": "h2",
+      "x": "TailSteer: Denoising-Endphase gegen Multi-Turn-Drift"
+    },
+    {
+      "t": "p",
+      "x": "SenseNova-U1.5-8B-MoT-TailSteer (Apache 2.0, Hub-Eintrag seit dem 4. November) ist ein kompletter Checkpoint, der das Basismodell ohne Adapter oder geänderte Laufzeit ersetzt. TailSteer ist eine finale Trainingsphase: Das Modell lernt aus eigenen Denoising-Rollouts mit dem unveränderten Quellinhalt als Erhaltungsreferenz; der Steering-Onset (42 von 50 Schritten) betrifft nur die Trainingssupervision, die Inferenz nutzt das trainierte Modell durchgehend. Trainiert wird auf Einzel-Edit-Trajektorien, ohne kuratierte Multi-Turn-Ketten."
+    },
+    {
+      "t": "p",
+      "x": "Im hauseigenen Benchmark Add & Preserve (100 Bilder, zehn aufeinanderfolgende Edits) steigt PSNR im unveränderten Bildbereich nach Runde zehn von 11,23 auf 18,22 dB, SSIM von 0,166 auf 0,489, LPIPS sinkt von 0,607 auf 0,417 (minus 31,3 Prozent); die Objekttreue (COA) bleibt mit 94,78 gegenüber 94,93 Prozent praktisch gleich. Single-Turn-Werte bleiben nah am Basismodell (Qwen-IB EN 53,43 zu 52,24; GEdit EN 8,33 zu 8,27), RISE fällt mit 31,39 zu 29,44 Prozent ab. Alle Werte sind Anbieterangaben aus dem eigenen Aufbau; eine unabhängige Nachmessung fehlt."
+    },
+    {
+      "t": "h2",
+      "x": "ToyBlocks: 4,5B-VLM plant, 322M-Flow-Policy stapelt"
+    },
+    {
+      "t": "p",
+      "x": "Ai2s ToyBlocks ist ein minimales, offenes Testfeld für Roboter-Grundmodelle. Molmo2-4B-tb (SigLIP-2-so400m-Encoder plus Qwen3-4B, 36 Schichten, GQA) liest ein Stapelziel, bewertet den Fortschritt, nennt die nächste Aktion (pick, place, flip, rotate, done) und liefert den Zielpunkt in 0-bis-1000-Koordinaten; etwa 20 GByte GPU-Speicher in BF16, rund 6 Hertz. ManiFlow-tb (DiTX-Aktionskopf, 12 Schichten, 322,5 Millionen Parameter, Flow Matching mit Konsistenztraining, 12 Integrationsschritte) erzeugt Aktionschunks von 25 Schritten. Trainingskosten laut Karte: rund acht Stunden auf einem Knoten mit acht H100-GPUs für das High-Level-Modell; die Karte schätzt dafür mit ihren Annahmen und einer Verdopplung rund 61 kg CO2e, 200.000 Schritte auf 8 GPUs für ManiFlow."
+    },
+    {
+      "t": "p",
+      "x": "In der Simulation (je 200 Episoden) erreicht das VLM mit Motion Planner 97,5/53,5/31,5 Prozent (leicht/mittel/schwer, gesehene Blöcke) und 81,0/36,5/14,5 Prozent mit ungesehenen; mit ManiFlow 55,5/35,5/17,0 (gesehen) und 44,5/12,5/10,0 (ungesehen). ManiFlow allein mit Oracle-Plan liegt in vier Läufen à 128 Episoden bei 54 bis 59 Prozent; die Karte warnt, dass das Standard-Zeitlimit von 30 Sekunden eher das Limit als das Modell misst. Real-Roboter: 60 Prozent von 10 Versuchen. Gewichte und Code unter Apache 2.0, aber die Karte weist darauf hin, dass das Basismodell auf Drittdatensätzen trainiert wurde, die nur akademische und nichtkommerzielle Forschungsnutzung erlauben - vor produktivem Einsatz prüfen. Der technische Bericht ist als Entwurf gekennzeichnet."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was bedeutet die Einstufung Critical in Cybersecurity?",
+      "a": "Das ist die höchste Stufe in OpenAIs eigenem Preparedness Framework und keine externe Prüfung. GPT-6 Cyber erhält laut Systemkarte dieselbe Einstufung wie das Basismodell GPT-6 Astra; für Biologie/Chemie gilt High, für Selbstverbesserung liegt das Modell unter High."
+    },
+    {
+      "q": "Wie steige ich von SenseNova-U1.5-8B-MoT auf TailSteer um?",
+      "a": "Laut Karte reicht der Tausch der Modell-ID oder des lokalen Pfads: gleiche Architektur, gleiches offizielles Layout, gleiche Lade-API, keine Adapter und keine TailSteer-Laufzeit. Der Steering-Onset 42/50 betrifft nur das Training, nicht die Inferenz."
+    },
+    {
+      "q": "Warum liegt ManiFlow so weit hinter dem Motion Planner?",
+      "a": "Die Karte vergleicht eine klassische Bewegungsplanung mit einer gelernten Policy auf simulierten Franka-Daten. Die Zahlen messen die jeweiligen Gesamtkombinationen mit Molmo2 und belegen für sich allein keine vollständige Ursache für die Lücke. Die Zahlen stammen aus Ai2s eigener Simulationsevaluierung; auf dem echten Roboter erreichte die Kombination 60 Prozent von zehn Versuchen."
+    }
+  ],
+  "related": [
+    "sensenova-loop-9b-preview-analyse",
+    "sicherheit-fuer-agenten-systeme"
+  ]
+}
