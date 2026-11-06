@@ -1,0 +1,133 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-06",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-06T10:00:00+01:00",
+  "modified": "2026-11-06T10:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Ant Ling Plattform: Changelog (Launch Ling-3.2-flash, 5.11.)",
+      "publisher": "Ant Group",
+      "url": "https://developer.ant-ling.com/en/docs/getting-started/changelog",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "Ant Ling Plattform: Models / Ling",
+      "publisher": "Ant Group",
+      "url": "https://developer.ant-ling.com/en/docs/models/ling",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "kakaocorp/kanana-2-v-decide-3b-2611 (Modellkarte)",
+      "publisher": "Kakao / Hugging Face",
+      "url": "https://huggingface.co/kakaocorp/kanana-2-v-decide-3b-2611",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "Kanana Open License Agreement (Lizenztext)",
+      "publisher": "Kakao / Hugging Face",
+      "url": "https://huggingface.co/kakaocorp/kanana-2-v-decide-3b-2611/blob/main/LICENSE",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "WeLM-Image: A Unified Image Generation Model towards Visual Intelligence (arXiv 2611.07392)",
+      "publisher": "Tencent WeChat Vision / arXiv",
+      "url": "https://arxiv.org/abs/2611.07392",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "Ling-3.1-flash: Vorgänger mit verfügbaren Gewichten",
+      "publisher": "inclusionAI / Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/Ling-3.1-flash",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "WeLM-Image: Volltext, Architektur und Parameterzählung",
+      "publisher": "Tencent / arXiv",
+      "url": "https://arxiv.org/html/2611.07392v1",
+      "accessed": "2026-11-06"
+    }
+  ],
+  "title": "KI-Fachüberblick: Ling-3.2, Kanana-Decide, WeLM-Image",
+  "dek": "Ants 560B-A25B wird nativ multimodal, über Chat und API. Kakaos Decision-Modell offen, aber mit Lizenzschranken. Tencents 31,7B-MoT-MoE im technischen Report.",
+  "tags": [
+    "KI-Überblick",
+    "Multimodal",
+    "MoE",
+    "Entscheidungsmodelle",
+    "Bildgenerierung"
+  ],
+  "key_takeaways": [
+    "Ling-3.2-flash (560B/A25B, 1M Kontext): natives Bild-/Text-/Video-Input laut Anbieter, vier Schwerpunkte inkl. 3D und medizinischer Multimodalität; API mit OpenAI-/Anthropic-kompatiblem Protokoll, keine Gewichte auf HF gefunden (Stand Recherche).",
+    "Kanana-2-v-decide-3b-2611 (3,67B): Embedding-basierte Antwortverteilungen über choice/noul/score statt Generierung; öffentliche Benchmarks vorn, hauseigener koreanischer Bench 72,50; Kanana Open License mit kommerziellen Klauseln in Abschnitt 4.1.",
+    "WeLM-Image (31,7B gespeichert, ~5,4B aktiv pro Latent-Token): MoT-MoE vereint Verstehen, Generierung, Editing; laut Paper vorn unter den getesteten Open-Source-Modellen; in den geprüften Quellen kein Verweis auf veröffentlichte Gewichte oder Code."
+  ],
+  "hero": {
+    "alt": "Eigene Grafik mit unterschiedlichen Parameterzählungen: Ling-3.2-flash 560B/25B aktiv, WeLM-Image 31,7B gespeichert und 5,4B im Generierungspfad pro Ziel-Latent-Token, Kanana 3,67B insgesamt.",
+    "caption": "Unterschiedliche Parameterzählungen laut Anbieterquellen, kein Vergleich von Rechenkosten oder Tempo. WeLM-Image: 31,7B inklusive ViT, ohne VAE; 5,4B nur Generierungspfad pro Ziel-Latent-Token. Kanana: 3,18B Sprache plus 0,49B Vision.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quellen: Ant Group, Kakao, arXiv"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "**Mittagsüberblick vom 6. November 2026. Quellenstand: 10:00 Uhr MEZ.** Drei multimodale Veröffentlichungen, drei Bereitstellungsmodelle: Plattform-API (Ant Group), offene Gewichte mit kommerziellen Klauseln (Kakao) und ein technischer Report ohne von uns gefundenen Release-Verweis (Tencent)."
+    },
+    {
+      "t": "h2",
+      "x": "Ling-3.2-flash: native Multimodalität im 560B-A25B-Rahmen"
+    },
+    {
+      "t": "p",
+      "x": "Laut Plattform-Changelog startete Ling-3.2-flash am 5. November: 560 Milliarden Parameter, 25 Milliarden aktiviert, 1M Kontext, native Eingabe von Bild, Text und Video. Die Modellseite nennt vier Schwerpunkte: Complex Visual Understanding, Multimodal Long-Horizon Agent, 3D Understanding & Interaction und Medical Multimodal. Der Zugriff läuft über Chat und eine API, die kompatibel zu OpenAI- und Anthropic-Protokollen sein soll. Die Ling-Reihe wirbt generell mit Open-Source; für 3.2-flash haben wir auf Hugging Face jedoch bis zum Quellenstand keine Gewichte gefunden, anders als beim Vorgänger 3.1-flash (mit verfügbaren Gewichten)."
+    },
+    {
+      "t": "p",
+      "x": "Architektonisch bleibt 3.2-flash beim sparsamen MoE-Raster der Reihe (25 von 560 Milliarden aktiv). Die Positionierung richtet sich gegen die multimodalen Frontier-Modelle; die medizinische Ausrichtung und 3D-Fähigkeiten sind im Segment ungewöhnlich explizit. Wir haben die Leistungsangaben nicht unabhängig nachgemessen."
+    },
+    {
+      "t": "h2",
+      "x": "Kanana-2-v-decide: System-1-Inferenz als Embedding-Vergleich"
+    },
+    {
+      "t": "p",
+      "x": "Kakaos kanana-2-v-decide-3b-2611 (Gewichte laut Karte seit heute) ist ein Entscheidungsmodell auf Basis von Kanana-2-v-3b (3,18B Sprachmodell + 0,49B Vision-Encoder). Jede Frage wird gemeinsam mit dem Zustand (Text, JSON oder Chat-Verlauf plus bis zu zehn Bilder, bis 20.480 Token) zu einem Embedding kodiert, jede Antwortoption zu einem zweiten; eine Softmax über die Kosinus-Ähnlichkeiten liefert die Antwortverteilung. Optionen-Embeddings werden tokenbasiert gecacht. Fragetypen: choice (Mapping mit Beschreibungen), noul (Wahrscheinlichkeit für wahr) und score (2-10 geordnete Stufen). Die Karte betont: Wahrscheinlichkeiten sind relativ zu den mitgelieferten Optionen; Temperatur flacht die Verteilung ab. Serving per Transformers-Custom-Code oder Stdlib-HTTP-Server mit System-One-API."
+    },
+    {
+      "t": "p",
+      "x": "Benchmarks laut Karte: Decision Index 61,34, Decision Index Vision 61,12 (Schnitt 61,23, bester der vier verglichenen Modelle), hauseigener koreanischer Kanana Decision Bench 72,50 (15.909 Fragen, 18 Punkte vor StartLux-Decision). Anbietervergleich ohne unabhängige Nachmessung. Lizenz: Abschnitt 4.1 der Kanana Open License verlangt eine gesonderte kommerzielle Lizenz für Angebote an Dritte über API, Cloud oder andere Fernzugriffe, als SI-/On-Premise-Lösung oder eingebettet auf Geräten. Eigene Dienste sind nach 4.2 ohne gesonderte kommerzielle Lizenz erlaubt, soweit sie nicht unter 4.1 fallen. Bei Weiterverteilung gelten unter anderem \"Powered by Kanana\" und ein Kanana-Präfix für damit oder mit Outputs trainierte und verbreitete Modelle. Kakao beansprucht laut Abschnitt 5 selbst keine Outputrechte; mögliche Rechte Dritter sind damit nicht geklärt."
+    },
+    {
+      "t": "h2",
+      "x": "WeLM-Image: MoT-MoE für Verstehen und Generierung"
+    },
+    {
+      "t": "p",
+      "x": "Der arXiv-Report 2611.07392 (5. November, WeChat Vision, Tencent) beschreibt ein einheitliches Bild-Foundation-Modell: Text-, Referenz- und Ziel-Latents als eine Sequenz; ein Mixture-of-Transformers-Rückgrat mit geteilter Attention, aber unabhängigen Verstehens- und Generierungsparametern; beide Pfade mit MoE-Modulen. 31,7B gespeicherte Parameter (inkl. ViT, ohne VAE), rund 5,4B aktive Generierungsparameter pro Ziel-Latent-Token. Training progressiv bis native 1,5K-Auflösung, getrennte Rubrik-/Checklisten-Rewards für Generierung und Editing, konsolidiert per Noise-aware On-Policy-Distillation. In den berichteten Gesamtvergleichen liegt das 1536er-Modell auf PRISM-Bench, Qwen-Image-Bench und UnicBench vorn - jeweils 'unter den evaluierten Open-Source-Modellen', eine Selbsteinschätzung im eigenen Aufbau."
+    },
+    {
+      "t": "p",
+      "x": "MeanFlow-Few-Step-Distillation liefert WeLM-Image-Turbo: 1024x1024 in 4,98 Sekunden auf einer einzelnen H20 mit acht guidance-freien Schritten. Designtreiber war laut Report der Ein-GPU-Betrieb in WeChats Consumer-Anwendungen. In den hier geprüften Quellen fanden wir keinen Verweis auf veröffentlichte Gewichte oder Code."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ist Ling-3.2-flash quelloffen wie der Vorgänger?",
+      "a": "Ant Group beschreibt den Zugang über Chat und API. In den hier geprüften Anbieterquellen fanden wir keinen Verweis auf herunterladbare Gewichte für 3.2-flash. Beim Vorgänger 3.1-flash sind Gewichte auf Hugging Face verfügbar."
+    },
+    {
+      "q": "Darf ich Kanana-2-v-decide kommerziell einsetzen?",
+      "a": "Eigene Dienste sind nach Abschnitt 4.2 ohne gesonderte kommerzielle Lizenz erlaubt, soweit sie nicht unter Abschnitt 4.1 fallen. Für Angebote an Dritte über API/Cloud oder andere Fernzugriffe, als SI-/On-Premise-Lösung oder eingebettet auf Geräten ist eine gesonderte kommerzielle Lizenz nötig. Bei Weiterverteilung gelten zusätzliche Hinweis- und Namenspflichten. Keine Rechtsberatung."
+    },
+    {
+      "q": "Warum sind die WeLM-Image-Werte mit Vorsicht zu lesen?",
+      "a": "Alle Angaben stammen aus dem eigenen Report des WeChat-Teams: eigener Trainings- und Evaluationsaufbau, 'erster unter den evaluierten Open-Source-Modellen' bezieht sich auf die dort gewählte Vergleichsmenge. Wir haben die Werte nicht unabhängig nachgemessen. In den hier geprüften Quellen fanden wir keinen Verweis auf veröffentlichte Gewichte oder Code."
+    }
+  ],
+  "related": [
+    "muse-spark-open-offene-gewichte-analyse",
+    "offene-gewichte-vs-open-source"
+  ]
+}
