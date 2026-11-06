@@ -6,7 +6,7 @@
  "gemini-4-carbon-analyse": "2026-10-29T08:56:00+01:00",
  "genie-4-weltmodell-analyse": "2026-10-28T07:19:00+01:00",
  "gpt-6-1-terra-analyse": "2026-10-27T07:15:00+01:00",
- "gpt-6-cyber-analyse": "2026-11-06T07:19:00+01:00",
+ "gpt-6-cyber-analyse": "2026-11-06T07:25:00+01:00",
  "hydrogen-1-0-analyse": "2026-11-04T07:22:00+01:00",
  "kimi-k3-1-pro-analyse": "2026-11-05T07:26:00+01:00",
  "lfm3-liquid-ai-analyse": "2026-10-28T07:19:00+01:00",
@@ -46,5 +46,5 @@
  "sensenova-loop-9b-preview-analyse": "2026-11-04T07:22:00+01:00",
  "tencent-hy4-analyse": "2026-11-05T07:26:00+01:00",
  "timeh2o-v1-zeitreihen-prognose-analyse": "2026-10-31T07:18:34+01:00",
- "toyblocks-ai2-analyse": "2026-11-06T07:19:00+01:00"
+ "toyblocks-ai2-analyse": "2026-11-06T07:25:00+01:00"
 }
