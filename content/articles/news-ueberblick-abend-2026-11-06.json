@@ -1,0 +1,111 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-06",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-06T16:16:00+01:00",
+  "modified": "2026-11-06T16:16:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Gemini Omni 1.2 Flash: Fast and cost-effective with longer clips",
+      "publisher": "Google Blog (Anish Nangia, Google DeepMind)",
+      "url": "https://blog.google/innovation-and-ai/technology/developers-tools/introducing-gemini-omni-1-2-flash/",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "Introducing Personal Finance in Claude",
+      "publisher": "Anthropic / claude.com",
+      "url": "https://claude.com/de/resources/articles/introducing-personal-finance-in-claude",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "ElevenMusic and SoundCloud partner to empower artists",
+      "publisher": "SoundCloud (Playbook)",
+      "url": "https://soundcloud.com/playbook-articles/elevenmusic-and-soundcloud-partner-to-empower-artists-by-connecting-creation-and-discovery/",
+      "accessed": "2026-11-06"
+    },
+    {
+      "title": "SoundCloud erlaubt direkte Veröffentlichung KI-generierter Musik",
+      "publisher": "heise online (Mitteilung von SoundCloud)",
+      "url": "https://www.heise.de/news/SoundCloud-erlaubt-direkte-Veroeffentlichung-KI-generierter-Musik-11515523.html",
+      "accessed": "2026-11-06"
+    }
+  ],
+  "title": "KI-Fachüberblick: Omni 1.2, Claude Finance, ElevenMusic",
+  "dek": "Googles Videogenerator mit 15-Sekunden-Clips und GA. Anthropics Finanz-Beta mit Read-only-Kontozugriff via Plaid. SoundCloud mit KI-Herkunftslabel.",
+  "tags": [
+    "KI-Überblick",
+    "Videogenerierung",
+    "Produktfeatures",
+    "Kennzeichnung",
+    "Plattformen"
+  ],
+  "key_takeaways": [
+    "Gemini Omni 1.2 Flash: nativ 15s (1s-Schritte ab 3s), Multi-Turn-Editing über volle Clips, Referenzen aus Bildern, ≤3s-Motion-Clips und Audio; GA in Gemini API und Cloud; weitere Produktintegrationen im Rollout.",
+    "Claude Personal Finance: Plaid-Anbindung, read-only, bis 2 Jahre Transaktionshistorie; Hub-Chats nicht im Training; US-Beta auf Pro/Max/Ultra.",
+    "ElevenMusic-to-SoundCloud: Direktveröffentlichung mit Herkunftshinweis; Es gelten weiterhin SoundClouds Inhalts- und Rechteanforderungen."
+  ],
+  "hero": {
+    "alt": "Tabelle mit drei Produkt-Updates des Tages: Gemini Omni 1.2 Flash mit 15-Sekunden-Clips, Claude Personal Finance als US-Beta mit Lesezugriff, ElevenMusic-Direktupload zu SoundCloud mit Herkunftslabel",
+    "caption": "Drei Produkt-Updates nach Google, Anthropic und der am 5. November veröffentlichten SoundCloud-Mitteilung. Eigene Grafik, Anbieterangaben.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion), Quellen: Google, Anthropic, SoundCloud"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Abendüberblick vom 6. November 2026. Quellenstand: 16:16 Uhr MEZ. Drei Produkt-Updates, drei Ebenen: ein Videogenerator mit mehr Länge und Editierbarkeit (Google), ein Assistent mit lesendem Kontozugriff (Anthropic) und eine Distributionsstrecke für KI-Musik mit Herkunftskennzeichnung (SoundCloud und ElevenLabs)."
+    },
+    {
+      "t": "h2",
+      "x": "Gemini Omni 1.2 Flash: Länge, Referenzen, Multi-Turn"
+    },
+    {
+      "t": "p",
+      "x": "Laut Google-Blog (5. November) ist Gemini Omni 1.2 Flash über die Gemini API und Google Cloud allgemein verfügbar. Weitere Produktintegrationen, darunter Gemini for Business, Flow und Google Vids, werden ausgerollt. Kernpunkte: native Clip-Länge 15 statt 10 Sekunden (einstellbar in Ein-Sekunden-Schritten, 3 bis 15), Multi-Turn-Editing über volle 15-Sekunden-Clips (Hintergrund, Licht, Seitenverhältnis statt eines vollständigen Neustarts) und verbesserte Referenztreue über Charakter-, Produkt- und Stilbilder, bis zu drei Sekunden lange Bewegtreferenzen und Audio-Cues. Konsistenz von Gesichtern, Kleidung und Packungstypografie über Kamerawechsel hinweg nennt Google explizit; dazu natürlichere Sprache mit Lippensynchronisation und Mehrsprecher-Konditionierung. Workflow: Entwurf in 360p/720p, Export nach Hochskalierung bis 1080p/4K. Anbieterangaben ohne eigene Nachmessung."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Die angekündigten Änderungen betreffen Clip-Länge, Referenztreue und Bearbeitung im Gespräch. Ob die beworbenen Konsistenzverbesserungen unter Produktionsbedingungen tragen, lässt sich ohne unabhängige Tests nicht beurteilen; Google zeigt eigene Beispiele."
+    },
+    {
+      "t": "h2",
+      "x": "Claude Personal Finance: Read-only per Plaid, US-Beta"
+    },
+    {
+      "t": "p",
+      "x": "Anthropic beschreibt auf seiner Produktseite (5. November) Personal Finance als eigenen Bereich in Claude: Kontoverbindung nach eigener Anmeldung bei der Bank über Plaid (Claude sieht das Bankpasswort nicht), sichtbar sind je freigegebenem Konto Bankname, Kontoname/-typ, letzte vier Ziffern, Salden, Kreditlimits und bis zu zwei Jahre Transaktionen. Der Zugriff ist strikt lesend - keine Zahlungsauslösung, keine Verwaltung, keine Anlage; keine eigenen Finanzprodukte, keine Werbung, keine gesponserten Empfehlungen. Chats im Finance-Hub fließen laut Anthropic nicht ins Modelltraining (außerhalb gelten die üblichen Privacy-Einstellungen), Konten sind jederzeit trennbar. Start: diese Woche als Beta in den USA für Pro, Max und Ultra. Anthropic nennt die Funktion ausdrücklich keine Anlageberatung, verweist auf mögliche Fehler und empfiehlt Gegenprüfung wichtiger Zahlen bei der Bank; perspektivisch ist eine Einbindung lizenzierter Berater und regulierter Firmen angedacht."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Die Trainingsaussage gilt ausdrücklich für Gespräche im Personal-Finance-Bereich. Für Angaben außerhalb dieses Bereichs verweist Anthropic auf die jeweiligen Datenschutzeinstellungen. Daraus lässt sich keine bestimmte technische Isolation oder ein Vergleich mit den Zugriffsrechten anderer Anbieter ableiten."
+    },
+    {
+      "t": "h2",
+      "x": "ElevenMusic nach SoundCloud: Distribution mit Herkunftshinweis"
+    },
+    {
+      "t": "p",
+      "x": "SoundCloud hat laut Mitteilung die Direktveröffentlichung von ElevenMusic-generierten Stücken freigeschaltet; veröffentlichte Tracks erhalten einen Herkunftshinweis auf ElevenMusic. Die Originalmitteilung stammt vom 5. November; heise online berichtete am 6. November darüber. Relevant ist die Kennzeichnung: SoundCloud setzt auf transparente Herkunft statt Verbot. Auch diese Uploads müssen laut SoundCloud dessen Inhalts- und Rechteanforderungen erfüllen. Wie die Kennzeichnung technisch umgesetzt ist (Metadaten, sichtbares Badge) und ob sie für KI-Tools anderer Anbieter gilt, geht aus der Mitteilung nicht hervor."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was bringt Multi-Turn-Editing bei Omni 1.2 konkret?",
+      "a": "Ein einmal erzeugter Clip lässt sich über Folgeanweisungen ändern - etwa Produkt, Hintergrund oder Wetter tauschen - statt von vorn beginnen zu müssen. Laut Google funktioniert das über volle 15-Sekunden-Clips; Charaktere und Kamera sollen dabei stabil bleiben. Anbieterangabe ohne eigene Nachmessung."
+    },
+    {
+      "q": "Welche Kontodaten bekommt Claude zu sehen?",
+      "a": "Nur die explizit freigegebenen Konten: Bankname, Kontoname und -typ, letzte vier Ziffern, Salden, Kreditlimits und bis zu zwei Jahre Transaktionshistorie. Claude sieht das Bankpasswort nicht. Chats im Finance-Hub nutzt Anthropic nach eigener Angabe nicht fürs Training; Trennung jederzeit möglich."
+    },
+    {
+      "q": "Gilt das SoundCloud-Label für alle KI-Musik?",
+      "a": "Die Mitteilung bezieht sich auf den ElevenMusic-Weg: Direkt aus dem ElevenLabs-Tool veröffentlichte Stücke tragen den Herkunftshinweis. Ob ein allgemeiner Kennzeichnungsstandard für andere KI-Werkzeuge folgt, ist daraus nicht abzuleiten."
+    }
+  ],
+  "related": [
+    "video-ki",
+    "audio-sprach-ki"
+  ]
+}
