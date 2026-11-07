@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Dauer-Agenten, härtere Evals, agentisches Siri](https://kifachblatt.de/news-ueberblick-morgen-2026-11-07): Perplexity Teammates im Quellenabgleich, GDPx als Benchmark-Rückblick und Siri AI mit Datei- und Browserzugriff in der iOS-27.3-Entwicklerbeta.
 - [KI-Fachüberblick: Omni 1.2, Claude Finance, ElevenMusic](https://kifachblatt.de/news-ueberblick-abend-2026-11-06): Googles Videogenerator mit 15-Sekunden-Clips und GA. Anthropics Finanz-Beta mit Read-only-Kontozugriff via Plaid. SoundCloud mit KI-Herkunftslabel.
 - [KI-Fachüberblick: Ling-3.2, Kanana-Decide, WeLM-Image](https://kifachblatt.de/news-ueberblick-mittag-2026-11-06): Ants 560B-A25B wird nativ multimodal, über Chat und API. Kakaos Decision-Modell offen, aber mit Lizenzschranken. Tencents 31,7B-MoT-MoE im technischen Report.
 - [GPT-6 Cyber: Spezialmodell für Sicherheitsarbeit unter Daybreak Red](https://kifachblatt.de/gpt-6-cyber-analyse): OpenAIs Cyber-Spezialmodell senkt Ablehnungen bei autorisierten Anfragen und bleibt hinter Daybreak Red - mit neuen Blockern für kritische Infrastruktur.
