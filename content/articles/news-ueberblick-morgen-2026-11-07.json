@@ -3,8 +3,8 @@
   "lang": "de",
   "section": "ueberblick",
   "type": "news",
-  "published": "2026-11-07T06:42:00+01:00",
-  "modified": "2026-11-07T06:42:00+01:00",
+  "published": "2026-11-07T06:50:00+01:00",
+  "modified": "2026-11-07T06:50:00+01:00",
   "author": "philipp-paulik",
   "sources": [
     {
@@ -62,7 +62,7 @@
   "body": [
     {
       "t": "p",
-      "x": "Morgenüberblick vom 7. November 2026. Quellenstand:06:42 UhrMEZ. Wir ordnen Perplexitys Ankündigung vom 4. November und die Siri-Entwicklerbeta ein und blicken auf den seit 2. November veröffentlichten GDPx-Benchmark zurück."
+      "x": "Morgenüberblick vom 7. November 2026. Quellenstand: 06:42 UhrMEZ. Wir ordnen Perplexitys Ankündigung vom 4. November und die Siri-Entwicklerbeta ein und blicken auf den seit 2. November veröffentlichten GDPx-Benchmark zurück."
     },
     {
       "t": "h2",
@@ -78,11 +78,11 @@
     },
     {
       "t": "h2",
-      "x": "GDPx-Rückblick:12 Prozent als Domänenmittel, nicht als Leistungsgrenze"
+      "x": "GDPx-Rückblick: 12 Prozent als Domänenmittel, nicht als Leistungsgrenze"
     },
     {
       "t": "p",
-      "x": "SemiAnalysis veröffentlichte GDPx bereits am 2. November 2026. Laut Anbieter und dem Bericht von the-decoder umfasst der Benchmark 206 Aufgaben in elf Domänen, erstellt mit 14 spezialisierten Partnerfirmen. Die Agenten arbeiten in Fachsoftware und simulierten Arbeitsumgebungen. Das Standardzeitlimit beträgt laut Methodik acht Stunden, einzelne Aufgaben haben kürzere Fristen. Die erste Gesamtrangliste nennt ClaudeOpus 5.5 mit 12,0 Prozent, Gemini 4 Carbonmit 10,9 Prozent und GPT-6 Astramit 9,6 Prozent. Der Gesamtscore mittelt elf gleich gewichtete Domänen; bei mehreren Partnern einer Domäne werden auch diese gleich gewichtet. Die Aufgaben verwenden je nach Bereich binäre oder Teilbewertungen, ausgewertet über drei Versuche.12 Prozent bedeutet deshalb weder 12 Prozent aller 206 Aufgaben vollständig gelöst noch eine harte Leistungsgrenze für KI."
+      "x": "SemiAnalysis veröffentlichte GDPx bereits am 2. November 2026. Laut Anbieter und dem Bericht von the-decoder umfasst der Benchmark 206 Aufgaben in elf Domänen, erstellt mit 14 spezialisierten Partnerfirmen. Die Agenten arbeiten in Fachsoftware und simulierten Arbeitsumgebungen. Das Standardzeitlimit beträgt laut Methodik acht Stunden, einzelne Aufgaben haben kürzere Fristen. Die erste Gesamtrangliste nennt Claude Opus 5.5 mit 12,0 Prozent, Gemini 4 Carbon mit 10,9 Prozent und GPT-6 Astra mit 9,6 Prozent. Der Gesamtscore mittelt elf gleich gewichtete Domänen; bei mehreren Partnern einer Domäne werden auch diese gleich gewichtet. Die Aufgaben verwenden je nach Bereich binäre oder Teilbewertungen, ausgewertet über drei Versuche.12 Prozent bedeutet deshalb weder 12 Prozent aller 206 Aufgaben vollständig gelöst noch eine harte Leistungsgrenze für KI."
     },
     {
       "t": "p",
