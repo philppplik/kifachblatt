@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [ERNIE 5.5 Flash Base: Baidus 280B-Basismodell im Check](https://kifachblatt.de/ernie-5-5-flash-base-analyse): Baidus Basismodell: 280 Milliarden Parameter, 14 aktiv, hybride Aufmerksamkeit und Multi-Router-MoE. Die Lizenz schließt EU, UK und Südkorea aus.
+- [Ripple-65B Preview: Dichtes 65B-Modell für Agenten-Coding](https://kifachblatt.de/ripple-65b-preview-analyse): Dichtes 65-Milliarden-Modell unter Apache 2.0: 1-Million-Kontext, Fokus auf agentisches Programmieren - und ein offener Umgang mit Benchmark-Schwächen.
 - [Dauer-Agenten, härtere Evals, agentisches Siri](https://kifachblatt.de/news-ueberblick-morgen-2026-11-07): Perplexity Teammates im Quellenabgleich, GDPx als Benchmark-Rückblick und Siri AI mit Datei- und Browserzugriff in der iOS-27.3-Entwicklerbeta.
 - [KI-Fachüberblick: Omni 1.2, Claude Finance, ElevenMusic](https://kifachblatt.de/news-ueberblick-abend-2026-11-06): Googles Videogenerator mit 15-Sekunden-Clips und GA. Anthropics Finanz-Beta mit Read-only-Kontozugriff via Plaid. SoundCloud mit KI-Herkunftslabel.
 - [KI-Fachüberblick: Ling-3.2, Kanana-Decide, WeLM-Image](https://kifachblatt.de/news-ueberblick-mittag-2026-11-06): Ants 560B-A25B wird nativ multimodal, über Chat und API. Kakaos Decision-Modell offen, aber mit Lizenzschranken. Tencents 31,7B-MoT-MoE im technischen Report.
