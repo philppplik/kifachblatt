@@ -133,5 +133,13 @@
   "risk": "Markenrecht und lokale Schutzschwelle prüfen; keine Partnerschaft implizieren",
   "checked": "2026-10-31",
   "sha256": "07a45e8e35b0b631ed2c68cd1cb041f9721b1ceeb0bd0e34f1459b0304a741c7"
+ },
+ "liquid-ai": {
+  "file": "liquid-ai.svg",
+  "source": "https://www.liquid.ai/logos/liquid-ai-black.svg",
+  "license": "Keine Lizenz eingeräumt; Marke von Liquid AI, Inc.",
+  "risk": "ToS verlangen vorherige schriftliche Genehmigung für Logonutzung ohne redaktionellen Kontext; hier nur zur Identifikation des beschriebenen Unternehmens, keine Partnerschaft, keine schriftliche Freigabe vorhanden",
+  "checked": "2026-11-07",
+  "sha256": "8c769ceb1c68228b1ece418a113f7cb6ac8ab5bed328799d25d4775ab742b5f9"
  }
 }

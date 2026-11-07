@@ -180,6 +180,10 @@
     {
       "t": "p",
       "x": "Liquid positioniert LFM3 als Ausgangspunkt für 'spezialisierte Intelligenz': Jedes Modell lässt sich auf einer einzelnen GPU feintunen. Zwei Beispiele aus dem Blog: Ein paar Stunden Fine-Tuning auf rund 3.000 Drohnenfotos machten aus LFM3-VL-2B ein Inspektionsmodell für Windkraft-Schäden (Klassifikationsgenauigkeit von unter 10 auf 67 Prozent, Herstellerdemo); und ein 170-GPU-Stunden-Training verwandelte es in ein Vision-Language-Action-Modell mit 96,2 Prozent Erfolg auf den vier LIBERO-Suiten [1]. Ob sich das in fremden Händen reproduzieren lässt, wird die Praxis zeigen müssen."
+    },
+    {
+      "t": "p",
+      "x": "Wenn du LFM3 selbst ausprobieren willst: Auf [LFM lokal ausführen: Gerätecheck und Quantisierung erklärt](/lfm) schätzen wir den Speicherbedarf für dein Gerät und erklären die Formate."
     }
   ],
   "faq": [

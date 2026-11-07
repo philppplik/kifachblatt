@@ -951,6 +951,46 @@
    "title": "Moonshot AI - offizielle Website",
    "url": "https://www.moonshot.ai/",
    "accessed": "2026-10-31"
+  },
+  "liquid-company": {
+   "title": "Liquid AI: Company",
+   "url": "https://www.liquid.ai/company",
+   "accessed": "2026-11-07"
+  },
+  "liquid-lfm3-blog": {
+   "title": "Introducing LFM3: Every Modality for Specialized Intelligence",
+   "url": "https://www.liquid.ai/blog/lfm3",
+   "accessed": "2026-11-07"
+  },
+  "liquid-lfm3-card": {
+   "title": "LiquidAI/LFM3-1.7B - Modellkarte",
+   "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+   "accessed": "2026-11-07"
+  },
+  "liquid-lfm3-audio-card": {
+   "title": "LiquidAI/LFM3-Audio-2B - Modellkarte",
+   "url": "https://huggingface.co/LiquidAI/LFM3-Audio-2B",
+   "accessed": "2026-11-07"
+  },
+  "ollama-lfm3": {
+   "title": "Ollama Library: lfm3",
+   "url": "https://ollama.com/library/lfm3",
+   "accessed": "2026-11-07"
+  },
+  "ollama-lfm3-vl": {
+   "title": "Ollama Library: lfm3-vl",
+   "url": "https://ollama.com/library/lfm3-vl",
+   "accessed": "2026-11-07"
+  },
+  "ollama-lfm3-audio": {
+   "title": "Ollama Library: lfm3-audio",
+   "url": "https://ollama.com/library/lfm3-audio",
+   "accessed": "2026-11-07"
+  },
+  "ollama-d1": {
+   "title": "Ollama Library: d1",
+   "url": "https://ollama.com/library/d1",
+   "accessed": "2026-11-07"
   }
  },
  "companies": [
@@ -2604,6 +2644,42 @@
     "primary": "qwen-github"
    },
    "checked": "2026-10-31"
+  },
+  {
+   "slug": "liquid-ai",
+   "name": "Liquid AI",
+   "initials": "LA",
+   "summary": "KI-Unternehmen hinter der Liquid-Foundation-Models-Familie (LFM) mit Fokus auf effiziente Modelle für Geräte.",
+   "detail": "Liquid AI beschreibt sich als \"efficiency-first foundation model company\". Das Unternehmen ging aus dem MIT CSAIL hervor, gegründet von Ramin Hasani, Mathias Lechner, Alexander Amini und Daniela Rus. Seine Modelle sollen auf Handys, PCs und anderen Geräten laufen, nicht nur in der Cloud.",
+   "limits": "Das ist die Selbstbeschreibung des Unternehmens. Ziele wie Effizienz auf Geräten sind kein unabhängiger Leistungsnachweis. Die Forschungsgeschichte des Unternehmens sagt nichts über die Eigenschaften eines einzelnen aktuellen Modells aus.",
+   "sources": [
+    "liquid-company",
+    "liquid-lfm3-blog"
+   ],
+   "facts": [
+    {
+     "label": "Einordnung",
+     "value": "Foundation-Model-Unternehmen mit Effizienz- und On-Device-Fokus (Selbstbeschreibung).",
+     "source": "liquid-company"
+    },
+    {
+     "label": "Herkunft",
+     "value": "Ausgründung aus dem MIT CSAIL; vier Gründer: Ramin Hasani (CEO), Mathias Lechner (CTO), Alexander Amini (CSO), Daniela Rus.",
+     "source": "liquid-company"
+    },
+    {
+     "label": "Aktuelle Familie",
+     "value": "LFM3, vorgestellt am 27.10.2026.",
+     "source": "liquid-lfm3-blog"
+    }
+   ],
+   "logo": {
+    "asset": "liquid-ai",
+    "label": "Liquid-AI-Logo (Wort-Bild-Marke von Liquid AI, Inc.)"
+   },
+   "no_pdf": true,
+   "checked": "2026-11-07",
+   "published": "2026-11-07"
   }
  ],
  "models": [
@@ -5392,6 +5468,187 @@
    },
    "checked": "2026-10-31",
    "published": "2026-10-31"
+  },
+  {
+   "slug": "lfm3-1-7b",
+   "name": "LFM3-1.7B",
+   "company": "liquid-ai",
+   "initials": "LF",
+   "summary": "Textmodell der LFM3-Familie von Liquid AI für lokale Agenten, Werkzeugaufrufe und Fine-Tuning.",
+   "detail": "Das Modell hat 1,73 Milliarden Parameter und 24 Schichten: 13 Faltungs-, 5 Sliding-Window-Attention- und 6 globale Attention-Schichten. Benchmark-Werte stammen von Liquid AI und sind nicht unabhängig bestätigt.",
+   "access": "Hugging Face (LiquidAI/LFM3-1.7B); Ollama-Library-Eintrag lfm3.",
+   "license": "LFM Open License v1.0 (kein OSI-Open-Source). Kommerzielle Nutzung ist laut Recherche nur bis unter 10 Mio. USD Jahresumsatz abgedeckt. Vor dem Einsatz den Lizenztext lesen.",
+   "limits": "Laut Modellkarte nicht empfohlen für agentisches Coding und komplexes mehrstufiges Reasoning. Dateigrößen in Quantisierungs-Tags sind Downloadgrößen, nicht der Speicherbedarf beim Laufen.",
+   "sources": [
+    "liquid-lfm3-blog",
+    "liquid-lfm3-card",
+    "ollama-lfm3"
+   ],
+   "facts": [
+    {
+     "label": "Parameter",
+     "value": "1,73 Mrd.",
+     "source": "liquid-lfm3-blog"
+    },
+    {
+     "label": "Kontextfenster",
+     "value": "256K Token (Herstellerangabe)",
+     "source": "liquid-lfm3-card"
+    },
+    {
+     "label": "Eingabe → Ausgabe",
+     "value": "Text → Text",
+     "source": "liquid-lfm3-blog"
+    },
+    {
+     "label": "Ollama",
+     "value": "lfm3 (Library-Eintrag; von uns nicht selbst ausgeführt)",
+     "source": "ollama-lfm3"
+    }
+   ],
+   "logo": {
+    "asset": "liquid-ai",
+    "label": "Liquid-AI-Logo (Wort-Bild-Marke von Liquid AI, Inc.)"
+   },
+   "no_pdf": true,
+   "checked": "2026-11-07",
+   "published": "2026-11-07"
+  },
+  {
+   "slug": "lfm3-vl-2b",
+   "name": "LFM3-VL-2B",
+   "company": "liquid-ai",
+   "initials": "LF",
+   "summary": "Vision-Sprach-Modell der LFM3-Familie mit Bild- und Video-Eingabe.",
+   "detail": "Laut Recherche 1,92 Milliarden Parameter (Sprachmodell, Vision-Encoder, Projektor). Video-Eingabe war in der Ollama-Library zuletzt noch nicht verfügbar. Modellfähigkeit und Software-Unterstützung sind getrennt zu prüfen.",
+   "access": "Hugging Face (LiquidAI); Ollama-Library-Eintrag lfm3-vl.",
+   "license": "LFM Open License v1.0 (kein OSI-Open-Source). Kommerzielle Nutzung ist laut Recherche nur bis unter 10 Mio. USD Jahresumsatz abgedeckt. Vor dem Einsatz den Lizenztext lesen.",
+   "limits": "Laut Modellkarte nicht empfohlen für Coding, mehrstufige Gespräche oder komplexes Reasoning.",
+   "sources": [
+    "liquid-lfm3-blog",
+    "ollama-lfm3-vl"
+   ],
+   "facts": [
+    {
+     "label": "Eingabe → Ausgabe",
+     "value": "Text, Bild, Video → Text",
+     "source": "liquid-lfm3-blog"
+    },
+    {
+     "label": "Ollama",
+     "value": "lfm3-vl (Library-Eintrag; Video dort laut Recherche noch nicht verfügbar; von uns nicht selbst ausgeführt)",
+     "source": "ollama-lfm3-vl"
+    }
+   ],
+   "logo": {
+    "asset": "liquid-ai",
+    "label": "Liquid-AI-Logo (Wort-Bild-Marke von Liquid AI, Inc.)"
+   },
+   "no_pdf": true,
+   "checked": "2026-11-07",
+   "published": "2026-11-07"
+  },
+  {
+   "slug": "lfm3-audio-2b",
+   "name": "LFM3-Audio-2B",
+   "company": "liquid-ai",
+   "initials": "LF",
+   "summary": "Audio-Modell der LFM3-Familie für Sprachchat, Transkription und Audio-Verstehen.",
+   "detail": "Eingabe Text oder Audio (16 kHz), Ausgabe Text, Sprache (24 kHz) oder beides. Das Kontextfenster nennt Liquid mit 32K Token, die Ollama-Library weist 125K aus. Dieser Widerspruch ist ungeklärt.",
+   "access": "Hugging Face (LiquidAI/LFM3-Audio-2B); Ollama-Library-Eintrag lfm3-audio.",
+   "license": "LFM Open License v1.0 (kein OSI-Open-Source). Kommerzielle Nutzung ist laut Recherche nur bis unter 10 Mio. USD Jahresumsatz abgedeckt. Vor dem Einsatz den Lizenztext lesen.",
+   "limits": "Ob alle Funktionen in einer bestimmten Software laufen, steht beim jeweiligen Programm. Ein Library-Eintrag ist kein von uns bestätigter Lauf.",
+   "sources": [
+    "liquid-lfm3-blog",
+    "liquid-lfm3-audio-card",
+    "ollama-lfm3-audio"
+   ],
+   "facts": [
+    {
+     "label": "Eingabe → Ausgabe",
+     "value": "Text, Audio → Text, Sprache",
+     "source": "liquid-lfm3-audio-card"
+    },
+    {
+     "label": "Kontextfenster",
+     "value": "32K laut Hersteller; Ollama zeigt 125K",
+     "source": "liquid-lfm3-audio-card"
+    },
+    {
+     "label": "Ollama",
+     "value": "lfm3-audio (Library-Eintrag; von uns nicht selbst ausgeführt)",
+     "source": "ollama-lfm3-audio"
+    }
+   ],
+   "logo": {
+    "asset": "liquid-ai",
+    "label": "Liquid-AI-Logo (Wort-Bild-Marke von Liquid AI, Inc.)"
+   },
+   "no_pdf": true,
+   "checked": "2026-11-07",
+   "published": "2026-11-07"
+  },
+  {
+   "slug": "lfm3-omni-2b",
+   "name": "LFM3-Omni-2B",
+   "company": "liquid-ai",
+   "initials": "LF",
+   "summary": "Omni-Modell der LFM3-Familie, das Text, Bild, Video und Audio verarbeitet und Text oder Sprache ausgibt.",
+   "detail": "Laut Recherche 2,17 Milliarden Parameter und 32K Kontext laut Modellkarte. Zusätzliche Projektor-Dateien erhöhen die Gesamtgröße gegenüber dem reinen Sprachmodell.",
+   "access": "Hugging Face (LiquidAI); Ollama-Library-Eintrag lfm3-omni.",
+   "license": "LFM Open License v1.0 (kein OSI-Open-Source). Kommerzielle Nutzung ist laut Recherche nur bis unter 10 Mio. USD Jahresumsatz abgedeckt. Vor dem Einsatz den Lizenztext lesen.",
+   "limits": "Modalitäten des Modells sind nicht automatisch in jeder Software verfügbar.",
+   "sources": [
+    "liquid-lfm3-blog"
+   ],
+   "facts": [
+    {
+     "label": "Eingabe → Ausgabe",
+     "value": "Text, Bild, Video, Audio → Text, Sprache",
+     "source": "liquid-lfm3-blog"
+    }
+   ],
+   "logo": {
+    "asset": "liquid-ai",
+    "label": "Liquid-AI-Logo (Wort-Bild-Marke von Liquid AI, Inc.)"
+   },
+   "no_pdf": true,
+   "checked": "2026-11-07",
+   "published": "2026-11-07"
+  },
+  {
+   "slug": "d1-2b",
+   "name": "d1-2B",
+   "company": "liquid-ai",
+   "initials": "LF",
+   "summary": "Entscheidungsmodell von Liquid AI: liefert für eine Fragenliste kalibrierte Wahrscheinlichkeiten statt Text.",
+   "detail": "d1 ist kein Chatmodell. In der Ollama-Library zeigt der Tag d1:latest laut Recherche noch auf die ältere 3B-Generation, der Tag d1:2b auf die neuere LFM3-Generation.",
+   "access": "Ollama-Library: Tag d1:2b.",
+   "license": "LFM Open License v1.0 (kein OSI-Open-Source). Kommerzielle Nutzung ist laut Recherche nur bis unter 10 Mio. USD Jahresumsatz abgedeckt. Vor dem Einsatz den Lizenztext lesen.",
+   "limits": "Nicht mit Chatmodellen vergleichbar; Geschwindigkeit und Qualität dürfen nicht gleichgesetzt werden.",
+   "sources": [
+    "liquid-lfm3-blog",
+    "ollama-d1"
+   ],
+   "facts": [
+    {
+     "label": "Aufgabe",
+     "value": "Typisierte Fragen beantworten, kalibrierte Wahrscheinlichkeiten in einem Forward-Pass",
+     "source": "liquid-lfm3-blog"
+    },
+    {
+     "label": "Ollama",
+     "value": "d1:2b (Library-Eintrag; von uns nicht selbst ausgeführt)",
+     "source": "ollama-d1"
+    }
+   ],
+   "logo": {
+    "asset": "liquid-ai",
+    "label": "Liquid-AI-Logo (Wort-Bild-Marke von Liquid AI, Inc.)"
+   },
+   "no_pdf": true,
+   "checked": "2026-11-07",
+   "published": "2026-11-07"
   }
  ],
  "benchmarks": [

@@ -136,7 +136,7 @@ def render(site,out):
    if g=='models' and x.get('rich_model'):body=body.split('<div class="p-layout">')[0]+rich_model(x,d,technical)+refs(keys)
    if g in ('models','companies') and not x.get('rich') and not x.get('rich_model'):body+=ecosystem(x,d)
    if g=='companies' and x.get('rich'):body=body.split('<div class="p-layout">')[0]+rich_company(x,d,technical)+refs(list(dict.fromkeys(keys)))
-   if g in ('models','companies'):
+   if g in ('models','companies') and not x.get('no_pdf'):
     exports=export_pdf(ROOT,out,site,g,x,body,portrait_mark(x,True),logo_note(x),base+p,x.get('checked') or (x.get('rich_model') or {}).get('checked') or d['reviewed'],css+COMPANY_CSS+MODEL_CSS)
     body=body.replace('<div class="p-layout">',exports+'<div class="p-layout">',1) if '<div class="p-layout">' in body else body.replace('<section class="mr">',exports+'<section class="mr">',1) if '<section class="mr">' in body else body.replace('<section class="co-rich">',exports+'<section class="co-rich">',1)
    crumb='<nav class="p-breadcrumb" aria-label="Brotkrumen"><a href="/">Start</a> / <a href="%s">%s</a> / %s</nav>'%(path(g),label,E(x['name']))

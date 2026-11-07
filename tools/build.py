@@ -409,6 +409,7 @@ SEARCH_PAGES = [
     ('Glossar: KI-Begriffe, kurz erklärt', '/glossar', 'Seite', 'Das KI-Glossar erklärt Begriffe zu Sprachmodellen, Agenten, RAG und Evaluation.'),
     ('Lernpfade: KI verstehen in drei Etappen', '/lernpfade', 'Seite', 'Lernpfade für Einsteiger, Praktiker, Entscheider und Spezialisten: Seiten in sinnvoller Reihenfolge, mit Fortschritt und Abschluss-Check.'),
     ('KI-Tagesbericht als PDF', '/berichte', 'Seite', 'Tägliche Ausgabe als PDF: Trending-Modelle, die Analysen des Tages, Impressum.'),
+    ('LFM lokal ausführen: Gerätecheck und Quantisierung erklärt', '/lfm', 'Modelle', 'LFM3 von Liquid AI lokal nutzen: Familie, Quantisierung, Gerätecheck mit offen gelegten Annahmen.'),
     ('Über das Magazin', '/ueber', 'Seite', 'Das KI Fachblatt ist ein deutschsprachiges Fachmagazin über künstliche Intelligenz von Philipp Paulik.'),
 ]
 

@@ -1,0 +1,222 @@
+{
+ "schema_version": 1,
+ "stand": "2026-11-07",
+ "sources": {
+  "blog": {
+   "title": "Introducing LFM3: Every Modality for Specialized Intelligence",
+   "publisher": "Liquid AI",
+   "url": "https://www.liquid.ai/blog/lfm3",
+   "accessed": "2026-11-07"
+  },
+  "hfblog": {
+   "title": "Build specialized multimodal models with LFM3",
+   "publisher": "Hugging Face Blog / Liquid AI",
+   "url": "https://huggingface.co/blog/LiquidAI/lfm3",
+   "accessed": "2026-11-07"
+  },
+  "card": {
+   "title": "LiquidAI/LFM3-1.7B - Modellkarte",
+   "publisher": "Hugging Face / Liquid AI",
+   "url": "https://huggingface.co/LiquidAI/LFM3-1.7B",
+   "accessed": "2026-11-07"
+  },
+  "audio": {
+   "title": "LiquidAI/LFM3-Audio-2B - Modellkarte",
+   "publisher": "Hugging Face / Liquid AI",
+   "url": "https://huggingface.co/LiquidAI/LFM3-Audio-2B",
+   "accessed": "2026-11-07"
+  },
+  "ollama-audio": {
+   "title": "lfm3-audio - Ollama Library",
+   "publisher": "Ollama",
+   "url": "https://ollama.com/library/lfm3-audio",
+   "accessed": "2026-11-07"
+  },
+  "llamacpp-quant": {
+   "title": "llama.cpp: tools/quantize (README)",
+   "publisher": "ggml-org",
+   "url": "https://github.com/ggml-org/llama.cpp/blob/master/tools/quantize/README.md",
+   "accessed": "2026-11-07"
+  },
+  "ollama-lfm3": {
+   "title": "lfm3 Tags - Ollama Library",
+   "publisher": "Ollama",
+   "url": "https://ollama.com/library/lfm3/tags",
+   "accessed": "2026-11-07"
+  },
+  "hf-gguf": {
+   "title": "LiquidAI/LFM3-1.7B-GGUF - Dateien",
+   "publisher": "Hugging Face / Liquid AI",
+   "url": "https://huggingface.co/LiquidAI/LFM3-1.7B-GGUF/tree/main",
+   "accessed": "2026-11-07"
+  },
+  "ollama-lfm3-vl": {
+   "title": "lfm3-vl - Ollama Library",
+   "publisher": "Ollama",
+   "url": "https://ollama.com/library/lfm3-vl",
+   "accessed": "2026-11-07"
+  },
+  "ollama-d1": {
+   "title": "d1 - Ollama Library",
+   "publisher": "Ollama",
+   "url": "https://ollama.com/library/d1",
+   "accessed": "2026-11-07"
+  },
+  "ollama-omni": {
+   "title": "lfm3-omni - Ollama Library",
+   "publisher": "Ollama",
+   "url": "https://ollama.com/library/lfm3-omni",
+   "accessed": "2026-11-07"
+  }
+ },
+ "models": [
+  {
+   "id": "lfm3",
+   "name": "LFM3-1.7B",
+   "role": "Text",
+   "params_b": 1.73,
+   "in": "Text",
+   "out": "Text",
+   "src": [
+    "blog",
+    "card",
+    "ollama-lfm3"
+   ],
+   "for": "Lokale Agenten, Werkzeugaufrufe, Fine-Tuning. Laut Modellkarte nicht empfohlen für agentisches Coding und komplexes mehrstufiges Reasoning.",
+   "ollama": {
+    "cmd": "ollama pull lfm3",
+    "status": "Eintrag und Tags laut Ollama-Library gelistet (Stand 07.11.2026); von uns nicht selbst ausgeführt.",
+    "src": "ollama-lfm3"
+   },
+   "ctx": "256K (Hersteller, Ollama-Tags)",
+   "params_note": "1,73 Mrd. (Hersteller)",
+   "ctx_max": 262144,
+   "quants": [
+    {
+     "tag": "q4_K_M",
+     "gb": 1.1,
+     "verified": true
+    },
+    {
+     "tag": "qad-q4_0",
+     "gb": 1.05,
+     "verified": true
+    },
+    {
+     "tag": "q8_0",
+     "gb": 1.85,
+     "verified": true
+    },
+    {
+     "tag": "bf16",
+     "gb": 3.47,
+     "verified": true
+    }
+   ],
+   "files_src": [
+    "hf-gguf",
+    "ollama-lfm3"
+   ],
+   "extra_gb": 0
+  },
+  {
+   "id": "lfm3-vl",
+   "name": "LFM3-VL-2B",
+   "role": "Bild und Video",
+   "params_b": 1.92,
+   "params_note": "1,92 Mrd. (1,73 Sprachmodell + 164M Vision-Encoder + 25M Projektor, laut Modellkarte)",
+   "in": "Text, Bild, Video",
+   "out": "Text",
+   "src": [
+    "blog",
+    "ollama-lfm3-vl"
+   ],
+   "for": "Visuelles Verstehen, erstmals mit Video-Eingabe.",
+   "ollama": {
+    "cmd": "ollama pull lfm3-vl",
+    "status": "Eintrag laut Ollama-Library gelistet (Stand 07.11.2026). Video-Eingabe ist dort laut Ollama-Eintrag noch nicht verfügbar; von uns nicht selbst ausgeführt.",
+    "src": "ollama-lfm3-vl"
+   },
+   "ctx": "128.000 Token laut Konfiguration (Modellkarte rundet auf 128K, Ollama zeigt 125K, das ist dieselbe Zahl in 1024er-Einheiten)",
+   "ctx_max": 128000,
+   "quants": [],
+   "extra_gb": 0.38,
+   "extra_note": "Projektor (mmproj, BF16) laut Hugging Face-Repo +0,38 GB; Gesamtgröße je Paket hängt vom gewählten Tag ab und ist hier nicht geprüft"
+  },
+  {
+   "id": "lfm3-audio",
+   "name": "LFM3-Audio-2B",
+   "role": "Sprache und Audio",
+   "params_b": 2.0,
+   "params_note": "ca. 2 Mrd. (Hersteller: 2B)",
+   "in": "Text, Audio (16 kHz)",
+   "out": "Text, Sprache (24 kHz)",
+   "src": [
+    "blog",
+    "audio",
+    "ollama-audio"
+   ],
+   "for": "Sprachchat, Transkription, Audio-Verstehen.",
+   "ollama": {
+    "cmd": "ollama pull lfm3-audio",
+    "status": "Laut Ollama-Library gelistet (Stand 07.11.2026); von uns nicht selbst ausgeführt.",
+    "src": "ollama-audio"
+   },
+   "ctx": "32K nutzbar laut Modellkarte; Ollama zeigt 125K, das ist die Architekturgrenze (128.000)",
+   "ctx_max": 32768,
+   "quants": [],
+   "extra_gb": 0.57,
+   "extra_note": "Audio-Projektor laut Hugging Face-Repo +0,57 GB; Gesamtgröße je Paket hängt vom gewählten Tag ab und ist hier nicht geprüft"
+  },
+  {
+   "id": "lfm3-omni",
+   "name": "LFM3-Omni-2B",
+   "role": "Alles in einem",
+   "params_b": 2.17,
+   "params_note": "2,17 Mrd. (Hersteller)",
+   "in": "Text, Bild, Video, Audio",
+   "out": "Text, Sprache",
+   "src": [
+    "blog",
+    "ollama-omni"
+   ],
+   "for": "Sieht, hört und antwortet gesprochen in einem Modell.",
+   "ollama": {
+    "cmd": "ollama pull lfm3-omni",
+    "status": "Eintrag laut Ollama-Library gelistet (Stand 07.11.2026); von uns nicht selbst ausgeführt.",
+    "src": "ollama-omni"
+   },
+   "ctx": "32K nutzbar laut Modellkarte; Ollama zeigt die Architekturgrenze",
+   "ctx_max": 32768,
+   "quants": [],
+   "extra_gb": 0.95,
+   "extra_note": "Projektoren laut Hugging Face-Repo +0,95 GB; Gesamtgröße je Paket hängt vom gewählten Tag ab und ist hier nicht geprüft"
+  },
+  {
+   "id": "d1",
+   "name": "d1 (2B)",
+   "role": "Entscheidungsmodell",
+   "params_b": 1.92,
+   "params_note": "1,92 Mrd. (Hersteller)",
+   "in": "Text, Bild, Video",
+   "out": "Kalibrierte Antworten",
+   "src": [
+    "blog",
+    "ollama-d1"
+   ],
+   "for": "Entscheidungsmodell, kein Chatmodell: liefert für typisierte Fragen kalibrierte Wahrscheinlichkeiten in einem Forward-Pass.",
+   "ollama": {
+    "cmd": "ollama pull d1:2b",
+    "status": "Tag d1:2b laut Ollama-Library gelistet. Wichtig: d1:latest zeigt laut Ollama-Library auf das ältere 3B-Modell. d1 ist ein Entscheidungsmodell, kein Chatmodell. Von uns nicht selbst ausgeführt. Die Dateigröße steht beim jeweiligen Tag in der Library; sie ist hier nicht übernommen.",
+    "src": "ollama-d1"
+   },
+   "ctx": "128.000 Token laut Konfiguration (Ollama zeigt 125K, dieselbe Zahl in 1024er-Einheiten)",
+   "ctx_max": 128000,
+   "quants": [],
+   "files_src": [
+    "ollama-d1"
+   ],
+   "extra_gb": 0
+  }
+ ]
+}
