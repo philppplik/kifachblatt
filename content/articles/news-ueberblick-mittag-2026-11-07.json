@@ -1,0 +1,122 @@
+{
+ "slug": "news-ueberblick-mittag-2026-11-07",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-07T10:00:00+01:00",
+ "modified": "2026-11-07T10:00:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "NVKE: Nvidia bringt eigene Kubernetes Engine als Preview",
+   "publisher": "heise online (iX, Kornelius Kindermann)",
+   "url": "https://www.heise.de/news/NVKE-Nvidia-bringt-eigene-Kubernetes-Engine-als-Preview-11515947.html",
+   "accessed": "2026-11-07"
+  },
+  {
+   "title": "NVKE: Preview status and known limitations",
+   "publisher": "NVIDIA-Dokumentation",
+   "url": "https://docs.nvidia.com/nvke/documentation/overview/preview-status-and-known-limitations",
+   "accessed": "2026-11-07"
+  },
+  {
+   "title": "Sichere Architektur für KI-Agenten im Backoffice",
+   "publisher": "heise online (Developer, Mahbouba Gharbi, Sönke J. Magnussen)",
+   "url": "https://www.heise.de/hintergrund/Sichere-Architektur-fuer-KI-Agenten-im-Backoffice-11514414.html",
+   "accessed": "2026-11-07"
+  },
+  {
+   "title": "SLA: Scaling Spatial-Language-Action Model via Continual Pre-training",
+   "publisher": "arXiv (Fuhao Li, Wenxuan Song u. a.)",
+   "url": "https://arxiv.org/abs/2611.08373",
+   "accessed": "2026-11-07"
+  },
+  {
+   "title": "NVKE: What is NVKE",
+   "publisher": "NVIDIA, dsx-ai-factory (GitHub)",
+   "url": "https://github.com/dsx-ai-factory/nvke/blob/main/docs/overview/what-is-nvke.md",
+   "accessed": "2026-11-07"
+  }
+ ],
+ "title": "NVKE-Preview, Agenten-Architektur, SLA-Robotik",
+ "dek": "Nvidias Kubernetes Engine für GPU-Cluster als Preview, drei Bausteine sicherer Agenten-Architektur und ein VLA-Modell mit räumlichem Vortraining.",
+ "tags": [
+  "KI-Überblick",
+  "Infrastruktur",
+  "Agenten",
+  "Sicherheit",
+  "Robotik",
+  "VLA"
+ ],
+ "key_takeaways": [
+  "NVKE (Preview, Apache-2.0): Managed Kubernetes auf Bare-Metal-GPU-Clustern, isolierte Cluster mit eigener Control Plane; offene Punkte laut heise: TLS, Rechteverwaltung, Upgrade-/Backup-Pfad.",
+  "Gharbi/Magnussen (heise): Guardrails sind interpretierbar und aushebelbar; Architektur soll kritische Aktionen unmöglich machen - algorithmische Ausführung, Human-in-the-Loop, Risikobeherrschung (PDP/PEP, minimale Rechte, Out-of-Band-Verifikation).",
+  "SLA (arXiv): räumliches Alignment als Continual Pre-training auf pi0.5-Basis; Autoren melden 87,4 % auf LIBERO-Plus und +24,0 Prozentpunkte gegenüber pi0.5 in acht realen Bedingungen; Inferenzarchitektur unverändert."
+ ],
+ "hero": {
+  "alt": "Drei Bausteine sicherer Agenten-Architektur nach dem heise-Fachbeitrag: algorithmische Ausführung (LLM interpretiert nur, deterministischer Plan handelt), Human-in-the-Loop (Freigabe-Gates, ausstehende Kommandos), Risikobeherrschung (Kontextkontrolle, unabhängige Verifikation, minimale Rechte)",
+  "caption": "Drei Bausteine gegen kritische Agenten-Fehler - nach dem heise-Fachbeitrag von Gharbi und Magnussen. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion), Quelle: heise online (Gharbi/Magnussen)"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Mittagsüberblick vom 7. November 2026. Quellenstand: 09:52 Uhr MEZ. Drei Themen: Nvidia veröffentlicht NVKE als Open-Source-Preview, ein heise-Fachbeitrag rückt die Architekturfrage bei KI-Agenten in den Mittelpunkt, und das SLA-Paper verlagert räumliches Lernen ins Vortraining von Robotermodellen."
+  },
+  {
+   "t": "h2",
+   "x": "NVKE: Managed Kubernetes für GPU-Cluster, als Preview"
+  },
+  {
+   "t": "p",
+   "x": "Nvidia hat die Nvidia Kubernetes Engine (NVKE) als Preview auf GitHub veröffentlicht, berichtet heise online. Zielgruppe sind Betreiber eigener GPU-Rechenzentren, die ihren Kunden Kubernetes als Managed Service anbieten wollen. Dem Bericht zufolge erstellt ein zentraler Management-Cluster auf Anfrage isolierte Cluster auf Bare-Metal-Servern - jeweils mit eigener Control Plane, eigenem etcd und eigenen Node-Pools; gesteuert wird über die REST-basierte NVKE-API oder das CLI nvkectl. Neue Cluster erhalten ovn-kubernetes als Netzwerk-Plug-in, Calico bleibt Bestandsinstallationen vorbehalten. GPU-Treiber, Container-Toolkit und Device-Plugin installiert separat der GPU Operator. Der Code steht unter Apache-2.0; Nvidia empfiehlt die Preview laut heise nicht für den Produktivbetrieb."
+  },
+  {
+   "t": "p",
+   "x": "Die dokumentierten Lücken sind beachtlich: Laut NVIDIA-Dokumentation lauscht die NVKE-API nach der Installation unverschlüsselt per HTTP auf Port 30080; die Authentifizierung ist zunächst ausgeschaltet. Betreiber müssen den Zugriff absichern, etwa mit eigenem TLS-Endpunkt und aktivierter JWT-Authentifizierung. Auch danach fehlt eine Autorisierung: Jeder zugelassene Aufrufer darf alle Workload-Cluster anlegen und löschen. Hochverfügbare Control Planes setzen eine virtuelle IP per kube-vip voraus; der Management-Cluster (ungerade Serverzahl mit TPM 2.0) verwaltet sich nicht selbst, und weder ein NVKE-Upgrade-Pfad noch Backup und Restore existieren in der Preview."
+  },
+  {
+   "t": "h2",
+   "x": "Agenten-Sicherheit als Architekturfrage"
+  },
+  {
+   "t": "p",
+   "x": "In einem heise-Fachbeitrag argumentieren Mahbouba Gharbi und Sönke Magnussen (beide iSAQB-Kuratoren für KI-Architekturmodule), dass die von ihnen als kontextbasierte Verhaltensregeln definierten Guardrails allein Agenten nicht sicher machen: Das Modell interpretiere die Regeln nur, technisch erzwungen werde nichts; widersprüchliche Anweisungen und manipulierte Eingaben könnten sie aushebeln. Als backoffice-relevante OWASP-Risiken nennen die Autoren Prompt Injection, Excessive Agency, Agent Goal Hijack und Memory Poisoning. Kritische Fehler lägen in den von ihnen analysierten Projekten selten an unzureichenden Guardrails, sondern im Systemdesign."
+  },
+  {
+   "t": "p",
+   "x": "Der Beitrag schlägt drei kombinierbare Bausteine vor, die Informationen strikt von Handlungsmöglichkeiten trennen: Erstens algorithmische Ausführung - das LLM extrahiert nur Absichten und Daten, ein deterministischer Planungsalgorithmus wählt und führt Aktionen aus (Ansatz aus der symbolischen KI). Zweitens Human-in-the-Loop: Freigabe-Gates für kritische Aktionen und Kommandos mit ausstehendem Status, die autorisierte Personen ändern oder ablehnen können. Drittens Risikobeherrschung: vollständig kontrollierter Kontext, externe Inhalte konsequent als Daten behandelt, Out-of-Band-Verifikation über unabhängige Kanäle, minimale Rechte sowie Policy Decision und Enforcement Points, die Regeln technisch statt im Prompt durchsetzen."
+  },
+  {
+   "t": "h2",
+   "x": "SLA: Räumliches Alignment schon im Continual Pre-training"
+  },
+  {
+   "t": "p",
+   "x": "Das Paper 'SLA: Scaling Spatial-Language-Action Model via Continual Pre-training' (arXiv, eingereicht 5. November) verlagert räumliches Lernen in die Vortrainingsphase von Vision-Language-Action-Modellen. Ausgehend von einer vortrainierten pi0.5-Policy optimiert SLA laut Abstract Aktionsvorhersage und das Alignment visueller Zwischenrepräsentationen mit einem eingefrorenen 3D-Wahrnehmungsmodell gemeinsam; feature-abhängige Gates aggregieren dafür Embeddings mehrerer Schichten, probabilistisches State-Dropout soll Überanpassung auf Demonstrationstrajektorien dämpfen. Alle Zusatzkomponenten kommen nur im Training zum Einsatz. Die vortrainierten Gewichte dienen als Startpunkt und werden weitertrainiert; die Inferenzarchitektur bleibt laut Paper unverändert."
+  },
+  {
+   "t": "p",
+   "x": "Die Autoren melden 87,4 Prozent Gesamterfolg auf LIBERO-Plus unter Störungen, 72,3 Prozent auf RoboTwin 2.0 (Clean2Random) und im Mittel 24,0 Prozentpunkte höhere Erfolgsraten als pi0.5 über acht reale Einsatzbedingungen. Die Werte stammen aus dem Paper und sind nicht unabhängig geprüft. Das im Recherchepaket verlinkte Repository Spatial-Forcing beschreibt das Vorgängerprojekt; einen SLA-spezifischen Code-Release haben wir dort nicht verifiziert."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Welche NVKE-Lücken nennt der heise-Bericht?",
+   "a": "HTTP-API ohne TLS und zunächst ausgeschaltete Authentifizierung; Betreiber müssen den Zugriff absichern. Auch nach aktivierter Authentifizierung fehlt Autorisierung: Jeder zugelassene Aufrufer darf alle Endpunkte nutzen. Zudem fehlen Upgrade-Verfahren für NVKE selbst und Backup/Restore der Management-Ebene."
+  },
+  {
+   "q": "Was sind die drei Bausteine des heise-Beitrags?",
+   "a": "Algorithmische Ausführung (das LLM interpretiert nur, deterministische Software handelt), Human-in-the-Loop (Freigabe-Gates, ausstehende Kommandos) und Risikobeherrschung (Kontextkontrolle, Out-of-Band-Verifikation, minimale Rechte, technische Policy-Durchsetzung)."
+  },
+  {
+   "q": "Wie belastbar sind die SLA-Zahlen?",
+   "a": "Es sind Autorenangaben aus dem Paper: 87,4 Prozent auf LIBERO-Plus, 72,3 Prozent auf RoboTwin 2.0 und +24,0 Prozentpunkte gegenüber pi0.5 in acht realen Bedingungen. Eine unabhängige Nachmessung liegt uns nicht vor; einen SLA-spezifischen Code-Release haben wir nicht verifiziert."
+  }
+ ],
+ "related": [
+  "architektur",
+  "verlaesslichkeit"
+ ]
+}
