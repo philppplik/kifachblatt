@@ -1,0 +1,224 @@
+{
+  "slug": "ripple-65b-preview-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Ripple-65B Preview: Dichtes 65B-Modell für Agenten-Coding",
+  "dek": "Dichtes 65-Milliarden-Modell unter Apache 2.0: 1-Million-Kontext, Fokus auf agentisches Programmieren - und ein offener Umgang mit Benchmark-Schwächen.",
+  "published": "2026-11-07T07:16:00+01:00",
+  "modified": "2026-11-07T07:16:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Ricursive Intelligence",
+    "Offene Gewichte",
+    "Agenten-Coding",
+    "Dense Modelle",
+    "Apache 2.0"
+  ],
+  "key_takeaways": [
+    "Ripple-65B Preview ist ein von Grund auf trainiertes, dichtes 65-Milliarden-Modell von Ricursive Intelligence mit bis zu einer Million Token Kontext, veröffentlicht unter Apache 2.0 in BF16, NVFP4 und als reines Basismodell [1][2].",
+    "Laut Anbieter erreicht das Modell 80,52 auf TerminalBench 2.1 und liegt damit in dieser selbst gemeldeten Tabelle vor deutlich größeren US-Modellen offener Gewichte; der Anbieter weist selbst darauf hin, dass solche Werte je nach Test-Harness schwanken [1].",
+    "Die gesamten Entwicklungs- und Trainingskosten gibt Ricursive mit 32 Millionen US-Dollar an; das Team wuchs während der Entwicklung von einer auf fünf Personen [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Darstellung: ein schlanker, hoher Turm aus 80 Schichten für das dichte Modell mit Breite 5120, daneben Markierungen für eine Million Token Kontext und die Varianten BF16, NVFP4 und Base",
+    "caption": "Dünn und tief statt breit: Ripple-65B setzt auf ein dichtes Modell mit 80 Schichten und schmaler Breite 5120 - trainiert und betrieben auf NVIDIA-Hardware [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "faq": [
+    {
+      "q": "Was ist Ripple-65B Preview?",
+      "a": "Ein dichtes Sprachmodell mit 65 Milliarden Parametern von Ricursive Intelligence, von Grund auf auf 12 Billionen Token trainiert, mit bis zu 1 Million Token Kontext. Es erscheint unter Apache 2.0 als instruct-tunierte BF16- und NVFP4-Version sowie als reines Basismodell [1][2]."
+    },
+    {
+      "q": "Wer steckt hinter Ricursive Intelligence?",
+      "a": "Ein US-Labor, das nach eigenen Angaben Modelle, Software und Hardware gemeinsam entwickelt. Eine interne Variante des Modells steuert dort eine Plattform für KI-gestützten Chipentwurf; das Team wuchs während der Modellentwicklung von einer auf fünf Personen [1][2]."
+    },
+    {
+      "q": "Wie gut ist das Modell beim Programmieren?",
+      "a": "Der Anbieter meldet 80,52 auf TerminalBench 2.1, 76,5 auf SWE-bench Verified und 79,1 auf SWE-bench Pro v2.0 Hard - jeweils eigene Messungen mit genanntem Harness. Der Anbieter betont selbst, dass agentische Benchmarks je nach Testumgebung deutlich schwanken [1]."
+    },
+    {
+      "q": "Lässt sich Ripple-65B lokal betreiben?",
+      "a": "Laut Anbieter passt das Modell auf Consumer-Hardware wie die NVIDIA DGX Spark; ein NVFP4-Checkpoint und ein Colab-Notebook erleichtern den Einstieg. Auf zwei B200-GPUs nennt der Anbieter 250 Token pro Sekunde bei Batch 8, vor Quantisierung und eigenen Kernels [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht das Modell?",
+      "a": "Apache 2.0 - Gewichte, Konfiguration und Tokenizer sind frei nutz-, änder- und weitergebbar, auch kommerziell [1]."
+    }
+  ],
+  "related": [
+    "muse-spark-open-offene-gewichte-analyse",
+    "offene-gewichte-vs-open-source",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ],
+  "sources": [
+    {
+      "title": "ricursiveAI/Ripple-65B-Preview (Modellkarte und Repository-API)",
+      "publisher": "Hugging Face / Ricursive Intelligence",
+      "url": "https://huggingface.co/ricursiveAI/Ripple-65B-Preview",
+      "accessed": "2026-11-07"
+    },
+    {
+      "title": "Introducing Ripple-65B Preview, a Frontier Open-Weight Model",
+      "publisher": "Ricursive Intelligence (Launch-Blog)",
+      "url": "https://www.ricursive.com/ripple",
+      "accessed": "2026-11-07"
+    },
+    {
+      "title": "ricursiveAI/Ripple-65B-Preview-NVFP4 und Ripple-65B-Base-Preview (Varianten-Repositories, API)",
+      "publisher": "Hugging Face / Ricursive Intelligence",
+      "url": "https://huggingface.co/ricursiveAI/Ripple-65B-Preview-NVFP4",
+      "accessed": "2026-11-07"
+    }
+  ],
+  "method": "Analyse auf Basis der vollständig gelesenen Modellkarte (inklusive aller Benchmark-Tabellen und Trainingsdetails) und des vollständig gelesenen Launch-Blogbeitrags des Anbieters, ergänzt um die Hugging-Face-Repository-API (Anlagedatum, Varianten). Sämtliche Messwerte sind Herstellerangaben. Keine eigenen Tests.",
+  "limitations": "Keine eigenen Tests. Alle Benchmark-Werte stammen vom Anbieter; dieser weist selbst darauf hin, dass agentische Evaluierungen je nach Harness stark abweichen können. Der TerminalBench-Vergleich mit anderen Modellen nutzt teils Herstellerwerte, teils eigene Nachmessungen des Anbieters (in der Karte kursiv markiert). Kosten- und Effizienzangaben (32 Mio. US-Dollar, 16-fache Recheneffizienz) sind Angaben des Anbieters ohne unabhängige Prüfung. Wir haben keine Fremdmessung ausgewertet - ob es eine gibt, können wir nicht ausschließen.",
+  "body": [
+    {
+      "t": "p",
+      "x": "Ricursive Intelligence, ein US-Labor für gemeinsam optimierte Modelle und Hardware, hat Ripple-65B Preview veröffentlicht: ein dichtes Sprachmodell mit 65 Milliarden Parametern, bis zu einer Million Token Kontext und Apache-2.0-Lizenz [1][2]. Das Modell ist die allgemein nutzbare Variante eines proprietären Modells, das im Hause eine Plattform für KI-gestützten Chipentwurf steuert [2]. Verfügbar ist es über Hugging Face und mehrere Inference-Anbieter; das Repository wurde am 4. November 2026 angelegt (Plattform-API) [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Ripple-65B Preview im Überblick (Herstellerangaben aus Karte und Blog) [1][2]"
+    },
+    {
+      "t": "h3",
+      "x": "Modell"
+    },
+    {
+      "t": "p",
+      "x": "65 Milliarden Parameter, dichter Transformer, 80 Schichten, Modellbreite 5120. Von Grund auf trainiert auf 12 Billionen Token (überwiegend englischsprachiger Text und Code) mit 8K Sequenzlänge. Kontext bis 1.048.576 Token."
+    },
+    {
+      "t": "h3",
+      "x": "Varianten und Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Instruct-Modell in BF16 und NVFP4, dazu ein reines Basismodell (nur vortrainiert, ohne Mid-Training oder synthetische QA-Daten) und eine DFlash2-Variante. Lizenz: Apache 2.0."
+    },
+    {
+      "t": "h3",
+      "x": "Training und Kosten"
+    },
+    {
+      "t": "p",
+      "x": "Modell-FLOPs-Auslastung (MFU) von 40 Prozent während Vor- und Nachtraining, mit einfachem Sharding, ohne eigene Kernels und ohne Quantisierung (BF16). Gesamte F&E-Kosten laut Anbieter 32 Millionen US-Dollar - inklusive Trainingsleiter, Datenmischung, Evaluierungen, Debugging, synthetischer Daten, Nachtraining und dem finalen Lauf."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: dünn und tief statt Experten-Mischung"
+    },
+    {
+      "t": "p",
+      "x": "Während viele aktuelle offene Modelle auf Mixture-of-Experts setzen, wählte Ricursive bewusst einen modernisierten dichten Transformer - ausdrücklich, um die Infrastruktur für Training und Betrieb einfach zu halten [1][2]. Das Seitenverhältnis ist \"thin-and-deep\": schmale Breite von 5120 bei 80 Schichten. Als Ausgangspunkt diente die Architektur von Olmo 3 (Ai2); gewechselt wurde zu einer Gemma-3N-ähnlichen Bauweise für mehr Stabilität in dieser Größe [1]."
+    },
+    {
+      "t": "p",
+      "x": "Für besseres Schlussfolgern setzt das Modell auf mehr Aufmerksamkeitsköpfe als üblich; die Mehrkosten gleicht der Anbieter durch ein höheres Verhältnis von Sliding-Window- zu globalen Schichten und kleinere Fenster aus. Dazu kommen FFN-Aktivierungs-Clipping, sigmoid-gesteuerte Aufmerksamkeit (gated attention), globales NoPE (ein Teil der Schichten verzichtet auf Positionskodierung) und Wert-Residuen (value residuals) [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Der Weg dahin lief über eine Trainingsleiter mit sechs dokumentierten Stufen: Chargengrößen- und Lernraten-Gesetze (v1.0/v1.1), Wechsel zu pre+post-Normierung (v1.2, wirksam ab 4 Milliarden Parametern), sigmoid-gesteuerte Aufmerksamkeit (v1.3), ein verworfener Hyper-Connections-Ansatz (v1.4, bei 4 Milliarden ohne Vorteil), globales NoPE mit Lernraten-Cooldown (v1.5) und Wert-Residuen (v1.6) [2]. Gemessen an der Recheneffizienz auf Code (dolma_stack CE) brachten die Stufen zusammen laut Anbieter bis zum Faktor 16 bei 4 Milliarden Parametern gegenüber der Olmo-3-Leiter; beim vollen Lauf spricht der Anbieter von bis zu Faktor 55. Solche Faktoren sind interne Vergleichsrechnungen des Anbieters, keine unabhängig geprüften Werte [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Nachtraining: keine Daten gekauft, viel selbst gebaut"
+    },
+    {
+      "t": "p",
+      "x": "Das Nachtraining folgt einem Standardgerüst - Mid-Training, Langkontext, SFT, Langkontext-SFT und domänengemischtes Reinforcement Learning -, bleibt aber nach Angaben des Anbieters bewusst schlank [1][2]:"
+    },
+    {
+      "t": "ul",
+      "items": [
+        "Mid-Training: 200 Milliarden Token, 8.000 Schritte, 64K Sequenzlänge",
+        "Langkontext: 6,5 Milliarden Token, 389 Schritte, 2M Sequenzlänge",
+        "SFT: 183 Milliarden Token, 7.274 Schritte, 128K Sequenzlänge",
+        "Langkontext-SFT: 13,5 Milliarden Token, 802 Schritte, 2M Sequenzlänge",
+        "RL: 700 Schritte, 128K Sequenzlänge, Batch 2048"
+      ]
+    },
+    {
+      "t": "p",
+      "x": "Für das RL nutzt der Anbieter eigene synthetische Datenpipelines mit Qualitätsfiltern und Abdeckungsmetriken; gekaufte Nachtrainingsdaten gab es nicht. Das Rezept kombiniert abgeschnittene Importance-Sampling-Korrektur, Score-Zentrierung und eine lineare Längenstrafe mit langen synthetischen Aufgabenumgebungen, die mit dem Modell mitwuchsen [2]. Das Ergebnis: 80,5 auf TerminalBench 2.1 mit 1,4 Millionen Rollouts - laut Anbieter rund 70-mal weniger Rollouts als Reflection Beam, der vorherige Spitzenwert. Auch das ist eine Anbieterangabe [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die gemeldeten Messwerte"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte vergleicht Ripple-65B Preview mit vier größeren US-Modellen offener Gewichte (Nemotron 3 Ultra 550B, Inkling 975B, Muse Spark Open 816B, Reflection Beam 501B). Getestet wurde in BF16 mit maximalen Anstrengungseinstellungen; wo Herstellerwerte fehlten, maß Ricursive mit eigenem Ablauf nach (in der Karte kursiv markiert). Für SWE-bench Pro v2.0 Hard und DeepSWE 1.1 kam Terminus 2 zum Einsatz, sonst überwiegend OpenCode [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Ripple-65B Preview: gemeldete Werte im Überblick (je Test eigene Metrik)",
+      "alt": "Balkendiagramm mit sechs Werten: TerminalBench 2.1 80,5; SWE-bench Verified 76,5; SWE-bench Pro v2.0 Hard 79,1; MMLU 89,6; GPQA Diamond 85,2; AA-LCR 75,0",
+      "caption": "Anbieterangaben aus der Modellkarte, von uns nicht unabhängig nachgemessen [1]. Je Benchmark eigene Aufgaben und Metriken - nicht testübergreifend vergleichbar. Der Anbieter weist selbst auf starke Harness-Abhängigkeit agentischer Tests hin.",
+      "labels": [
+        "TerminalBench 2.1",
+        "SWE-bench Verified",
+        "SWE-bench Pro v2.0 Hard",
+        "MMLU",
+        "GPQA Diamond",
+        "AA-LCR (Langkontext)"
+      ],
+      "series": [
+        {
+          "name": "Ripple-65B Preview",
+          "values": [
+            80.5,
+            76.5,
+            79.1,
+            89.6,
+            85.2,
+            75.0
+          ]
+        }
+      ],
+      "y_label": "Gemeldeter Wert",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Bemerkenswert offen: Der Anbieter beschreibt ausdrücklich, wie schwierig die Nachmessung moderner agentischer Evals ist. Mit dem offiziellen Terminus-2-Harness bei 128K Sequenzlänge und Zusammenfassung lagen die TerminalBench-2.1-Werte nahezu aller Modelle niedriger als selbst gemeldet - Ausnahme: Muse Spark Open. Die eigene Tabelle sei daher ein \"best-effort\"-Vergleich, kein Endurteil [1]. Im direkten Harness-Vergleich (Terminus 2) erreichte Ripple 80,5, Muse Spark Open 78,7, Reflection Beam 70,8, Inkling 56,2 und Nemotron 3 Ultra 55,1 [1]."
+    },
+    {
+      "t": "p",
+      "x": "Abseits des Programmierens meldet die Karte unter anderem MMLU 89,6, GPQA Diamond 85,2, AIME 2025 98,3, IFBench 79,2 und AA-LCR 75,0 für Langkontext. Bei Sicherheitstests: FORTRESS Adversarial 83,8 und Benign 95,5, StrongREJECT 97,5. In diesen Zeilen führt jeweils ein anderes, größeres Modell die Tabelle an - der Anbieter druckt das so ab [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Das Basismodell im Vergleich"
+    },
+    {
+      "t": "p",
+      "x": "Ripple-65B Base Preview ist ein reiner Vortrainings-Checkpoint ohne Mid-Training. Verglichen mit Poolside Laguna M.1 (225B MoE), DeepSeek V3.1 (671B MoE), DeepSeek V4 Flash (284B MoE) und Nemotron 3 Ultra (550B MoE) liegt es nach Anbieterangaben bei klassischen Vortrainings-Evals vor Laguna M.1 und bei Schlussfolgern, Mathe und Code etwa auf DeepSeek-Niveau. Nemotron 3 Ultra dominiere die klassischen Evals - vermutlich wegen stark eingesetzter synthetischer Daten mit Aufgabenähnlichkeit -, ohne dass sich das in moderne agentische Aufgaben übertragen ließ, schreibt der Anbieter [1]. Gemessen wurde mit einem internen Fork von Ai2s Olmes [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Drei Punkte machen die Veröffentlichung relevant. Erstens die Richtung: ein dichtes Modell, das bewusst auf Infrastruktur-Einfachheit setzt und trotzdem in der selbst gemeldeten Tabelle mit deutlich größeren MoE-Modellen mitzieht - ein Gegenentwurf zur aktuellen MoE-Mehrheit [1][2]. Zweitens die Transparenz: Karte und Blog legen Trainingsleiter, Nachtrainings-Mengen, Harness-Wahl und sogar verworfene Architektur-Stufen offen; die Replikationswarnung zu agentischen Benchmarks ist ungewöhnlich deutlich [1][2]. Drittens die Zugänglichkeit: Apache 2.0, NVFP4-Checkpoint und ein Colab-Einstieg zielen ausdrücklich auf lokale Entwicklung [1]."
+    },
+    {
+      "t": "p",
+      "x": "Gleichzeitig bleibt alles Gemessene Herstellerangabe. Die 32-Millionen-Dollar-Rechnung, die Effizienzfaktoren der Trainingsleiter und der Vergleich der Rollout-Zahlen stammen aus dem eigenen Blog; eine unabhängige Prüfung liegt uns nicht vor [2]. Und die Stärke des Modells liegt laut Karte klar im agentischen Programmieren - bei Wissen, Mathe und Instruktionsbefolgung führen in der eigenen Tabelle andere Modelle [1]."
+    },
+    {
+      "t": "h2",
+      "x": "FAQ"
+    }
+  ]
+}
