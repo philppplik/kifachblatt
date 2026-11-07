@@ -92,7 +92,7 @@ ld = {"@context": "https://schema.org", "@graph": [
  {"@type": "Organization", "@id": BASE+"/#org", "name": "KI Fachblatt", "url": BASE+"/", "logo": {"@type": "ImageObject", "url": BASE+"/assets/logo-512.png"}},
  {"@type": "WebSite", "@id": BASE+"/#site", "url": BASE+"/", "name": "KI Fachblatt", "inLanguage": "de-DE", "publisher": {"@id": BASE+"/#org"}},
  {"@type": "Article", "@id": BASE+"/lfm#article", "headline": TITLE, "description": DESC, "inLanguage": "de-DE", "datePublished": STAND_ISO, "dateModified": STAND_ISO,
-  "author": {"@type": "Person", "name": "Philipp Paulik", "url": BASE+"/redakteur/philipp-paulik"}, "publisher": {"@id": BASE+"/#org"}, "image": BASE+"/assets/lfm/lfm-og.jpg", "mainEntityOfPage": BASE+"/lfm"},
+  "author": {"@type": "Person", "name": "Philipp Paulik", "url": BASE+"/redakteur/philipp-paulik"}, "publisher": {"@id": BASE+"/#org"}, "image": BASE+"/assets/lfm/lfm-social-20261107.jpg", "mainEntityOfPage": BASE+"/lfm"},
  {"@type": "BreadcrumbList", "itemListElement": [{"@type": "ListItem", "position": 1, "name": "Start", "item": BASE+"/"}, {"@type": "ListItem", "position": 2, "name": "LFM lokal", "item": BASE+"/lfm"}]},
  {"@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in FAQ]}]}
 t = (ROOT/'lokale-modelle.html').read_text()
@@ -103,7 +103,7 @@ t = rep(r'(<link rel="canonical" href=")[^"]*', BASE+'/lfm', t)
 t = rep(r'(<meta property="og:title" content=")[^"]*', E(TITLE), t)
 t = rep(r'(<meta property="og:description" content=")[^"]*', E(DESC), t)
 t = rep(r'(<meta property="og:url" content=")[^"]*', BASE+'/lfm', t)
-t = t.replace('https://kifachblatt.de/assets/kifachblatt-og.png', BASE+'/assets/lfm/lfm-og.jpg')
+t = t.replace('https://kifachblatt.de/assets/kifachblatt-og.png', BASE+'/assets/lfm/lfm-social-20261107.jpg')
 t = re.sub(r'<script type="application/ld\+json">.*?</script>', lambda m: '<script type="application/ld+json">'+json.dumps(ld, ensure_ascii=False)+'</script>', t, 1, re.S)
 t = t.replace('</head>', '<link rel="stylesheet" href="/assets/lfm/lfm.css"></head>', 1)
 t = re.sub(r'<main id="main">.*?</main>', lambda m: BODY.split('</main>')[0]+'</main>', t, 1, re.S)
@@ -115,7 +115,7 @@ print('lfm.html written', len(t))
 sp = ROOT/'sitemap.xml'
 sm = sp.read_text()
 sm = re.sub(r'<url><loc>'+re.escape(BASE)+r'/lfm</loc>.*?</url>\n?', '', sm, flags=re.S)
-entry = ('<url><loc>%s/lfm</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/lfm/lfm-og.jpg</image:loc></image:image></url>\n' % (BASE, STAND_ISO, BASE))
+entry = ('<url><loc>%s/lfm</loc><lastmod>%s</lastmod><image:image><image:loc>%s/assets/lfm/lfm-social-20261107.jpg</image:loc></image:image></url>\n' % (BASE, STAND_ISO, BASE))
 sm = sm.replace('</urlset>', entry+'</urlset>', 1); sp.write_text(sm)
 ip = ROOT/'search-index.json'
 if ip.exists():
