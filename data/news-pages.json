@@ -1,5 +1,17 @@
 [
   {
+    "title": "NVKE: Nvidia bringt eigene Kubernetes Engine als Preview",
+    "url": "https://www.heise.de/news/NVKE-Nvidia-bringt-eigene-Kubernetes-Engine-als-Preview-11515947.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794039300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Mit Nvidias NVKE sollen Betreiber von GPU-Rechenzentren Managed Kubernetes anbieten können. Die Preview lässt sich jetzt ausprobieren.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-07T11:02:24.654185+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Lokale KI: Das läuft auf deinem Rechner",
     "url": "https://www.heise.de/news/Lokale-KI-Das-laeuft-auf-deinem-Rechner-11515316.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1793982420.0,
