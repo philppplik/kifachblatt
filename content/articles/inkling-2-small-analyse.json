@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "Inkling 2 Small: 594 Milliarden Parameter, offene Gewichte folgen",
  "dek": "Das 594-Milliarden-MoE der zweiten Inkling-Generation läuft vorerst nur über Tinker. Offene Apache-2.0-Gewichte sollen nach externen Sicherheitstests folgen.",
- "published": "2026-11-08T07:17:00+01:00",
- "modified": "2026-11-08T07:17:00+01:00",
+ "published": "2026-11-08T07:29:00+01:00",
+ "modified": "2026-11-08T07:29:00+01:00",
  "author": "philipp-paulik",
  "tags": [
   "Thinking Machines Lab",
