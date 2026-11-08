@@ -1,0 +1,110 @@
+{
+ "slug": "news-ueberblick-abend-2026-11-08",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-08T16:07:00+01:00",
+ "modified": "2026-11-08T16:07:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Formally verifying agent-written full-stack web apps with PDD Kit",
+   "publisher": "Microsoft Research",
+   "url": "https://www.microsoft.com/en-us/research/blog/formally-verifying-agent-written-full-stack-web-apps-with-pdd-kit/",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "Inside GitHub's new Git storage architecture",
+   "publisher": "GitHub Engineering",
+   "url": "https://github.blog/engineering/architecture-optimization/inside-githubs-new-git-storage-architecture/",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "Unpacking the Compute Efficiency of Strong-to-Weak OPD against GRPO",
+   "publisher": "Salesforce AI Research / arXiv",
+   "url": "https://arxiv.org/abs/2611.08453",
+   "accessed": "2026-11-08"
+  }
+ ],
+ "title": "KI-Fachüberblick: Beweise, Git-Speicher und OPD",
+ "dek": "PDD Kit begrenzt Beweise auf eine Rust-Spezifikation. GitHub trennt Referenzen und Packdaten. Salesforce bilanziert Destillation inklusive Expertentraining.",
+ "tags": [
+  "KI-Überblick",
+  "Verus",
+  "Rust",
+  "GitHub",
+  "GRPO",
+  "Destillation"
+ ],
+ "key_takeaways": [
+  "PDD Kit: Verus-verifizierte Rust-Loginfunktionen, aber angenommene Verträge für Datenbank, bcrypt, Uhr und JWT-Signierung. Spezifikationsreview bleibt nötig; der Forschungsprototyp beweist keine vollständige Appsicherheit.",
+  "Rubicon: Git-Objekte in Blob Storage, Referenzen und Packmanifest in Ref-CAS, getrennte Compaction. 5.000 Agenten und 7.200 Pushes/s sind interne GitHub-Testangaben; private Preview.",
+  "Multi-Teacher-OPD mit Self-GRPO-Lehrern: 42,0 % weniger Gesamttrainings-FLOPs auf zwei Domänen, 31,6 % auf vier gegenüber Joint GRPO (instance-mix). Qwen3-4B-Base, Autorenmessungen."
+ ],
+ "hero": {
+  "alt": "Salesforce-Preprint: Qwen3-4B-Base mit getrennten GRPO-Spezialisten und anschließender Multi-Teacher-OPD benötigt laut Autoren 42,0 Prozent weniger gesamte Trainings-FLOPs auf Mathematik plus Code und 31,6 Prozent weniger auf vier Domänen als Joint GRPO instance-mix. Expertentraining eingeschlossen; keine Euro- oder Laufzeitersparnis.",
+  "caption": "FLOP-Ersparnis der gesamten Spezialisten-plus-Destillations-Pipeline gegenüber Joint GRPO (instance-mix) im jeweiligen Versuchsaufbau. Qwen3-4B-Base, Autorenangaben aus Abschnitt 6; keine Geld- oder Laufzeitbilanz. Eigene Grafik.",
+  "credit": "Eigene Grafik (Redaktion), Quelle: Salesforce AI Research, arXiv:2611.08453",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Abendüberblick vom 8. November 2026. Quellenstand: 16:02 Uhr MEZ. Drei bisher nicht behandelte Originalberichte vom 5. November verbinden Agentenentwicklung mit präziseren Prüf- und Skalierungsfragen: PDD Kit, GitHub Rubicon und ein FLOP-basierter Vergleich von OPD mit GRPO. Forschungsprototyp, private Preview und Preprint sind nicht mit fertigen Produktgarantien gleichzusetzen."
+  },
+  {
+   "t": "h2",
+   "x": "PDD Kit: Verus-Beweis mit expliziter Vertrauensgrenze"
+  },
+  {
+   "t": "p",
+   "x": "Microsoft Research demonstriert Proof-Driven Development an der Loginlogik von Pet Store, einer etwa 5.000 Zeilen umfassenden Rust-App. PDD Kit arbeitet innerhalb der Planungsumgebung Chopin. Vor der Implementierung klärt es mehrdeutige Anforderungen und erstellt eine menschlich zu prüfende Spezifikation. Ein Coding-Agent erzeugt Code und Beweis; die formalen Eigenschaften werden mechanisch mit Verus geprüft, nicht durch das Urteil eines Sprachmodells."
+  },
+  {
+   "t": "p",
+   "x": "Der Nachweis betrifft die spezifizierten Loginfunktionen unter akzeptierten Annahmen. SQL-Abfragen, bcrypt, Uhr, Tokensignierung und Teile des Request-Handlings liegen außerhalb und erhalten Tests. Terminierung, Antworttempo und Versuchslimits sind nicht zugesichert. Auch eine formal gültige, aber zu schwache Spezifikation kann am Nutzerziel vorbeigehen. Deshalb prüft pdd-prove laut Bericht gezielte Mutationen pro ensures-Klausel; ein nicht abgewehrter Fehler weist auf eine Lücke hin. Der Forschungsprototyp verifiziert derzeit Rust und belegt keine vollständige Sicherheit der gesamten Web-App."
+  },
+  {
+   "t": "h2",
+   "x": "Rubicon: Referenzkonsens ohne Objektkonsens"
+  },
+  {
+   "t": "p",
+   "x": "GitHubs Architekturbericht trennt bei Rubicon dauerhafte Packdaten in Azure Blob Storage von Referenzen und Packmanifest im replizierten Logdienst Ref-CAS. Virtuelle Replikate indexieren und speichern eingehende Packs, bevor eine Transaktion die Referenzen aktualisiert. Compare-and-Swap und ein Quorum sichern die Referenzänderung; nur betroffene Referenzen werden gesperrt. Gleichzeitige Pushes auf verschiedene Branches müssen dadurch nicht auf eine globale Repository-Sperre warten."
+  },
+  {
+   "t": "p",
+   "x": "Separate Compaction-Knoten führen Packs zusammen und prüfen vor Veröffentlichung, ob dieselben Objekte enthalten sind. Lokale Platten der virtuellen Replikate sind wiederaufbaubare Caches. GitHub meldet intern 5.000 gleichzeitige Agenten und 7.200 Pushes pro Sekunde auf ein Repository bei weiterlaufenden Leseanfragen. Das sind Anbieterlasttests, kein nachgemessener Kundendurchsatz. Der Stand vom 5. November bleibt eine begrenzte private Preview; breiterer Rollout ist für Anfang 2027 angekündigt. Globale Replikate, Atomic-Commit-API und weitere Verbesserungen beschreibt der Text als nächste Schritte, nicht als allgemein verfügbare APIs."
+  },
+  {
+   "t": "h2",
+   "x": "OPD gegen GRPO: Gesamtpipeline statt einzelner Phase"
+  },
+  {
+   "t": "p",
+   "x": "Salesforce AI Research vergleicht im Preprint vom 5. November Standard-Reverse-KL-OPD mit GRPO bei gleichem Ausgangsmodell und kontrollierten Einstellungen. OPD bewertet schülereigene Rollouts mit einem eingefrorenen Lehrer; dieser zusätzliche Forward-Pass zählt in die FLOP-Bilanz. Externe nachtrainierte Lehrer machten OPD meist nicht effizienter. Die Aussage ist auf die untersuchten Ziele und Einstellungen begrenzt, kein Ausschluss anderer Divergenzen, hybrider Verluste oder asynchroner Verfahren. Eine wichtige Ausnahme: Mit nur einem Rollout pro Aufgabe (G=1) übertraf externe OPD im einzelnen Mathematikversuch GRPO bei gleichen FLOPs. Dieser Vorteil übertrug sich nicht auf Code oder den Mehrdomänenmix."
+  },
+  {
+   "t": "p",
+   "x": "In Abschnitt 6 trainieren die Autoren aus Qwen3-4B-Base pro Domäne einen GRPO-Spezialisten und destillieren diese in einen frischen gemeinsamen Schüler. Gegenüber Joint GRPO mit instance-mix melden sie 42,0 Prozent weniger gesamte Trainings-FLOPs bei Mathematik plus Code und 31,6 Prozent bei vier Domänen einschließlich Wissen und Instruction Following. Beide Stufen sind eingerechnet. Die reine Destillationsphase addiert 5,2 beziehungsweise 8,0 Prozent zur jeweiligen Spezialisten-Rechenarbeit; das ist ein anderer Nenner als bei der Gesamtersparnis. Auf einer einzelnen Domäne liegt das trainierte Zielmodell schon vor, weshalb Destillation zusätzliche Gesamtarbeit wäre. Die Autorenmessung zählt generierte Tokens, nicht den geteilten Promptkontext, und ersetzt keine Geld-, Energie- oder Laufzeitmessung."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was prüfen Menschen bei PDD Kit weiterhin?",
+   "a": "Ob die Spezifikation den beabsichtigten Anforderungen entspricht und welche externen Verträge sie akzeptieren. Verus beweist nur die erfassten Eigenschaften unter diesen Annahmen. Tests an den vertrauten Komponenten sind Belege, keine vollständigen Beweise."
+  },
+  {
+   "q": "Sind Rubicons Lastzahlen ein SLA?",
+   "a": "Nein. GitHub beschreibt interne Tests seiner Architektur. Der Bericht nennt eine begrenzte private Preview; eine allgemeine Kapazitätsgarantie oder eigene Replikation liegt diesem Überblick nicht vor."
+  },
+  {
+   "q": "Warum ist die 50-fache OPD-Effizienz nicht die Gesamtersparnis?",
+   "a": "Die entsprechende Einzel-Domänen-Zahl der Studie betrachtet nur die Destillationsphase, nachdem der GRPO-Lehrer schon trainiert wurde. Die Gesamtpipeline muss dieses Training mitzählen. Im Überblick werden deshalb die getrennt belegten 42,0 beziehungsweise 31,6 Prozent Gesamt-FLOP-Ersparnis der Mehrdomänenversuche genannt."
+  }
+ ],
+ "related": [
+  "coding-agenten-alltag",
+  "hersteller-benchmarks-vergleichbarkeit-analyse"
+ ]
+}

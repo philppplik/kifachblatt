@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Beweise, Git-Speicher und OPD](https://kifachblatt.de/news-ueberblick-abend-2026-11-08): PDD Kit begrenzt Beweise auf eine Rust-Spezifikation. GitHub trennt Referenzen und Packdaten. Salesforce bilanziert Destillation inklusive Expertentraining.
 - [KI-Fachüberblick: Duplex-Sprache, Bildsuche, Routing](https://kifachblatt.de/news-ueberblick-mittag-2026-11-08): Shizuku-Duplex meldet japanische Sprachdialoge im 80-ms-Takt. Planet kombiniert Chat und Satellitenbilder. Kinference zeigt widersprüchliche Release-Angaben.
 - [Inkling 2 Small: 594 Milliarden Parameter, offene Gewichte folgen](https://kifachblatt.de/inkling-2-small-analyse): Das 594-Milliarden-MoE der zweiten Inkling-Generation läuft vorerst nur über Tinker. Offene Apache-2.0-Gewichte sollen nach externen Sicherheitstests folgen.
 - [P-H3-Image: 8 Megapixel in 8 Schritten - aber nicht für die EU](https://kifachblatt.de/p-h3-image-analyse): Pruna verwandelt MiniMax' Videomodell H3 in ein schnelles Bildmodell mit 8 Megapixeln in 8 Schritten. Doch die Lizenz schließt EU, UK, Südkorea und die USA aus.
