@@ -1,0 +1,128 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-08",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-08T14:31:00+01:00",
+  "modified": "2026-11-08T14:31:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Shizuku-Duplex: Japanese Full-Duplex Model for Natural Conversation",
+      "publisher": "Shizuku AI",
+      "url": "https://shizuku.ai/en/blog/1/",
+      "accessed": "2026-11-08"
+    },
+    {
+      "title": "Introducing the Planet AI App: Search. Explore. Act.",
+      "publisher": "Planet",
+      "url": "https://www.planet.com/pulse/introducing-the-planet-ai-app-search-explore-act/",
+      "accessed": "2026-11-08"
+    },
+    {
+      "title": "Buoyant Announces Kinference: An Open Source Inference Serving Platform for Kubernetes",
+      "publisher": "Buoyant",
+      "url": "https://www.buoyant.io/newsroom/buoyant-announces-kinference-an-open-source-inference-serving-platform-for-kubernetes",
+      "accessed": "2026-11-08"
+    },
+    {
+      "title": "Introducing Kinference: An Open Source Inference Control Plane for vLLM and Kubernetes",
+      "publisher": "vLLM Blog / Buoyant",
+      "url": "https://vllm.ai/blog/2026-11-04-introducing-kinference",
+      "accessed": "2026-11-08"
+    },
+    {
+      "title": "Kinference-AI/kinference: README und Known limitations",
+      "publisher": "GitHub / Kinference-AI",
+      "url": "https://github.com/Kinference-AI/kinference",
+      "accessed": "2026-11-08"
+    },
+    {
+      "title": "Kinference: Produktbeschreibung und Policies",
+      "publisher": "Kinference",
+      "url": "https://kinference.ai/",
+      "accessed": "2026-11-08"
+    }
+  ],
+  "title": "KI-Fachüberblick: Duplex-Sprache, Bildsuche, Routing",
+  "dek": "Shizuku-Duplex meldet japanische Sprachdialoge im 80-ms-Takt. Planet kombiniert Chat und Satellitenbilder. Kinference zeigt widersprüchliche Release-Angaben.",
+  "tags": [
+    "KI-Überblick",
+    "Full-Duplex",
+    "Sprachmodelle",
+    "Geodaten",
+    "vLLM",
+    "Kubernetes"
+  ],
+  "key_takeaways": [
+    "Shizuku-Duplex: Interaktionsmodell plus asynchrones Hintergrundmodell, Verarbeitung in 80-ms-Ticks. 0,57 s mediane Antwortzeit sind Entwicklerangaben ohne Netzwerkzeit.",
+    "Planet AI: LLM-Anfragen an eine Vektorkarte aus monatlichen Satellitenmosaiken, Zeitvergleiche und agentische Analyse. Die Ankündigung ersetzt keine Trefferprüfung.",
+    "Kinference: gRPC-Endpunktauswahl mit KV-Cache-Ereignissen und Engine-Metriken laut README. Dieselbe README nennt Alpha-Status und fehlende Rate-Limits, Klassifikatoren, /v1/messages und mehrere Replikate."
+  ],
+  "hero": {
+    "alt": "Shizuku-Duplex im Entwicklertest: 0,57 Sekunden mediane Antwortzeit nach Sprechende, serverseitig ohne Netzwerkzeit. 89 Prozent Stopps innerhalb von zwei Sekunden bei Unterbrechung. Bei Hintergrundsprache antwortete es in 75 Prozent der Fälle, obwohl Nicht-Reagieren gewünscht war. 80 Millisekunden bezeichnen den internen Takt.",
+    "caption": "Ausgewählte Shizuku-Duplex-Ergebnisse der selbst erstellten japanischen Evaluation, 8. November. Unterschiedliche Metriken, keine Gesamtquote; Antwortlatenz ohne Netzwerkrundlauf. Eigene Grafik.",
+    "credit": "Eigene Grafik (Redaktion), Quelle: Shizuku AI, Evaluation / Abbildung 7",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Mittagsüberblick vom 8. November 2026. Quellenstand: 09:50 Uhr MEZ. Shizuku-Duplex verbindet fortlaufende Sprachverarbeitung mit einem asynchronen Hintergrundmodell. Dazu zwei neue Themen für diesen Überblick aus den vergangenen Tagen: Planets sprachgesteuerte Satellitensuche und Kinference als Routing-Schicht für vLLM. Deren aktueller README-Stand deckt nicht alle Launchversprechen."
+    },
+    {
+      "t": "h2",
+      "x": "Shizuku-Duplex: 80-ms-Ticks sind keine Antwortlatenz"
+    },
+    {
+      "t": "p",
+      "x": "Der Originalbeitrag von Shizuku AI vom 8. November beschreibt einen japanischen Full-Duplex-Transformer, der während der eigenen Sprachausgabe weiter zuhört. Pro 80-ms-Tick verarbeitet er Audiofeatures und gibt Text, Audiotokens und Aktionen aus. Eine Interaktionskomponente übernimmt den laufenden Dialog; ein separates Hintergrundmodell bearbeitet per DELEGATE-Token übergebene Aufgaben asynchron, einschließlich Websuche. Laut Team ermöglichen TensorRT- und Triton-Optimierungen die Verarbeitung innerhalb dieses Zeitrasters."
+    },
+    {
+      "t": "p",
+      "x": "Der Anbieter evaluiert auf selbst erstellten japanischen Szenarien nach Mustern von Full-Duplex-Bench und M3-DuplexBench; Inhalte wurden mit Claude Opus 5.5 bewertet. Gemeldet werden 0,57 Sekunden mediane Zeit ab Sprechende und 89 Prozent Stopps innerhalb von zwei Sekunden bei Unterbrechungen. Die Latenz basiert auf Serveraufnahmen ohne Netzwerkrundlauf. Die gegenübergestellten GPT-Realtime-/Gemini-Live-Werte enthalten dagegen Netzwerkzeit, weshalb daraus kein gleichartig gemessener Geschwindigkeitsvorsprung folgt. Ein Gegenbefund: Bei Hintergrundsprache antwortete das Modell in 75 Prozent der Fälle, obwohl Nicht-Reagieren das Ziel war. Alle Angaben stammen vom Entwickler. Der Beitrag ist kein Nachweis eines offenen Gewichte-Releases; zusätzliche Sprachen und visuelle Eingaben stehen im Ausblick."
+    },
+    {
+      "t": "h2",
+      "x": "Planet AI: Vektorsuche über monatliche Bildmosaike"
+    },
+    {
+      "t": "p",
+      "x": "Planet erläutert im Launchbeitrag vom 5. November eine Chat-/Kartenoberfläche für mehr als zehn Jahre Satellitenbildarchiv. Ein LLM interpretiert Suchbeschreibungen und fragt eine Vektorkarte ab, die aus der KI-Interpretation visueller Merkmale monatlicher Mosaike entsteht. Nutzer sollen Fundorte über Zeit vergleichen, Zeitraffer erzeugen sowie eigene Bilder und CSV-Dateien einbringen können. Für weitergehende Untersuchungen beschreibt Planet Agenten und geplante Berichte."
+    },
+    {
+      "t": "p",
+      "x": "Entscheidend ist die Trennung von Entdeckung und Befund: Die Suche priorisiert Orte für die weitere Analyse. Sichtbare Originalbilder erleichtern die Überprüfung, garantieren aber keine richtige Deutung durch das Modell. Der Launchtext nennt Anwendungsbeispiele aus Naturschutz und Umweltkontrolle, jedoch keinen unabhängigen Treffer- oder Fehlerbenchmark. Aus einem über zehnjährigen Archiv und täglichen Satellitenaufnahmen folgt zudem keine Echtzeitauflösung jedes Suchergebnisses; die beschriebene Vektorsuche basiert auf Monatsmosaiken. Die App wurde für diesen Überblick nicht selbst funktional getestet."
+    },
+    {
+      "t": "h2",
+      "x": "Kinference: Funktionskatalog und README widersprechen sich"
+    },
+    {
+      "t": "p",
+      "x": "Buoyant meldete Kinference am 4. November als allgemein verfügbare Inferenz-Steuerungsschicht für Kubernetes und vLLM. Der begleitende vLLM-Blog und die Produktseite stellen richtliniengesteuertes Routing, KV-Cache-bewussten Lastausgleich, Tokenlimits, semantische Klassifikation und OpenAI-/Anthropic-kompatiblen Verkehr dar. Der Nutzen des Cache-Routings liegt darin, bereits berechnete Prompt-Präfixe auf dem passenden Worker wiederzuverwenden statt sie erneut zu verarbeiten."
+    },
+    {
+      "t": "p",
+      "x": "Das öffentliche Repository wurde unter Kinference-AI/kinference geöffnet. Die aktuelle README beschreibt eine gRPC-Schnittstelle, die für eine Anfrage Endpunkt und gegebenenfalls angepassten Body zurückgibt, vLLM-Cache-Ereignisse und Engine-Metriken auswertet und mit einem Proxy zusammenarbeitet. Unter Known limitations nennt sie zugleich Alpha-Status ohne längere Produktionserfahrung. Noch fehlend seien /v1/messages, Rate Limiting, semantische Klassifikatoren und mehrere Replikate. Diese Angaben stehen dem breiteren Funktionskatalog entgegen. Ohne Versions- und Auslieferungsabgleich sind daher weder vollständige API-Kompatibilität noch die beworbenen Richtlinienfunktionen als verfügbar bestätigt; ein eigener Laufzeit- oder Lasttest liegt nicht vor."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie vergleichbar sind die Shizuku-Latenzen?",
+      "a": "Nur eingeschränkt. Shizuku-Duplex und GPT-Live wurden serverseitig ohne Netzwerkrundlauf aufgenommen, GPT-Realtime und Gemini Live anhand lokaler Wiedergabe einschließlich Netzwerkzeit. Der 80-ms-Takt ist zusätzlich eine andere Größe als die mediane Antwortzeit."
+    },
+    {
+      "q": "Ist die Planet-App ein Echtzeit-Beobachtungssystem?",
+      "a": "Der verwendete Launchtext beschreibt unter anderem eine Suche über monatliche Mosaike und mehr als zehn Jahre Archiv. Die tägliche Aufnahmefrequenz des Anbieters bedeutet nicht, dass jedes Ergebnis live oder tagesaktuell ist."
+    },
+    {
+      "q": "Welche Kinference-Angabe sollte vor einer Einführung geprüft werden?",
+      "a": "Der konkrete Release- und Funktionsstand. Die aktuelle README führt mehrere auf Produktseite oder im Blog beworbene Funktionen als fehlend auf und nennt Alpha-Status. Die Dokumentationsdifferenz wird nicht durch einen eigenen Code- oder Integrationstest aufgelöst."
+    }
+  ],
+  "related": [
+    "inferenz-server-betrieb",
+    "sicherheit-fuer-agenten-systeme"
+  ]
+}
