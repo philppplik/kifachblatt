@@ -1,0 +1,201 @@
+{
+ "slug": "p-h3-image-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "P-H3-Image: 8 Megapixel in 8 Schritten - aber nicht für die EU",
+ "dek": "Pruna verwandelt MiniMax' Videomodell H3 in ein schnelles Bildmodell mit 8 Megapixeln in 8 Schritten. Doch die Lizenz schließt EU, UK, Südkorea und die USA aus.",
+ "published": "2026-11-08T07:17:00+01:00",
+ "modified": "2026-11-08T07:17:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Pruna AI",
+  "MiniMax-H3",
+  "Bildgenerierung",
+  "Diffusion",
+  "Modell-Lizenzen"
+ ],
+ "key_takeaways": [
+  "Pruna AI hat am 3. November 2026 P-H3-Image veröffentlicht: ein Bildmodell auf Basis des MiniMax-H3-Videomodells, das 8-Megapixel-Bilder in 8 Sampling-Schritten ohne classifier-free guidance erzeugt und bis zu 8 Eingabebilder bearbeitet [1][3].",
+  "Die MiniMax-H3-Community-Lizenz schließt die Europäische Union, das Vereinigte Königreich, Südkorea und die USA vollständig aus - für jede Nutzung, auch privat und nicht-kommerziell, einschließlich der erzeugten Bilder [2].",
+  "Kommerzielle Produkte mit mehr als 20 Millionen US-Dollar Jahresumsatz benötigen zusätzlich eine vorherige schriftliche Genehmigung von MiniMax und müssen den Hinweis Powered by MiniMax H3 anzeigen [2].",
+  "Für Nutzer in Deutschland ist das Modell ohne separate Lizenzvereinbarung mit MiniMax nicht einsetzbar; MiniMax bietet dafür einen Kontaktweg an [2]."
+ ],
+ "hero": {
+  "alt": "Schematische Darstellung: aus einem großen Videomodell-Block wird über Umbaustufen ein schlanker Bildmodell-Block, daneben Angaben zu 8 Megapixeln, 8 Schritten und den Lizenz-Ausschlüssen",
+  "caption": "Vom Videomodell zum Bildmodell: Pruna baut MiniMax-H3 in allen Komponenten um - doch die Lizenz schließt EU, UK, Südkorea und die USA aus [1][2][3].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "PrunaAI/P-H3-Image (Modellkarte und Repository-API)",
+   "publisher": "Hugging Face / Pruna AI",
+   "url": "https://huggingface.co/PrunaAI/P-H3-Image",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "MiniMax H3 Community License Agreement (Volltext im Repository)",
+   "publisher": "MiniMax (Lizenztext im Pruna-Repository)",
+   "url": "https://huggingface.co/PrunaAI/P-H3-Image/blob/main/LICENSE",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "P-H3-Image: Turning a SOTA Video Model into an Efficient Open Image Model (Launch-Blog, 3.11.2026)",
+   "publisher": "Pruna AI (Launch-Blog, 3.11.2026)",
+   "url": "https://www.pruna.ai/blog/oss-p-h3-image-launch",
+   "accessed": "2026-11-08"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Pruna AI hat am 3. November 2026 P-H3-Image veröffentlicht, ein Open-Weights-Modell für Bilderzeugung und Bildbearbeitung auf Basis des Videomodells MiniMax-H3 [1][3]. Es rendert Bilder mit 8 Megapixeln in 8 Sampling-Schritten ohne classifier-free guidance und bearbeitet Vorlagen mit bis zu 8 Eingabebildern [1]. Das Repository wurde am 27. Oktober 2026 angelegt (Plattform-API) [1]. Die spannende technische Leistung hat allerdings einen Haken: Die Lizenz schließt die EU, das Vereinigte Königreich, Südkorea und die USA komplett aus [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "P-H3-Image im Überblick (Angaben aus Modellkarte und Blog) [1][3]"
+  },
+  {
+   "t": "h3",
+   "x": "Modell"
+  },
+  {
+   "t": "p",
+   "x": "Laut Modellkarte besteht das Paket aus einem Transformer mit 33,1 Milliarden Parametern, einem Textkodierer mit 4 Milliarden Parametern, VAE und einem Prompt-Upsampler auf Basis von Qwen3.5-9B - zusammen rund 100 GB in bf16. Eine ComfyUI-Variante mit int8- und 4-Bit-Dateien läuft laut Karte in 21 GB VRAM. Text-zu-Bild und Bildbearbeitung laufen über dieselbe Diffusers-Pipeline; das erste übergebene Bild wird bearbeitet, bis zu sieben weitere dienen als Referenzen [1]."
+  },
+  {
+   "t": "h3",
+   "x": "Auflösungen und Stärken"
+  },
+  {
+   "t": "p",
+   "x": "Empfohlen sind 8 Megapixel (unter anderem 2912x2912 und 3872x2176); Bearbeitungen laufen am besten bei 4 oder 8 Megapixeln. Bei 2 und 4 Megapixeln nehmen Artefakte laut Karte zu, besonders bei Gesichtern, Händen und kleinen Details. Stärken nennt der Anbieter bei Fotorealismus, Film- und Editorial-Looks sowie Grafikstilen mit kurzem zitiertem Text [1]."
+  },
+  {
+   "t": "h3",
+   "x": "Lizenz"
+  },
+  {
+   "t": "p",
+   "x": "Das Bildmodell steht unter der MiniMax H3 Community License. Die Qwen3-VL-4B-Teile des Textkodierers und der Upsampler stehen unter Apache 2.0, die ComfyUI-Nodes unter MIT [1][3]. Details zur Lizenz siehe den eigenen Abschnitt unten."
+  },
+  {
+   "t": "h2",
+   "x": "Vom Videomodell zum Bildmodell"
+  },
+  {
+   "t": "p",
+   "x": "Pruna begründet den Ausgangspunkt so: Ein Videomodell muss lernen, wie Objekte aus verschiedenen Winkeln aussehen, wie Licht auf Materialien fällt und wie Körper sich bewegen - eine gute Grundlage für ein Bildmodell. MiniMax-H3 liefert von sich aus zwar Einzelbilder, diese kämen aber weich und unscharf heraus, und das Modell sei zu groß und zu langsam für die meisten Nutzer [3]."
+  },
+  {
+   "t": "p",
+   "x": "Der Umbau betrifft laut Blog jede Komponente: ein trainierter Prompt-Upsampler auf Qwen3.5-9B-Basis ersetzt das manuelle Prompten; der Textkodierer wurde per Distillation von 32 auf 4 Milliarden Parameter verkleinert (9 statt 67 GB); die Diffusions-Schedule wurde auf Einzelbilder angepasst und per DMD-Distillation von 50 auf 8 Schritte reduziert, was das Modell laut Blog rund fünfmal schneller macht; der Zeitschritt-Block des Transformers (rund 40 Prozent des Rückgrats) wurde durch eine kleinere, nahezu gleichwertige Variante ohne Nachtraining ersetzt; der Video-Decoder wurde durch einen eigens trainierten Einzelbild-Decoder ersetzt; und alle relevanten Komponenten liegen zusätzlich in 8- und 4-Bit vor [3]."
+  },
+  {
+   "t": "p",
+   "x": "Transparenzhinweis: Blog und Modellkarte weichen an zwei Stellen voneinander ab. Der Blog beschreibt ein Rückgrat mit 20 Milliarden Parametern (statt 33), die Karte nennt für den ausgelieferten Transformer 33,1 Milliarden. Und während der Blog von Bearbeitung mit bis zu neun Eingabebildern spricht, nennt die Karte bis zu acht. Wir folgen jeweils der Modellkarte, da sie das aktuell verfügbare Paket beschreibt [1][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Tempo und Speicherbedarf (Herstellerangaben)"
+  },
+  {
+   "t": "p",
+   "x": "Die folgenden Werte stammen aus Blog und Karte und wurden von uns nicht nachgemessen. Zum Vergleich meldet der Anbieter für das ursprüngliche MiniMax-H3 (50 Schritte) 12,4 Sekunden bei 4 Megapixeln und 30,6 Sekunden bei 8 Megapixeln auf einer B200 [3]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "P-H3-Image: Sekunden pro Bild (Herstellerangaben)",
+   "alt": "Balkendiagramm mit drei Werten: 4 Megapixel auf B200 in bf16 2,6 Sekunden; 8 Megapixel auf B200 in bf16 5,8 Sekunden; 4 Megapixel auf L40S in 4-Bit 6,3 Sekunden",
+   "caption": "Anbieterangaben aus Blog und Modellkarte, von uns nicht nachgemessen [1][3]. Je Zeile eigene Hardware- und Quantisierungskonfiguration - nur innerhalb einer Zeile vergleichbar.",
+   "labels": [
+    "4 MP auf B200 (bf16)",
+    "8 MP auf B200 (bf16)",
+    "4 MP auf L40S (4-Bit)"
+   ],
+   "series": [
+    {
+     "name": "P-H3-Image",
+     "values": [
+      2.6,
+      5.8,
+      6.3
+     ]
+    }
+   ],
+   "y_label": "Sekunden pro Bild",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Beim Speicher meldet der Blog: 143 GB Download für MiniMax-H3 gegenüber 55 GB (bf16) und 20 GB (4-Bit) für P-H3-Image; die 4-Bit-Variante braucht demnach 21 GB VRAM bei 8 Megapixeln. Die 8-Bit-Version halte laut Anbieter die bf16-Qualität, die 4-Bit-Version könne kleine Details und gelegentlich die Komposition verändern. Die Diffusers-Pipeline in bf16 braucht an 8 Megapixeln laut Karte rund 101 GB GPU-Speicher mit Upsampler beziehungsweise 83 GB ohne; mit Auto-Offloading sinkt der Spitzenwert auf etwa 76 GB auf einer 80-GB-GPU [1][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Prompting und bekannte Schwächen"
+  },
+  {
+   "t": "p",
+   "x": "Das Modell reagiert laut Karte sehr empfindlich auf die Prompt-Formulierung, deshalb schreibt der standardmäßig aktive Upsampler aus jeder Kurzanfrage einen ausführlichen Prompt. Wer selbst promptet, soll laut Anbieter vier Regeln beachten: mit einem Satz sagen, was das Bild ist (etwa eine Fotografie, ein Anime-Frame, ein Risograph-Druck); genau eine Szene mit Blickwinkel und Lichtquelle beschreiben; jeden gewünschten Text wörtlich in Anführungszeichen setzen; und auf Werbebegriffe wie stunning, cinematic oder 8k verzichten, weil sie das Bild in eine glatte, übersättigte Richtung schieben [1]."
+  },
+  {
+   "t": "p",
+   "x": "Die eigenen Einschränkungen des Anbieters: Hände können brechen, kleine Personen im Hintergrund verformen sich; kleiner oder dichter Text wird zu Pseudotext, bei längeren Passagen verlieren sich einzelne Buchstaben; niedrigere Auflösungen zeigen mehr Artefakte; Video und Audio erzeugt das Modell nicht [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Lizenz im Detail"
+  },
+  {
+   "t": "p",
+   "x": "Wir haben den vollständigen Lizenztext gelesen [2]. Die MiniMax H3 Community License definiert ein Anwendungsgebiet (Applicable Territory): weltweit, ausgenommen die Europäische Union, das Vereinigte Königreich, die Republik Korea und die Vereinigten Staaten von Amerika. Die Lizenzgewährung selbst gilt ausschließlich innerhalb dieses Gebiets. Das heißt: Jede Nutzung in diesen vier Regionen - auch privat, auch nicht-kommerziell, auch nur das Anzeigen erzeugter Bilder - ist von dieser Lizenz nicht gedeckt. Ein eigener Abschnitt untersagt ausdrücklich Nutzung, Vervielfältigung, Änderung, Verbreitung und Anzeige des Modells, abgeleiteter Modelle und aller Ausgaben außerhalb des Gebiets; die Nutzungsbedingungen (Exhibit A) wiederholen das Verbot [2]."
+  },
+  {
+   "t": "p",
+   "x": "Innerhalb des Gebiets ist die Nutzung lizenzgebührenfrei, mit Auflagen: Weitergabe nur innerhalb des Gebiets und mit NOTICE-Datei; kommerzielle Produkte müssen den Hinweis Powered by MiniMax H3 in der Oberfläche anzeigen; ab mehr als 20 Millionen US-Dollar Jahresumsatz mit den kommerziellen Produkten und Diensten ist eine vorherige schriftliche Genehmigung von MiniMax nötig (Kontakt: api@minimax.io). Die Beendigungsklausel erfasst Klagen gegen MiniMax oder andere Personen wegen behaupteter Verletzungen geistiger Eigentumsrechte oder anderer Rechte durch die Materialien oder Ausgaben. Gerichtsstand ist Hongkong. Für Interessenten in den ausgeschlossenen Regionen nennt die Lizenz einen Weg: MiniMax vergibt auf Anfrage separate Lizenzen [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Technisch ist P-H3-Image ein beachtenswerter Effizienz-Umbau: fünffaches Tempo bei weitgehend gleicher Qualität (Anbieterangabe), ein Siebtel der Downloadgröße, lauffähig auf einer 24-GB-Karte in 4-Bit [3]. Für Leserinnen und Leser in Deutschland ändert das jedoch nichts an der Rechtslage: Ohne separate Vereinbarung mit MiniMax ist das Modell hier nicht einsetzbar - anders als beim ERNIE-5.5-Flash-Basismodell, dessen Lizenz die EU, UK und Südkorea ausschließt, zählt die MiniMax-Lizenz zusätzlich die USA zu den ausgeschlossenen Regionen [2]. Wer die Technik dennoch nutzen will, muss den von MiniMax angebotenen Lizenzweg gehen. Diese Einschätzung ersetzt keine Rechtsberatung [2]."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist P-H3-Image?",
+   "a": "Ein Open-Weights-Modell von Pruna AI für Bilderzeugung und Bildbearbeitung auf Basis des MiniMax-H3-Videomodells. Es rendert 8-Megapixel-Bilder in 8 Sampling-Schritten ohne classifier-free guidance und kann bis zu 8 Eingabebilder verarbeiten [1][3]."
+  },
+  {
+   "q": "Darf ich P-H3-Image in Deutschland nutzen?",
+   "a": "Nicht ohne Weiteres. Die MiniMax H3 Community License schließt die EU, das Vereinigte Königreich, Südkorea und die USA vollständig aus - für jede Nutzung, auch privat und nicht-kommerziell, einschließlich der erzeugten Bilder. MiniMax bietet separate Lizenzen für die ausgeschlossenen Regionen an. Diese Einschätzung ersetzt keine Rechtsberatung [2]."
+  },
+  {
+   "q": "Wie schnell ist P-H3-Image?",
+   "a": "Nach Anbieterangaben 2,6 Sekunden für ein 4-Megapixel-Bild und 5,8 Sekunden für 8 Megapixel auf einer B200 (bf16, 8 Schritte). Das ursprüngliche MiniMax-H3 mit 50 Schritten liegt laut Anbieter bei 12,4 beziehungsweise 30,6 Sekunden. Von uns nicht nachgemessen [1][3]."
+  },
+  {
+   "q": "Welche Hardware brauche ich?",
+   "a": "Laut Modellkarte rund 101 GB GPU-Speicher für die bf16-Pipeline mit Upsampler an 8 Megapixeln, 83 GB ohne Upsampler, etwa 76 GB mit Auto-Offloading. Die quantisierten ComfyUI-Varianten laufen laut Anbieter in 21 GB VRAM [1]."
+  },
+  {
+   "q": "Was unterscheidet P-H3-Image von MiniMax-H3?",
+   "a": "MiniMax-H3 ist ein Videomodell; P-H3-Image ist ein daraus umgebautes reines Bildmodell: neuer Prompt-Upsampler, distillierter 4-Milliarden-Textkodierer, angepasste Diffusions-Schedule mit 8 statt 50 Schritten, verkleinerter Transformer, neuer Einzelbild-Decoder und quantisierte Varianten [3]."
+  }
+ ],
+ "method": "Analyse auf Basis der vollständig gelesenen Modellkarte, des vollständig gelesenen Lizenztextes (MiniMax H3 Community License, inklusive Territorialdefinition, Querverweisen und Exhibit A) und des vollständig gelesenen Launch-Blogs, ergänzt um die Hugging-Face-Repository-API (Anlagedatum 27.10.2026). Sämtliche Leistungswerte sind Herstellerangaben. Keine eigenen Tests, keine eigenen Renderings.",
+ "limitations": "Keine eigenen Tests und keine eigenen Renderings. Alle Zeit-, Speicher- und Qualitätsangaben stammen vom Anbieter. Blog und Modellkarte widersprechen sich bei der Parameterzahl des Transformers (20 gegenüber 33,1 Milliarden) und der Zahl der Eingabebilder (neun gegenüber acht); wir folgen der Modellkarte. Die rechtliche Einordnung basiert auf dem Lizenzvolltext, ersetzt aber keine Rechtsberatung. Wir haben keine Fremdmessung ausgewertet - ob es eine gibt, können wir nicht ausschließen.",
+ "related": [
+  "wie-bildmodelle-lernen",
+  "minimax-m3-1-flash-analyse",
+  "ernie-5-5-flash-base-analyse"
+ ]
+}
