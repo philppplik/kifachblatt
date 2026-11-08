@@ -1,0 +1,122 @@
+{
+ "slug": "news-ueberblick-morgen-2026-11-08",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-08T06:41:00+01:00",
+ "modified": "2026-11-08T06:41:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "ADK Python v2.14.0: Release Notes",
+   "publisher": "Google / GitHub",
+   "url": "https://github.com/google/adk-python/releases/tag/v2.14.0",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "Chat SDK agents can now stream generative UI with json-render",
+   "publisher": "Vercel",
+   "url": "https://vercel.com/changelog/json-render-and-chat-sdk-agents",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "@json-render/chat: API-Dokumentation",
+   "publisher": "json-render",
+   "url": "https://json-render.dev/docs/api/chat",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "ZYFA: Fast and Accurate FP8 Attention on AMD MI355X",
+   "publisher": "Zyphra",
+   "url": "https://www.zyphra.com/our-work/zyfa",
+   "accessed": "2026-11-08"
+  },
+  {
+   "title": "Zyphra/zyfa: README und Implementierung",
+   "publisher": "Zyphra / GitHub",
+   "url": "https://github.com/Zyphra/zyfa",
+   "accessed": "2026-11-08"
+  }
+ ],
+ "title": "KI-Fachüberblick: ADK-Update, Chat-Karten, ZYFA",
+ "dek": "ADK Python 2.14.0 bringt Mehrfachtests und Migrationen. Vercel streamt strukturierte Chat-Karten. Zyphra meldet FP8-Kernelgewinne auf MI355X.",
+ "tags": [
+  "KI-Überblick",
+  "ADK",
+  "Evaluation",
+  "Generative UI",
+  "AMD",
+  "Prefill"
+ ],
+ "key_takeaways": [
+  "ADK Python 2.14.0: MultiRunConfig, semantischer Argumentvergleich, ausgewählte stabile APIs. Enum-Argumente und RunSkillScriptTool ändern sich inkompatibel.",
+  "json-render im Chat SDK: typisierter Katalog, native Karten und maximal ein Streaming-Edit je 500 ms als Standard. Validierung betrifft Struktur, nicht inhaltliche Richtigkeit.",
+  "ZYFA: Hersteller meldet FP8-Kerneldurchsatz von 1,16×, 1,17× und 1,76× gegenüber AITER auf je einer Modellschicht bei 16K Tokens. Nur kausaler Prefill auf MI355X."
+ ],
+ "hero": {
+  "alt": "Zyphras FP8-Kernelmessung auf MI355X bei 16K Tokens unter anhaltender Last: Mistral-7B Schicht 20 1,16-fach, Qwen3-8B Schicht 18 1,17-fach, DeepSeek-V2-Lite Schicht 13 1,76-fach gegenüber dem jeweiligen AITER-0.1.19-Standardkernel. Herstellerangaben, kein End-to-End-Modellspeedup.",
+  "caption": "ZYFA-Durchsatz geteilt durch den jeweiligen AITER-Standardkernel: je eine erfasste Modellschicht, 16K Tokens, MI355X, anhaltende Last. Herstellerangaben vom 5. November; kein End-to-End-Modellvergleich. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion), Quelle: Zyphra, Originalblog Tabelle A1"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Morgenüberblick vom 8. November 2026. Quellenstand: 06:36 Uhr MEZ. Im Fokus stehen drei Entwickler-Updates: ADK Python 2.14.0, generative Chat-SDK-Karten mit json-render und Zyphras FP8-Prefill-Kernels ZYFA. Funktionsumfang, inkompatible Änderungen und Messgrenzen sind jeweils getrennt zu lesen."
+  },
+  {
+   "t": "h2",
+   "x": "ADK Python 2.14.0: Tests, Integrationen und Migrationen"
+  },
+  {
+   "t": "p",
+   "x": "Die GitHub-Veröffentlichung von ADK Python 2.14.0 ist auf den 7. November datiert, die Changelog-Überschrift auf den 4. November. Google erklärt dort ausgewählte Ausführungsumgebungen, die A2A-Integration sowie App-, Evaluations- und Simulationsmodule für stabil. Der Status bezieht sich auf die genannten Implementierungen im Python-SDK, nicht auf sämtliche ADK-Sprachversionen oder auf den A2A-Standard als Ganzes."
+  },
+  {
+   "t": "p",
+   "x": "MultiRunConfig beziehungsweise adk eval --num_runs und --parallelism wiederholen Evaluationsfälle und aggregieren Scores oder Passraten. ToolArgsMatcher ergänzt exakten, case-insensitiven, numerisch toleranten und LLM-basierten semantischen Argumentvergleich. TeamsRunner und OpenAIDecisionsClassifier erweitern die Integrationen. Migrationsrelevant: FunctionTool liefert Enum-Argumente nun als Mitglieder des Enum-Typs statt als Strings. RunSkillScriptTool akzeptiert im Umgebungsmodus args, short_options und positional_args anstelle eines freien command-Strings; unterstützt sind dort .py-, .sh- und .bash-Skripte. Alte Aufrufe müssen angepasst werden. Außerdem können mit dieser Version geschriebene Firestore-Sitzungen laut Release Notes nach einem Rollback nicht von 2.13.0 oder älter gelesen werden."
+  },
+  {
+   "t": "h2",
+   "x": "Vercel: Schema-Prüfung für gestreamte Chat-Karten"
+  },
+  {
+   "t": "p",
+   "x": "Vercels Changelog vom 6. November verbindet json-render mit dem Chat SDK. Ein typisierter Katalog beschreibt Komponenten; das Modell erzeugt eine JSON-Spezifikation, die in eine Karte übersetzt wird. Adapter liefern native Formate wie Slack Block Kit und Teams Adaptive Cards. streamCard postet eine Teilkarte, sobald die Wurzel Inhalt trägt, und aktualisiert sie standardmäßig höchstens alle 500 Millisekunden."
+  },
+  {
+   "t": "p",
+   "x": "Die API-Dokumentation trennt Teil- und Endvalidierung: toPartialCard behält bereits gültige Elemente; toCard prüft Props und Struktur und wirft bei Problemen CardSpecError. Auch streamCard kann am Ende scheitern, nachdem die Teilnachricht schon sichtbar wurde. Ohne explizite limits können Adapter Inhalte bei Plattformgrenzen herabstufen, etwa eine zweite Slack-Tabelle zum Codeblock. Mit limits lassen sich solche Spezifikationen ablehnen. Die Prüfung belegt weder die Richtigkeit der Kartenaussagen noch eine schadlose Ausführung angeschlossener Aktionen."
+  },
+  {
+   "t": "h2",
+   "x": "ZYFA: Zyphra meldet FP8-Gewinne im Prefill"
+  },
+  {
+   "t": "p",
+   "x": "Zyphras Originalblog vom 5. November beschreibt FP8- und BF16-Attention-Kernels für MI355X (CDNA4). Die FP8-Variante kombiniert eine vereinfachte Wahrscheinlichkeitsberechnung, überlappte Softmax-/Matrixarbeit und blockweises Skalieren. Auf Aktivierungen je einer Schicht von Mistral-7B, Qwen3-8B und DeepSeek-V2-Lite bei 16K Tokens meldet Tabelle A1 den 1,16-, 1,17- und 1,76-fachen Durchsatz gegenüber dem jeweiligen AITER-0.1.19-Standardkernel. Es handelt sich um anhaltende Last nach Warm-up, nicht um eine Gesamtlaufzeit des Sprachmodells."
+  },
+  {
+   "t": "p",
+   "x": "Alle Werte stammen vom Hersteller, sind nicht unabhängig geprüft und gelten als Momentaufnahme eines Knotens mit acht MI355X unter ROCm 7.2.3. Bei DeepSeek-V2-Lite ist die FP8-Baseline Composable Kernel, während die beiden anderen Formen den AITER-Assemblykernel nutzen. Synthetische Gauß-Eingaben ergeben andere Verhältnisse, weil Daten und Bitwechsel den Takt beeinflussen. Die README beschränkt ZYFA auf kausalen Forward-Prefill mit gleich langen Query-/Key-Sequenzen. Decoding, paged KV, variable Sequenzlängen im Batch und Backpropagation sind nicht unterstützt. Daraus lässt sich weder eine universelle Inferenzbeschleunigung noch eine Aussage über nachgelagerte Aufgabenqualität ableiten."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was muss vor dem ADK-Upgrade geprüft werden?",
+   "a": "Unter anderem Enum-Argumente, das neue Argumentformat von RunSkillScriptTool und Firestore-Rollback-Kompatibilität. Mehrfachtests und semantische Vergleiche sind Werkzeuge für Evaluation, kein Nachweis fehlerfreier Agenten."
+  },
+  {
+   "q": "Was passiert bei einer ungültigen gestreamten Karte?",
+   "a": "Die abschließende Validierung kann CardSpecError auslösen, nachdem bereits eine Teilnachricht sichtbar ist. Die Anwendung muss den Fehler behandeln. Explizite Plattformlimits können zusätzliche Spezifikationen ablehnen."
+  },
+  {
+   "q": "Sind die drei ZYFA-Faktoren Modellbenchmarks?",
+   "a": "Nein. Es sind herstellergemessene FP8-Attention-Kernelverhältnisse auf je einer erfassten Schicht bei 16K Tokens. Baselines und Head-Formen unterscheiden sich; die Werte belegen keinen End-to-End-Speedup und keine Rangfolge der Modelle."
+  }
+ ],
+ "related": [
+  "modelle-und-agenten-evaluieren",
+  "agenten-architekturen"
+ ]
+}

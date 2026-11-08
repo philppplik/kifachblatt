@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: ADK-Update, Chat-Karten, ZYFA](https://kifachblatt.de/news-ueberblick-morgen-2026-11-08): ADK Python 2.14.0 bringt Mehrfachtests und Migrationen. Vercel streamt strukturierte Chat-Karten. Zyphra meldet FP8-Kernelgewinne auf MI355X.
 - [KI-Fachüberblick: Blutdruck-Uhr, Harness-S, HumanWAM](https://kifachblatt.de/news-ueberblick-abend-2026-11-07): Smartwatch-Screening aus Google-Forschung, Rescue-Training mit Harness-S und 50.000 Stunden Menschenvideo bei HumanWAM: Paperwerte und Releasegrenzen.
 - [NVKE-Preview, Agenten-Architektur, SLA-Robotik](https://kifachblatt.de/news-ueberblick-mittag-2026-11-07): Nvidias Kubernetes Engine für GPU-Cluster als Preview, drei Bausteine sicherer Agenten-Architektur und ein VLA-Modell mit räumlichem Vortraining.
 - [ERNIE 5.5 Flash Base: Baidus 280B-Basismodell im Check](https://kifachblatt.de/ernie-5-5-flash-base-analyse): Baidus Basismodell: 280 Milliarden Parameter, 14 aktiv, hybride Aufmerksamkeit und Multi-Router-MoE. Die Lizenz schließt EU, UK und Südkorea aus.
