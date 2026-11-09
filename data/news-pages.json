@@ -1,5 +1,77 @@
 [
   {
+    "title": "KI-Coding-Agenten verfrachten Zugangsdaten in öffentliche Repositories",
+    "url": "https://www.heise.de/news/KI-Coding-Agenten-verfrachten-Zugangsdaten-in-oeffentliche-Repositories-11517278.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794226980.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Wer mit KI-Coding-Agenten arbeitet, kann Zugangsdaten in öffentliche Repositories ausleiten. Schuld ist eine Komfortfunktion.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-09T14:02:34.772082+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Fall um Nvidia-Chef: China weist Spionagevorwurf zurück",
+    "url": "https://www.heise.de/news/Fall-um-Nvidia-Chef-China-weist-Spionagevorwurf-zurueck-11517104.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794218640.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Eine Affäre bringt Nvidias Chef in Bedrängnis: Stand seine Geliebte im Dienst Chinas? Peking weist die Spionagevorwürfe nun zurück.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-09T14:02:34.772286+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Trotz teurer Lizenz: Apple verlangt für Logic-Pro-KI-Assistenz ein Abo",
+    "url": "https://www.heise.de/news/Trotz-teurer-Lizenz-Apple-verlangt-fuer-Logic-Pro-KI-Assistenz-ein-Abo-11516228.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794217380.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Ähnlich wie bei Pixelmator Pro macht Apple auch bei Logic Pro ernst: Nur Abonnenten von Creator Studio kriegen den neuen „Intelligent Assistant“.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-09T14:02:34.772330+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Samsung plant offenbar kostenpflichtigen Galaxy-AI-Tarif",
+    "url": "https://www.heise.de/news/Samsung-soll-an-Abo-fuer-Galaxy-AI-Funktionen-arbeiten-11516987.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794217020.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Samsung arbeitet offenbar daran, einen Teil seiner Galaxy-AI-Funktionen hinter eine Bezahlschranke zu packen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-09T14:02:34.772354+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Montag: Reaktor für Atommüll-Recycling, Untersuchung von Nvidia-Chef nach Affäre",
+    "url": "https://www.heise.de/news/Montag-Reaktor-fuer-Atommuell-Recycling-Untersuchung-von-Nvidia-Chef-nach-Affaere-11516797.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794201300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Atomreaktor ohne Endlager + Huang-Affäre mit möglicher Spionin + Geheimdienste prüfen Kühl-Attacken + Rechenzentren mit wenig Transparenz + Doku über KI-Partner",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-09T14:02:34.772566+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Jensen Huang gesteht Affäre ein, Nvidia beginnt Untersuchung",
+    "url": "https://www.heise.de/news/Jensen-Huang-gesteht-Affaere-ein-Nvidia-beginnt-Untersuchung-11516757.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794175560.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das Board von Nvidia hat mit externer Unterstützung eine Untersuchung gegen seinen CEO eingeleitet. Es geht um Verbindungen zu chinesischen Geheimdiensten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-09T14:02:34.772591+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Drohnen-Vorfall in Leipzig: BKA fahndet mit KI-Bild",
     "url": "https://www.heise.de/news/BKA-fahndet-nach-Drohnen-Vorfall-in-Leipzig-mit-KI-Bild-11516328.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794051420.0,
