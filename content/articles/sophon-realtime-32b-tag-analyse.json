@@ -1,0 +1,194 @@
+{
+ "slug": "sophon-realtime-32b-tag-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Sophon-Realtime-32B-Tag: Vollduplex-Sprach-KI für eine GPU",
+ "dek": "Sophon-Realtime hört zu, während man spricht, erkennt Betonung und versieht Antworten mit Klang-Tags - auf einer 80-GB-GPU. Wir ordnen die Messwerte ein.",
+ "published": "2026-11-09T07:54:00+01:00",
+ "modified": "2026-11-09T07:54:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Adventists AI",
+  "Sophon-Realtime",
+  "Sprachmodell",
+  "Vollduplex",
+  "Apache 2.0"
+ ],
+ "key_takeaways": [
+  "Adventists AI hat mit Sophon-Realtime-32B-Tag ein Vollduplex-Sprachmodell unter Apache 2.0 veröffentlicht: Es hört durchgehend zu, entwirft die Antwort schon während des Zuhörens und läuft laut Anbieter auf einer einzigen 80-GB-GPU [1][2].",
+  "Ein 32-Milliarden-Parameter-Modell übernimmt Zuhören, Gesprächssteuerung und Antworttext; ein zweites Stimmmodell setzt eingestreute Klang-Tags wie Lachen oder Betonung in Ton um [1].",
+  "Der Anbieter misst bei einem Nutzer 0,67 Sekunden bis zum ersten Ton und empfiehlt bis zu 16 gleichzeitige Nutzer pro GPU (Herstellerangaben, gemessen auf einem H100 mit 80 GB) [1].",
+  "Beim Erkennen paralinguistischer Signale liegt das Modell mit 48,6 Punkten vor den vom Anbieter genannten Vergleichsmodellen; eigene Messungen haben wir nicht durchgeführt [1][2].",
+  "Die eigenen Grenzen benennt der Anbieter offen: Seufzen und Betonung setzt die Stimme in seinem Test seltener um, als der Textteil sie schreibt [1]."
+ ],
+ "hero": {
+  "alt": "Schematische Darstellung der Verarbeitungskette: Mikrofon-Symbol, Pfeil zum 32-Milliarden-Denkmodul, Pfeil zu einem Kasten mit Klang-Tags, Pfeil zum Stimm-Modul, Pfeil zu einem Lautsprecher-Symbol, darunter der Hinweis auf eine einzelne 80-GB-GPU",
+  "caption": "Ein Gehirn, eine Stimme: Der 32-Milliarden-Denker hört zu, steuert die Gesprächswechsel und schreibt die Antwort samt Klang-Tags; die Stimme setzt sie um - alles auf einer 80-GB-GPU [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "Sophon-Realtime-32B-Tag - Modellkarte (inklusive Latenzmessungen und Grenzen)",
+   "publisher": "Adventists AI (Hugging Face)",
+   "url": "https://huggingface.co/adventists-ai/Sophon-Realtime-32B-Tag",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "Sophon-Realtime v1 - Familienseite mit Benchmark-Methoden",
+   "publisher": "Adventists AI (Hugging Face)",
+   "url": "https://huggingface.co/adventists-ai/Sophon-Realtime-v1",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "sophon-realtime - GitHub-Repository (Ein-Befehl-Deployment, Live-Modus, Feintuning)",
+   "publisher": "Adventists AI (GitHub)",
+   "url": "https://github.com/adventists-ai/sophon-realtime",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "Repositorium-Metadaten (Anlagedatum, letzte Aktualisierung, Downloads)",
+   "publisher": "Hugging-Face-API",
+   "url": "https://huggingface.co/api/models/adventists-ai/Sophon-Realtime-32B-Tag",
+   "accessed": "2026-11-09"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Sprachassistenten, die einen erst nach einer Pause antworten und stur weiterreden, wenn man dazwischengeht, wirken schnell gekünstelt. Sophon-Realtime-32B-Tag von Adventists AI geht den anderen Weg: Das Modell hört durchgehend zu, erkennt nach Anbieterangaben auch, wie etwas gesagt wird - Zögern, Betonung, Sarkasmus, Lachen - und antwortet mit einer Stimme, die ihrerseits lachen oder seufzen kann. Code und Gewichte stehen unter Apache 2.0, das Gespräch läuft laut Anbieter auf einer einzigen 80-GB-GPU [1][2]. Das Repositorium wurde am 29. Oktober 2026 angelegt und zuletzt am 9. November 2026 aktualisiert (Plattform-API) [4]."
+  },
+  {
+   "t": "h2",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "h3",
+   "x": "Aufbau: ein Denker, eine Stimme"
+  },
+  {
+   "t": "p",
+   "x": "Der Kern ist DuplexJev-32B-Para v1.5, ein 32-Milliarden-Parameter-Modell in FP8 mit Vision-Komponente. Es übernimmt drei Aufgaben zugleich: zuhören, entscheiden, wann es an der Reihe ist, und die Antwort schreiben. In den Antworttext streut es Klang-Tags ein - etwa für Lachen, Atmen, Seufzen, Räuspern oder die Betonung eines Wortes. Diese Tags werden nicht vorgelesen, sondern an das zweite Modul übergeben: tag-tts, ein Stimmmodell auf Basis von Fun-CosyVoice3-0.5B mit destilliertem Flow in vier Schritten und HiFT-Vocoder. Es spricht den Text, während er noch geschrieben wird, und führt die Tags als Klang aus [1]."
+  },
+  {
+   "t": "h3",
+   "x": "Betrieb und Schnittstellen"
+  },
+  {
+   "t": "p",
+   "x": "Der Anbieter nennt als Voraussetzung eine GPU mit 80 GB (H100, H800 oder A100 80G) mit rund 65 GB Belegung pro Instanz; der Gewichte-Download umfasst etwa 42 GB. Bereitgestellt wird alles über vLLM-Omni mit einem Installations- und einem Startskript - oder per pip-Paket. Zwei Schnittstellen stehen bereit: ein WebSocket-Endpunkt für das Vollduplex-Gespräch (Gesprächswechsel, Unterbrechen, Zwischenlaute) und eine Chat-Completions-API, die Audio entgegennimmt und Text plus Audiostream zurückgibt. Sechs Referenzstimmen sind enthalten; die Sprachen sind Englisch und Chinesisch [1][3]."
+  },
+  {
+   "t": "h3",
+   "x": "Verfügbarkeit und Lizenz"
+  },
+  {
+   "t": "p",
+   "x": "Denker, Stimme und die sechs Stimmen-Referenzen stehen unter Apache 2.0, kommerzielle Nutzung ist erlaubt. Ein Live-Modus spricht das GPT-Live-Protokoll von OpenAI, sodass bestehende Clients per Adresswechsel angebunden werden können; dabei bleibt die Sophon-Stimme erhalten, während Rechercheaufgaben an ein eigenes Backend gehen. Feintuning für Persona, Ton und Fachwissen ist per LoRA über ms-swift vorgesehen - Gehör, Stimme und Gesprächssteuerung bleiben dabei unverändert. Ausprobieren lässt sich das Modell ohne eigene Hardware in einem ModelScope-Studio [1][2][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Was Vollduplex hier bedeutet"
+  },
+  {
+   "t": "p",
+   "x": "Vollduplex heißt: Das Modell hört zu, während es selbst spricht, und umgekehrt. Es beginnt die Antwort zu entwerfen, während man noch redet, setzt ein, sobald man aufhört, stoppt, wenn man dazwischengeht, und lässt sich von kurzen Zustimmungslauten wie einem Mhm nicht aus dem Konzept bringen. Vom Ende des eigenen Satzes bis zum ersten Ton des Modells misst der Anbieter rund 0,7 Sekunden [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Drei Builds, ein Gehirn"
+  },
+  {
+   "t": "p",
+   "x": "Die Familie umfasst drei Varianten mit identischem 32-Milliarden-Denker; sie unterscheiden sich nur in der Stimme. Tag ist die empfohlene, ausdrucksstärkste Variante (NVV-SuperBench 0,80 auf Englisch, 0,86 auf Chinesisch). Flash nutzt ein leichteres Stimmmodell und ist auf Tempo und Auslastung getrimmt: 0,31 Sekunden bis zum ersten Ton und bis zu 40 gleichzeitige Nutzer pro GPU, bei schwächerem Klangausdruck (0,63/0,77). E2E ist eine Forschungsvorschau ohne separates Stimmmodell, braucht zwei GPUs und kommt auf vier bis fünf Nutzer. Alle Werte sind Herstellerangaben; die Schnittstellen sind identisch, ein Wechsel ist später möglich [1][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Messwerte und Latenzen"
+  },
+  {
+   "t": "p",
+   "x": "Bei den Verständnistests meldet der Anbieter 82,8 auf VoiceBench und 81,8 Prozent auf Big Bench Audio - nach eigener Darstellung die besten Werte unter den offenen Vollduplex-Modellen und auf VoiceBench auf Augenhöhe mit GPT-4o-mini-Audio. Beim paralinguistischen Verständnis (LISTEN, StressTest, MSPB) erreicht Sophon 48,6 Punkte; die vom Anbieter genannten Vergleichswerte sind Gemini 3.8 Flash mit 46,9 und Qwen3-Omni mit 44,6. Beim Werkzeugaufruf im Gespräch (Full-Duplex-Bench v3, Pass@1) meldet der Anbieter 48 Prozent vor Grok mit 43 Prozent, bei 100 Prozent Antwortrate. Alle Vergleiche stammen aus den Tabellen des Anbieters [1][2]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Zeit bis zum ersten Ton nach gleichzeitigen Nutzerzahlen (Median)",
+   "alt": "Balkendiagramm mit vier Werten: ein Nutzer 0,67 Sekunden; acht Nutzer 0,61 Sekunden; 16 Nutzer 0,75 Sekunden; 24 Nutzer 1,36 Sekunden",
+   "caption": "Herstellerangaben, gemessen auf einem H100 mit 80 GB; die Nutzer treffen innerhalb von zehn Sekunden ein [1]. Ab 24 Nutzern beginnt laut Anbieter das Warteschlangen-Verhalten - er empfiehlt bis zu 16 gleichzeitige Nutzer pro GPU. Von uns nicht nachgemessen.",
+   "labels": [
+    "1 Nutzer",
+    "8 Nutzer",
+    "16 Nutzer (Empfehlung)",
+    "24 Nutzer"
+   ],
+   "series": [
+    {
+     "name": "Erster Ton (Median)",
+     "values": [
+      0.67,
+      0.61,
+      0.75,
+      1.36
+     ]
+    }
+   ],
+   "y_label": "Sekunden",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Die Latenztabelle des Anbieters zeigt auch die oberen Werte: Bei 16 Nutzern liegt das Maximum bei 1,07 Sekunden und der mediane Stotter-Anteil bei 0,06 Sekunden; bei 24 Nutzern steigt der Median auf 1,36 Sekunden und Warteschlangen setzen ein. Der Prozessor ist laut Anbieter nicht der Engpass (etwa 1,5 Kerne pro Instanz bei 16 Nutzern); mit einer Instanz pro GPU hinter einem Lastverteiler soll die Kapazität ungefähr linear wachsen [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Klang-Tags: was die Stimme wirklich umsetzt"
+  },
+  {
+   "t": "p",
+   "x": "Bemerkenswert ist, wie offen der Anbieter die Schwachstelle benennt. In einem eigenen Test (96 Sätze, zweimal durch die komplette bereitgestellte Kette, automatischer Detektor) kamen die geschriebenen Tags nicht immer hörbar an: Beim Seufzen erkannte der Detektor nur 25 Prozent der Ereignisse (Referenz-Renderer mit demselben Stimmmodell: 42 Prozent), beim Lachen 42 Prozent (Referenz: 50), bei Atmen 50 und beim Husten 33 Prozent (jeweils gleichauf). Wegen der kleinen Stichprobe entspricht ein Satz schon etwa zehn Prozentpunkten. Der Anbieter nennt Seufzen und Betonung ausdrücklich noch schwach [1]."
+  },
+  {
+   "t": "p",
+   "x": "Weitere benannte Grenzen: Chinesisch klingt mit dem destillierten Flow etwas weniger klar als Englisch, und ein Lachen wird von der Erkennung gelegentlich als Text transkribiert. Antworten über etwa einer Minute gesprochener Länge übersteigen das Trainingsmaterial der Stimme [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung und Prüfgrenzen"
+  },
+  {
+   "t": "p",
+   "x": "Sämtliche Zahlen sind Herstellerangaben mit offengelegten Messbedingungen; wir haben das System nicht selbst betrieben - dafür fehlt uns die 80-GB-GPU. Da Gewichte, Code und Deployment-Skripte offen liegen, ist eine unabhängige Nachmessung grundsätzlich möglich. Die Vergleiche mit GPT-4o-mini-Audio, Grok, Gemini 3.8 Flash und Qwen3-Omni entstammen den Tabellen des Anbieters; die E2E-Variante ist noch nicht veröffentlicht. Ob es Fremdmessungen gibt, können wir nicht ausschließen [1][2]."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist Sophon-Realtime-32B-Tag?",
+   "a": "Ein offenes Vollduplex-Sprachmodell von Adventists AI unter Apache 2.0. Ein 32-Milliarden-Parameter-Modell hört durchgehend zu, steuert die Gesprächswechsel und schreibt Antworten mit Klang-Tags; ein zweites Stimmmodell spricht sie aus. Sprachen: Englisch und Chinesisch [1]."
+  },
+  {
+   "q": "Was heißt Vollduplex bei einem Sprachmodell?",
+   "a": "Das Modell hört zu, während es spricht, und beginnt die Antwort schon während des Zuhörens zu entwerfen. Es setzt ein, sobald man aufhört, stoppt bei einer Unterbrechung und ignoriert kurze Zustimmungslaute. Der Anbieter misst rund 0,7 Sekunden vom Ende des eigenen Satzes bis zum ersten Ton [1]."
+  },
+  {
+   "q": "Welche Hardware brauche ich dafür?",
+   "a": "Laut Anbieter eine GPU mit 80 GB (H100, H800 oder A100 80G); die Gewichte umfassen etwa 42 GB, pro Instanz werden rund 65 GB belegt. Empfohlen werden bis zu 16 gleichzeitige Nutzer pro GPU bei der Tag-Variante, 40 bei Flash. Zum Reinhören ohne eigene Hardware gibt es ein ModelScope-Studio [1][2]."
+  },
+  {
+   "q": "Ist Sophon-Realtime kommerziell nutzbar?",
+   "a": "Ja. Denker, Stimmmodell und die Stimmen-Referenzen stehen unter Apache 2.0. Feintuning für Persona, Ton und Fachwissen ist per LoRA über ms-swift dokumentiert; ein Live-Modus spricht das GPT-Live-Protokoll für bestehende Clients [1][3]."
+  },
+  {
+   "q": "Wie natürlich klingt die Stimme?",
+   "a": "Die Tag-Variante erreicht auf der Anbieter-Metrik NVV-SuperBench 0,80 (Englisch) beziehungsweise 0,86 (Chinesisch). Zugleich räumt der Anbieter ein, dass Seufzen und Betonung noch schwach sind: In seinem Test setzte die Stimme nur 25 beziehungsweise unter die Hälfte der geschriebenen Ereignisse hörbar um [1]."
+  }
+ ],
+ "method": "Analyse auf Basis der vollständig gelesenen Modellkarte von Sophon-Realtime-32B-Tag (inklusive Latenztabelle und Klang-Tag-Test), der Familienseite Sophon-Realtime v1 mit den Benchmark-Methoden, des GitHub-Repositorys und der Repositorium-Metadaten der Plattform-API (jeweils abgerufen am 9.11.2026). Sämtliche Messwerte sind Herstellerangaben. Keine eigenen Tests.",
+ "limitations": "Keine eigenen Tests; der Betrieb erfordert eine 80-GB-GPU, die uns nicht zur Verfügung stand. Alle Benchmark-, Latenz- und Auslastungswerte stammen vom Anbieter, ebenso die Vergleiche mit anderen Modellen. Der Klang-Tag-Test des Anbieters beruht auf einer kleinen Stichprobe (96 Sätze, zwei Durchläufe) mit etwa zehn Prozentpunkten Unsicherheit pro Satz. Ob es unabhängige Fremdmessungen gibt, können wir nicht ausschließen. Die E2E-Variante ist eine angekündigte Vorschau und noch nicht verfügbar.",
+ "related": [
+  "audio-sprach-ki",
+  "nemotron-3-5-transcribe-analyse",
+  "multimodale-modelle"
+ ]
+}

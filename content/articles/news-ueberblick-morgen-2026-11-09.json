@@ -1,0 +1,118 @@
+{
+ "slug": "news-ueberblick-morgen-2026-11-09",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-09T07:54:00+01:00",
+ "modified": "2026-11-09T07:54:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Benchmarks as Software: Terminal-Bench and the Case for Continuous Benchmarks",
+   "publisher": "arXiv (Stanford University / Cornell University)",
+   "url": "https://arxiv.org/abs/2611.08417",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "Harness adapters: Safe RL for efficient agentic development",
+   "publisher": "Hugging Face (harness-hub)",
+   "url": "https://huggingface.co/blog/harness-hub/harness-adapters",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "Harness-Specific LoRA Adapters Put Agent Training in Context",
+   "publisher": "Hugging Face Blog",
+   "url": "https://huggingface.blog/blog/harness-hub-harness-adapters/",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "NVIDIA Dynamo Recipes Bring Korea’s Leading Open Models to Production",
+   "publisher": "NVIDIA Blog",
+   "url": "https://blogs.nvidia.com/blog/nvidia-dynamo-korea-open-models/",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "ai-dynamo/dynamo: Repository und Recipes",
+   "publisher": "NVIDIA / GitHub",
+   "url": "https://github.com/ai-dynamo/dynamo",
+   "accessed": "2026-11-09"
+  }
+ ],
+ "title": "KI-Fachüberblick: TB 2.1, Harness-Adapter, Dynamo",
+ "dek": "Audit repariert 28 von 89 Terminal-Bench-Aufgaben. LoRA-Adapter pro Agenten-Harness mit Regel-Proxy. Dynamo-Rezepte für vier koreanische Modelle.",
+ "tags": [
+  "KI-Überblick",
+  "Benchmark-Wartung",
+  "GRPO",
+  "LoRA",
+  "Inferenz-Serving",
+  "Dynamo"
+ ],
+ "key_takeaways": [
+  "Terminal-Bench 2.1: 28 von 89 Aufgaben repariert (16 Anweisungs-Verifikations-Mismatch, 12 Task-Drift, 8 Umgebung). 19 Agenten: Spearman ρ = 0,958, Einzelwerte bis 12 Prozentpunkte verschoben.",
+  "Harness-Adapter: GRPO-LoRA Rang 32 in pi, opencode und hermes; safeagents blockiert Reward-Hacking regelbasiert. Ablation: +0,0 ± 4,1 Punkte held-out pass@1. Finale Läufe streamen noch.",
+  "Dynamo-Recipes für A.X K2, K-EXAONE 2.0, Solar Open 2 und Motif-3 auf B200. „Bis zu 2× Leistung“ ist NVIDIAs Angabe ohne bezifferte Basiskonfiguration."
+ ],
+ "hero": {
+  "alt": "Reparaturgründe in Terminal-Bench 2.1 laut Studie: 16 von 28 Aufgaben mit Anweisungs-Verifikations-Mismatch, 12 mit Task-Drift, 8 mit Umgebungsproblemen. Mehrfachzuordnung möglich. Rangkorrelation nach Reparatur: Spearman 0,958 über 19 Agenten.",
+  "caption": "Defektkategorien der 28 reparierten Terminal-Bench-Aufgaben (von 89) nach Angaben der Studie; Aufgaben können mehrere Kategorien tragen. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion), Quelle: Buchanan et al., arXiv:2611.08417"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Morgenüberblick vom 9. November 2026. Quellenstand: 06:39 Uhr MEZ. Im Fokus: ein Audit von Terminal-Bench 2.0 mit veröffentlichter Reparaturversion 2.1, Hugging Faces Harness-Adapter mit sicherheitsgeprüftem RL, und NVIDIAs Dynamo-Recipes für vier koreanische Modelle. Messgrößen und ihre Grenzen sind jeweils mitzulesen."
+  },
+  {
+   "t": "h2",
+   "x": "TB 2.0 → 2.1: Audit von 89 Aufgaben, 28 Reparaturen"
+  },
+  {
+   "t": "p",
+   "x": "Die Studie (Stanford/Cornell, arXiv:2611.08417) prägt den Begriff Benchmark-Wartungsschuld: Defekte, die Scores von der gemessenen Fähigkeit entkoppeln. Der vorgestellte Continuous-Validation-Workflow kombiniert Community-Meldungen, Agenten-Traces, Auditor-Agenten und einen deterministischen Oracle-Check mit menschlicher Freigabe (propose-only, maximal fünf Reparaturiterationen). Claude Code (Opus 4.6) und Codex (GPT 5.4) einigen sich als Auditoren bei κ = 0,80 auf die Defektkategorie; günstigere Modelle erreichen das nur bei der binären Triage (κ = 0,55–0,77) und bei der Drift-Zuordnung gar nicht (κ = 0,21–0,41), weshalb der Oracle-Check Drift deterministisch fängt. Repariert wurden 28 Aufgaben: 16 mit Anweisungs-Verifikations-Mismatch (Beispiel query-optimize: der Verifier verlangte Byte-für-Byte-Erhalt der Datenbankdatei, ohne dass die Anweisung das forderte), 12 mit Task-Drift, 8 mit Umgebungsproblemen; die Budgets bekamen mindestens 1,5-fachen Oracle-Spielraum."
+  },
+  {
+   "t": "p",
+   "x": "Die Re-Evaluation von 19 Agenten: Spearman ρ = 0,958 (95%-KI [0,881; 0,979]), OLS-Fit TB2.1 = 2,1 + 1,04·TB2.0. Claude Code mit Opus 4.6 liegt über 7 Prozentpunkte über dem Fit und klettert drei Plätze; GLM 5.1 löst acht Aufgaben mehr und überholt GPT 5.4. Fünf Aufgaben mit vorher höchstens 15 Prozent Bestehensrate liegen nach Verifier-Reparaturen über 50 Prozent - das sind 62,7 Prozent der gesamten absoluten Passraten-Änderung auf der geänderten Teilmenge; andere Reparaturen entzogen Falsch-Positive und senkten Raten. Ressourcen als Messgröße: Über 50 Prozent der Fehlversuche sind Timeouts (68 Prozent unter claude-code, 18 unter gemini-cli). Bei 32-fachem Zeitbudget schließt sich die rund 20 Prozentpunkte große Codex-Terminus-2-Lücke für GPT 5.4 weitgehend; bei GPT 5.4 mini schrumpfen 30 auf 5 Prozentpunkte. Gegen die finale TB2.1 erreichte das Workflow 57,1 Prozent Präzision bei 71,4 Prozent Recall (retrospektive Übereinstimmung), am externen Harbor-Index bestätigten sich 12 von 14 Flags (86 Prozent). Die Autoren fordern versionierte Benchmark-Releases mit Task-Digests."
+  },
+  {
+   "t": "h2",
+   "x": "Harness-Adapter: GRPO-LoRA direkt in pi, opencode und hermes"
+  },
+  {
+   "t": "p",
+   "x": "Die harness-hub-Veröffentlichung trainiert LoRA-Adapter (Rang 32, all-linear) mit TRLs AsyncGRPOTrainer in unveränderten Agenten-Harnesses. Modelle: LFM2.5-24B-A2B (MoE, 2B aktiv), LFM3-1.7B (Hybrid) und experimentell TwIL-8B (8,8B dense aus Granite 4.2, laut Modellkarte nicht auf agentischen Daten trainiert). Acht Rollouts pro Aufgabe, Lernrate 1e-5, Rollouts maximal vier Gewichtsupdates alt. Ein vLLM-Server hält die Basisgewichte einmal und bedient drei Trainer mit benannten Adaptern; bei LFM3-1.7B teilen sich drei Trainer eine GPU (etwa 35 Sekunden Vorwärts-/Rückwärtslauf pro Schritt gegenüber minutenlangem Warten auf Rollouts). Neun Checkpoints mit 1350 Agenten-Sitzungen evaluierten sich so laut Beitrag in unter einer Stunde auf einer H200 für rund 5 US-Dollar statt etwa 90 US-Dollar bei gemergten Gewichten."
+  },
+  {
+   "t": "p",
+   "x": "Repo2RLEnvs rekonstruiert Aufgaben aus geteilten Trajektorien (ATIF): von 270 Aufgaben sind 253 Neubauten, 11 Reparaturen, 6 Erweiterungen, keine Wissensfrage; 243 stammen aus einem einzigen Datensatz. Das Teacher-Modell Mistral-Large-4-1T-A52B schreibt bei 259 Aufgaben die versteckten Tests, die gegen das Oracle (zweimal bestehen), einen Stub, einen leeren Workspace und injizierte Fehler geprüft werden. safeagents als Reverse-Proxy vor vLLM prüft jeden Tool-Call regelbasiert in 10 bis 20 Millisekunden: undeklarierte Tools, unbekannte Hosts, Reward- und Test-Manipulation, Antwortquellen, Credentials. Ein geblockter Aufruf wird durch einen Hinweis ersetzt, der Rollout erhält Reward 0, und GRPO lernt auf den geblockten Tokens weiter. Im Smoke-Run blockierte safeagents TwIL-8B schon bei Schritt 0 beim Suchen nach dem Antwortspeicher. Eine Ablation über 50 Schritte (pi, LFM2.5-24B-A2B) ergab mit aktivem Guard +0,0 ± 4,1 Punkte held-out pass@1. Eine Regelkollision mit einer legitimen grader.py-Aufgabe wurde auf /tests/grader verengt; 213 erneut gescannte Sitzungen zeigen keinen Fehlalarm. Die finalen Läufe (200, 400 und 300 Schritte) streamen live; Zwischenstände sind keine endgültige Rangliste."
+  },
+  {
+   "t": "h2",
+   "x": "Dynamo-Recipes für A.X K2, K-EXAONE 2.0, Solar Open 2 und Motif-3"
+  },
+  {
+   "t": "p",
+   "x": "NVIDIA veröffentlicht Dynamo-optimierte Deployment-Recipes für vier koreanische Open-Weight-Modelle: A.X K2 (SK Telecom), K-EXAONE 2.0 (LG AI Research), Solar Open 2 (Upstage) und Motif-3 (Motif Technologies). Dynamo ist ein quelloffenes Framework für verteiltes Inferenz-Serving über mehrere Knoten: Es koordiniert Routing und Kommunikation, wenn Modelle über mehrere GPUs aufgeteilt werden müssen. Die Rezepte zielen auf B200; NVIDIA meldet bis zu zweifache Leistung ohne eigene Abstimmung, benennt im Beitrag aber keine Basiskonfiguration - die Angabe bleibt deshalb dem Hersteller zugeordnet. Das Repository ai-dynamo/dynamo mit seinem Recipes-Bereich ist öffentlich; der Beitrag ist auf den 8. November datiert."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was unterscheidet TB 2.1 von Terminal-Bench 2.0 Verified?",
+   "a": "TB 2.0 Verified (Z.ai) war ein früheres Audit; 11 seiner Aufgaben flossen in TB 2.1 ein. Dazu kamen 5 Aufgaben aus öffentlichen Meldungen und 14 neu identifizierte - nach Bereinigung zweier Quellenüberschneidungen 28 insgesamt - sowie Ressourcen-Untergrenzen mit 1,5-fachem Oracle-Spielraum."
+  },
+  {
+   "q": "Überträgt sich ein Adapter auf eine andere Harness?",
+   "a": "Nicht zuverlässig. Der Adapter kodiert Annahmen über Prompts und verfügbare Aktionen seiner Harness. Der Beitrag empfiehlt Vergleiche nur Adapter gegen Basismodell in derselben Harness, auf ungesehenen Aufgaben und mit identischen Budgets."
+  },
+  {
+   "q": "Gilt der Dynamo-Leistungsfaktor auch für andere Hardware?",
+   "a": "Der Beitrag nennt B200 als Zielplattform der vier Recipes. Dynamo selbst ist ein quelloffenes Serving-Framework; aus der Ankündigung allein folgt keine Aussage über andere Beschleuniger oder eigene Lastprofile."
+  }
+ ],
+ "related": [
+  "modelle-und-agenten-evaluieren",
+  "agenten-architekturen"
+ ]
+}

@@ -33,6 +33,9 @@
 ## Beiträge
 
 <!--GEN-->
+- [Darwin-180B-RSI-R3: Ein Modell, das aus eigenen Lösungen lernt](https://kifachblatt.de/darwin-180b-rsi-r3-analyse): Darwin-180B-RSI-R3 trainiert mit eigenen verifizierten Lösungen. Wir ordnen die zweite RSI-Runde, die Messwerte und die Qwen-Community-Lizenz 1.0 ein.
+- [KI-Fachüberblick: TB 2.1, Harness-Adapter, Dynamo](https://kifachblatt.de/news-ueberblick-morgen-2026-11-09): Audit repariert 28 von 89 Terminal-Bench-Aufgaben. LoRA-Adapter pro Agenten-Harness mit Regel-Proxy. Dynamo-Rezepte für vier koreanische Modelle.
+- [Sophon-Realtime-32B-Tag: Vollduplex-Sprach-KI für eine GPU](https://kifachblatt.de/sophon-realtime-32b-tag-analyse): Sophon-Realtime hört zu, während man spricht, erkennt Betonung und versieht Antworten mit Klang-Tags - auf einer 80-GB-GPU. Wir ordnen die Messwerte ein.
 - [KI-Fachüberblick: Beweise, Git-Speicher und OPD](https://kifachblatt.de/news-ueberblick-abend-2026-11-08): PDD Kit begrenzt Beweise auf eine Rust-Spezifikation. GitHub trennt Referenzen und Packdaten. Salesforce bilanziert Destillation inklusive Expertentraining.
 - [KI-Fachüberblick: Duplex-Sprache, Bildsuche, Routing](https://kifachblatt.de/news-ueberblick-mittag-2026-11-08): Shizuku-Duplex meldet japanische Sprachdialoge im 80-ms-Takt. Planet kombiniert Chat und Satellitenbilder. Kinference zeigt widersprüchliche Release-Angaben.
 - [Inkling 2 Small: 594 Milliarden Parameter, offene Gewichte folgen](https://kifachblatt.de/inkling-2-small-analyse): Das 594-Milliarden-MoE der zweiten Inkling-Generation läuft vorerst nur über Tinker. Offene Apache-2.0-Gewichte sollen nach externen Sicherheitstests folgen.
