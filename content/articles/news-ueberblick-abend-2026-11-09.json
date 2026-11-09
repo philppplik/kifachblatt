@@ -1,0 +1,115 @@
+{
+ "slug": "news-ueberblick-abend-2026-11-09",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-09T16:59:00+01:00",
+ "modified": "2026-11-09T16:59:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "DRAFT-Bench: Evaluating Frontier Agents Across the Professional Design Lifecycle",
+   "publisher": "arXiv (University of Maryland / Curify)",
+   "url": "https://arxiv.org/abs/2611.08933",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "DRAFT-Bench: Aufgaben und Toolkit",
+   "publisher": "GitHub / super-inbox",
+   "url": "https://github.com/super-inbox/DRAFT-Bench",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "Frontier3DBench: Benchmarking Coding Agents for 3D Creation across Objects, Scenes, and Interactive Open Worlds",
+   "publisher": "arXiv (Einsia.AI / Tsinghua University)",
+   "url": "https://arxiv.org/abs/2611.09017",
+   "accessed": "2026-11-09"
+  },
+  {
+   "title": "StepBack: Step-Level Error-Localized Resampling for Efficient Test-Time Reasoning",
+   "publisher": "arXiv (North Carolina State University)",
+   "url": "https://arxiv.org/abs/2611.08403",
+   "accessed": "2026-11-09"
+  }
+ ],
+ "title": "KI-Fachüberblick: DRAFT-Bench, Frontier3DBench, StepBack",
+ "dek": "Evidenzschichten für Design-Übergaben, 145 3D-Aufgaben in Blender und Unreal Engine sowie fehlerlokalisiertes Resampling bei Self-Consistency.",
+ "tags": [
+  "KI-Überblick",
+  "Agenten-Evaluation",
+  "Benchmark-Design",
+  "3D-Generierung",
+  "Inferenz-Effizienz"
+ ],
+ "key_takeaways": [
+  "DRAFT-Bench: Strukturkredit 1,0 für alle bewerteten Kernläufe, trotzdem semantische Flags in 13/32 (Astra) und 5/28 (Claude) Bedingungen. RFQ-Erfolgsreihenfolge kehrt sich zwischen Kohorten um.",
+  "Frontier3DBench: Sol/Codex 66,02 Gesamt, Astra führt Welten. Über 165 L3-Submissions: lokale Mechanismen 83,08, Motion Clearance 20,82, Stateful Workflows 30,26.",
+  "StepBack: Fehlerlokalisiertes Suffix-Resampling liegt im Mittel nahe an SC@32-Genauigkeit bei 18,66 bis 33,32 Prozent Tokenersparnis; NLL kann im Mittel 0,17 Prozentpunkte verlieren; mit DSC 5,2-mal weniger Tokens auf GSM8K."
+ ],
+ "hero": {
+  "alt": "Frontier3DBench, Mittelwerte über alle 165 L3-Einreichungen: lokale Mechanismen 83,08 von 100, Motion Clearance 20,82, Stateful Workflows 30,26. Höchste Gesamtpunktzahl 66,02 für GPT-6.1-sol im Codex-Harness.",
+  "caption": "Interaktionskomponenten der L3-Welten in Frontier3DBench, gepoolt über 11 Modell-Harness-Konfigurationen mal 15 Aufgaben. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion), Quelle: Lin et al., arXiv:2611.09017"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Abendüberblick vom 9. November 2026. Quellenstand: 16:01 Uhr MEZ. Drei Preprints: Requirement-to-Artifact-Evaluation für Designagenten, ein dreistufiger 3D-Benchmark mit Laufzeittests und ein Resampling-Verfahren, das Self-Consistency-Tokens einspart. Wir haben die Experimente nicht selbst wiederholt."
+  },
+  {
+   "t": "h2",
+   "x": "DRAFT-Bench: Evidenzschichten statt Gesamtscore"
+  },
+  {
+   "t": "p",
+   "x": "DRAFT-Bench (UMD/Curify, arXiv:2611.08933) verknüpft jede aktive Anforderung mit der relevanten Artefaktversion und ihrem Beleg: strukturelle Evidenz (Vorhandensein, Format, Versionsidentität), semantische Evidenz (angeforderte Änderung, Schutzeigenschaften) und Workflow-Evidenz (finale Ausgabe, deklarierte Kundenabhängigkeit). Setup: Codex CLI 0.154.0 mit gpt-6-astra gegen Claude Code 2.1.286 mit claude-opus-5-5, je max effort, 60 Minuten Aktivlimit pro Zug (kein Projektbudget). Astra schließt 43/43 Bedingungen ab, Claude 35/43 (acht First-Turn-Timeouts); Median der First-Turn-Dauer: Claude 41,4 Minuten, Astra 15,8 Minuten; Claude inklusive der Zeitüberschreitungen. Alle bewerteten Kernläufe erhalten strukturell 1,0, semantische Checks (Gemini 2.5 Pro, Temperatur 0) flaggen 13/32 Astra- und 5/28 Claude-Bedingungen, auf den 28 gemeinsamen 11/28 zu 5/28 - Modellurteile, keine Expertenlabels; Full-Score-Bounds [0,655; 0,912] vs. [0,711; 0,968] überlappen so, dass beide Reihenfolgen drin sind."
+  },
+  {
+   "t": "p",
+   "x": "Die 40 RFQ-Szenarien (simulierte Kunden, fixe Antworten) zeigen kohortenabhängige Reihenfolgen: original 18/20 Claude vs. 17/20 Astra, in den 19 zusätzlichen gepaarten 19/19 Astra vs. 16/19 Claude; kombiniert gepaart 36/39 zu 34/39. Die Fallstudien sind methodisch der Kern: SKU-Erweiterung erst nach Kundenwahl aktiv, Feedback mit nicht etablierter Versionsvoraussetzung (BID-001), White-Separation im PDF ohne Druckfreigabe; ein historischer Rejudging-Pilot (7 Paare) zeigt, dass geänderte Akzeptanzregeln Urteile von 16/100 auf 100/100 kippen, ohne dass sich ein Artefakt änderte. Konfundierungen benannt: Werkzeuge, Laufzeit, Isolation, Datum, ein Lauf pro Bedingung, Judge-Policywechsel zwischen den Systemläufen ohne Rerun. Aufgaben und Toolkit auf GitHub; die veröffentlichten Materialien reichen laut Paper nicht aus, um sämtliche historischen Designurteile zu rekonstruieren."
+  },
+  {
+   "t": "h2",
+   "x": "Frontier3DBench: 145 Aufgaben, drei Stufen, Laufzeittests"
+  },
+  {
+   "t": "p",
+   "x": "Frontier3DBench (Einsia/Tsinghua, arXiv:2611.09017) prüft 11 Modell-Harness-Konfigurationen auf 145 Aufgaben: L1 Objekte (15 Text2Code, 25 Multi-View-, 25 Single-View-Rekonstruktion), L2 Szenen (20 Brief2Scene, 10 Ref2Scene, 25 RealPhoto, 10 SceneEdit) in Blender, L3 fünf Text2Env- und zehn Img2Env-Welten mit Interaktionsvertrag in Unreal Engine. Bewertet wird dreifach: gerenderte Ansichten (Optik), Szeneninspektion (Struktur), unabhängige Laufzeittests (Verhalten inklusive Zustandspersistenz). Gesamt führt GPT-6.1-sol/Codex mit 66,02 vor GPT-6-astra/Codex 63,85 und Opus 5.5/Claude Code 62,29; Kategoriensiege verteilen sich auf drei Konfigurationen (Sol sechs, Astra die beiden L3, Opus Text2Code mit 84,05). Alle Konfigurationen liegen bei Referenzrekonstruktion unter ihrer Generierungsleistung (Text2Object 75,93 bis 84,05 vs. beste Multi-View-Rekonstruktion 69,61)."
+  },
+  {
+   "t": "p",
+   "x": "Die L3-Zerlegung über alle 165 Submissions: lokale Mechanismen 83,08, Motion Clearance 20,82, Stateful Workflows 30,26 - Einzelmechanik funktioniert, koordinierte Aktivitäten mit persistentem Zustand nicht. Dimensionen separat: Opus führt L1-Struktur (83,27), Sol L1/L2-Optik und L2-Struktur, Astra L3-Layout (86,37) und L3-Optik (57,37). Mensch-Score-Abgleich: acht Bewerter, 45 Items aus vier referenzgebundenen L1-/L2-Aufgabenfamilien, 360 Rankings, Kendall-Tau-b 0,727 im Mittel (Top-1-Treffer 79,2 %), über der Bewerter-untereinander-Rate 0,679; bei Scoreabstand ≥30 Punkte steigt die Übereinstimmung auf 0,793. Werte sind Modell-plus-Harness aus je einem Lauf."
+  },
+  {
+   "t": "h2",
+   "x": "StepBack: Suffix-Resampling ab erstem Fehlschritt"
+  },
+  {
+   "t": "p",
+   "x": "StepBack (NC State, arXiv:2611.08403) ersetzt das Voll-Neuziehen aller 32 SC-Spuren: 16 Drafts werden an Leerzeilen in Schritte zerlegt, ein Signal lokalisiert den ersten verdächtigen Schritt (NLL-Anstieg > 0,1 oder PRM-Abfall > 0,05, Qwen2.5-Math-PRM-7B), Prefix bleibt, Schritt plus Suffix wird neu gesampelt; ohne Befund nur der Antwortschritt. Budget exakt SC@32 (16 mal 2). Über 4.166 Fragen in fünf Mathe- und zwei Multi-Hop-Benchmarks auf Llama-3.2-3B, Qwen2.5-3B und Qwen2.5-7B: PRM-Signal: modellweise mittlere Genauigkeitsgewinne von +0,17 bis +0,82 Prozentpunkten und 18,66 bis 22,80 Prozent weniger Tokens; NLL-Signal -27,74/27,15/33,32 Prozent bei maximal -0,17 Punkten; PRM spart in allen 21 Modell-Datensatz-Paaren Tokens (7,66 bis 41,26 %), verliert jedoch in sechs Paaren an Genauigkeit. Der Höchstwert 41,26 Prozent gehört zu Qwen-7B/GSM8K mit +0,45 Prozentpunkten Genauigkeit. Lokalisierungs-Overhead 7 bis 11 Prozent der GPU-Wallclock. Oracle-Obergrenze mit annotierten Erstfehlern: 31,2 bis 64,0 Prozent Ersparnis bei paritätischer Genauigkeit."
+  },
+  {
+   "t": "p",
+   "x": "Kombinierbar mit AC/ESC/DSC (Suffix-Pool statt Vollspuren): weitere Tokenersparnis gegenüber der adaptiven Methode allein: 22 bis 24 Prozent auf MATH500, 35 bis 38 Prozent auf GSM8K und 6 bis 7 Prozent auf HotpotQA; StepBack+DSC auf GSM8K: 5,2-mal weniger Tokens als SC@32 bei +0,9 Punkten. Zusatzanalysen: 1,5B-PRM reicht weitgehend (+0,36 Punkte, -23,8 % Tokens im 8-mal-4-Setting); draft-lastige Budgets robuster, suffix-lastige sparsamer; bei 4-mal-8 liegt PRM-Lokalisierung 2,06 Punkte über Final-Step-Rollback. Limitationen der Autoren: nur zwei Signale, nur Mathe und Multi-Hop-QA, kleine Modelle; auf AIME24/OlympiadBench instabil, weil frühe Denkfehler lokales Resampling überstehen."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Warum trennt DRAFT-Bench Completion, Compliance und Akzeptanz?",
+   "a": "Weil sie empirisch auseinanderfallen: Alle bewerteten Kernläufe bekamen strukturell 1,0, semantische Checks flaggten trotzdem 13/32 beziehungsweise 5/28. Eine fehlende Ausgabe kann zudem berechtigte Eskalation sein - beides braucht andere Labels."
+  },
+  {
+   "q": "Was genau misst der L3-Wert 83,08 in Frontier3DBench?",
+   "a": "Den Mittelwert der Komponente lokale Mechanismen über alle 165 L3-Submissions (11 Konfigurationen mal 15 Aufgaben). Er sagt, dass Einzelmechaniken meist funktionieren; koordinierte Aktivitäten (20,82 Motion Clearance, 30,26 Stateful Workflows) bleiben der Engpass."
+  },
+  {
+   "q": "Gilt die StepBack-Ersparnis auch für große Frontier-Modelle?",
+   "a": "Nicht belegt. Getestet wurden 3B- und 7B-Instruct-Modelle auf Mathe- und QA-Benchmarks. Übertragbarkeit auf Code, lange Kontexte oder große Modelle nennen die Autoren selbst als offene Frage."
+  }
+ ],
+ "related": [
+  "modelle-und-agenten-evaluieren",
+  "coding-agenten-alltag"
+ ]
+}

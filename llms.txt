@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: DRAFT-Bench, Frontier3DBench, StepBack](https://kifachblatt.de/news-ueberblick-abend-2026-11-09): Evidenzschichten für Design-Übergaben, 145 3D-Aufgaben in Blender und Unreal Engine sowie fehlerlokalisiertes Resampling bei Self-Consistency.
 - [KI-Fachüberblick: Interventionen, AutoRefine, MSWE](https://kifachblatt.de/news-ueberblick-mittag-2026-11-09): Sequentielle Randomisierung für kausale Agenten-Evaluation, Judge-Kalibrierung aus Workflow-Labels und 69 Multi-step-Aufgaben mit je 5 bis 15 Schritten.
 - [Darwin-180B-RSI-R3: Ein Modell, das aus eigenen Lösungen lernt](https://kifachblatt.de/darwin-180b-rsi-r3-analyse): Darwin-180B-RSI-R3 trainiert mit eigenen verifizierten Lösungen. Wir ordnen die zweite RSI-Runde, die Messwerte und die Qwen-Community-Lizenz 1.0 ein.
 - [KI-Fachüberblick: TB 2.1, Harness-Adapter, Dynamo](https://kifachblatt.de/news-ueberblick-morgen-2026-11-09): Audit repariert 28 von 89 Terminal-Bench-Aufgaben. LoRA-Adapter pro Agenten-Harness mit Regel-Proxy. Dynamo-Rezepte für vier koreanische Modelle.
