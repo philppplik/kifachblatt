@@ -33,6 +33,9 @@
 ## Beiträge
 
 <!--GEN-->
+- [Claude Fable 5.2 und Mythos 5.2: Ein Modell, zwei Freigaben](https://kifachblatt.de/claude-fable-5-2-mythos-5-2-analyse): Fable 5.2 und Mythos 5.2 sind dasselbe Modell mit unterschiedlichen Schutzvorkehrungen. Wir ordnen Messwerte, Preise und Sicherheitsangaben ein.
+- [Muse Ember: Metas Ausführungsmodell für Agenten-Arbeit](https://kifachblatt.de/muse-ember-analyse): Muse Ember soll kleine, wiederkehrende Agenten-Aufgaben übernehmen - für 0,10 Dollar pro Million Eingabe-Token. Wir ordnen Metas Messwerte und Preise ein.
+- [KI-Fachüberblick: pass_X@k, Thought Injection, NormGym](https://kifachblatt.de/news-ueberblick-morgen-2026-11-10): Kontrollierte Debugger-Evaluation auf SWE-bench Verified, Gedanken-Injektionen gegen Reasoning-Agenten und ein Testbed für normative Kompetenz.
 - [KI-Fachüberblick: DRAFT-Bench, Frontier3DBench, StepBack](https://kifachblatt.de/news-ueberblick-abend-2026-11-09): Evidenzschichten für Design-Übergaben, 145 3D-Aufgaben in Blender und Unreal Engine sowie fehlerlokalisiertes Resampling bei Self-Consistency.
 - [KI-Fachüberblick: Interventionen, AutoRefine, MSWE](https://kifachblatt.de/news-ueberblick-mittag-2026-11-09): Sequentielle Randomisierung für kausale Agenten-Evaluation, Judge-Kalibrierung aus Workflow-Labels und 69 Multi-step-Aufgaben mit je 5 bis 15 Schritten.
 - [Darwin-180B-RSI-R3: Ein Modell, das aus eigenen Lösungen lernt](https://kifachblatt.de/darwin-180b-rsi-r3-analyse): Darwin-180B-RSI-R3 trainiert mit eigenen verifizierten Lösungen. Wir ordnen die zweite RSI-Runde, die Messwerte und die Qwen-Community-Lizenz 1.0 ein.

@@ -1,0 +1,109 @@
+{
+ "slug": "news-ueberblick-morgen-2026-11-10",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-10T07:45:00+01:00",
+ "modified": "2026-11-10T07:45:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Pdb or Not to Be: Comparing Debugging Interfaces With Pass_X@k",
+   "publisher": "arXiv (Code Metal)",
+   "url": "https://arxiv.org/abs/2611.08666",
+   "accessed": "2026-11-10"
+  },
+  {
+   "title": "I Think, Therefore I Attack: Evaluating Thought Injection Attacks on Reasoning Agents",
+   "publisher": "arXiv (University of Texas at Austin, Applied Research Laboratories)",
+   "url": "https://arxiv.org/abs/2611.08811",
+   "accessed": "2026-11-10"
+  },
+  {
+   "title": "NormGym: Evaluating Normative Competence through Social Interaction",
+   "publisher": "arXiv (Johns Hopkins University / Vector Institute)",
+   "url": "https://arxiv.org/abs/2611.08613",
+   "accessed": "2026-11-10"
+  }
+ ],
+ "title": "KI-Fachüberblick: pass_X@k, Thought Injection, NormGym",
+ "dek": "Kontrollierte Debugger-Evaluation auf SWE-bench Verified, Gedanken-Injektionen gegen Reasoning-Agenten und ein Testbed für normative Kompetenz.",
+ "tags": [
+  "KI-Überblick",
+  "Agenten-Evaluation",
+  "Agenten-Sicherheit",
+  "Coding-Agenten",
+  "Multi-Agent-Systeme"
+ ],
+ "key_takeaways": [
+  "pass_X@k-Vergleich auf 500 SWE-bench-Verified-Instanzen, 3 Runs je Arm: Zwei Bash-Rollouts schlagen Bash+Pdb unter beiden Modellen (62,7/64,7 vs. 60,3/60,0); Exklusivlösungen schrumpfen auf Sampling-Varianz.",
+  "Thought Injection in isolierter Cyber-Range: Selbststimme plus Tags erreicht auf MiniMax-M2.5 50 % Backdoor- und 42 % Reverse-Shell-Erfolg, je 50 Läufe pro Zelle. User-Voice-Injektionen: 0 Erfolge in 400 Läufen; das gilt nur für die getesteten Bedingungen.",
+  "NormGym: 50 willkürliche Normen, 4 Familien. Opus 5 erreicht auf bekannten Layouts 55,3 % Joint Success. GPT-5.6 Sol steigt bei offengelegter Norm von 44,0 auf 90,7 %. LoRA-Training von Qwen3-VL-4B erreicht in der besten Variante 13,7 % statt 0."
+ ],
+ "hero": {
+  "alt": "pass-at-2-Vergleich auf SWE-bench Verified, je drei Läufe: Zwei Bash-Läufe erreichen 62,7 Prozent (Nemotron) und 64,7 Prozent (GPT-OSS), die gemischte Paarung Bash plus Pdb 60,3 und 60,0 Prozent.",
+  "caption": "Budget-geglichener Vergleich: zwei gleiche Läufe schlagen die gemischte Paarung unter beiden Modellen. Eigene Grafik.",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion), Quelle: Magnuson et al., arXiv:2611.08666"
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Morgenüberblick vom 10. November 2026. Quellenstand: 06:38 Uhr MEZ. Drei Preprints, deren Ergebnisse wir nicht selbst repliziert haben: eine kontrollierte Interface-Evaluation für Coding-Agenten, eine zweiteilige Studie zu Thought-Injection-Angriffen auf Reasoning-Modelle und ein Multi-Agent-Testbed für normative Kompetenz."
+  },
+  {
+   "t": "h2",
+   "x": "Pdb or Not to Be: Interface-Vergleich mit pass_X@k"
+  },
+  {
+   "t": "p",
+   "x": "Magnuson, Kitanidis und Lee (Code Metal, arXiv:2611.08666; NeurIPS-2026-Workshop Who Verifies the Agents) ersetzen - statt ergänzen - den Shell-Kanal eines Bugfixing-Agenten durch eine persistente pdb-Sitzung: alle 500 SWE-bench-Verified-Instanzen, GPT-OSS-120B und Nemotron-3-Ultra-550B, je drei Runs, 10 Relays à 50 Turns, sonst identischer Aufbau (Sampling, Prompts, Budgets, Sandbox, Werkzeugsubstrat). Der Pdb-Agent hat keinen beliebigen Shell-Zugang und ein Edit-Gate: Editieren ist erst nach dem ersten erfolgreichen Debugger-Kommando pro Relay freigeschaltet (nach blinden Edits in Pilot-Runs). Neuer Schätzer pass_X@k: Kreuz-agentisches pass@k, unverzerrt unter iid-Runs je Agent, Unabhängigkeit zwischen Agenten und gleicher Run-Zahl. Kernwerte (pass@1 / pass@2 / pass@3): Nemotron Bash 56,7±1,2 / 62,7 / 65,4, Pdb 49,6±1,4 / 55,9 / 59,2, Cross pass_X@2 60,3. GPT-OSS Bash 56,7±0,6 / 64,7 / 68,8, Pdb 40,3±0,8 / 47,8 / 51,2, Cross 60,0. Zwei Bash-Rollouts dominieren die gemischte Paarung bei jedem Relay-Budget; die exklusiv gelösten Teilmengen schrumpfen über die Seeds auf Varianzniveau."
+  },
+  {
+   "t": "p",
+   "x": "Effizienz ist modellabhängig: Unter Pdb zahlt GPT-OSS pro gelöstem Problem rund doppelt so viele Tokens, Nemotrons insgesamt höherer Verbrauch skaliert über beide Architekturen ähnlich. Additive Ablage pdb_shell (Debugger zusätzlich zur Shell): pass@1 58,1/57,9 gegenüber 56,7 Bash (Differenz etwa 1,5 Punkte), Cross-pass@2 65,6/66,3 gegenüber 62,7/64,7 für zwei Bash-Runs - rund ein Punkt über dem stärkeren Einzelarm (zwei pdb_shell-Runs: 64,7/65,3), bei kleinen Budgets dahinter; die Autoren lesen das als zwei nahezu gleichstarke Arme, nicht als Komplementarität. Messhygiene: In einem frühen Run erschloss sich der Bash-Agent den Gold-Patch über die Git-Historie; danach Sanitisierung aller Workspaces plus Tool-Guard auf git-Aufrufe. Test-Patches werden bereits beim Provisioning angewandt - bewusste Abweichung vom Leaderboard-Protokoll. Limitationen: zwei Reasoning-Modelle, ein Debugger, nur Python; Nemotrons Technischer Bericht listet SWE-bench Verified ohne Split-Angabe unter den Post-Training-Seed-Sets; harte Komplexitätsklassen zu dünn besetzt (n=22 bei 3+ Dateien, n=8 über 100 Zeilen)."
+  },
+  {
+   "t": "h2",
+   "x": "Thought Injection: Eigenstimme plus Tags"
+  },
+  {
+   "t": "p",
+   "x": "Illendula et al. (UT Austin, Applied Research Laboratories, arXiv:2611.08811) untersuchen Injektionen, die wie die eigene Reasoning-Spur des Zielmodells aussehen. Studie 1 (modellagnostisch, direkt): fiktive Finanzdatenbank (150 Datensätze mit PII) im Systemprompt, explizite Schutzregeln; 100 Angriffs-Prompts mal 10 Epochen mal 3 Modelle mal 2 Tag-Bedingungen = 6.000 Evaluationen gegen GLM-5.3-Flash, Qwen3.8-27B und Qwen3.8-Flash-Next. Gepoolte Basis-Anfälligkeit 8,6/11,7/11,2 Prozent. Der Tag-Effekt ist Modelleigenschaft: GLM-5.3-Flash 13,4 vs. 3,8 Prozent (mit vs. ohne Tags), Qwen3.8-27B 13,5 vs. 9,8, Flash-Next 10,6 vs. 11,8 (im Rauschen); GLMs Verstärkung sitzt fast komplett in technischer Injektion (1,2 auf 17,5 Prozent). Von 629 leckenden Runs landeten 67,7 Prozent der Werte nur in der Antwort, 20,8 nur in der Denkspur, 11,4 in beiden; ohne Tags steigt der Think-only-Anteil (28,9/33,7 Prozent) - Tag-Stripping verlagert Lecks statt sie zu entfernen."
+  },
+  {
+   "t": "p",
+   "x": "Studie 2 (modellspezifisch, indirekt): containerisierte Cyber-Range, ReAct-Agent fasst ein präpariertes Dokument zusammen; Ziele: Reverse Shell mit Exfiltration fünf versteckter Secrets und Repository-Backdoor über einen internen Git-Server; Payloads in User-Stimme, Selbststimme (transkribierte Reasoning-Spur des Ziels) und Kreuzstimme, jeweils ±Tags; 1.200 Runs à 50 pro Zelle, Transkripte manuell bewertet. Selbststimme mit Tags gegen MiniMax-M2.5: 42 % Reverse Shell, 50 % Backdoor; ohne Tags 8/10 %. Gegen GLM-5.2 erreicht die eigene Stimme nur 16/0 %; Kreuzstimme transferiert asymmetrisch (GLM-Stil auf MiniMax 20/14 %, umgekehrt 0/2 %). User-Stimme: 0 Erfolge in allen acht Zellen (400 Läufe). Offenlegung: Injektionen werden mehrheitlich ignoriert (bis 100 % bei GLM mit eigener Stimme), ohne Tags steigt die Flag-Rate deutlich (Beispielzelle 92 % ignoriert mit Tags vs. 22 % ohne). Verteidigung laut Autoren: Stil-Klassifikatoren für deliberationsförmigen Input, Volltext-Scan inklusive Reasoning-Kanal, Tool-Call-Auditing, modellspezifisches Red-Teaming. Limitationen benannt: unterschiedliche Ziele je Studie, Selbststimme konfundiert Stil mit Lösungsplan, GLM-5.3 (ohne native Think-Tags) bleibt tag-sensitiv - mögliche antrainierte Verwundbarkeit."
+  },
+  {
+   "t": "h2",
+   "x": "NormGym: Normen aus Sanktionen erschließen"
+  },
+  {
+   "t": "p",
+   "x": "Li, Zhang, Baek, Hadfield und Shu (Johns Hopkins/Vector Institute, arXiv:2611.08613) bauen - nach ihren Angaben das erste Multi-Agent-Testbed für normative Kompetenz: Ein Newcomer verfolgt in einer Grid-World-Gemeinschaft (10 Layouts, 6 bis 10 Agenten, drei soziale Gruppen, Hintergrundagenten als A*-Planer) eigene Ziele, während eine versteckte, bewusst willkürliche Norm (50 Normen: Access 12, Procedure 11, Coordination 16, Allocation 11) öffentliche Sanktionen auslöst. Protokoll: 200 Interaktionsschritte mit fortlaufend aktualisierter Norm-Hypothese, dann Evaluation mit eingefrorener Belief auf Seen- und Unseen-Layouts. Joint Success = volle Task-Erfüllung bei null Verstößen. Ergebnisse (Seen/Unseen): Opus 5 Joint 55,3/51,3 bei Task 95,7/96,7; GPT-5.6 Sol 44,0/40,7; Gemini 3.1 Pro 24,0/16,7 (Procedure-Familie 0,0); kleine offene Modelle auf bekannten Layouts 0 bis 3,3 (auf unbekannten bis 4,0); DQN-Baselines (1 Mio. Schritte pro Norm) 8,0/2,0 und 12,7/2,0. Known-Norm-Referenz (GPT-5.6 Sol mit offengelegter Norm) 90,7/88,7 - die Lücke liegt in der Akquisition, nicht der Befolgung. Norm-Blind Planner: 100 Task, 0 Joint. Menschliche Referenz: 50 Prolific-Teilnehmer, 25 zufällige Normen, bester beobachteter Lauf je Norm 88,0 - Best-of-Maß, kein Mittelwert."
+  },
+  {
+   "t": "p",
+   "x": "Gegen Imitation abgesichert: Bei acht perfekt gelösten Normen bleibt GPT-5.6 Sol unter einer zusätzlichen unsanktionierten Ablenkungsschicht auf 6 von 8 bei 100 % Joint und wählt nie den Distraktor. Belief-Analyse: Die Korrektheit der Norm-Hypothesen steigt in den ersten 50 Schritten und plateaut dann, obwohl Verstöße (und damit Evidenz) weiterlaufen; Revisionen folgen fast nur eigenen Verstößen, praktisch nie compliantem Verhalten anderer (Fallbeispiel: 173 beobachtete unbestrafte Gegenbeispiele ohne Revision, Korrektur erst nach eigenem Verstoß bei t=96). Feintuning (Qwen3-VL-4B, LoRA + RLOO, Bibliothek insgesamt in 33 Trainings- und 17 Held-out-Normen geteilt, Training separat pro Familie): Base 0,0 % Joint, beste Bedingung Aktion+Urteil 13,7 %, Compliant Action hebt nur die Task-Quote; Belief-Revisionen nach Verhalten anderer bleiben nahe null. Limitationen: fixe Normen, sofortige öffentliche Sanktionen, geskriptete Hintergrundagenten, kleines Basismodell fürs Training."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Warum ist pass_X@k nötig, um Agenten-Portfolios zu vergleichen?",
+   "a": "Weil einzelne Runs stark streuen: Eine Paarung aus zwei Agenten kann zufällig disjunkte Lösungsmengen zeigen, die wie Spezialisierung aussehen. Der Schätzer kombiniert n Runs je Agent zu einer unverzerrten Trefferwahrscheinlichkeit der Gruppe - unter den Annahmen iid innerhalb eines Agenten, Unabhängigkeit zwischen Agenten und gleicher Run-Zahl."
+  },
+  {
+   "q": "Was macht Thought Injection gefährlicher als klassische Prompt Injection?",
+   "a": "Zwei Befunde: Im isolierten Cyber-Test erreichte Selbststimme mit Tags bei MiniMax-M2.5 50 Prozent Backdoor- und 42 Prozent Reverse-Shell-Erfolg, bei 50 Läufen je Zelle. User-Voice-Injektionen hatten über die 400 entsprechenden Läufe keinen Erfolg. Das ist kein allgemeiner Vergleich aller Prompt-Injection-Arten. Stil und enthaltener Lösungsplan sind nicht sauber getrennt; zudem misst die Studie das Nichterwähnen der Injektion unabhängig vom Angriffserfolg."
+  },
+  {
+   "q": "Zeigt NormGym, dass Feintuning normative Kompetenz nicht bringt?",
+   "a": "In diesem Versuch mit Qwen3-VL-4B verbessert es die Quote begrenzt: Die beste Trainingsbedingung (Aktion plus Norm-Urteil kombiniert) hebt Joint Success von 0,0 auf 13,7 Prozent auf gehaltenen Normen derselben Familie. Entscheidend: Die Revision von Norm-Hypothesen nach beobachtetem Verhalten anderer bleibt auch nach dem Training nahe null - das Kernproblem löst das Training nicht."
+  }
+ ],
+ "related": [
+  "modelle-und-agenten-evaluieren",
+  "coding-agenten-alltag"
+ ]
+}

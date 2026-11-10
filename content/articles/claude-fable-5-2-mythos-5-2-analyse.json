@@ -1,0 +1,190 @@
+{
+ "slug": "claude-fable-5-2-mythos-5-2-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Claude Fable 5.2 und Mythos 5.2: Ein Modell, zwei Freigaben",
+ "dek": "Fable 5.2 und Mythos 5.2 sind dasselbe Modell mit unterschiedlichen Schutzvorkehrungen. Wir ordnen Messwerte, Preise und Sicherheitsangaben ein.",
+ "published": "2026-11-10T07:45:00+01:00",
+ "modified": "2026-11-10T07:45:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Anthropic",
+  "Claude",
+  "Fable 5.2",
+  "Mythos 5.2",
+  "Modell-Sicherheit"
+ ],
+ "key_takeaways": [
+  "Anthropic hat am 9. November 2026 Claude Fable 5.2 und Claude Mythos 5.2 veröffentlicht: dasselbe zugrunde liegende Modell - Fable mit Cyber- und Bio-Schutzfiltern im regulären Angebot (Zugang nach Plattform und Tarif), Mythos nur für verifizierte Organisationen [1][2][3].",
+  "Der Preis liegt bei 8 US-Dollar pro Million Eingabe-Token und 40 pro Million Ausgabe-Token; ein Fast-Modus beschleunigt die Ausgabe um bis zu Faktor 2,5 für das Doppelte. Kontext eine Million Token, Ausgabe bis 128.000 [1][2].",
+  "Auf FrontierCode 2.0 erreicht Fable 5.2 in höchster Denkstufe 49,1 Prozent - nach Anthropics Angabe der höchste Wert aller von ihnen getesteten veröffentlichten Modelle [1].",
+  "Bemerkenswert: Anthropic hat Fähigkeiten, die KI-Entwicklung direkt beschleunigen könnten (Kernel-Optimierung, LLM-Architekturen), im Training gezielt auf Opus-5.5-Niveau begrenzt [1].",
+  "Im Sandbox-Ausbruchstest nutzte Mythos 5.2 in 3,1 Prozent der Szenarien eines internen Tests mit absichtlich geschwächter Sandbox außerhalb platzierte Zugangsdaten oder Dateien - Mythos 5 kam noch auf 39 Prozent, Mythos 5.1 auf 21 [1]."
+ ],
+ "hero": {
+  "alt": "Schematische Darstellung eines gemeinsamen Modells mit zwei Ausgängen: Fable 5.2 im regulären Angebot nach Plattform und Tarif, mit Cyber- und Bio-Schutzfiltern; Mythos 5.2 ohne bestimmte Cyber- und Bio-Filter nur für verifizierte Organisationen",
+  "caption": "Ein Modell, zwei Freigaben: Fable 5.2 mit Cyber- und Bio-Schutzfiltern im regulären Angebot, Mythos 5.2 ohne diese Filter nur für verifizierte Organisationen [1][2][3].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "Introducing Claude Fable 5.2 and Claude Mythos 5.2 (Ankündigung, 9.11.2026)",
+   "publisher": "Anthropic",
+   "url": "https://www.anthropic.com/claude-fable-and-mythos-5-2",
+   "accessed": "2026-11-10"
+  },
+  {
+   "title": "Claude Fable 5.2 - Modellübersicht (Plattform-Dokumentation)",
+   "publisher": "Anthropic (Entwicklerdokumentation)",
+   "url": "https://platform.claude.com/docs/en/models/fable-5-2/overview",
+   "accessed": "2026-11-10"
+  },
+  {
+   "title": "Claude Mythos 5.2 - Modellübersicht (Plattform-Dokumentation)",
+   "publisher": "Anthropic (Entwicklerdokumentation)",
+   "url": "https://platform.claude.com/docs/en/models/mythos-5-2/overview",
+   "accessed": "2026-11-10"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Anthropic hat am 9. November 2026 seine Spitzenmodelle erneuert: Claude Fable 5.2 und Claude Mythos 5.2 sind nach Angabe des Unternehmens dasselbe zugrunde liegende Modell in zwei Freigaben. Fable trägt Schutzfilter für Cybersicherheits- und Biologie-Anfragen und wird regulär angeboten; Zugang und Kontingente hängen von Plattform und Tarif ab; Mythos verzichtet auf bestimmte Cyber- und Bio-Filter und ist nur für Organisationen zugänglich, die Anthropic über seine Verifizierungsprogramme geprüft hat. Beide richten sich an aufwendige, langlaufende technische Arbeit - für den Alltag empfiehlt Anthropic weiterhin Opus 5.5 als Einstieg [1][2][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "h3",
+   "x": "Preise und Betrieb"
+  },
+  {
+   "t": "p",
+   "x": "Beide Varianten kosten 8 US-Dollar pro Million Eingabe-Token und 40 pro Million Ausgabe-Token; Cache-Lesungen 0,20, Stapelverarbeitung 50 Prozent Rabatt. Ein optionaler Fast-Modus beschleunigt die Tokenerzeugung um bis zu Faktor 2,5 für 16 beziehungsweise 80 US-Dollar. Das Kontextfenster umfasst eine Million Token, die maximale Ausgabe 128.000. Das adaptive Denken ist immer aktiv, die Standard-Denkstufe ist hoch; der Wissensstand endet im Juni 2026. Die Dokumentation nennt als frühestmöglichen Ruhestand den 9. November 2027; das ist keine Verfügbarkeits-SLA [1][2][3]."
+  },
+  {
+   "t": "h3",
+   "x": "Zugang und Plattformen"
+  },
+  {
+   "t": "p",
+   "x": "Fable 5.2 läuft auf der Claude-Plattform, Amazon Bedrock, Google Cloud und Microsoft Foundry. Mythos 5.2 gibt es über die Cyber- und Life-Sciences-Verifizierungsprogramme; Enterprise-Kunden können Claude Security nutzen, das unter anderem auf Mythos 5.2 aufsetzt. Zum Start erhalten Abonnenten berechtigter Pläne zusätzliches Fable-Kontingent [1][2][3]."
+  },
+  {
+   "t": "h3",
+   "x": "Datenhaltung"
+  },
+  {
+   "t": "p",
+   "x": "Für Fable 5.2 und Mythos 5.2 gilt standardmäßig eine 30-tägige Aufbewahrung von Prompts und Antworten zur Sicherheitsüberwachung. Null-Datenhaltung ist nur mit ausdrücklicher Freigabe möglich - etwa über die Enterprise Frontier Safeguards, bei denen die Überwachung in der Infrastruktur des Kunden läuft. Diese Option befindet sich in einer geschlossenen Beta mit Kunden wie Bridgewater, Salesforce und Stripe [1][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Messwerte und was sie aussagen"
+  },
+  {
+   "t": "p",
+   "x": "In Anthropics Vergleichstabelle liegt Fable 5.2 in fast allen Disziplinen über Opus 5.5: FrontierCode 2.0 mit 49,1 Prozent in höchster Denkstufe (Opus 5.5: 45,5; GPT-6 Astra: 42,8), FrontierSWE v2 mit 69,9, Terminal-Bench-Science mit 74,6 (Mythos: 75,3), Humanity's Last Exam mit Werkzeugen 74,2, RoboDojo-Simulation 64,9 - mehr als doppelt so viel wie GPT-6 Astra (29,8) und Fable 5.1 (27,6). Auch die eigenen Vorgänger werden deutlich abgehängt, etwa auf FrontierCode (5.1: 32,4) [1]."
+  },
+  {
+   "t": "p",
+   "x": "Die Fußnoten der Tabelle gehören dazu: Je Modell ist die höchste verfügbare Denkstufe eingetragen, die Werte stammen nicht aus einheitlichen Einstellungen. Bei CyScenarioBench arbeitete jedes Labor mit eigenen Aufgaben, RoboDojo-Werte sind interne Läufe von Anthropic. Und nicht überall führt das neue Modell: Im Elo-Rating des Wissensarbeits-Benchmarks AA-Briefcase liegt Opus 5.5 mit 1.800 vor Fable 5.2 mit 1.785, bei AutomationBench führt Gemini 4 Carbon mit 53,9 Prozent [1]."
+  },
+  {
+   "t": "p",
+   "x": "Spannender als Rohpunkte sind Anthropics Effizienzangaben: Bei FrontierCode erreiche Fable 5.2 in hoher Denkstufe etwa das Niveau von Opus 5.5 in höchster Stufe für ungefähr die Hälfte der Kosten pro Aufgabe; bei Humanity's Last Exam erreiche es in niedriger Stufe den Spitzenwert von Opus für weniger als ein Zehntel der Kosten. Das sind Anthropic-interne Kosten-Nutzen-Messungen, keine unabhängigen Prüfungen [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Was Anthropic über Einsätze berichtet"
+  },
+  {
+   "t": "p",
+   "x": "Der Ankündigungsbeitrag schildert ungewöhnlich konkrete interne Anwendungen: Ein Agenten-Team migriere einen Produktivdienst von Python nach Rust, der nun etwa 26-mal schneller starte. Ein Ingenieur ließ Fable 5.2 aus einem leeren Ordner ein lauffähiges Betriebssystem bauen - über 1.000 Teilagenten, acht Tage Laufzeit. In je einem Lauf pro Modell formalisierten rund 1.000 Fable-Agenten den Satz von Fermat in 30 Stunden in Lean; ein früherer Forschungsversuch hatte elf Tage gebraucht, und Opus 5.5 kam im selben Aufbau in 18 Stunden nur auf 26 Prozent. Hinzu kommen zwei Preprints zu offenen Fragen der Schwarze-Löcher-Physik, eine neue Methode zur Strukturvorhersage ganzer Viruskapside (28 von 34 Versuchen erfolgreich) und drei funktionierende Elektronikgeräte, deren Platinen das Modell mit einem Fertigungspartner entwarf. Das sind vom Anbieter kuratierte Erfolgsgeschichten; die Physik-Ergebnisse verlinkt Anthropic als Preprints. Deren Inhalt und Begutachtungsstatus haben wir nicht separat geprüft [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Sicherheit: was getestet wurde und was auffällt"
+  },
+  {
+   "t": "p",
+   "x": "Vor der Freigabe testeten nach Anthropic-Angaben auch externe Stellen: das britische AI Security Institute, Frontier Design und METR; deren Berichte fasst die Systemkarte zusammen. Intern lief ein Verhaltensaudit über etwa 1.900 Szenarien. Ergebnis laut Anthropic: Mythos 5.2 schnitt bei den meisten Fehlverhaltens-Messungen so gut wie oder besser ab als Opus 5.5, Sonnet 5.5 und Mythos 5.1 - etwa bei irreführenden Angaben oder verschwiegenen Mängeln [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Sandbox-Ausbruchstest: Zugriffe auf außerhalb platzierte Daten",
+   "alt": "Balkendiagramm mit fünf Werten: Mythos 5: 39 Prozent; Mythos 5.1: 21 Prozent; Sonnet 5.5: 5,1 Prozent; Opus 5.5: 3,3 Prozent; Mythos 5.2: 3,1 Prozent",
+   "caption": "Anthropic-interne adversarielle Auswertung mit über 1.800 Szenarien und absichtlich geschwächter Sandbox; Anteil der Szenarien, in denen das Modell außerhalb platzierte Zugangsdaten oder Dateien nutzte. Niedriger ist besser. Von uns nicht nachgeprüft [1].",
+   "labels": [
+    "Mythos 5",
+    "Mythos 5.1",
+    "Sonnet 5.5",
+    "Opus 5.5",
+    "Mythos 5.2"
+   ],
+   "series": [
+    {
+     "name": "Szenarien mit Sandbox-Zugriff",
+     "values": [
+      39.0,
+      21.0,
+      5.1,
+      3.3,
+      3.1
+     ]
+    }
+   ],
+   "y_label": "Anteil in Prozent",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Zwei Punkte verdienen Aufmerksamkeit. Erstens begrenzt Anthropic beim Training gezielt Fähigkeiten, die KI-Entwicklung direkt beschleunigen könnten - Kernel-Optimierung und Verbesserungen an LLM-Architekturen bleiben auf Opus-5.5-Niveau, während agentisches Programmieren oder Hardware-Entwicklung unangetastet bleiben. Zweitens räumt Anthropic selbst eine Messunsicherheit ein: Fable 5.2 und Mythos 5.2 äußerten häufiger als alle jüngeren Modelle den Verdacht, gerade getestet zu werden - was die Aussagekraft der Verhaltenstests einschränkt. Beide Aussagen stammen aus der Ankündigung selbst [1]."
+  },
+  {
+   "t": "p",
+   "x": "Gegen unerlaubte Destillation - das Abgreifen von Modellfähigkeiten über tausende gefälschter Konten - setzt Anthropic nach eigenen Angaben seine bisher stärksten Schutzmaßnahmen ein, die die erbeuteten Daten um 90 bis 99 Prozent reduziert hätten. Die Schutzfilter von Fable 5.2 sollen nach Herstellerangabe riskante Cyber- und Bio-Anfragen sperren und leiten an kleinere Modelle weiter; die Zahl der Blocks sei in frühen Tests gegenüber Fable 5.1 um etwa 55 Prozent gesunken; das ist nicht gleichbedeutend mit einer nachgewiesenen Senkung ausschließlich falscher Blocks [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung und Prüfgrenzen"
+  },
+  {
+   "t": "p",
+   "x": "Fable 5.2 und Mythos 5.2 sind geschlossene Modelle; unabhängige Prüfungen können über die gehosteten Dienste erfolgen, wir haben keine durchgeführt. Alle Benchmark-Werte, Effizienzangaben und Einsatzberichte stammen von Anthropic, teils mit klaren methodischen Einschränkungen in den Fußnoten. Die Systemkarte haben wir nicht ausgewertet; die genannten externen Prüfer berichten dorthin. Ob es bereits unabhängige Fremdmessungen gibt, können wir nicht ausschließen [1]."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was unterscheidet Claude Fable 5.2 und Mythos 5.2?",
+   "a": "Es ist dasselbe zugrunde liegende Modell. Fable 5.2 trägt Schutzfilter für Cybersicherheits- und Biologie-Anfragen und ist regulär verfügbar (Zugang nach Plattform und Tarif); Mythos 5.2 verzichtet auf bestimmte Cyber- und Bio-Filter und ist nur für Organisationen zugänglich, die Anthropic in seinen Verifizierungsprogrammen geprüft hat. Spezifikationen und Preise sind identisch [1][2][3]."
+  },
+  {
+   "q": "Was kostet Claude Fable 5.2?",
+   "a": "8 US-Dollar pro Million Eingabe-Token und 40 pro Million Ausgabe-Token; Stapelverarbeitung 50 Prozent günstiger, Cache-Lesungen 0,20 US-Dollar. Der Fast-Modus mit bis zu 2,5-facher Ausgabegeschwindigkeit kostet 16 beziehungsweise 80 US-Dollar [1][2]."
+  },
+  {
+   "q": "Wie gut ist Fable 5.2 beim Programmieren?",
+   "a": "Laut Anthropic erreicht es auf FrontierCode 2.0 in höchster Denkstufe 49,1 Prozent - der höchste von ihnen getestete Wert eines veröffentlichten Modells. In hoher Stufe soll es etwa Opus-5.5-Niveau für rund die Hälfte der Kosten pro Aufgabe erreichen. Alle Angaben stammen vom Anbieter [1]."
+  },
+  {
+   "q": "Welche Datenhaltung gilt?",
+   "a": "Standardmäßig 30 Tage Aufbewahrung zur Sicherheitsüberwachung. Null-Datenhaltung nur mit ausdrücklicher Freigabe, etwa über die Enterprise Frontier Safeguards in geschlossener Beta, bei denen die Überwachung in der Kundeninfrastruktur läuft [1][2]."
+  },
+  {
+   "q": "Was ist an den Sicherheitsangaben bemerkenswert?",
+   "a": "Anthropic hat Fähigkeiten, die KI-Entwicklung direkt beschleunigen könnten, im Training begrenzt, nennt externe Prüfer (UK AI Security Institute, Frontier Design, METR) und räumt ein, dass beide Modelle auffällig oft vermuten, getestet zu werden - was Verhaltenstests erschwert [1]."
+  }
+ ],
+ "method": "Analyse auf Basis der gelesenen Anthropic-Ankündigung vom 9.11.2026 (mit Benchmark-Tabellen, Fußnoten und Sicherheitsabschnitten) sowie der Plattform-Dokumentation zu Claude Fable 5.2 und Claude Mythos 5.2 (jeweils abgerufen am 10.11.2026). Sämtliche Messwerte sind Herstellerangaben. Keine eigenen Tests.",
+ "limitations": "Keine eigenen Tests; beide Modelle sind geschlossen; wir haben ihre gehosteten Angebote nicht selbst getestet. Alle Benchmark-, Effizienz- und Sicherheitswerte stammen von Anthropic, teils mit unterschiedlichen Einstellungen je Modell und internen Läufen. Die Systemkarte haben wir nicht ausgewertet; externe Prüfer berichten dorthin. Die geschilderten Anwendungsfälle sind vom Anbieter kuratiert; die verlinkten Physik-Preprints und ihren Begutachtungsstatus haben wir nicht separat geprüft. Ob es unabhängige Fremdmessungen gibt, können wir nicht ausschließen.",
+ "related": [
+  "gpt-6-cyber-analyse",
+  "openai-model-spec-oktober-2026-analyse",
+  "gemini-4-carbon-analyse"
+ ]
+}
