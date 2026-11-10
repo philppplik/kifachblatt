@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KI-Fachüberblick: Kollusions-Sonden, Introspektion, bf16-Cache](https://kifachblatt.de/news-ueberblick-abend-2026-11-10): Drei Messfallen bei Kollusions-Monitoren, ein Schmerzzustand ohne Selbstbericht und bf16-Rundungsbias, der Reasoning in die Länge zieht.
 - [KI-Fachüberblick: Fehler-Benchmark, Deletion Tuning, Pushback](https://kifachblatt.de/news-ueberblick-mittag-2026-11-10): Ein Benchmark mit 100 versteckten Fehlern für KI-Begutachtung, Nachtraining durch Gewichtslöschen und die Rolle der Antwortlänge bei Sykophantie.
 - [Claude Fable 5.2 und Mythos 5.2: Ein Modell, zwei Freigaben](https://kifachblatt.de/claude-fable-5-2-mythos-5-2-analyse): Fable 5.2 und Mythos 5.2 sind dasselbe Modell mit unterschiedlichen Schutzvorkehrungen. Wir ordnen Messwerte, Preise und Sicherheitsangaben ein.
 - [Muse Ember: Metas Ausführungsmodell für Agenten-Arbeit](https://kifachblatt.de/muse-ember-analyse): Muse Ember soll kleine, wiederkehrende Agenten-Aufgaben übernehmen - für 0,10 Dollar pro Million Eingabe-Token. Wir ordnen Metas Messwerte und Preise ein.
