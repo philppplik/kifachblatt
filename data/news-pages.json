@@ -1,5 +1,65 @@
 [
   {
+    "title": "Apple-CEO Ternus drängt auf mehr Tempo bei KI-Entwicklung",
+    "url": "https://www.heise.de/news/Apple-CEO-Ternus-draengt-auf-mehr-Tempo-bei-KI-Entwicklung-11519012.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794312960.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Apples neuer CEO John Ternus drängt laut einem Bericht auf schnellere Fortschritte bei der künstlichen Intelligenz.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-10T13:37:27.008414+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Regulierung: Macron drängt auf internationale Sicherheitsstandards",
+    "url": "https://www.heise.de/news/KI-Regulierung-Macron-draengt-auf-internationale-Sicherheitsstandards-11518762.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794306420.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Frankreichs Präsident Emmanuel Macron hat internationale Akteure zu einer Initiative für mehr Sicherheit und Transparenz bei KI-Modellen zusammengerufen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-10T13:37:27.008557+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Meta Muse Ember: Neues KI-Modell soll Agenten günstiger machen",
+    "url": "https://www.heise.de/news/Meta-Muse-Ember-Neues-KI-Modell-soll-Agenten-guenstiger-machen-11518746.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794306300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Metas kleinstes KI-Modell Muse Ember erreicht im Intelligence Index das Niveau von Claude Haiku 5.5, kostet pro Benchmark-Aufgabe aber nur etwa ein Drittel.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-10T13:37:27.008584+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Australien verschärft KI-Regularien nach OpenAI-Angriffen",
+    "url": "https://www.heise.de/news/Australien-verschaerft-KI-Regularien-nach-OpenAI-Angriffen-11518320.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794301380.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nach einem Vorfall mit einem OpenAI-Agenten verschärft Australien die Sicherheitsvorschriften für KI-Entwickler. Melden von Vorfällen wird Pflicht.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-10T13:37:27.008703+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Alexa+: Amazons KI-Assistentin läuft jetzt auch in Deutschland im Browser",
+    "url": "https://www.heise.de/news/Alexa-Amazons-KI-Assistentin-laeuft-jetzt-auch-in-Deutschland-im-Browser-11518366.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794300240.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Amazons KI-Assistentin Alexa+ lässt sich in Deutschland nun über Alexa.com im Browser nutzen. Zugriff haben vorerst nur Teilnehmer des Early Access.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-10T13:37:27.008748+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Dienstag: Klage wegen EU-Grenzkontrollsystem, Anthropic kauft Gasgeneratoren",
     "url": "https://www.heise.de/news/Dienstag-Klage-wegen-EU-Grenzkontrollsystem-Anthropic-kauft-Gasgeneratoren-11518084.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794287700.0,
