@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-11</loc><lastmod>2026-11-11T06:44:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-11.jpg</image:loc><image:title>KI-Fachüberblick: Benchmark-Sättigung, Trace-Löschung, Gedächtnis</image:title><image:caption>Datentafel zur Lösch-Messung an drei Modellen: Baichuan-M2-32B fällt von 51,8 auf 0,5 Prozent Erfolgsquote, GLM-Z1-32B bleibt bei 29,3 gegenüber 28,6, R1-Distill-14B steigt von 1,3 auf 5,6; BFCL v4 Multi-Turn, drei Seeds, offizieller Checker.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-10</loc><lastmod>2026-11-10T17:00:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-10.jpg</image:loc><image:title>KI-Fachüberblick: Kollusions-Sonden, Introspektion, bf16-Cache</image:title><image:caption>Datentafel zur bf16-Messung an Qwen3.5-9B: FP32-Zustand 85,6 Prozent Genauigkeit bei 118 Limit-Treffern, bf16 mit Standardrundung 70,8 Prozent bei 223, bf16 mit stochastischer Integer-Hash-Rundung 85,6 Prozent bei 113; 590 Matheaufgaben, 32K-Limit.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-10</loc><lastmod>2026-11-10T11:19:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-10.jpg</image:loc><image:title>KI-Fachüberblick: Fehler-Benchmark, Deletion Tuning, Pushback</image:title><image:caption>Datentafel zur Begutachtungs-Evaluation: bestes Einzelsystem 71 von 100 gefundenen Fehlern, Ensemble aller Systeme 93, sieben unentdeckte Fehler allesamt Weglassungen; Läufe aus März und Juni 2026.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/claude-fable-5-2-mythos-5-2-analyse</loc><lastmod>2026-11-10T07:52:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/claude-fable-5-2-mythos-5-2-analyse.jpg</image:loc><image:title>Claude Fable 5.2 und Mythos 5.2: Ein Modell, zwei Freigaben</image:title><image:caption>Schematische Darstellung eines gemeinsamen Modells mit zwei Ausgängen: Fable 5.2 im regulären Angebot nach Plattform und Tarif, mit Cyber- und Bio-Schutzfiltern; Mythos 5.2 ohne bestimmte Cyber- und Bio-Filter nur für verifizierte Organisationen</image:caption></image:image></url>
@@ -278,7 +279,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-10T07:52:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-10T17:00:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-11T06:44:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-10</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-10</lastmod></url>
