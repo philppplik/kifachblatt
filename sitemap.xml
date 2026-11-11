@@ -109,7 +109,7 @@
 
 
 
-<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-11</loc><lastmod>2026-11-11T16:09:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-11.jpg</image:loc><image:title>GRPO-Belohnungskosten, VLM-Judges, Enthaltung mit Budget</image:title><image:caption>Datentafel zu drei Studien: Tokenkosten dichter Belohnungen in GRPO, Stabilität und Kausalempfindlichkeit von zehn VLM-Gutachtern, Enthaltungsraten unter Verlustbudget null und 0,5 Prozent.</image:caption></image:image></url>
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-11</loc><lastmod>2026-11-11T17:16:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-11.jpg</image:loc><image:title>GRPO-Belohnungskosten, VLM-Judges, Enthaltung mit Budget</image:title><image:caption>Datentafel zu drei Studien: Tokenkosten dichter Belohnungen in GRPO, Stabilität und Kausalempfindlichkeit von zehn VLM-Gutachtern, Enthaltungsraten unter Verlustbudget null und 0,5 Prozent.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-11</loc><lastmod>2026-11-11T11:22:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-11.jpg</image:loc><image:title>KI-Fachüberblick: Agenten kompilieren, Erfahrung steuern, MoE prunen</image:title><image:caption>Datentafel zur ReTrace-Messung: Abschlussquoten, Kosten pro Aufgabe und Aufgabenzeit von Agent und kompiliertem Workflow auf 79 Produktivverfahren sowie tau-2-bench, jeweils mit Messrahmen.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/bielik-11b-v3-1-analyse</loc><lastmod>2026-11-11T07:20:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/bielik-11b-v3-1-analyse.jpg</image:loc><image:title>Bielik 11B v3.1: Offenes Sprachmodell aus Polen wird agentenfähig</image:title><image:caption>Schematische Grafik: Kasten Bielik 11B v3.1 mit drei Zweigen zu den Stichworten 56 Sprachen, Agenten-Werkzeuge und DFlash-Beschleuniger</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/pan-2-weltmodell-analyse</loc><lastmod>2026-11-11T07:20:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/pan-2-weltmodell-analyse.jpg</image:loc><image:title>PAN 2: Offenes Weltmodell simuliert Aktionsfolgen als Video</image:title><image:caption>Schematische Darstellung der PAN-2-Architektur: Ein Sprachmodell erzeugt aus Beobachtung und Aktion einen textbasierten Weltzustand, ein 29B-Diffusionsmodell rendert daraus das simulierte Video</image:caption></image:image></url>
@@ -283,7 +283,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-11T07:20:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-11T16:09:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-11T17:16:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-11</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-11</lastmod></url>
