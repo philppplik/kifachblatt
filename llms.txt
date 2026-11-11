@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [GRPO-Belohnungskosten, VLM-Judges, Enthaltung mit Budget](https://kifachblatt.de/news-ueberblick-abend-2026-11-11): Matched-Compute-Studie zu dichten Belohnungen in GRPO, ein Diagnoseraster für zehn VLM-Gutachter und eine Enthaltungsreparatur mit Verlustbudget null.
 - [KI-Fachüberblick: Agenten kompilieren, Erfahrung steuern, MoE prunen](https://kifachblatt.de/news-ueberblick-mittag-2026-11-11): Agenten-Traces werden Workflows, ein 1,7B-Klassifikator halbiert die Kontrollzeit; MoE-Pruning hält bei 75 Prozent Neuronen 91 bis 98 Prozent Leistung.
 - [Bielik 11B v3.1: Offenes Sprachmodell aus Polen wird agentenfähig](https://kifachblatt.de/bielik-11b-v3-1-analyse): SpeakLeash und ACK Cyfronet AGH haben Bielik 11B v3.1 vorgestellt: 56 Sprachen, Werkzeugaufrufe, Draft-Modell in Aussicht. Wir ordnen die Herstellerangaben ein.
 - [PAN 2: Offenes Weltmodell simuliert Aktionsfolgen als Video](https://kifachblatt.de/pan-2-weltmodell-analyse): IFM veröffentlicht PAN 2 mit Gewichten und Trainingscode für Pretraining und SFT unter Apache 2.0. Was das 29B-Weltmodell kann und wo die Grenzen liegen.
