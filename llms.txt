@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Bielik 11B v3.1: Offenes Sprachmodell aus Polen wird agentenfähig](https://kifachblatt.de/bielik-11b-v3-1-analyse): SpeakLeash und ACK Cyfronet AGH haben Bielik 11B v3.1 vorgestellt: 56 Sprachen, Werkzeugaufrufe, Draft-Modell in Aussicht. Wir ordnen die Herstellerangaben ein.
+- [PAN 2: Offenes Weltmodell simuliert Aktionsfolgen als Video](https://kifachblatt.de/pan-2-weltmodell-analyse): IFM veröffentlicht PAN 2 mit Gewichten und Trainingscode für Pretraining und SFT unter Apache 2.0. Was das 29B-Weltmodell kann und wo die Grenzen liegen.
 - [KI-Fachüberblick: Benchmark-Sättigung, Trace-Löschung, Gedächtnis](https://kifachblatt.de/news-ueberblick-morgen-2026-11-11): Warum Pass/Fail-Bits die Agenten-Spitze nicht mehr ordnen, was das Löschen der Denkhistorie je Modell kostet und wie Quelllinks Gedächtnis-Rückfälle senken.
 - [KI-Fachüberblick: Kollusions-Sonden, Introspektion, bf16-Cache](https://kifachblatt.de/news-ueberblick-abend-2026-11-10): Drei Messfallen bei Kollusions-Monitoren, ein Schmerzzustand ohne Selbstbericht und bf16-Rundungsbias, der Reasoning in die Länge zieht.
 - [KI-Fachüberblick: Fehler-Benchmark, Deletion Tuning, Pushback](https://kifachblatt.de/news-ueberblick-mittag-2026-11-10): Ein Benchmark mit 100 versteckten Fehlern für KI-Begutachtung, Nachtraining durch Gewichtslöschen und die Rolle der Antwortlänge bei Sykophantie.

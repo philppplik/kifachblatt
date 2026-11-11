@@ -1,0 +1,187 @@
+{
+ "slug": "bielik-11b-v3-1-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Bielik 11B v3.1: Offenes Sprachmodell aus Polen wird agentenfähig",
+ "dek": "SpeakLeash und ACK Cyfronet AGH haben Bielik 11B v3.1 vorgestellt: 56 Sprachen, Werkzeugaufrufe, Draft-Modell in Aussicht. Wir ordnen die Herstellerangaben ein.",
+ "published": "2026-11-11T07:16:00+01:00",
+ "modified": "2026-11-11T07:16:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Bielik",
+  "SpeakLeash",
+  "Open Weights",
+  "Mehrsprachigkeit",
+  "Agenten"
+ ],
+ "key_takeaways": [
+  "SpeakLeash und ACK Cyfronet AGH haben am 10. November 2026 Bielik 11B v3.1 veröffentlicht: ein offenes 11-Milliarden-Parameter-Modell unter Apache-2.0-Lizenz, das nach Herstellerangabe 56 Sprachen unterstützt und nun Werkzeugaufrufe, strukturierte Ausgaben und einen Reasoning-Modus kombiniert [1][2].",
+  "Das Modell baut auf dem Basismodell Bielik-11B-v3-Base (Stand 30. Juli 2025) auf und wurde mit weiteren 500 Milliarden Token nachtrainiert; die Zahl der unterstützten Sprachen stieg von 32 in Version 3.0 auf 56 [1][2].",
+  "Beim Agenten-Benchmark τ²-bench liegt v3.1 nach Herstellerangabe je nach Szenario 16 bis 45 Prozentpunkte über v3.0; absolute Werte nennt der Launch-Beitrag nicht [1].",
+  "Das Haupt-Repository auf Hugging Face ist zugangsbeschränkt (automatisierte Freigabe), die GGUF-Quantisierungen sind dagegen ohne Konto frei ladbar; dort haben wir die technischen Kennwerte aus den Dateimetadaten ausgelesen [2][3].",
+  "Für den 11. November ist das Draft-Modell DFlash angekündigt, für den 12. November die vier Entscheidungsmodelle der Bielik-One-Familie; in der am 11. November um 07:16 Uhr MEZ abgerufenen öffentlichen SpeakLeash-Modellliste fanden wir weder DFlash für v3.1 noch Bielik-One; ältere DFlash-Modelle für v3.0 sind vorhanden [1][4]."
+ ],
+ "hero": {
+  "alt": "Schematische Grafik: Kasten Bielik 11B v3.1 mit drei Zweigen zu den Stichworten 56 Sprachen, Agenten-Werkzeuge und DFlash-Beschleuniger",
+  "caption": "Drei Ankündigungen in einer Woche: Bielik 11B v3.1 (10.11.), der Draft-Beschleuniger DFlash (11.11.) und die Entscheidungsmodelle Bielik-One (12.11.) [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "Launching Bielik 11B v3.1, DFlash and the Bielik-One family (Ankündigung, 10.11.2026)",
+   "publisher": "Bielik.ai / SpeakLeash Foundation",
+   "url": "https://www.bielik.ai/en/blog/launching-bielik-11b-v31-dflash-and-the-bielik-one-family",
+   "accessed": "2026-11-11"
+  },
+  {
+   "title": "speakleash/Bielik-11B-v3.1-Instruct (Modellseite, Metadaten über die Plattform-API abgerufen)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/speakleash/Bielik-11B-v3.1-Instruct",
+   "accessed": "2026-11-11"
+  },
+  {
+   "title": "speakleash/Bielik-11B-v3.1-Instruct-GGUF (Modellseite inkl. Dateimetadaten der Quantisierungen)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/speakleash/Bielik-11B-v3.1-Instruct-GGUF",
+   "accessed": "2026-11-11"
+  },
+  {
+   "title": "Öffentliche Modellliste der SpeakLeash-Organisation (Abfrage 11.11.2026, 07:16 Uhr MEZ)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/speakleash",
+   "accessed": "2026-11-11"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Die SpeakLeash Foundation hat gemeinsam mit dem Rechenzentrum ACK Cyfronet AGH am 10. November 2026 Bielik 11B v3.1 veröffentlicht. Das offene Sprachmodell ist der Auftakt einer dreiteiligen Veröffentlichungswoche: Für den 11. November ist das Draft-Modell Bielik 11B v3.1 DFlash angekündigt, für den 12. November die vier Entscheidungsmodelle der neuen Bielik-One-Familie [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "h3",
+   "x": "Modell und Training"
+  },
+  {
+   "t": "p",
+   "x": "Bielik 11B v3.1 hat 11 Milliarden Parameter und folgt der Llama-Architektur. Als Basismodell ist in den Hugging-Face-Metadaten Bielik-11B-v3-Base-20250730 eingetragen; laut Ankündigung wurde mit weiteren 500 Milliarden Token nachtrainiert [1][2]. Die Zahl der unterstützten Sprachen stieg dabei von 32 in Version 3.0 auf 56: Alle Amtssprachen der Europäischen Union werden abgedeckt, neu hinzugekommen sind nach Herstellerangabe unter anderem Arabisch, Chinesisch, Japanisch, Koreanisch sowie Armenisch, Aserbaidschanisch und Georgisch [1]."
+  },
+  {
+   "t": "p",
+   "x": "Die technischen Kennwerte haben wir selbst aus den Metadaten der offiziellen GGUF-Datei (Variante Q4_K_M) ausgelesen: 50 Transformer-Schichten, Einbettungsgröße 4.096, Feed-Forward-Länge 14.336, 32 Attention-Köpfe bei 8 Schlüssel-Wert-Köpfen (Grouped-Query-Attention), ein Vokabular von 32.128 Token und ein Kontextfenster von 32.768 Token [3]. Eine ausführliche Model Card mit Evaluationswerten liegt im Haupt-Repository hinter einer Zugangsbeschränkung; wir konnten sie zum Recherchezeitpunkt nicht einsehen [2]."
+  },
+  {
+   "t": "h3",
+   "x": "Lizenz und Zugang"
+  },
+  {
+   "t": "p",
+   "x": "Sowohl das Haupt-Repository als auch die Quantisierungen stehen unter der Apache-2.0-Lizenz [2][3]. Das Haupt-Repository speakleash/Bielik-11B-v3.1-Instruct ist allerdings zugangsbeschränkt: Der Download erfordert ein Hugging-Face-Konto und eine automatisiert bearbeitete Zugangsanfrage (Status \"gated: auto\" in der Plattform-API). Das GGUF-Repository mit den Quantisierungen bf16, Q8_0, Q6_K, Q5_K_M und Q4_K_M ist dagegen ohne Konto frei ladbar [2][3]. Wer das Modell ohne Anmeldung lokal betreiben will, findet dort den direkten Weg; die GGUF-Dateien sind für lokale GGUF-Laufzeiten vorgesehen [3]."
+  },
+  {
+   "t": "h3",
+   "x": "Agenten-Fähigkeiten"
+  },
+  {
+   "t": "p",
+   "x": "Die zentrale Neuerung von Version 3.1 ist nach Herstellerangabe die Eignung für agentische Systeme: Bielik kombiniert nun Function Calling (Aufruf externer Werkzeuge), strukturierte Ausgaben in vorgegebenem Format und einen expliziten Reasoning-Modus für schwierigere Aufgaben [1]. Zum Agenten-Benchmark τ²-bench, der realistische Kundendienst-Szenarien mit Werkzeugnutzung simuliert, schreibt der Hersteller: Je nach Szenario liegt Version 3.1 um 16 bis 45 Prozentpunkte über Version 3.0. Absolute Werte und die Anzahl der Szenarien nennt der Launch-Beitrag nicht [1]."
+  },
+  {
+   "t": "p",
+   "x": "Zum Sprachausbau nennt die Ankündigung zwei Leseverständnis- und Wissens-Benchmarks: plus 8 Prozentpunkte bei Belebele und plus 5 Prozentpunkte bei INCLUDE. Der Beitrag stellt diese Werte in den Kontext des Sprachausbaus von Version 3.0 auf 3.1, ohne die Vergleichsbasis ausdrücklich zu benennen [1]. Krzysztof Ociepa, Head of Model Training der SpeakLeash Foundation, wird mit der Einordnung zitiert, der Reasoning-Modus wirke sich vor allem bei komplexeren Aufgaben aus, bei denen das Modell eine Abfolge von Aktionen plane und passende Werkzeuge auswähle [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Unterstützte Sprachen: Bielik 11B v3.0 im Vergleich zu v3.1",
+   "alt": "Balkendiagramm mit zwei Werten: Bielik 11B v3.0 unterstützt 32 Sprachen, Bielik 11B v3.1 unterstützt 56 Sprachen",
+   "caption": "Anzahl der unterstützten Sprachen laut Launch-Beitrag vom 10.11.2026. Herstellerangabe, von uns nicht nachgeprüft [1].",
+   "labels": [
+    "Bielik 11B v3.0",
+    "Bielik 11B v3.1"
+   ],
+   "series": [
+    {
+     "name": "Unterstützte Sprachen",
+     "values": [
+      32,
+      56
+     ]
+    }
+   ],
+   "y_label": "Anzahl Sprachen",
+   "x": ""
+  },
+  {
+   "t": "h2",
+   "x": "Drei Starts in drei Tagen"
+  },
+  {
+   "t": "p",
+   "x": "Am 11. November soll Bielik 11B v3.1 DFlash folgen: ein Draft-Modell, das per spekulativer Dekodierung Antwortfragmente vorschlägt, die das Hauptmodell dann verifiziert. Das Verfahren soll die Generierung beschleunigen, ohne die Antwortqualität zu verändern; es baut auf einer im Juni 2026 mit ACK Cyfronet AGH vorgestellten Lösung auf [1]. In der am 11. November um 07:16 Uhr MEZ abgerufenen öffentlichen Modellliste der SpeakLeash-Organisation fanden wir kein DFlash-Repository für v3.1. Bereits vorhanden sind ältere DFlash-Modelle für Bielik v3.0; sie sind nicht die hier angekündigte Version [4]."
+  },
+  {
+   "t": "p",
+   "x": "Am 12. November soll die Bielik-One-Familie erscheinen: vier Modelle in unterschiedlichen Größen, die nach Herstellerangabe nicht Text erzeugen, sondern Informationen nach vorgegebenen Kriterien bewerten - etwa Ticket-Kategorisierung, Moderation, Dokumenten-Sichtung oder die Bewertung anderer KI-Ausgaben. Es wären die ersten reinen Entscheidungsmodelle der Bielik-Familie [1]. In derselben Modellliste fanden wir um 07:16 Uhr MEZ auch keinen passenden Bielik-One-Eintrag [4]. Das ist eine begrenzte Verfügbarkeitsprüfung, keine Aussage über den weiteren Tagesverlauf."
+  },
+  {
+   "t": "h2",
+   "x": "Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Mit 11 Milliarden Parametern und frei ladbaren GGUF-Quantisierungen zielt Bielik 11B v3.1 auf lokale und dezentrale Nutzung, auch auf Verbraucher-Hardware. Der Sprachausbau auf 56 Sprachen bei erhaltener polnischer Schwerpunktsetzung macht das Modell für mehrsprachige europäische Anwendungen interessant; die neuen Agenten-Funktionen adressieren Werkzeug-Workflows in dieser Größenklasse [1][3]."
+  },
+  {
+   "t": "p",
+   "x": "Zur Einordnung der Leistungsaussagen: Sämtliche Benchmark-Werte stammen vom Hersteller und sind im Launch-Beitrag nur als relative Zugewinne gegenüber der Vorgängerversion genannt, ohne absolute Werte, Prompt-Einstellungen oder Fehlerbalken. Ob es unabhängige Fremdmessungen gibt, können wir nicht ausschließen; im Launch-Beitrag wird keine genannt. Eigene Tests haben wir nicht durchgeführt [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Grenzen dieser Analyse"
+  },
+  {
+   "t": "ul",
+   "items": [
+    "Keine eigenen Tests: Wir haben das Modell nicht selbst ausgeführt; alle Leistungsangaben sind Herstellerangaben aus dem Launch-Beitrag [1].",
+    "Nur relative Werte: Die genannten Benchmark-Zugewinne (τ²-bench, Belebele, INCLUDE) stehen ohne absolute Werte und ohne genannte Testkonfiguration im Quelltext [1].",
+    "Zugangsbeschränkte Model Card: Die ausführliche Model Card im Haupt-Repository liegt hinter einer Zugangsanfrage; wir konnten ihren Inhalt nicht prüfen [2].",
+    "Angekündigte Modelle nicht verifizierbar: DFlash (angekündigt für den 11.11.) und Bielik-One (12.11.) fanden wir bei der Abfrage der öffentlichen SpeakLeash-Modellliste am 11. November um 07:16 Uhr MEZ nicht [1][4]."
+   ]
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was ist neu in Bielik 11B v3.1 gegenüber v3.0?",
+   "a": "Nach Herstellerangabe drei Dinge: Die Zahl der unterstützten Sprachen stieg von 32 auf 56, darunter erstmals nicht-europäische Sprachen wie Arabisch, Chinesisch, Japanisch und Koreanisch. Neu sind außerdem Function Calling, strukturierte Ausgaben und ein Reasoning-Modus, die das Modell für agentische Systeme tauglich machen sollen. Grundlage ist ein Nachtraining mit weiteren 500 Milliarden Token [1][2]."
+  },
+  {
+   "q": "Ist Bielik 11B v3.1 wirklich offen?",
+   "a": "Die Lizenz ist Apache-2.0, eine freie Open-Source-Lizenz [2][3]. Das Haupt-Repository auf Hugging Face erfordert allerdings ein Konto und eine automatisiert bearbeitete Zugangsanfrage. Die GGUF-Quantisierungen sind ohne Konto frei ladbar; eine Laufzeit-Kompatibilität haben wir nicht getestet [2][3]."
+  },
+  {
+   "q": "Wie groß ist das Kontextfenster?",
+   "a": "32.768 Token. Diesen Wert haben wir selbst aus den Metadaten der offiziellen GGUF-Datei ausgelesen; dort stehen außerdem 50 Schichten, Einbettungsgröße 4.096 und Grouped-Query-Attention mit 32 beziehungsweise 8 Köpfen [3]."
+  },
+  {
+   "q": "Was sind DFlash und Bielik-One?",
+   "a": "DFlash ist ein für den 11. November angekündigtes Draft-Modell, das Bielik per spekulativer Dekodierung beschleunigen soll, ohne die Antwortqualität zu ändern. Bielik-One ist eine für den 12. November angekündigte Familie von vier Entscheidungsmodellen für Klassifikations- und Bewertungsaufgaben statt Textgenerierung. Beide fanden wir bei unserer Modelllisten-Abfrage um 07:16 Uhr MEZ noch nicht und haben sie nicht getestet [1][4]."
+  },
+  {
+   "q": "Wie verlässlich sind die Benchmark-Angaben?",
+   "a": "Alle genannten Werte stammen vom Hersteller. Der Launch-Beitrag nennt nur relative Zugewinne gegenüber Version 3.0 (etwa 16 bis 45 Prozentpunkte bei τ²-bench je nach Szenario), ohne absolute Werte oder Testkonfiguration. Unabhängige Messungen werden im Beitrag nicht genannt; ob es sie gibt, können wir nicht ausschließen [1]."
+  }
+ ],
+ "method": "Analyse auf Basis des gelesenen Launch-Beitrags von Bielik.ai/SpeakLeash vom 10.11.2026 sowie der Hugging-Face-Metadaten der Repositories speakleash/Bielik-11B-v3.1-Instruct und speakleash/Bielik-11B-v3.1-Instruct-GGUF (jeweils abgerufen am 11.11.2026 über die öffentliche Plattform-API). Die Architektur- und Kontextwerte haben wir selbst aus den Metadaten der offiziellen GGUF-Datei (Q4_K_M) ausgelesen. Sämtliche Leistungsangaben sind Herstellerangaben. Keine eigenen Modell-Tests. Verfügbarkeitsabgleich der öffentlichen SpeakLeash-Modellliste am 11.11.2026 um 07:16 Uhr MEZ; vorhandene ältere DFlash-Modelle wurden von der angekündigten v3.1 getrennt.",
+ "limitations": "Keine eigenen Tests; das Modell haben wir nicht ausgeführt. Alle Benchmark-Werte stammen vom Hersteller und liegen nur als relative Zugewinne ohne absolute Werte und Testkonfiguration vor. Die ausführliche Model Card im Haupt-Repository ist zugangsbeschränkt und konnte nicht eingesehen werden. DFlash für v3.1 und Bielik-One fanden wir in der um 07:16 Uhr MEZ abgerufenen öffentlichen SpeakLeash-Modellliste nicht. Ob es unabhängige Fremdmessungen gibt, können wir nicht ausschließen.",
+ "related": [
+  "offene-gewichte-vs-open-source",
+  "hugging-face-lesen",
+  "function-calling-praxis"
+ ]
+}
