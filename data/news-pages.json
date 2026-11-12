@@ -1,5 +1,65 @@
 [
   {
+    "title": "heise+ | Nvidia ohne Jensen Huang: Wie laufen die Geschäfte weiter?",
+    "url": "https://www.heise.de/news/Nvidia-ohne-Jensen-Huang-Wie-laufen-die-Geschaefte-weiter-11523360.html?wt_mc=rss.red.ho.ho.atom.beitrag_plus.beitrag_plus",
+    "ts": 1794504600.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nvidia versucht, die Affäre um den zurückgetreten CEO Jensen Huang in den Griff zu bekommen. Wie könnte es nun weitergehen?",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T18:36:11.112023+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Googles KI-Brillen starten im Dezember ab 395 US-Dollar",
+    "url": "https://www.heise.de/news/Googles-KI-Brillen-starten-im-Dezember-ab-395-US-Dollar-11523374.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794503280.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Google und Samsung bringen im Dezember ihre ersten gemeinsamen KI-Brillen auf den Markt. Ein Europastart ist noch nicht angekündigt.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T18:36:11.112072+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Gerüchte um Nvidia-Nachfolge: Wer wird CEO?",
+    "url": "https://www.heise.de/news/Geruechte-um-Nvidia-Nachfolge-Wer-wird-CEO-11523074.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794502560.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nach dem Rücktritt von Nvidia-Chef Jensen Huang wird spekuliert, wer seine Nachfolge antreten könnte. Es gibt ein paar Kandidaten – unter anderem von Apple.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T18:36:11.112122+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Digitale Medienordnung: Länder wollen Big Tech und KI streng regulieren",
+    "url": "https://www.heise.de/news/Digitale-Medienordnung-Laender-wollen-Big-Tech-und-KI-streng-regulieren-11523302.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794500880.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Ein Digital-Staatsvertrag soll journalistische Inhalte in Feeds privilegieren, KI-Systeme in die Pflicht nehmen und das Medienkonzentrationsrecht reformieren.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T18:36:11.112159+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Datum offiziell: Anthropic-Aktien ab 19. November im Handel",
+    "url": "https://www.heise.de/news/Datum-offiziell-Anthropic-Aktien-ab-19-November-im-Handel-11522895.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794500160.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropics Aktien sollen am 19. November in den Handel gehen. Der finale Preis pro Aktie wird einen Tag vorher festgelegt.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T18:36:11.112182+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "United Airlines untersagt KI-Agenten das Buchen von Flügen",
     "url": "https://www.heise.de/news/United-Airlines-untersagt-KI-Agenten-das-Buchen-von-Fluegen-11523122.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794496200.0,
