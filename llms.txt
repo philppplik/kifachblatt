@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Looped CED, Attention-Nullmodelle, Taxonomie-Messung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-12): Rekurrenz ohne KV-Wachstum am 552B-MoE, drei Checks für Attention-Eingriffe und eine Fehlerkategorie, die vor allem das Messverfahren misst.
 - [ERNIE 5.5 Flash Preview: Baidus nachtrainiertes 280B-Modell](https://kifachblatt.de/ernie-5-5-flash-preview-analyse): Baidu stellt ERNIE 5.5 Flash Preview vor: das erste nachtrainierte Modell auf der 280B-Basis, mit 1M Kontext und angekündigten Gewichten unter Apache 2.0.
 - [Runway Praxis-1: Offenes Welt-Aktions-Modell für Roboter](https://kifachblatt.de/runway-praxis-1-analyse): Runway hat Praxis-1 unter Apache 2.0 veröffentlicht: ein 27-Milliarden-Parameter-Welt-Aktions-Modell für Roboter. Wir ordnen die Zahlen ein.
 - [Bit-identische Inferenz, SAE-Konfounder, Byteifizierung](https://kifachblatt.de/news-ueberblick-morgen-2026-11-12): Ganzzahlige Inferenz über Rechnergrenzen, ein PC1-Konfounder in SAE-Metriken und ein 27B-Modell, das ohne Patching zum Byte-Modell wird.
