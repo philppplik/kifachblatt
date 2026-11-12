@@ -1,0 +1,168 @@
+{
+  "slug": "ernie-5-5-flash-preview-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "ERNIE 5.5 Flash Preview: Baidus nachtrainiertes 280B-Modell",
+  "dek": "Baidu stellt ERNIE 5.5 Flash Preview vor: das erste nachtrainierte Modell auf der 280B-Basis, mit 1M Kontext und angekündigten Gewichten unter Apache 2.0.",
+  "published": "2026-11-12T07:15:00+01:00",
+  "modified": "2026-11-12T07:15:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Baidu",
+    "ERNIE",
+    "Open Weights",
+    "MoE",
+    "Coding"
+  ],
+  "key_takeaways": [
+    "Baidu hat am 11. November 2026 ERNIE 5.5 Flash Preview vorgestellt, den ersten nachtrainierten Checkpoint auf der 280-Mrd.-Parameter-Basis vom 5. November [1][4].",
+    "Das MoE-Modell aktiviert 14 Mrd. Parameter pro Token und unterstützt 1 Mio. Token Kontext; es ist rein textbasiert [1].",
+    "Nach Herstellerangabe ist die Preview zunächst per API auf Qianfan verfügbar; Gewichte unter Apache 2.0 sind angekündigt. Einen Preview-Download haben wir beim HF-Listing-Abgleich am 12.11.2026, 07:15 MEZ nicht verifiziert [1][6].",
+    "Die angekündigte Apache-2.0-Lizenz wäre ein Richtungswechsel: Das Basismodell schließt EU, Vereinigtes Königreich und Südkorea per Lizenz aus [1][2].",
+    "Die von uns gelesene Veröffentlichung verlinkt Benchmark-Tabellen als Bilder; wir übernehmen daraus keine Zahlen und haben keine unabhängigen Messungen verifiziert [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Zwei Kästen ERNIE 5.5 Flash Base und Preview, dazwischen ein Pfeil mit der Aufschrift Post-Training, daneben die Angabe 280 Mrd. Parameter, 14 Mrd. aktiv",
+    "caption": "Aus dem Basismodell vom 5.11. wird per Post-Training die Preview vom 11.11.: 280 Mrd. Parameter gesamt, 14 Mrd. aktiv pro Token [1][4].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "ERNIE 5.5 Flash Preview (Release-Beitrag, 11.11.2026)",
+      "publisher": "Baidu / ERNIE",
+      "url": "https://ernie.baidu.com/release/ernie-5-5-flash-preview/",
+      "accessed": "2026-11-12"
+    },
+    {
+      "title": "ERNIE 5.5 Flash Base Model License Agreement v1.0 (Lizenztext)",
+      "publisher": "Baidu (Hugging Face)",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base/resolve/main/LICENSE",
+      "accessed": "2026-11-12"
+    },
+    {
+      "title": "baidu/ERNIE-5.5-Flash-Base (Modellkarte)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/baidu/ERNIE-5.5-Flash-Base",
+      "accessed": "2026-11-12"
+    },
+    {
+      "title": "ERNIE 5.5 Flash Base (Release-Beitrag, 05.11.2026)",
+      "publisher": "Baidu / ERNIE",
+      "url": "https://ernie.baidu.com/release/ernie-5-5-flash-base/",
+      "accessed": "2026-11-12"
+    },
+    {
+      "title": "Baidu HF-Modellliste:100Einträge nachErstellung, geprüft12.11.2026,07:15MEZ",
+      "publisher": "Hugging Face Plattform-API",
+      "url": "https://huggingface.co/api/models?author=baidu&sort=createdAt&direction=-1&limit=100",
+      "accessed": "2026-11-12"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Baidu hat am 11. November 2026 ERNIE 5.5 Flash Preview vorgestellt: das erste nachtrainierte Modell auf der Basis von ERNIE 5.5 Flash, die erst am 5. November als Basismodell erschienen war [1][4]. Die Preview ist ausdrücklich ein Zwischencheckpoint: Das Post-Training laufe weiter, einzelne Fähigkeiten könnten noch hinter den Erwartungen zurückbleiben, schreibt der Hersteller [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was Baidu veröffentlicht hat"
+    },
+    {
+      "t": "p",
+      "x": "Nach Herstellerangabe ist die Preview zunächst über die API auf Baidus Qianfan-Plattform verfügbar [1]. Die Gewichte sollen in Kürze unter Apache 2.0 folgen. Bei unserem Abgleich am 12.11.2026, 07:15 MEZ fand sich unter den 100 nach Erstellung sortierten Modellen der Baidu-HF-Organisation kein Preview-Eintrag [6]. Das ist unsere Prüfgrenze, kein Beweis für eine generelle Nichtverfügbarkeit. Preise nennt der gelesene Release-Beitrag nicht; die API haben wir nicht getestet."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "280 Mrd. Parameter gesamt, 14 Mrd. aktiv pro Token (sparse MoE) · Kontext 1 Mio. Token · rein textbasiert · Zwischencheckpoint aus laufendem Post-Training · API auf Qianfan verfügbar · Gewichte unter Apache 2.0 angekündigt [1][4]."
+    },
+    {
+      "t": "h2",
+      "x": "Schwerpunkt Coding und Agentenaufgaben"
+    },
+    {
+      "t": "p",
+      "x": "Baidu positioniert die Preview für Coding- und Agentenaufgaben und zeigt Demos aus vier Bereichen: Spieleentwicklung (Unreal Engine 5.8, Unity und Godot, darunter eine elfstündige Coding-Aufgabe), 3D-Modellierung in Blender (eine Szenerie mit Flughafen und Verkehrsflugzeug sowie die fünfstöckige Pagode des Hōryū-ji), Wissensarbeit und Videoproduktion per Code, darunter ein 116-sekündiger Animationsfilm mit über 10.000 Zeilen Code auf Basis von Pycairo, NumPy und Pillow und ein 75-sekündiges Wissenschaftsvideo [1]. Die Demos liefen laut Beitrag durchgängig in einem Agenten-Harness; externe Assets seien gekennzeichnet [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks nur als Grafik"
+    },
+    {
+      "t": "p",
+      "x": "Der gelesene Release-Beitrag verlinkt Benchmark-Angaben als eingebettete Bilder [1]. Wir übernehmen daraus keine Zahlen, die wir nicht gesondert geprüft haben. Unabhängige Messungen haben wir bei diesem Quellenabgleich nicht verifiziert. Die gezeigten Coding-/Agentendemos sind Herstellerbeispiele, keine unabhängige Evaluation."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "ERNIE 5.5 Flash: Gesamte und aktive Parameter",
+      "alt": "Balkendiagramm mit zwei Werten: 280 Mrd. Parameter gesamt und 14 Mrd. aktive Parameter pro Token",
+      "caption": "Herstellerangaben zum MoE-Modell: Pro Token werden 14 von 280 Mrd. Parametern aktiviert [1][4].",
+      "labels": [
+        "Gesamtparameter",
+        "Aktive Parameter pro Token"
+      ],
+      "series": [
+        {
+          "name": "Parameter",
+          "values": [
+            280,
+            14
+          ]
+        }
+      ],
+      "y_label": "Parameter in Mrd.",
+      "x": ""
+    },
+    {
+      "t": "h2",
+      "x": "Lizenz: Apache 2.0 wäre ein Richtungswechsel"
+    },
+    {
+      "t": "p",
+      "x": "Das Basismodell ERNIE 5.5 Flash Base steht unter einer eigenen Lizenz (Version 1.0), die das Nutzungsgebiet auf alle Regionen außerhalb der Europäischen Union, des Vereinigten Königreichs und Südkoreas begrenzt; Nutzung und Weitergabe außerhalb dieses Gebiets sind ausdrücklich nicht gestattet (Abschnitte 1.11, 2, 3.1 und 5.3 des Lizenztexts, von uns am 12.11.2026 gelesen) [2]. Für die Preview kündigt Baidu dagegen Apache 2.0 an [1]. Würden die Gewichte tatsächlich unter Apache 2.0 erscheinen, entfiele die Gebietsbeschränkung; ob die veröffentlichte Lizenz der Ankündigung entspricht, lässt sich erst beim Release prüfen."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Veröffentlichung folgt einem inzwischen vertrauten Muster: erst das Basismodell, Tage später ein nachtrainierter Checkpoint. Technisch bleibt die Preview der Basis verpflichtet: 43 Schichten, hybride Aufmerksamkeit und das Multi-Router-MoE stammen aus dem Basismodell, das von Grund auf mit 33,5 Bio. Token bei bis zu 128K Trainingskontext vortrainiert wurde [4]. Für Anwender in der EU kommt der Lizenzfrage besondere Bedeutung zu: Die Basislizenz schließt die EU aus, die angekündigte Apache-2.0-Lizenz der Preview würde das ändern; bis zum Release bleibt das eine Ankündigung [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist ERNIE 5.5 Flash Preview?",
+      "a": "Der erste nachtrainierte Checkpoint auf Baidus Basismodell ERNIE 5.5 Flash: 280 Mrd. Parameter, 14 Mrd. aktiv pro Token, 1 Mio. Token Kontext, ausgelegt auf Coding- und Agentenaufgaben [1][4]."
+    },
+    {
+      "q": "Kann ich die Gewichte schon herunterladen?",
+      "a": "Baidu kündigt die Gewichte unter Apache 2.0 an [1]. In den 100 nach Erstellung sortierten HF-Modellen der Baidu-Organisation fanden wir am 12.11.2026, 07:15 MEZ keinenPreview-Eintrag [6]. Einen verfügbarenPreview-Download haben wir daher nicht verifiziert."
+    },
+    {
+      "q": "Darf ich das Modell in der EU nutzen?",
+      "a": "Das Basismodell schließt EU, Vereinigtes Königreich und Südkorea lizenzseitig aus [2]. Für die Preview ist Apache 2.0 angekündigt, eine Lizenz ohne Gebietsbeschränkung; verbindlich ist erst die Lizenz des tatsächlichen Releases [1]. Die Qianfan-API ist davon getrennt zu prüfen; ihre Zugangs- und Nutzungsbedingungen haben wir nicht geprüft."
+    },
+    {
+      "q": "Gibt es unabhängige Benchmarks?",
+      "a": "Wir haben bei diesem Quellenabgleich keine unabhängigen Benchmarks verifiziert. Baidus Release-Beitrag zeigt Vergleichstabellen als Bilder; wir übernehmen daraus keine Zahlen [1]."
+    },
+    {
+      "q": "Was unterscheidet die Preview vom Basismodell?",
+      "a": "Die Preview durchläuft das Post-Training für Instruction-Following, Reasoning und Agentenfähigkeiten, während das Basismodell der reine Vortrainings-Checkpoint ist. Baidu bezeichnet die Preview selbst als Zwischenstand [1][4]."
+    }
+  ],
+  "method": "Recherche am 12. November 2026 gegen 07:15 Uhr MEZ: Release-Beitrag der Preview auf ernie.baidu.com, die Hugging-Face-Organisation von Baidu (Plattform-API) und der Lizenztext des Basismodells, alle selbst geöffnet und gelesen; ergänzend der Release-Beitrag des Basismodells vom 5. November. Die API haben wir nicht getestet; einen Preview-Gewichtsdownload haben wir im abgeglichenen HF-Listing nicht gefunden. Ergänzender Quellenabgleich: 12.11.2026, 07:15 MEZ. Keine Modellläufe oder Käufe ausgeführt.",
+  "limitations": "Alle Leistungsangaben stammen vom Hersteller; im gelesenen Release-Beitrag sind Benchmark-Tabellen als Bilder verlinkt und wurden von uns nicht übernommen. Die Preview ist ein unfertiger Zwischencheckpoint. Ob und wann die Gewichte unter Apache 2.0 erscheinen, ist offen. Zu Preisen der Qianfan-API macht der Beitrag keine Angaben; wir haben die API nicht geprüft.",
+  "related": [
+    "ernie-5-5-flash-base-analyse",
+    "kimi-k3-1-pro-analyse",
+    "offene-gewichte-vs-open-source"
+  ]
+}
