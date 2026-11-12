@@ -1,5 +1,41 @@
 [
   {
+    "title": "United Airlines untersagt KI-Agenten das Buchen von Flügen",
+    "url": "https://www.heise.de/news/United-Airlines-untersagt-KI-Agenten-das-Buchen-von-Fluegen-11523122.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794496200.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "United Airlines untersagt nicht autorisierten KI-Agenten Flugbuchungen. Neben Sicherheitsbedenken spielen auch wirtschaftliche Interessen eine Rolle.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T16:02:11.792954+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "„Das ist bedauerlich“: Amazon lässt Tausende KI-Agenten programmieren",
+    "url": "https://www.heise.de/news/Das-ist-bedauerlich-Amazon-laesst-Tausende-KI-Agenten-programmieren-11523014.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794494760.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Amazon veröffentlicht ein Tool, das komplett von KI-Bots verfasst worden ist. Entwickler sind alles andere als begeistert.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T16:02:11.793041+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Außereheliche Affären: Nvidia-CEO Jensen Huang tritt mit sofortiger Wirkung ab",
+    "url": "https://www.heise.de/news/Nach-Bekanntwerden-einer-zweiten-Affaere-Nvidia-CEO-Jensen-Huang-abgetreten-11522193.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794492480.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nachdem Jensen Huang am Wochenende eine außereheliche Affäre eingestanden hat, konnte er sich noch halten. Über die Zweite ist er nun gestolpert und tritt ab.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-12T16:02:11.793102+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Angst vor neuen KI-Chip-Exportkontrollen: China sichert sich Rechenkapazitäten",
     "url": "https://www.heise.de/news/Angst-vor-neuen-KI-Chip-Exportkontrollen-China-sichert-sich-Rechenkapazitaeten-11522548.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794488100.0,
