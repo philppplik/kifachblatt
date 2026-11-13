@@ -1,0 +1,109 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-13",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-13T08:00:00+01:00",
+  "modified": "2026-11-13T08:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "You Don't Need Feature Learning to Do In-Context Learning",
+      "publisher": "arXiv (Joseph Turnbull, Jamie Simon; UC Berkeley, Imbue)",
+      "url": "https://arxiv.org/abs/2611.13431",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Catch It Where It Happens: Real Time Error Correction During LLM Reasoning",
+      "publisher": "arXiv (Rotem Elimelech, Michael Shalyt, Ido Kaminer; Technion - Israel Institute of Technology)",
+      "url": "https://arxiv.org/abs/2611.13107",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "LLM Validation Makes Minimal-Pair Benchmarks Easier for Language Models",
+      "publisher": "arXiv (Guofang Tang; Ghostcloud)",
+      "url": "https://arxiv.org/abs/2611.13788",
+      "accessed": "2026-11-13"
+    }
+  ],
+  "title": "ICL-Theorie, Live-Verifikation, Minimal-Pair-Bias",
+  "dek": "Kernel-Maschinen lernen ICL-Regression, ein CPU-Checker korrigiert lokale Rechenfehler, und LLM-Filter erleichtern Minimal-Pair-Benchmarks.",
+  "tags": [
+    "in-context-learning",
+    "verifikation",
+    "benchmarks",
+    "theorie",
+    "evaluation"
+  ],
+  "key_takeaways": [
+    "ICL ohne Feature Learning (Turnbull & Simon, Berkeley/Imbue): Kernel-Maschinen generalisieren auf der Raventós-ICL-Regression; die generalisierende Lösung ist eine Low-Degree-Trunkierung der memorisierenden; GPT-2-artige Transformer memorisieren über Statistiken höherer Ordnung (Kurtosis) in vorhergesagter Reihenfolge; Scope: lineare Regression, gaußsche Inputs; Code öffentlich.",
+    "Online-Verifikation (Technion, ASyMOB, 2.700 Aufgaben, 3 offene Modelle, 5 Runs): CPU-CAS-Check extrahierter Gleichungen während der Generierung, Rollback plus Feedback, max. 3 Eingriffe; Accuracy +1,4 bis +5,6 Punkte (62,4->68,0; 23,4->24,8; 45,2->48,2), Token +6-7 %, 22-25 ms/Check, Flagged +6,0 bis +10,2 Punkte, Unflagged mit nullvereinbaren Änderungen (CI inkl.0).",
+    "Minimal-Pair-Validierung (Tang, Ghostcloud): BLiMP FC-Validatoren Agree mit gehaltenen Menschenmehrheiten 0,937-0,953 (5-Judge-Panel 0,934), LNS-Recall 0,09-0,20 vs. 0,47 Einzeljudge; Gemini-RATE-Filter hebt LM-Accuracy über BLiMP+QFrBLiMP +5,6 Punkte [+4,6; +6,7] vs. +0,0 random; markierte Paare 18,9 Punkte schwerer, alle 70 LM-x-Validator-Kombis negativ; Ranking stabil (Tau >= 0,87)."
+  ],
+  "hero": {
+    "alt": "Datentafel: plus 1,4 bis 5,6 Punkte durch Live-Checks, 9 bis 20 Prozent LNS-Recall der LLM-Validatoren, plus 5,6 Punkte Benchmark-Inflation durch LLM-Filter.",
+    "caption": "Autorenangaben aus drei Preprints vom 9./10. November. ICL nur lineare Regression mit gaußschen Inputs; CPU-Gewinne auf 2.700 ASyMOB-Aufgaben, keine End-to-End-Latenzmessung. 9-20% Recall nur BLiMP/Forced Choice; +5,6 Prozentpunkte mittlerer Filter-Lift über BLiMP+QFrBLiMP. Keine eigene Reproduktion.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 13. November, Quellenstand 06:40 Uhr MEZ. Drei Preprints: eine Spektralanalyse von In-Context-Lernen ohne Merkmalslernen, numerische Online-Verifikation lokaler mathematischer Identitäten und eine vorregistrierte Analyse von LLM-Validatoren in Minimal-Pair-Benchmarks."
+    },
+    {
+      "t": "h2",
+      "x": "1. You Don't Need Feature Learning to Do In-Context Learning"
+    },
+    {
+      "t": "p",
+      "x": "Turnbull und Simon (UC Berkeley, Imbue) analysieren die ICL-Linearregressionsaufgabe von Raventós et al. (2023) mit rotationsinvarianten Kernel-Maschinen in der Kernel-Eigenbasis. Befund: Mit wachsendem Sample lernt die Maschine sukzessive höhergradige Komponenten der memorisierenden Lösung, die auf Statistiken entsprechend hoher Ordnung des Trainings-Tasksets beruhen; die generalisierende Lösung ist approximativ eine Low-Degree-Trunkierung der memorisierenden, das Modell generalisiert also zuerst und degradiert dann ins Memorisieren. Konsequenzen der Autoren: Generalisieren ist hier Underfitting des Auswendiglernens; Feature Learning ist für ICL nicht essenziell; die Task-Diversity-Story von Raventós et al. ist architekturunabhängig. Setup der Kernelexperimente u.a.: d = 5, L = 7, T = 16 Tasks, 20 Trials."
+    },
+    {
+      "t": "p",
+      "x": "Transformer-Check: 12-schichtige GPT-2-Modelle mit Adam auf T = 256 Tasks (d = 8, L = 16) memorisieren über nicht-gaußsche Statistiken des Task-Pools; bei symmetrischem Pool ohne Kurtosis bleibt das Modell durchgehend generalisierend, mit Teilkurtosis länger als mit voller, wie die Theorie für den Grad-7-Modus vorhersagt. Limitationen laut Paper: nur lineare Regression mit gaußschen Inputs, keine Aussage zu natürlichsprachlichem ICL; die Memorisierungsphase ist für Modelle ohne Feature Learning schwer erreichbar. Code: github.com/JoeyTurn/kernels_can_icl (öffentlich erreichbar)."
+    },
+    {
+      "t": "h2",
+      "x": "2. Catch It Where It Happens: Online-Verifikation beim Denken"
+    },
+    {
+      "t": "p",
+      "x": "Elimelech, Shalyt und Kaminer (Technion) verifizieren mathematische Behauptungen während der Generierung: Regex-Extraktion fertiger Gleichungen aus dem Stream (Kettengleichungen werden in Paarclaims zerlegt, Definitionen und Bedingungsgleichungen heuristisch herausgefiltert), numerische Evaluation per Computer-Algebra-System auf CPU (22-25 ms pro Check, Toleranzvergleich über Stichproben-Substitutionen; holds ist numerische Übereinstimmung, kein Beweis). Nur fails löst Eingriff aus: Verwerfen der Fortsetzung hinter dem Fehlschritt, kurzes Korrektur-Feedback in Modellstimme, Generierung läuft weiter; maximal 3 Rollbacks pro Frage. Evaluation: 2.700 leichte bis mittlere ASyMOB-Aufgaben, Qwen3-30B-A3B-Instruct-2507, Qwen3-4B-Instruct-2507, Gemma-4-12B-it, je 5 Runs plain vs. checked. Accuracy: 62,4->68,0,23,4->24,8,45,2->48,2 Prozent (+1,4 bis +5,6 Punkte; Nettoreduktion falscher Antworten 1,8 bis 14,9 Prozent); Token +6-7 %; verworfene Token im Mittel 1,4 bis 15,6; Eingriffsquoten 21,8 bis 53,1 Prozent der Antworten. Das misst Prüf-CPU-Zeit und Tokenverbrauch, nicht den gesamten Zeitaufwand: Unterbrechen, erneute Promptverarbeitung und Cacheverwaltung können zusätzlich kosten. Kontrollierte End-to-End-Latenz- und Durchsatzvergleiche stehen aus."
+    },
+    {
+      "t": "p",
+      "x": "Effektkanal: In den geflaggten Antworten steigt die Accuracy um 6,0 (Qwen3-4B), 6,4 (Gemma-4-12B) und 10,2 (Qwen3-30B) Punkte; in den ungeflaggten sind alle 95-%-Intervalle null-einschließend; die Flag-Anteile unterscheiden sich um höchstens rund zwei Punkte. Limitationen laut Autoren: nur lokal prüfbare Identitäten, keine Prüfung von Prämisse, Strategie oder Aufgabenbezug; kontextfreie Evaluation kann unter untersagten Annahmen gültige Identitäten verwerfen; numerisches Sampling kann Unstimmigkeiten übersehen; ein Benchmark, drei Modelle aus zwei Familien. Zu kontextualisieren: ASyMOB stammt von Shalyt et al., also aus derselben Gruppe; wir haben die Experimente nicht selbst reproduziert. Genannt als Erweiterungen: Syntax-/Type-Checks für Code, Dimensionsprüfung, Schema-Validierung von Tool-Calls."
+    },
+    {
+      "t": "h2",
+      "x": "3. LLM-Validatoren machen Minimal-Pair-Benchmarks leichter"
+    },
+    {
+      "t": "p",
+      "x": "Tang (Ghostcloud) testet LLM-Validatoren als Ersatz menschlicher Label-Prüfung auf BLiMP (348 Paare, 19-21 Crowd-Judges, 19 LNS-Paare = 5,5 %) und QFrBLiMP (1.693 Paare nach Entfernen identischer Dubletten, 12 Native Speaker, 112 LNS = 6,6 %); LNS = höchstens halbe Judge-Mehrheit für das Soll-Label. Drei API-Modelle, drei Prompt-Formate (Forced Choice, RATE 1-5, VERIFY post hoc), 1.000 Judge-Reshuffles gegen Held-out-Judges. Ergebnis: FC-Validatoren erreichen Agree mit gehaltenen Menschenmehrheiten 0,937-0,953 (BLiMP; Fünfer-Panel 0,934), aber LNS-Recall nur 0,09-0,20 gegen 0,47 eines Einzeljudges; das LLM-Panel flaggt 1,7 % der Paare bei 5,5 % LNS. RATE recalled mehr (BLiMP 0,38-0,52; QFrBLiMP 0,68-0,75) bei Precision-Verlust (5,4-23,2 % False Flags auf Paaren mit mindestens 75 % Judge-Support). Das vorregistrierte Phase-0-Urteil (nur BLiMP; QFrBLiMP unter der Reliabilitätsschwelle 0,5 bei Split-Half 0,454): bester Validator minus Dreier-Panel F1 = -0,077, Intervall [-0,304; +0,150], ein schwaches Pass."
+    },
+    {
+      "t": "p",
+      "x": "Downstream-Effekt (Phase 1, 10 offene LMs von 1,5B bis 9B aus 7 Entwicklern, Primärfilter Gemini RATE): Menschlich gestützte Paare, die der Validator flaggt, sind im Mittel 18,9 Punkte schwerer für die LMs [-22,1; -15,8], negativ in allen 70 LM-x-Validator-Kombinationen (Holm p < 0,001); Entfernen der geflaggten Paare hebt die Accuracy um +5,6 Punkte [+4,6; +6,7] gegen +0,0 bei Zufallsentfernung. Auf QFrBLiMP entfernt der LLM-Filter 426 Paare (davon 85 LNS) und behält 27 der 112 LNS-Paare; jedes LM liegt auf der LLM-gefilterten Version über der menschlich gefilterten (+3,4 Punkte [+2,6; +4,3]). Die Rangfolge bleibt nahezu stabil (Kendall-Tau >= 0,87, maximal 2 von 45 Paarvertauschungen): verschoben werden in diesem Test vor allem Absolutwerte und Fehlersichtbarkeit, die Rangfolge bleibt weitgehend erhalten. Grenzen: drei Datensätze, korrelativer Mechanismus, LMs nur bis 9B, VERIFY erst post hoc; Code und Validator-Outputs laut Paper veröffentlicht, ohne genannten Link."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist die praktische Konsequenz der ICL-Analyse?",
+      "a": "Für die Aufgabenklasse lineare Regression: Wer ICL-Generalisierung misst, misst möglicherweise nur frühes Underfitting des Auswendiglernens; Statistiken höherer Ordnung des Task-Pools (etwa Kurtosis) steuern, wann das Modell ins Memorisieren kippt. Ob das auf Sprachaufgaben überträgt, ist offen."
+    },
+    {
+      "q": "Welche Kosten misst der CPU-Checker-Test?",
+      "a": "Die Autoren messen 22-25 ms CPU je Prüfung und 6-7% zusätzliche Generierungstoken. Extraktion und Prüfung brauchen keinen weiteren Modellaufruf und keine GPU, die Textgenerierung aber weiterhin schon. End-to-End-Latenz, Durchsatz und Kostenvorteile gegenüber anderen Verifiern sind damit nicht nachgewiesen."
+    },
+    {
+      "q": "Woran erkennt man LLM-Validierungs-Bias in einem Benchmark?",
+      "a": "Auf BLiMP stimmen die Forced-Choice-Validatoren zu 93,7-95,3 % mit gehaltenen Menschenmehrheiten überein, finden aber nur 9-20 % der Labels ohne Mehrheitssupport. QFrBLiMP zeigt andere Recall-Werte. Kontrolliert werden gehaltene Menschenurteile und die Modellgenauigkeit auf markierten gegenüber nicht markierten Paaren."
+    }
+  ],
+  "related": [
+    "few-shot-prompting-praxis",
+    "modelle-und-agenten-evaluieren"
+  ]
+}

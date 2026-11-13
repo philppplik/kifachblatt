@@ -1,0 +1,192 @@
+{
+  "slug": "edge0-145b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Edge0-145B: lokale MoE-Inferenz und die Grenzen der Community-Lizenz",
+  "dek": "Edge0 veröffentlicht 145B-Gewichte für NVIDIA-Inferenz. Aktuelle RAM-/VRAM-Angaben und die Community-Lizenz relativieren das Laptop-Versprechen.",
+  "published": "2026-11-13T08:00:00+01:00",
+  "modified": "2026-11-13T08:00:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Edge0",
+    "On-Device-KI",
+    "Open Weights",
+    "Lizenzen",
+    "MoE"
+  ],
+  "key_takeaways": [
+    "Edge0 kündigte Edge0-145B und Edge0-120B am 12. November an. Das aktuelle Release unterstützt Linux/Windows mit NVIDIA-GPU und CUDA 13; ein macOS-Release ist damit nicht belegt [1][2][5].",
+    "Die Gewichte stehen nicht unter einer Standard-Open-Source-Lizenz, sondern unter der neuen Edge0 Community Model License 1.0 mit kommerziellem Vorbehalt; zusätzlich gilt die Qwen-Lizenz des Basismodells [2][3].",
+    "Das Modell baut laut Karten-Metadaten auf Qwen3.8-Flash-Next auf; die Inferenz-Engine erweitert die MIT-lizenzierte Strata-Engine und steht selbst unter Apache 2.0 [2][5].",
+    "Durchsatzwerte sind Herstellerangaben: NVFP4 auf RTX 5090 D meldet die Modellkarte mit 79,6 Token/s Chat, 98,3 Token/s Agent und 3.165,7 Token/s bei 16K-Prefill. Eigene Messungen fehlen [2].",
+    "Auf Hugging Face liegen nur quantisierte Varianten (NVFP4, q3k); die Repositories wurden am 11.11. angelegt und hatten zum Recherchezeitpunkt keine Downloads (Plattform-API) [2]."
+  ],
+  "hero": {
+    "alt": "Edge0-145B: NVFP4-Residency im Herstellertest mit 23,25 GiB VRAM und zusätzlich 38,27 GiB RAM; Linux/Windows mit NVIDIA und CUDA 13, keine bestätigte macOS-Veröffentlichung.",
+    "caption": "Aktuelle Modellkarte: NVFP4 mit Residency auf RTX 5090 D benötigt im Herstellertest 23,25 GiB VRAM plus 38,27 GiB RAM. Die Blogzahl 29 GB ist keine belegte Gesamtspeicheranforderung. Keine eigene Messung [1][2][5].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "Introducing Edge0-145B: Frontier AI Capabilities on Your Own Computer (Ankündigung, 12.11.2026)",
+      "publisher": "Edge0",
+      "url": "https://edge0.ai/blog/introducing-edge0-145b-frontier-ai-capabilities-on-your-own-computer",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Edge0/Edge0-145B-NVFP4 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Edge0/Edge0-145B-NVFP4",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Edge0 Community Model License, Version 1.0 (Lizenztext)",
+      "publisher": "Edge0 (Hugging Face)",
+      "url": "https://huggingface.co/Edge0/Edge0-145B-NVFP4/resolve/main/LICENSE",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "release-scope.json (Lizenzumfang und Upstream-Angaben)",
+      "publisher": "Edge0 (Hugging Face)",
+      "url": "https://huggingface.co/Edge0/Edge0-145B-NVFP4/resolve/main/release-scope.json",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Edge0-AI/Edge0 (Inferenz-Framework, Apache 2.0)",
+      "publisher": "GitHub",
+      "url": "https://github.com/Edge0-AI/Edge0",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Qwen Community License 1.0, referenzierte Revision (Lizenztext)",
+      "publisher": "Qwen (Hugging Face)",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-Flash-Next/blob/812d96e10a0dd82b69d749e68693698cf6c36daa/LICENSE",
+      "accessed": "2026-11-13"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Edge0 hat am 12. November 2026 Edge0-145B und Edge0-120B veröffentlicht und bezeichnet Edge0-145B als erstes quelloffenes On-Device-Modell mit 145 Milliarden Parametern [1]. Die Gewichte liegen auf Hugging Face, die zugehörige Inferenz-Engine auf GitHub [2][5]. Zwei Angaben des Herstellers verdienen eine genauere Einordnung: die Formulierung quelloffen und die Leistungsversprechen. Beides klären wir weiter unten."
+    },
+    {
+      "t": "h2",
+      "x": "Was veröffentlicht wurde"
+    },
+    {
+      "t": "p",
+      "x": "Auf Hugging Face stehen je zwei quantisierte Varianten bereit: Edge0-145B-NVFP4 und Edge0-145B-q3k sowie die entsprechenden 120B-Pendants, alle ohne Zugangsbeschränkung (Plattform-API, Stand 13.11.2026 gegen 6 Uhr UTC / 7 Uhr MEZ) [2]. Die Repositories wurden am 11. November angelegt und wiesen zum Recherchezeitpunkt null Downloads auf; ein bf16-Vollgewicht haben wir in den von uns eingesehenen Listungen nicht gefunden [2]. Das Inferenz-Framework Edge0-AI/Edge0 auf GitHub steht unter Apache 2.0 und baut nach eigenen Angaben auf der MIT-lizenzierten Strata-Engine auf, die Edge0 um Latent-MoE-Unterstützung erweitert [2][5]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "145 Mrd. Parameter gesamt, davon 10,12 Mrd. aktiv pro Token · 48 Schichten · 512 Experten pro Schicht (10 geroutet plus 1 geteilter Experte) · SwiGLU-Breite 640 · Kontext 256K · nativ in 4 Bit trainiert · 51,2 Mrd. Einträge umfassende N-Gramm-Einbettungstabelle in fp8, speicherabbildet (memory-mapped) · Basismodell Qwen3.8-Flash-Next (Karten-Metadaten) · Lizenz Edge0 Community Model License 1.0 [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Speicher: Blogversprechen und aktuelle Messbedingungen"
+    },
+    {
+      "t": "p",
+      "x": "Der Hersteller beschreibt vier zusammengreifende Maßnahmen [1]: Erstens teilen sich Gruppen von 64 Experten zwei große Matrizen; nur die Abweichungen bleiben pro Experte gespeichert, was die zu bewegende Gewichtemenge senkt. Zweitens wird das Modell von Anfang an in seiner On-Device-Architektur trainiert, statt nachträglich komprimiert zu werden. Drittens lädt die Engine gestuft: Häufig genutzte Experten bleiben im GPU-Speicher, eine Expertensammlung von etwa 40 GB liegt im Arbeitsspeicher, rund 48 GB Vokabulardaten werden bei Bedarf von der SSD gelesen. Viertens rechnen CPU und GPU parallel, und spekulative Dekodierung prüft mehrere Kandidaten-Tokens zugleich; passende Entwurfsdateien (mtp/) liegen im Repository [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Der Ankündigungsblog nennt 29 GB Spitzenspeicher, mehr als 1.100 Token/s Prefill, über 80 Token/s Dekodierung und etwa 120 Watt [1]. Diese pauschalen Werte sind nicht mit einer Gesamtspeicheranforderung gleichzusetzen. Die aktuelle Modellkarte trennt für NVFP4 auf einer RTX 5090 D mit Residency ausdrücklich 23,25 GiB VRAM und zusätzlich 38,27 GiB Host-RAM; es handelt sich um disjunkte Expertensätze. Sie meldet 79,6 Token/s Chat, 98,3 Token/s Agent und 3.165,7 Token/s bei 16K-Prefill. Für Q3_K nennt sie 23,14 GiB VRAM plus 31,28 GiB RAM [2]. Die separat genannte Testbegrenzung auf 16 GiB VRAM und 20 GiB RAM ist keine Mindestanforderung. Sämtliche Werte stammen vom Hersteller, nicht aus eigenen Tests [2][5]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: interne Auswertung des Herstellers"
+    },
+    {
+      "t": "p",
+      "x": "Edge0 veröffentlicht eine Vergleichstabelle über sechs Benchmarks, darunter DeepSWE 1.1 (64,6 Punkte), Terminal-Bench 2.1 (86,52), GPQA-Diamond (90,4) und IFBench (80,6), und stellt Edge0-145B dabei vor Qwen3.8-Flash-Next und DeepSeek-V4-Flash-0731 sowie nahe an Claude-Opus-4.6 (Max) [1]. Die Werte für Edge0, Qwen, DeepSeek und Claude stammen aus Edge0s interner Auswertung; für einige weitere Tabellenmodelle verweist der Hersteller auf Drittquellen [1]. Die Speichervergleiche der Tabelle mischen gemessene Edge0-Werte mit geschätzten Basiswerten für 4-Bit-Deployments, was der Hersteller per Fußnote kenntlich macht [1]. Unabhängige Messungen haben wir in den von uns eingesehenen Quellen nicht gefunden; dass es keine gibt, können wir nicht ausschließen."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Terminal-Bench 2.1: Edge0-Modelle im Hersteller-Vergleich",
+      "alt": "Balkendiagramm mit fünf Werten: Edge0-145B erreicht 86,52 Punkte, Qwen3.8-Flash-Next 83,3, DeepSeek-V4-Flash-0731 82,7, Edge0-120B 81,3 und Claude-Opus-4.6 Max 78,2 Punkte",
+      "caption": "Terminal-Bench 2.1 (Punkte, höher ist besser). Alle Werte aus Edge0s interner Auswertung vom 12.11.2026, von uns nicht nachgeprüft [1]. Der aktuelle GitHub-Überblick nennt für Edge0-120B abweichend 75,3 statt 81,3; die Grafik gibt ausschließlich die Blogtabelle wieder [5].",
+      "labels": [
+        "Edge0-145B",
+        "Qwen3.8-Flash-Next",
+        "DeepSeek-V4-Flash-0731",
+        "Edge0-120B",
+        "Claude-Opus-4.6 (Max)"
+      ],
+      "series": [
+        {
+          "name": "Terminal-Bench 2.1",
+          "values": [
+            86.52,
+            83.3,
+            82.7,
+            81.3,
+            78.2
+          ]
+        }
+      ],
+      "y_label": "Punkte",
+      "x": ""
+    },
+    {
+      "t": "h2",
+      "x": "Die Lizenz: breite Erlaubnis mit kommerziellem Vorbehalt"
+    },
+    {
+      "t": "p",
+      "x": "Die Gewichte stehen nicht unter Apache 2.0 oder einer anderen Standard-Open-Source-Lizenz, sondern unter der eigens für dieses Release verfassten Edge0 Community Model License 1.0 vom 12. November 2026 (von uns am 13.11.2026 vollständig gelesen) [3]. Sie erlaubt Nutzung, Veränderung, Feintuning, Weitergabe, Forschung, die interne Nutzung in Unternehmen und die kommerzielle Nutzung von Modellausgaben, ohne Umsatz- oder Nutzergrenze (Abschnitt 3) [3]."
+    },
+    {
+      "t": "p",
+      "x": "Eine separate schriftliche Edge0-Kommerzialisierungslizenz verlangt Abschnitt 4 für Modellverkauf und kostenpflichtige Weitergabe, kommerzielle Modell-Dienste sowie unabhängige kommerzielle Coding- oder Büro-Assistenten, auch bei lokaler Inferenz. Dazu können Gebühren, Abos, Werbung und produktbezogenes Sponsoring zählen. Nicht jede kommerzielle Nutzung fällt darunter: Ausgenommen sind unter den genauen Bedingungen der Abschnitte 3/4 etwa einzelne Fachwerkzeuge, beiläufige Assistenzfunktionen eines anders ausgerichteten Produkts und reine Installationsleistungen ohne Modellverkauf. Ungebundene Spenden und belegter Kopierkostenersatz sind ebenfalls nicht automatisch entgeltliche Modellangebote. Diese Edge0-Ausnahmen setzen Qwen-Bedingungen nicht außer Kraft [3][4]. Bei Weitergabe verlangt Abschnitt 5 Lizenztexte, Herkunftshinweise und Kennzeichnung eigener Änderungen. Ausgaben unterliegen keinen zusätzlichen Edge0-Gebühren, bleiben aber an geltendes Recht, Upstream-Bedingungen und Rechte Dritter gebunden (Abschnitt 6). Bei wesentlichen Verstößen endet die Edge0-Rechteeinräumung; die erste Verletzung kann innerhalb von 30 Tagen ab Entdeckung oder Mitteilung, je nachdem was früher liegt, vollständig geheilt werden. Weitere Wiedereinsetzungen verlangen schriftliche Zustimmung (Abschnitt 9). Bereits gültige frühere Lizenzrechte werden nicht zurückgezogen [3]."
+    },
+    {
+      "t": "p",
+      "x": "Zwei Feinheiten sind wichtig: Die Lizenz gilt laut release-scope.json nur für Edge0s eigene Beiträge an diesem Release, nicht für das gesamte Modell; für die Qwen-Bestandteile gilt weiterhin die Qwen Community License 1.0, die unverändert im Repository liegt [3][4]. Und während die früheren Vorschau-Modelle Edge0-35B und Edge0-8B noch unter Apache 2.0 standen (Plattform-API), weichen die neuen Flaggschiffe auf die eigene Lizenz aus [2]. Wer Edge0-145B also quelloffen im üblichen Sinn erwartet, wird enttäuscht: Es ist eine Community-Lizenz mit klar kommerziellem Vorbehalt."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Das Release macht eine große sparse MoE-Architektur für lokale NVIDIA-Inferenz zugänglich. Aus dem Blogversprechen eines 48-GB-Laptops folgt aber keine pauschale Eignung konkreter Laptops. Das aktuelle Plattformraster nennt für 145B/120B Linux und Windows mit NVIDIA/CUDA 13. Eine aufgeführte Apple-M2-Ultra-Metal-Messung belegt ausdrücklich noch keine macOS-Veröffentlichung; die plattformübergreifenden Funktionen der früheren 35B-Version dürfen nicht auf 145B übertragen werden [2][5]. Ohne eigene Hardwaretests ist deshalb eine Prüfung am geplanten Gerät nötig. Ebenso reicht die Edge0-Lizenz allein nicht als Freigabe eines kommerziellen Produkts. Der separat gelesene Qwen-Lizenztext nennt eigene Bedingungen für Model-as-a-Service- und AI-Work-Assistant-Geschäfte. Die Datei release-scope.json belegt weder eine separate Qwen-Kommerzialisierungsfreigabe noch eine unabhängig verifizierte Trainingsrevision [3][4][6]. Dies ist eine Zusammenfassung der Texte, keine rechtliche Einzelfallprüfung."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Edge0-145B?",
+      "a": "Ein Sparse-MoE-Modell mit 145 Mrd. Parametern (10,12 Mrd. aktiv pro Token), das laut Hersteller für den Betrieb auf Laptops ausgelegt ist und am 12.11.2026 mit Gewichten und Inferenz-Engine erschienen ist [1][2]."
+    },
+    {
+      "q": "Ist Edge0-145B Open Source?",
+      "a": "Nicht im üblichen Sinn: Die Gewichte stehen unter der Edge0 Community Model License 1.0, die viel erlaubt, aber kommerzielle Modellangebote einer gesonderten Lizenz vorbehält; zudem gilt für Qwen-Bestandteile die Qwen-Lizenz [3][4]. Das Inferenz-Framework dagegen ist Apache 2.0 [5]."
+    },
+    {
+      "q": "Läuft das Modell wirklich auf einem Laptop?",
+      "a": "Für das aktuelle 145B-Release sind Linux/Windows mit NVIDIA-GPU und CUDA 13 dokumentiert, nicht pauschal jeder Laptop. Die Modellkarte nennt für NVFP4 mit Residency 23,25 GiB VRAM plus 38,27 GiB RAM auf einer RTX 5090 D. Ein M2-Ultra-Messwert ist ausdrücklich keine macOS-Releasezusage. Eigene Hardwaretests fehlen [2][5]."
+    },
+    {
+      "q": "Darf ich Edge0-145B kommerziell nutzen?",
+      "a": "Die Edge0-Lizenz erlaubt unter Vorbehalt der Upstream-Bedingungen interne Nutzung und kommerzielle Ausgaben. Für die genau abgegrenzten Modellangebote in Abschnitt 4 ist eine schriftliche Edge0-Lizenz erforderlich; Fachwerkzeuge und beiläufige Assistenzfunktionen können ausgenommen sein. Zusätzlich sind Qwen-Bedingungen zu prüfen. Keine rechtliche Einzelfallprüfung [3][4][6]."
+    },
+    {
+      "q": "Worauf basiert das Modell?",
+      "a": "Die Modellkarte nennt Qwen3.8-Flash-Next als Basismodell; die Engine erweitert die MIT-lizenzierte Strata-Engine um Latent-MoE-Unterstützung [2][5]."
+    }
+  ],
+  "method": "Quellenabgleich am 13. November 2026 gegen 07:15 Uhr MEZ: Herstellerblog, aktuelle Modellkarte und Plattform-API, vollständige Edge0-Lizenz, release-scope.json, GitHub-README und referenzierter Qwen-Lizenztext selbst gelesen. Blog, Modellkarte und GitHub weichen bei Speicher, Plattformdarstellung und einzelnen Benchmarkwerten voneinander ab; Angaben sind daher quellenbezogen. Keine eigenen Hardwaretests.",
+  "limitations": "Leistungs- und Speicherwerte sind interne Herstellerangaben. 29 GB im Blog sind nicht als vollständige RAM-plus-VRAM-Anforderung verifiziert. Aktuelle Residency-Werte und Release-Plattformen sind gesondert ausgewiesen; M2-Messung ist keine macOS-Verfügbarkeit. Blog/GitHub nennen für Edge0-120B unterschiedliche Terminal-Bench-Werte. Ein bf16-Vollgewicht fand sich nicht in den geprüften Listungen; das ist kein allgemeiner Fehlensbeleg. Lizenzübersicht ohne Einzelfallberatung; Edge0-Designation beweist keine Qwen-Kommerzialisierungsfreigabe und keine verifizierte Trainingsrevision.",
+  "related": [
+    "offene-gewichte-vs-open-source",
+    "muse-spark-open-offene-gewichte-analyse",
+    "agenten-fundamente"
+  ]
+}
