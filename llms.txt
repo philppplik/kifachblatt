@@ -33,6 +33,9 @@
 ## Beiträge
 
 <!--GEN-->
+- [Edge0-145B: lokale MoE-Inferenz und die Grenzen der Community-Lizenz](https://kifachblatt.de/edge0-145b-analyse): Edge0 veröffentlicht 145B-Gewichte für NVIDIA-Inferenz. Aktuelle RAM-/VRAM-Angaben und die Community-Lizenz relativieren das Laptop-Versprechen.
+- [ICL-Theorie, Live-Verifikation, Minimal-Pair-Bias](https://kifachblatt.de/news-ueberblick-morgen-2026-11-13): Kernel-Maschinen lernen ICL-Regression, ein CPU-Checker korrigiert lokale Rechenfehler, und LLM-Filter erleichtern Minimal-Pair-Benchmarks.
+- [ZONOS3-Mini: Echtzeit-Stimmenklonen mit 100M aktiven Parametern](https://kifachblatt.de/zonos3-mini-analyse): Zyphra öffnet ZONOS3-Mini: Stimmenklonen in 43 Sprachen unter Apache 2.0, mit eigenem Codec und MIT-Laufzeiten vom Server bis in den Browser.
 - [Diffusions-Halluzinationen, Scaling-Fits, Bits vs. Order](https://kifachblatt.de/news-ueberblick-abend-2026-11-12): Entropie-Spitzen und gezielte MDLM-Verfeinerung, pre-asymptotische Scaling-Fits und ein simulierter Bits-vs.-Orders-Vergleich mit Kostenproxy.
 - [Looped CED, Attention-Nullmodelle, Taxonomie-Messung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-12): Rekurrenz ohne KV-Wachstum am 552B-MoE, drei Checks für Attention-Eingriffe und eine Fehlerkategorie, die vor allem das Messverfahren misst.
 - [ERNIE 5.5 Flash Preview: Baidus nachtrainiertes 280B-Modell](https://kifachblatt.de/ernie-5-5-flash-preview-analyse): Baidu stellt ERNIE 5.5 Flash Preview vor: das erste nachtrainierte Modell auf der 280B-Basis, mit 1M Kontext und angekündigten Gewichten unter Apache 2.0.
