@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Hitchhiking-Traits, PreG-Sampling, Prognose-Angriff](https://kifachblatt.de/news-ueberblick-abend-2026-11-13): Price-Gleichung für RL-Nebeneffekte, Präfix-Ranking spart Token beim Sampling, und ein Fake-Artikel kippt LLM-Prognosen in eingefrorenen Archiven.
 - [SFT-Datenbudget, Stoppverhalten, Hack-Vorboten](https://kifachblatt.de/news-ueberblick-mittag-2026-11-13): SFT erreicht bei gleichem Rollout-Budget das RL-Niveau. Coding-Agenten stoppen spät; ein Aktivierungsvektor begleitet Hacking in begrenzten Tests.
 - [Edge0-145B: lokale MoE-Inferenz und die Grenzen der Community-Lizenz](https://kifachblatt.de/edge0-145b-analyse): Edge0 veröffentlicht 145B-Gewichte für NVIDIA-Inferenz. Aktuelle RAM-/VRAM-Angaben und die Community-Lizenz relativieren das Laptop-Versprechen.
 - [ICL-Theorie, Live-Verifikation, Minimal-Pair-Bias](https://kifachblatt.de/news-ueberblick-morgen-2026-11-13): Kernel-Maschinen lernen ICL-Regression, ein CPU-Checker korrigiert lokale Rechenfehler, und LLM-Filter erleichtern Minimal-Pair-Benchmarks.
