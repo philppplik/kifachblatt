@@ -5,6 +5,7 @@
  "darwin-180b-rsi-r3-analyse": "2026-11-09T08:00:00+01:00",
  "deepseek-v4-1-flash-1017-analyse": "2026-10-27T07:15:00+01:00",
  "drex-max-v1-analyse": "2026-11-02T07:26:00+01:00",
+ "edge0-145b-analyse": "2026-11-13T08:00:00+01:00",
  "ernie-5-5-flash-base-analyse": "2026-11-07T07:27:00+01:00",
  "ernie-5-5-flash-preview-analyse": "2026-11-12T07:28:00+01:00",
  "gdpx-semianalysis-analyse": "2026-11-02T07:26:00+01:00",
@@ -68,6 +69,7 @@
  "news-ueberblick-morgen-2026-11-10": "2026-11-10T07:52:00+01:00",
  "news-ueberblick-morgen-2026-11-11": "2026-11-11T06:50:00+01:00",
  "news-ueberblick-morgen-2026-11-12": "2026-11-12T07:03:00+01:00",
+ "news-ueberblick-morgen-2026-11-13": "2026-11-13T08:00:00+01:00",
  "northcua-computer-use-analyse": "2026-11-03T07:30:00+01:00",
  "openai-model-spec-oktober-2026-analyse": "2026-10-30T07:19:00+01:00",
  "p-h3-image-analyse": "2026-11-08T07:29:00+01:00",
@@ -78,5 +80,6 @@
  "sophon-realtime-32b-tag-analyse": "2026-11-09T08:00:00+01:00",
  "tencent-hy4-analyse": "2026-11-05T07:26:00+01:00",
  "timeh2o-v1-zeitreihen-prognose-analyse": "2026-10-31T07:18:34+01:00",
- "toyblocks-ai2-analyse": "2026-11-06T07:25:00+01:00"
+ "toyblocks-ai2-analyse": "2026-11-06T07:25:00+01:00",
+ "zonos3-mini-analyse": "2026-11-13T08:00:00+01:00"
 }
