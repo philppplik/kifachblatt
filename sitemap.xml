@@ -109,7 +109,7 @@
 
 
 
-<url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-13</loc><lastmod>2026-11-13T10:03:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-13.jpg</image:loc><image:title>SFT-Datenbudget, Stoppverhalten, Hack-Vorboten</image:title><image:caption>Datentafel: SFT-Mix 44,4 und RL 43,8 Punkte, jeweils rund 0,4 Standardfehler; Median 35 bis 60 Prozent der Schritte gelöster Läufe nach korrektem Patch; Cheat-Rate bei Qwen auf einem Task von 97 auf 39 Prozent.</image:caption></image:image></url>
+<url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-13</loc><lastmod>2026-11-13T10:12:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-13.jpg</image:loc><image:title>SFT-Datenbudget, Stoppverhalten, Hack-Vorboten</image:title><image:caption>Datentafel: SFT-Mix 44,4 und RL 43,8 Punkte, jeweils rund 0,4 Standardfehler; Median 35 bis 60 Prozent der Schritte gelöster Läufe nach korrektem Patch; Cheat-Rate bei Qwen auf einem Task von 97 auf 39 Prozent.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/edge0-145b-analyse</loc><lastmod>2026-11-13T08:40:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/edge0-145b-analyse.jpg</image:loc><image:title>Edge0-145B: lokale MoE-Inferenz und die Grenzen der Community-Lizenz</image:title><image:caption>Edge0-145B: NVFP4-Residency im Herstellertest mit 23,25 GiB VRAM und zusätzlich 38,27 GiB RAM; Linux/Windows mit NVIDIA und CUDA 13, keine bestätigte macOS-Veröffentlichung.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-13</loc><lastmod>2026-11-13T08:40:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-13.jpg</image:loc><image:title>ICL-Theorie, Live-Verifikation, Minimal-Pair-Bias</image:title><image:caption>Datentafel: plus 1,4 bis 5,6 Punkte durch Live-Checks, 9 bis 20 Prozent LNS-Recall der LLM-Validatoren, plus 5,6 Punkte Benchmark-Inflation durch LLM-Filter.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/zonos3-mini-analyse</loc><lastmod>2026-11-13T08:40:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/zonos3-mini-analyse.jpg</image:loc><image:title>ZONOS3-Mini: Echtzeit-Stimmenklonen mit 100M aktiven Parametern</image:title><image:caption>Schematische Grafik: Wellenform links, Kasten ZONOS3-Mini mit 100M aktiven Parametern in der Mitte, rechts drei Lautsprechersymbole für Browser, Laptop und Server</image:caption></image:image></url>
@@ -292,7 +292,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-13T08:40:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-13T10:03:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-13T10:12:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-13</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-13</lastmod></url>
