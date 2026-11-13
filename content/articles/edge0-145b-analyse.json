@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Edge0-145B: lokale MoE-Inferenz und die Grenzen der Community-Lizenz",
   "dek": "Edge0 veröffentlicht 145B-Gewichte für NVIDIA-Inferenz. Aktuelle RAM-/VRAM-Angaben und die Community-Lizenz relativieren das Laptop-Versprechen.",
-  "published": "2026-11-13T08:00:00+01:00",
-  "modified": "2026-11-13T08:00:00+01:00",
+  "published": "2026-11-13T08:40:00+01:00",
+  "modified": "2026-11-13T08:40:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Edge0",
