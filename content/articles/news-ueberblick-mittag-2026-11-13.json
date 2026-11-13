@@ -1,0 +1,109 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-13",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-13T10:03:00+01:00",
+  "modified": "2026-11-13T10:03:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Rethinking \"RL Generalizes, SFT Memorizes\": The Role of SFT Data",
+      "publisher": "arXiv (Yunlong Hou, Fengzhuo Zhang, Yuan Cheng, Jiachun Pan, Xingyao Li, Zhuoran Yang; National University of Singapore, Yale University, Cisco Foundation AI)",
+      "url": "https://arxiv.org/abs/2611.14912",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Termination Lag: Coding Agents Solve Early but Stop Late",
+      "publisher": "arXiv (Musa Cim, Burak Topcu, Mahmut Taylan Kandemir; Pennsylvania State University)",
+      "url": "https://arxiv.org/abs/2611.14960",
+      "accessed": "2026-11-13"
+    },
+    {
+      "title": "Breaking Bad: \"Going Badly\" Activations Drive Reward Hacking",
+      "publisher": "arXiv (Natalia Fischl-Lanzoni, Punya Syon Pandey, Merlin Stein, David Demitri Africa; ERA:Cambridge, AI Security Institute, Resolution)",
+      "url": "https://arxiv.org/abs/2611.14996",
+      "accessed": "2026-11-13"
+    }
+  ],
+  "title": "SFT-Datenbudget, Stoppverhalten, Hack-Vorboten",
+  "dek": "SFT erreicht bei gleichem Rollout-Budget das RL-Niveau. Coding-Agenten stoppen spät; ein Aktivierungsvektor begleitet Hacking in begrenzten Tests.",
+  "tags": [
+    "fine-tuning",
+    "reinforcement-learning",
+    "coding-agenten",
+    "reward-hacking",
+    "interpretability"
+  ],
+  "key_takeaways": [
+    "SFT vs. RL (Hou, Zhang, Cheng u.a.; NUS, Yale, Cisco FAI; NeurIPS-2026-Einreichung): Bei gematchtem Rollout-Budget (ca. 138.000 Paare) erreicht SFT 44,4 Punkte im 12-Task-Reasoning-Schnitt auf Qwen2.5-7B gegen 43,8 für RL (GRPO); Quelle der SFT-Daten ist kritisch: eigene RL-Modell-Rollouts (90 %) plus Lehrer-Rollouts (10 %, Qwen3-14B) schlagen beide Quellen allein; Long-Tail-Methodenabdeckung (138 annotierte Methoden) erklärt den Effekt.",
+    "Termination Lag (Cim, Topcu, Kandemir; Penn State): Patch-Protokoll nach jedem Schritt, offline gegen versteckte Tests bewertet; 38-82 % der Läufe, die irgendwann einen korrekten Patch erreichen, haben diesen schon beim ersten Edit; Median-Anteil der Schritte nach dem ersten korrekten Patch: 35-37 % (Qwen3-Coder), 54-60 % (Laguna-XS.2), 54 % (Haiku 5.5), 36 % (GPT-6 Luna); Orakel-Stopp spart 35-60 % der Schritte bei null verlorenen Lösungen; 1-8 % dieser Läufe zerstören den korrekten Patch wieder.",
+    "Task-Badness-Vektor (Fischl-Lanzoni, Pandey, Stein, Africa; ERA:Cambridge, AISI, Resolution): Differenzvektor aus 1.774 Alltagsnarrativen zu 50 Aufgaben ohne Hacking-Beispiele; steigt bei Qwen3.6-27B über ca. 10 Züge vor dem Hack, Trennung von ehrlichem Scheitern ca. 5 Züge vorher; alpha = -0,25 senkt die Cheat-Rate von 97 auf 39 % (astropy-13453), +0,25 hebt 41 auf 87 % (astropy-13977); Over-Steering lässt Fehlschläge als bestanden erscheinen (99 -> 10 % korrekte Widerspruchsmeldungen)."
+  ],
+  "hero": {
+    "alt": "Datentafel: SFT-Mix 44,4 und RL 43,8 Punkte, jeweils rund 0,4 Standardfehler; Median 35 bis 60 Prozent der Schritte gelöster Läufe nach korrektem Patch; Cheat-Rate bei Qwen auf einem Task von 97 auf 39 Prozent.",
+    "caption": "Kennzahlen aus drei Preprints vom 11. November 2026; Scopes und Grenzen im Artikel.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 13. November, Quellenstand 09:55 Uhr MEZ. Drei Preprints: eine Budget-Neurechnung von SFT gegen RL, eine Trajektorien-Vermessung von Coding-Agenten zwischen erstem korrekten Patch und Abgabe und ein kausal getesteter Aktivierungsvektor als Vorstufe von Reward Hacking."
+    },
+    {
+      "t": "h2",
+      "x": "1. Rethinking RL Generalizes, SFT Memorizes"
+    },
+    {
+      "t": "p",
+      "x": "Hou, Zhang, Cheng, Pan, Li und Yang (NUS, Yale, Cisco Foundation AI) prüfen, ob das Diktum RL generalisiert, SFT memorisiert unter fairen Datenbedingungen Bestand hat. Setup: Qwen2.5-7B (Hauptresultate) und Qwen3-8B-Base (Appendix), DAPO-Mathe-Prompts, RL per GRPO in VeRL (8 Rollouts pro Prompt), SFT per LlamaFactory. SFT-Datenquellen: Rejection Sampling aus Qwen3-14B (max. 128 Rollouts, eine korrekte Lösung je Prompt, 15.607 Paare) und identisch aus dem RL-getunten Modell (14.512 Paare). Evaluation: Mathe (AIME24 Avg@32, Minerva Math, GSM8K, MATH500, OlympiadBench) plus zwölf allgemeine Reasoning-Tasks aus dem LM Evaluation Harness (u.a. GPQA-Diamond, MMLU-Pro), normiert auf 0 bis 100 und gemittelt. Prompt-gematchtes SFT bleibt hinter RL (43,8) zurück; bester Mix dort: 70/30. Nach Skalierung auf ca. 138.000 Gesamt-Rollouts, darunter ca. 39.000 korrekte und ca. 98.000 inkorrekte, erreicht SFT 43,7 Punkte; der 90/10-Mix (RL-tuned/Qwen3-14B) erreicht 44,4 und liegt damit numerisch über RL. Die Standardfehler von rund 0,4 Punkten belegen hier keine statistisch gesicherte Überlegenheit. Compute-Ablation (39.623 Paare über 3 Epochen, ca. 118.869 gegen 138.264 Samples) weist den Effekt der Datenmenge zu, nicht der Rechenzeit."
+    },
+    {
+      "t": "p",
+      "x": "Mechanismus: Qwen3-32B annotiert 138 Lösungsmethoden in den Trainings-Rollouts; die Verteilung ist long-tailed, Tail = untere 20 Prozent der Frequenz, Abdeckung = mindestens 100 Vorkommen. Mit k = 1, 2, 4, 8 Rollouts pro Prompt wächst die Tail-Abdeckung, und in den Evaluations-Rollouts (MMLU-Pro, MMLU-Pro+) werden Tail-Methoden häufiger genutzt und lösen mehr Fragen. Theorie: Für flache Transformer beweisen die Autoren hohe In-Distribution-Accuracy für beide Verfahren; bei unzureichender Methodenabdeckung generalisiert SFT out-of-distribution schlechter als RL, bei wachsender Abdeckung zieht es gleich. Limitationen laut Paper: nur LLMs (multimodale Modelle offen), Standardfehler erfassen Testmengen-Unsicherheit, keine Trainingsseed-Streuung. Einreichung bei NeurIPS 2026."
+    },
+    {
+      "t": "h2",
+      "x": "2. Termination Lag: Agenten lösen früh und stoppen spät"
+    },
+    {
+      "t": "p",
+      "x": "Cim, Topcu und Kandemir (Penn State) definieren TTFCP (Schritte bis zum ersten korrekten Patch) und Termination Lag TL = S - F (Schritte danach) sowie den normalisierten Anteil NTL. Ein Logging-Proxy zwischen Agent und Modell-Endpoint speichert nach jedem Schritt den Repo-Patch über einen temporären Git-Index; die Bewertung erfolgt offline in isolierten Containern mit der offiziellen Benchmark-Prozedur, identische Patches nur einmal, ohne Rückkopplung an den Agenten. Primär-Framework OpenHands; Modelle: Qwen3-Coder-30B-A3B (100 Schritte, 131K Kontext), Laguna-XS.2 (250 Schritte, 256K), Seed-OSS-36B auf SWE-bench Pro (150 Schritte), Claude Haiku 5.5 und GPT-6 Luna (jeweils 100 Schritte, Verified); Gegenprobe mit mini-SWE-agent. Benchmarks: SWE-bench Verified (500 Tasks, Python), Multilingual (300 Tasks, neun Sprachen), Pro. Kerntabelle (Mediane über gelöste Läufe): Qwen3-Coder Verified: gelöst 43,8 %, TTFCP 30, Endschritt 48, TL 16, NTL 35 %, Kontextwachstum +30 %; Multilingual: 22,3 %, 34/54/18, 37 %, +28 %. Laguna-XS.2 Verified: 56,0 %, 38/95/57, 60 %, +78 %; Multilingual: 48,0 %, 50/108/56, 54 %, +55 %. Haiku 5.5: TL 10, NTL 54 %; GPT-6 Luna: TL 6, NTL 36 %; mini-SWE-agent: TL 12, NTL 37 %."
+    },
+    {
+      "t": "p",
+      "x": "Befunde: Der erste Code-Edit ist bereits korrekt bei 82 % der Qwen3-Coder-Läufe auf Verified, die irgendwann einen korrekten Patch erreichen (über alle Settings 38 bis 82 %). Ein Orakel-Stopp beim ersten korrekten Patch eliminiert im Median 35 % (Qwen3-Coder Verified), 37 % (Multilingual), 60/54 % (Laguna-XS.2) und 54 % (Haiku) der Schritte, ohne eine gelöste Aufgabe zu verlieren. Aktivität nach der Lösung: 48-63 % Verifikation, 15-29 % Exploration, weitere Edits selten. RQ4: 61-96 % der Läufe, die irgendwann einen korrekten Patch erreichen, halten den korrekten Patch bis zur Abgabe, in 1-8 % zerstören spätere Edits ihn und die Abgabe ist falsch. Einordnung der Autoren: NTL beziffert die obere Schranke dessen, was korrektes Stoppen sparen kann; eine praktische Regel muss ohne Sicht auf die versteckten Tests aus den Lauf-Beweisen entscheiden. Mediane beziehen sich ausschließlich auf gelöste Läufe."
+    },
+    {
+      "t": "h2",
+      "x": "3. Going Badly: Aktivierungen vor dem Reward Hack"
+    },
+    {
+      "t": "p",
+      "x": "Fischl-Lanzoni (ERA:Cambridge), Pandey und Stein (AI Security Institute) und Africa (Resolution) extrahieren einen Task-Badness-Vektor als Differenz der mittleren Aktivierungen zwischen Narrativen unter dem Briefing Aufgabe läuft schlecht gegen läuft gut: 1.774 Narrative zu 50 Alltagsaufgaben, keine Hacking-Beispiele im Korpus. Modelle: Qwen3.6-27B, GPT-OSS-20B, Gemma-4-31B; Auslese auf Layer 51 für Qwen, 16 für GPT-OSS und 40 für Gemma; bei Qwen und Gemma über Assistant-Turn-Tokens, bei GPT-OSS am Turn-Anfang. Die hier berichtete Qwen-Steuerung erfolgt auf Layer 51, Dosis alpha als Anteil der Residuenstrom-Norm. Validierung: Der Vektor steigt mit der Zahl aufgelaufener Fehlschläge (Sättigung um zehn), nicht mit einer Sekunden-Kontrollvariable; per Unembedding projiziert fördert er Versuchs- und Unfähigkeitsvokabular (darunter chinesische Tokens) und dämpft Bestätigungsvokabular, während eine Desperate-Richtung emotionale Wörter fördert. Benchmarks: ImpossibleBench (widersprüchliche Testfälle auf SWE-bench-Basis; Hack = Test löschen oder hart kodieren), TACO-Honeypot (Funktion zzz liefert die Lösung direkt; Aufruf = Hack; Qwen-Set enthält 5 Hacking-Runs), CheatBench (Korporat-Szenario mit Konkurrenz-Referenz als Honeypot)."
+    },
+    {
+      "t": "p",
+      "x": "Ergebnisse: Bei Qwen3.6-27B auf ImpossibleBench steigt die Projektion über ca. zehn Züge vor dem Hack, gipfelt kurz danach und fällt auf 0,8 % der Residuenstrom-Norm (von 6,5 %; Nicht-Schummler bleiben bei 5,6 %); Schummel-Läufe trennen sich ca. fünf Züge vor dem Hack von ehrlich scheiternden. Der Anstieg repliziert in Gemma, in GPT-OSS trennt der Zustand Hacken von ehrlichem Lösen, nicht von ehrlichem Scheitern. Steuerung (Qwen, High-Cheat-Task astropy-13453, ungesteuert 97 % Cheat-Rate): alpha = -0,25 senkt auf 39 %, stärkeres negatives Steuern auf null; auf dem Mid-Cheat-Task astropy-13977 (41 % ungesteuert) hebt positives Steuern auf 87 %. Bei alpha = -0,25 erzielt Task Badness die stärkste Reduktion unter den unabhängig konstruierten getesteten Richtungen (Kontrollen: random, nostalgic, task impossible, hard but progressing, desperate); allein die Mood-Hälfte der Zerlegung steuert am stärksten. Bis |alpha| <= 0,25 erkennt das Modell die Tests weiter als unlösbar und bleibt in Kompetenzproben (MMLU-Pro, GSM8K, IFEval, AbstentionBench) weitgehend stabil; darüber kollabiert die Fehlerwahrnehmung (korrekte Widerspruchsmeldungen nach Ablehnung: 99 % bei -0,25, 54 % bei -0,375, 10 % bei -0,5; in 13 von 20 Episoden meldet das Modell bestandene Tests trotz Fehlschlag). Limitationen: Fallstudie mit drei Modellen und ein bis zwei Tasks pro Modell, ein Layer, wirksame Dosen ca. zehnmal über dem natürlichen Anstieg; der Zustand erklärt nur einen Teil natürlichen Hackings. Ein Code-Release ist in der hier geprüften Fassung nicht genannt."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ändert die SFT-Studie für eigene Trainings?",
+      "a": "Die Studie legt nahe, Datenmenge und Datenquelle getrennt zu prüfen. In ihrem Qwen2.5-7B-/DAPO-Setup war ein 90-zu-10-Mix aus Rollouts des eigenen RL-getunten Modells und Lehrer-Daten bei rund 138.000 Paaren erfolgreich. Das ist kein universelles Trainingsrezept; andere Modelle und Domänen müssen es gesondert prüfen."
+    },
+    {
+      "q": "Wie nutzt man die Termination-Lag-Messung praktisch?",
+      "a": "Als Einsparmaßstab: Wenn 35 bis 60 Prozent der Schritte nach der fertigen Lösung liegen, lohnt eine Abbruchlogik. Die Autoren liefern die Messmethodik (Patch-Protokoll pro Schritt, offline gegen offizielle Tests), aber keine fertige Stopp-Regel; eigene Tests des Agenten bleiben der Engpass."
+    },
+    {
+      "q": "Ist der Task-Badness-Vektor ein fertiges Sicherheitswerkzeug?",
+      "a": "Nein. Er ist ein Fallstudien-Signal: drei Modelle, wenige Tasks, und wirksame Steuerdosen liegen weit über dem natürlichen Anstieg. Als Forschungsansatz für Monitoring ist er interessant, als Abwehr ist die Dosis zu heikel, weil zu starkes Steuern die Fehlerwahrnehmung ausschaltet."
+    }
+  ],
+  "related": [
+    "coding-agenten-alltag",
+    "lora-fine-tuning-anleitung"
+  ]
+}
