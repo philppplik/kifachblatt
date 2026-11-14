@@ -1,0 +1,185 @@
+{
+  "slug": "sov-transcribe-1-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "SOV-Transcribe-1: Salesforce öffnet steuerbares ASR-Modell",
+  "dek": "SOV-Transcribe-1 verbindet Whisper-Encoder und Gemma 4 zu einem offenen Transkriptionsmodell für sieben Sprachen - per Anweisung steuerbar, Apache 2.0.",
+  "published": "2026-11-14T07:15:40+01:00",
+  "modified": "2026-11-14T07:15:40+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Salesforce",
+    "SOV-Transcribe-1",
+    "Spracherkennung",
+    "Open Weights",
+    "ASR"
+  ],
+  "key_takeaways": [
+    "Salesforce hat SOV-Transcribe-1 veröffentlicht: ein offenes Transkriptionsmodell aus Whisper-large-v3-Encoder und Gemma-4-26B-MoE, 26,6 Mrd. Parameter gesamt, 4,6 Mrd. aktiv [1].",
+    "Das Modell transkribiert bis zu 30 Minuten Audio in sieben Sprachen (Deutsch dabei) und folgt Anweisungen zu Stil, Zeichensetzung und Fachvokabular [1].",
+    "SOV-Transcribe-1, DFlash und die verlinkten Basis-Modellkarten nennen Apache 2.0. Die Plattform-API meldet die Repositories als nicht zugangsbeschränkt; Lizenz- und Hinweisbedingungen gelten weiterhin [1][2][3][4][5].",
+    "Der DFlash-Entwurfsdecoder beschleunigt die Dekodierung laut Hersteller um den Faktor 2 bis 3; gemessen auf einer RTX PRO 6000 Blackwell [1][2].",
+    "Qualitätsrangplätze (Platz 1 der offenen Modelle bei Artificial Analysis, Platz 2 bei VoiceCodeBench) sind Herstellerangaben vom 12.11.2026; wir haben die Ranglisten nicht selbst geöffnet [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Audiowelle links, Kasten SOV-Transcribe-1 in der Mitte mit den Bausteinen Whisper-Encoder und Gemma-4-MoE, rechts ein Textdokument",
+    "caption": "Whisper-Encoder trifft Gemma-4-MoE: SOV-Transcribe-1 transkribiert 30 Minuten Audio am Stück und folgt Stilanweisungen [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "salesforce-sovereign-intelligence/SOV-Transcribe-1 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/salesforce-sovereign-intelligence/SOV-Transcribe-1",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "salesforce-sovereign-intelligence/SOV-Transcribe-1-DFlash (Entwurfsmodell, Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/salesforce-sovereign-intelligence/SOV-Transcribe-1-DFlash",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "google/gemma-4-26B-A4B-it (Basismodell, Lizenzprüfung per Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/google/gemma-4-26B-A4B-it",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "openai/whisper-large-v3 (Basis-Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face / OpenAI",
+      "url": "https://huggingface.co/openai/whisper-large-v3",
+      "accessed": "2026-11-14"
+    },
+    {
+      "title": "Apache License 2.0 (von Gemma-4-Modellkarte verlinkter Lizenztext)",
+      "publisher": "Google AI for Developers",
+      "url": "https://ai.google.dev/gemma/apache_2",
+      "accessed": "2026-11-14"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Salesforce hat mit SOV-Transcribe-1 ein offenes Sprachmodell für automatische Spracherkennung veröffentlicht, das mehr kann als Worte mitschreiben: Es folgt Anweisungen zu Transkriptionsstil, Zeichensetzung und Zahlenformat und lässt sich mit Stichworten oder Themenskizzen auf Fachvokabular eichen [1]. Die Gewichte stehen unter Apache 2.0 und sind ohne Zugangsbeschränkung abrufbar (Plattform-API, Stand 14.11.2026 gegen 6 Uhr UTC / 7 Uhr MEZ); die Repositories wurden am 10. November angelegt [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: Whisper-Encoder trifft Gemma-4-MoE"
+    },
+    {
+      "t": "p",
+      "x": "SOV-Transcribe-1 kombiniert den Audio-Encoder von Whisper large-v3 mit dem MoE-Sprachmodell Gemma 4 26B A4B: Der Encoder verarbeitet 16-kHz-Audio in 30-Sekunden-Fenstern, ein Projektor (Vierfach-Stapelung, dann Linear-GELU-Linear) überführt die Merkmale in den Eingaberaum des Sprachmodells [1]. Insgesamt kommt das System auf 26,6 Mrd. Parameter, davon 4,6 Mrd. aktiv pro Token; gespeichert ist es in BF16, der MoE-Router läuft wie im Training in FP32 [1]. Das Basismodell Gemma 4 steht selbst unter Apache 2.0 (Plattform-API), auch die Whisper-Modellkarte nennt Apache 2.0. Das belegt die genannten Lizenzangaben, ersetzt aber keine Prüfung sämtlicher Rechte oder einer konkreten Weiterverteilung. Apache 2.0 verlangt unter anderem Lizenzkopie, Änderungsvermerke und Erhalt einschlägiger Hinweise [3][4][5]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "26,6 Mrd. Parameter gesamt, 4,6 Mrd. aktiv · Whisper-large-v3-Encoder plus Gemma-4-26B-A4B-MoE · BF16 (Router FP32) · bis zu 30 Minuten Audio pro Anfrage (getestet), 16 kHz · Sprachen: Englisch, Französisch, Deutsch, Spanisch, Italienisch, Portugiesisch, Niederländisch · Inferenz über vLLM (Plugin) oder Transformers · Lizenz Apache 2.0 [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Steuerung per Anweisung statt Nachbearbeitung"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte dokumentiert eine Prompt-Anleitung: Wörtliche Mitschrift mit Füllwörtern, geglättete Schriftform, automatische Spracherkennung, Sprachhinweis oder Kontext-Biasing mit einer Liste von Eigennamen und Fachbegriffen - alles über die Nutzernachricht gesteuert, ohne separates Nachbearbeitungsskript [1]. Die Karte stellt diese Steuerbarkeit als Eigenschaft des Modells dar: Es ist ein Sprachmodell mit Audioeingang und übernimmt Entitäten wie Namen, Telefonnummern und E-Mail-Adressen laut Hersteller präzise [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Tempo: DFlash-Entwurfsdecoder"
+    },
+    {
+      "t": "p",
+      "x": "Ein separates Entwurfsmodell (SOV-Transcribe-1-DFlash) schlägt jeweils 15 Token vor, die das Hauptmodell verifiziert; für einzelne Anfragen soll das die Dekodierung um den Faktor 2 bis 3 beschleunigen, bei Clips unter 10 Sekunden weniger, mit einer Genauigkeit im Rahmen der üblichen Lauf-zu-Lauf-Schwankung [1][2]. Der Hersteller veröffentlicht eigene Messwerte auf einer RTX PRO 6000 Blackwell mit 96 GB [1]:"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Mittlere Zeit pro Anfrage (Sekunden): ohne und mit DFlash",
+      "alt": "Balkendiagramm mit vier Audiolängen: bis 10 Sekunden 0,16 ohne und 0,09 mit Entwurf, 10 bis 30 Sekunden 0,44 und 0,15, 30 bis 60 Sekunden 0,88 und 0,31, 1 bis 5 Minuten 2,78 und 1,26 Sekunden",
+      "caption": "Hersteller-Messung auf einer RTX PRO 6000 Blackwell (96 GB), vLLM 0.32.0, BF16, Greedy-Decoding, Clips aus Earnings-22; gemessen mit einer früheren vLLM-Integration, von uns nicht nachgeprüft [1]. Die Werte gelten für jeweils eine Anfrage, nicht für einen Lasttest.",
+      "labels": [
+        "bis 10 s Audio",
+        "10-30 s Audio",
+        "30-60 s Audio",
+        "1-5 min Audio"
+      ],
+      "series": [
+        {
+          "name": "ohne Entwurf",
+          "values": [
+            0.16,
+            0.44,
+            0.88,
+            2.78
+          ]
+        },
+        {
+          "name": "mit DFlash-Entwurf",
+          "values": [
+            0.09,
+            0.15,
+            0.31,
+            1.26
+          ]
+        }
+      ],
+      "y_label": "Sekunden pro Anfrage",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Für den Serverbetrieb nennt der Hersteller bis zu 1.039 Sekunden Audio pro Sekunde auf einer einzigen RTX PRO 6000 (BF16 mit Entwurf) und 0,22 Sekunden für das Transkript einer 30-Sekunden-Aufnahme; gemessen wurde mit einem vLLM-Entwicklungsstand vom November 2026 [1]. Ein OpenAI-kompatibler Transkriptions-Endpunkt (/v1/audio/transcriptions) ist Teil des Plugins; native Unterstützung in vLLM und Transformers wird laut Karte vorbereitet [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Qualitätsaussagen: Was belegt ist und was nicht"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte meldet Platz 1 unter den offenen Modellen für nicht-streamende Spracherkennung bei Artificial Analysis (Platz 7 gesamt) sowie Platz 2 von 23 Systemen auf VoiceCodeBench für Entitätsgenauigkeit und Aufgabenerfolg, jeweils mit Stand 12. November 2026 [1]. Beides sind Herstellerangaben über Dritt-Ranglisten; wir haben die Ranglisten nicht selbst geöffnet und können die Platzierungen daher nicht bestätigen. Die eigentliche Benchmark-Tabelle liegt auf der Karte nur als Bild vor, Zahlen daraus übernehmen wir nicht. Das Auswertungsprotokoll ist dokumentiert: Greedy-Decoding, deaktivierter Entwurf, feste Prompts pro Datensatz, darunter AMI, Earnings22, GigaSpeech und VoxPopuli aus dem Open-ASR-Benchmark [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "SOV-Transcribe-1 adressiert zwei praktische Lücken: die Kontrolle über das Transkript (Stil, Format, Vokabular) und den Betrieb auf eigener Infrastruktur, bei dem sich die Verarbeitung lokal organisieren lässt. Ob Audio die eigene Umgebung verlässt, hängt vom konkreten Betrieb und den verwendeten Diensten ab [1]. Die Kombination aus Apache-2.0-Gewichten, dokumentiertem Auswertungsprotokoll und vLLM-Serverpfad macht den Einstieg niedrig; die verbliebenen Fragen sind die üblichen: Wie gut das Modell jenseits der Hersteller-Benchmarks ist, insbesondere auf Deutsch, und ob die Rangplätze unabhängiger Prüfung standhalten. Wer mag, kann das dank offener Gewichte selbst prüfen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist SOV-Transcribe-1?",
+      "a": "Ein offenes Sprachmodell von Salesforce zur Spracherkennung: Whisper-large-v3-Encoder plus Gemma-4-26B-MoE, 26,6 Mrd. Parameter, bis zu 30 Minuten Audio pro Anfrage, sieben Sprachen, Apache 2.0 [1]."
+    },
+    {
+      "q": "Welche Sprachen werden unterstützt?",
+      "a": "Englisch, Französisch, Deutsch, Spanisch, Italienisch, Portugiesisch und Niederländisch laut Modellkarte [1]."
+    },
+    {
+      "q": "Kann ich Stil und Format des Transkripts steuern?",
+      "a": "Ja, über die Nutzernachricht: wörtlich oder geglättet, Zeichensetzung und Zahlenformat, dazu Kontext-Biasing mit Stichworten oder Themenskizze; die Karte enthält eine Prompt-Anleitung [1]."
+    },
+    {
+      "q": "Welche Hardware brauche ich?",
+      "a": "Die Karte empfiehlt vLLM mit dem mitgelieferten Plugin und dokumentiert Messungen auf einer RTX PRO 6000 Blackwell mit 96 GB; Transformers läuft über eigenen Modellcode. Eigene Hardwaretests haben wir nicht durchgeführt [1]."
+    },
+    {
+      "q": "Wie gut ist das Modell im Vergleich?",
+      "a": "Der Hersteller meldet Platz 1 der offenen Modelle bei Artificial Analysis und Platz 2 auf VoiceCodeBench (Stand 12.11.2026); wir haben die Ranglisten nicht selbst geöffnet und die Angaben nicht geprüft [1]."
+    }
+  ],
+  "method": "Quellenabgleich am 14. November 2026 gegen 07:15 MEZ: SOV- und DFlash-Modellkarte, Gemma-4- und Whisper-Basiskarten sowie jeweilige Plattform-API geöffnet; den von Gemma 4 verlinkten Apache-2.0-Lizenztext gelesen. Hersteller-Tabelle für Anfragezeiten gelesen, Qualitäts-Benchmarktabelle nicht numerisch übernommen. Ranglisten nicht unabhängig geöffnet. Keine eigenen Transkriptions- oder Hardwaretests.",
+  "limitations": "Rangplätze und Qualitätsaussagen sind Herstellerangaben über Dritt-Ranglisten, die wir nicht selbst geöffnet haben. Tempo- und Durchsatzwerte stammen aus Hersteller-Messungen auf einer einzelnen GPU mit einer früheren vLLM-Integration. Zur Qualität auf Deutsch liegen in den von uns eingesehenen Quellen keine separaten Werte vor. Ob es unabhängige Messungen gibt, können wir nicht ausschließen.",
+  "related": [
+    "audio-sprach-ki",
+    "zonos3-mini-analyse",
+    "dessa-sprachmodell-analyse"
+  ]
+}
