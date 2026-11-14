@@ -111,7 +111,7 @@
     },
     {
       "q": "Wie prüfe ich mein Coding-Setup auf Nebenauftrag-Delivery?",
-      "a": "SideTaskBench-Struktur nachbauen: Referenz mit eingebettetem Task-Kontrakt und Abgabeprotokoll, Delivery (validiertes Artefakt) getrennt von Repair-Success messen, Exposure kennzeichnen. Wiederholungen einplanen, weil die Paarabdeckung erst bei acht Versuchen gegen 96 % geht; System-Prompt-Reminder allein sind nicht verlässlich (0 % vs. 22 % Restlieferung je nach Modell)."
+      "a": "SideTaskBench-Struktur nachbauen: Referenz mit eingebettetem Task-Kontrakt und Abgabeprotokoll, Delivery (validiertes Artefakt) getrennt von Repair-Success messen, Exposure kennzeichnen. In der historischen Wiederholungskohorte aus 480 Paaren mit DeepSeek-V4-Flash und wrapped-Anfragen hatten nach acht Versuchen 96,25 % mindestens eine gültige Lieferung; das ist nicht der v10-Ähnlichkeitslauf mit 300 Paaren. System-Prompt-Reminder allein sind nicht verlässlich (0 % vs. 22 % Restlieferung je nach Modell)."
     }
   ],
   "related": [
