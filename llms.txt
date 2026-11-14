@@ -33,6 +33,10 @@
 ## Beiträge
 
 <!--GEN-->
+- [Duo v1: Offenes Full-Duplex-Weltmodell, in der EU nicht lizenziert](https://kifachblatt.de/duo-v1-weltmodell-analyse): Duo v1 ermöglicht Videogespräche mit einer KI-Figur in Echtzeit. Code unter Apache 2.0, Gewichte unter MiniMax-H3-Lizenz - in der EU nicht lizenziert.
+- [Verlaufs-Edits, Glaubwürdig-Drossel, Teststopp-Schranke](https://kifachblatt.de/news-ueberblick-mittag-2026-11-14): Salesforce misst Verlaufs-Kosmetik gegen die Welt, CapLadder prüft gedrosselte Scores auf Glaubwürdigkeit, und eine Konfidenzfolge steuert das Testende.
+- [Schein-Vergessen, Attribut-Schmuggel, Quantisierungs-Rauschen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-14): ShadowBench stellt Unlearning-Audits in Frage, Modelle kodieren Nutzerattribute in Texten, ein Labor misst Rauschen unter Quantisierungs-Tests.
+- [SOV-Transcribe-1: Salesforce öffnet steuerbares ASR-Modell](https://kifachblatt.de/sov-transcribe-1-analyse): SOV-Transcribe-1 verbindet Whisper-Encoder und Gemma 4 zu einem offenen Transkriptionsmodell für sieben Sprachen - per Anweisung steuerbar, Apache 2.0.
 - [Hitchhiking-Traits, PreG-Sampling, Prognose-Angriff](https://kifachblatt.de/news-ueberblick-abend-2026-11-13): Price-Gleichung für RL-Nebeneffekte, Präfix-Ranking spart Token beim Sampling, und ein Fake-Artikel kippt LLM-Prognosen in eingefrorenen Archiven.
 - [SFT-Datenbudget, Stoppverhalten, Hack-Vorboten](https://kifachblatt.de/news-ueberblick-mittag-2026-11-13): SFT erreicht bei gleichem Rollout-Budget das RL-Niveau. Coding-Agenten stoppen spät; ein Aktivierungsvektor begleitet Hacking in begrenzten Tests.
 - [Edge0-145B: lokale MoE-Inferenz und die Grenzen der Community-Lizenz](https://kifachblatt.de/edge0-145b-analyse): Edge0 veröffentlicht 145B-Gewichte für NVIDIA-Inferenz. Aktuelle RAM-/VRAM-Angaben und die Community-Lizenz relativieren das Laptop-Versprechen.
