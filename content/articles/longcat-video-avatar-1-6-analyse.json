@@ -1,0 +1,126 @@
+{
+  "slug": "longcat-video-avatar-1-6-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "LongCat-Video-Avatar 1.6: Sprechende Avatare unter MIT",
+  "dek": "LongCat-Video-Avatar 1.6 erzeugt aus Audio und Bild über zehnminütige Avatar-Videos mit stabiler Lippensynchronisation - offene Gewichte unter MIT-Lizenz.",
+  "published": "2026-11-15T07:10:00+01:00",
+  "modified": "2026-11-15T07:10:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Meituan",
+    "LongCat",
+    "Avatar",
+    "Videogenerierung",
+    "Open Weights"
+  ],
+  "key_takeaways": [
+    "Meituan hat LongCat-Video-Avatar 1.6 veröffentlicht: audio-gesteuerte Videogenerierung sprechender Personen, Gewichte und Code unter MIT [1].",
+    "Version 1.6 verbessert laut Karte Lippenanimation und Langzeitstabilität: Videos über zehn Minuten sollen Identität und zeitliche Kohärenz halten [1].",
+    "Der Checkpoint nutzt die Architektur von Version 1.5 plus zwei LoRA-Adapter (DMD und OPSD); ein INT8-DiT und FP8-Optionen senken den Inferenzaufwand [1].",
+    "In einer herstellerseitigen Nutzerstudie mit 33.051 Stimmen liegt Version 1.6 auf Rang 2 von sechs Systemen, hinter OmniHuman-2.0 [1].",
+    "Der Betrieb braucht CUDA-GPUs und zusätzlich die Basisgewichte von LongCat-Video; konkrete VRAM-Mindestwerte nennen die von uns gelesenen Quellen nicht [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Standbild-Symbol und Audiowelle links, Pfeil zu einem Filmstreifen mit vier Bildern einer sprechenden Figur rechts, darunter die Angabe über zehn Minuten",
+    "caption": "Audio und Standbild hinein, sprechende Figur heraus: LongCat-Video-Avatar 1.6 erzeugt laut Hersteller über zehnminütige Videos in einem Stück [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "meituan-longcat/LongCat-Video-Avatar-1.6 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/meituan-longcat/LongCat-Video-Avatar-1.6",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "meituan-longcat/LongCat-Video (Basismodell, Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/meituan-longcat/LongCat-Video",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "meituan-longcat/LongCat-Video (Code, Repository-API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/meituan-longcat/LongCat-Video",
+      "accessed": "2026-11-15"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Meituan hat mit LongCat-Video-Avatar 1.6 die nächste Version seines offenen Frameworks für audio-gesteuerte Videogenerierung veröffentlicht: Aus Tonspur und Bildmaterial entsteht eine sprechende Figur mit Lippensynchronisation, Mimik und Körperbewegung [1]. Das Repository wurde am 13. November 2026 angelegt (Plattform-API); Gewichte und Code stehen unter der MIT-Lizenz, auch das zugrunde liegende Basismodell LongCat-Video ist MIT-lizenziert [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Was Version 1.6 verbessert"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte nennt drei Schwerpunkte: natürlichere, stabilere Lippenanimation (weniger übertriebene Mundbewegungen, weniger Farbverfärbungen, weniger zeitliches Flackern im Mundbereich), stabilere Langvideos - mehr als zehn Minuten am Stück sollen Bildqualität, Identität und zeitliche Kohärenz halten, indem die Fehlerakkumulation der autoregressiven Fortsetzung gedämpft wird - und eine schnellere End-to-End-Inferenz durch Pipeline- und Ausführungsoptimierungen [1]. Ein Technikbericht ist auf GitHub verlinkt; wir haben ihn nicht geöffnet und beziehen uns hier ausschließlich auf die Modellkarte [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Gleiche Basisarchitektur wie Version 1.5, ergänzt um zwei aufgabenspezifische LoRA-Adapter: DMD und OPSD · Standard: 8 Denoising-Schritte, die ersten vier mit DMD, die restlichen vier mit OPSD (über mix_steps und mix_alpha steuerbar) · optionaler INT8-DiT (nur Gewichte) per --use_int8, alternativ FP8 über Transformer Engine per --use_fp8 - nicht beides zugleich · benötigt separat die Gewichte des Basismodells LongCat-Video · Referenz-Stack: Python 3.10, PyTorch 2.6.0 (cu124), FlashAttention 2.7.4; für Hopper-GPUs (H20/H100/H200/H800) wird FlashAttention 3 empfohlen · Sprachen laut Karte: Englisch und Chinesisch · Lizenz MIT [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Hersteller-Studie: Rang 2 von sechs Systemen"
+    },
+    {
+      "t": "p",
+      "x": "Meituan verweist auf eine paarweise Nutzerstudie: 33.051 gültige Einzelstimmen über alle 15 Paarungen von sechs Systemen - LongCat-Video-Avatar 1.6, Version 1.5, OmniHuman-2.0, HeyGen, OmniHuman-1.5 und Kling Avatar 2.0 [1]. Danach liegt Version 1.6 mit einem Bradley-Terry-Elo von 1068,1 auf Rang 2: hinter OmniHuman-2.0, vor Version 1.5, HeyGen, OmniHuman-1.5 und Kling Avatar 2.0 [1]. Zahlenwerte nennt die Karte nur für das eigene Modell; es ist eine Hersteller-Studie ohne unabhängige Bestätigung - und drei der Vergleichssysteme sind kommerzielle Dienste, deren offene Konkurrenz damit zumindest in dieser Messung mithält."
+    },
+    {
+      "t": "h2",
+      "x": "Betrieb: Quantisierung, Kompilierung, Mehr-GPU"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte dokumentiert den Inferenzpfad ungewöhnlich konkret: Der optionale INT8-DiT und der FP8-Modus schließen einander aus; bei aktiviertem --compile_dit und --compile_vae sind die ersten Läufe wegen Graph-Tracing und Kompilierung langsamer, danach werden kompilierte Graphen bei gleichen Eingabeformen wiederverwendet; auf Hopper-GPUs kann FlashAttention 3 laut Karte einen deutlichen Geschwindigkeitsgewinn gegenüber FA2 bringen; bei mehr als zwei GPUs empfiehlt sich der optimierte All-to-All-Arbeitsbereich (LONGCAT_A2A_WORKSPACE=1) [1]. Konkrete VRAM-Mindestanforderungen nennen die von uns gelesenen Quellen nicht - der Betrieb setzt jedenfalls CUDA-GPUs voraus [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Zwei Tage nach Duo v1 ist dies das zweite Avatar-Release in dieser Woche - mit umgekehrten Vorzeichen: Duo ist ein interaktives Weltmodell mit territorial eingeschränkter Lizenz, LongCat-Video-Avatar 1.6 eine Generierungspipeline unter MIT, die auch in der EU nutzbar ist und sich auf eigener Infrastruktur betreiben lässt, sodass Bild- und Audiomaterial das Haus nicht verlassen müssen. Die offenen Fragen sind ähnlich wie immer: Wie gut die Langzeit-Stabilität jenseits der Hersteller-Demos ist, welche GPU-Klasse praktisch nötig wird und ob die Platzierung in der Nutzerstudie unabhängiger Prüfung standhält. MIT-Lizenz und dokumentierter Inferenzpfad machen es einfach, genau das selbst zu prüfen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist LongCat-Video-Avatar 1.6?",
+      "a": "Meituans offenes Framework für audio-gesteuerte Videogenerierung: Aus Tonspur und Bild entsteht eine sprechende Figur mit Lippensynchronisation; Version 1.6 erschien am 13.11.2026 unter MIT [1]."
+    },
+    {
+      "q": "Was ist neu gegenüber Version 1.5?",
+      "a": "Laut Modellkarte: natürlichere Lippenanimation, stabile Videos über zehn Minuten mit Identitäts- und Zeitkohärenz sowie schnellere End-to-End-Inferenz [1]."
+    },
+    {
+      "q": "Welche Hardware brauche ich?",
+      "a": "CUDA-GPUs; die Karte empfiehlt FlashAttention 3 für Hopper-Modelle (H20/H100/H200/H800) und einen Mehr-GPU-Modus ab drei Karten. Konkrete VRAM-Mindestwerte nennen die von uns gelesenen Quellen nicht [1]."
+    },
+    {
+      "q": "Wie gut ist die Qualität im Vergleich?",
+      "a": "In einer herstellerseitigen Nutzerstudie mit 33.051 Stimmen liegt Version 1.6 auf Rang 2 von sechs Systemen (Elo 1068,1), hinter OmniHuman-2.0; unabhängige Auswertungen liegen uns nicht vor [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht es?",
+      "a": "Gewichte, Code und das benötigte Basismodell LongCat-Video stehen unter der MIT-Lizenz [1][2][3]."
+    }
+  ],
+  "method": "Recherche am 15. November 2026 gegen 6 Uhr UTC (7 Uhr MEZ): Modellkarte und Plattform-API von LongCat-Video-Avatar 1.6, Plattform-API des Basismodells LongCat-Video und das GitHub-Repository meituan-longcat/LongCat-Video, alle selbst geöffnet und gelesen. Den verlinkten Technikbericht (PDF) und die Projektvideos haben wir nicht geöffnet. Eigene Generierungstests haben wir nicht durchgeführt.",
+  "limitations": "Qualitäts- und Tempoangaben stammen vom Hersteller; die Nutzerstudie ist herstellerseitig und nennt Zahlenwerte nur für das eigene Modell. VRAM-Mindestanforderungen, Trainingsdetails und Datengrundlage gehen aus den von uns gelesenen Quellen nicht hervor; dafür verweist die Karte auf den von uns nicht geöffneten Technikbericht.",
+  "related": [
+    "duo-v1-weltmodell-analyse",
+    "pan-2-weltmodell-analyse",
+    "p-h3-image-analyse"
+  ]
+}
