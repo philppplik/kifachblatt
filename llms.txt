@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Zertifizieren oder Ablehnen, Risikoprofile, Akrasie-Argument](https://kifachblatt.de/news-ueberblick-mittag-2026-11-15): Theoria-Pipeline im Betriebstest (87,6 % Präzision bei 35 % Abdeckung), Risikoprofile von neun Modellen und ein Argument gegen starres Selbst-Veto.
+- [SISS-Bildattacke, CapLite-Enforcement, Agenten ohne Auftrag](https://kifachblatt.de/news-ueberblick-morgen-2026-11-15): Skalenangriff auf vier VLMs (58,75 % im Stresstest), Enforcement ohne modellgeschriebene Artefakte (0/13.935) und 2.400 Trajektorien zu Agenten.
 - [LongCat-Video-Avatar 1.6: Sprechende Avatare unter MIT](https://kifachblatt.de/longcat-video-avatar-1-6-analyse): LongCat-Video-Avatar 1.6 erzeugt laut Hersteller aus Audio und Standbild über zehnminütige Videos mit stabiler Lippensynchronisation - MIT-Lizenz.
 - [tiny-voca: Sprachsynthese mit 4,5 Millionen Parametern](https://kifachblatt.de/tiny-voca-analyse): tiny-voca synthetisiert englische Sprache mit 4,5 Millionen Parametern - laut Modellkarte CPU- und browserfähig, mit 17,6 Stunden Synthesematerial trainiert.
 - [Über-Enthaltung, Judge-Blindheit, Nebenauftrag-Lieferung](https://kifachblatt.de/news-ueberblick-abend-2026-11-14): Warnungs-Induktion treibt Über-Enthaltung auf 86 Prozent, LLM-Judges übersehen verbotene Writes fast komplett, und SideTaskBench misst Nebenlieferung.
