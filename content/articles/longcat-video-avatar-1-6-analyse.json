@@ -4,9 +4,9 @@
   "section": "modelle",
   "type": "analysis",
   "title": "LongCat-Video-Avatar 1.6: Sprechende Avatare unter MIT",
-  "dek": "LongCat-Video-Avatar 1.6 erzeugt aus Audio und Bild über zehnminütige Avatar-Videos mit stabiler Lippensynchronisation - offene Gewichte unter MIT-Lizenz.",
-  "published": "2026-11-15T07:10:00+01:00",
-  "modified": "2026-11-15T07:10:00+01:00",
+  "dek": "LongCat-Video-Avatar 1.6 erzeugt laut Hersteller aus Audio und Standbild über zehnminütige Videos mit stabiler Lippensynchronisation - MIT-Lizenz.",
+  "published": "2026-11-15T07:15:00+01:00",
+  "modified": "2026-11-15T07:15:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Meituan",
@@ -91,7 +91,7 @@
     },
     {
       "t": "p",
-      "x": "Zwei Tage nach Duo v1 ist dies das zweite Avatar-Release in dieser Woche - mit umgekehrten Vorzeichen: Duo ist ein interaktives Weltmodell mit territorial eingeschränkter Lizenz, LongCat-Video-Avatar 1.6 eine Generierungspipeline unter MIT, die auch in der EU nutzbar ist und sich auf eigener Infrastruktur betreiben lässt, sodass Bild- und Audiomaterial das Haus nicht verlassen müssen. Die offenen Fragen sind ähnlich wie immer: Wie gut die Langzeit-Stabilität jenseits der Hersteller-Demos ist, welche GPU-Klasse praktisch nötig wird und ob die Platzierung in der Nutzerstudie unabhängiger Prüfung standhält. MIT-Lizenz und dokumentierter Inferenzpfad machen es einfach, genau das selbst zu prüfen."
+      "x": "Zwei Tage nach Duo v1 ist dies das zweite Avatar-Release in dieser Woche - mit umgekehrten Vorzeichen: Duo ist ein interaktives Weltmodell mit territorial eingeschränkter Lizenz, LongCat-Video-Avatar 1.6 eine Generierungspipeline unter der MIT-Lizenz, die auf Lizenzebene auch eine kommerzielle Nutzung erlaubt und sich auf eigener Infrastruktur betreiben lässt, sodass Bild- und Audiomaterial das Haus nicht verlassen müssen - wobei Rechte an den eingesetzten Gesichtern und Stimmen sowie weitergehende regulatorische Pflichten davon unberührt bleiben. Die offenen Fragen sind ähnlich wie immer: Wie gut die Langzeit-Stabilität jenseits der Hersteller-Demos ist, welche GPU-Klasse praktisch nötig wird und ob die Platzierung in der Nutzerstudie unabhängiger Prüfung standhält. MIT-Lizenz und dokumentierter Inferenzpfad machen es einfach, genau das selbst zu prüfen."
     }
   ],
   "faq": [

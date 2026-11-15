@@ -4,9 +4,9 @@
   "section": "modelle",
   "type": "analysis",
   "title": "tiny-voca: Sprachsynthese mit 4,5 Millionen Parametern",
-  "dek": "tiny-voca synthetisiert englische Sprache mit 4,5 Millionen Parametern - auf der CPU, im Browser, trainiert von Grund auf mit 18 Stunden synthetischer Sprache.",
-  "published": "2026-11-15T07:10:00+01:00",
-  "modified": "2026-11-15T07:10:00+01:00",
+  "dek": "tiny-voca synthetisiert englische Sprache mit 4,5 Millionen Parametern - laut Modellkarte CPU- und browserfähig, mit 17,6 Stunden Synthesematerial trainiert.",
+  "published": "2026-11-15T07:15:00+01:00",
+  "modified": "2026-11-15T07:15:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "tiny-voca",
@@ -19,7 +19,7 @@
     "tiny-voca ist ein englisches Text-to-Speech-Modell mit insgesamt 4.537.291 Parametern inklusive Wellenform-Erzeugung - zwei Stimmen, 24 kHz, Apache 2.0 [1].",
     "Der Entwickler nennt etwa 70-fache Echtzeit auf vier CPU-Threads; der 21,4-MB-ONNX-Export läuft laut Karte auch in onnxruntime-web (WebAssembly), also etwa im Browser [1].",
     "Statt neuronalem Vocoder nutzt das Modell einen Source-Filter-Synthesizer mit nur 25.862 Parametern [1].",
-    "Trainiert wurde von Grund auf mit 17,6 Stunden synthetischer Sprache, die selbst von Qwen3-TTS erzeugt wurde - ohne Aufnahme eines echten Sprechers und ohne vortrainierte Gewichte [1].",
+    "Laut Modellkarte kam für dieses Training keine Aufnahme eines echten Sprechers zum Einsatz, und das Modell enthält keine vortrainierten Gewichte: Die 16.018 Clips (17,6 Stunden, zwei Stimmen) wurden vollständig synthetisch mit Qwen3-TTS erzeugt, die Phonemdauern stammen aus Forced Alignment mit wav2vec2 [1].",
     "Die Qualitätsprüfung ist ein kleiner Plausibilitätscheck (Wortfehlerrate auf 8 bis 16 Clips); einen formellen Hörtest gibt es nicht [1]."
   ],
   "hero": {
