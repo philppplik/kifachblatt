@@ -1,5 +1,17 @@
 [
   {
+    "title": "Stopp von KI-Entwicklung per Klage gefordert",
+    "url": "https://www.heise.de/news/Kalifornien-Klage-fordert-Stopp-der-KI-Entwicklung-wegen-katastrophaler-Risiken-11525487.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794737820.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Verbraucherschützer und Sicherheitsinitiativen verklagen in den USA fünf Tech-Giganten wie OpenAI und Google, um den unkontrollierten KI-Fortschritt zu stoppen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-15T12:50:38.222904+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Inference Manager: neues Ubuntu-Tool verwaltet lokale KI-Modelle",
     "url": "https://www.heise.de/news/Inference-Manager-neues-Ubuntu-Tool-verwaltet-lokale-KI-Modelle-11525275.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794663960.0,
