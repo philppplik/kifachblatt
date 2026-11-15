@@ -19,7 +19,7 @@
  "kimi-k3-1-pro-analyse": "2026-11-05T07:26:00+01:00",
  "lfm3-liquid-ai-analyse": "2026-10-28T07:19:00+01:00",
  "longcat-2-5-analyse": "2026-11-03T07:30:00+01:00",
- "longcat-video-avatar-1-6-analyse": "2026-11-15T07:15:00+01:00",
+ "longcat-video-avatar-1-6-analyse": "2026-11-15T07:17:00+01:00",
  "memt-1-natives-gedaechtnis-analyse": "2026-10-31T07:18:34+01:00",
  "mistral-large-4-weights-analyse": "2026-10-30T07:19:00+01:00",
  "muse-ember-analyse": "2026-11-10T07:52:00+01:00",
@@ -60,6 +60,7 @@
  "news-ueberblick-mittag-2026-11-12": "2026-11-12T10:11:00+01:00",
  "news-ueberblick-mittag-2026-11-13": "2026-11-13T10:12:00+01:00",
  "news-ueberblick-mittag-2026-11-14": "2026-11-14T14:10:00+01:00",
+ "news-ueberblick-mittag-2026-11-15": "2026-11-15T11:15:00+01:00",
  "news-ueberblick-morgen-2026-10-29": "2026-10-29T08:56:00+01:00",
  "news-ueberblick-morgen-2026-10-30": "2026-10-30T06:46:00+01:00",
  "news-ueberblick-morgen-2026-10-31": "2026-10-31T06:45:00+01:00",
@@ -77,6 +78,7 @@
  "news-ueberblick-morgen-2026-11-12": "2026-11-12T07:03:00+01:00",
  "news-ueberblick-morgen-2026-11-13": "2026-11-13T08:40:00+01:00",
  "news-ueberblick-morgen-2026-11-14": "2026-11-14T14:10:00+01:00",
+ "news-ueberblick-morgen-2026-11-15": "2026-11-15T06:45:00+01:00",
  "northcua-computer-use-analyse": "2026-11-03T07:30:00+01:00",
  "openai-model-spec-oktober-2026-analyse": "2026-10-30T07:19:00+01:00",
  "p-h3-image-analyse": "2026-11-08T07:29:00+01:00",
@@ -88,7 +90,7 @@
  "sov-transcribe-1-analyse": "2026-11-14T14:10:00+01:00",
  "tencent-hy4-analyse": "2026-11-05T07:26:00+01:00",
  "timeh2o-v1-zeitreihen-prognose-analyse": "2026-10-31T07:18:34+01:00",
- "tiny-voca-analyse": "2026-11-15T07:15:00+01:00",
+ "tiny-voca-analyse": "2026-11-15T07:17:00+01:00",
  "toyblocks-ai2-analyse": "2026-11-06T07:25:00+01:00",
  "zonos3-mini-analyse": "2026-11-13T08:40:00+01:00"
 }
