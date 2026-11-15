@@ -1,0 +1,160 @@
+{
+  "slug": "tiny-voca-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "tiny-voca: Sprachsynthese mit 4,5 Millionen Parametern",
+  "dek": "tiny-voca synthetisiert englische Sprache mit 4,5 Millionen Parametern - auf der CPU, im Browser, trainiert von Grund auf mit 18 Stunden synthetischer Sprache.",
+  "published": "2026-11-15T07:10:00+01:00",
+  "modified": "2026-11-15T07:10:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "tiny-voca",
+    "TTS",
+    "Sprachsynthese",
+    "Open Weights",
+    "On-Device"
+  ],
+  "key_takeaways": [
+    "tiny-voca ist ein englisches Text-to-Speech-Modell mit insgesamt 4.537.291 Parametern inklusive Wellenform-Erzeugung - zwei Stimmen, 24 kHz, Apache 2.0 [1].",
+    "Der Entwickler nennt etwa 70-fache Echtzeit auf vier CPU-Threads; der 21,4-MB-ONNX-Export läuft laut Karte auch in onnxruntime-web (WebAssembly), also etwa im Browser [1].",
+    "Statt neuronalem Vocoder nutzt das Modell einen Source-Filter-Synthesizer mit nur 25.862 Parametern [1].",
+    "Trainiert wurde von Grund auf mit 17,6 Stunden synthetischer Sprache, die selbst von Qwen3-TTS erzeugt wurde - ohne Aufnahme eines echten Sprechers und ohne vortrainierte Gewichte [1].",
+    "Die Qualitätsprüfung ist ein kleiner Plausibilitätscheck (Wortfehlerrate auf 8 bis 16 Clips); einen formellen Hörtest gibt es nicht [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Textzeile links, Pfeil zu einem kleinen Kasten mit der Aufschrift tiny-voca 4,5 M Parameter, Pfeil zu einer Audiowelle rechts, darunter die Angaben 24 kHz und zwei Stimmen",
+    "caption": "Text zu Phonemen, Phoneme zu Klang: tiny-voca erzeugt Sprache mit 4,5 Millionen Parametern und ganz ohne neuronalen Vocoder [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "n4ze3m/tiny-voca (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/n4ze3m/tiny-voca",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "n4ze3m/tiny-voca (Trainingsdatensatz, Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/datasets/n4ze3m/tiny-voca",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "n4ze3m/tiny-voca (Code, Repository-API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/n4ze3m/tiny-voca",
+      "accessed": "2026-11-15"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Wie klein kann Sprachsynthese sein, ohne unbrauchbar zu werden? Die Antwort von Muhammed Nazeem: 4.537.291 Parameter, inklusive der Wellenform-Erzeugung. Sein Modell tiny-voca erschien am 14. November 2026 auf Hugging Face (Repository-Anlage laut Plattform-API) und erzeugt englische Sprache in zwei Stimmen mit 24 kHz - laut Modellkarte etwa 70-mal schneller als Echtzeit auf vier CPU-Threads [1]. Gewichte und Code stehen unter Apache 2.0 [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: Synthese statt neuronalem Vocoder"
+    },
+    {
+      "t": "p",
+      "x": "Der Weg vom Text zum Klang: Ein Phonemisierer (dizione, ebenfalls Apache 2.0) wandelt Text in Phonem-IDs mit Betonungswerten um; ein Transformer-Encoder aus vier Blöcken liest die Phoneme, ein Prädiktor vergibt Dauern, und zwei Transformer auf Frame-Ebene (zwei beziehungsweise fünf Blöcke) sagen Tonhöhe, Stimmhaftigkeit, Energie und die Parameter der Klangerzeugung voraus - alle Blöcke mit 192 Kanälen, vier Köpfen und Rotary-Embeddings [1]. Die Welle selbst entsteht in einem klassischen Source-Filter-Synthesizer: Ein bandbegrenzter Impulszug in der vorhergesagten Tonhöhe und ein Rauschsignal laufen durch einen zeitvarianten Filter, dessen Cepstrum das Netz einmal pro Frame (256 Samples, etwa 10,7 Millisekunden) vorhersagt. Dieser Teil kommt mit 25.862 Parametern aus [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Parameter je Modulkomponente von tiny-voca",
+      "alt": "Balkendiagramm mit sechs Werten: Text-Encoder 1.588.864 Parameter, Frame-Transformer B 1.985.984, Frame-Transformer A 795.971, Dauer- und Pausenprädiktor 123.906, Source-Filter-Kopf 25.862, Embeddings 16.704",
+      "caption": "Herstellerangaben aus der Modellkarte; Gesamtsumme 4.537.291 Parameter inklusive Wellenform-Erzeugung [1].",
+      "labels": [
+        "Embeddings",
+        "Text-Encoder",
+        "Dauer-Prädiktor",
+        "Frame-Transformer A",
+        "Frame-Transformer B",
+        "Source-Filter-Kopf"
+      ],
+      "series": [
+        {
+          "name": "Parameter",
+          "values": [
+            16704,
+            1588864,
+            123906,
+            795971,
+            1985984,
+            25862
+          ]
+        }
+      ],
+      "y_label": "Parameter",
+      "x": ""
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "4.537.291 Parameter gesamt · zwei Stimmen (F2 weiblich, M2 männlich, amerikanisches Englisch) · Ausgabe 24 kHz mono · eine Äußerung pro Aufruf, bis 512 Token und 32 Sekunden · PyTorch-Gewichte 18,2 MB (float32), ONNX-Export 21,4 MB (opset 17) · Steuerung über Sprechrate, Tonhöhenverschiebung (0,058 entspricht etwa einem Halbton) und Tonhöhenumfang · Lizenzen: Gewichte und Code Apache 2.0, Datensatz CC BY 4.0, Phonemisierer-Daten mit eigenen Lizenzdateien (CMU Pronouncing Dictionary und weitere) [1][2][3]."
+    },
+    {
+      "t": "p",
+      "x": "Der ONNX-Graph nimmt Phonem-IDs und Betonung entgegen und liefert die Wellenform direkt; laut Karte läuft dieselbe Datei in onnxruntime-web per WebAssembly und weicht höchstens 0,6 Prozent der Spitzenamplitude vom PyTorch-Modell ab (abgesehen vom Rauschsignal, das jede Laufzeitumgebung selbst zieht) [1]. Damit ist ein Betrieb ohne Server möglich - etwa im Browser oder auf dem Telefon, wo Text das Gerät nicht verlassen muss; das ist eine Betriebsmöglichkeit, keine Eigenschaft, die wir selbst geprüft hätten."
+    },
+    {
+      "t": "h2",
+      "x": "Training: 7,7 Stunden auf einer RTX 4090"
+    },
+    {
+      "t": "p",
+      "x": "Ungewöhnlich ist die Datenlage: Die 16.018 Clips (17,6 Stunden, zwei Stimmen) sind komplett synthetisch. Beide Stimmen wurden aus Textbeschreibungen mit Qwen3-TTS VoiceDesign entworfen und mit Qwen3-TTS 1.7B Base gerendert; keine Aufnahme eines echten Menschen steckt im Modell [1][2]. Die Phonemdauern stammen aus Forced Alignment mit wav2vec2 (nur zur Beschriftung); vortrainierte Gewichte sind laut Karte nicht Teil des Modells - tiny-voca wurde von Grund auf trainiert: 104.737 Schritte, 7,7 Stunden auf einer RTX 4090, spektrale Verluste plus adversariale Verluste ab Schritt 8.000 [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Qualität: Plausibilitätscheck statt Benchmark"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte dokumentiert als einzige Auswertung die Wortfehlerrate der Synthese, transkribiert mit Whisper small.en, gegen Referenzaufnahmen derselben Sätze: 0,6 Prozent auf acht Validierungsclips (Referenz ebenfalls 0,6), 0,9 Prozent auf acht Testclips (Referenz 0,9) und 0,0 Prozent auf 16 neuen Sätzen [1]. Der Entwickler selbst nennt das einen Sanity Check auf kleinen Mengen - ein formeller Hörtest wurde nicht durchgeführt [1]. Die Karte listet zudem offen die Grenzen: nur Englisch, zwei feste Stimmen, kein Stimmenklonen, deterministische Prosodie, leicht synthetischer Klang, Aussprache von Namen und Zahlen hängt am Phonemisierer, kein Streaming, und die natürlichere Obergrenze setzt das synthetische Trainingsmaterial [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "tiny-voca besetzt das entgegengesetzte Ende dessen, was wir zuletzt bei ZONOS3-Mini gesehen haben: Dort 100 Millionen aktive Parameter für Stimmenklonen in 43 Sprachen, hier 4,5 Millionen für zwei feste englische Stimmen. Der Wert liegt woanders - im vollständig offenen, von Grund auf trainierten und bis zur Wellenform dokumentierten Aufbau, in 18 bis 21 Megabyte Dateigröße und in der Betriebsmöglichkeit ganz ohne GPU und ohne Cloud. Wer mehrsprachige Qualität oder Klonen braucht, ist hier falsch; wer eine winzige, lizenzfreundliche Stimme für Geräte und Browser sucht, bekommt ein selten vollständig nachvollziehbares Beispiel."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist tiny-voca?",
+      "a": "Ein englisches Text-to-Speech-Modell von Muhammed Nazeem mit 4,5 Millionen Parametern inklusive Wellenform-Erzeugung, zwei Stimmen, 24 kHz, erschienen am 14.11.2026 unter Apache 2.0 [1]."
+    },
+    {
+      "q": "Läuft tiny-voca im Browser?",
+      "a": "Laut Modellkarte läuft der 21,4-MB-ONNX-Export in onnxruntime-web per WebAssembly; der Entwickler nennt zudem etwa 70-fache Echtzeit auf vier CPU-Threads. Selbst geprüft haben wir das nicht [1]."
+    },
+    {
+      "q": "Welche Sprachen und Stimmen gibt es?",
+      "a": "Nur Englisch mit zwei festen Stimmen (F2 und M2, amerikanisches Englisch). Stimmenklonen und Mehrsprachigkeit sind ausdrücklich nicht enthalten [1]."
+    },
+    {
+      "q": "Wie gut klingt es?",
+      "a": "Die einzige Auswertung ist ein kleiner Wortfehlerraten-Check (0,6 bis 0,9 Prozent, Referenzaufnahmen ähnlich), den der Entwickler selbst als Plausibilitätscheck einstuft; einen formellen Hörtest gibt es nicht [1]."
+    },
+    {
+      "q": "Darf ich tiny-voca kommerziell nutzen?",
+      "a": "Gewichte und Code stehen unter Apache 2.0, der Datensatz unter CC BY 4.0 (Namensnennung), die Phonemisierer-Daten unter eigenen Lizenzen - die jeweiligen Lizenztexte sind maßgeblich; das ist keine Rechtsberatung [1][2][3]."
+    }
+  ],
+  "method": "Recherche am 15. November 2026 gegen 6 Uhr UTC (7 Uhr MEZ): Modellkarte und Plattform-API von tiny-voca, Plattform-API des Trainingsdatensatzes sowie die GitHub-Repositories von tiny-voca und dizione, alle selbst geöffnet und gelesen. Eigene Tests haben wir nicht durchgeführt; die Audioproben auf der Karte haben wir nicht abgespielt.",
+  "limitations": "Alle Leistungs- und Qualitätsangaben stammen vom Entwickler. Die Wortfehlerraten-Auswertung umfasst nur 8 bis 16 Clips und ist laut Karte ein Plausibilitätscheck, kein Benchmark; ein formeller Hörtest fehlt. Die Browser-Lauffähigkeit und die Tempoangabe haben wir nicht nachgeprüft.",
+  "related": [
+    "zonos3-mini-analyse",
+    "dessa-sprachmodell-analyse",
+    "audio-sprach-ki"
+  ]
+}
