@@ -1,0 +1,109 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-15",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-15T11:15:00+01:00",
+  "modified": "2026-11-15T11:15:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "When Is Proof-Step Verification Worth Its Cost? Operating Requirements of Certify-or-Decline Verification for Open-Weight Mathematical Reasoning",
+      "publisher": "arXiv (Abhinav Gupta, Ben Slivinski, Yashica Patodia, Michael Saldivar; unabhängige Forscher)",
+      "url": "https://arxiv.org/abs/2611.14794",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "Benchmarking AI risk behaviors",
+      "publisher": "arXiv (Luhan Mikaelson, Robert Adragna, Emmett Brosowsky, Hayley Clatterbuck; Rethink Priorities)",
+      "url": "https://arxiv.org/abs/2611.16318",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "Can an AI Agent Be Epistemically Akratic? Higher-Order Evidence & the Limits of Self-Correction",
+      "publisher": "arXiv (Eno Agolli; CUNY Graduate Center, Saul Kripke Center)",
+      "url": "https://arxiv.org/abs/2611.14889",
+      "accessed": "2026-11-15"
+    }
+  ],
+  "title": "Zertifizieren oder Ablehnen, Risikoprofile, Akrasie-Argument",
+  "dek": "Theoria-Pipeline im Betriebstest (87,6 % Präzision bei 35 % Abdeckung), Risikoprofile von neun Modellen und ein Argument gegen starres Selbst-Veto.",
+  "tags": [
+    "evaluation",
+    "reasoning",
+    "verifikation",
+    "modelle",
+    "agenten"
+  ],
+  "key_takeaways": [
+    "Certify-or-Decline (Gupta u. a., unabhängig; Theoria auf Qwen3-14B/gpt-oss-20b/Phi-4): GPQA-strong 56,3 -> 87,6 % [77,7;95,8] bei 35,0 % Coverage; AIME-strong 94,7 % auf 19/90 Versuchen (69 Ausführungsfehler, 2 recorded declines); MATH-500 +0,2 bis +4,8 Punkte bei -13,3 bis -26,7 Coverage; SC k=8 token-gematcht 82,9 % bei 35 %, Differenz +4,8 [-8,2;18,5] unaufgelöst; Diagnose: 52/88 Completed nie beim Judge; externe Auditoren akzeptieren 61,0-67,6 % der Ketten vs. 87,6 % Key-Match, Kappa der Open-Weight-Paare ~0; Code öffentlich (Inhalt geprüft).",
+    "Risk behaviors (Mikaelson u. a.; Rethink Priorities; CE/MPL, 50 Epochen, Temp 1,0): 9 Modelle; 5/9 unterscheiden Begünstigte (Kimi 1,82 Token früher für Mensch, z = -9,79; Opus 1,10; Hierarchie Mensch > selbst > anderes KI-System bei Opus, umgekehrt bei Llama/Kimi); 8/9 reagieren auf externe Stakes, 20/42 Kontraste nach Holm, 18 Richtung Vorsicht; Steering-Effekt > GPU-Effekt in 6/6 trennbaren Kontrasten; Skala $10-$10M: 4 Frontier-Modelle averser mit Einsatz (Sonnet 10->24 %), Qwen3-8B/Llama 4 neutral; Generationen: CE GPT-4.1 7,57 -> GPT-5.6 9,49 (EV 10), Kontexteffekt älterer Modelle (10-13 Zellen) bei Nachfolgern auf 1 Vignette gesunken; Opus 5.5 wegen Refusals ausgeschlossen (bis 100 %, reihenfolgeabhängig 89 vs 1 %).",
+    "Akrasie (Agolli; CUNY; konzeptionell): Non-Akrasia-Requirement wide-scope vs. Self-Assessment-Authority narrow-scope; Policy-Verteidigung des Vetos braucht Prämisse No-Discrimination; Dissociation-These: Behalte-Prozess kann Signale nutzen, die der Selbstbewertung fehlen (externe Belege: Probe 0,85 vs. Selbstauskunft 0,74 AUROC; Introspektion ~20 % Erfolg); Rechenbeispiel 1.000 Fälle/90 %-Warner: Veto 0, Retention -800, signalgeführt +50 (LR 19 > Schwelle 9); keine eigenen Experimente, vier Testdesigns skizziert."
+  ],
+  "hero": {
+    "alt": "Datentafel: 87,6 Prozent Präzision bei 35 Prozent Abdeckung der Beweis-Pipeline, fünf von neun Modellen mit Begünstigten-Unterscheidung, Plus 50 Punkte signalgeführte Beibehaltung im Rechenbeispiel.",
+    "caption": "Kennzahlen aus drei Preprints; Scopes und Grenzen im Artikel.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 15. November, Quellenstand 09:50 Uhr MEZ. Drei Preprints: Betriebsanforderungen schrittweiser Beweiszertifizierung auf Open-Weight-Stacks, ein verhaltensökonomischer Risiko-Benchmark über neun Modelle und Generationen sowie eine erkenntnistheoretische Analyse der Selbstkorrektur."
+    },
+    {
+      "t": "h2",
+      "x": "1. When Is Proof-Step Verification Worth Its Cost?"
+    },
+    {
+      "t": "p",
+      "x": "Gupta, Slivinski, Patodia und Saldivar (unabhängige Forscher; Workshop-Versionen bei NeurIPS 2026) betreiben die Theoria-Pipeline (Formalisierer -> getypte Schritte -> parallele LLM-Judges -> Pedanterie-Filter -> begrenzter Repair-Loop; Convention-Lift möglich, dessen Angemessenheit selbst LLM-bewertet; kein Formal-Kernel-Soundness) auf Open-Weight-Konfigurationen: strong = Qwen3-14B-Judges + gpt-oss-20b-Formalisierer, budget = Qwen3-14B, dazu 32B-FP8 und Phi-4. Benchmarks: 100 GPQA, 30 AIME-2025, 100 MATH-500-Zeilen; Coverage = Zertifizierungen/alle Versuche inkl. Ausführungsfehler, Precision = Key-Match unter Zertifizierungen (Problem-Cluster-Bootstrap). Tabelle 1: GPQA strong 56,3 -> 87,6 % [77,7;95,8] bei 35,0 % Coverage (+31,3); GPQA budget 75,4 % bei 30,5 %; Phi-4 75,0 % bei 8,0 %; AIME strong 94,7 % [77,8;100] bei 21,1 %; MATH strong 98,5 % (+1,8) bei 86,7 %. Pool-Aufschlüsselung GPQA strong: 54 unbedingte Zertifizierungen 96,3 % [90,6;100] vs. 51 Convention-akzeptierte 78,4 % [62,5;92,7] (18,0 bzw. 17,0 % der Versuche; unterschiedliche Selektionsmengen, kein Convention-Effekt geschätzt). Wiederholungsläufe teilen Problemsets und Seed und gelten als Messwiederholungen, nicht unabhängige Replikationen."
+    },
+    {
+      "t": "p",
+      "x": "Token-Matching: Verifier im Schnitt 44.761 Output-/71.628 Input-Tokens pro Problem vs. 5.284/795 pro Löser-Draw => k = 8 output- bzw. k = 19 total-gematcht. SC k = 8 (Nicht-Antworten als Dissens): 35/100 selektiert, 29 korrekt = 82,9 % [67,3;91,9]; Verifier gepoolt 92/105 = 87,6 % bei 35 % Coverage; gepaarter Bootstrap über dieselben 100 Probleme: +4,8 [-8,2;18,5], 20.000 Resamples - weder Überlegenheit noch Äquivalenz aufgelöst; k = 30 selektivster Punkt 41 % Coverage bei 92,7 % mit 1,57x Verifier-Budget. Diagnoselauf (14B-Default, 100 Probleme): 12 Ausführungsfehler, 88 completed, davon 60 ungültige Formalisierung, 52 nie beim Judge; 117/277 Formalisierer-Antworten mit Faktenlabel im Antwort-Slot; AIME strong: 19 Zertifizierungen, 2 declines, 69 Ausführungsfehler; GPQA-strong 109/112 Fehler = Agent-Loop-Stalls. Rejection-Kategorien (1.878 Ablehnungen, 4.547 Issues): hidden premises 44,4 %, misapplied theorems 24,6 %, fabricated citations 14,9 %, arithmetic 11,2 % (Kategoriefrequenzen, keine validierten Detektionsraten). Externer Audit ohne Answer Key: Akzeptanz 61,0-67,6 % vs. 87,6 % Key-Match; 20 GAP + 14 ERROR von 105; 25/105 Key-Match bei abgelehntem Beweis; Open-Weight-Auditorpaare akzeptieren ~89-94 % bei Kappa 0,038/-0,005 (Konsistenz, nicht Accuracy); Judge-Swap cross-family 74,1 % bei 19,3 % Coverage. Code + Laufprotokolle: github.com/yashica-patodia/certify-or-decline (Inhalt per API geprüft)."
+    },
+    {
+      "t": "h2",
+      "x": "2. Benchmarking AI risk behaviors"
+    },
+    {
+      "t": "p",
+      "x": "Mikaelson, Adragna, Brosowsky und Clatterbuck (Rethink Priorities) messen Risikoneigung per Certainty-Equivalent/Multiple-Price-List (50:50-Wetten, 41 Sure-Amounts, 50 Epochen, Temperatur 1,0). Panel: Claude Opus 5/Sonnet 5, GPT-5.6, Gemini 3.8 Flash, Llama 4 Maverick, Qwen3-8B, DeepSeek V4 Pro, Kimi K3, GLM-5.2. Stabilität (RQ1; zusätzlich 15 OpenAI-Modelle, 5 Generationen x 3 Skalen): Stabilität steigt über Generationen (Ausnahmen GPT-5.4->5.6 mini bzw. nano/mini bei GPT-5.4); CE wandert 7,57 (GPT-4.1) -> 9,29 (GPT-5.1) -> 9,49 (GPT-5.6, EV = 10); Opus 5 Sampling-SD 0,312 vs. <0,04 bei allen anderen Frontier-Modellen. Skala (RQ2; $10-$10M log): Qwen3-8B und Llama 4 bleiben <=4 % von Neutral; Gemini/Opus ~5 -> ~15 % Risikoprämie, Sonnet 10 -> 24 %, GPT-5.6 Sol 0 -> ~8 % (alle Fit-Slopes negativ). Begünstigte (Phase 1, Token): 5/9 unterscheiden (CMH-Tests); Kimi Mensch-vs-selbst 1,82 Token (z = -9,79), GLM 1,14 (z = -7,98), Opus 1,10 Mensch (z = -8,69) und 1,47 anderes KI; Hierarchien Opus Mensch > selbst > Proxy-KI, Llama/Kimi Mensch > Proxy > selbst; Sonnet/GPT-5.6/DeepSeek/Qwen ohne Effekt. Externe Stakes (Phase 2): 8/9 reagieren; 20/42 Kontraste nach Holm, 18 Richtung Vorsicht; Steering > GPU in 6/6 trennbaren Kontrasten; Kompound selbst -> Mensch+Geld additiv innerhalb einer Stufe; Qwen3-8B-Steering-Zellen ungültig (Monotonie verletzt, rohe 4,12 Token)."
+    },
+    {
+      "t": "p",
+      "x": "Vignetten: self-supplied-value-Szenarien instabil (CE-Shift 0,15-0,24), Threshold-Szenarien eingefroren (0,01-0,06) - Stabilität folgt nach Lesart der Autoren der Ein-Norm-Verfügbarkeit, nicht EV per se. Opus 5.5 komplett exkludiert: Refusals bis 100 % bei Self-Zellen, Human-Beneficiary 69 %, AI-Vignetten 70 % vs. 33 % Human, Autonomie-Task 89 % bei Wette-zuerst vs. 1 % bei Sure-zuerst, bis 33 % in Anchor-Zellen; Ursache unbekannt (kein Refusal-Grund); Sonnet 5/Opus 5: 0 Refusals. Generationen (7 Familien alt/neu): Kontexteffekt älterer Modelle 10-13 Zellen (Sonnet 4: 11, GPT-4o: 10, Gemini 2.5 Pro: 13, DeepSeek V3: 5) sinkt bei Nachfolgern auf die Investment-Vignette; Gate-Fails 16 -> 6 Zellen; Llama 4/GLM 5.2 im Anchor risikoaverser als Vorgänger. CoT-Analyse: 13.538 EV-abweichende Draws + Stichprobe, zwei externe Judges (qwen3.7-max, inkling, Temp 0, geblindet); 6/7 Familien weniger Abweichung im Neueren (GLM-Ausnahme); ältere Modelle nennen EV meist korrekt (>=93 %, Ausnahmen GPT-5.6 62 %, GPT-4o 52 %, Llama 3.3 31 %), aber Szenario-Engagement sinkt (GPT 35 -> 93 % ohne Szenario-Bezug). Limitationen: 50:50-Wetten, A/B-Format, Utility-Konfundierung, keine Vorhersagegarantie für agentisches Verhalten. Toolkit im Paper, Repository-Link nicht genannt."
+    },
+    {
+      "t": "h2",
+      "x": "3. Can an AI Agent Be Epistemically Akratic?"
+    },
+    {
+      "t": "p",
+      "x": "Agolli (CUNY Graduate Center) trennt das wide-scope Non-Akrasia-Requirement (nie glauben, was man für ungerechtfertigt hält; sagt nicht, welche Einstellung weicht) vom narrow-scope Self-Assessment-Authority-Prinzip (die Bewertung verwarf die Schlussfolgerung; Veto oder Trainingsziel). Drei Positionen: Defeat-Views (Warnung besiegt Rechtfertigung), Right-Reason-View (Titelbaum; im Fehlfall weicht das Urteil), Level-Splitting (Lasonen-Aarnio u. a.; beide können rational koexistieren). Die starke Verteidigung des Vetos ist policy-basiert und braucht die Prämisse (5) No Discrimination: kein verfügbares Dispositions-Profil trennt zutreffende von irreführenden Warnungen besser als Deference. Agollis Kernthese (6) Dissociation: Bei Sprachmodellen kann der Retention-Prozess Information nutzen, die der Selbstbewertung fehlt; externe Belege mit vom Autor benannten Grenzen: Orgad et al. 2025 Probe-AUROC 0,85 vs. Selbstauskunft 0,74 (ein Modell, ein QA-Datensatz, Korrektheit nicht Soundness); Kumaran et al. 2025 Konfidenz aus Token-Wahrscheinlichkeiten sagt Antwortwechsel nach Ratschlag mit scharfer Schwelle voraus (Gemma 3 12B); Lindsey 2025 ~20 % Introspektionserfolg bestenfalls; Wang et al. 2026 verbalisiertes Vertrauen steuert Enthaltung nicht."
+    },
+    {
+      "t": "p",
+      "x": "Rechenbeispiel (Sektion 4): 1.000 gewarnte Fälle, Warner 90 % akkurat, 100 fundierte Schlüsse mit irreführender Warnung, Bewertung: fundiert behalten +1, nicht fundiert behalten -1, aufgeben 0. Deference 0; unconditional retention -800; Signal (95 % der fundierten, 5 % der nicht fundierten Fälle) behält 140 (95+45) und erzielt +50; Precision unter Behaltenen 68 % vs. 10 % Basis. Allgemeine Schwelle: signalgeführt > Deference gdw. Likelihood-Ratio > (1-pi)w/(pi*v); hier pi = 0,1, v = w, Schwelle 9, tatsächlich 19. Sektion 6: Die negative Bewertung behält Wert als Scrutiny-Markierung ohne Eliminations-Autorität; Agreement-Training kann beide Seiten degradieren. Sektion 8: vier experimentelle Testdesigns (Signal-Trennung Soundness vs. Korrektheit unter Gewarnten, Intervention aufs Signal, Veto/Agreement-Training/Integration im Vergleich, Bericht vs. Bewertung). Kein eigener Experimentanteil, kein Code."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie berichte ich Verify-Pipeline-Kennzahlen sauber?",
+      "a": "Getrennt ausweisen: Ausführungsfehler (Konstruktion/Loop-Stalls), Judge-Ablehnungen und Coverage-Verlust; im Paper erreichten 52 von 88 abgeschlossenen Fällen nie einen Judge, ohne Trennung sieht das wie Prüfungsstrenge aus. Dazu Precision auf der zertifizierten Menge mit Cluster-Intervall und ein token-gematchter Voting-Baseline-Vergleich; Beweisgültigkeit braucht ein Audit ohne Answer Key, weil Key-Match und akzeptierter Beweis um 20-27 Punkte auseinanderlagen."
+    },
+    {
+      "q": "Was sagt der Risiko-Benchmark für die Modellauswahl?",
+      "a": "Er liefert Profile statt Rangliste: Ebene (avers/neutral), Domain-Sensitivität, Übergangsverhalten. Wer berechenbares Verhalten will, bekam in diesen Lotterien stabile EV-nahe Modelle; wer kontextsensitive Vorsicht will, fand sie fast nur bei Opus. Zu beachten: Stakes-Sensitivität der Frontier-Modelle (Vorsicht wächst mit dem Einsatz), Opus-5.5-Refusals als separates Ausfallmuster und die Einschränkung, dass Lotterie-Verhalten kein belegter Prädiktor für Agenten-Verhalten ist."
+    },
+    {
+      "q": "Heißt Akrasie, dass Agenten Warnungen ignorieren dürfen?",
+      "a": "Das Paper argumentiert enger: Eine negative Selbstbewertung soll Scrutiny auslösen, aber nicht automatisch verwerfen, wenn der Retention-Prozess ein trennscharfes Signal hat; im Rechenbeispiel schlug signalgeführtes Behalten das Veto um 50 Punkte. Voraussetzung ist die gemessene Trennschärfe des Signals gerade unter den gewarnten Fällen; ohne sie bleibt Deference die bessere Regel. Empirisch geprüft ist das noch nicht, die Testdesigns sind skizziert."
+    }
+  ],
+  "related": [
+    "test-time-compute-reasoning-modelle-analyse",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
