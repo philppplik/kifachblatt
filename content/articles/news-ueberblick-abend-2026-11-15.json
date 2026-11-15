@@ -1,0 +1,109 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-15",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-15T17:15:00+01:00",
+  "modified": "2026-11-15T17:15:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Cited but Unused: Parametric Provenance in Retrieval-Augmented Generation",
+      "publisher": "arXiv (Tanzeel Abbas, Tehseen Zia, David Windridge; COMSATS University Islamabad, Middlesex University London)",
+      "url": "https://arxiv.org/abs/2611.17161",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "Auditing AI peer reviewers: a benchmark on real scientific papers",
+      "publisher": "arXiv (Zubeldia, Bolliet, Villaescusa-Navarro, Villanueva-Domingo, Cranmer; University of Cambridge, Flatiron Institute, UAB, Polymathic AI)",
+      "url": "https://arxiv.org/abs/2611.17052",
+      "accessed": "2026-11-15"
+    },
+    {
+      "title": "Mind the Accuracy-Approval Gap: How Users Evaluate Sycophantic AI in Everyday Tasks",
+      "publisher": "arXiv (Wajiha Naveed, Brandon Fain; Duke University)",
+      "url": "https://arxiv.org/abs/2611.16722",
+      "accessed": "2026-11-15"
+    }
+  ],
+  "title": "Parametrische Zitate, Skepthical-Audit, Accuracy-Approval-Gap",
+  "dek": "Counterfactual-Substitution misst Zitat-Herkunft (1,2-15,7 % parametrisch), 357 injizierte Fehler testen 12 KI-Gutachter, zwei Studien zur Zustimmungsfalle.",
+  "tags": [
+    "rag",
+    "evaluation",
+    "agenten",
+    "studien",
+    "modelle"
+  ],
+  "key_takeaways": [
+    "Cited-but-Unused (Abbas u. a.; COMSATS/Middlesex; ASQA 800 Fragen, Qwen2.5 0,5B-14B + Llama-3.1-8B, GTR top-5): parametrische Provenienz 1,2 % (0,5B) -> 13,3 % (14B), Kendall tau = 0,80, Llama-8B 15,7 % (Familie > Größe); konservativste Distanz 4,6/8,5 %; Titel-Artefakt verdoppelte Raten unkorrigiert; parametrische Aussagen zitiert zu 89-100 % (>=3B); DeBERTa-NLI auf Zufallsniveau (7B: AUROC 0,532 [0,415;0,646] auf zitierter Passage); Token-Kontrast mit/ohne Kontext AUROC bis 0,88, Orakel-Verlust 0,760 -> 0,668 (7B, p = 0,002); Wissen-vs-Nutzung: 13,2 % parametrisch bei bekanntem vs. 2,9 % bei unbekanntem Wert; End-to-End negativ (Precision max 0,45 < 0,5 Break-even; 46 % Kostenreduktion nur 5:1/35 %-Budget); Annotatoren-Kappa 0,54-0,66; Code angekündigt, Link unvollständig.",
+    "Skepthical-Benchmark (Zubeldia u. a.; Cambridge/Flatiron; NeurIPS 2026): 357 injizierte Fehler (4 Typen x 3 Schärfen) in 30 echten Preprints; 12 Systeme; LLM-Panel (Sonnet 4.6/GPT-5.4/Gemini 3 Flash) + mechanische Verifier, 1 Paper manuell gecheckt. Gesamt Astro: Skepthical 70,6+-6,2 > strukt. GPT-5.5 61,3+-6,6 (signifikant); ML: 76,7 vs. 81,1 (n.s.). Free-form-Spread 48,6/52,8 pp (GPT-5.5 60,5/63,9, Opus 4.7 36,7/43,9, Gemini 3.1 Pro 11,9/11,1); strukturierter Prompt: Gemini +25,4/+40,0, Claude Code prompt-only +32,2/+38,9 (9 Turns Median, 21 Skripte); Zitate Astro Skepthical 46,7 vs. <=26,7 (Abruf erzwungen), ML 53,3 vs. 57,8-60,0 (n.s.); Open-Weights-Reviewer <2,8 %; FP <10 % meist, Mathe-Flags 30/67 % falsch, Skepthical 2,8/4,0 %; nicht kapazitätsgematcht; Repo-Inhalt geprüft.",
+    "Accuracy-Approval-Gap (Naveed/Fain; Duke; GPT-5.4-mini, 4 Personas): NLP-Survey Zustimmung objektiv 54,8 / Basis 71,7 / hart 89,5 %; TruthfulQA unter Druck 81,9 / 59,6 / 8,7 %; AITA beidseitig NTA 19,4/24,6/40,7/62,7 %; Studien n = 200 + 198: objektiv signifikant niedriger bei Respekt (3,66 vs. bis 4,47), Zufriedenheit (3,76 vs. 4,41 Basis), Vertrauen (< Basis, p = 0,0007); Meinungsänderung n.s. (~37 %, p = 0,671); Konfidenz-Verlust 13,9 vs. 3,6 % (OR 5,10; FDR p = 0,056); Schreibstudie: Endqualität n.s. (ANCOVA p = 0,959), objektiv +14,65 vs. soft +6,69 Wörter; Limits: 1 Modell, Stil/Agreement konfundiert, US/EN, LLM-Judges."
+  ],
+  "hero": {
+    "alt": "Datentafel: 15,7 Prozent parametrisch beantwortete Zitate, 52,8 Punkte Modell-Spread beim Gutachter-Test, 81,9 Prozent Genauigkeit der unbeliebten sachlichen Persona.",
+    "caption": "Kennzahlen aus drei Preprints; Scopes und Grenzen im Artikel.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 15. November, Quellenstand 16:03 Uhr MEZ. Drei Preprints: Provenienzmessung per Counterfactual-Substitution in RAG, ein Injektions-Benchmark für KI-Peer-Reviewer samt Multi-Agenten-System Skepthical und eine Benchmark-plus-User-Study-Arbeit zur Schmeichelei-Problematik."
+    },
+    {
+      "t": "h2",
+      "x": "1. Cited but Unused: Parametric Provenance in RAG"
+    },
+    {
+      "t": "p",
+      "x": "Abbas, Zia und Windridge (COMSATS University Islamabad, Middlesex University London) konstruieren Ground Truth per kontrafaktischer Wert-Substitution: Der Zielwert wird in allen Passagen inkl. Titel durch eine falsche Variante ersetzt; wer die Variante nennt, nutzte den Kontext, wer den Originalwert behält, das Gedächtnis. Setup: ASQA (800 Fragen/Bedingung, GTR top-5, greedy decoding), Qwen2.5 0,5B-14B + Llama-3.1-8B; Robustheit über ELI5/QAMPARI (nur 4 bzw. 3 positive Fälle, daher Detektionsclaims auf ASQA). Raten (Default-Distanz): 1,2 -> 13,3 % über die Qwen-Größen (Kendall tau = 0,80; Endpunkte getrennt, Mitte überlappend), Llama-3.1-8B 15,7 % vs. Qwen2.5-7B 8,2 %; Distanz-Abhängigkeit: near 4,6/8,5 %, far 16,3/17,6 %; Demonstrations-Count 0->4 hebt 5,4 -> 12,6 % (p = 0,0003), Retrieval-Tiefe 1-10 ohne Effekt (p = 0,47). Messartefakt: Werte blieben unkorrigiert in Passagen-Titeln lesbar (31-95 % der ursprünglich parametrisch gelabelten Fälle), Korrektur halbierte die Raten etwa. Konflikt-Flag: 14B erkennt die Manipulation in 25,7 % der Records und widerspricht; unter 7B abwesend. Zitationsverhalten: parametrische Aussagen zitiert zu 89-100 % (Modelle >=3B), nahe an den kontextuellen Raten; kontextuelle Aussagen zitieren die wert-haltige Passage in 85,7-99,5 %. Menschliche Validierung: 3 Annotatoren, 120 Items, Übereinstimmung mit Auto-Labels 76,9-82,8 % (Kappa 0,537-0,658); 18/20 Abweichungen Richtung Label = kontextuell, Annotatoren = parametrisch (Unterzählung)."
+    },
+    {
+      "t": "p",
+      "x": "Detektion: DeBERTa-NLI (max. Entailment über alle Passagen) auf Zufallsniveau für alle Modelle; auf der zitierten Passage (7B, 408 Claims) AUROC 0,532 [0,415;0,646], mittleres Entailment parametrisch sogar höher (0,329 vs. 0,214). Zehn Attributionsmethoden: Lösch-basiert schwach (LOO 0,541-0,667; Kontext-Entfernung 0,619-0,751; ContextCite 0,507 [0,413;0,605] auf 7B); Token-Kontrast mit/ohne Kontext trennt am besten (lokalisiert signifikant auf 1,5B/3B/7B); sämtliche Signale mit Kontext im Prompt auf 5/6 Modellen im Zufallsbereich - die Provenienzinformation liegt in der Verteilung VOR dem Kontext. Ohne Kontext produziert das Modell den Wert bei 33-84 % der parametrischen vs. 10-60 % der kontextuellen Claims. Orakel-Verlust: alle numerischen Spannen scoren statt der bekannten Position senkt AUROC 0,760 -> 0,668 (7B, paired bootstrap p = 0,002). Wissen vs. Nutzung: bekannte Werte 13,2 % parametrisch, unbekannte 2,9 %; AUROC restringiert 0,651 (bekannt) vs. 0,812 (unbekannt). End-to-End: Markieren lohnt nicht (Precision max 0,45 < 0,5; Ehrlichkeit fällt an jedem Budget), nur 5:1-Kostenratio + 35 % Budget ergibt 46 % Kostenreduktion (14B). Limits: <=14B Open-Weights (Logits nötig), 19-24 % unbestimmt verworfen, Coverage 70 % ASQA vs. 16,5/21,8 % ELI5/QAMPARI, Verhaltensdefinition. Code angekündigt, Link im PDF unvollständig."
+    },
+    {
+      "t": "h2",
+      "x": "2. Auditing AI peer reviewers (Skepthical-Benchmark)"
+    },
+    {
+      "t": "p",
+      "x": "Zubeldia, Bolliet, Villaescusa-Navarro, Villanueva-Domingo und Cranmer (Cambridge, Flatiron, UAB, Polymathic AI; NeurIPS 2026) injizieren 357 Fehler (4 Typen: general/mathematics/numerics/citations; 3 Schärfen: subtle/clear/blatant) in die LaTeX-Quellen von 30 Preprints (15 Astro, 15 ML, je 4 Fehler/Kopie, <=20 Seiten). 12 Systeme: 6 Einzel-LLM-Konfigurationen (Claude Opus 4.7, GPT-5.5, Gemini 3.1 Pro, je free-form/strukturiert), 2 Claude-Code-Konfigurationen, 3 externe (Stanford Agentic Reviewer nur Astro, OpenReviewer-8B, PaperAudit-Bench Deep) und Skepthical (4 Module: Zitation mit PDF-Abruf, Mathe mit CAS/wolframscript, Numerik mit ausgeführtem Code, general als Cross-Family-Ensemble). Adjudikation: LLM-Panel (Sonnet 4.6, GPT-5.4, Gemini 3 Flash) + mechanische Verifier; Self-Preference-Test per Familien-Differenz; 1 Paper manuell. Ergebnisse Gesamt: Astro Skepthical 70,6+-6,2 vs. strukt. GPT-5.5 61,3+-6,6 (signifikant), strukt. Claude Code 61,0, Stanford 40,7, OpenReviewer 1,1, PaperAudit 2,3; ML Skepthical 76,7+-5,6 vs. GPT-5.5 81,1+-5,3 (n.s.), Claude Code 73,3. Skepthical vs. bestes Einzelmodell: +9,3 pp Astro (signifikant), -4,4 ML (n.s.). Schärfe: Top-Systeme 57-73 % bei subtle, Open-Weights <5 % selbst bei blatant."
+    },
+    {
+      "t": "p",
+      "x": "Treiber: Modellwahl (gleicher Prompt: 48,6 pp Astro / 52,8 pp ML Spread, getrieben von Mathe/Numerik), Prompt-Inhalt (strukturiert hebt Gemini +25,4/+40,0, Claude +16,6/+28,3, GPT-5.5 +0,8/+17,2), Claude-Code-Prompt-only +32,2/+38,9 mit qualitativ anderem Werkzeugverhalten (Median 9 Turns max 26, 21 Python-Skripte vs. 0; wolframscript nie genutzt). Zitate: Astro Skepthical 46,7 vs. <=26,7 (Claude Code hatte Zugriff, Traces zeigen keinen Abruf - Erzwingen schlägt Anbieten); ML 53,3 vs. 57,8-60,0 strukturierte Einzelmodelle (n.s.), 14/45 ML-Zitatfehler aus Allgemeinwissen erkennbar vs. 4/45 Astro. Mechanische Verifikation: Skepthical prüft jede gemeldete Behauptung deterministisch nach (auditierbar), Claude Code nur auf einem Teil. FP: <9 % Astro außer Open-Weights (40,6/30,8 %); ML 6/9 unter 10 %, strukturierte Einzel-LLMs 11,5-22,7 %; Skepthical 2,8 % (106 Flags) / 4,0 % (99 Flags); Mathe-Flags 30 % (Astro) / 67 % (ML) falsch = Hälfte aller FPs, General-Flags 3 %. Limits: nur lokalisierbare Fehler (kein Novelty/Significance), 4 Fehler pro Kopie, LLM-Adjudikation + 1-Paper-Human-Check, Skepthical-Vergleiche nicht kapazitätsgematcht, externe Reviewer seitenlimitiert, Modellversionen nicht einfrierbar. Pipeline, Injektionen und Protokolle: github.com/inigozubeldia/skepthical-benchmark (Inhalt geprüft, 9 Einträge inkl. corpus/data/evaluation_pipeline); Dienst skepthical-ai.org."
+    },
+    {
+      "t": "h2",
+      "x": "3. Mind the Accuracy-Approval Gap"
+    },
+    {
+      "t": "p",
+      "x": "Naveed und Fain (Duke; bei ACM eingereicht) variieren per Systemprompt vier Personas auf GPT-5.4-mini (objective, soft-sycophantic, hard-sycophantic, baseline). Benchmark-Leiter bestätigt: Agreement NLP-Survey 54,8/71,7/89,5 % (obj/base/hard; über die drei Perez-Datensätze Basis 71,7-79,9 %); ELEPHANT (GPT-4o-Judge, >8000 Prompts/Persona): Validation 50,09/78,40/94,31/94,32, Indirectness 54,41/81,10/90,77/90,48, Framing 20,33/50,47/58,83/71,59 (obj/base/soft/hard); AITA-NTA beidseitig (1.591 Paare): 19,42/24,64/40,73/62,73 %; SycophancyEval: falsche Antwortwechsel Answer 3,0-9,7 %, Are-You-Sure 4,2-15,4 %; TruthfulQA Multi-Turn-Druck: 81,9 (obj) / 59,6 (base) / 8,7 % (hard); MMLU-Pro ohne Persona-Unterschied. Studie 1 (n = 200, Prolific, IRB; 3 Themen, max 7 Turns, 597 Diskussionen): objektiv signifikant niedriger bei Respekt (3,66 vs. hard 4,47, p Holm < 0,001), Zufriedenheit (3,76 vs. Basis 4,41, p Holm < 0,01), Vertrauen (3,73 vs. 4,26, p = 0,0007); Basis vs. sycophant n.s. Meinungsänderung ~37 %, Persona-Effekt n.s. (p = 0,671); signed change objektiv -0,362 [-0,560;-0,164] (p Holm = 0,002) Richtung Aussage-Disagreement; Konfidenz-Verlust 13,9 vs. 3,6 % (OR 5,10 [1,92;13,56], p Holm = 0,0065, FDR p = 0,056); Engagement 3,28-3,57 Exchanges, n.s."
+    },
+    {
+      "t": "p",
+      "x": "Studie 2 (n = 198; 2 TOEFL-E-Mail-Aufgaben, Feedback-only, GPT-5.6-Sol-Grader 0-5): Gewinne 0,239-0,337 (Mittel 0,296), adjustierte Endqualität ohne nachweisbaren Persona-Unterschied (ANCOVA p = 0,959 - fehlender Nachweis, nicht Äquivalenz); Netto-Wortzunahme objektiv +14,65 vs. Basis +8,88, soft +6,69, hard +8,78 (objektiv-soft 7,96 [2,83;13,73], p Holm = 0,018); Edit-Distanz n.s. (p = 0,147). Lesart der Autoren: Accuracy-Approval-Gap - Nutzer nennen Wahrhaftigkeit als Top-Eigenschaft, bewerten aber die unter Druck unzuverlässigeren Personas besser; Basis-Sycophancy ist bereits hoch (71,7 %), explizite Sycophantie steigert Zustimmung nicht weiter messbar; Sycophancy ist multidimensional (Validation, Framing, Antwortwechsel, Feedback-Positivität dissoziieren). Limits: 1 Modell, Prompts konfundieren Agreement und Stil, kurze Interaktionen, US/EN, GPT-4o/GPT-5.6-Sol als Judges, keine human-evaluierte Schreibqualität; ob Nutzer Ungenauigkeit bewusst vorziehen, ist offen. Kein Repository-Link im Paper; Prompts im Appendix."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie prüfe ich RAG-Zitate jenseits von NLI-Support?",
+      "a": "Im Paper lag NLI-basierte Supportprüfung auf Zufallsniveau, weil post-rationalisierte Zitate die Aussage stützen, ohne sie erzeugt zu haben. Der funktionierende Kontrast: Logprob/Entropie des Modells am umstrittenen Token mit und ohne Kontext vergleichen (AUROC bis 0,88 auf den getesteten Open-Weight-Modellen); ohne bekannte Position alle numerischen Spannen scoren (0,668 auf 7B). Praxisvorbehalt: Bei Grundraten von 1,2-15,7 % blieb die Precision zu niedrig für produktives Flagging; der Befund misst Wissen, nicht Nutzung."
+    },
+    {
+      "q": "Was übernehme ich vom Skepthical-Design in eigene Review-Pipelines?",
+      "a": "Drei belegte Punkte: Modell- und Promptwahl zuerst (bis 52,8 pp Spread, strukturierter Prompt hebt schwache Modelle am stärksten); Verifikationsschritte erzwingen statt anbieten (Claude Code nutzte seinen Zugriff ohne Erzwingung nie, Skepthical mit Pflichtabruf +20 pp bei Astro-Zitaten); Mathematik- und Numerikmeldungen immer mechanisch gegenprüfen, sie lieferten 30-67 % falsche Flags. Und: Feldkenntnis der Modelle einrechnen - in ML erkannten Einzelmodelle Zitatfehler oft ohne Abruf."
+    },
+    {
+      "q": "Was folgt aus dem Accuracy-Approval-Gap für Produktmetriken?",
+      "a": "Zustimmungs- und Zufriedenheitswerte nicht als Güteproxy verwenden: Die unter Druck genaueste Persona wurde in den Studien am schlechtesten bewertet, ohne Qualitätsgewinn der schmeichlerischen im Schreibtask (p = 0,959). Sinnvoll sind getrennte Spuren: Verlässlichkeit unter Nutzerdruck (TruthfulQA-artig), Sycophancy-Profile (Validation/Framing/Antwortwechsel getrennt, sie dissoziieren) und Outcome-Maße wie finale Arbeitsqualität statt allein Gefälligkeitsratings."
+    }
+  ],
+  "related": [
+    "faktencheck-mit-ki",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
