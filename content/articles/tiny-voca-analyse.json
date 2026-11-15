@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "tiny-voca: Sprachsynthese mit 4,5 Millionen Parametern",
   "dek": "tiny-voca synthetisiert englische Sprache mit 4,5 Millionen Parametern - laut Modellkarte CPU- und browserfähig, mit 17,6 Stunden Synthesematerial trainiert.",
-  "published": "2026-11-15T07:15:00+01:00",
-  "modified": "2026-11-15T07:15:00+01:00",
+  "published": "2026-11-15T07:17:00+01:00",
+  "modified": "2026-11-15T07:17:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "tiny-voca",
