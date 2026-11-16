@@ -1,0 +1,144 @@
+{
+  "slug": "nex-n2-6-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Nex-N2.6: 321B-Agentenmodell auf GLM-5.3 unter Apache 2.0",
+  "dek": "Nex-N2.6 ist ein multimodales Agentenmodell mit rund 321 Mrd. Parametern auf GLM-5.3-Basis - offene FP8-Gewichte unter Apache 2.0, Fokus Werkzeugtreue.",
+  "published": "2026-11-16T07:05:00+01:00",
+  "modified": "2026-11-16T07:05:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Nex-AGI",
+    "Nex-N2.6",
+    "Agenten",
+    "Computer Use",
+    "Open Weights"
+  ],
+  "key_takeaways": [
+    "Nex-AGI hat Nex-N2.6 veröffentlicht: ein multimodales Agentenmodell mit rund 321 Mrd. Parametern (FP8), aufgebaut auf GLM-5.3-Flash, Gewichte unter Apache 2.0 [1].",
+    "Der Release zielt auf zwei Schwächen des Vorgängers: Wiederholungen im Reasoning sanken herstellerintern von 16,0 auf 1,6 Prozent, die Werkzeuglisten-Treue liegt intern bei 100 Prozent [1].",
+    "Auf OSWorld meldet der Hersteller 83,0 Punkte - vor Nex-N2.5-Pro (82,2) und dem Basismodell GLM-5.3-Flash (78,0); auf AutomationBench liegt Nex-N2.6 dagegen hinter DeepSeek-V4.1-Flash [1].",
+    "Das Basismodell GLM-5.3-Flash steht unter MIT, die Nex-Gewichte unter Apache 2.0; Community-GGUFs für lokale Läufe existieren seit dem 11.11. [1][2][3].",
+    "Alle Benchmarks stammen vom Hersteller; unabhängige Auswertungen liegen bislang nicht vor [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Desktop-Fenster mit Mauszeiger links, Kasten Nex-N2.6 in der Mitte mit der Aufschrift 321B FP8, rechts eine Werkzeugliste mit drei Häkchen",
+    "caption": "Computer Use mit Werkzeugtreue: Nex-N2.6 soll nur die Werkzeuge aufrufen, die die Anfrage deklariert - herstellerintern zu 100 Prozent [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "nex-agi/Nex-N2.6 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/nex-agi/Nex-N2.6",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "zai-org/GLM-5.3-Flash (Basismodell, Lizenzprüfung per Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/zai-org/GLM-5.3-Flash",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "sii-nex/Nex-N2.6 (Repository-API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/sii-nex/Nex-N2.6",
+      "accessed": "2026-11-16"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Nex-AGI hat Nex-N2.6 veröffentlicht, ein multimodales Agentenmodell für Computer Use, Coding und lange Werkzeugketten. Das Repository mit den FP8-quantisierten Gewichten (rund 321 Mrd. Parameter) wurde am 10. November 2026 angelegt (Plattform-API); die Gewichte stehen unter Apache 2.0 [1]. Basis ist GLM-5.3-Flash von Z.ai, das selbst unter der MIT-Lizenz steht [2]. Nach Nex-N2.5-Pro konzentriert sich dieser Schritt laut Karte auf zwei Dinge: weniger Wiederholungen im Reasoning und strengeres Halten an die im aktuellen Kontext verfügbaren Werkzeuge [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was sich gegenüber Nex-N2.5-Pro ändern soll"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte dokumentiert zwei herstellerinterne Auswertungen: Im Checkpoint-Replay, das bekannte Fehlerfälle aus realen Aufgaben nachstellt, sank die Reasoning-Wiederholrate von 16,0 Prozent (N2.5-Pro) auf 1,6 Prozent; die Rate korrekter Werkzeugwahl unter deklarierten Werkzeugen liegt intern bei 100 Prozent [1]. Beides sind interne Messungen des Herstellers an selbstgebauten Testfällen - nützlich als Hinweis auf die Entwicklungsrichtung, keine unabhängige Bestätigung."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Rund 321 Mrd. Parameter, FP8-quantisierte Gewichte im Repository · multimodal (Bild- und Texteingabe), Basis GLM-5.3-Flash · Chat-Template mit reasoning_effort low/high/max (Standard max) · Betrieb über SGLang mit GLM-5.3-Flash-Unterstützung und FP8-fähiger Hardware, OpenAI-kompatibler Endpunkt · Lizenzen: Nex-Gewichte Apache 2.0, Basismodell MIT · Community-GGUFs (etwa von bartowski) seit 11.11. verfügbar [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: Fortschritt auf OSWorld, Rückstand anderswo"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "OSWorld-Score im Hersteller-Vergleich",
+      "alt": "Balkendiagramm mit vier Werten: Nex-N2.6 erreicht 83,0, Nex-N2.5-Pro 82,2, GLM-5.3-Flash 78,0 und DeepSeek-V4.1-Flash 71,7 Punkte",
+      "caption": "Herstellerangaben aus der Modellkarte; die Werte hängen laut Karte von Testumgebung und Einstellungen ab und sind keine Auswertung des FP8-Exports selbst [1].",
+      "labels": [
+        "GLM-5.3-Flash",
+        "DeepSeek-V4.1-Flash",
+        "Nex-N2.5-Pro",
+        "Nex-N2.6"
+      ],
+      "series": [
+        {
+          "name": "OSWorld-Score",
+          "values": [
+            78.0,
+            71.7,
+            82.2,
+            83.0
+          ]
+        }
+      ],
+      "y_label": "Punkte",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Auf Terminal-Bench 2.1 meldet die Karte 84,1 Punkte - knapp hinter dem Basismodell GLM-5.3-Flash (84,3), vor N2.5-Pro und DeepSeek-V4.1-Flash (je 82,7). Auf AutomationBench liegt Nex-N2.6 mit 45,7 hinter DeepSeek-V4.1-Flash (54,8) und dem Basismodell (48,8) [1]. Der Release ist also kein Rundumgewinn: Stärker bei Computer Use und Werkzeugdisziplin, nicht überall vorne. Alle Zahlen stammen vom Hersteller; unabhängige Messungen liegen bislang nicht vor."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Bemerkenswert ist die Kombination: Ein 321-Milliarden-Parameter-Agentenmodell unter Apache 2.0 auf einem MIT-lizenzierten chinesischen Basismodell - die Lizenzkette ist hier konkret und freizügig (Apache- und MIT-Bedingungen wie Hinweispflichten gelten natürlich weiter) [1][2]. Der Fokus auf Wiederholraten und Werkzeuglisten-Treue adressiert die zwei Fehlerarten, die Agentenläufe in der Praxis am häufigsten brechen: Endlosschleifen und erfundene Werkzeugaufrufe. Ob die internen 100 Prozent Werkzeugtreue in fremden Agenten-Frameworks halten, können nur unabhängige Tests zeigen - dank offener Gewichte und Community-GGUFs ist genau das möglich [1][3]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Nex-N2.6?",
+      "a": "Ein multimodales Agentenmodell von Nex-AGI mit rund 321 Mrd. Parametern (FP8) auf GLM-5.3-Flash-Basis, für Computer Use, Coding und lange Werkzeugketten; Gewichte unter Apache 2.0 [1]."
+    },
+    {
+      "q": "Was ist neu gegenüber Nex-N2.5-Pro?",
+      "a": "Laut Hersteller: Reasoning-Wiederholungen von 16,0 auf 1,6 Prozent gesenkt (internes Checkpoint-Replay), 100 Prozent Werkzeuglisten-Treue intern, OSWorld 83,0 statt 82,2 [1]."
+    },
+    {
+      "q": "Kann ich Nex-N2.6 lokal betreiben?",
+      "a": "Die Karte empfiehlt SGLang mit GLM-5.3-Flash-Unterstützung und FP8-fähiger Hardware; Community-GGUFs existieren. Konkrete VRAM-Mindestwerte nennt die Karte nicht; bei 321 Mrd. Parametern ist das eine Betriebsmöglichkeit für entsprechende Server, kein Laptop-Modell [1][3]."
+    },
+    {
+      "q": "Wie gut ist das Modell im Vergleich?",
+      "a": "Herstellerangaben: OSWorld 83,0 (Spitze im eigenen Vergleich), Terminal-Bench 84,1, AutomationBench 45,7 hinter DeepSeek-V4.1-Flash. Unabhängige Auswertungen liegen nicht vor [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht es?",
+      "a": "Die Gewichte unter Apache 2.0, das Basismodell GLM-5.3-Flash unter MIT - jeweils per Plattform-API geprüft. Beide Lizenzen erlauben kommerzielle Nutzung unter ihren jeweiligen Bedingungen; das ist keine Rechtsberatung [1][2]."
+    }
+  ],
+  "method": "Recherche am 16. November 2026 gegen 6 Uhr UTC (7 Uhr MEZ): Modellkarte und Plattform-API von Nex-N2.6, Plattform-API des Basismodells GLM-5.3-Flash (Lizenzprüfung), GitHub-Repository-API von sii-nex/Nex-N2.6 und Plattform-API der Community-GGUFs, alle selbst geöffnet und gelesen. Eigene Benchmark- oder Inferenztests haben wir nicht durchgeführt.",
+  "limitations": "Sämtliche Benchmarks und die Wiederhol-/Werkzeugtreue-Werte stammen aus herstellerinternen Auswertungen; unabhängige Messungen liegen nicht vor. Die Karte weist selbst darauf hin, dass die Werte von der Testumgebung abhängen und keine Auswertung des FP8-Exports selbst sind. Hardware-Mindestanforderungen nennt die Karte nicht konkret.",
+  "related": [
+    "northcua-computer-use-analyse",
+    "lhtb-2-langzeit-agenten-benchmark",
+    "agenten-fundamente"
+  ]
+}
