@@ -1,0 +1,158 @@
+{
+  "slug": "botpsy-0-8b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "BotPsy-0.8B: Werkzeug-Agent in Taschenformat von Tether",
+  "dek": "BotPsy-0.8B von Tether AI soll Werkzeugaufrufe in der Sub-Milliarde-Klasse beherrschen: 0,8 Mrd. Parameter, Thinking-Modus, Apache 2.0, auch als GGUF.",
+  "published": "2026-11-16T07:05:00+01:00",
+  "modified": "2026-11-16T07:05:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "QVAC",
+    "BotPsy",
+    "Tether",
+    "Agenten",
+    "On-Device"
+  ],
+  "key_takeaways": [
+    "Tether AI Research (QVAC) hat BotPsy-0.8B veröffentlicht: ein 0,8-Milliarden-Parameter-Modell für Werkzeugaufrufe und agentische Abläufe, aufgebaut auf Qwen3.5-0.8B, Apache 2.0 [1].",
+    "In der Hersteller-Evaluierung steigt BFCL v4 von 23,4 (Basismodell) auf 44,0, ACEBench von 30,1 auf 58,7 und τ-bench von 23,2 auf 51,5 - Spitze in der Klasse bis 1,2 Mrd. Parameter [1].",
+    "Auf fünf von sechs Agenten-Benchmarks schlägt es laut Hersteller das 2,5-mal größere Qwen3.5-2B-Think; bei Wissen (GPQA, MMLU-Pro) bleibt das größere Modell vorn [1].",
+    "Vier Trainingsstufen: SFT, Multi-Teacher-On-Policy-Distillation und zwei RL-Runden; Trainingscode und -daten sind nicht Teil des Releases [1].",
+    "Schwachstellen nennt die Karte offen: offene Websuche, Gedächtnis-Aufgaben, absolut niedrige BrowseComp-Werte; nicht für sicherheitskritische oder Geld-/Gesundheitsentscheidungen gedacht [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Smartphone links mit einem kleinen Kasten BotPsy 0,8B darauf, Pfeile zu drei Werkzeug-Symbolen Kalender, Suche und Dokument rechts",
+    "caption": "Klein, aber werkzeugfest: BotPsy-0.8B soll Kalender, Suche und Dokumente direkt vom Gerät aus bedienen - Thinking-Modus inklusive [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "qvac/BotPsy-0.8B (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/qvac/BotPsy-0.8B",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "qvac/BotPsy-0.8B-GGUFs (GGUF-Exporte, Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/qvac/BotPsy-0.8B-GGUFs",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "Qwen/Qwen3.5-0.8B (Basismodell, Lizenzprüfung per Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-0.8B",
+      "accessed": "2026-11-16"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Tether AI Research hat unter dem Label QVAC BotPsy-0.8B veröffentlicht: ein Modell mit 0,8 Milliarden Parametern, das ausschließlich eines können soll - Werkzeuge aufrufen und kleine agentische Aufgaben abarbeiten, von Kalender und E-Mail über Websuche bis zu Gerätesteuerung [1]. Das Repository wurde am 10. November 2026 angelegt (Plattform-API); Gewichte stehen unter Apache 2.0, GGUF-Exporte (BF16, Q8_0, Q4_K_M) für llama.cpp und das QVAC SDK liegen in einem Schwester-Repository [1][2]. Basis ist Qwen3.5-0.8B (hybride Gated-DeltaNet- und Attention-Architektur), das selbst unter Apache 2.0 steht [3]."
+    },
+    {
+      "t": "h2",
+      "x": "Doppelt so stark wie die Basis - im Werkzeug-Einsatz"
+    },
+    {
+      "t": "p",
+      "x": "Die Hersteller-Evaluierung (alle Modelle im Thinking-Modus, gemeinsame Testumgebung, externe API-Benchmarks am 3.11.2026) zeigt klare Sprünge gegenüber dem Basismodell: BFCL v4 von 23,4 auf 44,0, ACEBench von 30,1 auf 58,7, τ-bench von 23,2 auf 51,5 (Mittel aus den Teilbereichen Retail, Telecom und Banking) [1]. In der Klasse bis 1,2 Mrd. Parameter führt BotPsy alle sechs getesteten Werkzeug- und Agenten-Benchmarks - und schlägt auf fünf davon das 2,5-mal größere Qwen3.5-2B-Think [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "BFCL-v4-Gesamtscore in Prozent",
+      "alt": "Balkendiagramm mit fünf Werten: BotPsy-0.8B erreicht 44,0, Qwen3.5-2B-Think 37,7, LFM2.5-1.2B-Think 28,1, Qwen3.5-0.8B-Think 23,4 und MiniCPM5-1B-Think 22,8 Prozent",
+      "caption": "Hersteller-Evaluierung im Thinking-Modus, Mittel aus drei Läufen, offizielle BFCL-v4-Gewichtung; Benchmarks mit externer API am 3.11.2026 ausgewertet [1].",
+      "labels": [
+        "BotPsy-0.8B",
+        "Qwen3.5-2B-Think",
+        "LFM2.5-1.2B-Think",
+        "Qwen3.5-0.8B-Think",
+        "MiniCPM5-1B-Think"
+      ],
+      "series": [
+        {
+          "name": "BFCL v4",
+          "values": [
+            44.0,
+            37.7,
+            28.1,
+            23.4,
+            22.8
+          ]
+        }
+      ],
+      "y_label": "Prozent",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Bemerkenswert sind zwei Nebenbefunde: Beim BFCL-Halluzinationstest, der prüft, ob das Modell ablehnt, wenn kein passendes Werkzeug existiert, erreicht BotPsy 86,1 - der höchste Wert im Vergleich [1]. Und die Befehlsfolge steigt stark (IFEval 59,7 auf 90,8), während Allgemeinwissen zwar wächst (GPQA 33,2 auf 38,1, MMLU-Pro 41,6 auf 48,9), aber klar hinter dem 2B-Modell bleibt (59,9 beziehungsweise 65,5) - die Karte zieht daraus selbst den Schluss: BotPsy soll Fakten über Werkzeuge holen, nicht auswendig wissen [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "0,8 Mrd. Parameter, BF16-Gewichte, zusätzlich GGUF (BF16/Q8_0/Q4_K_M) für llama.cpp und QVAC SDK · Architektur Qwen3.5 (hybrid Gated DeltaNet + Attention), rein textbasiert · Thinking-Modus zwingend (Chat-Template standardmäßig aus, enable_thinking=True nötig) · Evaluierte Sampling-Parameter: Temperatur 0,3, top_p 0,95, top_k 20, presence_penalty 1,5, bis 32.768 neue Token · Läuft ohne eigenen Code in Transformers, vLLM und llama.cpp · Sprache: Englisch empfohlen, sieben weitere getestet, deutlich schwächer in Hindi und Russisch · Lizenzen: Gewichte Apache 2.0, Basismodell Apache 2.0 [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Training und was nicht offen ist"
+    },
+    {
+      "t": "p",
+      "x": "Trainiert wurde in vier Stufen: überwachtes Feintuning, Multi-Teacher-On-Policy-Distillation und zwei Runden Reinforcement Learning [1]. Trainingscode und Trainingsdaten sind ausdrücklich nicht Teil des Releases; ein Blog-Beitrag mit Methodik, allen Benchmarks und Effizienzanalysen ist verlinkt, den haben wir nicht geöffnet [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Grenzen, die der Hersteller selbst nennt"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte ist ungewöhnlich offen: Schwachstellen sind offene Websuche (BFCL-Websuche 14,0, Gedächtnis 16,3), absolut niedrige BrowseComp-Plus-Werte (4,5 - Spitze im Vergleich, aber niedrig), und auf τ³-Banking kommt keines der fünf Modelle über 5 [1]. BotPsy mache Fehler und sei nur für Aufgaben niedriger bis mittlerer Schwierigkeit gedacht; nicht vorgesehen ist es für sicherheitskritische Entscheidungen oder Anwendungen mit Geld, Gesundheit und persönlichen Daten [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "BotPsy ist das zweite On-Device-Modell in dieser Woche, das mit Minimalismus punktet: Nach tiny-voca (4,5 Mio. Parameter für Sprachausgabe) nun 0,8 Milliarden für Werkzeugaufrufe - beide unter Apache 2.0, beide mit lokaler Betriebsmöglichkeit, bei der Daten das Gerät nicht verlassen müssen. Der Ansatz ist bemerkenswert konsequent: Statt Allgemeinwissen in Gewichte zu pressen, wird das kleine Modell zum zuverlässigen Werkzeugbediener trainiert. Ob die Herstellerwerte in fremden Frameworks halten, ist wie immer offen - doch mit GGUF-Dateien und Standard-Laufzeiten ist die Prüfung diesmal eine Sache von Minuten."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist BotPsy-0.8B?",
+      "a": "Ein 0,8-Milliarden-Parameter-Modell von Tether AI Research (QVAC) für Werkzeugaufrufe und kleine agentische Aufgaben, auf Qwen3.5-0.8B aufgebaut, erschienen am 10.11.2026 unter Apache 2.0 [1]."
+    },
+    {
+      "q": "Für wen ist es gedacht?",
+      "a": "Für Aufgaben niedriger bis mittlerer Schwierigkeit: Kalender, E-Mail, Suche, Dokumente, Gerätesteuerung. Ausdrücklich nicht für sicherheitskritische Entscheidungen, Geld, Gesundheit oder persönliche Daten [1]."
+    },
+    {
+      "q": "Läuft es auf dem Telefon?",
+      "a": "GGUF-Dateien (bis Q4_K_M) für llama.cpp und das QVAC SDK existieren; damit ist ein lokaler Betrieb auf Geräten möglich. Konkrete Geschwindigkeitsmessungen auf Telefonen nennen die von uns gelesenen Quellen nicht [1][2]."
+    },
+    {
+      "q": "Wie gut ist es wirklich?",
+      "a": "Hersteller-Evaluierung: Spitze in der Klasse bis 1,2 Mrd. Parameter auf allen sechs Agenten-Benchmarks, vor dem 2,5-mal größeren Qwen3.5-2B-Think auf fünf von sechs. Unabhängige Tests liegen nicht vor; Schwachstellen (Websuche, Gedächtnis) nennt die Karte selbst [1]."
+    },
+    {
+      "q": "Sind Training und Daten offen?",
+      "a": "Nein. Gewichte und Nutzung sind offen (Apache 2.0), aber Trainingscode und Trainingsdaten sind nicht Teil des Releases; ein Methodik-Blog ist verlinkt, von uns nicht geöffnet [1]."
+    }
+  ],
+  "method": "Recherche am 16. November 2026 gegen 6 Uhr UTC (7 Uhr MEZ): Modellkarte und Plattform-API von BotPsy-0.8B, Plattform-API des GGUF-Repositorys und Lizenzprüfung des Basismodells Qwen3.5-0.8B per Plattform-API, alle selbst geöffnet und gelesen. Den verlinkten Methodik-Blog haben wir nicht geöffnet. Eigene Benchmark- oder Inferenztests haben wir nicht durchgeführt.",
+  "limitations": "Alle Benchmarks stammen aus der Hersteller-Evaluierung (Thinking-Modus, eigene Testumgebung, externe API-Benchmarks vom 3.11.2026); unabhängige Messungen liegen nicht vor. Trainingsdaten und -code sind nicht öffentlich, die Trainingsdetails daher nur soweit belegt, wie die Karte sie nennt. Geschwindigkeit auf Endgeräten haben wir nicht geprüft.",
+  "related": [
+    "tiny-voca-analyse",
+    "agenten-fundamente",
+    "edge0-145b-analyse"
+  ]
+}
