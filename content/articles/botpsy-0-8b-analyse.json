@@ -24,7 +24,7 @@
   ],
   "hero": {
     "alt": "Schematische Grafik: Smartphone links mit einem kleinen Kasten BotPsy 0,8B darauf, Pfeile zu drei Werkzeug-Symbolen Kalender, Suche und Dokument rechts",
-    "caption": "Klein, aber werkzeugfest: BotPsy-0.8B soll Kalender, Suche und Dokumente direkt vom Gerät aus bedienen - Thinking-Modus inklusive [1].",
+    "caption": "Werkzeug-Agent in Taschenformat: BotPsy-0.8B soll Kalender, Suche und Dokumente über Werkzeugaufrufe bedienen - lokal lauffähig, Werte vom Hersteller [1].",
     "ai_generated": false,
     "credit": "Eigene Grafik (Redaktion)"
   },
@@ -55,7 +55,7 @@
     },
     {
       "t": "h2",
-      "x": "Doppelt so stark wie die Basis - im Werkzeug-Einsatz"
+      "x": "Werkzeug-Benchmarks: deutliche Sprünge gegenüber der Basis"
     },
     {
       "t": "p",
@@ -123,7 +123,7 @@
     },
     {
       "t": "p",
-      "x": "BotPsy ist das zweite On-Device-Modell in dieser Woche, das mit Minimalismus punktet: Nach tiny-voca (4,5 Mio. Parameter für Sprachausgabe) nun 0,8 Milliarden für Werkzeugaufrufe - beide unter Apache 2.0, beide mit lokaler Betriebsmöglichkeit, bei der Daten das Gerät nicht verlassen müssen. Der Ansatz ist bemerkenswert konsequent: Statt Allgemeinwissen in Gewichte zu pressen, wird das kleine Modell zum zuverlässigen Werkzeugbediener trainiert. Ob die Herstellerwerte in fremden Frameworks halten, ist wie immer offen - doch mit GGUF-Dateien und Standard-Laufzeiten ist die Prüfung diesmal eine Sache von Minuten."
+      "x": "BotPsy ist das zweite On-Device-Modell in dieser Woche, das mit Minimalismus punktet: Nach tiny-voca (4,5 Mio. Parameter für Sprachausgabe) nun 0,8 Milliarden für Werkzeugaufrufe - beide unter Apache 2.0, beide lokal lauffähig - die Modellausführung selbst kann dabei auf dem Gerät bleiben; Werkzeuge wie die Websuche rufen naturgemäß externe Dienste auf. Der Ansatz ist bemerkenswert konsequent: Statt Allgemeinwissen in Gewichte zu pressen, wird das kleine Modell zum zuverlässigen Werkzeugbediener trainiert. Ob die Herstellerwerte in fremden Frameworks halten, ist wie immer offen - doch mit GGUF-Dateien und Standard-Laufzeiten können Dritte das ohne eigenen Code nachprüfen."
     }
   ],
   "faq": [

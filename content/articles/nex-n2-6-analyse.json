@@ -20,7 +20,7 @@
     "Der Release zielt auf zwei Schwächen des Vorgängers: Wiederholungen im Reasoning sanken herstellerintern von 16,0 auf 1,6 Prozent, die Werkzeuglisten-Treue liegt intern bei 100 Prozent [1].",
     "Auf OSWorld meldet der Hersteller 83,0 Punkte - vor Nex-N2.5-Pro (82,2) und dem Basismodell GLM-5.3-Flash (78,0); auf AutomationBench liegt Nex-N2.6 dagegen hinter DeepSeek-V4.1-Flash [1].",
     "Das Basismodell GLM-5.3-Flash steht unter MIT, die Nex-Gewichte unter Apache 2.0; Community-GGUFs für lokale Läufe existieren seit dem 11.11. [1][2][3].",
-    "Alle Benchmarks stammen vom Hersteller; unabhängige Auswertungen liegen bislang nicht vor [1]."
+    "Alle Benchmarks stammen vom Hersteller; unabhängige Auswertungen sind bislang nicht bekannt [1]."
   ],
   "hero": {
     "alt": "Schematische Grafik: Desktop-Fenster mit Mauszeiger links, Kasten Nex-N2.6 in der Mitte mit der Aufschrift 321B FP8, rechts eine Werkzeugliste mit drei Häkchen",
@@ -101,7 +101,7 @@
     },
     {
       "t": "p",
-      "x": "Auf Terminal-Bench 2.1 meldet die Karte 84,1 Punkte - knapp hinter dem Basismodell GLM-5.3-Flash (84,3), vor N2.5-Pro und DeepSeek-V4.1-Flash (je 82,7). Auf AutomationBench liegt Nex-N2.6 mit 45,7 hinter DeepSeek-V4.1-Flash (54,8) und dem Basismodell (48,8) [1]. Der Release ist also kein Rundumgewinn: Stärker bei Computer Use und Werkzeugdisziplin, nicht überall vorne. Alle Zahlen stammen vom Hersteller; unabhängige Messungen liegen bislang nicht vor."
+      "x": "Auf Terminal-Bench 2.1 meldet die Karte 84,1 Punkte - knapp hinter dem Basismodell GLM-5.3-Flash (84,3), vor N2.5-Pro und DeepSeek-V4.1-Flash (je 82,7). Auf AutomationBench liegt Nex-N2.6 mit 45,7 hinter DeepSeek-V4.1-Flash (54,8) und dem Basismodell (48,8) [1]. Der Release ist also kein Rundumgewinn: Stärker bei Computer Use und Werkzeugdisziplin, nicht überall vorne. Alle Zahlen stammen vom Hersteller; unabhängige Messungen sind bislang nicht bekannt."
     },
     {
       "t": "h2",
