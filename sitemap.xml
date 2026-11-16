@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-16</loc><lastmod>2026-11-16T17:15:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-16.jpg</image:loc><image:title>NER-D, VEPO und PerfArena: Drei präzisere KI-Messungen</image:title><image:caption>Datentafel: Qwen-NER-F1 mit LoRA 0,747; Hindi-POPE-F1 mit VEPO und englischen Trainingspaaren 0,644; 99 LeetCode-Aufgaben in PerfArena.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/botpsy-0-8b-analyse</loc><lastmod>2026-11-16T11:59:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/botpsy-0-8b-analyse.jpg</image:loc><image:title>BotPsy-0.8B: Werkzeug-Agent in Taschenformat von Tether</image:title><image:caption>Schematische Grafik: Smartphone links mit einem kleinen Kasten BotPsy 0,8B darauf, Pfeile zu drei Werkzeug-Symbolen Kalender, Suche und Dokument rechts</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-16</loc><lastmod>2026-11-16T11:59:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-16.jpg</image:loc><image:title>Abliteration-Audit, Contagious Fingerprints, Persona-Steering</image:title><image:caption>Datentafel: plus 36,9 Prozentpunkte Rest-Verweigerung im OLMo-Paar, Erkennung 0,72 nach Modellwechsel, Falsch-Positiv 0,056 des LINEUP-Tests.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-16</loc><lastmod>2026-11-16T11:59:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-16.jpg</image:loc><image:title>Unfinished-Bench, Detektor-Ranking-Flip, Belief-Edit</image:title><image:caption>Datentafel: 43,6 Prozent Dokument-Regelverstöße mit Persistenz, minus 0,80 Spearman-Korrelation der Detektor-Rankings, 47 von 48 Zellen mit injiziertem Auftrag.</image:caption></image:image></url>
@@ -307,7 +308,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-16T11:59:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-16T11:59:00+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-16T17:15:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-16</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-16</lastmod></url>

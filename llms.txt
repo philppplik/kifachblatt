@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [NER-D, VEPO und PerfArena: Drei präzisere KI-Messungen](https://kifachblatt.de/news-ueberblick-abend-2026-11-16): Deutsche NER mit LoRA, visuelle Präferenzpaare für drei Sprachen und Code-Effizienz: Drei Preprints zeigen, welche Testbedingungen hinter Gewinnen stehen.
 - [BotPsy-0.8B: Werkzeug-Agent in Taschenformat von Tether](https://kifachblatt.de/botpsy-0-8b-analyse): BotPsy-0.8B von Tether AI soll Werkzeugaufrufe in der Sub-Milliarde-Klasse beherrschen: 0,8 Mrd. Parameter, Thinking-Modus, Apache 2.0, auch als GGUF.
 - [Abliteration-Audit, Contagious Fingerprints, Persona-Steering](https://kifachblatt.de/news-ueberblick-mittag-2026-11-16): Abliteration nicht einheitlich schwerer (-1,2 bis +36,9 pp); ansteckende Fingerabdrücke (LINEUP 0,81/0,056); Steering-Nebenwirkungen je nach Benchmark.
 - [Unfinished-Bench, Detektor-Ranking-Flip, Belief-Edit](https://kifachblatt.de/news-ueberblick-morgen-2026-11-16): Persistenz erhöht Regelverstöße (32,2 auf 43,6 %); Detektor-Rangfolge kippt auf 4-Bit-3B-Modellen; Aktivierungs-Edit kapert Aufträge (47/48).
