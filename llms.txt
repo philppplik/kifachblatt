@@ -33,6 +33,10 @@
 ## Beiträge
 
 <!--GEN-->
+- [Abliteration-Audit, Contagious Fingerprints, Persona-Steering](https://kifachblatt.de/news-ueberblick-mittag-2026-11-16): Abliteration nicht einheitlich schwerer (-1,2 bis +36,9 pp); ansteckende Fingerabdrücke (LINEUP 0,81/0,056); Steering-Nebenwirkungen je nach Benchmark.
+- [Unfinished-Bench, Detektor-Ranking-Flip, Belief-Edit](https://kifachblatt.de/news-ueberblick-morgen-2026-11-16): Persistenz erhöht Regelverstöße (32,2 auf 43,6 %); Detektor-Rangfolge kippt auf 4-Bit-3B-Modellen; Aktivierungs-Edit kapert Aufträge (47/48).
+- [BotPsy-0.8B: Werkzeug-Agent in Taschenformat von Tether](https://kifachblatt.de/botpsy-0-8b-analyse): BotPsy-0.8B von Tether AI soll Werkzeugaufrufe in der Sub-Milliarde-Klasse beherrschen: 0,8 Mrd. Parameter, Thinking-Modus, Apache 2.0, auch als GGUF.
+- [Nex-N2.6: 321B-Agentenmodell auf GLM-5.3 unter Apache 2.0](https://kifachblatt.de/nex-n2-6-analyse): Nex-N2.6 ist ein multimodales Agentenmodell mit rund 321 Mrd. Parametern auf GLM-5.3-Basis - offene FP8-Gewichte unter Apache 2.0, Fokus Werkzeugtreue.
 - [Parametrische Zitate, Skepthical-Audit, Accuracy-Approval-Gap](https://kifachblatt.de/news-ueberblick-abend-2026-11-15): Counterfactual-Substitution misst Zitat-Herkunft (1,2-15,7 % parametrisch), 357 injizierte Fehler testen 12 KI-Gutachter, zwei Studien zur Zustimmungsfalle.
 - [Zertifizieren oder Ablehnen, Risikoprofile, Akrasie-Argument](https://kifachblatt.de/news-ueberblick-mittag-2026-11-15): Theoria-Pipeline im Betriebstest (87,6 % Präzision bei 35 % Abdeckung), Risikoprofile von neun Modellen und ein Argument gegen starres Selbst-Veto.
 - [SISS-Bildattacke, CapLite-Enforcement, Agenten ohne Auftrag](https://kifachblatt.de/news-ueberblick-morgen-2026-11-15): Skalenangriff auf vier VLMs (58,75 % im Stresstest), Enforcement ohne modellgeschriebene Artefakte (0/13.935) und 2.400 Trajektorien zu Agenten.
