@@ -1,0 +1,139 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-16",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-16T17:15:00+01:00",
+  "modified": "2026-11-16T17:15:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "NER-D: A cross-domain benchmark for German NER",
+      "publisher": "arXiv; Marc Brinner u. a., Universität Bielefeld",
+      "url": "https://arxiv.org/abs/2611.18257",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "VEPO: Mitigating Multilingual Hallucinations in LVLMs via Visual Evidence-guided Preference Optimization",
+      "publisher": "arXiv; Chengpeng Fu u. a., Harbin Institute of Technology, Peng Cheng Laboratory, Zhongguancun Academy",
+      "url": "https://arxiv.org/abs/2611.18096",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "PerfArena: Ranking LLMs by Code Performance",
+      "publisher": "arXiv; Rui Rua, Hailemariam Mersha, João Paulo Fernandes, Karim Ali",
+      "url": "https://arxiv.org/abs/2611.18030",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "PerfArena: Quellcode und Messinfrastruktur",
+      "publisher": "GitHub; perfarena/perfarena",
+      "url": "https://github.com/perfarena/perfarena",
+      "accessed": "2026-11-16"
+    }
+  ],
+  "tags": [
+    "evaluation",
+    "modelle",
+    "code",
+    "multimodal",
+    "forschung"
+  ],
+  "title": "NER-D, VEPO und PerfArena: Drei präzisere KI-Messungen",
+  "dek": "Deutsche NER mit LoRA, visuelle Präferenzpaare für drei Sprachen und Code-Effizienz: Drei Preprints zeigen, welche Testbedingungen hinter Gewinnen stehen.",
+  "key_takeaways": [
+    "NER-D: 13 Datensätze, neun Domänen; Qwen3.5-9B erreicht mit LoRA einen mittleren exakten Micro-F1 von 0,747 gegenüber 0,481 ohne Beispiele. SwissNER ist aus diesem Mittel ausgeschlossen; GPT nur Zero-shot.",
+    "VEPO: LLaVA-1.5-7B erreicht auf Hindi POPE-F1 0,644 statt 0,302. Der Hauptvergleich mischt Hindi-/Englisch-Präferenzpaare 1:1; Hindi-only kann nach SFT zurückfallen.",
+    "PerfArena: 13 Modelle, sieben Sprachen, 99 LeetCode- und zehn CLBG-Aufgaben. Effizienzduelle nutzen nur gemeinsam gelöste Aufgabe-Sprache-Zellen; Fehlversuche bleiben in pass@1 sichtbar."
+  ],
+  "hero": {
+    "alt": "Datentafel: Qwen-NER-F1 mit LoRA 0,747; Hindi-POPE-F1 mit VEPO und englischen Trainingspaaren 0,644; 99 LeetCode-Aufgaben in PerfArena.",
+    "caption": "Nicht direkt vergleichbare Messgrößen aus drei Preprints; Bedingungen jeweils an der Zahl.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 16. November. Quellenstand: 16:00 Uhr MEZ. NER-D untersucht deutsche Extraktion unter verschiedenen Anpassungsregimen, VEPO die visuelle Verankerung mehrsprachiger Antworten und PerfArena die Effizienz von Code nach bestandener Korrektheitsprüfung. Alle Ergebnisse sind Studienbefunde aus Preprints, keine universellen Modellranglisten."
+    },
+    {
+      "t": "h2",
+      "x": "1. NER-D: Annotationskonventionen als Teil der Aufgabe"
+    },
+    {
+      "t": "p",
+      "x": "Das Bielefelder Team um Marc Brinner vereinheitlicht 13 deutsche NER-Datensätze aus neun Domänen zu Satz-/JSON-Paaren. Es vergleicht Ministral 8B Instruct, Qwen3.5-9B und Gemma 4 12B Instruct in Zero-shot, 5-shot und LoRA mit GPT-5.4 mini ausschließlich Zero-shot. Vorhandene Splits bleiben erhalten; andernfalls gilt 80/10/10. SwissNER ist wegen seiner geringen Größe nur im Zero-shot-Test enthalten. Im 5-shot-Setting stammen die fünf zufällig gewählten Demonstrationen aus dem Validierungssplit. Eine datensatzspezifische Promptoptimierung fand nicht statt."
+    },
+    {
+      "t": "p",
+      "x": "Die Evaluation akkumuliert Entitäts-TP/FP/FN über den jeweiligen Testkorpus und berechnet exakten sowie partiellen Micro-F1. Partielles Matching nutzt innerhalb eines Typs eine greedy Eins-zu-eins-Zuordnung mit Token-Set-Ähnlichkeit von mindestens 0,90. Nicht parsebares JSON zählt als leere Vorhersage. Die abschließenden Tabellenmittel sind Mittel über Datensätze, kein gemeinsamer Micro-F1 über sämtliche Korpora. SwissNER ist aus den berichteten Spaltenmitteln ausgeschlossen."
+    },
+    {
+      "t": "p",
+      "x": "Tabelle 2: Qwen steigt im mittleren exakten F1 von 0,481 über 0,542 mit fünf Beispielen auf 0,747 mit LoRA. Ministral erreicht 0,430/0,470/0,732, Gemma 0,507/0,560/0,731. GPT liegt ohne Beispiele bei 0,504 und führt auf sechs von 13 Einzeldatensätzen. Der Vergleich der angepassten offenen Modelle mit GPT ist somit ausdrücklich kein Vergleich unter gleichem Trainingszugang. LoRA wird auf allen linearen Schichten mit Rang 16, Alpha 32 und einer Lernrate von 1e-4 eingesetzt; Early Stopping nutzt den Validierungsverlust."
+    },
+    {
+      "t": "p",
+      "x": "Die Autoren führen einen Teil der 5-shot-Gewinne auf gelernte Span-Grenzen zurück: Der Abstand zwischen exaktem und partiellem F1 schrumpft. Fachjargon erklärt die Rangfolge nicht allein. Besonders bei GerPS limitiert die eigene Satzsegmentierung das Ergebnis, weil semantische Rollen Dokumentkontext brauchen. Bei German LER sind fein getrennte Entitätsklassen eine weitere Fehlerquelle. Grenzen sind die kleine Modellauswahl, einheitliche statt optimierte Prompts und teils kleine Spezialdatensätze. Code, Daten und Modelle werden erst nach Annahme des Papers angekündigt."
+    },
+    {
+      "t": "h2",
+      "x": "2. VEPO: Gleiche Antwort, unterschiedliche Bildevidenz"
+    },
+    {
+      "t": "p",
+      "x": "VEPO bildet Präferenzpaare mit identischem Zieltext, aber unterschiedlichen Bildern. Aus englischen Fragen werden über mittlere Attention-Schichten die wichtigsten Bildpatches ausgewählt; standardmäßig werden die obersten 20 Prozent geschwärzt. DPO soll dieselbe Antwort beim vollständigen Bild gegenüber der evidenzarmen Fassung bevorzugen. Der Ansatz nutzt vorhandene parallele Fragen und Antworten aus PALO. Kein zusätzlicher Übersetzer oder Reward-Scorer wird für diesen Trainingsschritt benötigt; das bedeutet nicht, dass das gesamte Datenmaterial ohne vorherige Übersetzung entstanden wäre."
+    },
+    {
+      "t": "p",
+      "x": "Der quantitative Backbone ist LLaVA-1.5-7B. Einstellungen: Attention-Schichten 11-14, letzter Fragetoken, LoRA-Rang 128, Alpha 256, eine Epoche, Lernrate 2e-5, Batchgröße 8, DPO-Beta 0,1. Die Haupttabelle berichtet POPE-F1 über neun Kombinationen aus COCO/A-OKVQA/GQA und random/popular/adversarial: Chinesisch 0,731 auf 0,766, Französisch 0,742 auf 0,794, Hindi 0,302 auf 0,644. Für Hindi werden englische und Hindi-Präferenzpaare 1:1 gemischt. Die Werte sind F1-Scores für Objektpräsenzfragen, keine allgemeine Halluzinationsrate."
+    },
+    {
+      "t": "p",
+      "x": "Die Hindi-Ablation zeigt die Bedeutung dieser Mischung. Auf COCO-POPE steigt VEPO ohne SFT bei Hindi-only im Mittel auf 0,406, mit Hindi+Englisch auf 0,654. Nach SFT fällt Hindi-only von 0,709 auf 0,700, während die Mischung 0,769 erreicht. Das ist ein anderer Auswertebereich als der Hindi-Hauptwert 0,644 über alle neun POPE-Kombinationen. Im chinesischen Vergleich bei gleichem Maskenanteil erreicht Random Mask 0,745 und gezieltes VEPO 0,766 gegenüber 0,731 beim Ausgangsmodell."
+    },
+    {
+      "t": "p",
+      "x": "MME-Gesamtwerte steigen in allen drei Sprachen, doch die Gewinne konzentrieren sich auf Wahrnehmung. Einzelne Denkaufgaben in Chinesisch und Französisch verschlechtern sich. Grenzen: nur ein quantitativ geprüfter Backbone, drei Berichtssprachen, standardmäßig ein Lauf, keine Aussage über beliebige Architekturen. Die englischzentrierte Evidenzlokalisierung und möglicherweise nötige neue Schichtwahl bei anderen Modellen bleiben ausdrücklich offen."
+    },
+    {
+      "t": "h2",
+      "x": "3. PerfArena: Korrektheit und Effizienz getrennt berichten"
+    },
+    {
+      "t": "p",
+      "x": "PerfArena prüft 13 Modelle in sieben Sprachen mit je einem generierten Programm pro Aufgabe-Sprache-Zelle. LeetCodeComp wählt 99 Aufgaben aus ursprünglich 1.973 anhand messbarer Laufzeitspreizung aus; CLBGComp umfasst zehn rechenintensive Programme. Erst akzeptierte Programme werden auf Laufzeit, Spitzenspeicher und Paketenergie vermessen. Das Paper nennt 9.455 korrekte und gemessene Lösungen. In Effizienzduellen treten nur Modelle mit akzeptierter Lösung derselben Zelle gegeneinander an; Fehler erhalten keinen synthetischen Zeitwert. pass@1 berichtet die Ausfälle gesondert."
+    },
+    {
+      "t": "p",
+      "x": "Die Messung nutzt einen Intel Core i7-7600U mit Ubuntu 22.04 und 16 GB RAM. Laufzeit und Energie werden siebenmal gemessen, Spitzenspeicher in einem eigenen Lauf. Bei LeetCode enthält das 1,5-Sekunden-Budget 30 Prozent Warmup; die Ausführung wird auf einen Aufruf heruntergerechnet. Energie beruht auf RAPL-Paketwerten, nicht auf der Stromaufnahme des Gesamtsystems. Die reduzierte Messlast umfasst 501 von 8.063 profilierten Testfällen; sie ersetzt nicht den Korrektheitstest. CLBG misst dagegen ganze Programme einschließlich Runtime-Start."
+    },
+    {
+      "t": "p",
+      "x": "Unter den gemeinsam gelösten LeetCode-Zellen laufen die korrekten Programme anderer Modelle geometrisch gemittelt 1,14- bis 1,61-mal so lange wie die von GPT-6-Astra; bei CLBG beträgt die Spanne 1,20 bis 3,61. Die Studie findet im LeetCode-Laufzeitvergleich keinen statistisch nachweisbaren Unterschied zwischen GPT-6-Astra und Claude Opus 5.5. Tests resampeln ganze Aufgaben, damit korrelierte Sprachvarianten nicht als unabhängige Fälle zählen. Bei nur zehn CLBG-Aufgaben kann deshalb selbst ein Modell mit wenigen Erfolgen statistisch nicht von der Spitze trennbar sein. Solche Gruppen sind keine Äquivalenznachweise."
+    },
+    {
+      "t": "p",
+      "x": "Mehrere Grenzen sind für eine Übernahme wichtig: nur ein Hardware-/Toolchain-Profil, eine generierte Lösung pro Zelle, öffentliche Aufgaben mit möglicher Trainingskontamination sowie warme Wiederholungen mit möglichem Memoization-Vorteil. Die Autoren finden 31 zwischenspeichernde LeetCode-Lösungen; Kontrollmessungen ändern die führenden Gruppen nicht. Referenzen bestehen aus den besten geprüften Modelllösungen, nicht aus einem vollständigen menschlichen Optimum. Das GitHub-Repository enthält tatsächlich Implementierungs-, Client- und Messdateien. Eine unabhängige Bestätigung der aktuellen Live-Rangliste liegt diesem Überblick nicht zugrunde."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist beim NER-D-Modellvergleich zu beachten?",
+      "a": "Die offenen Modelle erhalten im LoRA-Vergleich zusätzliche gelabelte Trainingsdaten, GPT-5.4 mini nicht. Die Mittelwerte schließen SwissNER aus. Außerdem limitiert die Satzzerlegung Aufgaben mit Dokumentkontext. Der Befund ist deshalb kein pauschaler Sieg offener Modelle über geschlossene Modelle."
+    },
+    {
+      "q": "Warum stehen bei VEPO zwei verschiedene Hindi-F1-Werte?",
+      "a": "0,644 ist der Hauptwert über neun POPE-Kombinationen mit Hindi-/Englisch-Mischung. 0,654 gehört zur COCO-POPE-Ablation ohne SFT, 0,769 zur COCO-POPE-Ablation nach SFT. Die Auswertebereiche und Trainingsbedingungen dürfen nicht vermischt werden."
+    },
+    {
+      "q": "Welche Messgröße beschreibt die PerfArena-Rangliste?",
+      "a": "Sie bewertet die Ausführung korrekten generierten Codes auf der Studienhardware, nicht die Inferenzlatenz des generierenden Modells. Effizienzduelle schließen fehlerhafte Programme aus; pass@1 muss deshalb separat mitgelesen werden. Statistisch nicht trennbare Spitzenmodelle sind nicht automatisch gleich effizient."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
