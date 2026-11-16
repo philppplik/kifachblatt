@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Nex-N2.6: 321B-Agentenmodell auf GLM-5.3 unter Apache 2.0",
   "dek": "Nex-N2.6 ist ein multimodales Agentenmodell mit rund 321 Mrd. Parametern auf GLM-5.3-Basis - offene FP8-Gewichte unter Apache 2.0, Fokus Werkzeugtreue.",
-  "published": "2026-11-16T07:05:00+01:00",
-  "modified": "2026-11-16T07:05:00+01:00",
+  "published": "2026-11-16T11:59:00+01:00",
+  "modified": "2026-11-16T11:59:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Nex-AGI",
