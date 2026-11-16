@@ -1,0 +1,105 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-16",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-16T11:15:00+01:00",
+  "modified": "2026-11-16T11:15:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Is Abliteration Getting Harder? Not Uniformly: Refusal Removal by Direction-Based Ablation and ARA in Heretic on the Qwen 3.8, Gemma 4, OLMo 3.1 and Mistral Small 3.2 LLMs versus Their Predecessors",
+      "publisher": "arXiv (Richard J. Young; University of Nevada, Las Vegas)",
+      "url": "https://arxiv.org/abs/2611.17846",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "Contagious Fingerprints: When LLMs Inherit Another Model's Identity",
+      "publisher": "arXiv (Zailong Tian; Nanyang Technological University)",
+      "url": "https://arxiv.org/abs/2611.18104",
+      "accessed": "2026-11-16"
+    },
+    {
+      "title": "Safety Side Effects of Preventative Persona Steering: An Empirical Audit",
+      "publisher": "arXiv (Sabrina Tang, Nikolai Vo, Carson Murillo, Chira Sukumarnpiti, Sarah Wilson; UC Irvine, University of Toledo, UC San Diego, Berkeley City College, Google; NeurIPS-2026-Workshop BiAlign)",
+      "url": "https://arxiv.org/abs/2611.17620",
+      "accessed": "2026-11-16"
+    }
+  ],
+  "title": "Abliteration-Audit, Contagious Fingerprints, Persona-Steering",
+  "dek": "Abliteration nicht einheitlich schwerer (-1,2 bis +36,9 pp); ansteckende Fingerabdrücke (LINEUP 0,81/0,056); Steering-Nebenwirkungen je nach Benchmark.",
+  "tags": [
+    "sicherheit",
+    "evaluation",
+    "modelle",
+    "open-weights",
+    "audits"
+  ],
+  "key_takeaways": [
+    "Abliteration-Audit (Young; UNLV): 5 Release-Paare, Heretic 2.0, DiM/MPOA/SOM (+J-space) vs. ARA, 100 Trials, KL <= 0,1; Rest-Verweigerung (972 held-out, WildGuard) richtungsbasiert -1,2 (Mistral) bis +36,9 pp (OLMo), ARA -26,0 (Gemma) bis +34,4 (Qwen); nur OLMo über Run-zu-Run-Streuung in beiden Varianzmodellen; Seed 2 löschte Small-Pair-ARA-Effekt (+14,2 -> 0,0); Gemma-Effekt aus eigener Code-Bank, auf öffentlichen Sets umgekehrt; Keyword-Zählung im Mittel Richter-konform; benannte Repos bei Prüfung 404.",
+    "Contagious Fingerprints (Tian; NTU): Handoff verschiebt Reply um +6,52 Logits [5,93;7,11] Richtung Vorgänger (Stil-Kanal: Paraphrase entfernt Großteil); passive Erkennung 0,97 -> 0,72 (DeepSeek), 0,87 -> 0,54 (Haiku), Nachtraining nur bei bekannten Ersatzmodellen; Probes auf langen Historien flaggen ehrliche Modelle (bis 1,00); LINEUP (Referenzen auf gleicher Historie, Rang-Test): FPR 0,056 [0,025;0,094], Detektion 0,81 [0,76;0,85] nach 4 Turns, 16 Referenz-Calls; MMD-Variante 1,00; benanntes Repo bei Prüfung 404.",
+    "Persona-Steering-Audit (Tang u. a.; UCI bis Google; NeurIPS-WS): preventives Steering auf 3 Modellen; Halluzination: HarmBench-ASR 72,3 -> 4,4 (Qwen-7B), 61,0 -> 22,0 (Llama), 91,2 -> 6,3 (Qwen-14B), Trait >= 70 %, MMLU <= 2,1 pp; nicht monoton auf Llama (Minimum 14,5 bei c = 2,25); XSTest plateau 25-43 %; Sycophancy: Llama-ASR 8,2 -> 11,9 vs. XSTest 8,5 -> 6,5; Hallu-Finetuning allein ASR 61-91 %; 1 Lauf je Punkt, keine CIs."
+  ],
+  "hero": {
+    "alt": "Datentafel: plus 36,9 Prozentpunkte Rest-Verweigerung im OLMo-Paar, Erkennung 0,72 nach Modellwechsel, Falsch-Positiv 0,056 des LINEUP-Tests.",
+    "caption": "Kennzahlen aus drei Preprints; Scopes und Grenzen im Artikel.",
+    "ai_generated": false,
+    "credit": "Eigene Grafik"
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 16. November, Quellenstand 09:52 Uhr MEZ. Drei Preprints: ein Mehr-Paare-Audit von Abliteration und ARA, eine Mechanik-Studie ansteckender Modell-Fingerabdrücke samt Gegentest LINEUP und ein Audit der Sicherheits-Nebenwirkungen preventiven Persona-Steerings."
+    },
+    {
+      "t": "h2",
+      "x": "1. Abliteration: Paar, Methode, Budget entscheiden"
+    },
+    {
+      "t": "p",
+      "x": "Setup: 5 Release-Paare (Qwen2.5-32B -> Qwen3.8-27B, Gemma-2-27B -> Gemma-4-31B, OLMo-2-32B -> Olmo-3.1-32B, Mistral-Small-2409 -> 3.2, Small-Pair Qwen2.5-7B -> Qwen3.5-4B); 3-4 richtungsbasierte Verfahren (DiM, MPOA, SOM, J-space nur Small) + ARA (Rank 50) in Heretic 2.0; 100 TPE-Trials, Auswahl nach Dev-Keyword-Refusals bei First-Token-KL <= 0,1; Held-out 972 schädliche Prompts (JailbreakBench, XSTest, StrongREJECT, HarmBench + 200 eigene Code-Prompts); WildGuard als Primärjudge, Qwen3Guard als Zweitjudge (Kappa 0,82); McNemar exakt, Holm über 23 H1-Tests; Run-zu-Run-SD 9,2 pp [6,4;16,1] aus 10 Seed-Paaren des Small-Pairs."
+    },
+    {
+      "t": "p",
+      "x": "Befunde: H1 (neuer stets schwerer) fällt - kein Main-Paar für jede Methode. Richtungsbasiert: -1,2 pp (Mistral) bis +36,9 pp (OLMo, [+22,1;+51,7]); ARA: -26,0 (Gemma) bis +34,4 (Qwen). Nur OLMo über Run-Streuung in beiden Varianzmodellen; Seed 2 löschte Small-Pair-ARA (+14,2 -> 0,0). H2: ARA verlor weniger in Gemma (-30,8) und OLMo (-39,3), mehr in Qwen (+23,6, Intervall inklusive 0); jede Kontrast-Zelle = 1 ARA-Run, budget- und varianzmodell-sensitiv. H3: Keyword-Zählung im Mittel nicht unterschätzt (Mittel-Differenz 7 Punkte/Modell). Item-Herkunft: Code-Bank (200/972) trug 52 % der Original-Differenz; Gemma +49,3 auf Code vs. -6,8 öffentlich. Post-Norm-Kontrolle (gamma-MPOA) senkte Refusal auf allen 4 Post-Norm-Modellen, OLMo-Effekt (+57,0) und gepooltes H2 (-0,42) blieben. Judge-Provenienz: WildGuard-Entwickler = OLMo-Entwickler, ca. 50k WildGuardMix-Prompts in OLMo-SFT-Daten; Zweitjudge bestätigte Richtung (+32,3 / -35,0). Grenzen: 1 Seed je Main-Zelle, greedy decoding, WildGuard auf editierten Modellen nicht validiert, Dev-Optimismus, Generation konfundiert mit Größe/Rezept. Ethik: Gemma-2-27B-Derivate zurückgehalten (Policy), OLMo-2-32B gated mit Auto-Approval. Benannte Repos (ricyoung/abliteration-studies, Fork) waren bei Prüfung 09:52 nicht erreichbar (404)."
+    },
+    {
+      "t": "h2",
+      "x": "2. Contagious Fingerprints: Stil der Historie überdeckt Modellwechsel"
+    },
+    {
+      "t": "p",
+      "x": "Setup: 13 Modelle; claimed = Claude Sonnet 5.5 und GPT-6.1 Sol, Ersatzmodelle Haiku 5.5, GPT-6 Luna, DeepSeek V4.1 Flash, MiniMax M3 + 7 lokale offene; 200 WildChat-Seeds, 8-Zug-Dialoge, Handoff nach Zug 4; 3 Quell-Klassifikatoren (n-Gram, neuronal LLM2Vec+LoRA, stylometrisch), 11 Klassen; Hypothesen der Bestätigungsstufen vorab eingefroren; 140 Bestätigungs-Seeds. Motivation: Züge 5-8 tragen 79 % der Eingabetokens, Handoff nach Zug 4 spart 52-61 % der Kosten."
+    },
+    {
+      "t": "p",
+      "x": "Befunde: Handoff-Shift +6,52 Logits [5,93;7,11] (neuronal); Kanal = Stil (Paraphrase durch Dritte: 2,73/4,33; Eigen-Stil: 3,61, strikt 2,86; Dritt-Stil: +1,96), Markdown als Nebenkanal (63 % des Downgrade-Shifts). Passiv-Detektion nach Handoff: 0,97 -> 0,72 (DeepSeek), 0,87 -> 0,54 (Haiku), 0,97 -> 0,55 (MiniMax, unbekannt); Nachtraining: gesehen 0,72 -> 0,83, Downgrade 0,54 -> 0,62, unbekannt 0,55 -> 0,55. Richtung: Historien-Autor aus Fortsetzung unter 10 Modellen mit 0,30 erkennbar (Zufall 0,10); Effekt nach 6 Zügen 6,24; kein Verbatim (1,3 % 8-Gramme). Probes: Random-Number-Schwellen aus frischen Kontexten flaggen ehrliche Long-Sessions bis 1,00 (Gemma), MET-Test verwirft 55-100 % ehrlicher; Probe-Detektor erkennt 98 % der Prüffamilien (umgehbar); KBF-Sonde Ausnahme. LINEUP: Rang-Test gegen m Referenzen auf gleicher Historie + Fisher über Züge; FPR 0,056 [0,025;0,094] (Schranke 0,10), Detektion 0,81 [0,76;0,85] nach 4 Zügen, 16 Referenz-Calls (ca. 0,45 Dollar Sonnet laut Paper); MMD-Variante 1,00; verdünnte Substitution epsilon 0,5 -> 0,78-0,79 nach 8 Zügen; benign Änderungen (Temperatur, FP8, Systemprompt) nahe Kontrolle (0,00-0,14). Grenzen: Chat ohne Tool-Ausführung (Agent-Pilot nur simuliert), 2 geschlossene claimed Modelle, low reasoning effort; benanntes Repo TTtianTT/TurnPrint bei Prüfung 09:52 nicht erreichbar (404)."
+    },
+    {
+      "t": "h2",
+      "x": "3. Persona-Steering: Nebenwirkungen sind benchmarkabhängig"
+    },
+    {
+      "t": "p",
+      "x": "Setup: Sycophancy- und Halluzinations-Vektoren (Pipeline von Chen et al. 2026 unverändert); Bedingungen: feingetuntes Basismodell, preventives Steering (Vektor während FT addiert), Inferenz-Steering; Koeffizienten c = 0 bis 3; Modelle Qwen2.5-7B, Llama-3.1-8B, Qwen2.5-14B (Layer beim 14B hochskaliert); Sicherheit: HarmBench-ASR (offizieller Klassifikator), StrongREJECT (GPT-4o-mini), XSTest (GPT-4, Stichproben-Handcheck), dazu Trait-Ausprägung, Kohärenz, MMLU. Ergebnisse Halluzination: ASR 72,3 -> 4,4 (Qwen-7B), 61,0 -> 22,0 (Llama, nicht monoton, Minimum 14,5 bei c = 2,25), 91,2 -> 6,3 (Qwen-14B); Trait-Ausprägung >= 70 %, Haupteffekt bei c <= 1,25 (Trait >= 96 %); XSTest-Compliance plateau 25-30 % / 37-43 %; MMLU <= 2,1 pp, Kohärenz flach bis steigend. Sycophancy: Llama-ASR 8,2 -> 11,9 bei fallendem XSTest 8,5 -> 6,5; Qwen-7B HarmBench 20 -> 14, StrongREJECT 17 -> 5, XSTest leicht steigend; Qwen-14B HarmBench 48 -> 48, StrongREJECT 67 -> 61, XSTest 42 -> 59. Basis-Effekt: Hallu-Finetuning allein ASR 61-91 % vs. Sycophancy-Daten 8-48 %. Inferenz-Steering drückte Trait <6 %, Kohärenz bei Llama-Hallu 40 %. Grenzen: 1 Lauf je Koeffizient, keine CIs, grober Sweep, 14B-Layer nicht gesweept, 3 Benchmarks. Fazit: preventives Steering nicht als sicherheitsneutral belegt; mehrere Sicherheitsbenchmarks pro Verfahren messen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was heißt das Abliteration-Audit für Modell-Freigaben?",
+      "a": "Resistenz gegen Verweigerungs-Entfernung ist keine Generations-Eigenschaft: Im Audit entschieden Release-Paar, Methodenklasse, Budget und teils der Optimierungs-Seed (Spanne -1,2 bis +36,9 pp). Für Freigabe-Entscheidungen folgt: Audits über mehrere Methodenklassen, Budgets und Seeds laufen lassen und gegen die unbearbeiteten Originale messen; Einzelvergleiche eines Paars oder Werkzeuge übertragen nicht."
+    },
+    {
+      "q": "Wie baue ich einen Robustheitscheck gegen Modelltausch bei API-Bezug?",
+      "a": "Passive Fingerabdruck-Klassifikatoren allein reichen nicht (Erkennung bis auf 0,54 nach Handoff), und Probes aus frischen Kontexten flaggen ehrliche Modelle auf langen Historien (bis 1,00). Der im Paper getestete Weg: Referenzantworten des beanspruchten Modells auf derselben Historie ziehen und die Antwort daran rangieren (LINEUP: 0,81 Detektion, 0,056 FPR, 16 Referenz-Calls); Voraussetzung ist offizieller Zugang zum beanspruchten Modell, und Probes sollten wie normale Anfragen aussehen (98 % der Standard-Prüfmuster waren erkennbar)."
+    },
+    {
+      "q": "Muss ich bei Persona-Steering Sicherheit extra messen?",
+      "a": "Ja, so das Audit: Capability- und Trait-Metriken zeigten stabile Werte, während Sicherheitsbenchmarks deutlich verschoben waren - im Halluzinations-Fall zugunsten der Sicherheit (ASR bis -84,9 Punkte, Qwen2.5-14B), im Sycophancy-Fall je nach Modell und Benchmark in beide Richtungen. Mindestens zwei Sicherheitsbenchmarks pro Steering-Verfahren messen; die Befunde stammen von 3 Modellen, einzelnen Läufen und 3 Benchmarks und sind nicht universell."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
