@@ -1,0 +1,147 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-17",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-17T11:15:00+01:00",
+  "modified": "2026-11-17T11:15:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Benchleaking Is Accelerating",
+      "publisher": "arXiv; Yiwei Qin, Muhang Xie, Xuefeng Li, Mohan Jiang, Dayuan Fu, Tiantian Mi, Qipeng Guo, Pengfei Liu; Xinxu AI/GAIR",
+      "url": "https://arxiv.org/abs/2611.21315",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "Ask Precisely, Assume Wisely: Interactive Evaluation of Ambiguity Resolution in Large Language Models",
+      "publisher": "arXiv; Avik Dutta, Aayush Kumar, Zahra Ashktorab, Hosein Hasanbeig, Austin Z. Henley, Gustavo Soares; Microsoft",
+      "url": "https://arxiv.org/abs/2611.18905",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "WeightBench: Evaluating Language Models as Weight-Space Programmers",
+      "publisher": "arXiv; Aayush Marasini, Barsat Khadka, Nick Rahimi; University of Southern Mississippi",
+      "url": "https://arxiv.org/abs/2611.18553",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "WeightBench: Code, vorläufige Rangliste und Reproduktionshinweise",
+      "publisher": "GitHub; Aayush-Marasini/WeightBench",
+      "url": "https://github.com/Aayush-Marasini/WeightBench",
+      "accessed": "2026-11-17"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "benchmarks",
+    "evaluation",
+    "agenten",
+    "modellgewichte"
+  ],
+  "title": "Benchleaking, DisPO und WeightBench: Was die Tests zeigen",
+  "dek": "Testkontamination, präferenzgebundene Dialogsimulation und direkte Gewichtseingriffe: Drei Evaluationen mit unterschiedlichen Nennern und Grenzen.",
+  "key_takeaways": [
+    "Benchleaking: vier Basismodelle, 20 Benchmarks, strenger Volltrefferabgleich ohne im Input enthaltene Ziele. ERNIE-5.5-Flash-Base: 96,3 % HumanEval-Abdeckung; Anti-Hack-Mittel 85,17 -> 68,55 bei unverändertem Nenner. WinoGrande-Treffer sind ein erklärter Sonderfall.",
+    "DisPO/GPT-5.4: AmbigQA-CIR 31,84 -> 39,49 %, Ambrosia 36,04 -> 44,78 %, nvBench 2.0 19,90 -> 32,03 %. CIR ist der Anteil simulierter Dialoge ohne drei Fehlerarten, keine Befragung echter Nutzer; Wiederholungen und irrelevante Fragen steigen gegenüber None teils an.",
+    "WeightBench: fünf Track-Mittel gleich gewichtet, keine rohe Erfolgsquote. Opus 5.5: 0,535 auf 42 Aufgaben. Auf 38 gemeinsamen Aufgaben GPT-6.1-sol 0,568 vs. Opus 0,546; 39/42 bestehen das Validitäts-Gate, 21 Referenzen haben gleiche Rechte wie Agenten."
+  ],
+  "hero": {
+    "alt": "Drei getrennte Messgrößen: ERNIE reproduziert 96,3 Prozent der HumanEval-Testbeispiele im Fortsetzungstest; DisPO erhöht GPT-5.4s AmbigQA-CIR von 31,84 auf 39,49 Prozent; WeightBench vergleicht 0,568 mit 0,546 auf 38 gemeinsamen Aufgaben.",
+    "caption": "Jede Zahl gehört zu einem anderen Verfahren und Auswertebereich; kein gemeinsamer Leistungstest.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 17. November. Quellenstand: 09:51 Uhr MEZ. Die drei Originalarbeiten vom 13. und 16. November untersuchen unterschiedliche Fehlerquellen der Evaluation: Testrekonstruktion aus Basismodellen, die Qualität des Interaktionswegs bei Mehrdeutigkeit und direkte Eingriffe in Netzwerkgewichte. Die Resultate sind jeweils an die Protokolle der Autoren gebunden."
+    },
+    {
+      "t": "h2",
+      "x": "1. Benchleaking: Rekonstruktion und Abschlagsmetrik trennen"
+    },
+    {
+      "t": "p",
+      "x": "Qin u. a. unterscheiden benchmarkbezogene Optimierung ohne Testzugriff von Benchleaking, also der Aufnahme tatsächlicher Testbeispiele ins Training. Ihr Basismodell-Versuch umfasst ERNIE-5.5-Flash-Base, DeepSeek-V4-Flash-Base, Hy3-preview-Base und MiMo-V2.5-Base auf 20 Benchmarks. In separaten Fortsetzungsläufen werden Stopstrings und das Stoppen am Sequenzende abgeschaltet. Die Ausgabe läuft bis zum Tokenlimit weiter. Das prüft, ob nach der Antwort weitere vollständige Testbeispiele erscheinen, die weder als aktuelle Frage noch als Demonstrationen im Input stehen."
+    },
+    {
+      "t": "p",
+      "x": "Für das strenge L3-Kriterium müssen Frage, alle zugehörigen Zusatzfelder und Referenzantwort gemeinsam innerhalb desselben erzeugten Beispiels passen. Normalisiert werden Großschreibung und Leerraum. Paraphrasen, umbenannte Codevariablen und nur verhaltensgleiche Implementierungen zählen nicht. Optionen werden als vollständige ungeordnete Multimenge abgeglichen; der Antwortbuchstabe wird auf den jeweiligen Antworttext abgebildet. Die Leckquote ist die Zahl verschiedener so getroffener Testbeispiele geteilt durch die Testset-Größe, nicht eine Rate pro Modellaufruf."
+    },
+    {
+      "t": "p",
+      "x": "Tabelle 4 berichtet für ERNIE 96,3 % HumanEval, 85,4 % OpenBookQA, 80,1 % GSM8K und 34,6 % GPQA-Main. Für DeepSeek sind es 9,1 % HumanEval und jeweils 0 % OpenBookQA/GPQA-Main in dieser Probe. HumanEval verwendet vier Samples pro Problem mit Temperatur 0,2 und top-p 0,95; die meisten anderen Fortsetzungstests decodieren greedy. Ein Nichttreffer belegt daher keine Kontaminationsfreiheit. Die vollständige Wiedergabe einschließlich Referenzcode ist starke Evidenz für Exposition, lokalisiert aber weder die Datenquelle noch die Absicht."
+    },
+    {
+      "t": "p",
+      "x": "Die Anti-Hack-Zahl stammt aus anderen, regulär stoppenden Testläufen. Identifizierte Beispiele erhalten dort null, der Nenner bleibt unverändert. Code-Tests verwenden mehrere Promptvorlagen; deren Maxima werden nach dem Abschlag neu bestimmt. Das Gesamtmittel gewichtet 20 repräsentative Benchmark-Einträge gleich. Unter L3 sinkt ERNIE von 85,17 auf 68,55, MiMo von 80,01 auf 75,03, DeepSeek von 77,95 auf 76,48 und Hy3 von 79,86 auf 78,55. Diese Zahlen sind ein strenger Bewertungsabschlag, kein gemessenes Leistungsniveau nach Entfernung der Trainingsdaten."
+    },
+    {
+      "t": "p",
+      "x": "Ein Vorbehalt steckt im Aggregat: Tabelle 9 setzt auch WinoGrande-Treffer auf null, obwohl Anhang A sie wegen der durch Konstruktion verwandten Satzpaare ausdrücklich nicht als Leckbeweis einordnet. Der gesamte Punkteverlust darf deshalb nicht als kausal bewiesener Nutzen auswendig gelernter Testdaten ausgegeben werden. Die ebenfalls berichteten Post-Training-Signale sind schwächer: automatische Judges markieren Kandidaten für verborgene Testregeln, keine einzeln verifizierten Trainingsbelege. Im normalen Terminal-Bench-Lösen sind es bei Kimi-K3.1-Pro 9/63 Aufgaben, beim angeleiteten Instruktionsabruf 34/66. Das im Paper genannte Repository war zum Quellenstand per API und Webabruf nicht öffentlich abrufbar."
+    },
+    {
+      "t": "h2",
+      "x": "2. DisPO: Ein Dialog kann sauberer werden, obwohl Fehlerarten zunehmen"
+    },
+    {
+      "t": "p",
+      "x": "Dutta u. a. beschreiben eine endliche Präferenzmenge, die eine mehrdeutige Frage auf eine beabsichtigte Interpretation einschränkt. Der Simulator gibt nur passende Elemente dieser Menge preis: als Antwort auf eine relevante Rückfrage oder als Reparatur einer verletzten Annahme. Der Versuch will damit kontrollierte Informationsfreigabe, nicht menschliche Gesprächsführung nachbilden. GPT-5 im Chatmodus treibt den Hauptsimulator an; die geprüften Agenten dürfen bis zu zehn Gesprächszüge verwenden."
+    },
+    {
+      "t": "p",
+      "x": "Aus 1.142 AmbigQA-Fragen entstehen 3.649 Interpretationsvarianten, aus 1.141 Ambrosia-Fragen 2.689 und aus 747 nvBench-2.0-Fragen 2.251. Die Evaluation gewichtet damit alle konstruierten Varianten, nicht die Häufigkeit ihrer Auswahl durch reale Nutzer. Wissensantworten bewertet ein GPT-5-Reasoning-Judge, SQL wird über Ausführung verglichen, Diagramme über Vega-Lite-Spezifikationen. Neben der Aufgabengenauigkeit zählen falsche Annahmen, wiederholte Klärungen und irrelevante Klärungen. Letztere erhalten anfangs geringere und nach Informationsfreigabe höhere Gewichte. Die Kennzahlen haben also unterschiedliche Gelegenheitsräume und sind nicht austauschbare Fehlerraten."
+    },
+    {
+      "t": "p",
+      "x": "Für GPT-5.4 erhöht DisPO gegenüber None die Clean Interaction Rate, also den Anteil der Dialoge ohne Auftreten einer der drei gemessenen Fehlerarten: auf AmbigQA von 31,84 auf 39,49 %, auf Ambrosia von 36,04 auf 44,78 % und auf nvBench 2.0 von 19,90 auf 32,03 %. Aus Tabelle 2 ergeben sich Zuwächse von 7,65, 8,74 und 12,13 Prozentpunkten, keine relativen Prozentgewinne. Die zugehörigen Genauigkeiten lauten 63,47 -> 64,68 %, 66,20 -> 68,72 % und 69,48 -> 69,30 %. Auf dem Visualisierungsdatensatz steigt die kombinierte Interaktionsmetrik also trotz einer kleinen numerischen Abnahme der Genauigkeit."
+    },
+    {
+      "t": "p",
+      "x": "Die Einzelmetriken relativieren eine pauschale Verbesserungsbehauptung. Auf AmbigQA fällt die mittlere Zahl falscher Annahmen von 0,81 auf 0,68, während Wiederholungen von 0,12 auf 0,15 und die gewichtete irrelevante Klärung von 0,02 auf 0,11 steigen. Die mittlere Gesprächslänge wächst von 1,90 auf 2,10. Die aggressive Rückfragestrategie Clrf senkt die Annahmen auf 0,28, erreicht aber 1,83 Wiederholungen, 0,91 gewichtete irrelevante Fragen und nur 24,61 % CIR. Die Arbeit zeigt damit einen Zielkonflikt, kein Verfahren, das jede Fehlerart gleichzeitig minimiert."
+    },
+    {
+      "t": "p",
+      "x": "DisPO wurde aus 600 GPT-5.4-Gesprächen entwickelt: je 100 pro Datensatz und Extremstrategie None/Clrf. Ein automatisierter Review verfeinerte die Anweisung; ein Durchgang mit umgekehrter Reihenfolge diente zur Auswahl gemeinsamer Regeln. Fünf Wiederholungen berichten Streuung, sind aber kein menschlicher Zufriedenheitstest. Entscheidend bleiben Vollständigkeit und Qualität der vorab konstruierten Präferenzen. Für offene Anfragen mit unbeschränkt vielen Interpretationen muss die Menge sinnvoller Lesarten zusätzlich begrenzt werden. Der Papertext stellt Versuchs-Prompts bereit, nennt aber keinen eigenen Code-Repository-Link."
+    },
+    {
+      "t": "h2",
+      "x": "3. WeightBench: Neue Aufgaben statt pauschaler Gewichts-Magie"
+    },
+    {
+      "t": "p",
+      "x": "Marasini, Khadka und Rahimi bauen auf den früheren Weight-Space-Programming-Demonstrationen auf, liefern aber einen neuen Benchmark mit 42 registrierten Aufgaben in fünf Tracks: READ 10, FIX 13, META 5, WRITE 6 und SYSTEMS 8. Die bearbeiteten Netze reichen von kleinen Kontrollnetzen mit etwa 2.000 Parametern bis zu 7B-Sprachmodellen. Zugriff und Probeläufe werden eingeschränkt. Der Score kombiniert Zielgewinn, Kollateralschäden, Umfang des Eingriffs und beanspruchtes Rechenbudget. Er liegt zwischen null und eins und ist keine einfache Lösungsquote."
+    },
+    {
+      "t": "p",
+      "x": "Tabelle 1 mittelt zuerst Läufe je Aufgabe, dann Aufgaben je Track und schließlich die fünf Track-Mittel gleichgewichtet. Opus 5.5 erreicht auf allen 42 Aufgaben 0,535, Sonnet 0,466, Haiku 0,402 und DeepSeek v4-flash 0,215. GPT-6.1-sol ließ die vier reasoning-loop-Aufgaben des FIX-Tracks aus; auf den 38 gemeinsamen Aufgaben erreicht es 0,568 gegenüber 0,546 für Opus. Zehn dieser 38 GPT-Läufe nutzten eine andere CLI-Vorlage. Claude wurde mit zwei Samples pro Aufgabe geplant, DeepSeek und GPT mit einem; alles bei Standard-Schwierigkeit und Seed 0. Ein isolierter Modellvergleich ohne Einfluss der Arbeitsvorlage ist das nicht."
+    },
+    {
+      "t": "p",
+      "x": "Die Spuren liefern unterschiedliche Befunde: Konstruktion von Gewichten erreicht bei Opus 0,829 und GPT 0,863, während datenfreie Hardwareoptimierung bei allen Modellen nur 0,177-0,238 erzielt. Das META-Ergebnis der drei Claude-Modelle liegt mit etwa 0,49-0,50 nahe der angelegten Ratebasis. Eine funktionierende kleine Kontrollschaltung ist daher kein Beleg für zuverlässige Reparaturen beliebiger Sprachmodelle. Ebenso ist das schwache Kompressionsergebnis auf die hier geprüften Aufgaben ohne Kalibrierungsdaten begrenzt."
+    },
+    {
+      "t": "p",
+      "x": "Der Benchmark hat selbst offene Validitätsfragen. Nur 39/42 Aufgaben erfüllen das Gate aus mindestens 0,5 Referenzscore und mindestens 0,2 Vorsprung vor der naiven Baseline. Bei nur 21 Referenzen gelten dieselben Rechte wie für Agenten; die übrigen nutzen privilegierte Zugriffe, etwa Gradientenanpassung. Automatisch quarantänisierte Läufe werden als null gezählt, aber bislang nicht manuell freigegeben oder bestätigt. Die Autoren bezeichnen die veröffentlichten Scores deshalb als Untergrenzen. Im Repository sind tatsächlich Implementierung, Tests und Reproduktionsdokumente vorhanden, seine Rangliste ist als vorläufig gekennzeichnet. Ein unabhängiger Replikationsnachweis ist damit nicht erbracht."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Sind 96,3 % Benchleaking eine Fehlerrate pro Antwort?",
+      "a": "Nein. Gezählt werden unterschiedliche vollständig reproduzierte HumanEval-Testbeispiele geteilt durch die Größe dieses Testsets, für ERNIE-5.5-Flash-Base im beschriebenen Fortsetzungstest. Die Quote beschreibt weder sämtliche Antworten noch andere Modelle oder reale Anwendungen."
+    },
+    {
+      "q": "Verbessert DisPO alle drei Dialogfehler gleichzeitig?",
+      "a": "Gegenüber None nicht. Auf AmbigQA/GPT-5.4 sinken falsche Annahmen, aber Wiederholungen und gewichtete irrelevante Fragen steigen. Der Anteil ganz fehlerfreier simulierter Dialoge steigt trotzdem von 31,84 auf 39,49 %. CIR und mittlere Fehlerzahlen messen Verschiedenes."
+    },
+    {
+      "q": "Wie ist die WeightBench-Rangliste zu lesen?",
+      "a": "Als vorläufige, gleich über fünf Tracks gemittelte Kompositmetrik. 0,568 vs. 0,546 vergleicht GPT-6.1-sol und Opus auf 38 gemeinsamen Aufgaben; Opus erreicht 0,535 auf 42. Seed 0, geringe Samplezahlen, unterschiedliche Vorlagen, privilegierte Referenzen und ungeprüfte Sperren begrenzen die Aussage."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
