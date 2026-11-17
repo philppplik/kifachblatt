@@ -1,0 +1,141 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-17",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-17T08:00:00+01:00",
+  "modified": "2026-11-17T08:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Tracing Knowledge and Reasoning in LLMs",
+      "publisher": "arXiv; Yang Wang u. a., Manchester, Sheffield, Shanghai University of Finance and Economics",
+      "url": "https://arxiv.org/abs/2611.17461",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "See Every Block Once: Variance-Reduced Post-Training for Masked Diffusion Language Models",
+      "publisher": "arXiv; Yunzhen He, Hiroaki Yamagiwa, Hidetoshi Shimodaira",
+      "url": "https://arxiv.org/abs/2611.17754",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "LuthorSQL: A One-Pass Text-to-SQL Model as System 1 for a Slower LLM Agent",
+      "publisher": "arXiv; Ibrahim Memon, Armin Karamzade, M. Hanif Jhaveri, Roy Fox",
+      "url": "https://arxiv.org/abs/2611.17780",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "LuthorSQL: Implementierung und Versuchsdaten",
+      "publisher": "GitHub; IAMIbrahimmemon/luthorsql",
+      "url": "https://github.com/IAMIbrahimmemon/luthorsql",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "See Every Block Once: Projekt-Repository",
+      "publisher": "GitHub; githubhyz/See_Every_Block_Once",
+      "url": "https://github.com/githubhyz/See_Every_Block_Once",
+      "accessed": "2026-11-17"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "evaluation",
+    "reasoning",
+    "training",
+    "datenbanken"
+  ],
+  "title": "Denkspuren, Full-Block-Schätzung und LuthorSQL",
+  "dek": "Interne Signale ohne Kausalnachweis, weniger Blockauswahl-Varianz bei LLaDA und ein SQL-Planer mit Validator: Drei Arbeiten samt Testgrenzen.",
+  "key_takeaways": [
+    "Trace-KR: 16 Modelle, 24 Benchmarks, engere interne Diagnostik auf ausgewählten Teilmengen. CoT verbessert den Reasoning-Mittelwert bei 14/16 Konfigurationen, beseitigt aber die Abhängigkeit von Antwortoptionen nicht.",
+    "Full-Block: LLaDA-8B-Instruct, C = K = 4, gleiche blockweise Ersatz-Zielgröße. Einfacher Mittelwert über fünf Benchmarks +12,79 Prozentpunkte gegenüber Random; vier von fünf Bestwerte im Methodenvergleich.",
+    "LuthorSQL: OmniSQL-7B mit Generator- und Validator-Adapter, bis zu 32 ausgeführte Kandidaten. 59,39 % BIRD-dev-EX; 0,84 s Median separat auf 200 DECISION-Fragen/H100, nicht auf dem versteckten Test gemessen."
+  ],
+  "hero": {
+    "alt": "Datentafel: CoT verbessert den Reasoning-Wert bei 14 von 16 englisch getesteten Konfigurationen; Full-Block gewinnt bei LLaDA-8B und vier Blöcken/vier Auswertungen im einfachen Fünf-Benchmark-Mittel 12,79 Prozentpunkte gegen Random; LuthorSQL prüft bis zu 32 SQL-Kandidaten.",
+    "caption": "Jeweils eigene Auswertebereiche; keine direkt vergleichbaren Leistungswerte.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 17. November. Quellenstand: 06:35 Uhr MEZ. Drei Originalarbeiten vom 12. und 13. November: ein Diagnoseansatz für Wissen und Reasoning, geschichtete Blockauswahl für das Nachtraining maskierter Diffusionsmodelle und ein strukturierter Text-to-SQL-Planer vor einem Agenten. Die Befunde bleiben an ihre jeweiligen Datensätze und Auswertungen gebunden."
+    },
+    {
+      "t": "h2",
+      "x": "1. Trace-KR: Diagnostische Signale, keine kausale Zerlegung"
+    },
+    {
+      "t": "p",
+      "x": "Yang Wang u. a. kombinieren layerweise Aufmerksamkeitsentropie und Aktivierungssparsität, zeitliche Verläufe während der Generierung sowie lineare Probes und Repräsentationsähnlichkeit. Die Verhaltensauswertung umfasst 16 Modelle und 24 englische Benchmarks. Statische Profile stammen primär von Qwen2.5-7B-Instruct; die detaillierten Probes und Geometrieanalysen nutzen BioMixQA, SciQ, LogiQA und MathQA mit zusätzlich Llama3.1-8B-Instruct und OLMo-3-7B-Instruct. Die 24 Benchmarks ergeben mehrere Evaluationssettings: zehn wissens- und 20 reasoningorientierte Settings gehen ungewichtet in die entsprechenden Mittelwerte ein."
+    },
+    {
+      "t": "p",
+      "x": "Ein Kontrollversuch begrenzt die Interpretation früher Aktivierungen: Nach Längenanpassung bleibt die Benchmark-Rangfolge ähnlich (Spearman 0,92 zur ursprünglichen Reihenfolge); ein identischer letzter Prompt-Token senkt die Übereinstimmung dagegen auf 0,37. Für die frühe Sparsität finden die Autoren weder vor noch nach diesem Suffix einen signifikanten Unterschied zwischen den Aufgabengruppen. Statische Sparsität allein ist damit kein belastbarer Wissen-/Reasoning-Trenner. Lineare Probes lesen richtige Antwortoptionen bei den zwei Wissensaufgaben leichter aus, aber ein Wert nahe der Mehrheitsbaseline belegt keine Abwesenheit von Reasoning-Information."
+    },
+    {
+      "t": "p",
+      "x": "Die Decoding-Analyse auf SciQ, MathQA und LogiQA richtet jeden Verlauf auf 101 Tokenpositionen aus. Falsche Generierungen zeigen in unteren und oberen untersuchten Schichten höhere verlaufsinterne Streuung der Aufmerksamkeitsentropie. Das ist keine schon validierte Online-Alarmregel; abgeschnittene oder nicht parsebare Antworten sind ausgeschlossen. Bei CoT steigt der Reasoning-Mittelwert in 14/16 und der Wissenswert in 9/16 Konfigurationen. Ein gepaarter Modelltest findet einen Reasoning-Anstieg, aber keinen nachweisbaren Wissensanstieg. NOTA-Stresstests auf sechs Modellen zeigen weiter deutliche Einbrüche, wenn die richtige Option entfernt und „Keine der genannten“ zur Lösung wird; dieselbe Option als falscher Distraktor stört weniger. Beschränkungen: Englisch, Multiple-Choice-Struktur, Template- und Distraktor-Einflüsse, keine kausalen Aktivierungseingriffe. Das genannte trace-kr-Repository lieferte bei Prüfung HTTP 404."
+    },
+    {
+      "t": "h2",
+      "x": "2. See Every Block Once: Stichprobendesign statt neues Lernziel"
+    },
+    {
+      "t": "p",
+      "x": "Der Full-Block-Schätzer ersetzt im GRPO-Nachtraining eines MDLM die zufällige Wahl des Blockindex durch eine Auswertung jedes Blocks. Maskierungszeitpunkt und Positionen innerhalb der Blöcke bleiben zufällig; die blockweise Ersatz-Zielgröße bleibt unverändert. Bei C Blöcken und K = C unabhängigen Auswertungen entfernt das geschichtete Vorgehen den Between-Block-Anteil der Schätzvarianz. Unverzerrtheit bezieht sich dabei auf die Ersatz-Zielgröße, nicht auf eine exakt berechnete Sequenz-Logwahrscheinlichkeit."
+    },
+    {
+      "t": "p",
+      "x": "Hauptsetup: LLaDA-8B-Instruct, QLoRA mit 4-Bit NF4, LoRA-Rang 128 (Code 64), 4.000 Trainingsschritte, vier Blöcke und vier Monte-Carlo-Auswertungen. Die Antwortlänge beträgt 256 Token, für Code 512; Blocklängen 64 beziehungsweise 128. Tabelle 1: Full-Block erreicht 82,26 auf GSM8K, 38,00 auf MATH-500, 66,41 auf Countdown, 91,39 auf Sudoku und 36,59 Pass@1 auf HumanEval. Gegen den Random-Index-Schätzer derselben Zielgröße ergibt sich ein einfacher Fünf-Benchmark-Mittelgewinn von 12,79 Punkten. Gegen SPG beträgt der Mittelgewinn 5,05 Punkte; SPG bleibt auf Countdown mit 70,31 vor Full-Block (66,41). Diese beiden Vergleichsachsen dürfen nicht vermischt werden."
+    },
+    {
+      "t": "p",
+      "x": "Auf GSM8K ist die Schätzqualität bei K = 4 näherungsweise mit Random bei K um 32 vergleichbar: Spearman 0,878 und RMSE 50,1 gegenüber 0,602 und 136,0 bei Random/K = 4. Referenz ist selbst eine Monte-Carlo-Schätzung mit K = 1.024, kein exakter Wahrheitswert. Die geschätzten Zielgrößen-Varianzverhältnisse liegen je Datensatz bei etwa 0,08-0,12. Auf zwei Aufgaben und mittleren Checkpoints sind die Policy-Gradient-Varianzverhältnisse aber nur 0,79-0,96. Die Genauigkeitsgewinne lassen sich daher nicht einfach als entsprechend große Gradientenstabilisierung ausgeben. Abdeckung aller Blöcke und ruhigere Zielschätzung sind nicht kausal getrennt."
+    },
+    {
+      "t": "p",
+      "x": "Grenzen: nur LLaDA-8B als Backbone, Aufgaben aus Mathematik/Planung/Code, finale statt alle Checkpoints, Blockzahlen vier und acht in den Experimenten. Parallel ausgewertete Blöcke beanspruchen mit der Blockzahl steigenden Speicher; eine systematische Speicher-/Zeitstudie fehlt. PPO und DPO sind als mögliche Einsatzfelder diskutiert, nicht empirisch bestätigt. Das verlinkte Repository ist vorhanden, enthält derzeit aber nur eine README mit Paperverweis, keinen ausführbaren Trainingscode."
+    },
+    {
+      "t": "h2",
+      "x": "3. LuthorSQL: Generatorpass plus Suche, Ausführung und Validator"
+    },
+    {
+      "t": "p",
+      "x": "LuthorSQL nutzt OmniSQL-7B als gemeinsamen gefrorenen Backbone für zwei LoRA-Adapter. Der Generator bewertet diskrete Planslots parallel; ein Compiler konstruiert SQL einschließlich Fremdschlüsselpfaden. Lazy k-best-Suche und nötigenfalls fest gesetztes Sampling liefern bis zu 32 verschiedene kompilierbare Kandidaten. Sie werden schreibgeschützt ausgeführt; der zweite Adapter bewertet den vollständigen SQL-Text. Der Validator sieht weder Generierungsrang noch Ausführungsergebnis als Eingabe. Ergebnisgruppen dienen insbesondere zur Bildung des Konfidenzabstands für das Routing."
+    },
+    {
+      "t": "p",
+      "x": "Die Plan-Grammatik deckt 1.297/1.534 BIRD-dev-Abfragen (84,6 %) über äquivalente Ausführung ab, nicht beliebige SQL-Syntax. Das System erreicht auf BIRD dev 59,39 % EX mit Original-Gold; mit der revidierten Goldfassung sind es 55,61 %. Die berichteten 68,03 % auf dem versteckten BIRD-Test stammen laut Paper aus einer E-Mail des BIRD-Teams und standen noch nicht auf der öffentlichen Rangliste. Dieser Wert ist nicht unabhängig als aktuelle Leaderboard-Platzierung bestätigt. Die 0,84 s sind der p50 der kompletten lokalen Pipeline auf 200 DECISION-Fragen, H100 PCIe, Batch 1, nach Warmup, ohne Modellladen und einmalige Datenbankeinrichtung. Es ist keine Latenzmessung auf dem versteckten Test."
+    },
+    {
+      "t": "p",
+      "x": "Eine Konfidenzkaskade mit Schwellwert 3,0 gibt unsichere Fälle an Claude Opus 5.5 weiter. Im registrierten direkten API-Test auf 227 Fragen über als nach dem Trainingsstichtag veröffentlicht beschriebene Datenbanken bleiben 102 Fragen lokal; die Gesamtgenauigkeit beträgt 95,15 % gegenüber 95,59 % bei Opus allein. Die fehlende statistische Trennbarkeit beweist keine Gleichwertigkeit. In einer anderen Ausführung mit Agentenharness und Kandidatenübergabe erreicht die Kaskade auf demselben Fragenbestand 94,27 % gegenüber 97,36 %: Diese Setups dürfen nicht zu einem Wert vermischt werden."
+    },
+    {
+      "t": "p",
+      "x": "Die Entwicklung enthält wichtige Leakage-Grenzen: Auf DECISION wurden nicht darstellbare Fragen mit Goldwissen erkannt und an den Agenten gegeben; zurückgehaltene Tests routen ohne Gold. DECISION und RESERVED sind nur für die Adapter zurückgehalten, nicht für das vortrainierte OmniSQL-Backbone. Die frischen Datenbanken ergeben zudem leichtere Fragen, deren Prüfung teils durch LLMs und nur stichprobenweise durch Menschen erfolgte. Dialekttransfer entsteht durch Übersetzung der SQLite-Kandidaten, nicht durch neu trainierte native Dialektmodelle; der Agententeil wurde nur auf SQLite getestet. Das GitHub-Repository enthält src, scripts, experiments, splits und tests. Seine README nennt eine noch nicht entschiedene Lizenz und ungeklärte Rechte an verwendeten BIRD-Platinum-Labels, also keine pauschale Freigabe für produktiven Einsatz."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Belegt die Trace-KR-Analyse eine Trennung von Wissen und Denken?",
+      "a": "Nein. Sie beschreibt Zusammenhänge in ausgewählten englischen Aufgaben. Insbesondere frühe Sparsität ist vom Prompt-Ende abhängig. Probes und Repräsentationsabstände sind keine kausalen Tests und keine allgemeine Aussage über vorhandene oder fehlende Denkfähigkeit."
+    },
+    {
+      "q": "Wofür gelten die 12,79 Punkte beim Full-Block-Verfahren?",
+      "a": "Für den einfachen Mittelwert der fünf getesteten Benchmarks gegenüber zufälliger Blockindexwahl bei derselben blockweisen Ersatz-Zielgröße und K = C = 4. Es ist weder ein relativer Prozentgewinn noch ein Vorteil von 12,79 Punkten gegenüber SPG. Gegen SPG sind es im Mittel 5,05 Punkte; Countdown gewinnt SPG."
+    },
+    {
+      "q": "Welche LuthorSQL-Zahlen sind unabhängig voneinander?",
+      "a": "59,39 % ist BIRD-dev-EX mit Original-Gold. 68,03 % ist ein vom Paper als per E-Mail übermittelter versteckter Testwert. 0,84 s ist p50 auf einer gesonderten 200-Fragen-DECISION-Stichprobe/H100. Diese Größen gehören nicht zu einem einzigen gleichzeitig vermessenen Testlauf."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
