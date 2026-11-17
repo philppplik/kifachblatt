@@ -1,5 +1,65 @@
 [
   {
+    "title": "Nach den Adobe-Klonen: ArtCraft lässt KI auf GitHub-Backlogs los",
+    "url": "https://www.heise.de/news/Nach-den-Adobe-Klonen-ArtCraft-laesst-KI-auf-GitHub-Backlogs-los-11528115.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794933900.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Hinter den KI-Klonen von ArtCraft steckt ein wachsendes GitHub-Backlog. Das neue Open-Source-Tool AutoCraft soll Issues und Pull-Requests per KI abarbeiten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T16:56:36.856402+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Zu neugierige KI-Agenten: Apple warnt Mac-Nutzer nachdrücklich vor Freigabe",
+    "url": "https://www.heise.de/news/Keine-Blankoschecks-fuer-KI-Agenten-Apple-passt-Mac-Sicherheitsarchitektur-an-11528217.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794933300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Vielen Nutzern dürfte unklar sein, welch tiefen Einblick sie KI-Apps in macOS erlauben. Neue Apple-Zugriffskontrollen und Warnungen sollen das ändern.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T16:56:36.856474+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI in China: Riesige Rechenzentren mit grünem Strom in Ulanqab",
+    "url": "https://www.heise.de/news/KI-in-China-Riesige-Rechenzentren-mit-gruenem-Strom-in-Ulanqab-11528183.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794931740.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Der Standort Ulanqab in der Inneren Mongolei zeigt, wie rasant chinesische Firmen KI-Rechenleistung aufbauen. Der Strom dafür kommt aus Solar- und Windparks.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T16:56:36.856528+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Moonshot AI wechselt Entwicklungsfokus von Programmierung zu Wissenschaft",
+    "url": "https://www.heise.de/news/Moonshot-AI-wechselt-Entwicklungsfokus-von-Programmierung-zu-Wissenschaft-11528033.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794931440.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Moonshot AI, die Firma hinter den Kimi-Modellen, will sich verstärkt auf wissenschaftliche Anwendungen für KI-Systeme konzentrieren.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T16:56:36.856567+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Synchronisation: Netflix erhöht Folgevergütung, KI-Streit bleibt ungelöst",
+    "url": "https://www.heise.de/news/Synchronisation-Netflix-erhoeht-Folgeverguetung-KI-Streit-bleibt-ungeloest-11528133.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794931140.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Netflix erhöht die Folgevergütung für deutsche Synchronsprecher und zahlt in deren Altersvorsorge ein. Die umstrittene KI-Klausel bleibt aber bestehen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T16:56:36.856593+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Bericht: China trainiert KI mit Destillation von US-Modellen",
     "url": "https://www.heise.de/news/Bericht-China-trainiert-KI-mit-Destillation-von-US-Modellen-11528073.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794926820.0,
