@@ -1,5 +1,53 @@
 [
   {
+    "title": "KI-Chatbot von Proton: Lumo bekommt mit Desktop-App Zugriff auf Proton Mail",
+    "url": "https://www.heise.de/news/KI-Chatbot-von-Proton-Lumo-bekommt-mit-Desktop-App-Zugriff-auf-Proton-Mail-11527592.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794918300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "KI-Chatbot Lumo kann mit der neuen Desktop-App auf Dateisystem und mehr zugreifen. Protons CEO stand gerade wegen Sicherheitsbedenken in der Kritik.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T14:40:16.233840+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Gemini Notebooks: So werden aus deinen Notizen jetzt interaktive Webseiten",
+    "url": "https://www.heise.de/news/Gemini-Notebooks-So-werden-aus-deinen-Notizen-jetzt-interaktive-Webseiten-11527663.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794913800.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das Notiz- und Recherchetool Gemini Notebook kann jetzt durch ein neues Feature sämtliche Informationen aus einem Projekt in eine Webseite verwandeln.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T14:40:16.233937+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Kann man erkennen, ob eine Idee von ChatGPT stammt?",
+    "url": "https://www.heise.de/news/Anders-als-Pangram-Kann-man-erkennen-ob-eine-Idee-von-ChatGPT-stammt-11527621.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794912900.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Bisher untersuchen KI-Detektoren vor allem die Wortwahl und wiederkehrende Muster in einem Text. Ein neues Modell analysiert stattdessen die Ideen eines Textes.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T14:40:16.234033+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KubeCon 2026: Wie Unternehmen KI-Agenten im Griff behalten",
+    "url": "https://www.heise.de/news/KubeCon-2026-Kontrolle-ueber-KI-Agenten-in-Kubernetes-Umgebungen-11526358.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794912300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "KI-Agenten im Griff: Auf der KubeCon NA 2026 ging es um Zugriffsregeln von Mirantis, Kostenkontrolle mit Splunk und überprüfbare Identitäten durch ANS.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-17T14:40:16.234053+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "„Frag Maps“: Google verpasst seinem Kartendienst eine Portion Gemini",
     "url": "https://www.heise.de/news/Frag-Maps-Google-verpasst-seinem-Kartendienst-eine-Portion-Gemini-11527482.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794907440.0,
