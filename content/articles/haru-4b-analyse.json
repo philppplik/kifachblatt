@@ -1,0 +1,134 @@
+{
+  "slug": "haru-4b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Haru-4B: Full-Duplex-Sprachmodell hört und spricht gleichzeitig",
+  "dek": "Higurashi AI veröffentlicht Haru-4B: ein Full-Duplex-Sprachmodell, das Hören und Sprechen in einem gemeinsamen Strom verarbeitet - offen unter Apache 2.0.",
+  "published": "2026-11-17T07:05:00+01:00",
+  "modified": "2026-11-17T07:05:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Haru-4B",
+    "higurashi AI",
+    "Sprachmodelle",
+    "Full-Duplex",
+    "Open Source"
+  ],
+  "key_takeaways": [
+    "Higurashi AI hat Haru-4B veröffentlicht: ein Full-Duplex-Sprachmodell mit vier Milliarden Parametern, das Zuhören und Sprechen gleichzeitig in einem gemeinsamen Strom verarbeitet - Gewichte unter Apache 2.0 [1].",
+    "Alle 133 Millisekunden (7,5 Hertz) fasst das Modell Nutzer-Audio, eigenes Audio und eigenen Text zu einem gemeinsamen Schritt zusammen; diskrete Audio-Token und ein separater Akustik-Transformer entfallen [1][2].",
+    "Trainiert wurde laut Hersteller auf rund 40 Millionen Stunden echter Sprache in über 160 Sprachen, Schwerpunkt auf neun Sprachen inklusive Deutsch - ohne synthetische Dialoge [2].",
+    "Der Hersteller nennt etwa 65 ms End-to-End-Verzögerung auf einem MacBook (eigene Demo, nicht nachgemessen); die 133 ms des Verarbeitungstakts sind Frame-Dauer, keine Antwortlatenz [2].",
+    "Haru-4B ist ausdrücklich ein Basismodell: natürliche Gespräche ja, verlässliche Fakten und Assistenten-Verhalten nein - Feintuning ist vorgesehen [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Zwei gegenläufige Audiowellen für Nutzer und Modell laufen parallel durch vertikale Zeitschritt-Markierungen, dazwischen Pfeile in beide Richtungen",
+    "caption": "Gleichzeitig statt abwechselnd: Haru-4B verarbeitet Nutzer-Audio, eigenes Audio und eigenen Text alle 133 Millisekunden in einem gemeinsamen Schritt [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "higurashi-ai/Haru-4B (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/higurashi-ai/Haru-4B",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "Haru-4B: A Low-Latency and Multilingual Full-Duplex Continuous Spoken Dialogue Foundation Model",
+      "publisher": "higurashi Tech Blog",
+      "url": "https://blog.higurashi.ai/melte/haru4b/",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "higurashi-ai/Haru (Quellcode-Repository, abgerufen per API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/higurashi-ai/Haru",
+      "accessed": "2026-11-17"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Higurashi AI hat Haru-4B veröffentlicht: ein Full-Duplex-Sprachmodell mit vier Milliarden Parametern, das Zuhören und Sprechen nicht nacheinander, sondern gleichzeitig in einem gemeinsamen Datenstrom verarbeitet. Die Gewichte stehen seit dem 12. November unter Apache 2.0 auf Hugging Face, der Code auf GitHub. Das Team betont ausdrücklich, dass es sich um ein vorab trainiertes Basismodell für Forschung und Feintuning handelt - nicht um einen fertigen Assistenten [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Alle 133 Millisekunden ein gemeinsamer Schritt"
+    },
+    {
+      "t": "p",
+      "x": "Klassische Sprachassistenten arbeiten im Ping-Pong-Prinzip: erst transkribieren, dann antworten, dann synthetisieren. Haru-4B wählt einen anderen Weg. Alle 133 Millisekunden - das entspricht 7,5 Schritten pro Sekunde - verarbeitet das Modell drei synchronisierte Ströme gleichzeitig: das eingehende Nutzer-Audio, das eigene gesprochene Audio und den eigenen Text. Die Einbettungen der drei Ströme werden pro Zeitschritt addiert und gemeinsam durch das Sprachmodell geschickt. So kann Haru zuhören, während es spricht, und Verhaltensweisen wie kurze Zustimmungslaute, Unterbrechungen und natürliche Sprecherwechsel direkt aus echten Gesprächen lernen [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Auffällig ist, was fehlt: Es gibt keine diskreten Audio-Token und keinen separaten Akustik-Transformer. Stattdessen erzeugt ein schlanker vierlagiger MLP-Kopf pro Zeitschritt einen kontinuierlichen 64-dimensionalen Audio-Vektor, per MeanFlow-Sampling in einem einzigen Schritt. Die Umwandlung in hörbares 24-kHz-Audio übernimmt der kausale VibeVoice-Codec. Als Text-Grundgerüst dient Qwen3.5-4B mit 32 Schichten [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Grundgerüst: Qwen3.5-4B (32 Schichten, versteckte Größe 2560). Audio: kontinuierliche 64-dimensionale Vektoren, 7,5 Schritte pro Sekunde, VibeVoice-Codec mit 24 kHz. Training laut Hersteller: rund 40 Millionen Stunden echte Sprache in über 160 Sprachen, Schwerpunkt auf neun Sprachen - Englisch, Spanisch, Portugiesisch, Deutsch, Französisch, Chinesisch, Japanisch, Russisch, Koreanisch; Full-Duplex-Gespräche bis zu 60 Minuten Länge, ohne synthetische Dialoge aus LLM oder TTS. Lizenz: Apache 2.0 für Gewichte und Code. Empfehlung des Teams: etwa 12 GByte GPU-Speicher sowie kabelgebundene Kopfhörer, da Bluetooth über 100 ms Verzögerung hinzufügt [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Charakter per Textkarte, Stimme per Referenzclip"
+    },
+    {
+      "t": "p",
+      "x": "Die Figur steuert Haru-4B über eine Textkarte mit festem Aufbau; das Repository zeigt das Format. Die Stimme kommt aus einem Referenzclip zwischen drei Sekunden und drei Minuten - das Modell bringt also keine festen Stimmen mit. Das Team weist ausdrücklich darauf hin, nur Stimmen zu verwenden, für die Nutzer die Rechte haben, und warnt vor Stimm-Imitation [1]."
+    },
+    {
+      "t": "p",
+      "x": "Zur Geschwindigkeit nennt der technische Blog eine End-to-End-Verzögerung von etwa 65 Millisekunden auf einem MacBook - ein Herstellerwert aus der eigenen Demo-Umgebung, den wir nicht nachgemessen haben. Wichtig für die Einordnung: Die eingangs genannten 133 Millisekunden sind die Dauer eines Verarbeitungs-Frames, keine Antwortlatenz [2][1]."
+    },
+    {
+      "t": "h2",
+      "x": "Was Haru-4B nicht ist"
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte ist ungewöhnlich deutlich: Haru-4B ist ein Basismodell. Es führt natürliche Gespräche, liefert aber keine verlässlichen Fakten und folgt Anweisungen nicht wie ein Assistent. Wer es produktiv einsetzen will, muss feintunen - genau dafür ist der Release gedacht. Code und Demos liegen auf GitHub bereit: eine PyTorch-Webdemo, eine MLX-Version mit macOS-App und ein vLLM-Omni-Plugin. Erste Community-GGUFs für lokale Läufe sind seit dem 14. November verfügbar und kamen bis zu unserer Recherche auf rund 6.200 Downloads [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Full-Duplex-Sprachmodelle, die gleichzeitig hören und sprechen, galten bislang als Domäne großer Anbieter mit geschlossenen Systemen. Mit Haru-4B liegt diese Fähigkeit als offenes, vergleichsweise kleines Basismodell vor - samt einem Trainingsansatz, der auf echte Gespräche statt synthetischer Dialoge setzt. Ob die Architektur ohne Akustik-Transformer im Feintuning mithalten kann, müssen unabhängige Arbeiten zeigen; eigene Benchmark-Tabellen zur Sprachqualität enthält die Modellkarte nicht [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was bedeutet Full-Duplex bei einem Sprachmodell?",
+      "a": "Das Modell verarbeitet eingehendes und ausgehendes Audio gleichzeitig im selben Verarbeitungstakt statt nacheinander. Bei Haru-4B passiert das alle 133 Millisekunden in einem gemeinsamen Schritt aus Nutzer-Audio, Modell-Audio und Modell-Text [1][2]."
+    },
+    {
+      "q": "Ist Haru-4B ein fertiger Sprachassistent?",
+      "a": "Nein. Die Modellkarte beschreibt Haru-4B ausdrücklich als vorab trainiertes Basismodell: Es führt natürliche Gespräche, liefert aber keine verlässlichen Fakten und folgt Anweisungen nicht wie ein Assistent. Für Produkteinsatz ist Feintuning vorgesehen [1]."
+    },
+    {
+      "q": "Welche Sprachen beherrscht Haru-4B?",
+      "a": "Trainiert wurde auf Daten in über 160 Sprachen; im Fokus stehen neun: Englisch, Spanisch, Portugiesisch, Deutsch, Französisch, Chinesisch, Japanisch, Russisch und Koreanisch [1][2]."
+    },
+    {
+      "q": "Kann Haru-4B meine Stimme übernehmen?",
+      "a": "Die Stimme wird über einen Referenzclip von drei Sekunden bis drei Minuten vorgegeben. Das Team weist ausdrücklich darauf hin, nur Stimmen zu verwenden, für die man die Rechte hat [1]."
+    },
+    {
+      "q": "Was brauche ich, um Haru-4B auszuprobieren?",
+      "a": "Das Team empfiehlt eine NVIDIA-GPU mit etwa 12 GByte Speicher; es gibt eine PyTorch-Webdemo, eine MLX-Version mit macOS-App und ein vLLM-Omni-Plugin. Alternativ existieren Community-GGUFs. Framework-Tests haben wir nicht durchgeführt [1][3]."
+    }
+  ],
+  "method": "Recherche am 17. November 2026 gegen 6:07 Uhr UTC (7:07 Uhr MEZ): Modellkarte und Plattform-API von higurashi-ai/Haru-4B (Abschnitte Architektur, Multi-Stream-Verarbeitung, Charakter- und Stimmsteuerung sowie Limitations vollständig gelesen), technischer Blog von higurashi AI (13.11.), GitHub-Repository higurashi-ai/Haru per API (Lizenz-Metadaten: Apache-2.0), Plattform-API des GGUF-Repositorys sakasegawa/Haru-4B-GGUF. Verknüpfte externe Demos und Videos haben wir nicht geöffnet. Der Wert von etwa 65 ms End-to-End-Verzögerung stammt aus der Hersteller-Demo und wurde nicht nachgemessen. Framework- und Anwendungstests haben wir nicht durchgeführt.",
+  "limitations": "Alle Leistungsangaben (etwa 65 ms Verzögerung, Gesprächsqualität, Trainingsumfang von 40 Millionen Stunden) stammen vom Hersteller; unabhängige Tests sind uns bislang nicht bekannt. Die Modellkarte enthält keine Benchmark-Tabellen zur Sprachqualität. Ob sich aus Haru-4B ein belastbarer Assistent feintunen lässt, ist offen.",
+  "related": [
+    "dessa-sprachmodell-analyse",
+    "audio-sprach-ki",
+    "carbon-x-dna-sprachmodell-analyse"
+  ]
+}

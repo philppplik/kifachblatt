@@ -1,0 +1,156 @@
+{
+  "slug": "sage-s2-1-flash-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Sage S2.1 Flash: Multimodales Wissenschaftsmodell unter MIT-Lizenz",
+  "dek": "InternLM stellt Sage S2.1 Flash vor: ein 321-Mrd.-Parameter-MoE, das Moleküle, Kristalle und Proteine direkt einliest und mehrstufig prüft - unter MIT-Lizenz.",
+  "published": "2026-11-17T07:06:00+01:00",
+  "modified": "2026-11-17T07:06:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Sage S2.1 Flash",
+    "InternLM",
+    "Multimodal",
+    "Wissenschaft",
+    "MoE"
+  ],
+  "key_takeaways": [
+    "Das Shanghai AI Laboratory hat Sage S2.1 Flash veröffentlicht: ein multimodales Modell, das über eigene Enkoder mehr als zehn wissenschaftliche Eingabetypen - von Molekülgraphen bis Proteinstrukturen - direkt verarbeitet [1].",
+    "Laut Konfiguration handelt es sich um ein MoE der GLM-5-Next-Familie mit 288 routbaren Experten, acht davon aktiv pro Token; der Gewichts-Index weist rund 321 Mrd. Parameter aus (eigene Auswertung) [1][2].",
+    "Code und Gewichte stehen unter der MIT-Lizenz; eine FP8-Variante und die Projektoren der SciPerception-Reihe sind ebenfalls offen verfügbar [1][3].",
+    "In der Hersteller-Evaluierung liegt das Modell bei vier von 15 Benchmarks vorn (darunter MLE-bench Lite mit 90,3) und bei sieben weiteren auf Platz zwei - alle Werte ohne unabhängige Bestätigung [1].",
+    "Der Betrieb erfordert nachgeladene Projektoren und einen vLLM-Server mit Prompt-Embeds; Deployment-Guides sind verlinkt, von uns aber nicht geöffnet [1]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Links drei Symbole für Molekül, Kristall und Protein, Pfeile führen in einen Kasten Gemeinsamer Repräsentationsraum, von dort ein Pfeil zum Sprachmodell Sage S2.1 Flash mit einem Prüf-Kreispfeil",
+    "caption": "Wissenschaftliche Enkoder übersetzen Moleküle, Kristalle und Proteine in den Einbettungsraum von Sage S2.1 Flash; Zwischenergebnisse werden mehrstufig geprüft [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "internlm/Sage-S2.1-Flash (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/internlm/Sage-S2.1-Flash",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "Modellkonfiguration und Gewichts-Index (config.json, model.safetensors.index.json)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/internlm/Sage-S2.1-Flash/tree/main",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "internlm/Sage-SciPerception (Projektoren und Ladeskripte, Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/internlm/Sage-SciPerception",
+      "accessed": "2026-11-17"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Das Shanghai AI Laboratory hat mit Sage S2.1 Flash ein multimodales Modell für wissenschaftliche Analyseaufgaben veröffentlicht. Statt Moleküle, Kristallstrukturen oder Proteinsequenzen nur in Text zu beschreiben, liest das Modell sie über eigene Enkoder direkt ein: Mehr als zehn wissenschaftliche Eingabetypen landen in einem gemeinsamen Repräsentationsraum mit der Sprache. Gewichte und Code stehen seit dem 15. November unter der MIT-Lizenz auf Hugging Face [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Eigene Sinne für die Wissenschaft"
+    },
+    {
+      "t": "p",
+      "x": "Herzstück ist Sage SciPerception: Wissenschaftliche Enkoder und trainierbare Projektoren übersetzen Fachdaten - etwa Molekülgraphen, Kristallstrukturen sowie Proteinsequenzen samt 3D-Strukturen - in den Einbettungsraum des Sprachmodells, wo sie zusammen mit Anweisungen verarbeitet werden. Laut Karte sollen die Darstellungen strukturelle und lokale Informationen der Ausgangsdaten bewahren, etwa für Materialeigenschafts-Vorhersagen, Sequenzklassifikation oder Strukturinferenz. Sage S2.1 Flash ist auf mehrstufige Analyse- und Verifikationsaufgaben ausgelegt: Es nutzt Fachsoftware, prüft Zwischenergebnisse und wertet visuelle Rückmeldungen aus [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Rund 321,3 Mrd. Parameter gesamt (BF16, eigene Auswertung des Gewichts-Index); MoE-Architektur der GLM-5-Next-Familie mit 288 routbaren Experten, davon acht aktiv pro Token, plus ein gemeinsamer Experte; 45 Schichten, versteckte Größe 4096. Die Zahl der aktiven Parameter pro Token nennt die Karte nicht. Varianten: BF16 (15.11.) und FP8 (13.11.). Die Projektoren liegen im Modell-Repository, die Ladeskripte im separaten SciPerception-Repository (6.11.). Lizenz: MIT für Code und Gewichte [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks aus Herstellersicht"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "MLE-bench-Lite-Score im Hersteller-Vergleich",
+      "alt": "Balkendiagramm mit sechs Werten: Sage S2.1 Flash erreicht 90,3, DeepSeek-V4.1-Flash-1017 89,2, Claude Opus 5 88,0, GLM-5.3-Flash 84,3, Qwen3.8-Max 82,2 und GPT-5.6 Sol 80,7 Punkte",
+      "caption": "Hersteller-Evaluierung aus der Modellkarte; die Testbedingungen beschreibt die Karte nicht im Detail [1].",
+      "labels": [
+        "Sage S2.1 Flash",
+        "DeepSeek-V4.1-Flash",
+        "Claude Opus 5",
+        "GLM-5.3-Flash",
+        "Qwen3.8-Max",
+        "GPT-5.6 Sol"
+      ],
+      "series": [
+        {
+          "name": "MLE-bench Lite",
+          "values": [
+            90.3,
+            89.2,
+            88.0,
+            84.3,
+            82.2,
+            80.7
+          ]
+        }
+      ],
+      "y_label": "Punkte",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "In der Hersteller-Evaluierung gegen GLM-5.3-Flash, DeepSeek-V4.1-Flash-1017, Qwen3.8-Max, GPT-5.6 Sol und Claude Opus 5 liegt Sage S2.1 Flash bei vier von 15 Benchmarks vorn: MLE-bench Lite (90,3), OfficeQA Pro (72,2), Harvey LAB (25,0) und SpreadsheetBench 2 (37,1). Bei sieben weiteren - darunter BFCL V4, OSWorld-Verified, WebArena-Verified und DeepResearch Bench II - belegt es Platz zwei. Auf Terminal-Bench 2.1 reicht es mit 87,9 zu Rang drei hinter Claude Opus 5 (90,2) und Qwen3.8-Max (89,6) [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Betrieb: Projektoren nachladen"
+    },
+    {
+      "t": "p",
+      "x": "Der Betrieb unterscheidet sich von einem reinen Textmodell: Für wissenschaftliche Eingaben lädt der Client die passenden Projektoren aus dem Modell-Repository und die Ladeskripte aus Sage-SciPerception nach; der vLLM-Server muss mit der Option --enable-prompt-embeds laufen und erhält vorberechnete Einbettungen. Für Coding-, Büro- und Computer-Use-Aufgaben verweist die Karte auf separate Deployment-Guides für die BF16- und die FP8-Variante; diese Guides haben wir nicht geöffnet [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Sage S2.1 Flash knüpft an die Idee agentischer Forschungsassistenten an, geht aber einen Schritt weiter: Die Wahrnehmung für Fachdaten ist Teil des Modells, nicht nur ein angehängtes Werkzeug. Die MIT-Lizenz erlaubt auch die kommerzielle Nutzung. Zu beachten bleibt: Sämtliche Benchmarks stammen aus der Hersteller-Evaluierung, unabhängige Auswertungen sind uns bislang nicht bekannt. Und ob die wissenschaftlichen Projektoren mit realen Labordaten zurechtkommen, können nur eigene Tests zeigen [1]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was unterscheidet Sage S2.1 Flash von gewöhnlichen Multimodal-Modellen?",
+      "a": "Es verarbeitet neben Bildern und Text über eigene Enkoder mehr als zehn wissenschaftliche Eingabetypen direkt - etwa Molekülgraphen, Kristallstrukturen und Proteinsequenzen mit 3D-Struktur - in einem gemeinsamen Repräsentationsraum [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht Sage S2.1 Flash?",
+      "a": "Code und Modellgewichte stehen laut Modellkarte unter der MIT-Lizenz; das erlaubt auch kommerzielle Nutzung [1]."
+    },
+    {
+      "q": "Wie groß ist das Modell?",
+      "a": "Der Gewichts-Index weist rund 321 Mrd. Parameter aus (BF16, eigene Auswertung). Es ist ein MoE mit 288 routbaren Experten, acht davon aktiv pro Token; die aktive Parameterzahl nennt die Karte nicht [1][2]."
+    },
+    {
+      "q": "Kann ich Sage S2.1 Flash selbst betreiben?",
+      "a": "Die Karte beschreibt den Betrieb über vLLM mit nachgeladenen Projektoren; eine speichersparende FP8-Variante existiert. Angesichts von 321 Mrd. Parametern ist Server-Hardware nötig; eigene Tests haben wir nicht durchgeführt [1]."
+    },
+    {
+      "q": "Sind die Benchmarks unabhängig geprüft?",
+      "a": "Nein. Alle genannten Werte stammen aus der Hersteller-Evaluierung; unabhängige Auswertungen sind uns bislang nicht bekannt [1]."
+    }
+  ],
+  "method": "Recherche am 17. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von internlm/Sage-S2.1-Flash (einschließlich Benchmark-Tabelle, Deployment-Abschnitt und Lizenzabschnitt), Modellkonfiguration und Gewichts-Index (config.json und model.safetensors.index.json, Parameterzahl daraus selbst berechnet), Plattform-API von internlm/Sage-SciPerception und internlm/Sage-S2.1-Flash-FP8. Die verlinkten Deployment-Guides und die Projekt-Website haben wir nicht geöffnet. Alle Benchmarks stammen aus der Hersteller-Evaluierung; Framework-Tests haben wir nicht durchgeführt.",
+  "limitations": "Alle Benchmark-Werte stammen vom Hersteller und sind unabhängig nicht bestätigt; die Testbedingungen beschreibt die Karte nicht im Detail. Die Praxistauglichkeit der wissenschaftlichen Projektoren mit realen Labordaten ist ungetestet. Die aktive Parameterzahl pro Token ist in den von uns eingesehenen Quellen nicht genannt.",
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "multimodale-modelle",
+    "agenten-fundamente"
+  ]
+}
