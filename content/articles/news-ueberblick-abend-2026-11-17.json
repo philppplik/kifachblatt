@@ -1,0 +1,177 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-17",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-17T16:10:00+01:00",
+  "modified": "2026-11-17T16:10:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "DetourBench: Trajectory-Level Evaluation of Interactive Agents with Exact Minimum-Action Bounds",
+      "publisher": "arXiv; Hanlin Tian, Sihan Zhu, Zhao Yang, Yuxiang Wang, Zhiquan Hu, Yu Mi, Hongquan Zhu, Qiufei Hu",
+      "url": "https://arxiv.org/abs/2611.20844",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "EVIDENT: Evaluating Evidence Grounding in GUI Agents",
+      "publisher": "arXiv; Yerin Nam, Minkyung Cho, MinKyu Kim, SeungWoo Song, Hangyeol Yoo, Jihyo Kim, KyungTae Lim; KAIST",
+      "url": "https://arxiv.org/abs/2611.20488",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "Accelerate Bench: Evaluating Agents for Application-Level Program Optimization",
+      "publisher": "arXiv; Bowen Liu, Yuhan Li, Nuo Chen u. a.; Tencent Hy Team, HKUST und HKUST Guangzhou, Tsinghua University, Peking University",
+      "url": "https://arxiv.org/abs/2611.20882",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "DetourBench: Aufgaben, Orakel und Auswertungssoftware",
+      "publisher": "GitHub; DatagridsAI/DetourBench",
+      "url": "https://github.com/DatagridsAI/DetourBench",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "EVIDENT: Evaluationspipeline und Aufgabenmetadaten",
+      "publisher": "GitHub; yerinNam/EVIDENT",
+      "url": "https://github.com/yerinNam/EVIDENT",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "Accelerate Bench: Projektseite und v1.1-Ergebnisse",
+      "publisher": "Accelerate Bench; Forschungsteam",
+      "url": "https://acceleratebench.com/",
+      "accessed": "2026-11-17"
+    },
+    {
+      "title": "Accelerate Bench: Release- und Reproduktionshinweise",
+      "publisher": "GitHub; AdAstraAbyssoque/accelerate-bench",
+      "url": "https://github.com/AdAstraAbyssoque/accelerate-bench",
+      "accessed": "2026-11-17"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "agenten",
+    "evaluation",
+    "benchmarks",
+    "programmierung"
+  ],
+  "title": "DetourBench, EVIDENT, Accelerate: Drei Blicke hinter Erfolg",
+  "dek": "Exakte Zugriffsgrenzen, beobachtete Webbelege und korrekte CPU-Beschleunigung: Drei neue Arbeiten trennen Ergebnis, Nachweis und Ausführungsweg.",
+  "key_takeaways": [
+    "DetourBench: 25 modellinformiert ausgewählte Aufgaben, 5 Endpunkte, 3 Wiederholungen = 375 Läufe; 276 Erfolge, 97 behebbare Fehlläufe und 2 unumkehrbare Fehlfestlegungen. Exaktheit gilt für den deklarierten Graphen und vollständiges Vorwissen des Orakels.",
+    "EVIDENT, Englisch N=70, gemini-3-flash-preview: TSR 87,14 %, ESR 70,00 %, GSR 55,71 %, jeweils über alle 70 Aufgaben. Hauptprüfer stimmt auf 126 Verläufen zu 91,27 % mit Menschen überein. API-Modelle laut Anhang im Mai 2026 evaluiert.",
+    "Accelerate Bench v1.1: 16 Modell-Harness-Paare, 32 CPU-Aufgaben, 1 Lauf je Zelle. Sonnet 5.5/Claude Code Score@1 67,4 % = mittlere korrektheitsgeprüfte Laufzeitersparnis; 472/512 Programme korrekt. v1.0-Prozessanalysen sind eine getrennte Stichprobe."
+  ],
+  "hero": {
+    "alt": "Getrennte Studienwerte: DetourBench hat 97 graphisch behebbare von 99 Fehlläufen; EVIDENT/Gemini-Agent erzielt auf 70 englischen Aufgaben 55,71 Prozent GSR; Accelerate Bench v1.1/Sonnet 5.5 mit Claude Code erreicht 67,4 Prozent mittlere Laufzeitersparnis.",
+    "caption": "Unterschiedliche Nenner und Testbedingungen; die Bildzahlen bilden keine gemeinsame Rangliste.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 17. November. Quellenstand: 16:03 Uhr MEZ. Drei Originalarbeiten vom 16. November zerlegen den Begriff Agentenerfolg: DetourBench vergleicht Zugriffe mit einer exakten Offline-Untergrenze, EVIDENT verlangt beobachtete Belege für die Antwort und Accelerate Bench bewertet beschleunigte, weiterhin korrekte CPU-Workflows. Die Kennzahlen messen unterschiedliche Objekte."
+    },
+    {
+      "t": "h2",
+      "x": "1. DetourBench: Exakter Graph statt behaupteter optimaler Weg"
+    },
+    {
+      "t": "p",
+      "x": "Tian u. a. definieren einen endlichen, teilweise beobachtbaren Zustandsraum aus besuchten Ressourcen, erworbenen Berechtigungen und einem Ergebnisstatus. Ressourcen bleiben nach Entdeckung global adressierbar; es gibt keinen aktuellen Standort und keine Rückweggebühr. Breitensuche über den vollständigen Graphen liefert die minimale Zahl belasteter Zugriffe und einen abspielbaren kürzesten Weg. Belastet werden auch ungültige, deaktivierte und doppelte Zugriffe, nicht reine Modellantworten ohne Zugriff. Das ist eine strukturelle Zugriffszahl, keine Latenz- oder Tokenmessung."
+    },
+    {
+      "t": "p",
+      "x": "Für erfolgreiche Läufe ist Attainment das Verhältnis Mindestzugriffe zu tatsächlichen Zugriffen. Für noch aktive, im Graphen behebbare Endzustände lässt sich zusätzlich die minimale Restarbeit berechnen. Das normalisierte Fortschrittsmaß ist eins minus Restarbeit geteilt durch die anfängliche Untergrenze. Ein absorbierender falscher Abschluss erhält keine künstliche endliche Restdistanz. Graphische Behebbarkeit impliziert nicht, dass der verbleibende Zugriffsbudget ausreicht. Das feste Zugriffsbudget beträgt in der veröffentlichten Suite aufgerundet das 1,5-Fache der Untergrenze."
+    },
+    {
+      "t": "p",
+      "x": "Der integrierte Hauptvergleich verwendet claude-opus-5, kimi-k3, deepseek-v4-pro, qwen3.6-plus und glm-5.2, je 25 Aufgaben und drei Wiederholungen. Tabelle 2: Claude erreicht 72/75 Erfolge mit bedingtem Attainment 0,890, Kimi 69/75 mit 0,861; GLM 44/75 mit 0,836. Letzteres liegt trotz niedrigerer Erfolgsquote über Qwen und DeepSeek, wird aber auf einer anderen Erfolgsmenge berechnet. Auf den 13 von allen Modellen gelösten Aufgaben bleibt GLM in dieser Metrik dritter. Qwen und DeepSeek liegen so nah, dass die Autoren keine Reihenfolge beanspruchen."
+    },
+    {
+      "t": "p",
+      "x": "Von 375 Läufen sind 276 erfolgreich. 99 scheitern: 95 verbrauchen ihr Zugriffsbudget, zwei stoppen im noch behebbaren Zustand und zwei legen sich unumkehrbar falsch fest. Die 97 behebbaren Fehlläufe dürfen für Restarbeitsmaße zusammengefasst werden; ihre modellweisen Teilmengen sind weitgehend verschieden und keine faire neue Rangliste. Auf acht Aufgaben gelingen dagegen sämtliche Wiederholungen aller Modelle. Dort liegen die modellweisen Attainment-Spannen zwischen 0,074 und 0,190. Auf Aufgabe 3 benötigt der beste Agent im Mittel 17,0 Zugriffe, der langsamste 21,7, bei Untergrenze 15; beide haben null ungültige oder wiederholte Zugriffe."
+    },
+    {
+      "t": "p",
+      "x": "Ein gesonderter kontrollierter Versuch variiert nur einen Hinweissatz auf eine zeitpunktbezogene Ansicht. 40 gepaarte Aufgaben, vier Modelle und drei Wiederholungen pro Arm ergeben 960 Läufe. Der Endpunkt ist auch ohne den Satz verfügbar. Für die 176 Laufpaare, in denen beide Arme erfolgreich sind, fällt bedingtes Attainment ohne Hinweis von 0,763 auf 0,637; das problemgeclusterte 95-%-Bootstrapintervall der Differenz liegt bei -0,156 bis-0,099. Die Originalaufgaben dieses Versuchs und die integrierte Suite werden nicht gepoolt."
+    },
+    {
+      "t": "p",
+      "x": "Die Untergrenze ist allwissend und zieht den Vorteil, den richtigen ähnlichen Kandidaten sofort zu wählen, nicht ab. Ein Mehrzugriff ist daher nicht automatisch vermeidbar oder unvernünftig. Aufgaben wurden teilweise nach Modellverhalten ausgewählt und überarbeitet; acht vollständig gelöste Aufgaben mit messbarer Trennung sind keine Häufigkeitsschätzung für reale Arbeit. Nur vier Aufgaben haben ausgeführte Inhalts-Gegenproben, bei den übrigen stützt sich die semantische Notwendigkeit auf die Konstruktion. Das Repository enthält Graphen, Orakel und Auswertungssoftware, laut README aber keine aufgezeichneten Modelltrajektorien."
+    },
+    {
+      "t": "h2",
+      "x": "2. EVIDENT: Erfolg, Beobachtung und Aussagenstütze sind verschachtelt"
+    },
+    {
+      "t": "p",
+      "x": "Nam, Cho u. a. konstruieren 220 Webaufgaben mit menschlich annotierten Beleganforderungen: 70 englische und 150 koreanische. Die drei Aufgabenarten betreffen Bedeutungszuordnung, implizite Kontextbedingungen und visuelle Hinweise. Ein Urteil soll nicht die bevorzugte Antwort oder einen festen Klickpfad erzwingen, sondern die für eine Antwort notwendigen beobachtbaren Informationen. Unterschiedliche Belegwege können die Anforderungen erfüllen."
+    },
+    {
+      "t": "p",
+      "x": "Die Auswertung extrahiert zuerst sichtbare Texte und visuelle Details aus den aufgenommenen Screenshots, ordnet dann Antwortaussagen und Pflichtbelege diesen Informationen zu und prüft schließlich die Stützung. Der Hauptprüfer ist Qwen3-VL-235B. TSR mittelt den binären Aufgabenerfolg über alle Aufgaben. ESR verlangt zusätzlich das Beobachten der Pflichtbelege, GSR zusätzlich die Stützung der Kernaussagen. Per Definition gilt GSR kleiner gleich ESR kleiner gleich TSR. Die Abstände sind verschachtelte Mengen über denselben Nenner, keine drei unabhängigen Qualitäten und keine bedingten Quoten nur erfolgreicher Antworten."
+    },
+    {
+      "t": "p",
+      "x": "Tabelle 2 zeigt für den Gemini-Agenten auf Englisch 87,14 % TSR, 70,00 % ESR und 55,71 % GSR bei N=70. Für GPT sind es 70,00/61,43/51,43 %, für Claude 80,00/57,14/35,71 %. Die Namen bezeichnen laut Anhang konkret gemini-3-flash-preview, gpt-5.4 und claude-opus-4-7 in derselben auf MolmoWeb basierenden Browserpipeline mit 50-Schritt-Grenze. Die API-Modelle wurden im Mai 2026 evaluiert. Die Werte sollten deshalb nicht als November-Rangliste der neuesten Produktversionen bezeichnet werden."
+    },
+    {
+      "t": "p",
+      "x": "Die koreanischen Aufgaben nutzen andere Seiten, Layouts und Szenarien; eine Sprachursache lässt sich aus dem englisch-koreanischen Abstand nicht isolieren. Auch die Bewertung ist fehlbar. Auf 126 geschichteten Verläufen erreicht der Hauptprüfer 91,27 % Übereinstimmung mit menschlichen Vier-Klassen-Urteilen, Kappa 0,864. Die Extraktionsstufe verbessert die Übereinstimmung gegenüber direkter Rohbildprüfung, kann aber Bilddetails verlieren. Bei 27 als Erfolg ohne Pflichtbelege markierten Gemini-Verläufen bestätigen drei Annotatoren die fehlende Stütze in 25 Fällen."
+    },
+    {
+      "t": "p",
+      "x": "Die erfassten Screenshots halten die beobachtete Evidenz fest, frieren aber die Live-Websites nicht für spätere Wiederholungen ein. Menschliche Beleganforderungen können alternative zulässige Wege übersehen; strenge Beobachtungsregeln können nachvollziehbare Alltagsschlüsse unterbewerten. Der Score ist daher eine Diagnose von Belegtreue, keine vollständige Zufriedenheits- oder Nützlichkeitsmetrik. Im Repository liegen tatsächlich die drei Evaluationsstufen und Metadaten für beide Sprachmengen. Die README verwendet für ESR/GSR abweichende Bezeichner EGSR/ETSR; für die Artikel gelten die Definitionen des Papers."
+    },
+    {
+      "t": "h2",
+      "x": "3. Accelerate Bench: Laufzeitersparnis nach Korrektheits-Gate"
+    },
+    {
+      "t": "p",
+      "x": "Liu u. a. geben Agenten 32 CPU-Workflows aus wissenschaftlichen Anwendungen und Supercomputing-Aufgaben. Arbeitslast, erforderliche Ausgaben, Toleranzen, Zeitgrenzen und erlaubte Änderungen stehen fest; die Optimierungsstelle bleibt offen. Innerhalb des erlaubten Bereichs dürfen Quellcode, Build, Abhängigkeiten und Laufzeiteinstellungen geändert werden. Öffentliche Tests liefern Entwicklungsfeedback; der separate private Prüfer baut die Einreichung neu und kontrolliert oft größere oder frisch randomisierte Eingaben. Einmaliger Build und Einrichtung liegen außerhalb der Zeitmessung, während je nach Aufgabe etwa Modellladen und Checkpoint-Wiederherstellung zum gemessenen Workflow gehören."
+    },
+    {
+      "t": "p",
+      "x": "Der Reward ist bei bestandener Korrektheit das Maximum aus null und eins minus Kandidatenlaufzeit geteilt durch Ausgangslaufzeit. Fehlerhafte oder nicht beschleunigte Programme erhalten null. Score@1 ist das gleich gewichtete Mittel dieses Rewards über 32 Aufgaben, keine Lösungsquote und kein geometrisches Speedup-Mittel. Eine korrekte zweifache Beschleunigung erhält 0,5; eine zehnfache erhält 0,9. Version 1.1 testet 16 Modell-Harness-Kombinationen mit einem Lauf je Aufgabe; alle finalen Programme werden auf derselben Maschine gewertet."
+    },
+    {
+      "t": "p",
+      "x": "Sonnet 5.5 mit Claude Code erreicht 67,4 % Score@1, Opus 5.5 mit Claude Code 59,4 %, GPT-6.1 Sol mit Codex 49,2 %. Sonnet erreicht auf 23/32 Aufgaben korrekt mindestens doppelte Geschwindigkeit, Opus auf 22/32. Drei durch Sicherheitsklassifizierer des Anbieters beendete Opus-Läufe zählen als null, nicht als Infrastruktur-Neustart; auf den übrigen 29 Aufgaben beträgt sein Score 65,6 %. Insgesamt sind 472/512 finale Ergebnisse korrekt. Diese Zählung ist ein anderer Nenner als die 125/412 korrekten Ergebnisse mit weniger als 1,25-facher Geschwindigkeit bei den 14 nicht führenden Agenten."
+    },
+    {
+      "t": "p",
+      "x": "Die Prozessanalyse stammt ausdrücklich aus Version 1.0: 480 Läufe von fünf Agenten, davon 476 finale Programme mit Techniklabels. Sie erklärt nicht kausal die v1.1-Rangfolge. Ein kontrollierter GROMACS-Replay hält den Quellcode gleich und variiert Vektorisierung sowie Threadzahl auf vier physischen Kernen. Tabelle 31: ohne SIMD/ein Thread 0,289-mal, ohne SIMD/vier Threads 0,992-mal, AVX2/ein Thread 0,709-mal, AVX2/vier Threads 2,123-mal. Alle Varianten bestehen die Prüfungen auf sechs privaten Profilen. Jede Zeile hat ihre eigene abwechselnde Referenzmessung; es ist keine allgemeine Beschleunigung durch AVX2 unabhängig von Parallelität."
+    },
+    {
+      "t": "p",
+      "x": "Ein faktorieller QiboTN-Nachtest zeigt eine weitere Wechselwirkung: verzögertes Laden von Tensorbibliotheken bringt allein etwa 1,01-mal, zusammen mit breiterer Wahl eines schnellen exakten Simulators aber 6,3-6,4-mal als zusätzlicher Faktor. Gemeinsamer Einsatz beider Änderungen ergibt 9,6-9,7-mal gegenüber der all-off-Variante, nicht das Produkt beliebig addierbarer Einzelgewinne. Die Schaltungsauswertung umfasst sechs frische Prozesse mit 9-14 Qubits; Start und Imports liegen innerhalb der Messung. Außerhalb dieses Artefakts und Workloads ist der Faktor nicht getestet."
+    },
+    {
+      "t": "p",
+      "x": "Grenzen sind CPU-Skalierung, Ausgangsprogramme mit verschiedenem Tuninggrad, geringe Wiederholungszahlen und die Verknüpfung von Modell und Harness. Kleine Punktabstände ordnen die meisten Agenten nicht belastbar. Trotz noch zukunftsgerichteter Releaseformulierung im Paper zeigen die aktuellen Projektquellen inzwischen ein Repository mit Download-/Prüfskripten sowie 31 Harbor-Aufgaben ohne Zugriffsantrag. Die Vollsammlung einschließlich ICON erfordert laut Releasehinweisen manuelle Freigabe auf Hugging Face und zusätzliche offizielle Gitterdateien. Vorhandene Releasewege sind kein von uns durchgeführter Replikationslauf."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Ist die DetourBench-Untergrenze eine optimale Suchstrategie?",
+      "a": "Im getesteten Aufbau ist sie die exakte Offline-Untergrenze mit vollständiger Kenntnis des deklarierten Graphen. Mehrzugriffe können notwendige Unsicherheitsauflösung des teilweise informierten Agenten enthalten. Nur ungültige oder zustandserhaltend doppelte Zugriffe werden separat als solche identifiziert."
+    },
+    {
+      "q": "Was bedeutet EVIDENT-GSR von 55,71 Prozent?",
+      "a": "Für gemini-3-flash-preview im englischen 70-Aufgaben-Subset erfüllen 55,71 % zugleich Aufgabenerfolg, Beobachtung der Pflichtbelege und Stützung der Kernaussagen. Der Nenner sind alle 70 Aufgaben. Der API-Versuch stammt laut Anhang aus Mai 2026 und ist keine aktuelle Frontier-Rangliste."
+    },
+    {
+      "q": "Kann man Accelerate-v1.0-Analysen und v1.1-Scores verbinden?",
+      "a": "Nicht zu einer gemeinsamen Rangliste. Die 480 Prozessläufe betreffen fünf Agenten auf v1.0; die 512 Haupttabellen-Ergebnisse betreffen 16 Agenten auf v1.1. Die kontrollierten Nachtests zeigen Wechselwirkungen für ihre konkreten Artefakte, nicht die Ursache der neueren Rangfolge."
+    }
+  ],
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "news-ueberblick-mittag-2026-11-17"
+  ]
+}

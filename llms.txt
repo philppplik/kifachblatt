@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [DetourBench, EVIDENT, Accelerate: Drei Blicke hinter Erfolg](https://kifachblatt.de/news-ueberblick-abend-2026-11-17): Exakte Zugriffsgrenzen, beobachtete Webbelege und korrekte CPU-Beschleunigung: Drei neue Arbeiten trennen Ergebnis, Nachweis und Ausführungsweg.
 - [Benchleaking, DisPO und WeightBench: Was die Tests zeigen](https://kifachblatt.de/news-ueberblick-mittag-2026-11-17): Testkontamination, präferenzgebundene Dialogsimulation und direkte Gewichtseingriffe: Drei Evaluationen mit unterschiedlichen Nennern und Grenzen.
 - [Denkspuren, Full-Block-Schätzung und LuthorSQL](https://kifachblatt.de/news-ueberblick-morgen-2026-11-17): Interne Signale ohne Kausalnachweis, weniger Blockauswahl-Varianz bei LLaDA und ein SQL-Planer mit Validator: Drei Arbeiten samt Testgrenzen.
 - [Haru-4B: Full-Duplex-Sprachmodell hört und spricht gleichzeitig](https://kifachblatt.de/haru-4b-analyse): Higurashi AI veröffentlicht Haru-4B: ein Full-Duplex-Sprachmodell, das Hören und Sprechen in einem gemeinsamen Strom verarbeitet - offen unter Apache 2.0.
