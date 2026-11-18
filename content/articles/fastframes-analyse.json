@@ -1,0 +1,156 @@
+{
+  "slug": "fastframes-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "FastFrames: Apples Video-Diffusion erreicht interaktive Latenz",
+  "dek": "Apple stellt FastFrames vor: autoregressive Video-Diffusion in zwei Schritten - 480p-Videos mit 36 bis 45 Millisekunden pro Frame, als reines Forschungsmodell.",
+  "published": "2026-11-18T07:13:00+01:00",
+  "modified": "2026-11-18T07:13:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "FastFrames",
+    "Apple",
+    "Video-Diffusion",
+    "Echtzeit",
+    "Forschung"
+  ],
+  "key_takeaways": [
+    "Apple hat FastFrames veröffentlicht: autoregressive Video-Diffusionsmodelle in zwei Schritten, die 480p-Videos mit interaktiver Latenz erzeugen - als 1,3B- und 14B-Variante [1][2].",
+    "Kernbefund des Papers: VAE-Dekodierung und KV-Cache-Updates machen über die Hälfte der End-to-End-Latenz aus; Apple ersetzt beide durch leichtgewichtige Alternativen [2].",
+    "FastFrames-S (1,3B) läuft laut Paper mit 36 ms pro Frame (28 Antworten pro Sekunde) auf einer einzelnen B200-GPU, FastFrames-L (14B) mit 45 ms pro Frame auf einem 8x-B200-Knoten [2].",
+    "Die Lizenzlage ist eng: Apple-ML-Research-Lizenz nur für Forschungszwecke (widerruflich, nicht kommerziell), LingBot-Teile unter CC BY-NC-SA 4.0; nur das Basismodell Wan2.1 steht unter Apache 2.0 [1][3].",
+    "Unabhängige Qualitäts- oder Latenztests sind uns bislang nicht bekannt; alle Werte stammen von Apple [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Ein Filmstreifen mit fünf aufeinanderfolgenden Video-Frames, darunter eine Zeitachse mit einer Klammer, die 36 Millisekunden pro Frame markiert",
+    "caption": "Interaktive Latenz: FastFrames-S soll ein 480p-Frame in 36 Millisekunden erzeugen - Herstellerwert aus dem Paper, nicht nachgemessen [2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "apple/FastFrames-L und apple/FastFrames-S (Modellkarten, Plattform-API und LICENSE-Datei)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/apple/FastFrames-L",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "FastFrames: Video Generation at Interactive Latency (arXiv:2611.23226, Abstract)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2611.23226",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Wan-AI/Wan2.1-T2V-14B (Plattform-API, Lizenz-Tag des Basismodells)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Wan-AI/Wan2.1-T2V-14B",
+      "accessed": "2026-11-18"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Apple hat mit FastFrames eine Familie autoregressiver Video-Diffusionsmodelle veröffentlicht, die 480p-Videos mit interaktiver Latenz erzeugen soll: FastFrames-S mit 1,3 Milliarden und FastFrames-L mit 14 Milliarden Parametern. Die Hugging-Face-Repositories wurden am 16. November angelegt, das zugehörige Paper am 17. November auf arXiv eingereicht. Veröffentlicht wird das Paket ausdrücklich als Forschungsmodell - mit entsprechend enger Lizenz [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Der Engpass steckt nicht im Diffusionsmodell"
+    },
+    {
+      "t": "p",
+      "x": "Der interessanteste Befund des Papers betrifft nicht das Modell, sondern die Pipeline: Bei bestehenden autoregressiven Video-Modellen entfallen nach Analyse der Autoren über die Hälfte der End-to-End-Latenz auf Schritte, die gern als feste Implementierungsdetails gelten - die VAE-Dekodierung und die KV-Cache-Updates. FastFrames ersetzt beide durch leichtgewichtige Alternativen: einen schlanken Pixel-Decoder und ein eigenes KV-Verfeinerungsnetz. Das eigentliche Diffusionsmodell arbeitet danach nur noch in zwei Schritten pro Frame [2]."
+    },
+    {
+      "t": "p",
+      "x": "Das Ergebnis nach Herstellerangaben: FastFrames-S erzeugt ein 480p-Frame in 36 Millisekunden - das entspricht 28 Antworten pro Sekunde auf einer einzelnen B200-GPU - und erreicht dabei laut Paper die Qualität eines aktuellen Vergleichsmodells, das knapp achtmal langsamer ist; welches Modell gemeint ist, nennt der Abstract nicht. FastFrames-L läuft mit 45 Millisekunden pro Frame (22 Antworten pro Sekunde) auf einem Knoten mit acht B200-GPUs und liefert nach Angabe der Autoren deutlich bessere visuelle Qualität. Diese Werte haben wir nicht nachgemessen [2]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Varianten: FastFrames-S (1,3 Mrd. Parameter) und FastFrames-L (14 Mrd. Parameter, aus Wan2.1-T2V-14B destilliert). Ausgabe: 832x480 Pixel, 81 Frames mit 16 fps. Training: zweistufige kausale Destillation nach dem Causal-Forcing++-Rezept (kausaler Teacher, Konsistenz-Destillation, DMD-Destillation), danach Pixel-Decoder und KV-Verfeinerung; alle Zwischen-Checkpoints sind veröffentlicht. Mit dabei: eine optimierte Fassung von LingBot 1.3B für kamera-gesteuerte Demos, laut Karte 16-mal schneller als das offizielle Modell. Voraussetzungen: Linux x86-64, NVIDIA-GPU, CUDA-12.8-kompatibler Treiber [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Wohin die Millisekunden gehen"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Latenz pro Komponente in Millisekunden",
+      "alt": "Balkendiagramm mit vier Werten: DiT-Auswertung bei t gleich 833 mit 16,2 Millisekunden, DiT-Auswertung bei t gleich 1000 mit 16,1, KV-Verfeinerung mit 2,2 und Pixel-Decoder mit 0,9 Millisekunden",
+      "caption": "Hersteller-Profiling aus der Modellkarte für FastFrames-S (1 GPU, 480p, voller KV-Cache); die Summe von 35,4 ms entspricht den 36 ms aus dem Paper [1][2].",
+      "labels": [
+        "DiT-Auswertung t=833",
+        "DiT-Auswertung t=1000",
+        "KV-Verfeinerung",
+        "Pixel-Decoder"
+      ],
+      "series": [
+        {
+          "name": "Latenz",
+          "values": [
+            16.2,
+            16.1,
+            2.2,
+            0.9
+          ]
+        }
+      ],
+      "y_label": "Millisekunden",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Komponenten-Messung zeigt, wie gleichmäßig die neue Pipeline ist: Nach dem Umbau teilen sich die beiden Diffusionsschritte fast die gesamte Zeit, während VAE-Ersatz und Cache-Pflege zusammen unter zehn Prozent liegen. Genau dort lag vorher der größte Anteil. Für Text-zu-Video erzeugt ein Skript auf Wunsch 81 Frames am Stück; für interaktive Anwendungen demonstriert Apple kamera- und physik-konditionierte Generierung, etwa ein Rennspiel-Szenario mit Gamepad-Steuerung über das LingBot-Modell [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Lizenz ist der Preis"
+    },
+    {
+      "t": "p",
+      "x": "Wer FastFrames nutzen will, sollte die Kette genau lesen: Die Gewichte stehen unter Apples Machine-Learning-Research-Lizenz - sie erlaubt Nutzung, Änderung und Weitergabe ausschließlich für nicht-kommerzielle Forschung, ist widerruflich und nicht übertragbar; abgeleitete Modelle bleiben forschungsbeschränkt, Apples Namen darf nicht zur Bewerbung genutzt werden. Der Apple-eigene Code steht unter der Apple Sample Code License, die LingBot-Teile unter CC BY-NC-SA 4.0 (ebenfalls nicht-kommerziell). Lediglich das Basismodell Wan2.1-T2V-14B ist unter Apache 2.0 verfügbar - an den FastFrames-Gewichten ändert das nichts [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "FastFrames adressiert die bisher größte Hürde interaktiver Video-Modelle: Antwortzeiten, die flüssige Steuerung unmöglich machten. Dass Apple dafür die vermeintlich festen Pipeline-Bausteine angreift statt nur das Modell zu verkleinern, ist methodisch bemerkenswert - und mit veröffentlichten Zwischen-Checkpoints nachvollziehbar dokumentiert. Offen bleiben die unabhängige Prüfung der Latenz- und Qualitätswerte sowie die Frage, ob die Forschungslizenz die Verbreitung bremst: Kommerzielle Produkte sind damit ausgeschlossen [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist FastFrames?",
+      "a": "Eine Familie autoregressiver Video-Diffusionsmodelle von Apple (1,3B und 14B Parameter), die 480p-Videos in zwei Diffusionsschritten pro Frame erzeugt - mit dem Ziel interaktiver Antwortzeiten [1][2]."
+    },
+    {
+      "q": "Wie schnell ist FastFrames wirklich?",
+      "a": "Laut Paper 36 ms pro Frame für die 1,3B-Variante auf einer B200-GPU und 45 ms für die 14B-Variante auf acht B200-GPUs. Das sind Herstellerwerte, die wir nicht nachgemessen haben [2]."
+    },
+    {
+      "q": "Warum ist FastFrames so viel schneller?",
+      "a": "Die Autoren zeigen, dass VAE-Dekodierung und KV-Cache-Updates über die Hälfte der bisherigen Latenz ausmachten. Beide wurden durch leichtgewichtige Alternativen ersetzt, danach bleiben nur zwei Diffusionsschritte pro Frame [2]."
+    },
+    {
+      "q": "Darf ich FastFrames kommerziell nutzen?",
+      "a": "Nein. Die Gewichte stehen unter Apples ML-Research-Lizenz, die nur nicht-kommerzielle Forschung erlaubt; LingBot-Teile stehen unter CC BY-NC-SA 4.0 [1]."
+    },
+    {
+      "q": "Kann ich FastFrames selbst ausführen?",
+      "a": "Der Code läuft unter Linux mit NVIDIA-GPU und CUDA-12.8-Treiber; Checkpoints und Anleitungen sind verlinkt. Eigene Tests haben wir nicht durchgeführt [1]."
+    }
+  ],
+  "method": "Recherche am 18. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte, LICENSE-Datei (Apple ML Research) und Plattform-API von apple/FastFrames-L, Plattform-API von apple/FastFrames-S, arXiv-Abstract 2611.23226 (eingereicht 17.11.), Plattform-API von Wan-AI/Wan2.1-T2V-14B (Lizenz-Tag Apache 2.0). Das vollständige Paper-PDF, die Projektseite und das verlinkte GitHub-Repository mit Trainings- und Evaluierungs-Guides haben wir nicht geöffnet; VBench-Einzelwerte aus Tabelle 1 des Papers liegen uns daher nicht vor. Alle Latenz- und Qualitätsangaben stammen vom Hersteller; Framework-Tests haben wir nicht durchgeführt.",
+  "limitations": "Alle Latenz- und Qualitätswerte stammen von Apple und sind unabhängig nicht bestätigt; das im Abstract erwähnte Vergleichsmodell ist dort nicht benannt. VBench-Detailwerte konnten wir nicht prüfen, weil wir das Paper-PDF nicht geöffnet haben. Die Forschungslizenz schließt kommerzielle Nutzung aus und ist widerruflich.",
+  "related": [
+    "video-ki",
+    "longcat-video-avatar-1-6-analyse",
+    "genie-4-weltmodell-analyse"
+  ]
+}

@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [FastFrames: Apples Video-Diffusion erreicht interaktive Latenz](https://kifachblatt.de/fastframes-analyse): Apple stellt FastFrames vor: autoregressive Video-Diffusion in zwei Schritten - 480p-Videos mit 36 bis 45 Millisekunden pro Frame, als reines Forschungsmodell.
+- [Invoker-Render: Weltmodell-Renderer streamt steuerbare Videos](https://kifachblatt.de/invoker-render-1-0-analyse): Inclusion AI trennt Weltzustand und Optik: Eine Engine hält die Welt, Invoker-Render rendert sie als Video - 33 Mrd. Parameter, nicht kommerziell lizenziert.
 - [CoT-Monitorierbarkeit, Winner’s Curse und Gedächtnis-Omissionen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-18): Persona-SFT senkt die CoT-Monitorierbarkeit auf 0,22, RULER korrigiert Leaderboard-Spitzen um bis zu 3,86 Punkte, REMEMBEREDAS misst stille Memory-Auslassungen.
 - [DetourBench, EVIDENT, Accelerate: Drei Blicke hinter Erfolg](https://kifachblatt.de/news-ueberblick-abend-2026-11-17): Exakte Zugriffsgrenzen, beobachtete Webbelege und korrekte CPU-Beschleunigung: Drei neue Arbeiten trennen Ergebnis, Nachweis und Ausführungsweg.
 - [Benchleaking, DisPO und WeightBench: Was die Tests zeigen](https://kifachblatt.de/news-ueberblick-mittag-2026-11-17): Testkontamination, präferenzgebundene Dialogsimulation und direkte Gewichtseingriffe: Drei Evaluationen mit unterschiedlichen Nennern und Grenzen.

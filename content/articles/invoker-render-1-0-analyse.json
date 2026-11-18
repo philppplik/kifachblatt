@@ -1,0 +1,156 @@
+{
+  "slug": "invoker-render-1-0-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Invoker-Render: Weltmodell-Renderer streamt steuerbare Videos",
+  "dek": "Inclusion AI trennt Weltzustand und Optik: Eine Engine hält die Welt, Invoker-Render rendert sie als Video - 33 Mrd. Parameter, nicht kommerziell lizenziert.",
+  "published": "2026-11-18T07:13:00+01:00",
+  "modified": "2026-11-18T07:13:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Invoker-Render",
+    "Inclusion AI",
+    "Weltmodell",
+    "Video-Generierung",
+    "Streaming"
+  ],
+  "key_takeaways": [
+    "Inclusion AI (Ant Group) hat mit Code World Model 2.0 die Gewichte von Invoker-Render veröffentlicht: ein kausales Streaming-DiT, das strukturelle Proxy-Videos in fertige Optik übersetzt [1][2].",
+    "Die Architektur teilt die Arbeit: Eine vorgelagerte Engine hält den Weltzustand, grobe Proxy-Videos legen Kamerapfad, Layout und Bewegung fest, Invoker-Render liefert nur das Aussehen [1][2].",
+    "Das Modell hat 33,12 Mrd. Parameter (FP32, rund 132,5 GByte) und baut auf MiniMax-H3; produktiv empfohlen werden acht GPUs an einem Knoten [1][2].",
+    "Im Hersteller-Vergleich auf 140 Rollouts liegt Invoker-Render mit einer Elo von 1343,2 vor drei Streaming-Renderern; Trainingsmethode und -daten sind noch nicht veröffentlicht [2].",
+    "Lizenzfalle: Die Gewichte stehen unter Apache 2.0 UND CC BY-NC 4.0 - kommerzielle Nutzung ist damit ausgeschlossen; nur der eigene Repo-Code ist rein Apache 2.0 [1][2]."
+  ],
+  "hero": {
+    "alt": "Schematische Grafik: Links ein Drahtgitter-Proxy-Bild mit Kasten und Linien, ein Pfeil führt zu einem farbig gerenderten Frame rechts, darunter eine Schleife für fortlaufendes Streaming",
+    "caption": "Proxy rein, Optik raus: Invoker-Render übersetzt strukturelle Proxy-Videos plus ein Referenzbild in gerenderte Frames - im Dauerstrom [1][2].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "inclusionAI/invoker-render-1.0 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/invoker-render-1.0",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "inclusionAI/CodeWorldModel (README, Lizenzabschnitt, abgerufen per API und Raw-Datei)",
+      "publisher": "GitHub",
+      "url": "https://github.com/inclusionAI/CodeWorldModel",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Code World Model 2.0 (Projektseite)",
+      "publisher": "Inclusion AI",
+      "url": "https://www.inclusion-ai.org/CodeWorldModel/",
+      "accessed": "2026-11-18"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Inclusion AI, die KI-Einheit der Ant Group, hat zusammen mit der Westlake University und der Universität Zhejiang Code World Model 2.0 vorgestellt - und damit die Gewichte von Invoker-Render, einem kausalen Streaming-Video-Modell mit 33,12 Milliarden Parametern. Das Hugging-Face-Repository wurde am 16. November angelegt, das Code-Repository am 11. November. Die Grundidee dreht die übliche Video-Generierung um: Nicht das Video-Modell hält die Welt im Kopf, sondern eine vorgelagerte Engine [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Weltzustand und Optik getrennt"
+    },
+    {
+      "t": "p",
+      "x": "Bei Code World Model 2.0 verwaltet eine upstream Engine den Weltzustand und gibt sogenannte visuelle Proxys aus: schlichte Struktur-Videos, die Kamerapfad, Szenenlayout und Objektbewegungen festlegen, aber keine Optik enthalten. Invoker-Render bekommt ein solches Proxy, dazu ein einzelnes Referenzbild für das Aussehen und einen Text - und rendert daraus die fertigen Frames. Die Proxys dürfen grob oder fein sein: semantische Karten, spärliche 3D-Boxen, Masken, schattierte Geometrie oder Boxen mit Skeletten akzeptiert dasselbe Modell [1][2][3]."
+    },
+    {
+      "t": "p",
+      "x": "Technisch ist Invoker-Render ein kausales Diffusions-Transformer-Modell, das in vier Schritten pro Chunk arbeitet und mit einem stufenweisen Curriculum namens Progressive Forcing trainiert wurde. Basis ist MiniMax-H3, die Inferenz läuft über SGLang und SGLang-Omni. Weil jeder Chunk nur einen festen Optik-Anker und ein begrenztes Verlaufsfenster liest, kann eine Sitzung beliebig lange laufen: Das Team zeigt eine durchgehende 30-minütige Racing-Generierung ohne Schnitt - erzeugt allerdings mit einer Qualitätsrichtlinie, die der Standard-Dienst nicht aktiviert, wie das Repository selbst anmerkt [1][2]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Gewichte: 33,12 Mrd. Parameter, FP32, rund 132,5 GByte in 29 Safetensors-Split-Dateien, unquantisiert. Achtung bei der Installation: Die mitgelieferte Teacher-LoRA (2,3 GByte, bidirektional, Basis MiniMax-H3) ist ein anderes Modell und darf nicht auf die kausalen Hauptgewichte gestapelt werden. Eingabe: 1344x768 RGB-Startbild, Proxy-Video mit 24 fps Zeitleiste und Text; Datei-Inferenz verlangt 17xN+5 Proxy-Frames, mindestens 39. Betrieb: WebSocket-Sitzungsdienst, Datei- und Browser-Client; das Standard-Profil production nutzt acht NVIDIA-GPUs an einem Knoten. Hinweis der Entwickler: 24 fps ist die Video-Zeitleiste, nicht der Inferenz-Durchsatz [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Hersteller-Vergleich per Elo"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Gesamt-Elo im Hersteller-Vergleich",
+      "alt": "Balkendiagramm mit vier Werten: Invoker-Render erreicht eine Elo von 1343,2, SolarRenderer Causal 1245,3, StreamRender-H3 1051,9 und Streaming CWM 359,6",
+      "caption": "Hersteller-Evaluierung auf 140 zurückgehaltenen Rollouts; Invoker-Render liegt laut Repository auf allen vier beurteilten Achsen vorn. Bewertungsdetails stehen im technischen Bericht (PDF im Repository), den wir nicht geöffnet haben [2].",
+      "labels": [
+        "Invoker-Render",
+        "SolarRenderer (Causal)",
+        "StreamRender-H3",
+        "Streaming CWM"
+      ],
+      "series": [
+        {
+          "name": "Gesamt-Elo",
+          "values": [
+            1343.2,
+            1245.3,
+            1051.9,
+            359.6
+          ]
+        }
+      ],
+      "y_label": "Elo",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Auffällig ist, was noch fehlt: Der technische Bericht liegt bislang nur als PDF im Repository vor, eine arXiv-Listung steht aus - und Trainingsmethode und Trainingsdaten sind ausdrücklich noch nicht veröffentlicht. Die Elo-Werte stammen also aus einer Hersteller-Evaluierung, deren Protokoll wir nicht im Detail prüfen konnten [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Lizenzfalle"
+    },
+    {
+      "t": "p",
+      "x": "Die Lizenzlage verlangt einen genauen Blick, weil sie je nach Komponente kippt: Der von Inclusion AI geschriebene Code steht unter Apache 2.0. Die Modellgewichte dagegen unterliegen laut Modellkarte sowohl Apache 2.0 als auch CC BY-NC 4.0 - und die NC-Klausel schließt kommerzielle Nutzung aus. Auch im Code stecken eingebettete Fremdkomponenten, die teils unter CC BY-NC 4.0 stehen; das Repository verweist förmlich auf einen Legal Notice, den man vor Nutzung oder Weitergabe lesen soll. Für Forschung und Demos ist das Paket offen, für Produkte nicht [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Code World Model 2.0 ist weniger ein Video-Modell als eine Architektur-These: Wenn eine Engine die Welt hält, muss der Renderer keine Physik mehr lernen - er muss nur gut aussehen. Das erinnert an die Pipeline klassischer Game-Engines und macht lange, steuerbare Generierung überhaupt erst planbar. Ob der Ansatz außerhalb der eigenen Demo-Domänen trägt, können erst unabhängige Tests zeigen; die Kombination aus 8-GPU-Bedarf, fehlenden Trainingsdaten und NC-Lizenz begrenzt die Verbreitung vorerst auf Forschung [1][2][3]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist ein visuelles Proxy?",
+      "a": "Ein schlichtes Struktur-Video - etwa semantische Karten, 3D-Boxen oder Masken - das Kamerapfad, Szenenlayout und Bewegungen festlegt. Invoker-Render ergänzt daraus plus einem Referenzbild die Optik [1][2]."
+    },
+    {
+      "q": "Ist Invoker-Render ein Weltmodell?",
+      "a": "Es ist der Render-Teil von Code World Model 2.0: Eine vorgelagerte Engine hält den Weltzustand, Invoker-Render übersetzt die Proxys der Engine in fertige Bilder [1][2]."
+    },
+    {
+      "q": "Darf ich Invoker-Render kommerziell nutzen?",
+      "a": "Nein. Die Gewichte stehen unter Apache 2.0 und CC BY-NC 4.0; die NC-Klausel verbietet kommerzielle Nutzung. Nur der eigene Repo-Code ist rein Apache 2.0 [1][2]."
+    },
+    {
+      "q": "Was brauche ich für den Betrieb?",
+      "a": "Das Standard-Profil nutzt acht NVIDIA-GPUs an einem Knoten; dazu kommen weitere Assets (VAE, Textmodell, Decoder), die nicht im Gewichts-Repository liegen. Eigene Tests haben wir nicht durchgeführt [1][2]."
+    },
+    {
+      "q": "Sind die Elo-Werte unabhängig geprüft?",
+      "a": "Nein. Sie stammen aus der Hersteller-Evaluierung auf 140 Rollouts; der technische Bericht liegt nur als Repository-PDF vor, arXiv-Listung und Trainingsdaten stehen noch aus [2]."
+    }
+  ],
+  "method": "Recherche am 18. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von inclusionAI/invoker-render-1.0 (Gewichts-Hinweise und Lizenzabschnitt gelesen), GitHub-Repository inclusionAI/CodeWorldModel (README master inklusive Release-Status und Lizenzabschnitt, Repository-API), Projektseite inclusion-ai.org/CodeWorldModel. Den technischen Bericht (PDF im Repository), die Deployment-Doku docs/INFERENCE.md und die verlinkten Demo-Videos haben wir nicht geöffnet. Alle Elo- und Qualitätsangaben stammen vom Hersteller; Framework-Tests haben wir nicht durchgeführt.",
+  "limitations": "Elo-Werte und Demo-Qualität stammen vom Hersteller und sind unabhängig nicht bestätigt; die 30-Minuten-Demo nutzte eine Qualitätsrichtlinie, die der Standard-Dienst nicht aktiviert. Trainingsmethode und -daten sind nicht veröffentlicht, der Bericht liegt nicht auf arXiv vor. Die NC-Lizenz schließt kommerzielle Nutzung aus; der Betrieb erfordert acht GPUs und externe Assets.",
+  "related": [
+    "duo-v1-weltmodell-analyse",
+    "genie-4-weltmodell-analyse",
+    "video-ki"
+  ]
+}
