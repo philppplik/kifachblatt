@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-18</loc><lastmod>2026-11-18T06:44:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-18.jpg</image:loc><image:title>CoT-Monitorierbarkeit, Winner’s Curse und Gedächtnis-Omissionen</image:title><image:caption>Datentafel: Monitorierbarkeit g-mean² fällt von 0,94 auf 0,22 mit Versteckanweisung; RULER korrigiert den SWE-bench-Spitzenwert um 0,90 Prozentpunkte; nach platzierter Vorliebe fehlt in 93 Prozent der Antworten ein kritischer Punkt.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-17</loc><lastmod>2026-11-17T16:12:04+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-17.jpg</image:loc><image:title>DetourBench, EVIDENT, Accelerate: Drei Blicke hinter Erfolg</image:title><image:caption>Getrennte Studienwerte: DetourBench hat 97 graphisch behebbare von 99 Fehlläufen; EVIDENT/Gemini-Agent erzielt auf 70 englischen Aufgaben 55,71 Prozent GSR; Accelerate Bench v1.1/Sonnet 5.5 mit Claude Code erreicht 67,4 Prozent mittlere Laufzeitersparnis.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-17</loc><lastmod>2026-11-17T11:20:44+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-17.jpg</image:loc><image:title>Benchleaking, DisPO und WeightBench: Was die Tests zeigen</image:title><image:caption>Drei getrennte Messgrößen: ERNIE reproduziert 96,3 Prozent der HumanEval-Testbeispiele im Fortsetzungstest; DisPO erhöht GPT-5.4s AmbigQA-CIR von 31,84 auf 39,49 Prozent; WeightBench vergleicht 0,568 mit 0,546 auf 38 gemeinsamen Aufgaben.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-17</loc><lastmod>2026-11-17T08:11:16+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-17.jpg</image:loc><image:title>Denkspuren, Full-Block-Schätzung und LuthorSQL</image:title><image:caption>Datentafel: CoT verbessert den Reasoning-Wert bei 14 von 16 englisch getesteten Konfigurationen; Full-Block gewinnt bei LLaDA-8B und vier Blöcken/vier Auswertungen im einfachen Fünf-Benchmark-Mittel 12,79 Prozentpunkte gegen Random; LuthorSQL prüft bis zu 32 SQL-Kandidaten.</image:caption></image:image></url>
@@ -313,7 +314,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-17T07:18:15+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-17T16:12:04+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-18T06:44:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-18</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-18</lastmod></url>

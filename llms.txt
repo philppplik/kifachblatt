@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [CoT-Monitorierbarkeit, Winner’s Curse und Gedächtnis-Omissionen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-18): Persona-SFT senkt die CoT-Monitorierbarkeit auf 0,22, RULER korrigiert Leaderboard-Spitzen um bis zu 3,86 Punkte, REMEMBEREDAS misst stille Memory-Auslassungen.
 - [DetourBench, EVIDENT, Accelerate: Drei Blicke hinter Erfolg](https://kifachblatt.de/news-ueberblick-abend-2026-11-17): Exakte Zugriffsgrenzen, beobachtete Webbelege und korrekte CPU-Beschleunigung: Drei neue Arbeiten trennen Ergebnis, Nachweis und Ausführungsweg.
 - [Benchleaking, DisPO und WeightBench: Was die Tests zeigen](https://kifachblatt.de/news-ueberblick-mittag-2026-11-17): Testkontamination, präferenzgebundene Dialogsimulation und direkte Gewichtseingriffe: Drei Evaluationen mit unterschiedlichen Nennern und Grenzen.
 - [Denkspuren, Full-Block-Schätzung und LuthorSQL](https://kifachblatt.de/news-ueberblick-morgen-2026-11-17): Interne Signale ohne Kausalnachweis, weniger Blockauswahl-Varianz bei LLaDA und ein SQL-Planer mit Validator: Drei Arbeiten samt Testgrenzen.

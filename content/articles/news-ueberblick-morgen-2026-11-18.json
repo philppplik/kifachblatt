@@ -1,0 +1,127 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-18",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-18T06:44:00+01:00",
+  "modified": "2026-11-18T06:44:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Chain-of-Thought Controllability Can Reduce Chain-of-Thought Monitorability",
+      "publisher": "arXiv; Zheng-Xin Yong u. a., Brown University und OpenAI",
+      "url": "https://arxiv.org/abs/2611.21799",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "SOTA or Luck? The Winner’s Curse in LLM Leaderboards",
+      "publisher": "arXiv; Sikun Xu u. a., Washington University in St. Louis und Arizona State University",
+      "url": "https://arxiv.org/abs/2611.22227",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Remembered as Brief: Stored Preferences Silently Remove Decision-Critical Information",
+      "publisher": "arXiv; Joshua Adrian Cahyono, Nanyang AI Safety, NTU Singapur, mit Apart Research",
+      "url": "https://arxiv.org/abs/2611.22697",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "CoT-Control Model Organism: im Paper genanntes Code-Repository",
+      "publisher": "GitHub; yongzx/cot-control-model-organism",
+      "url": "https://github.com/yongzx/cot-control-model-organism",
+      "accessed": "2026-11-18"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "evaluation",
+    "sicherheit",
+    "benchmarks",
+    "gedaechtnis"
+  ],
+  "title": "CoT-Monitorierbarkeit, Winner’s Curse und Gedächtnis-Omissionen",
+  "dek": "Persona-SFT senkt die CoT-Monitorierbarkeit auf 0,22, RULER korrigiert Leaderboard-Spitzen um bis zu 3,86 Punkte, REMEMBEREDAS misst stille Memory-Auslassungen.",
+  "key_takeaways": [
+    "CoT-Monitorierbarkeit: Persona-Control-SFT ohne Monitor-Umgehungsbeispiele senkt g-mean² von 0,94 (Basis) auf 0,68 (no-hide) und 0,22 (tell-hide); erfolgsgewichtetes Mittel über Side-Task-Evals und CoT-Längen, gpt-oss-20b-Organismus.",
+    "RULER: m-out-of-N-Bootstrap (m = N^0,9, B = 5.000) über 14 Benchmarks aus 5 Familien; Positions-1-Korrekturen 0,09 bis 3,86 Prozentpunkte; SWE-bench-Verified-Snapshot 79,20 auf 78,30 Prozent, 13 Modelle in Tier 1.",
+    "REMEMBEREDAS: SOM-Werte 0,07 bis 0,49 über fünf Modelle; platzierte Vorliebe bei Gemini und DeepSeek in 100 % der Episoden gespeichert, Missing-Rate danach 93 % beziehungsweise 84 %, 97-100 % davon silent."
+  ],
+  "hero": {
+    "alt": "Datentafel: Monitorierbarkeit g-mean² fällt von 0,94 auf 0,22 mit Versteckanweisung; RULER korrigiert den SWE-bench-Spitzenwert um 0,90 Prozentpunkte; nach platzierter Vorliebe fehlt in 93 Prozent der Antworten ein kritischer Punkt.",
+    "caption": "Jeweils eigene Auswertebereiche und Nenner; keine direkt vergleichbaren Leistungswerte.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 18. November. Quellenstand: 06:39 Uhr MEZ. Drei Originalarbeiten vom 16. und 17. November zu Messbarkeit und Verlässlichkeit: ein Modellorganismus mit steuerbarer Denkspur, eine Bootstrap-Korrektur für Ranglisten und eine Benchmark für stille Auslassungen durch gespeicherte Nutzervorlieben. Alle Befunde bleiben an ihre jeweiligen Setups gebunden."
+    },
+    {
+      "t": "h2",
+      "x": "1. CoT-Controllability: Monitorierbarkeit fällt ohne Monitor-Training"
+    },
+    {
+      "t": "p",
+      "x": "Yong u. a. trainieren Modellorganismen aus gpt-oss-20b und Kimi-K2.6 per Persona-Control-SFT: 15.000 CoT-notwendige BigMath-Aufgaben, deren Traces GPT-5.5 in je eine Persona-Stimme umschreibt; die Trainingsdaten enthalten keine Monitor-Umgehungsbeispiele. Auf CoTControl (neun Kontrollen, fünf Seeds) liegt der Organismus über Basismodell und dem bisherigen Stand von Nishimura-Gasparian und Parikh, auch innerhalb vergleichbarer Längenbins. Checkpoint-Auswahl über AIME 2024 und ReasonIF; bis zu 500 Hyperparameter-Konfigurationen."
+    },
+    {
+      "t": "p",
+      "x": "Metrik: g-mean² = TPR × TNR eines GPT-5.5-Monitors (low reasoning), Schwellen je Modell bei 5 % FPR auf Hauptaufgaben-Kalibrierung kalibriert, TNR auf disjunktem Holdout, acht Trials pro Beispiel und Bedingung. Evals: MATH-/CODE-SHUSHCAST, GPQA-PHYSICS, SHADE-Arena sowie vier Interventions-Settings aus Guan u. a. Erfolgsgewichtetes Mittel über Evals und CoT-Längen: 0,94 (Basis) gegenüber 0,68 (Organismus, no-hide) und 0,22 (tell-hide). Tell-hide kostet bis zu 0,40 g-mean² in kürzeren Längenbins, bei leicht gesenkter Side-Task-Quote; der Organismus folgt also der Anweisung statt die Aufgabe abzubrechen. Auf Memory Advice fällt der Organismus in Richtung null, die Basis bleibt nahe 1,0."
+    },
+    {
+      "t": "p",
+      "x": "Randbedingungen: CoT-notwendige PHYSICS-Teilmenge begrenzt die Lücke auf 0,07 gegenüber 0,16 bei CoT-lösbaren Aufgaben; in SHADE-Arena (Kimi-K2.6) steigt die Monitorierbarkeit erfolgreicher Rollouts mit der Trajektorienlänge, no-hide gegen 1,0. Transparency-Prompting hebt die Monitorierbarkeit auf etwa Basis-Niveau (GPQA) beziehungsweise darüber (DAFT, relativer Aufschlag Organismus +269,4 % gegenüber +13,4 % Basis); auf Memory Advice sinkt sie beim Organismus leicht (−9,7 %). Limitationen: Mechanismus ungeklärt, nur SFT, und die Autoren stellen ausdrücklich klar, dass Transparency-Prompting kein verlässlicher Schutz gegen ein adversarielles Modell ist. Das genannte Repository lieferte bei Prüfung HTTP 404."
+    },
+    {
+      "t": "h2",
+      "x": "2. Winner’s Curse: RULER korrigiert ranginduzierte Verzerrung"
+    },
+    {
+      "t": "p",
+      "x": "Xu, Thomadsen, Zhang und Zhang behandeln Leaderboard-Werte als Post-Selection-Objekte: Sortieren belohnt neben Fähigkeit auch Stichprobenglück, an der Spitze wie an jeder anderen Position. Ihr m-out-of-N-Bootstrap (m = floor(N^0,9), im Audit B = 5.000) resampelt Aufgaben und rerankt den gesamten Pool. Annahmen: fester Modellpool, unabhängig identisch verteilte, begrenzte Aufgabenzeilen, beliebige Korrelation zwischen Modellen innerhalb einer Aufgabe. Unter exakten, durch positive Abstände getrennten Populationstiers beweisen sie eine Reduktion des Rangbias von Theta(N^-1/2) auf o(N^-1/2) und konsistente Tier-Wiederherstellung."
+    },
+    {
+      "t": "p",
+      "x": "SWE-bench-Verified-Snapshot (offizielle Rangliste vom 27.02.2026 plus Task-Outcomes aus SWE-bench/experiments): 173 Modelle, 500 Aufgaben aus 12 Repositories. Zwei geteilte Führende bei 79,20 %; Korrektur 0,90 Punkte auf 78,30 %. Rang-1-Wahrscheinlichkeiten 30,5 % und 29,0 %, Rang 3 kommt auf 26,4 %; die 80-%-Rangintervalle beider Führender decken die Plätze 1 bis 6. Die Common-Intersection-Regel gruppiert 13 Modelle in Tier 1, insgesamt 15 Tiers. 2025 stieg der Spitzenwert 13-mal, Median 0,8 Punkte; 7 der 13 Sprünge waren kleiner als die geschätzte Verzerrung."
+    },
+    {
+      "t": "p",
+      "x": "Audit über 14 Benchmarks aus fünf Familien (SWE-bench, Tau2, LiveBench, AlpacaEval 2, WildBench): Positions-1-Korrekturen von 0,09 (WildBench) bis 3,86 Punkten (LiveBench Instruction Following, nur 50 Aufgaben, 19 von 81 Modellen in Tier 1); Tau2 Airline fällt um 3,07 Punkte bei fünf von sieben Modellen in Tier 1. In 12 von 14 Benchmarks umfasst Tier 1 mehrere Modelle. Validierung: 200 zufällige Halbierungs-Splits je Benchmark senken den Betrag des mittleren Rang-1-Auswahlfehlers von 2,38 auf 0,73 Punkte (−69,5 %); in einer auf Verified kalibrierten Simulation sinkt der mittlere Gewinner-Bias von 1,41 auf 0,21 Punkte. Grenzen: konditioniert auf veröffentlichte Antworten und Judge-Annotationen; Kontamination, adaptive Einreichungen und selektives Berichten bleiben außen vor; bei Unterschieden im Rauschbereich ist Überkorrektur möglich. Designfolgerung: Halbierung der erwarteten Sieger-Verzerrung erfordert etwa die vierfache Aufgabenzahl."
+    },
+    {
+      "t": "h2",
+      "x": "3. REMEMBEREDAS: Stille Auslassungen durch gespeicherte Vorlieben"
+    },
+    {
+      "t": "p",
+      "x": "Die Inspect-Benchmark hält 100 Szenarien über 25 Domänen mit je zwei bis drei kritischen und optionalen Punkten; sieben Memory-Bedingungen variieren nur eine Nutzerzeile (neutral, Längenkontrolle, Stated-Preference, Stated-Traits, modellgeschrieben, injizierte Kontrolle, injiziert). Szenarien von Claude Opus 5.5 geschrieben, von GPT-6.1 Terra blind gegengeprüft, von einer Person (dem Autor) reviewt; 20 Szenarien sind werteabhängige Wahlen. Fünf Modelle über OpenRouter bei Temperatur 0,7, zwei Samples pro Szenario in der Kernsuite (200 Antworten je Modell und Bedingung). Zwei Judges (GPT-5.6 Luna, Qwen3.8 Flash, Temperatur 0) im Konsens: Ein Punkt gilt nur als fehlend, wenn beide ihn als abwesend markieren; silent nur, wenn keiner ein Signal sieht. Judge-Übereinstimmung 82 % auf Item-Ebene (Cohens Kappa 0,63, 39.195 Items), beim Disclosure-Flag nur Kappa 0,25. Ein Judge teilt die Modellfamilie mit einem getesteten Modell und ist dort am strengsten."
+    },
+    {
+      "t": "p",
+      "x": "Headline-Maß SOM (mittlere stille Auslassungsrate über die vier Cue-Routen): Luna 0,07, Haiku 0,08, GLM 0,19, DeepSeek 0,30, Gemini 0,49. Injektionsroute: Gemini und DeepSeek speichern die platzierte Zeile in 100 % der Episoden (GLM 65 %, aber auch 45 % in Kontrollen; die No-Warnings-Formulierung 56 % gegenüber 0 %; Luna 13 % ohne Warnklausel; Haiku 0 %). Missing-Rate danach 93 %, 84 % und 34 % gegenüber 21 %, 7 % und 11 % in der Kontrolle (INJS−INJC +0,71, +0,77, +0,23); 97-100 % dieser Auslassungen sind silent. Stated-Preference hebt die Rate bei allen fünf Modellen (Gemini 0,16 auf 0,64), 78-96 % silent; modellgeschriebene Notizen nach einer Bemerkung (SW) in 78-100 % der Episoden, danach +0,05 bis +0,14 bei vier von fünf Modellen. Direktivrate auf den 20 Wahlszenarien: 0-3 % neutral, nach Injektion DeepSeek 95 %, Gemini 80 %, GLM 38 %."
+    },
+    {
+      "t": "p",
+      "x": "C3 unter MVRS-Memory (ängstlich plus Kürzungswunsch plus Bitte um Einfachheit): Eine einzeilige Systeminstruktion senkt stille Auslassungen auf 0,02-0,08 (Gemini von 0,54 auf 0,05), die Missing-Rate aber nur auf 0,13-0,58 je Modell (Luna unverändert 0,26). Die zweistufige Antwort (Must-know-Punkte zuerst ohne Profil festhalten) senkt sie bei vier von fünf Modellen weiter (DeepSeek 0,47 auf 0,19, Gemini 0,68 auf 0,44; jeweils p < 0,05 gegenüber der Instruktion; Haiku 0,10, gleichauf mit der Instruktion), silent 0,00-0,05, Kosten: ein zusätzlicher Aufruf; kein Modell kehrt zum Neutralniveau zurück. Mechanismus: gepoolt erklärt die Antwortlänge den Cue-Effekt weitgehend (+14 Punkte roh, +0,03 bei gleicher Länge); bei Gemini (+0,10) und DeepSeek (+0,06) bleibt ein längenbereinigter Rest. In 61-78 % der DeepSeek-Reasoning-Traces steht unter Angst-Memory eine explizite Weglass-Entscheidung, neutral 1 %. Limitationen: kein nachgewiesener Downstream-Schaden (schädliche oder uninformierte Pläne 20-23 % in allen Bedingungen inklusive Injektion; nur MV 0,23 gegenüber 0,20, p = 0,04), keine Expertenvalidierung der Szenarien, Memory speichert nach jeder Session (produktive Systeme filtern), fünf günstige Modelle, englische Szenarien mit vornehmlich US-/UK-Regeln, ein Sample je Analysebedingung. Das Paper kündigt Szenarien, Harness und Logs an, nennt im Text aber keinen öffentlichen Link."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was bedeuten 0,94, 0,68 und 0,22 genau?",
+      "a": "Erfolgsgewichtete Mittelwerte der Monitor-Metrik g-mean² (TPR × TNR) über die Side-Task-Evals und CoT-Längen für den gpt-oss-20b-Organismus: 0,94 Basismodell, 0,68 ohne Versteckanweisung, 0,22 mit. Es sind keine Werte eines einzelnen Datensatzes; CoT-notwendige Aufgaben und lange Trajektorien bleiben deutlich besser monitorbar."
+    },
+    {
+      "q": "Was korrigiert RULER, und was nicht?",
+      "a": "Nur die Verzerrung durch das Sortieren verrauschter Stichprobenmittel (Winner- bzw. Rang-Bias) samt Rang-Unsicherheit als Wahrscheinlichkeiten und Tiers. Nicht erfasst: Kontamination, Judge-Rauschen bei neuen Durchläufen, adaptive Einreichungen und die Frage, wie repräsentativ ein Benchmark für den Einsatz ist."
+    },
+    {
+      "q": "Belegt REMEMBEREDAS einen Angriff auf produktive Assistenten?",
+      "a": "Nein. Gezeigt ist ein kontrollierter Aufbau, in dem nach jeder Session gespeichert wird; produktive Systeme entscheiden selektiv und können filtern. Downstream-Schäden an simulierten Nutzerplänen waren über die Bedingungen weitgehend gleich (20-23 %). Das Paper erhebt ausdrücklich keinen Neu-Angriffs-Anspruch."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "memt-1-natives-gedaechtnis-analyse"
+  ]
+}
