@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "FastFrames: Apples Video-Diffusion erreicht interaktive Latenz",
   "dek": "Apple stellt FastFrames vor: autoregressive Video-Diffusion in zwei Schritten - 480p-Videos mit 36 bis 45 Millisekunden pro Frame, als reines Forschungsmodell.",
-  "published": "2026-11-18T07:13:00+01:00",
-  "modified": "2026-11-18T07:13:00+01:00",
+  "published": "2026-11-18T07:15:00+01:00",
+  "modified": "2026-11-18T07:15:00+01:00",
   "author": "philipp-paulik",
   "tags": [
     "FastFrames",
