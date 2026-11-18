@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Misalignment im Team, 4-Bit-Refusals und Wissenschafts-Trends](https://kifachblatt.de/news-ueberblick-abend-2026-11-18): 720 Küchen-Episoden, rundungsspezifische 4-Bit-Refusal-Shifts und 2,5 Millionen Volltexte: drei Studien zu Teams, Modellen und Wissenschaftstrends.
+- [Systemprompt-CTF, Einkaufs-Konfidenz und Stoppregeln im Audit](https://kifachblatt.de/news-ueberblick-mittag-2026-11-18): Nevan zählt 296 Katalog-Captures plus vier spätere Modelle. Shopping-Agenten gewinnen vor allem Konfidenz; Coding-Stoppregeln sparen mit Qualitätsrisiko.
 - [FastFrames: Apples Video-Diffusion erreicht interaktive Latenz](https://kifachblatt.de/fastframes-analyse): Apple stellt FastFrames vor: autoregressive Video-Diffusion in zwei Schritten - 480p-Videos mit 36 bis 45 Millisekunden pro Frame, als reines Forschungsmodell.
 - [Invoker-Render: Weltmodell-Renderer streamt steuerbare Videos](https://kifachblatt.de/invoker-render-1-0-analyse): Inclusion AI trennt Weltzustand und Optik: Eine Engine hält die Welt, Invoker-Render rendert sie als Video - 33 Mrd. Parameter, nicht kommerziell lizenziert.
 - [CoT-Monitorierbarkeit, Winner’s Curse und Gedächtnis-Omissionen](https://kifachblatt.de/news-ueberblick-morgen-2026-11-18): Persona-SFT senkt die CoT-Monitorierbarkeit auf 0,22, RULER korrigiert Leaderboard-Spitzen um bis zu 3,86 Punkte, REMEMBEREDAS misst stille Memory-Auslassungen.

@@ -1,5 +1,41 @@
 [
   {
+    "title": "#heiseshow: Anthropic, Cloud-Ausfälle, Voyager 1",
+    "url": "https://www.heise.de/news/heiseshow-Anthropic-Cloud-Ausfaelle-Voyager-1-11529900.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795016640.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "In der #heiseshow: Anthropic plant den Börsengang, die Abhängigkeit von Microsoft, Apple & Co. wird zum Risiko und Voyager 1 ist einen Lichttag entfernt.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T16:32:38.181752+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Copilotforce: Wie KI-Agenten Unternehmenssoftware-Oberflächen ablösen",
+    "url": "https://www.heise.de/news/Copilotforce-Microsoft-macht-Copilot-zur-Bedienoberflaeche-fuer-Salesforce-11529752.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795014840.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Microsoft und Salesforce integrieren CRM-Funktionen und Geschäftsprozesse in Copilot. Ersetzt der KI-Assistent bald die klassische Bedienoberfläche?",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T16:32:38.181833+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Microsoft stellt neue KI-Modelle vor und erweitert sein Lizenzgeschäft",
+    "url": "https://www.heise.de/news/Microsoft-stellt-neue-KI-Modelle-vor-und-erweitert-sein-Lizenzgeschaeft-11529784.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795012380.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Microsoft setzt verstärkt auf spezialisierte KI-Modelle, die preislich mit der Konkurrenz mithalten sollen. Ein Spitzenmodell ist aber weiter in Entwicklung.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T16:32:38.181905+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "KI-Update kompakt: Destillation, Anthropics Börsengang, OpenAI-Klage, IdeaLens",
     "url": "https://www.heise.de/news/KI-Update-kompakt-Destillation-Anthropics-Boersengang-OpenAI-Klage-IdeaLens-11528179.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795010400.0,
