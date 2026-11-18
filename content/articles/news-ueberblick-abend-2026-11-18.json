@@ -1,0 +1,115 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-18",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-18T16:15:44+01:00",
+  "modified": "2026-11-18T16:15:44+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Bad Apples in the Kitchen: How LLM Teams Detect, Correct, and Calibrate Against Their Misaligned Members",
+      "publisher": "arXiv; Dongseok Heo, Junghwan Kim und Bongwon Suh, Seoul National University",
+      "url": "https://arxiv.org/abs/2611.22342",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Is 4-Bit Quantization More Than Noise to a Chat Model’s Safety Behaviour? Attributing Behavioural Shifts with Matched Perturbations",
+      "publisher": "arXiv; Ege Kaya, University of British Columbia",
+      "url": "https://arxiv.org/abs/2611.22186",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Large Language Models Have Not Yet Transformed Science",
+      "publisher": "arXiv; Ron Bekkerman, Nichole Li, Bahareh Kargar und Mark Somers, New Jersey Institute of Technology",
+      "url": "https://arxiv.org/abs/2611.22975",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "qrefusal: Code, Vorregistrierung und Labels",
+      "publisher": "Ege Kaya / GitHub",
+      "url": "https://github.com/egekaya1/qrefusal",
+      "accessed": "2026-11-18"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "agenten",
+    "sicherheit",
+    "quantisierung",
+    "wissenschaft"
+  ],
+  "title": "Misalignment im Team, 4-Bit-Refusals und Wissenschafts-Trends",
+  "dek": "720 Küchen-Episoden, rundungsspezifische 4-Bit-Refusal-Shifts und 2,5 Millionen Volltexte: drei Studien zu Teams, Modellen und Wissenschaftstrends.",
+  "key_takeaways": [
+    "Overcooked (n=720): Attribution 88-97 Prozent im schwachen Monitor-Setting (je 90 Episoden pro Typ), D1+D2: 61/54/31 Prozent. Ein stärkerer Monitor hilft Disruptor, kostet die trollfreie Baseline aber 37,5 Prozent.",
+    "Drei kleine Modelle: Qwen2.5-3B forced start +6,2 pp, Llama-3.2-3B free start -10,3 pp. Zufallskontrollen im Mittel nahe null; Q4_K_M ohne gesicherte Netto-Ratenverschiebung. Kein Klassenbefund.",
+    "Scientometrie: 2,5 Millionen Volltexte 2015-2025; 796 Surge-Lemmata. Meist fortlaufende Trends, keine signifikanten MATTR-Slope-Brüche; Asien-CS-Teamgrößen als wichtige Ausnahme beschleunigt."
+  ],
+  "hero": {
+    "alt": "Drei Forschungsbefunde: Agententeams, quantisierte Modelle und Wissenschaftstrends, jeweils mit begrenztem Versuchsaufbau.",
+    "caption": "Eigene Übersicht nach drei arXiv-Preprints vom 17.11.2026. Prozentwerte gelten nur für die jeweils genannten Versuchsbedingungen.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 18. November. Quellenstand: 16:02 Uhr MEZ. Drei Originalarbeiten vom 17. November zu Robustheit auf drei Ebenen: Misaligned-Mitglieder in einem verkörperten Agententeam, rundungsspezifische Refusal-Shifts in 4-Bit-Builds und eine scientometrische Trendmessung über 2,5 Millionen Volltexte. Alle Befunde bleiben an ihre jeweiligen Setups gebunden."
+    },
+    {
+      "t": "h2",
+      "x": "1. Bad Apples: Reparatur braucht Attribution plus Diagnose"
+    },
+    {
+      "t": "p",
+      "x": "Heo, Kim und Suh (Seoul National University) injizieren drei theoriegeleitete Troll-Typen in ein selbstgebautes Vier-Spieler-Overcooked (Backbone gpt-5.4-mini, 180 Sekunden, Chat parallel zur Aktion): Reneger (Sprech-Handlungs-Bruch, O(1)), Misallocator (Rollenverletzung, O(N^2)), Disruptor (Aggregat-Störung, O(T)); Verletzungsrate je etwa 30 %, Troll fix als Spieler 2. Design 3 Karten x 4 Bedingungen x 2 Sensitivitäten, 30 Trials pro Zelle, n=720; gepaarte Wilcoxon-Tests, Bonferroni je Gate, 10.000 Bootstrap-Resamples. Ergebnis Gate 1: Disruptor wird am spätestens erkannt und verursacht die größten Einbußen; die Reihenfolge überlebt Kartenwechsel und Backbone-Wechsel (GPT, Gemini, Qwen, Appendix)."
+    },
+    {
+      "t": "p",
+      "x": "Gate 2 trennt Benennen von Reparatur: Bare Attribution (>=D1) erreichen alle Typen (90/88/97 %, je 90 Episoden pro Typ im schwachen Monitor-Setting), doch die Ein-Äußerungs-Integration D1+D2 fällt auf 61/54/31 % und D1+D2+D3 auf 12/20/13 %. Reneger erholt sich trotzdem, weil 48,3 % seiner Korrekturäußerungen Self-Redirects sind (das Team deckt die Aufgabe selbst); Disruptor scheitert, weil Symptom und Ursache in der Trajektorie auseinanderliegen (64 von 90 Episoden mit wiederholten, zustandslosen Direktiven). Gate 3: Ein Prompt mit voller Reparaturstruktur hebt Disruptor von 2,7 auf 4,8 Suppen und Misallocator von 5,0 auf 6,5 (padj = 0,003), senkt aber die trollfreie Baseline von 8,0 auf 5,0 (-37,5 %), weil normale Varianz als Angriff gelesen wird. Wachsamkeit ist damit ein bilateraler Aktionskostenpunkt; die Autoren empfehlen anomalieindexierte statt uniformer Sensitivität. Limitationen: eine Umgebung, Troll-Position fix, verbalisierte Detektion kann Verhaltensdetektion unterschätzen, D2-Kappa 0,74; Code-Release bei Annahme angekündigt."
+    },
+    {
+      "t": "h2",
+      "x": "2. 4-Bit-Quantisierung: Der konkrete Rundungsfehler trägt den Shift"
+    },
+    {
+      "t": "p",
+      "x": "Kaya (UBC) prüft vorregistriert drei 3-4B-Chatmodelle (Qwen2.5-3B-Instruct, Llama-3.2-3B-Instruct, Qwen3-4B-Instruct-2507) in zwei Settings: forced start (8 vorgegebene compliant Tokens aus einer abliterierten Kopie, 562 Prompts) und free start (400 zurückgehaltene WildJailbreak-Prompts). Alles gepaart gegen bf16, mit 8-Bit-Null, verblindeten Labels durch den Autor und Äquivalenzmarge +/-5 pp. Befund: Qwen2.5-3B setzt im forced start häufiger schädlich fort (+6,2 pp [+2,8; +9,8] Judge, +19,4 pp [+6,0; +33,4] Mensch); Llama-3.2-3B erfüllt im free start nur noch 34,8 statt 45,0 % der Prompts, also -10,3 pp [-14,0; -6,2], MXFP4 -16,0, SORRY-Bench -5,0 pp; Qwen3-4B ohne korrigiert signifikanten Shift (unter dem Judge innerhalb der Äquivalenzmarge, Menschenlabels zu breit)."
+    },
+    {
+      "t": "p",
+      "x": "Attribution: Permutierte und Gaußsche Fehler gleicher Norm verschieben im Mittel nichts (Qwen2.5-3B +0,4 pp, Llama-3.2-3B -1,1 pp), der echte Fehler wirkt dosiert nahezu linear (Slopes +4,6 und -7,2 pp pro Fehlereinheit) und das Spiegel-Build kehrt das Vorzeichen um; beide Shifts sind damit rundungsspezifisch. Llama-3.2-3B bei halber Fehlerdosis: Likelihood praktisch unverändert (+0,005 Nats), Compliance bereits -5,8 pp. Kein Sicherheitsgewinn: Llama lehnt jailbreak-förmige harmlose Anfragen häufiger ab (+5,7 pp; explorativ, unkorrigiert p = 0,017), Qwen2.5-3B sichere XSTest-Anfragen nominell seltener (-6,4 pp, Holm p = 0,083, nach Korrektur nicht signifikant). AWQ reproduziert den Qwen-Shift (+4,8), GPTQ den Llama-Shift (-5,2); llama.cpps Q4_K_M zeigt bei keinem der beiden Modelle eine gesicherte Netto-Ratenverschiebung (ändert aber 15,8 beziehungsweise 11,5 % der Labels ohne Nettorichtung). Kein 8-Bit-Build verschob eine Rate korrigiert signifikant. Konsequenz des Autors: wo möglich 8 Bit, sonst jeden Build gegen sein Original testen; weder Bits pro Gewicht noch Likelihood ordnen die Shifts. Limitationen: drei kleine Modelle zweier Anbieter, kein Klassenbefund; Prefill laut Paper kein realistischer Angriff auf lokale Gewichte; Judge zählt Harm unter (Truncation-Check auf 150 Prompts); kalibrierte Quantisierer nur in den zwei Shift-Zellen. Code, Vorregistrierung und Labels sind unter github.com/egekaya1/qrefusal verfügbar; die schädlichen Rohantworten werden nicht offen mitgeliefert."
+    },
+    {
+      "t": "h2",
+      "x": "3. Scientometrie: Kontinuität nach 2022"
+    },
+    {
+      "t": "p",
+      "x": "Bekkerman, Li, Kargar und Somers (NJIT) vermessen 2,5 Millionen Volltexte (2015-2025; Health/Life aus PMC, CS/Math/Physics aus arXiv) mit segmentierter Regression (Knoten 2022) über lexikalische, epistemische, strukturelle und soziale Dimensionen. Wortebene: 14.484 Lemmata, davon 796 Surge (establish, underscore), 199 Decline (good, happen), 71 Rise-and-Drop (delve-Typ: Peak 2024, Rückgang 2025); betroffen sind gut tausend Wörter von mehreren zehn Millionen. Surge-Wörter stiegen in Abstracts (0,240 auf 0,548 %) und Fließtext (0,110 auf 0,254 %) gleichermaßen; das Abstract-Verhältnis bleibt stabil bei 2,11-2,21 und ist damit kein KI-Konzentrationseffekt."
+    },
+    {
+      "t": "p",
+      "x": "Keine signifikanten Slope-Brüche 2022 bei lexikalischer Diversität (MATTR-50) in allen fünf Disziplinen; die Terminologiedichte steigt überall weiter, in der Physik seit 2022 allerdings mit signifikant langsamerem Anstieg (p = 0,00966). Themenvielfalt (mittlerer paarweiser JS-Abstand): flach in Physik/Math; der CS-Verfall ist nahezu linear, beginnt vor 2022 und verlangsamt sich ab 2021 eher (Konvergenz auf Deep-Learning-Leitthemen); der BioMed-Einbruch schrumpft nach Filtern von 105 Boilerplate-Keyphrasen weitgehend (Format-Standardisierung; nur Terminologie-, nicht Wortverteilungen adjustiert, Residualrauschen möglich). Struktur (437.980 CS-arXiv-Paper): Konvergenztrend läuft weiter (1-3 Sektionen 17 auf 4 %, 5-Sektionen-Template 25 auf 55 %, Intro 2141 auf 1236 Wörter, References 682 auf 1261). Sozial: Teamgrößen folgen Alt-Trends; Ausnahme ist die beschleunigte Koautoren-Zunahme in Asien-CS nach 2022; Produktivität in CS/Physik post-2022 verstärkt (den LLMs zugeordnet), der BioMed-Knick 2023 ist mutmaßlich COVID-Rebound. Fazit: kein nachweisbarer Systemumbruch, aber eine Monitoring-Basis; die Autoren betonen zugleich Adoptionsgeschwindigkeit und Einzelprobleme (Slop, Halluzinationen) als Policy-Druck."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was genau ist die Reparatur-Lücke im Overcooked-Test?",
+      "a": "Bare Attribution: 88-97 Prozent bei je 90 Episoden pro Störertyp im schwachen Monitor-Setting. Dieselbe Äußerung enthält seltener auch Diagnose (D1+D2: 61/54/31 Prozent). Reneger-Teams erholen sich vor allem durch eigene Umplanung; 48,3 Prozent der Korrekturäußerungen sind Self-Redirects. Das ist keine universelle notwendige oder hinreichende Reparaturbedingung."
+    },
+    {
+      "q": "Was belegt die Matched-Perturbation-Methode, was nicht?",
+      "a": "Sie trennt \"jede Störung dieser Größe\" von \"dieser Rundungsfehler\": Zufalls- und Spiegelkontrollen zeigen, dass beide Refusal-Shifts am konkreten Fehler hängen und dosiert wachsen. Sie sagt nicht, welcher Build vorab shiften wird; dafür gibt es laut Paper keinen Prädiktor, deshalb Test gegen das Original."
+    },
+    {
+      "q": "Widerlegt die Scientometrie-Studie den AI-Slop-Befund?",
+      "a": "Nein. Sie zeigt auf Makro-Ebene Kontinuität (Vielfalt, Terminologie, Struktur, Kollaboration) und bestätigt zugleich Wortfrequenz-Shifts; Einzelbefunde wie Slop oder halluzinierte Referenzen bleiben davon unberührt. Die Autoren selbst warnen vor Adoptionsgeschwindigkeit und empfehlen Monitoring und Policy statt Entwarnung."
+    }
+  ],
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "guardrails-sichere-prompts"
+  ]
+}
