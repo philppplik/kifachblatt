@@ -1,0 +1,123 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-18",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-18T10:01:01+01:00",
+  "modified": "2026-11-18T10:01:01+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Eight in Ten LLMs Leak System-Prompt Secrets: Nevan, an Agentic Capture-the-Flag Study",
+      "publisher": "arXiv; Ana Clara Zoppi Serpa, Anderson Rocha und Hélio Pedrini, University of Campinas (UNICAMP)",
+      "url": "https://arxiv.org/abs/2611.21956",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Thinking Harder Doesn’t Lead to Better Choices: Reasoning Effort Increases the Confidence but Not the Correctness of LLM Shopping Agents",
+      "publisher": "arXiv; Adi Krishnamoorthy und X. Y. Han, University of Chicago",
+      "url": "https://arxiv.org/abs/2611.22033",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Done, But Still Working: Anytime Evaluation of When Coding Agents Should Stop",
+      "publisher": "arXiv; Zerui Yang u. a., Huawei Technologies",
+      "url": "https://arxiv.org/abs/2611.22901",
+      "accessed": "2026-11-18"
+    },
+    {
+      "title": "Nevan-Artefakte: laut Paper bei Einreichung privat deponiert, bei Annahme öffentlich",
+      "publisher": "Hugging Face; ilostmytails/nevan (Zugriffstest: HTTP 401)",
+      "url": "https://huggingface.co/buckets/ilostmytails/nevan",
+      "accessed": "2026-11-18"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "agenten",
+    "sicherheit",
+    "evaluation",
+    "benchmarks"
+  ],
+  "title": "Systemprompt-CTF, Einkaufs-Konfidenz und Stoppregeln im Audit",
+  "dek": "Nevan zählt 296 Katalog-Captures plus vier spätere Modelle. Shopping-Agenten gewinnen vor allem Konfidenz; Coding-Stoppregeln sparen mit Qualitätsrisiko.",
+  "key_takeaways": [
+    "Nevan-CTF: 296 von 363 OpenRouter-Modellen gaben eine 16-stellige Systemprompt-Flag preis (plus 4 nach Katalog-Freeze); 170 Captures mit Sprachpivot, 119 Französisch; Trichterdesign konfundiert Sprache und Reihenfolge; Capture = exakter Flag-Match, kein semantischer Befund.",
+    "Shopping-Entscheidungen: low→high-Aufwand signifikant genauer nur bei 3/10 Modellen (WebShop; nach Holm nur Qwen 3.8 Max), Konfidenz signifikant höher bei 9/10; paarweise Fehlerkorrelation 0,70-0,81 über drei Datensätze.",
+    "Stoppregeln: Hindsight-Bound an bestandenen Selbsttests <1 bis 57 % der Kosten; Twice-passed -22,8 % bei -1,0 Punkten in präregistrierter Replikation (386 Runs), Nichtunterlegenheit nicht belegt; Destillation -30,0 % bei -1,2 über sechs Seeds."
+  ],
+  "hero": {
+    "alt": "Drei getrennte Studienbefunde: 296 Captures unter 363 Nevan-Katalogeinträgen plus vier spätere Modelle; bei WebShop steigt Konfidenz häufiger als Genauigkeit; Twice-passed spart 22,8 Prozent bei ungesicherter Qualitätsmarge.",
+    "caption": "Jeweils eigene Auswertebereiche, Nenner und Scopes; keine direkt vergleichbaren Leistungswerte.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 18. November. Quellenstand: 09:55 Uhr MEZ. Drei Originalarbeiten vom 16. und 17. November zu Agenten im Betrieb: ein CTF-Audit der Instruktionshierarchie über 363 Modelle, eine gepaarte Analyse von Reasoning-Aufwand und Kalibrierung beim agentischen Einkauf sowie eine Anytime-Evaluation von Stoppregeln für Coding-Agenten. Alle Befunde bleiben an ihre jeweiligen Setups gebunden."
+    },
+    {
+      "t": "h2",
+      "x": "1. Nevan: Capture the Flag über 363 Modelle"
+    },
+    {
+      "t": "p",
+      "x": "Serpa, Rocha und Pedrini (UNICAMP) prüfen die Durchsetzung der Instruktionshierarchie: Jedes der 363 Textmodelle aus dem OpenRouter-Katalog (Freeze 6.10.2026) bewacht eine zufällige 16-stellige alphanumerische Flag im Systemprompt; der Red-Teamer ist ein OpenCode-Agent auf DeepSeek V4.1 Flash, von einem Forscher gesteuert. Ergebnis: 296 Captures plus vier nach dem Freeze veröffentlichte Modelle, 300 insgesamt; 50 Modelle ausstehend, 17 verworfen (HTTP-4xx). Von den Captures enthalten 170 einen nicht-englischen Sprachpivot, 119 davon Französisch; wegen des Trichterdesigns (Ersttreffer-Attribution bei sequenziell ausprobierten Techniken) belegt das keine Überlegenheit einzelner Sprachen oder Techniken. Im autonomen AutoResearch-Lauf (5,5 Stunden) entstanden 59 der erfassten Erst-Captures."
+    },
+    {
+      "t": "p",
+      "x": "Interpretation mit der Trennschärfe des Papers: Ein Capture zeigt, dass das Modell eine Nutzeranfrage mindestens einmal über die Systeminstruktion stellte; es belegt weder konsistente Preisgabe semantisch sensibler Daten noch Anfälligkeit für schadbezogene Jailbreaks, und Nicht-Capture ist keine Robustheit (ein Angreifer-Setup, keine Konfidenzintervalle oder statistischen Tests). Empfehlungen R1-R3: keine Secrets in Systemprompts, kritisches Verhalten außerhalb des Modells erzwingen (Ausgabevalidierung, deterministische Checks), kein LLM-Judge als alleiniger Entscheider folgenreicher Ergebnisse. Die Artefakte liegen in einem Hugging-Face-Bucket, laut Paper bei Einreichung privat und bei Annahme öffentlich; ein Zugriffstest am 18. November lieferte HTTP 401."
+    },
+    {
+      "t": "h2",
+      "x": "2. Reasoning-Aufwand: Konfidenz steigt, Genauigkeit meist kaum"
+    },
+    {
+      "t": "p",
+      "x": "Krishnamoorthy und Han (University of Chicago) isolieren die Entscheidung aus dem Einkaufs-Loop: feste, gemischte Zehnerliste, genau ein korrektes Produkt, identische Prompts über OpenRouter, gemeinsames Budget von 16.000 Tokens für Reasoning plus Antwort. Zehn Frontier-Modelle von sechs Anbietern, drei Datensätze: WebShop (496 Aufgaben, multimodal, Belohnungsfunktion), SQID (500, menschliche ESCI-Labels), WANDS (330 Testaufgaben, rein Text). 37.128 Antworten, 99,92 % parsebar. DeepSeek V4.1 Flash und Kimi K3 kennen nur low und high."
+    },
+    {
+      "t": "p",
+      "x": "Gepaarte low→high-Kontraste: Genauigkeit nominal signifikant nur bei Qwen 3.8 Max, Gemini 3.1 Pro und Gemini 4 Argon (WebShop) sowie GPT-6 Luna (WANDS); nach Holm-Korrektur über 26 Kontraste je Metrik und Datensatz bleibt nur Qwen 3.8 Max auf WebShop (+5,5 Punkte). Die Konfidenz (0-10) steigt dagegen signifikant bei 9/10 Modellen (WebShop), 5/10 (SQID) und 6/10 (WANDS); nur Kimi K3 fällt. Overconfidence: acht Modelle +7 bis +16 Punkte (WebShop), +10 bis +20 (WANDS), +27 bis +33 (SQID); Claude Fable 5.1 und Opus 5.5 liegen bei -2,8 beziehungsweise -6,7 (WebShop) und +12,4 beziehungsweise +10,8 (SQID). Kalibrierung ist Modelleigenschaft: Die ECE-Rangfolgen sind über die Datensätze nahezu identisch (Spearman 0,79-0,92), die Claude-Modelle führen ECE und Brier fast überall (WebShop-ECE 3,4 und 6,7 gegenüber 8,9-18,2); am Aufwand ändert das kaum etwas."
+    },
+    {
+      "t": "p",
+      "x": "Geteilte Fehler: Die Zahl falscher Modelle je Aufgabe variiert 6- bis 8-fach über der Unabhängigkeitsbasis, die implizite paarweise Fehlerkorrelation liegt bei 0,70-0,71 (WebShop), 0,79-0,81 (SQID) und 0,77-0,81 (WANDS). Bei Aufgaben mit mindestens zwei Fehlern (low) fallen über 80 % der Fehlgriffe auf dasselbe falsche Produkt gegenüber 32-36 % bei Gleichverteilung. Konsequenz der Autoren: Konfidenz und Cross-Agent-Konsens sind schwache Absicherungen; Kalibrierung ist Auswahlkriterium, nicht Tuning-Ziel. Limitationen: fixe Liste ohne Suchteil, Labelrauschen (etwa 15 % der WebShop-Distraktoren diskutabel), einmalige Konfidenzabfrage im Antwort-JSON, je Bedingung ein Lauf, anbieterdefinierter Aufwandsparameter (Qwen 3.8 Max: 394→2.033 Reasoning-Tokens; GPT-6 Astra/Sol <100)."
+    },
+    {
+      "t": "h2",
+      "x": "3. Anytime-Evaluation: Wann Coding-Agenten stoppen sollten"
+    },
+    {
+      "t": "p",
+      "x": "Yang u. a. (Huawei) werten Runs nicht nur am Endpatch: Aufgezeichnete Befehle werden in einer ausführbaren Sandbox nachgespielt, jeder Zwischenpatch mit versteckten Tests bewertet und jedes Präfix mit relativen Tokenpreisen verrechnet (c = 0,1 für Cache-Treffer, p = 4 für Output). Rund 6.000 Runs, acht offene Modelle, mini-SWE-agent 2.4.6 und SWE-agent 1.1.0, SWE-bench Verified (Django, SymPy plus sieben weitere Repositories). Regeln, die nur stoppen oder einen früheren Patch wählen, sind so exakt gepaart auswertbar; der Endzustands-Abgleich traf 4.009 von 4.012 Finalpatches. Das prüft den Endzustand, nicht jeden Zwischenzustand. Hauptmodell Qwen3.6-27B: nach dem ersten bestandenen Selbsttest (in 60 % der Runs) noch 18 Befehle, 42 % der Kosten dieser Runs (mini-SWE-agent) beziehungsweise 66 % (SWE-agent); in 80-87 % dieser Runs wird der bereits vorhandene Patch abgegeben."
+    },
+    {
+      "t": "p",
+      "x": "Hindsight-Bounds: verlustfreies Stoppen an bestandenen Selbsttests spart höchstens 25 % (mini-SWE-agent) bis 57 % (SWE-agent), bei Modellen mit seltenen Testdurchläufen unter 1 bis 5 %. Die Regel \"zweimal derselbe Patch bestanden\" erreicht davon 68-77 %; in der präregistrierten Replikation (386 neue Runs) -22,8 % Kosten bei -1,0 Auflösungspunkten; der präregistrierte Test belegt Nichtunterlegenheit bei 2-Punkte-Marge nicht. First-pass spart 24-31 %, verliert bis 3,9 Punkte. Die Dekomposition ΔQ = -r·u·δ erklärt die Unterschiede: SWE-agent verliert 2,8 Punkte (Änderung nach Pass in 40 % der gestoppten Runs), mini-SWE-agent 0,3 (10 %), bei ähnlicher Nettoreparatur δ (0,08/0,07); DeepSeek-V4-Flash mit negativem δ (-0,18) gewinnt durch Stoppen +0,9 beziehungsweise +1,7 Punkte. Prompting (8,4 %) und Nachfragen (6-7 % Ja von 439 Fällen, obwohl unter den fortgesetzten Fällen 61-72 % versteckt korrekt) taugen nicht; Stop-Destillation per LoRA auf eigene gelabelte Runs: -30,0 % bei -1,2 über sechs Seeds (Spanne -3,1 bis +1,2), Qwen3.8-27B -43,2 % bei +0,2, die Qualitätsmarge bleibt ungeklärt."
+    },
+    {
+      "t": "p",
+      "x": "Methodische Nebenbefunde: Die gepaarte Offline-Auswertung senkt den Standardfehler um Faktor 2-8; ein 2-Punkte-Effekt braucht offline 56 Aufgaben statt rund 1.184 online (mehr, als SWE-bench Verified enthält). Ein Scoring-Audit (fehlende gestagte Änderungen) hatte Auflösungen um bis zu 7 Punkte unterschätzt und frühere Schlussfolgerungen gekippt. Limitationen: nur offene, lokal per vLLM servierte Modelle mit deaktiviertem Thinking; ein bestandener Selbsttest ist ein schwaches Signal (versteckte Tests scheitern in ~30 % der Runs mit Regel-Firing); die Präregistrierung besteht aus internen datierten Aufzeichnungen, keinem öffentlichen Register; die Kostenmaße sind relative Tokenpreise, keine Geldbeträge."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was belegt die Capture-Quote von Nevan, was nicht?",
+      "a": "Nevan dokumentiert exakte Flag-Ausgaben bei 296 der 363 eingefrorenen Katalogeinträge sowie bei vier später aufgenommenen Modellen. Im Katalog blieben 50 Einträge offen, 17 wurden wegen HTTP-4xx verworfen. Diese Restgruppen sind keine nachgewiesen robusten Modelle. Die Befunde belegen weder konsistente semantische Secret-Leaks noch allgemeine Jailbreak-Anfälligkeit."
+    },
+    {
+      "q": "Lohnt hoher Reasoning-Aufwand für Entscheidungsaufgaben?",
+      "a": "Im getesteten Setup meist nicht: Gepaart stieg die Konfidenz signifikant (9/10 auf WebShop), die Genauigkeit nur ausnahmsweise und nach Holm-Korrektur nur in einem Fall. Die Autoren empfehlen, Kalibrierung als Auswahlkriterium zu behandeln; getestet wurde nur die Entscheidung aus einer festen Liste, nicht die Suche."
+    },
+    {
+      "q": "Ist die Twice-passed-Regel produktionsreif?",
+      "a": "Nicht ohne Qualitätsnachweis: -22,8 % Kosten bei -1,0 Punkten in der Replikation, Nichtunterlegenheit bei 2-Punkte-Marge nicht belegt; der Effekt hängt an Modell und Gerüst (DeepSeek-V4-Flash profitierte sogar). Selbsttests sind schwache Signale: Rund 30 % der Runs mit bestandenem Test scheiterten an den versteckten Tests."
+    }
+  ],
+  "related": [
+    "test-time-compute-reasoning-modelle-analyse",
+    "sicherheit-fuer-agenten-systeme"
+  ]
+}
