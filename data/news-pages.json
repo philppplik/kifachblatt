@@ -1,5 +1,53 @@
 [
   {
+    "title": "KI-Update kompakt: Destillation, Anthropics Börsengang, OpenAI-Klage, IdeaLens",
+    "url": "https://www.heise.de/news/KI-Update-kompakt-Destillation-Anthropics-Boersengang-OpenAI-Klage-IdeaLens-11528179.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795010400.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T14:18:20.509087+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Mehr Datenschutz bei Gemini: KI-Training untersagen und Verlauf behalten",
+    "url": "https://www.heise.de/news/Mehr-Datenschutz-bei-Gemini-KI-Training-untersagen-und-Verlauf-behalten-11529670.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795008660.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Durch neue Datenschutzeinstellungen der Gemini-App können Nutzer künftig das KI-Training untersagen, auch wenn sie die Chats länger behalten wollen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T14:18:20.509139+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Bitkom: Mehr KI-Nutzung bei Symptomen, Vorbehalte gegenüber KI wachsen ebenfalls",
+    "url": "https://www.heise.de/news/Bitkom-Mehr-KI-Nutzung-bei-Symptomen-Vorbehalte-gegenueber-KI-wachsen-ebenfalls-11529059.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794999780.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Viele nutzen KI-Chatbots für Gesundheitsfragen. Zugleich wachsen Vorbehalte gegen KI in der Medizin und Sorgen um persönliche Daten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T14:18:20.509345+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "GPT-6.2 Astra: OpenAI warnt vor neuen Risiken durch KI-Selbstverbesserung",
+    "url": "https://www.heise.de/news/GPT-6-2-Astra-OpenAI-warnt-vor-neuen-Risiken-durch-KI-Selbstverbesserung-11528955.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1794993360.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "GPT-6.2 Astra erreicht in unabhängigen Tests Platz zwei der leistungsfähigsten KI-Modelle. OpenAI sieht neue Sicherheitsrisiken durch KI-Selbstverbesserung.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-18T14:18:20.509486+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Nvidia: Fast 116 Milliarden US-Dollar Umsatz, Jensen Huang will zurückkommen",
     "url": "https://www.heise.de/news/Nvidia-Fast-116-Milliarden-US-Dollar-Umsatz-Jensen-Huang-will-zurueckkommen-11528649.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1794981600.0,
