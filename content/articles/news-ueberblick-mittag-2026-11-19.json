@@ -1,0 +1,120 @@
+{
+ "slug": "news-ueberblick-mittag-2026-11-19",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-19T11:15:00+01:00",
+ "modified": "2026-11-19T11:15:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Training Language Models for Introspective Oversight",
+   "publisher": "arXiv; Alex Lin Wang, Linus Yifeng Tang und Dami Choi, Transluce und MATS; Neil Chowdhury, Thinking Machines Lab",
+   "url": "https://arxiv.org/abs/2611.23365",
+   "accessed": "2026-11-19"
+  },
+  {
+   "title": "Do Frontier Model Ingredients Add Up?",
+   "publisher": "arXiv; Biswa Sengupta, JPMorgan LLM Suite Team",
+   "url": "https://arxiv.org/abs/2611.24540",
+   "accessed": "2026-11-19"
+  },
+  {
+   "title": "Idempotency Is Not Recovery: A Fault-Injection Study of Language-Model Agent Tool Actions",
+   "publisher": "arXiv; Song Xu, University of Electronic Science and Technology of China",
+   "url": "https://arxiv.org/abs/2611.23353",
+   "accessed": "2026-11-19"
+  }
+ ],
+ "tags": [
+  "forschung",
+  "agenten",
+  "sicherheit",
+  "evals"
+ ],
+ "title": "Introspektive Oversight, Zutaten-Faktoriell, Agenten-Absturztest",
+ "dek": "Observer-Training schlägt externe Wächter mit AUROC 0,907, ein Faktoriell gewichtet fünf Modellzutaten, und Idempotenz ist im Absturztest keine Recovery.",
+ "key_takeaways": [
+  "Introspektive Oversight (Qwen3.6-27B, 5 zurückgehaltene Fehlverhaltens-Evals, OOD zum Training): Observer mittlere AUROC 0,907 vs. Ehrlichkeits-Training 0,864, Transkript-Monitor 0,828, Aktivierungs-Orakel 0,796, direkte Nachfrage 0,776; externe Modelle mit gleichen Trainingsdaten deutlich schlechter; 3.-Person-Rolle 0,907 vs. 1.-Person 0,877; RL-Reasoning 0,719 auf 0,823, unter dem Direktmodus.",
+  "Zutaten-Faktoriell (51,5 Mio. aktive Parameter, FineWeb, 300 Mio. Tokens, 16 von 32 Kombis x 2 Seeds): mittlere Kontraste Experten -0,098 Nats, Muon -0,051, DeltaNet-Hybrid -0,037, Extra-Norm -0,019, Attention-Gate +0,002 (Referenzspanne +/-0,0043); Seeds korrelieren 0,996 (15 Kontraste) bzw. 0,94 (Interaktionen); 6 von 10 paarweisen Mitteln über der Spanne; All-on 3,679/3,675 Nats niedrigster Verlust, Gate-Entfernung ungetestet; Lenth-Schätzung 6x über der Wiederholungsschätzung.",
+  "Agenten-Fehlerinjektion (10 Fehlerklassen, Windows+Linux, je 7.513 Trials, 96 aufgezeichnete Modellantworten): fail-closed 0/100 unautorisierte Effekte vs. 100/100 fail-open; Doppeleffekte 0/200 (Vollkonfiguration) vs. 117/200 je einfachere Basislinie; ohne Ledger 170/170 verwaist, Recovery 200/300 vs. 300/300; ohne Abgleich 100/100 Absturz-nach-Effekt-Fälle unklar bei null Duplikaten; Vollkonfiguration ca. 1/7 Fail-open-Durchsatz, Beweis-Schreibfehler 75/100 unaufgelöst je Plattform."
+ ],
+ "hero": {
+  "alt": "Datentafel: Observer-AUROC 0,907 gegen 0,864 bis 0,776 der Vergleichsmethoden, Faktoriell-Kontraste von minus 0,098 bis plus 0,002 Nats, null von 200 Doppeleffekten der Vollkonfiguration.",
+  "caption": "Jeweils eigene Auswertebereiche, Nenner und Scopes; keine direkt vergleichbaren Leistungswerte. Preprints, keine unabhängige Replikation.",
+  "credit": "Eigene Grafik",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Fachüberblick vom 19. November. Quellenstand: 09:51 Uhr MEZ. Drei Originalarbeiten vom 17. und 18. November: Introspektive Oversight trainiert eine dritte Rolle ins Modell, die verifizierbar über den Assistenten Auskunft gibt, ein fraktioniertes Faktoriell gewichtet fünf Modellzutaten unter gemeinsamen Bedingungen, und eine Fehlerinjektions-Studie trennt Duplikat-Unterdrückung von Recovery in einer Agenten-Laufzeit. Alle Befunde bleiben an ihre jeweiligen Setups gebunden."
+  },
+  {
+   "t": "h2",
+   "x": "1. Introspektive Oversight: Eine dritte Rolle im Modell"
+  },
+  {
+   "t": "p",
+   "x": "Wang, Tang, Choi (Transluce, MATS) und Chowdhury (Thinking Machines Lab) trainieren eine Observer-Rolle neben User und Assistent ins selbe Modell: Sie beantwortet beliebige Fragen über den Assistenten in der dritten Person, prospektiv wie retrospektiv, und wird nur für gegen das tatsächliche Verhalten verifizierte Antworten belohnt. Pipeline: überwachtes Feintuning, dann RL auf verifizierbaren Queries (inklusive Kontrafaktualien und Multiple-Choice), on-policy-Distillation hält die Assistenten-Fähigkeiten. Geteilte Gewichte erlauben Zugriff auf die volle interne Berechnung, im Gegensatz zu externen Monitoren (nur Ausgaben) und Aktivierungs-Verbalisierern (konfabulationsanfällig)."
+  },
+  {
+   "t": "p",
+   "x": "Evaluierung an Qwen3.6-27B auf fünf zum Training disjunkten Fehlverhaltens-Aufgaben: Ja-Sagen (Scruples AITA, n=1500), Lügen unter Schadensdruck (WMDP-Setup, n=146), Reward Hacking auf SWE-bench-Transkripten (n=40) und zwei WeirdChat-Lügentypen (je n=200); alle als binäre AUROC aus Logprobs. Mittel 0,907 für den Observer vs. 0,864 Ehrlichkeits-Training, 0,828 Transkript-Monitoring, 0,796 Aktivierungs-Orakel, 0,776 direkte Nachfrage. Externe Modelle (Inkling-Small, Nemotron 3 Super) mit identischen Trainingsdaten liegen deutlich darunter, was den privilegierten Interna-Zugriff als Wirkfaktor stützt; die dritte Person schlägt die erste (0,907 vs. 0,877 bei analogen Daten). RL verdreifacht die mittlere Reasoning-Länge und hebt die Reasoning-AUROC von 0,719 auf 0,823, bleibt aber unter den 0,907 des Non-Reasoning-Modus."
+  },
+  {
+   "t": "p",
+   "x": "Transferbefund: Auf Transkripten des feingetunten Assistenten verbessert sich jede Baseline-Methode im Mittel, das Training macht den Assistenten also selbst besser monitorbar. Limitationen der Autoren: ein einzelnes Modell ohne Reasoning in den Eval-Transkripten, kein Vergleich mit Chain-of-Thought-Monitoring, keine stärkeren Modelle mit schwer überwachbaren Aktionen, kleine Sets (n=40 bei Reward Hacking, hohe Varianz), begrenztes RL, keine Modelle mit versteckten Zielen aus weiterem Feintuning, nur binäre Aufgaben, Freitext-Genauigkeit des Observers unbewertet. Code unter MIT-Lizenz auf GitHub (Codepaket und Skripte im Repo)."
+  },
+  {
+   "t": "h2",
+   "x": "2. Zutaten-Faktoriell: Fünf Schalter unter einem Raster"
+  },
+  {
+   "t": "p",
+   "x": "Sengupta (JPMorgan LLM Suite Team) misst fünf verbreitete Zutaten unter identischen Bedingungen: 8-Schicht-Decoder mit 51,5 Mio. aktiven Parametern, FineWeb, 300 Mio. Tokens pro Lauf, Kontext 1.024. Schalter: G Attention-Output-Sigmoid-Gate (bezahlt über schmaleres Feed-Forward), M Muon, S zusätzliche RMSNorm, E 32 Routing-Experten mit top-3 (161,3 Mio. Gesamtparameter, Kapazitäts-Konfound deklariert), H Gated-DeltaNet-Hybrid (Schichten 1-3 und 5-7 DeltaNet, 4 und 8 NoPE-Attention). Resolution-V-Fraktion: 16 von 32 Kombinationen mit xG*xM*xS*xE*xH=+1, zwei Seeds, 32 Kernläufe, ca. 9,6 Mrd. Tokens; Kontraste und Referenzspanne aus fünf H-only-Wiederholungen plus Seed-Paaren (+/-0,0043 Nats, Šidák über 15 Vergleiche)."
+  },
+  {
+   "t": "p",
+   "x": "Mittlere Einzelkontraste: E -0,0983, M -0,0506, H -0,0365, S -0,0194, G +0,0018 Nats. Seed-Übereinstimmung 0,996 über alle 15 Kontraste, 0,94 über die Interaktionen; Einzelkontraste weichen höchstens 0,004 Nats zwischen Seeds ab. Das Gate illustriert den Vergleichseffekt: allein gegen die All-off-Basis -0,019 Nats (Seed 0), über die selektierten Kombinationen +0,0018. Größtes paarweises Mittel MH/GSE +0,0122 (mit Spanne ca. 0,017, unter der praktischen Schranke 0,02); sechs paarweise und vier einzelne Mittel überschreiten die Referenzspanne. All-on ist in beiden Seeds das Minimum (3,6792 und 3,6750 Nats); die Vier-Schalter-Variante ohne G wurde nicht gelaufen, Gs Nullkontrast sagt daher nichts über dessen Entfernung aus dem All-on-Modell."
+  },
+  {
+   "t": "p",
+   "x": "Methodik: Lenth-PSE (0,0102 Nats) impliziert eine Lauf-Streuung um 0,020 Nats, rund sechsmal die Wiederholungsschätzung 0,0036; der initiale Schluss trennte nur E, M und H von null, die Wiederholungen zusätzlich S und mehrere Interaktionen, weil die Effektstreuung das Rauschen überschätzte. Aliasing bleibt (G entspricht MSEH u.a.), Replikation löst es nicht; zwei numerische Fehler (RMSNorm-Future-Token-Leck bei bestimmter Zeilenbreite, nicht-finite Router-Gradienten) wurden in der Entwicklung gefunden, behoben und aus den finalen Ergebnissen herausgehalten. Limitationen: eine Größenordnung, ein Korpus, keine Downstream- oder Long-Context-Aussagen, Trainingszeit/Energie/Inference nicht gematcht, Validierungskorpus teilt Tuning und Vergleich (Entwicklungsmessung), Rezept- statt Einzeländerungs-Vergleiche. JPMC-Disclaimer: Informationsprodukt, nicht aus der Research-Abteilung."
+  },
+  {
+   "t": "h2",
+   "x": "3. Idempotency Is Not Recovery: Fehlerinjektion in der Agenten-Laufzeit"
+  },
+  {
+   "t": "p",
+   "x": "Xu (UESTC, Single-Author-Preprint, CC BY-NC) implementiert eine kontrollierte Laufzeit mit fail-closed-Autorisierung, durablem Aktions-Ledger, stabilen Aktions-Identitäten mit zielseitiger Idempotenz, Post-Crash-Reconciliation und versiegelten Beweisen; Konfigurationen B0 fail-open, B1 volatil fail-closed, B2 durable Autorisierung mit Logging, B3 voll, plus Ablations A1 (Ledger-Bundle), A2 (Reconciliation), A3 (Beweis-Siegel). Zehn Single-Host-Fehlerklassen (F1 ungültige Autorisierung bis F10 Beweis-Manipulation), zielseitiges Orakel getrennt vom Ledger. Eingaben: 96 zuvor aufgezeichnete Modellantworten (Interface-Aliase glm-5-3-flash und deepseek-v4-1-flash, 2 je 24 Fälle, 42 distincte normalisierte Proposals), identisch über Konfigurationen abgespielt; pro Trial kein Live-Modell. Pro Plattform 7.513 Trials (4.000 clean, 2.250 Fault, 1.075 Ablation, 188 Recovery), Plan vor den physischen Trials fixiert, nach den Captures."
+  },
+  {
+   "t": "p",
+   "x": "Befunde: B1 und B3 blockieren alle injizierten unautorisierten Aktionen (0/100 vs. 100/100 für B0); B1s Operationsfenster-Durchsatz liegt nicht unter B0. In 200 bekannten Crash-Replay-Paaren: B3 ohne Doppeleffekte (0/200) vs. 117/200 für jede einfachere Basislinie; die Ledger-Ablation A1 selbst zeigt 0/300 Duplikate, verwaist aber 170/170 Effekte (vs. 0/170) und senkt Recovery von 300/300 auf 200/300. Ohne Reconciliation (A2) bleiben 100/100 bekannte Crash-after-effect-Paare ambig, bei null beobachteten Duplikaten: Duplikat-Unterdrückung und Recovery sind getrennte Eigenschaften. Ein nach den Ergebnissen entworfenes Supplement mit denselben Eingaben repliziert die Muster unter verifiziertem Antwortverlust (0/100 vs. 66/100 Duplikate; jede beobachtete A2-Ausführung ambig)."
+  },
+  {
+   "t": "p",
+   "x": "Kosten und Grenzen: B2 etwa halber Durchsatz von B1; B3 etwa ein Siebtel von B0; weil B3 ohne Beweis nicht finalisiert, lassen injizierte Beweis-Schreibfehler (F6) 75/100 Trials je Plattform unaufgelöst. Eine SQL-Nachzählung stimmte für 2.750 F1/F5/F7-Records plattformübergreifend mit den gespeicherten Ziel-Effekten überein; die Ledger-Vervollständigung wurde nur dort unabhängig geprüft, wo ein Ledger existierte. Limitationen der Autoren: eine Laufzeit, kontrolliertes Ziel, wiederverwendete Eingaben, Single-Host-Fehler, zwei Plattformen als konsistentes Verhalten einer Implementierung statt unabhängiger Replikation, kein Peer Review; künftige Arbeit: unabhängig gezogene Fälle, Produktionsziele, Multi-Host. Der Autor weist aus, dass OpenAI Codex und Anthropic Claude beim Verfassen des Manuskripts halfen, und verweist auf ein verwandtes eigenes Patent."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was genau belegt der Observer-Befund, was nicht?",
+   "a": "Belegt: Eine auf verifizierte Selbstauskünfte trainierte dritte Rolle erkennt Fehlverhalten auf fünf zurückgehaltenen binären Aufgaben besser als externe Monitore und Aktivierungs-Orakel (0,907 vs. 0,828/0,796), und externe Modelle mit gleichen Daten bleiben zurück. Nicht belegt: Freitext-Genauigkeit, nicht-binäre Aufgaben, andere Modelle, versteckte Ziele nach weiterem Feintuning; mit Reasoning erreicht der Observer nur externe Monitor-Niveau."
+  },
+  {
+   "q": "Heißt das Faktoriell, Attention-Gates lohnen nicht?",
+   "a": "Nur im getesteten Raster: Das Gate spart allein gegen die Basislinie 0,019 Nats, bringt aber über die 16 selektierten Kombinationen im Mittel +0,002 Nats, also nichts Messbares. Ob ein Gate ohne schmaleres Feed-Forward oder die Entfernung aus der All-on-Konfiguration hilft, wurde nicht getestet; die Studie deckt 51,5 Mio. Parameter, ein Korpus und 300 Mio. Tokens ab."
+  },
+  {
+   "q": "Warum reicht Idempotenz nach einem Agenten-Absturz nicht?",
+   "a": "Idempotenz unterdrückt Doppelwirkungen bei Wiederholung (0/200 in der Vollkonfiguration), beantwortet aber nicht, ob die unterbrochene Aktion wirkte: Ohne Reconciliation blieben alle 100 bekannten Crash-after-effect-Fälle ambig, trotz null Duplikaten. Erst Ledger-Bundle plus Abgleich lösten die Fälle auf (300/300 Recovery), zum Preis von rund sechs Siebteln Durchsatz und 75/100 unaufgelösten Trials bei Beweis-Schreibfehlern."
+  }
+ ],
+ "related": [
+  "guardrails-sichere-prompts",
+  "llm-betrieb-monitoring"
+ ]
+}
