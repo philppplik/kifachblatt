@@ -33,6 +33,11 @@
 ## Beiträge
 
 <!--GEN-->
+- [Datenfilter-Verzug, MAS-Fehlerdiagnose, Agenten-Infra-Benchmark](https://kifachblatt.de/news-ueberblick-abend-2026-11-19): Target-Thinning quantifiziert Datenfilter, TRACE-MAS repariert Kollaborationsfehler an der Quelle, und RSIBench-Infra misst Agenten an 20 Infra-Aufgaben.
+- [Aion 1.0: Microsoft zeigt Vorschau für das Windows-SLM](https://kifachblatt.de/aion-1-0-instruct-analyse): 2,29 Milliarden Parameter, 32K-Kontext und MIT-Lizenz. Optimierte Windows-Fassung mit Moderationsmodell bis Ende Januar 2027 angekündigt.
+- [Hy4 Flash: 220 Mrd. Parameter, 11,3 Mrd. für Text aktiv](https://kifachblatt.de/hy4-flash-analyse): Multimodales MoE mit Engram-Tabellen und bis zu einer Million Token Kontext. Herstellerwerte, Integrationsstand und genaue MaaS-Lizenzschwellen im Überblick.
+- [Introspektive Oversight, Zutaten-Faktoriell, Agenten-Absturztest](https://kifachblatt.de/news-ueberblick-mittag-2026-11-19): Observer-Training schlägt externe Wächter mit AUROC 0,907, ein Faktoriell gewichtet fünf Modellzutaten, und Idempotenz ist im Absturztest keine Recovery.
+- [Neuron-Steering im Team, Continuation Audits und Chiron](https://kifachblatt.de/news-ueberblick-morgen-2026-11-19): Single-Neuron-Steering mit Team-Effekt, Alignment-Audits auf echten SWE-Chat-Präfixen und ein LoRA-Modell für Messung und Prognose menschlichen Verhaltens.
 - [Misalignment im Team, 4-Bit-Refusals und Wissenschafts-Trends](https://kifachblatt.de/news-ueberblick-abend-2026-11-18): 720 Küchen-Episoden, rundungsspezifische 4-Bit-Refusal-Shifts und 2,5 Millionen Volltexte: drei Studien zu Teams, Modellen und Wissenschaftstrends.
 - [Systemprompt-CTF, Einkaufs-Konfidenz und Stoppregeln im Audit](https://kifachblatt.de/news-ueberblick-mittag-2026-11-18): Nevan zählt 296 Katalog-Captures plus vier spätere Modelle. Shopping-Agenten gewinnen vor allem Konfidenz; Coding-Stoppregeln sparen mit Qualitätsrisiko.
 - [FastFrames: Apples Video-Diffusion erreicht interaktive Latenz](https://kifachblatt.de/fastframes-analyse): Apple stellt FastFrames vor: autoregressive Video-Diffusion in zwei Schritten - 480p-Videos mit 36 bis 45 Millisekunden pro Frame, als reines Forschungsmodell.
