@@ -1,0 +1,120 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-19",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-19T16:24:00+01:00",
+  "modified": "2026-11-19T16:24:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "General progress substitutes for specific training data in language models",
+      "publisher": "arXiv; Mark Marosi und Peter Antal, Budapest University of Technology and Economics",
+      "url": "https://arxiv.org/abs/2611.24844",
+      "accessed": "2026-11-19"
+    },
+    {
+      "title": "TRACE-MAS: Diagnosing and Repairing Collaboration Failures in Multi-Agent Systems",
+      "publisher": "arXiv; Zekai Chen, Yihan Sun, Xunkai Li u.a., Beijing Institute of Technology und Partneruniversitaeten",
+      "url": "https://arxiv.org/abs/2611.23362",
+      "accessed": "2026-11-19"
+    },
+    {
+      "title": "RSIBench-Infra: Can Agents Optimize Their Own Training and Inference Infrastructure at Production Scale?",
+      "publisher": "arXiv; Hanlin Wu, Yifei Wang, Zhicheng Cai u.a., ByteDance Seed und Tsinghua AIR",
+      "url": "https://arxiv.org/abs/2611.24395",
+      "accessed": "2026-11-19"
+    }
+  ],
+  "tags": [
+    "forschung",
+    "agenten",
+    "sicherheit",
+    "evals"
+  ],
+  "title": "Datenfilter-Verzug, MAS-Fehlerdiagnose, Agenten-Infra-Benchmark",
+  "dek": "Target-Thinning quantifiziert Datenfilter, TRACE-MAS repariert Kollaborationsfehler an der Quelle, und RSIBench-Infra misst Agenten an 20 Infra-Aufgaben.",
+  "key_takeaways": [
+    "Datenfilter (Target Thinning, 5 Domänen, 0,76M bis 7B Parameter): Verzug bei Schach-Königssicherheit und 7B-Hauptstädten ohne Fit-Parameter aus kleineren Modellen vorhersagbar; nie trainierte Schachmodelle nahe am trainierten Niveau; Wiedererwerb pro Logit Vorsprung ca. 10x billiger (Schach/Webtext) bzw. 4x (SMILES); permutierte Kontrollregel deutlich langsamer; nie-trainierte Modelle brauchten 5-20x mehr Tokens als entfernte Fähigkeiten; Adapter Rang 4/16 genügen (1,3-7,4x Token). Code MIT auf GitHub.",
+    "TRACE-MAS (ICLR 2027, Backbone Qwen2.5-7B, 5 Benchmarks, L1-L3-Störungen): lernt normale Kollaborationsmuster aus benignen Trajektorien, erkennt Abweichungen in Zuständen, Nachrichten, Abhängigkeiten; Ursachen-Lokalisierung +60,2 % laut Paper; qüllbewusste Reparatur +30,0 Punkte Task-Recovery vs. Symptom-Reparatur; Baselines BlindGuard, G-Safeguard, A-Trust, AgentSafe, AcMAS(-R) unter gemeinsamen Splits; nicht protokollfähige Korpora ausgeschlossen statt umgerechnet.",
+    "RSIBench-Infra (20 Tasks, bis 32 Beschleuniger, NVIDIA+Ascend, OCI-Layer-Protokoll, unabhängige Auswertung mit Qualitätsgattern): 86 von 130 Ergebnissen (66,2 %) über 1,10x validiertem Speedup; GPT-6 Astra führt die Vollsuite mit 16/20 Faster, Median 1,3335x, SOL 0,667; Claude Opus 5.5 8/10 (Teilmenge ausgewiesen), Median 1,3431x; Spitzen 6,1062x und 3,3276x; 44 unter Schwelle, davon 9 Nullen (4 Deployment, 4 Qualitätsgatter, 1 Compliance)."
+  ],
+  "hero": {
+    "alt": "Datentafel: Verzug und Wiederbeschaffungskosten vorenthaltener Fähigkeiten, plus 60,2 Prozent Ursachen-Lokalisierung von TRACE-MAS, 66,2 Prozent der RSIBench-Ergebnisse über 1,10-fach Speedup.",
+    "caption": "Jeweils eigene Auswertebereiche, Nenner und Scopes; keine direkt vergleichbaren Leistungswerte.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Fachüberblick vom 19. November. Quellenstand: 16:05 Uhr MEZ. Drei Originalarbeiten vom 17. und 18. November: Target-Thinning-Experimente quantifizieren Verzug und Wiederbeschaffungskosten vorenthaltener Fähigkeiten, TRACE-MAS diagnostiziert und repariert Kollaborationsfehler auf Interaktionsebene, und RSIBench-Infra prüft Agenten an 20 produktionsnahen Infrastruktur-Aufgaben. Alle Befunde bleiben an ihre jeweiligen Setups gebunden."
+    },
+    {
+      "t": "h2",
+      "x": "1. Target Thinning: Was Datenfilter kaufen und was sie kosten"
+    },
+    {
+      "t": "p",
+      "x": "Marosi und Antal (BME Budapest) ersetzen die übliche Dokumentfilterung durch Target Thinning: Ein fester Anteil f der Next-Token-Ziele einer Fähigkeit (per Hash der Stream-Position) verlässt die Verlustfunktion, alle Eingabetoken bleiben. Domänen mit exakten Latentvariablen: Schach (Königssicherheit bei Schachgebot, 7,1 % der Tokens), Othello (Zwangspässe, 0,73 %), SMILES (Ringschluss-Ziffern, 5,17 %), Dyck-4 und Webtext (FineWeb-Edu bis 163M; Dolma-Rezept 20M bis 7B mit Hauptstädten, Stadt-Ländern, Klammern, Hilfsverben, 4-Grammen, Zählsequenzen). Verglichen wird bei gematchtem Hintergrundverlust, Modelle von 0,76M bis 7B."
+    },
+    {
+      "t": "p",
+      "x": "Zentrale Relationen: Der Onset-Verzug einer vorenthaltenen Fähigkeit ist aus kleineren Modellen vorhersagbar, für Schach-Königssicherheit und 7B-Hauptstädte ohne jeden Fit-Parameter, für die übrigen mit angepasster Sensitivität. Nie überwachte Schachmodelle (f=0) ordneten legale Antwortzüge fast so gut ein wie vollüberwachte. Bei Rückkehr der Ziele sank der Datenbedarf gegenüber Neuinitialisierung auf einen kleinen Bruchteil, pro Logit Überschuss des überwachten Modells etwa um Faktor 10 (Schach, Webtext) bzw. 4 (SMILES); die permutierte Kontrollregel gleicher Schwierigkeit lernte deutlich langsamer, die Ersparnis ist fähigkeitspezifisch. Nie-überwachte Modelle benötigten 5- bis 20-mal mehr Tokens als Modelle mit nachträglich entfernter Fähigkeit; die Filterungsroute verändert also Kompetenz und Wiederbeschaffungskosten."
+    },
+    {
+      "t": "p",
+      "x": "Konsequenzen und Einordnung: Die Relationen prognostizieren beide Trends von Rathi und Radford (Filter wirksamer mit Skala; adversariales Feintuning stellt mit unter 0,2 % der Tokens wieder her, Anteil fallend mit Größe) und stehen zu einer 6,9B-Beobachtung von O’Brien und Kollegen (Widerstand gegen 300M Tokens, 0,055 %) im Kontrast zur eigenen 7B-Rückkehr mit bis zu 13 % der Trainings-Tokens. Der vervollständigende Gewichtseingriff ist klein: ein oberer Block oder Adapter Rang 4/16 mit 1,3- bis 7,4-fachem Tokeneinsatz. Evaluation per Score unterschätzt die Wiederbeschaffungskosten stärker als Logit-Distanz. Limitationen: kontrollierte Domänen mit exakten Labels, zwei Webtext-Relationen; Code MIT auf GitHub (src und tests vorhanden, README listet ausgelassene Analysen)."
+    },
+    {
+      "t": "h2",
+      "x": "2. TRACE-MAS: Diagnose und Reparatur auf Interaktionsebene"
+    },
+    {
+      "t": "p",
+      "x": "Chen, Sun, Li und Kollegen (Beijing Institute of Technology u.a.; ICLR 2027) adressieren den Blindfleck agentenzentrierter Monitore: Ausfälle, die aus Nachrichten oder Abhängigkeiten entstehen, lassen gesunde Agenten auffällig wirken, und symptomatische Reparatur entfernt propagierte Folgen statt Ursachen. TRACE-MAS lernt aus benignen Trajektorien normale Ausführungsmuster (Zustandswechsel, Nachrichtentransitionen, Abhängigkeitsentwicklung), detektiert Abweichungen, attribuiert quellbewusst auf auslösende Ausführungselemente und wählt minimale Interventionen (Agenten-Reparatur, Nachrichtenkorrektur, Abhängigkeitsanpassung) unter Erhalt aufgabenkritischer Fähigkeiten."
+    },
+    {
+      "t": "p",
+      "x": "Evaluierung auf fünf öffentlichen MAS-Benchmarks (GSM8K, CSQA, HotPotQA, PoisonRAG, InjecAgent) unter kontrollierten L1-L3-Korruptionen, Backbone Qwen2.5-7B-Instruct, gemeinsame benigne Trainings-, Validierungs-Kalibrierungs- und angegriffene Test-Splits für alle Verfahren. Gegen BlindGuard, G-Safeguard, A-Trust, AgentSafe und AcMAS(-R) verbessert TRACE-MAS die Root-Cause-Lokalisierung laut Paper um 60,2 %; quellbewusste Reparatur steigert Task-Recovery um 30,0 Punkte gegenüber anomaliebasierter Reparatur (GT-Source-Gap +30,0 pp bei Budget 1). Agent-Level-Blindfleck, Anomalie-Quellen-Mismatch und Symptom-Reparatur-Versagen werden in einer kontrollierten Vorstudie belegt."
+    },
+    {
+      "t": "p",
+      "x": "Protokoll-Disziplin: Statische Trace-Korpora ohne ausführbaren Workflow und Attribution-Pipelines wie AutoFA und GUARDIAN wurden nicht in die Tabellen aufgenommen, weil Labels, Kalibrierungs-Splits oder Recovery-Metriken das gemeinsame Protokoll nicht erfüllen; das Team meldet dafür bewusst keine Zahlen. Limitationen: ein Backbone, kontrollierte statt reale Angriffe, Oracle-Varianten nur als Referenz (nicht deployment-fähig), Code im Paper nicht öffentlich verlinkt (anonymisierte Anhänge)."
+    },
+    {
+      "t": "h2",
+      "x": "3. RSIBench-Infra: 20 Produktionsaufgaben, 7 Agenten-Konfigurationen"
+    },
+    {
+      "t": "p",
+      "x": "Wu, Wang, Cai und Kollegen (ByteDance Seed, Tsinghua AIR) messen Agenten an produktionsnaher Infrastruktur-Optimierung: 20 Trainings- und Inferenz-Tasks über Modellfamilien und Modalitäten, bis zu 32 Beschleuniger auf NVIDIA-GPUs und Ascend-NPUs, Startpunkt offizielle Referenzrezepte, Änderungen auf Engine-, Kernel- und Instruktionsebene, Einreichung als OCI-Image-Layer, unabhängige Auswertung mit task-spezifischen Qualitätsgattern; validierter Speedup gegen die Baseline, Fehlschläge zählen null. Kontextzahl des Papers: verbreitete Serving-Engines erreichen 22-38 % des theoretischen Durchsatzes."
+    },
+    {
+      "t": "p",
+      "x": "Sieben Konfigurationen (GPT-6 Astra/Codex, Claude Opus 5.5/Claude Code, DeepSeek V4 Flash, GLM-5.3, Qwen3.8-Max, Seed Evolving, Kimi K3/OpenCode; Reasoning auf Maximum, 1M Kontext, 8h Budget): Von 130 formal bewerteten Ergebnissen überschreiten 86 (66,2 %) 1,10x. Vollständige Suiten: Astra 16/20 Faster mit Median 1,3335x und Mean-SOL 0,667, GLM-5.3 und Qwen3.8-Max je 14/20, DeepSeek V4 Flash und Kimi K3 je 12/20, Seed Evolving 10/20. Claude Opus 5.5: 8/10 auf der formal bewerteten Teilmenge (Coverage in den Tabellen ausgewiesen), Median 1,3431x, Mean-SOL 0,711. Laufzeiten: Claude 3h25 und Astra 3h36 im Mittel (ca. 43-45 % des Budgets), übrige 5h09 bis 6h53. Spitzen-Speedups: 6,1062x (Claude, LLaDA: block-kausale Prefill plus vektorisiertes Decoding), 3,3276x (Qwen, Inkling: natives MTP, größerer KV-Pool, hierarchisches Host-Caching), 1,7958x (Astra, GLM-5.3 Sparse-Attention-Kernel)."
+    },
+    {
+      "t": "p",
+      "x": "Fehleranalyse: 44 Ergebnisse unter der Schwelle, davon 35 positive bis 1,10x und 9 formale Nullen (4 Deployment-Fehler, 4 Qualitätsgatter-Fehler, 1 Compliance-Ablehnung). Beispiele: Qwen-SFT mit rohem 1,2540x-Durchsatz erhält null wegen Qualitätsgatter; Seed-TTS besteht das Sprachgatter, wird aber wegen geänderter Repetition-Penalty abgelehnt; Leistung, Qualität und Compliance werden getrennt bewertet. Limitationen: 20 Tasks als Stichprobe, SOL-Referenzen aus offiziellen Rezepten, Ergebnisse hardware- und harness-abhängig. Projektseite online; verlinktes Code-Repo öffentlich, mit Benchmark-Verzeichnis, zuletzt am 19.11. aktualisiert."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was genau belegt die Target-Thinning-Studie, was nicht?",
+      "a": "Belegt in fünf kontrollierten Domänen bis 7B: Vorenthaltene Ziele verzögern eine Fähigkeit vorhersagbar, der Restkorpus lehrt sie teilweise mit, und der Wiedererwerb wird mit dem Fortschritt um Größenordnungen billiger, fähigkeitspezifisch gegen eine permutierte Kontrolle. Nicht belegt: Grenzen bei realen Missbrauchs-Domänen oder Frontier-Modellen; die Autoren selbst verweisen auf abweichende Resistenz-Befunde anderer Arbeiten."
+    },
+    {
+      "q": "Warum reicht Agent-Level-Monitoring in MAS nicht?",
+      "a": "Weil Korruption in Nachrichten und Abhängigkeiten gesunde Agenten auffällig wirken lässt: TRACE-MAS zeigt in der Vorstudie, dass Execution-Level-Angriffe erhebliche Task-Ausfälle erzeugen, ohne Agentenprofile zu verändern, und dass quellbewusste Reparatur die Wiederherstellung um 30 Punkte verbessert. Quellbewusste Attribution mit minimalen Eingriffen schlägt symptomatische unter gemeinsamen Splits."
+    },
+    {
+      "q": "Heißt 66,2 Prozent Faster Rate, dass Agenten Infra-Optimierung können?",
+      "a": "Im getesteten Rahmen: 86 von 130 Ergebnissen über 1,10x validiertem Speedup bei 8-Stunden-Budget, mit Spitzen bis 6,1x. Zugleich blieben 44 Ergebnisse unter der Schwelle, 9 davon formale Nullen durch Deployment, Qualitätsgatter oder Compliance; die Autoren nennen das Finden wirksamer Strategien und das Übersetzen lokaler in End-to-End-Gewinne weiterhin schwierig."
+    }
+  ],
+  "related": [
+    "agenten-architekturen",
+    "lhtb-2-langzeit-agenten-benchmark"
+  ]
+}
