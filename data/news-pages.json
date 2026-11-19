@@ -1,5 +1,77 @@
 [
   {
+    "title": "WTF: KI nicht nach Geschenken fragen – sonst bekommen Deutsche die billigsten",
+    "url": "https://www.heise.de/news/KI-nicht-nach-Geschenken-fragen-sonst-bekommen-Deutsche-die-billigsten-11531034.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795097820.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Wenn man eine KI nach passenden Geschenken fragt, bekommen die Deutschen die mickrigsten empfohlen. In Indien sind sie gemessen am Lohn am teuersten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-19T14:30:53.697028+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Microsofts KI-Framework verteilt Malware: So bekamen Angreifer Zugang",
+    "url": "https://www.heise.de/news/Microsofts-KI-Framework-verteilt-Malware-So-bekamen-Angreifer-Zugang-11530977.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795089300.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Bei einem Hackerangriff wurde das Agent-Framework von Microsoft mit Malware infiziert, die an User ausgespielt wurde. Was Betroffene jetzt wissen müssen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-19T14:30:53.697232+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Google Genie 4: Interaktive KI-Welten jetzt für Abonnenten verfügbar",
+    "url": "https://www.heise.de/news/Google-Genie-4-Interaktive-KI-Welten-jetzt-fuer-Abonnenten-verfuegbar-11530791.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795087200.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Genie 4 ist jetzt für Abonnenten von Google AI Ultra zugänglich. Nutzer können damit interaktive Umgebungen erschaffen, erkunden, verändern und teilen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-19T14:30:53.697274+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Pages, Numbers, Keynote: Apples Office-Suite bekommt KI-Boost",
+    "url": "https://www.heise.de/news/KI-Assistent-und-MCP-Apple-oeffnet-iWork-Apps-fuer-LLMs-11530795.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795086480.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Pages, Numbers und Keynote lassen sich nun mit KI-Unterstützung steuern, über MCP dürfen am Mac externe LLMs ran. In der Basisversion fehlen die Funktionen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-19T14:30:53.697315+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Gemini 4 Neon macht Googles Spitzenmodell Konkurrenz",
+    "url": "https://www.heise.de/news/Gemini-4-Neon-macht-Googles-Spitzenmodell-Konkurrenz-11530483.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795077480.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Googles neues KI-Modell Gemini 4 Neon erreicht in Benchmarks das Niveau des Spitzenmodells Gemini 4 Carbon, arbeitet aber schneller und bald auch günstiger.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-19T14:30:53.697437+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Anthropic: Finaler IPO-Preis steht fest",
+    "url": "https://www.heise.de/news/Anthropic-Finaler-IPO-Preis-steht-fest-11528229.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795051500.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic hat den finalen Preis für seine Aktien bekannt gegeben. Die Aktien sollen am Donnerstag an die Börse NASDAQ kommen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-19T14:30:53.697604+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "AI Gigafactory im Norden: Nokia und Partner planen europäische KI-Infrastruktur",
     "url": "https://www.heise.de/news/AI-Gigafactory-im-Norden-Nokia-und-Partner-planen-europaeische-KI-Infrastruktur-11530042.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795022040.0,
