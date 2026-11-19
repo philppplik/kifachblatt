@@ -1,0 +1,158 @@
+{
+  "slug": "hy4-flash-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Hy4 Flash: 220 Mrd. Parameter, 11,3 Mrd. für Text aktiv",
+  "dek": "Multimodales MoE mit Engram-Tabellen und bis zu einer Million Token Kontext. Herstellerwerte, Integrationsstand und genaue MaaS-Lizenzschwellen im Überblick.",
+  "published": "2026-11-19T07:15:19+01:00",
+  "modified": "2026-11-19T07:15:19+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Hy4 Flash",
+    "Tencent",
+    "MoE",
+    "Multimodal",
+    "Open Weights"
+  ],
+  "key_takeaways": [
+    "Tencent hat Hy 4 Flash als Open-Weight-Modell veröffentlicht: multimodales MoE mit rund 220 Mrd. Parametern gesamt, aber nur 11,3 Mrd. aktiven Parametern pro Token (Text) [1].",
+    "Drei Architektur-Hebel senken die Kosten: hybride Aufmerksamkeit (sparse + Sliding-Window), LatentMoE mit 512 Experten in reduzierter Dimension und Engram genannte N-Gramm-Einbettungen, die 63,5 Mrd. Parameter auslagern [1].",
+    "Der KV-Cache schrumpft laut Karte auf 1/24 von Hy 3 und 1/6 von Hy 4; die Karte nennt über 150 Token/s Dekodierung mit 4-Bit-Quantisierung und dem mitgelieferten Drafter DFly 2 [1].",
+    "Interner WorkIndex:42,1 gegenüber 39,7 für Hy 4 Preview. Laut Tencent betragen die Kosten pro Aufgabe 1/13 davon. Eine Blindstudie mit 85 internen Nutzern und 259 Aufgaben meldet ähnliche Zufriedenheit wie bei Claude Haiku 5.5. Keine unabhängige Bestätigung.",
+    "Die Apache-abgeleitete Tencent Hy License ist nicht Apache 2.0. Zusätzliche schriftliche Lizenz bei MaaS-Betrieb unter den genau definierten Schwellen: mehr als 50 Millionen US-Dollar weltweiter Bruttoumsatz in zwölf aufeinanderfolgenden Monaten oder Einsatz für ein eigenes Produkt mit mehr als 100 Millionen MAU."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel: rund220Milliarden Gesamtparameter,11,3Milliarden aktiv für Text plus0,43Milliarden Vision;63,5Milliarden Engram-Parameter.",
+    "caption": "Herstellerangaben: rund220Milliarden insgesamt,11,3Milliarden pro Texttoken aktiv; Vision zusätzlich0,43Milliarden. Aktive Parameter sind kein Maß für gesamten Speicherbedarf [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "tencent/Hy4-flash (Modellkarte und Plattform-API, dazu API der Varianten -FP8 und -base)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/tencent/Hy4-flash",
+      "accessed": "2026-11-19"
+    },
+    {
+      "title": "Tencent Hy License, Version 1.0 (LICENSE-Datei im Modell-Repository)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/tencent/Hy4-flash/blob/main/LICENSE",
+      "accessed": "2026-11-19"
+    },
+    {
+      "title": "AngelSlim/Hy4-flash-GGUF (Plattform-API, Community-Quantisierung)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/AngelSlim/Hy4-flash-GGUF",
+      "accessed": "2026-11-19"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Tencent hat Hy 4 Flash veröffentlicht - und anders als beim angekündigten Hy 4 Anfang November liegen die Gewichte diesmal sofort offen vor: Instruct-Modell, FP8-Variante und das vortrainierte Basismodell stehen seit dem 17. November auf Hugging Face. Hy 4 Flash ist laut Karte das kostengünstigste Modell der Reihe: rund 220 Milliarden Parameter Gesamtgröße, aber nur 11,3 Milliarden aktive Parameter pro Token bei Text. Dazu kommen Bildverständnis und ein Kontextfenster von einer Million Token [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Drei Hebel gegen die Kosten"
+    },
+    {
+      "t": "p",
+      "x": "Hy 4 Flash kombiniert Sparse-Attention und Sliding-Window-Attention. Die Karte beschreibt zunächst zwei Sparse-Schichten, gefolgt von zehn Blöcken aus je drei SWA-Schichten und einer Sparse-Schicht. Insgesamt sind das 12 Sparse- und 30 SWA-Schichten, nicht global 1:3. Laut Tencent sinkt der KV-Cache auf 1/24 von Hy 3 und 1/6 von Hy 4. LatentMoE betreibt 512 routbare Experten im 1536-dimensionalen Raum und aktiviert 16 davon plus einen gemeinsamen Experten. Engram ergänzt per Hash abgerufene Bigramm- und Trigramm-Repräsentationen mit 63,5 Milliarden Parametern. Das spart Rechenarbeit, bedeutet aber nicht, dass diese Gewichte keinen Speicher benötigen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Dazu kommt DFly 2: ein fünfschichtiger Drafter mit 0,85 Milliarden Parametern, der den KV-Cache und die Sparse-Indizes des Hauptmodells wiederverwendet und spekulative Dekodierung auch bei langem Kontext billig halten soll. In Kombination mit 4-Bit-Quantisierung und Megakernels nennt die Karte über 150 Token pro Sekunde Dekodiergeschwindigkeit - ein Herstellerwert ohne unabhängige Messung [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Gesamtparameter: rund 220 Mrd. (155,5 Mrd. Rückgrat plus 63,5 Mrd. Engram, 0,43 Mrd. Vision-Encoder, 0,85 Mrd. DFly 2). Aktiv pro Token: 11,3 Mrd. (Text) plus 0,43 Mrd. (Bild). Rückgrat: 42 Schichten (1 dense, 41 MoE), MLA-Aufmerksamkeit, versteckte Größe 3072. Kontext: 1.048.576 Token. Bild-Encoder: abgewandeltes SigLIP2-So 400m mit 27 Schichten über MLP-Projektor. Varianten: Instruct, FP8, Base (alle 17.11.); Reasoning-Modus per Parameter (high oder no_think). Community-GGUFs existieren seit dem 16. November [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die internen Messungen zeigen"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "WorkIndex-Score im internen Hersteller-Vergleich",
+      "alt": "Balkendiagramm mit drei Werten: Hy4 erreicht 51,4, Hy4 Flash 42,1 und Hy4 Preview 39,7 Punkte",
+      "caption": "WorkIndex ist ein interner Tencent-Benchmark aus acht Arbeitsbereichen (Folien, Dokumente, Tabellen, Audio/Video und mehr). Die Karte nennt zugleich die Kosten pro Aufgabe: Hy4 Flash soll 1/13 von Hy4 Preview und 1/20 von Hy4 kosten [1].",
+      "labels": [
+        "Hy4",
+        "Hy4 Flash",
+        "Hy4 Preview"
+      ],
+      "series": [
+        {
+          "name": "WorkIndex",
+          "values": [
+            51.4,
+            42.1,
+            39.7
+          ]
+        }
+      ],
+      "y_label": "Punkte",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Zwei Dinge sind an dieser Tabelle bemerkenswert: Tencent misst Hy 4 Flash nicht an öffentlichen Bestenlisten, sondern an einem eigenen Arbeitsmaßstab - und positioniert es bewusst unter dem großen Hy 4 (51,4), dessen höhere Leistungsgrenze es für komplexe Langzeit-Softwareentwicklung empfiehlt. In einer Blindstudie mit 85 internen Nutzern über 259 Aufgaben kam Hy 4 Flash auf eine Zufriedenheit von 2,79 von 4 Punkten, nahe an Claude Haiku 5.5 (2,81), bei 6,7 Minuten medianer Bearbeitungszeit und umgerechnet 0,26 RMB pro Aufgabe. Alle diese Werte stammen vom Hersteller und wurden nicht unabhängig geprüft [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die Modellkarte enthält sowohl interne Arbeitsaufgaben als auch öffentliche Benchmarks. Die gezeigten Few-Shot-Werte des Basismodells liegen häufig unter Hy 4 Base und je nach Aufgabe über oder unter anderen Baselines. Bei MMLU stehen etwa 88,7 für Hy 4 Flash Base gegenüber 91,6 für Hy 4 Base,89,7 für DeepSeek-V4-flash-Base und 91,1 für DeepSeek-V4-Pro-Base. Tencent warnt vor verzerrten Scores durch gelegentlich unpassende Antwortformate nach synthetischem Mid-Training [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Lizenz hat eine Schwelle"
+    },
+    {
+      "t": "p",
+      "x": "Die Tencent Hy License 1.0 ist Apache-abgeleitet, aber ausdrücklich nicht Apache 2.0. Abschnitt 10gilt für MaaS: Dritte erhalten allgemeinen Fernzugriff auf Inferenz oder Finetuning und können Eingaben, Parameter oder Trainingsdaten vorgeben. Begrenzte Endnutzerfunktionen ohne allgemeinen Modellzugriff und das reine Weiterleiten an unabhängig betriebene Modelldienste sind davon ausgenommen. Wer MaaS betreibt, braucht eine separate schriftliche Lizenz, wenn der gesamte weltweite Bruttoumsatz in beliebigen zwölf aufeinanderfolgenden Monaten 50 Millionen US-Dollar übersteigt, unabhängig von der Modell-Umsatzquelle. Gleiches gilt vor dem Einsatz für ein eigenes Produkt oder einen Dienst mit mehr als 100 Millionen monatlich aktiven Nutzern in einem Kalendermonat. Rein interne Nutzung ist nur ausgenommen, wenn weder Modell, Ableitungen noch Ausgaben Dritten zugänglich gemacht werden. Aus der Pflicht zur separaten Lizenz folgt kein veröffentlichter Preis. Die Transformers-Integration ist aktuell in einem noch offenen Pull Request [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Hy 4 Flash setzt auf niedrigere Kosten pro erledigter Aufgabe statt ausschließlich auf Spitzenwerte. Ob diese Kosten- und Geschwindigkeitsvorteile auf eigener Hardware gelten, bleibt zu messen. Engram-Gewichte, Quantisierung, verfügbare Framework-Version und die konkrete MaaS-Nutzung sind dabei getrennt zu prüfen. Die Karte enthält interne und öffentliche Benchmarks, alle genannten Ergebnisse stammen jedoch vom Hersteller [1][2]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Engram bei Hy4 Flash?",
+      "a": "Gelernte Bigramm- und Trigramm-Einbettungen, die per Hash-Lookup abgerufen werden. Sie machen 63,5 Mrd. der 220 Mrd. Gesamtparameter aus, fallen aber kaum ins Gewicht der Rechenzeit pro Token [1]."
+    },
+    {
+      "q": "Wie viele Parameter sind wirklich aktiv?",
+      "a": "Laut Karte 11,3 Mrd. bei Texteingabe plus 0,43 Mrd. beim Bild-Encoder - die Gesamtzahl von 220 Mrd. enthält die Engram-Tabellen und den Drafter [1]."
+    },
+    {
+      "q": "Ist Hy4 Flash besser als Hy4?",
+      "a": "Nein, positioniert darunter: Im internen WorkIndex erreicht Hy 4 51,4 gegenüber 42,1. Tencent empfiehlt Hy 4 für komplexe Langzeitaufgaben, Hy 4 Flash für Alltagsaufgaben zu einem Bruchteil der Kosten [1]."
+    },
+    {
+      "q": "Darf ich Hy4 Flash kommerziell nutzen?",
+      "a": "Die Tencent Hy License erlaubt Nutzung unter ihren Bedingungen. Wer MaaS betreibt und die in Abschnitt 10definierten Umsatz- oder Nutzergrenzen überschreitet, benötigt eine separate schriftliche Lizenz. Bestimmte Endnutzerfunktionen und reine interne Nutzung sind enger definiert ausgenommen. Es handelt sich nicht um Apache 2.0; ein Preis für die separate Lizenz ist dort nicht genannt [2]."
+    },
+    {
+      "q": "Kann ich Hy4 Flash lokal laufen lassen?",
+      "a": "Es gibt FP8- und Community-GGUF-Varianten; die Transformers-Unterstützung steckt noch in einem Pull Request. Eigene Tests haben wir nicht durchgeführt [1][3]."
+    }
+  ],
+  "method": "Unabhängige Quellenabnahme 19.11.2026ab 07:14MEZ: vollständige Modellkarte und Repository-Metadaten, Lizenz und angegebene ergänzende Primärquellen. Herstellerwerte nicht als eigene Messungen ausgegeben; keine Gewichte oder Modellcodes ausgeführt.",
+  "limitations": "Alle Leistungs-, Kosten- und Zufriedenheitswerte stammen aus Hersteller-Messungen (interne und öffentliche Benchmarks, interne Blindstudie) und sind unabhängig nicht bestätigt. Die Benchmark-Grafik im Anhang ist ein Bild, dessen Einzelwerte wir nicht übernommen haben. Die Transformers-Integration ist zum Recherchezeitpunkt nicht gemergt; Langzeitstabilität der 1-Million-Token-Kontextnutzung ist ungetestet.",
+  "related": [
+    "tencent-hy4-analyse",
+    "sage-s2-1-flash-analyse",
+    "multimodale-modelle"
+  ]
+}

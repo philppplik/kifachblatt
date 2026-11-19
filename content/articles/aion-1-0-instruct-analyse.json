@@ -1,0 +1,150 @@
+{
+  "slug": "aion-1-0-instruct-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Aion 1.0: Microsoft zeigt Vorschau für das Windows-SLM",
+  "dek": "2,29 Milliarden Parameter, 32K-Kontext und MIT-Lizenz. Optimierte Windows-Fassung mit Moderationsmodell bis Ende Januar 2027 angekündigt.",
+  "published": "2026-11-19T07:15:19+01:00",
+  "modified": "2026-11-19T07:15:19+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Aion",
+    "Microsoft",
+    "Windows",
+    "SLM",
+    "On-Device"
+  ],
+  "key_takeaways": [
+    "Microsoft hat Aion 1.0 Instruct offengelegt: ein 2,3-Mrd.-Parameter-SLM der Windows Applied Sciences Group, das als Grundlagen-Modell für KI-Funktionen auf dem Gerät dient [1].",
+    "Eine weiter optimierte Fassung soll bis Ende Januar 2027 zum offiziellen Windows-OS-SLM werden - die HF-Veröffentlichung dient laut Karte der Transparenz und dem Feedback [1].",
+    "Das Modell läuft unter MIT-Lizenz, versteht acht Sprachen (darunter Deutsch) und verarbeitet 32.768 Token Kontext - hybrid aus 21 Sliding-Window- und 7 Voll-Aufmerksamkeits-Schichten [1].",
+    "Trainiert wurde auf einer Erweiterung der Phi-Silica-Daten (öffentliche Dokumente plus synthetische Daten); mehrsprachige Daten machen nur etwa 6 Prozent aus, die Karte warnt vor Qualitätsunterschieden je nach Sprache [1].",
+    "Herstellerwerte ohne Vergleichsmodelle: MMLU55,15, GSM8K74,91, IFEval 83,90. Verschiedene Tests und Auswerteverfahren erlauben keine direkte Rangfolge der Fähigkeiten. Microsoft nennt Grenzen bei Faktenwissen, komplexem Reasoning und Sicherheit."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel zu Aion1.0: Vorschau,2,29Milliarden Parameter,32.768Token und MIT-Lizenz. Optimierte Windows-Fassung angekündigt; lokale Inferenz ist keine pauschale Datenschutzgarantie.",
+    "caption": "Aion-Vorschau: heutige Gewichte sind nicht die angekündigte endgültige Windows-Fassung. Lokale Inferenz allein garantiert nicht, dass eine Anwendung keine Daten überträgt [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "microsoft/Aion-1.0-Instruct-2.3B (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/microsoft/Aion-1.0-Instruct-2.3B",
+      "accessed": "2026-11-19"
+    },
+    {
+      "title": "microsoft/Aion-1.0-Instruct-2.3B-ONNX-WebGPU (Plattform-API, Browser-Variante)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/microsoft/Aion-1.0-Instruct-2.3B-ONNX-WebGPU",
+      "accessed": "2026-11-19"
+    },
+    {
+      "title": "microsoft/Aion-Instruct-Preview-Sample (Beispiel-App, Repository-API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/microsoft/Aion-Instruct-Preview-Sample",
+      "accessed": "2026-11-19"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Microsoft hat mit Aion 1.0 Instruct das Sprachmodell offengelegt, das künftig im Kern von Windows arbeiten soll: ein schlankes Modell mit 2,29 Milliarden Parametern aus der Windows Applied Sciences Group, veröffentlicht am 18. November unter der MIT-Lizenz. Eine weiter optimierte Fassung - gekoppelt mit Microsofts Moderationsmodell - soll bis Ende Januar 2027 zum offiziellen Windows-OS-SLM werden. Die jetzige Veröffentlichung versteht die Karte ausdrücklich als Vorschau: Transparenz schaffen und Feedback einsammeln, bevor das Modell im Betriebssystem landet [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Für das Gerät gebaut, nicht für die Bestenliste"
+    },
+    {
+      "t": "p",
+      "x": "Aion ist für lokale Textaufgaben ausgelegt: Dokumentverständnis, Inhaltsanalyse, Fragen, Umschreiben und Zusammenfassen. Mit 32.768 Token Kontext sind längere Texte möglich. Lokale Inferenz kann Übertragung vermeiden, garantiert aber allein weder die Datenflüsse einer Anwendung noch ausbleibende Telemetrie. Die 28 Schichten bestehen aus 21Sliding-Window-Schichten mit Fenster 2048und sieben Voll-Aufmerksamkeits-Schichten, dazu RoPE mit YaRN-Skalierung auf den Voll-Schichten. Eine eigene Messung von Speicherbedarf, Stromverbrauch oder Geschwindigkeit haben wir nicht vorgenommen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Bemerkenswert ist die Offenheit der Karte über die Kehrseite: Das Modell wurde nicht auf Weltwissen trainiert, verliert Feinheiten, ist anfällig für komplexe mehrstufige Reasoning-Ketten und für adversarielle Angriffe; die Sicherheitsmetriken XPIA, DIC und ECI nennt Microsoft explizit als Verbesserungsziele kommender Versionen. Auch die Mehrsprachigkeit ist begrenzt: Nur etwa 6 Prozent der Trainingsdaten sind nicht englisch, und die Karte warnt vor Qualitätsunterschieden je nach Sprache - relevant für den deutschen Sprachraum, der zu den acht unterstützten Sprachen zählt [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Parameter:rund 2,29 Milliarden, geteilte Ein-/Ausgabe-Einbettungen, bfloat 16.28 Schichten, Hidden Size 2048,24 Query- und acht KV-Köpfe, Kontext 32.768 Token, Vokabular 200.029. Acht Sprachen einschließlich Deutsch; Wissensstand laut Karte Dezember 2025. Die Karte führt PyTorch, ONNX und GGUF als Bibliotheks-/Formatnamen auf. Aktuell verifiziert sind unquantisierte Safetensors und eine separate ONNX-WebGPU-Veröffentlichung. Das ist kein Beleg, dass bereits eine offizielle GGUF-Datei angeboten wird. Eigener Modellcode erfordert trust_remote_code; vor Ausführung prüfen [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Die Benchmarks im Hersteller-Selbsttest"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Benchmark-Werte von Aion 1.0 Instruct in Prozent",
+      "alt": "Balkendiagramm mit fünf Werten: IFEval 83,9, GSM8K 74,9, Multi-IF 64,7, MMLU 55,2 und MATH-500 48,0 Prozent",
+      "caption": "Hersteller-Messung mit EleutherAI lm-evaluation-harness beziehungsweise den Original-Implementierungen; die Karte nennt keine Vergleichsmodelle [1].",
+      "labels": [
+        "IFEval",
+        "GSM8K",
+        "Multi-IF",
+        "MMLU",
+        "MATH-500"
+      ],
+      "series": [
+        {
+          "name": "Prozent",
+          "values": [
+            83.9,
+            74.91,
+            64.7,
+            55.15,
+            48.0
+          ]
+        }
+      ],
+      "y_label": "Prozent",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Herstellerwerte liegen bei IFEval 83,90, GSM8K74,91, MMLU55,15, MMLU-Pro 33,35und GPQA28,18. Diese unterschiedlichen Benchmarks sind nicht direkt als Stärken-Rangfolge vergleichbar; IFEval ist der Mittelwert zweier Striktheitsmetriken, GSM8K nutzt Loose Matching. Ohne Vergleichsmodelle unter identischen Bedingungen folgt daraus keine Mittelfeld-Platzierung. Die Trainingsdaten erweitern Phi-Silica-Daten um gefilterte öffentliche Dokumente und synthetische Beispiele. Microsoft bezeichnet Phi Silica als vorherige Windows-OS-SLM-Generation [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Einordnung"
+    },
+    {
+      "t": "p",
+      "x": "Die Veröffentlichung gibt Entwicklern eine prüfbare Vorschau, nicht die endgültige Windows-Fassung. Laut Microsoft soll eine weiter optimierte Version zusammen mit einem lokalen Moderationsmodell bis Ende Januar 2027Windows-OS-SLM werden. Zeitplan, Gewichte und Verhalten können sich bis dahin ändern. Ein Test der heutigen Vorschau ersetzt deshalb keine Prüfung der späteren Version. MIT-Lizenz und offene Gewichte beseitigen weder Modellfehler noch Sicherheits- oder Datenschutzrisiken der jeweiligen Anwendung [1][2][3]."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist Aion 1.0 Instruct?",
+      "a": "Ein 2,3-Mrd.-Parameter-Sprachmodell von Microsofts Windows-Sparte für KI-Aufgaben direkt auf dem Gerät - und die angekündigte Grundlage des künftigen Windows-OS-SLM [1]."
+    },
+    {
+      "q": "Wann kommt Aion in Windows?",
+      "a": "Laut Modellkarte soll eine optimierte Fassung zusammen mit einem Moderationsmodell bis Ende Januar 2027 als Windows-OS-SLM allgemein verfügbar werden [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht Aion?",
+      "a": "Unter der MIT-Lizenz; Nutzung, Änderung und kommerzielle Verwendung sind erlaubt. Das Modell benötigt allerdings eigenen Code (trust_remote_code) [1]."
+    },
+    {
+      "q": "Wie gut ist Aion auf Deutsch?",
+      "a": "Deutsch gehört zu den acht unterstützten Sprachen, aber nur etwa 6 Prozent der Trainingsdaten sind mehrsprachig; Microsoft warnt selbst vor Qualitätsunterschieden je nach Sprache [1]."
+    },
+    {
+      "q": "Kann ich Aion jetzt schon ausprobieren?",
+      "a": "Die unquantisierten Modellgewichte und eine separate ONNX-WebGPU-Version sind erreichbar, ebenso eine Microsoft-Beispiel-App. Wir haben keinen Laufzeittest durchgeführt. Die bloße GGUF-Nennung in der Modellkarte ist kein Nachweis einer bereits verfügbaren offiziellen GGUF-Datei [1][2][3]."
+    }
+  ],
+  "method": "Unabhängige Quellenabnahme 19.11.2026ab 07:14MEZ: vollständige Modellkarte und Repository-Metadaten, Lizenz und angegebene ergänzende Primärquellen. Herstellerwerte nicht als eigene Messungen ausgegeben; keine Gewichte oder Modellcodes ausgeführt.",
+  "limitations": "Herstellerwerte ohne Vergleichsmodelle, keine unabhängigen Laufzeit- oder Datenschutztests. Finale Windows-Fassung ist eine angekündigte, weiter optimierte Version mit Moderationsmodell, nicht identisch mit der heutigen Vorschau. Sprachqualität variiert.",
+  "related": [
+    "botpsy-0-8b-analyse",
+    "tiny-voca-analyse",
+    "edge0-145b-analyse"
+  ]
+}
