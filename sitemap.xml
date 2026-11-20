@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-20</loc><lastmod>2026-11-20T16:17:02+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-20.jpg</image:loc><image:title>RLVR-Budgets, NariQ und Attention-Spezialisierung: Befunde und Grenzen</image:title><image:caption>Datengrafik mit vier von sechs DeepScaleR-Konfigurationen: AIME-Differenz am Trainingslimit gegenüber 64k bei Qwen und 16k bei Gemma/Nemotron; NariQ-DeepSWE-Ergebnisse und bedingte Attention-Theorie.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/kormo-web-11b-analyse</loc><lastmod>2026-11-20T12:10:56+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/kormo-web-11b-analyse.jpg</image:loc><image:title>KORMo-Web-11B: Koreas Web-Agent aus eigenem Grundmodell</image:title><image:caption>Eigene Datentafel zu KORMo-Web-11B: ein Modell für LLM, VLM und Web-Agent, auf eigenem Grundmodell KORMo-10B, 612 Online-Aufgaben, Apache-2.0.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-20</loc><lastmod>2026-11-20T12:10:56+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-20.jpg</image:loc><image:title>Safeguarding-Lücke, Workspace-Protokoll und SkillPlumber</image:title><image:caption>Datengrafik mit drei getrennten Panels: Schutzreaktionen je Modell bei gebündelten/gestreuten Hinweisen; AFGW-Transplantat 97,0 Prozent gegen 0,4 Prozent Kontrolle; Skill-Vergleich nur GPT-5.5/Codex auf je 207 Aufgaben aus 3 Benchmarks, bis 5 Revisionen: 143/124/123/88.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/daisyrose-27b-analyse</loc><lastmod>2026-11-20T12:10:55+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/daisyrose-27b-analyse.jpg</image:loc><image:title>DaisyRose-27B: RL-Posttraining mit engen Benchmark-Grenzen</image:title><image:caption>Eigene Datentafel zu DaisyRose-27B: RL-Posttraining auf dem bereits vortrainierten Qwen3.8-27B, 1.200 Agenten-Aufgaben, 18 Tage auf 144 H200, Apache-2.0.</image:caption></image:image></url>
@@ -327,7 +328,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-20T12:10:55+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-20T12:10:56+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-20T16:17:02+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-20</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-20</lastmod></url>

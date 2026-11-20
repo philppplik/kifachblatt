@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [RLVR-Budgets, NariQ und Attention-Spezialisierung: Befunde und Grenzen](https://kifachblatt.de/news-ueberblick-abend-2026-11-20): RLVR mit Budget-Falle, NariQ bei 3,0 und 2,5 Bit BF16-nah in Tests und datenabhängige Attention-Spezialisierung: drei Studien mit klaren Grenzen.
 - [KORMo-Web-11B: Koreas Web-Agent aus eigenem Grundmodell](https://kifachblatt.de/kormo-web-11b-analyse): KAIST erweitert sein von Grund auf trainiertes KORMo-Modell zum Browser-Agenten: ein Modell für Text, Bilder und Web-Klicks, zweisprachig und unter Apache-2.0.
 - [Safeguarding-Lücke, Workspace-Protokoll und SkillPlumber](https://kifachblatt.de/news-ueberblick-mittag-2026-11-20): Vier von sechs Modellen erfüllen bei gestreuten Not-Hinweisen den Supporter-Standard nur in 3 bis 6 Prozent. Dazu: Workspace-Test und Skill-Reparatur.
 - [DaisyRose-27B: RL-Posttraining mit engen Benchmark-Grenzen](https://kifachblatt.de/daisyrose-27b-analyse): RadixArk trainiert Qwen3.8-27B per RL nach. Die Herstellerwerte steigen, doch ein wichtiger Terminal-Bench-Vergleich mischt Versionen.

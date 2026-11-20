@@ -1,5 +1,17 @@
 [
   {
+    "title": "GitLab 19.6 führt Audit-Log für KI-Agenten ein, NGINX bleibt verwundbar",
+    "url": "https://www.heise.de/news/GitLab-19-6-fuehrt-Audit-Log-fuer-KI-Agenten-ein-NGINX-bleibt-verwundbar-11532950.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795185540.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Agenten-Aktionen über den MCP-Server landen jetzt im Audit-Log. Patch 19.6.1 schließt Ruby2Shell, das mitgelieferte NGINX bleibt für nginx2root anfällig.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T16:14:17.559534+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "KI-Update Deep-Dive: Smart Glasses als Alltagshilfe",
     "url": "https://www.heise.de/news/KI-Update-Deep-Dive-Smart-Glasses-als-Alltagshilfe-11530663.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795183200.0,
