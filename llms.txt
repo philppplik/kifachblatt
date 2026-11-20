@@ -33,6 +33,10 @@
 ## Beiträge
 
 <!--GEN-->
+- [Safeguarding-Lücke, Workspace-Protokoll und SkillPlumber](https://kifachblatt.de/news-ueberblick-mittag-2026-11-20): Vier von sechs Modellen erfüllen bei gestreuten Not-Hinweisen den Supporter-Standard nur in 3 bis 6 Prozent. Dazu: Workspace-Test und Skill-Reparatur.
+- [DaisyRose-27B: RL-Posttraining mit engen Benchmark-Grenzen](https://kifachblatt.de/daisyrose-27b-analyse): RadixArk trainiert Qwen3.8-27B per RL nach. Die Herstellerwerte steigen, doch ein wichtiger Terminal-Bench-Vergleich mischt Versionen.
+- [KORMo-Web-11B: Koreas Web-Agent aus eigenem Grundmodell](https://kifachblatt.de/kormo-web-11b-analyse): KAIST erweitert sein von Grund auf trainiertes KORMo-Modell zum Browser-Agenten: ein Modell für Text, Bilder und Web-Klicks, zweisprachig und unter Apache-2.0.
+- [Vergleichsfeedback-Falle, RL-Erfolgsschwelle und GrepMem](https://kifachblatt.de/news-ueberblick-morgen-2026-11-20): Drei Preprints im Laborcheck: verzerrtes Vergleichsfeedback, eine rezeptabhängige RL-Erfolgsschwelle und Klartext-Logs für exakten Abruf.
 - [Datenfilter-Verzug, MAS-Fehlerdiagnose, Agenten-Infra-Benchmark](https://kifachblatt.de/news-ueberblick-abend-2026-11-19): Target-Thinning quantifiziert Datenfilter, TRACE-MAS repariert Kollaborationsfehler an der Quelle, und RSIBench-Infra misst Agenten an 20 Infra-Aufgaben.
 - [Aion 1.0: Microsoft zeigt Vorschau für das Windows-SLM](https://kifachblatt.de/aion-1-0-instruct-analyse): 2,29 Milliarden Parameter, 32K-Kontext und MIT-Lizenz. Optimierte Windows-Fassung mit Moderationsmodell bis Ende Januar 2027 angekündigt.
 - [Hy4 Flash: 220 Mrd. Parameter, 11,3 Mrd. für Text aktiv](https://kifachblatt.de/hy4-flash-analyse): Multimodales MoE mit Engram-Tabellen und bis zu einer Million Token Kontext. Herstellerwerte, Integrationsstand und genaue MaaS-Lizenzschwellen im Überblick.

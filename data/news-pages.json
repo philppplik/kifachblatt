@@ -1,5 +1,77 @@
 [
   {
+    "title": "software-architektur.tv: Produktivität mit KI – das Harvard-Paper",
+    "url": "https://www.heise.de/news/software-architektur-tv-Produktivitaet-mit-KI-das-Harvard-Paper-11532159.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795167120.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "KI schreibt schneller Code, doch kommen dadurch auch mehr Features bei Kunden an? Eine Harvard-Studie liefert Antworten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T11:03:31.539412+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Nvidia unter Druck: Kalifornien fordert Antworten zu China-Geschäften",
+    "url": "https://www.heise.de/news/Kalifornien-will-von-Nvidia-Aufklaerung-zu-China-Lieferungen-11532235.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795166400.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Die Kontroverse um Jensen Huang ist für Nvidia mit dem Rücktritt des langjährigen Chefs nicht vorbei. Jetzt rollt die nächste Untersuchung auf den Konzern zu.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T11:03:31.539487+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Google baut ein künstliches Internet für seine KI-Agenten",
+    "url": "https://www.heise.de/news/Google-baut-ein-kuenstliches-Internet-fuer-seine-KI-Agenten-11532191.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795165800.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Google hat ein künstliches Internet mit Tausenden Websites geschaffen, um KI-Agenten realistischen Angriffen auszusetzen und ihre Sicherheit zu verbessern.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T11:03:31.539517+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Sorgen: Taiwans Börse sackt ab, AMD verliert stark, Anthropic noch im Plus",
+    "url": "https://www.heise.de/news/KI-Sorgen-Taiwans-Boerse-sackt-ab-AMD-verliert-stark-Anthropic-noch-im-Plus-11531957.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795154160.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Der geglückte Börsengang von Anthropic konnte am Donnerstag nicht darüber hinwegtäuschen, dass die Stimmung an den Finanzmärkten angespannt bleibt.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T11:03:31.539680+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Freitag: London muss Apple-Hintertür zugeben, Niederlande warnen vor KI-Brillen",
+    "url": "https://www.heise.de/news/Freitag-London-muss-Apple-Hintertuer-zugeben-Niederlande-warnen-vor-KI-Brillen-11531935.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795151700.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Gericht für Backdoor-Geständnis + Datenschützer gegen KI-Brillen + Notfallwarnung als Handy-Finder + PHP-Updates gegen akute Lücken + Verbraucherschutz-Podcast",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T11:03:31.539717+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Niederländische Datenschutzbehörde warnt vor Nutzung KI-gestützter Smart Glasses",
+    "url": "https://www.heise.de/news/Niederlaendische-Datenschutzbehoerde-warnt-vor-Nutzung-KI-gestuetzter-Smart-Glasses-11531921.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795147380.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nach Studie verschiedener KI-Brillen raten Datenschützer vom Kauf ab. Diese könnten Nutzer falsche oder illegale Ratschläge geben und sie sogar gefährden.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T11:03:31.539766+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Anthropic-Aktien an der Börse gestartet",
     "url": "https://www.heise.de/news/Anthropic-Aktien-an-der-Boerse-gestartet-11528173.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795108260.0,
