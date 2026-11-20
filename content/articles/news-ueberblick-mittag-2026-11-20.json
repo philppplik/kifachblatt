@@ -1,0 +1,100 @@
+{
+ "slug": "news-ueberblick-mittag-2026-11-20",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-20T10:05:00+01:00",
+ "modified": "2026-11-20T10:05:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Evaluating safeguarding in multi-turn conversations with AI assistants",
+   "publisher": "arXiv; Charlotte Peart, Franziska Sofia Hafner und Luc Rocher, University of Oxford",
+   "url": "https://arxiv.org/abs/2611.26009",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "Does the Workspace Do the Work? A Causal Protocol for Verifying Global-Workspace Computation in a Language Model",
+   "publisher": "arXiv; Diaoxuan He, University of Debrecen, und Linqian Wu, University of Waterloo / Perimeter Institute",
+   "url": "https://arxiv.org/abs/2611.26018",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "Evolve Where It Matters: Coverage-Guided Self-Evolution of Agent Skills",
+   "publisher": "arXiv; Boyin Tan, Jiadong Zhang, Xiaosong Ma u.a., Mohamed bin Zayed University of Artificial Intelligence und University of Liverpool",
+   "url": "https://arxiv.org/abs/2611.25429",
+   "accessed": "2026-11-20"
+  }
+ ],
+ "tags": [
+  "Forschung",
+  "Sicherheits-Evaluierung",
+  "Interpretierbarkeit",
+  "Agenten-Skills"
+ ],
+ "title": "Safeguarding-Lücke, Workspace-Protokoll und SkillPlumber",
+ "dek": "Vier von sechs Modellen erfüllen bei gestreuten Not-Hinweisen den Supporter-Standard nur in 3 bis 6 Prozent. Dazu: Workspace-Test und Skill-Reparatur.",
+ "key_takeaways": [
+  "Vier verbreitete Modelle erfüllten den Supporter-Goldstandard bei gebündelten Not-Hinweisen in 26 bis 59 Prozent, bei gestreuten in 3 bis 6 Prozent; Claude Opus 5 und Sonnet 5 blieben bei 87 und 59 Prozent.",
+  "Der Workspace-Test liegt an Referenzsystemen in allen 4.096 Fällen richtig; in AFGW erzeugt ein Transplantat 97 Prozent Hybridantworten, wirksam über umgelenkte Speicherabfragen (2.047/2.048).",
+  "SkillPlumber mit GPT-5.5/Codex: 143/207 Aufgaben, SkillRevise 124, CoEvoSkills 123, ohne Skill 88. Die 3,4 Revisionen je Anfangsfehlschlag betreffen nur GPT-5.5. Modellvergebene Labels und Bewertung auf derselben Aufgabe begrenzen den Befund."
+ ],
+ "hero": {
+  "alt": "Datengrafik mit drei getrennten Panels: Schutzreaktionen je Modell bei gebündelten/gestreuten Hinweisen; AFGW-Transplantat 97,0 Prozent gegen 0,4 Prozent Kontrolle; Skill-Vergleich nur GPT-5.5/Codex auf je 207 Aufgaben aus 3 Benchmarks, bis 5 Revisionen: 143/124/123/88.",
+  "caption": "Standard-Erfüllung je Modell und Verteilung sowie AFGW-Transplantat im jeweiligen Studien-Scope. Skill-Vergleich: GPT-5.5/Codex, je 207 Aufgaben aus 3 Benchmarks, bis 5 Revisionen, SkillPlumber 143/SkillRevise 124/CoEvoSkills 123/ohne Skill 88. Revision und Bewertung auf derselben Aufgabe.",
+  "credit": "Eigene Grafik",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Drei Preprints aus den arXiv-Dailies vom 19. November: Eine Safeguarding-Evaluierung zeigt, dass Schutzreaktionen verbreiteter Assistenten einbrechen, sobald belastende Hinweise über ein Gespräch verteilt statt gebündelt kommen; ein kausales Protokoll macht prüfbar, wer bei der Modul-Kommunikation tatsächlich rechnet; und SkillPlumber repariert Agenten-Skills anhand instruktionsgenauer Abdeckung statt pauschaler Fehlerdiagnosen."
+  },
+  {
+   "t": "h2",
+   "x": "Schutz bei gestreuten Hinweisen: vier von sechs Modellen besonders schwach"
+  },
+  {
+   "t": "p",
+   "x": "Peart und Kollegen ließen sechs Modelle von fünf Anbietern über mehr als 7.400 Konversationen auf neun Szenarien reagieren, in denen Hinweise auf Depression, Psychose oder häusliche Gewalt entweder in einer Nachricht gebündelt oder über einen 21 Züge langen Alltagsdialog verstreut auftauchen; drei erfahrene psychosoziale Supporter berieten die Arbeit, zwei legten die erwarteten Reaktionsstufen fest. GPT-5.5, Grok 4.3, DeepSeek V4 und Llama 4 Maverick erfüllten ihn gebündelt in 26 bis 59 Prozent, verstreut nur in 3 bis 6 Prozent der Gespräche; Claude Sonnet 5 und Opus 5 fielen kleiner aus (68 zu 59, 97 zu 87 Prozent). Grenzen: API ohne Systemprompt und Reasoning, skriptierte Nutzerseite, kurze Verläufe; die Supporter senkten ihre Erwartungen bei Streuung nicht. Erhoben wurde im Juni/Juli 2026 über OpenRouter bei Temperatur 0,7. Die Antwort auf Zug 21 klassifizierte Claude Sonnet 4.6; eine verblindete menschliche Stichprobe von 80 Antworten validierte den Judge. Der Goldstandard ist kein klinisches Gesamturteil. Die drei beratenden Supporter arbeiteten im selben Londoner Dienst; zwei bestimmten die erwarteten Reaktionsstufen."
+  },
+  {
+   "t": "h2",
+   "x": "Workspace-Test: Rekombination statt Durchreichen"
+  },
+  {
+   "t": "p",
+   "x": "He und Wu präsentieren ein kausales Protokoll, das anhand transplantierter Nachrichten unterscheidet, ob ein Modul eine Workspace-Nachricht ignoriert, weiterreicht oder mit eigenem Wissen rekombiniert; an Systemen mit bekannter Rechnung liegt es in allen 4.096 Fällen richtig. Im Modellorganismus AFGW (6,9 Millionen Parameter, Module nur über Workspace verbunden) erzeugt ein Transplantat in 97 Prozent die Hybridantwort der Rekombination (0,4 Prozent ohne Eingriff), und das Wiederherstellen der Speicheranfragen hebt den Effekt in 2.047 von 2.048 Fällen auf. Die Tests übertragen sich auf größere Welten, andere Designs und eine Schnittstelle eines vortrainierten Transformers. Die Aussagen gelten für die kontrollierten Modellorganismen und die getestete Transformer-Schnittstelle, nicht für ein Bewusstseinskriterium oder alle Sprachmodelle."
+  },
+  {
+   "t": "h2",
+   "x": "SkillPlumber: Executor-spezifische Ergebnisse statt gemischter Summen"
+  },
+  {
+   "t": "p",
+   "x": "SkillPlumber markiert Anweisungen als befolgt, nicht befolgt oder nicht abgedeckt. Je Executor werden 207 Aufgaben aus drei Benchmarks geprüft, mit maximal fünf Revisionsrunden und deterministischen Verifiern. GPT-5.5/Codex erreicht 143/207 mit SkillPlumber, 124 mit SkillRevise, 123 mit CoEvoSkills und 88 ohne Skill. Opus 4.8/Claude Code erreicht 146/207 gegen 128 für SkillRevise und 85 ohne Skill. DeepSeek-V4-Pro/OpenHands erreicht 134/207 gegen 105 für SkillRevise und 73 ohne Skill; 71 ist der Initial-Skill. CoEvoSkills wurde nur mit GPT-5.5 gerechnet, deshalb werden diese Werte nicht mit anderen Executoren verglichen. Die 3,4 Revisionen je Anfangsfehlschlag sind GPT-5.5-spezifisch; CoEvoSkills interne 11,6 Runden sind nicht mit Benchmark-Verifier-Checks gleichzusetzen (dort 2,0). Grenzen: modellvergebene Coverage-Labels, rund doppelte Tokenkosten inklusive Überprüfung und dieselbe Aufgabe für Revision und Bewertung. Erstpass-Erfolge entsprechen einem Mehrversuchsmaß; Replay-Analysen auf einer Teilmenge sind separat. Eigene Reproduktion fand nicht statt."
+  },
+  {
+   "t": "p",
+   "x": "Alle drei Arbeiten sind Preprints. Prozentwerte beschreiben die jeweils festgelegten Aufgaben und Rubriken, keine klinischen Behandlungsergebnisse, keinen allgemeinen Bewusstseinsnachweis und keine garantierte Produktleistung."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Was genau belegt die Safeguarding-Studie, was nicht?",
+   "a": "Belegt an über 7.400 skriptierten API-Konversationen: Bei vier Modellen sinkt das Erfüllen des Supporter-Standards von 26 bis 59 Prozent (gebündelt) auf 3 bis 6 Prozent (gestreut). Nicht belegt: Verhalten echter Produkte mit Systemprompts und Klassifikatoren, Ton der Antworten und lange reale Verläufe; das nennen die Autoren selbst als Grenzen."
+  },
+  {
+   "q": "Ist das Workspace-Ergebnis ein Beleg für Bewusstsein?",
+   "a": "Nein. Gemessen wird, ob ein Modul Broadcast-Inhalte nutzt, weiterreicht oder mit eigenem Wissen rekombiniert. AFGW ist ein kontrollierter 6,9-Millionen-Parameter-Modellorganismus; das ist kein Nachweis für subjektives Erleben und kein allgemeiner Bewusstseinstest."
+  },
+  {
+   "q": "Was zeigt SkillPlumber im fairen Executorvergleich?",
+   "a": "Mit GPT-5.5/Codex löst SkillPlumber 143/207 Aufgaben gegenüber 124 für SkillRevise, 123 für CoEvoSkills und 88 ohne Skill. Andere Executoren haben eigene Zeilen. Die 3,4 Revisionen betreffen nur GPT-5.5; Labels sind modellvergeben und die Bewertung nutzt dieselbe Aufgabe."
+  }
+ ],
+ "related": [
+  "sicherheit-fuer-agenten-systeme",
+  "modelle-und-agenten-evaluieren"
+ ]
+}
