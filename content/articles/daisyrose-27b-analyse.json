@@ -1,0 +1,167 @@
+{
+ "slug": "daisyrose-27b-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "DaisyRose-27B: RL-Posttraining mit engen Benchmark-Grenzen",
+ "dek": "RadixArk trainiert Qwen3.8-27B per RL nach. Die Herstellerwerte steigen, doch ein wichtiger Terminal-Bench-Vergleich mischt Versionen.",
+ "published": "2026-11-20T08:01:01+01:00",
+ "modified": "2026-11-20T08:01:01+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "DaisyRose",
+  "RadixArk",
+  "Qwen",
+  "Reinforcement Learning",
+  "Agenten"
+ ],
+ "key_takeaways": [
+  "DaisyRose-27B ist laut RadixArk ein ausschließlich per RL nachtrainiertes Derivat des bereits vortrainierten Qwen3.8-27B, ohne zusätzliches SFT oder Distillation in diesem Posttraining [1].",
+  "Trainiert wurde auf rund 1.200 langen Agenten-Aufgaben mit Sitzungen von bis zu einer Million Token; der Lauf dauerte 18 Tage auf 144 H200 (rund 63.000 GPU-Stunden) [1][2].",
+  "Die Hersteller-Tabelle zeigt höhere Zahlen in sieben Zeilen, aber keinen durchgehend kontrollierten Vorher-Nachher-Test: Bei Terminal Bench steht DaisyRose 4.1 mit 12,0 einer Qwen-Basiszahl 5,6 aus Version 4.0 gegenüber [1].",
+  "Architektur, Tokenizer, Chat-Template, Bildverständnis und 262.144-Token-Kontext stammen unverändert vom Basismodell; die Gewichte liegen unter Apache-2.0 in BF16, FP8 und NVFP4 vor [1]."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu DaisyRose-27B: RL-Posttraining auf dem bereits vortrainierten Qwen3.8-27B, 1.200 Agenten-Aufgaben, 18 Tage auf 144 H200, Apache-2.0.",
+  "caption": "DaisyRose-27B: RL-Posttraining auf einer bereits trainierten Qwen-Basis. Eckdaten laut Hersteller [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik"
+ },
+ "sources": [
+  {
+   "title": "RadixArk/DaisyRose-27B (Modellkarte und Plattform-API, inkl. LICENSE)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/RadixArk/DaisyRose-27B",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "DaisyRose-27B: Pushing the Frontier of Post-Training Efficiency (Hersteller-Blog)",
+   "publisher": "RadixArk",
+   "url": "https://www.radixark.com/blog/daisyrose-27b",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "RadixArk/DaisyRose-27B-GGUF (Plattform-API, Quantisierung)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/RadixArk/DaisyRose-27B-GGUF",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "radixark/miles (RL-Framework, Repository-API)",
+   "publisher": "GitHub",
+   "url": "https://github.com/radixark/miles",
+   "accessed": "2026-11-20"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "RadixArk, ein junger Anbieter für Post-Training, hat mit DaisyRose-27B sein erstes eigenes Modell veröffentlicht. Die Gewichte stehen seit dem 18. November unter der Apache-2.0-Lizenz auf Hugging Face - in BF16, FP8 und NVFP4, ein GGUF-Repository folgte am 19. November [1][3]. Der Clou ist das Verfahren: DaisyRose-27B entstand im Posttraining laut Hersteller ausschließlich durch Reinforcement Learning auf Alibabas bereits vortrainiertem Qwen3.8-27B, ohne zusätzliches überwachtes Feintuning (SFT) und ohne Distillation in diesem Schritt [1]. Das bedeutet nicht, dass das Modell ohne Vortraining oder nur aus den 1.200 Aufgaben von Grund auf gelernt hätte."
+  },
+  {
+   "t": "h2",
+   "x": "Lernen an 1.200 langen Aufgaben"
+  },
+  {
+   "t": "p",
+   "x": "Der Trainingsdatensatz ist ungewöhnlich klein und ungewöhnlich schwer: Gemeinsam mit Eigent AI wurden aus einem großen Aufgabenpool rund 1.200 Aufgaben ausgewählt, jede gezielt auf einen Fehler des Basismodells zugeschnitten und so kalibriert, dass die Lösungsrate weder zu leicht noch zu schwer ausfällt. Eine Aufgabe ist ein langer Job aus mehreren voneinander abhängigen Teilproblemen: Ein Versuch bekommt bis zu 1,5 Stunden in einer Sandbox, über 100 Werkzeugaufrufe und mehr als 256.000 Ausgabe-Token. Jede Aufgabe wurde zusammen mit den Versuchen des Modells geprüft; was sich ohne echtes Lösen bestehen ließ, wurde korrigiert oder gestrichen [1]."
+  },
+  {
+   "t": "p",
+   "x": "Das Training lief vollständig asynchron mit Miles, dem quelloffenen RL-Framework des Anbieters (Apache-2.0) [1][4]. 128 H200 ließen den Agenten auf seinen Aufgaben laufen (bedient über SGLang), 16 weitere trainierten auf den fertigen Trajektorien; nach jedem Schritt gingen die aktualisierten Gewichte zurück an die 128. Einzelne Sitzungen erreichten eine Million Token. Insgesamt: 18 Tage auf 144 H200, rund 63.000 GPU-Stunden. Jeder Versuch lief in einer Sandbox des hauseigenen, auf AgentENV aufbauenden Dienstes [1]. Im Blog beziffert RadixArk die Infrastruktur: 37 Prozent Modell-FLOPs-Auslastung (MFU) gegenüber 16 Prozent bei einem quelloffenen Megatron-basierten Trainer, was 57 Prozent weniger GPU-Zeit bedeute; der Sandbox-Dienst habe im finalen Lauf 99,95 Prozent der Erstellungen erfolgreich ausgeführt, bei 944.000 Sandboxes insgesamt und Spitzen von 1.566 gleichzeitig. Diese Effizienzwerte sind Herstellerangaben ohne unabhängige Prüfung [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Hersteller-Messung zeigt"
+  },
+  {
+   "t": "p",
+   "x": "Die Herstellerkarte stellt DaisyRose-27B seinem Basismodell und weiteren Modellen auf sieben Benchmarks gegenüber. In allen sieben Zeilen ist DaisyRoses Zahl höher als die eingetragene Basiszahl. Das ist jedoch kein durchgehend gleichversioniger, kontrollierter Vorher-Nachher-Vergleich. Besonders wichtig: DaisyRoses 12,0 Prozent stammen aus Terminal Bench 4.1; die 5,6 Prozent der Qwen-Basis stammen laut Quellenfußnote mangels 4.1-Eintrag aus Terminal Bench4.0. Daraus lässt sich kein sauberer RL-Zuwachs von 5,6 auf 12,0 Prozent auf demselben Test ableiten. Auf Terminal Bench 4.1 führt in der Tabelle MiMo V2.6 Flash mit 16,1, auf HLE (nur Text) Inkling 2 Small mit 44,1 [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Drei Wertepaare aus der Hersteller-Tabelle, kein kontrollierter Eigenversuch",
+   "alt": "Herstellerwerte in Prozent: DeepSWE v1.1 DaisyRose 46,2 und Qwen 42,2; SWE Bench Pro v2 94,7 und 91,3; IFBench 82,4 und 79,5. Vergleichswerte stammen aus unterschiedlichen Quellen.",
+   "caption": "Herstellerangaben, jeweils besserer BF16-/FP8-Lauf für DaisyRose; Qwen-Vergleichswerte aus Fremdquellen mit deren Messbedingungen. Terminal Bench nicht als Paar dargestellt, weil 4.1 und 4.0 vermischt sind [1].",
+   "labels": [
+    "DeepSWE v1.1",
+    "SWE Bench Pro v2",
+    "IFBench"
+   ],
+   "series": [
+    {
+     "name": "DaisyRose-27B",
+     "values": [
+      46.2,
+      94.7,
+      82.4
+     ]
+    },
+    {
+     "name": "Qwen3.8-27B (Basis)",
+     "values": [
+      42.2,
+      91.3,
+      79.5
+     ]
+    }
+   ],
+   "y_label": "Prozent",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Zwei Details der Tabelle verdienen Beachtung. Erstens stammen die Werte der Vergleichsmodelle nicht aus einer einheitlichen Messung, sondern wurden von der Karte aus Modellkarten, Leaderboards und Aggregatoren zusammengetragen; die Karte listet die Fundstellen je Benchmark offen [1]. Zweitens fehlt manchen Modellen ein Eintrag für Terminal Bench 4.1 - dort zeigt die Tabelle Werte der Vorgängerversion 4.0, was die Karte kenntlich macht [1]. Die eigenen DaisyRose-Läufe nutzten die empfohlenen Thinking-Einstellungen des Basismodells; genannt wird jeweils der bessere der BF16- und FP8-Läufe, die laut Karte um weniger als einen Punkt auseinanderliegen [1]. Unabhängig bestätigt ist keiner der Werte."
+  },
+  {
+   "t": "h2",
+   "x": "Drop-in für den Qwen3.8-Stack"
+  },
+  {
+   "t": "p",
+   "x": "Architektur, Tokenizer und Chat-Template bleiben die des Basismodells: 64 Decoder-Schichten im 3:1-Muster aus Linear-Attention (Gated DeltaNet) und voller Aufmerksamkeit, versteckte Größe 5.120, ein 27-schichtiger Bildencoder und ein Multi-Token-Prediction-Kopf - 27,8 Milliarden Parameter insgesamt, davon 0,46 Milliarden im Bildencoder. Der Kontext beträgt 262.144 Token. Der Bildencoder und der MTP-Kopf wurden nicht weitertrainiert [1]. Dadurch soll DaisyRose-27B überall dort laufen, wo bereits Qwen3.8-27B läuft."
+  },
+  {
+   "t": "p",
+   "x": "Zum Betrieb empfiehlt die Karte SGLang mit spekulativer Dekodierung über den mitgelieferten DSpark-Drafter; die Gewichte belegen rund 52 GB in BF16, 29 GB in FP8 und 23 GB in NVFP4 - Letzteres setzt eine Blackwell-GPU voraus. Genannt werden Karten von H200 bis RTX 5090 und DGX Spark [1]. Das Modell denkt standardmäßig vor der Antwort; die Karte empfiehlt Temperatur 1,0 und warnt davor, ein max_tokens-Limit bei harten Problemen zu setzen [1]. Diese gerundeten Gewichtsgrößen sind kein Nachweis für den gesamten RAM- oder VRAM-Bedarf. KV-Cache, Kontextlänge, Laufzeit, Drafter und Parallelität kommen hinzu; wir haben weder Installation noch Speichernutzung gemessen."
+  },
+  {
+   "t": "h3",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "Parameter: 27,8 Mrd. (inkl. 0,46 Mrd. Bildencoder und 0,42 Mrd. MTP-Kopf). Architektur: Qwen3.8-27B, 64 Schichten (3:1 Gated-DeltaNet/Vollaufmerksamkeit), versteckte Größe 5.120. Kontext: 262.144 Token. Training: reines RL auf ~1.200 Aufgaben, 18 Tage, 144 H200, ~63.000 GPU-Stunden. Modalitäten: Text und Bild rein, Text raus. Gewichte: BF16 (~52 GB), FP8 (~29 GB), NVFP4 (~23 GB), GGUF-Repository. Lizenz: Apache-2.0; auch das Basismodell steht unter Apache-2.0 [1][3]."
+  }
+ ],
+ "method": "Unabhängige Quellenprüfung20. November 2026 gegen 07:12 MEZ: Herstellerkarte samt Tabellenquellen, Herstellerblog und vollständige Apache-2.0-Datei gelesen. Die Angaben wurden nicht durch eigenes Modelltraining, Framework- oder Hardwaretests reproduziert. Benchmark-Fremdquellen wurden als Herstellerkompilation behandelt, nicht als eigene einheitliche Messung.",
+ "limitations": "Alle Benchmark- und Effizienzwerte sind Herstellerangaben ohne unabhängige Bestätigung; Vergleichswerte stammen aus heterogenen Fremdquellen, teils aus älteren Benchmark-Versionen. Der bessere von zwei Präzisionsläufen wird genannt. Zu den verwendeten Aufgabendaten liegen keine unabhängigen Informationen vor. Terminal Bench 4.1 für DaisyRose und 4.0 für den Qwen-Basiswert dürfen nicht als gleichversioniger Verbesserungsbeleg gelesen werden. Gewichtsgrößen belegen keine Gesamtspeicheranforderung.",
+ "faq": [
+  {
+   "q": "Was ist DaisyRose-27B?",
+   "a": "Ein multimodales Reasoning-Modell von RadixArk: Laut Hersteller wurde das bereits vortrainierte Qwen3.8-27B ausschließlich per RL nachtrainiert, ohne zusätzliches SFT oder Distillation in diesem Posttraining. Die Veröffentlichung steht unter Apache-2.0 [1]."
+  },
+  {
+   "q": "Wie gut ist DaisyRose-27B?",
+   "a": "Die Hersteller-Tabelle zeigt höhere Zahlen als die eingetragenen Basiswerte, aber die Messbedingungen sind heterogen. Insbesondere stehen 12,0 auf Terminal Bench 4.1 einer Basiszahl 5,6 aus 4.0 gegenüber. Das ist kein kontrollierter Verbesserungstest. Unabhängig reproduziert wurden die Werte hier nicht [1]."
+  },
+  {
+   "q": "Wie aufwendig war das Training?",
+   "a": "Laut Karte 18 Tage auf 144 H200-GPUs, rund 63.000 GPU-Stunden, auf etwa 1.200 langen Agenten-Aufgaben mit Sitzungen bis zu einer Million Token [1]."
+  },
+  {
+   "q": "Unter welcher Lizenz steht DaisyRose-27B?",
+   "a": "Apache-2.0 - das Modell ist ein Derivat von Qwen3.8-27B, das ebenfalls unter Apache-2.0 steht. Kommerzielle Nutzung ist damit grundsätzlich erlaubt [1]."
+  },
+  {
+   "q": "Was brauche ich zum Betrieb?",
+   "a": "Die Karte empfiehlt SGLang mit dem mitgelieferten DSpark-Drafter. Die Gewichte belegen je nach Präzision 52 (BF16), 29 (FP8) oder 23 GB (NVFP4, nur Blackwell); genannt werden auch RTX 5090 und DGX Spark [1]. Das sind gerundete Gewichtsgrößen, kein Gesamt-RAM-/VRAM-Nachweis. Kontext, Cache, Drafter und Laufzeit erhöhen den Bedarf; wir haben keinen Hardwaretest durchgeführt."
+  }
+ ],
+ "related": [
+  "sensenova-loop-9b-preview-analyse",
+  "coding-agenten-alltag",
+  "lhtb-2-langzeit-agenten-benchmark"
+ ]
+}

@@ -1,0 +1,166 @@
+{
+ "slug": "kormo-web-11b-analyse",
+ "lang": "de",
+ "section": "agenten",
+ "type": "analysis",
+ "title": "KORMo-Web-11B: Koreas Web-Agent aus eigenem Grundmodell",
+ "dek": "KAIST erweitert sein von Grund auf trainiertes KORMo-Modell zum Browser-Agenten: ein Modell für Text, Bilder und Web-Klicks, zweisprachig und unter Apache-2.0.",
+ "published": "2026-11-20T08:01:01+01:00",
+ "modified": "2026-11-20T08:01:01+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "KORMo",
+  "KAIST",
+  "Web-Agent",
+  "GUI-Agent",
+  "Koreanisch"
+ ],
+ "key_takeaways": [
+  "Das KAIST MLP Lab hat KORMo-Web-11B veröffentlicht: ein zweisprachiges Modell (Koreanisch/Englisch), das LLM-Antworten, Bildverständnis und Browser-Bedienung in einem Modell vereint [1].",
+  "Anders als die Qwen-basierten Schwestermodelle KORMo-Web-4B und -9B baut die 11B-Version auf dem eigenen, von Grund auf trainierten KORMo-10B-Grundmodell auf [1][4].",
+  "Trainiert wurde mit über 10 Millionen atomaren Web-Verständnis-Beispielen und über 100.000 Browser-Demonstrationen; auf Online-Mind2Web erreicht das Modell 31,3 Prozent (englisch) und 33,7 Prozent (koreanisch) [1].",
+  "Die Modellkarte nennt Apache-2.0 für Gewichte und unterstützende Modellressourcen. Das ist keine bestätigte Lizenz der separat angebotenen Chrome-Erweiterung [1][3]."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu KORMo-Web-11B: ein Modell für LLM, VLM und Web-Agent, auf eigenem Grundmodell KORMo-10B, 612 Online-Aufgaben, Apache-2.0.",
+  "caption": "KORMo-Web-11B: vom eigenen koreanischen Grundmodell zum Browser-Agenten. Eckdaten laut Modellkarte [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik"
+ },
+ "sources": [
+  {
+   "title": "KORMo-VL/KORMo-Web-11B (Modellkarte und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KORMo-VL/KORMo-Web-11B",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "KORMo-VL/KORMo-Web-4B (Plattform-API, Mac-Variante)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KORMo-VL/KORMo-Web-4B",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "MLP-Lab/KORMo-Web-Extension (Chrome-Erweiterung, Repository-API)",
+   "publisher": "GitHub",
+   "url": "https://github.com/MLP-Lab/KORMo-Web-Extension",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "KORMo-Team/KORMo-10B-sft (Plattform-API, Grundmodell)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KORMo-Team/KORMo-10B-sft",
+   "accessed": "2026-11-20"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Das KAIST MLP Lab stellt mit KORMo-Web-11B einen Browser-Agenten auf eigener Modellbasis vor: Die 11-Milliarden-Parameter-Version, am 14. November auf Hugging Face erschienen, baut auf dem eigenen koreanisch-englischen Grundmodell KORMo-10B auf, das das Labor komplett von Grund auf trainiert hat [1][4]. Über die Zwischenstufe KORMo-VL mit SigLIP-Bildencoder entstand ein Modell, das drei Rollen abdeckt: Es beantwortet Fragen als Sprachmodell, versteht Bilder und bedient Webseiten per Screenshot und Mausklick [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Vom Grundmodell zum Klick"
+  },
+  {
+   "t": "p",
+   "x": "Das Web-Training lief in zwei Stufen: Über zehn Millionen atomare Trainingsbeispiele vermitteln laut Karte feines Verständnis einzelner UI-Elemente - Position, Layout, Funktion und Zustand - auf Koreanisch und Englisch. Über 100.000 Browser-Demonstrationen lehren mehrstufige reale Aufgaben [1]. Im Betrieb arbeitet das Modell visuell: Es sieht den aktuellen Screenshot plus URL und Tab-Liste, denkt in einem einsehbaren Schritt nach und gibt genau eine Aktion aus. 22 Browser-Werkzeuge stehen zur Verfügung, von Klick und Eingabe bis Tab-Steuerung; Klick-Koordinaten werden auf 0 bis 1000 normiert. Der komplette Textverlauf bleibt im Gedächtnis, gesendet wird jeweils nur der aktuelle Screenshot [1]."
+  },
+  {
+   "t": "p",
+   "x": "Technisch steckt dahinter eine LLaVA-OneVision-Struktur: SigLIP-Bildencoder plus dem KORMo-10B-Textmodell. Da transformers die KORMo-Architektur nicht mitbringt, liefert das Repository eigenen Code mit (_modeling_kormo.py samt Lader kormo_load.py); für vLLM liegen Konvertierungsskripte bei. Achtung bei einem Detail: Der Lader führt die SigLIP-Merkmale nach der Post-Layernorm dem Projektor zu - ohne diesen Patch läuft das Modell zwar, liest aber Screenshots fehlerhaft [1]. Getestet ist die Kombination mit transformers 5.12.1 und vLLM 0.23.0 [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Erfolgsquote auf lebendigen Webseiten"
+  },
+  {
+   "t": "p",
+   "x": "Bewertet wurde auf Online-Mind2Web: 612 Aufgaben auf echten, lebendigen Webseiten, 300 auf Englisch und 312 auf Koreanisch, bewertet durch einen einheitlichen LLM-Judge (GPT-6). Gezählt wird über den vollständigen Aufgabensatz inklusive gescheiterter Läufe; jeder Agent nutzt sein eigenes Prompt- und Aktionsformat [1]. KORMo-Web-11B erreicht 31,3 Prozent auf Englisch und 33,7 Prozent auf Koreanisch."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Online-Mind2Web: Erfolgsquote in Prozent",
+   "alt": "Balkendiagramm, Erfolgsquoten englisch und koreanisch: OpenWebRL-4B 32,7 und 15,4; UI-TARS-1.5-7B 22,3 und 20,2; KORMo-Web-11B 31,3 und 33,7; GPT-6-luna 63,0 und 65,7 Prozent",
+   "caption": "Hersteller-Messung auf 612 Live-Webseiten-Aufgaben (300 englisch, 312 koreanisch), einheitlicher LLM-Judge (GPT-6); jeder Agent mit eigenem Prompt- und Aktionsformat [1].",
+   "labels": [
+    "OpenWebRL-4B",
+    "UI-TARS-1.5-7B",
+    "KORMo-Web-11B",
+    "GPT-6-luna (proprietär)"
+   ],
+   "series": [
+    {
+     "name": "Englisch (300 Aufgaben)",
+     "values": [
+      32.7,
+      22.3,
+      31.3,
+      63.0
+     ]
+    },
+    {
+     "name": "Koreanisch (312 Aufgaben)",
+     "values": [
+      15.4,
+      20.2,
+      33.7,
+      65.7
+     ]
+    }
+   ],
+   "y_label": "Prozent",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Die Einordnung fällt zweigeteilt aus: Auf Koreanisch liegt KORMo-Web-11B mit 33,7 Prozent klar vor den gelisteten offenen Vergleichsmodellen; auf Englisch führt mit OpenWebRL-4B ein deutlich kleineres Modell (32,7 gegenüber 31,3). Das proprietäre GPT-6-luna erreicht in dieser Messung rund doppelt so hohe Quoten (63,0 und 65,7). Die spezialisierten Schwestermodelle KORMo-Web-4B und -9B liegen laut Karte auf reinen Web-Aufgaben höher - die 11B-Version zielt bewusst auf Vielseitigkeit statt nur auf Web-Erfolg [1]. Unabhängig bestätigt ist keiner der Werte."
+  },
+  {
+   "t": "h2",
+   "x": "Ausprobieren: Chrome-Erweiterung und eigener Server"
+  },
+  {
+   "t": "p",
+   "x": "Ein vom Hersteller beschriebener Einstieg ist die Chrome-Erweiterung aus dem GitHub-Repository des Labors: Sie nimmt Aufgaben im Seitenpanel entgegen und lässt den Agenten im eigenen Browser arbeiten; optional lassen sich Aufgaben per Discord-Bot schicken. Das Repository trägt nach unserer Prüfung keinen erkannten Lizenzvermerk - zur Erweiterung selbst machen wir daher keine Lizenz-Aussage [3]. Das Modell selbst läuft lokal auf einer NVIDIA-GPU über vLLM; auf dem Mac ist laut Karte nur der Betrieb der kleineren 4B- und 9B-Varianten über vllm-mlx vorgesehen, die 11B-Version wurde dort nicht getestet [1][2]. Modell und Agent laufen dabei auf eigener Hardware - welche Daten eine konkrete Webseite im Browser des Nutzers erhält, entscheidet sich unabhängig davon. Eine eigene lokale Installation oder Sicherheitsprüfung der Erweiterung haben wir nicht durchgeführt. Die Extension kann einen lokalen oder entfernten Modellserver ansprechen; lokal betriebenes Modell und Browser sind kein allgemeines Datenschutzversprechen."
+  },
+  {
+   "t": "h3",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "Größe: 11 Mrd. Parameter (SigLIP-Bildencoder plus KORMo-10B-Textmodell). Sprachen: Koreanisch und Englisch. Training: 10 Mio.+ atomare Web-Verständnis-Beispiele, 100.000+ Browser-Trajektorien. Aktionsraum: 22 Browser-Werkzeuge, Koordinaten normiert 0-1000. Empfohlene Einstellungen: Temperatur 0,6, top_p 0,95, bis 16.000 Token pro Schritt, bis 50 Schritte. Software: transformers 5.12.1 mit mitgeliefertem Modellcode, vLLM 0.23.0 nach Konvertierung. Lizenz: Apache-2.0 (Modell) [1]."
+  }
+ ],
+ "method": "Quellenprüfung am 20. November 2026 gegen 07:13 MEZ: aktuelle Modellkarte direkt gelesen und gegen Modell-API abgeglichen (Revision 34749d0da9a67901f5c1d172fc8b6e3e788749de). Ein zwischengespeicherter Abruf zeigte ältere Werte 29,0/30,1; der aktuelle direkteREADME enthält 31,3/33,7. GitHub-API der Chrome-Erweiterung meldet license: null, daher keine bestätigte Lizenzbehauptung dafür. Alle Benchmark-Werte sind Herstellerangaben; keine eigenen Framework-, Hardware- oder Sicherheitstests.",
+ "limitations": "Alle Benchmark-Werte sind Herstellerangaben ohne unabhängige Bestätigung; der LLM-Judge (GPT-6) stammt aus demselben Messaufbau. Zum Training des Grundmodells KORMo-10B (Daten, Aufwand) macht die Karte hier keine Angaben. Die Chrome-Erweiterung trägt keinen erkannten Lizenzvermerk.",
+ "faq": [
+  {
+   "q": "Was ist KORMo-Web-11B?",
+   "a": "Ein zweisprachiges multimodales Modell des KAIST MLP Lab, das als Sprachmodell antwortet, Bilder versteht und Webseiten per Screenshot und Klick bedienen kann - alles in einem Modell [1]."
+  },
+  {
+   "q": "Was unterscheidet es von KORMo-Web-4B und -9B?",
+   "a": "Die kleineren Varianten basieren auf Qwen und sind auf maximale Web-Leistung optimiert; die 11B-Version baut auf dem eigenen, von Grund auf trainierten KORMo-Grundmodell und soll Sprach- und Bildfähigkeiten erhalten [1]."
+  },
+  {
+   "q": "Wie gut ist der Web-Agent?",
+   "a": "Auf Online-Mind2Web erreicht er laut Hersteller 31,3 Prozent (englisch) und 33,7 Prozent (koreanisch). Auf Koreanisch führt er die in dieser Tabelle gelisteten offenen Nicht-KORMo-Modelle an, auf Englisch liegt OpenWebRL-4B vorn; ein proprietäres Vergleichsmodell erreicht rund das Doppelte [1]."
+  },
+  {
+   "q": "Unter welcher Lizenz steht KORMo-Web-11B?",
+   "a": "Das Modell steht unter Apache-2.0; kommerzielle Nutzung, Anpassung und Weitergabe sind im Lizenzrahmen erlaubt. Die zugehörige Chrome-Erweiterung trägt keinen erkannten Lizenzvermerk [1][3]."
+  },
+  {
+   "q": "Kann ich es lokal ausprobieren?",
+   "a": "Ja, über vLLM auf einer NVIDIA-GPU nach einmaliger Konvertierung, gesteuert etwa über die Chrome-Erweiterung des Labors. Auf dem Mac ist nur der Betrieb der 4B- und 9B-Varianten vorgesehen [1][3]. Wir haben Installation und Hardwareanforderungen nicht selbst getestet; Webseiten und ein gegebenenfalls entfernter Modellserver können weiterhin Daten erhalten."
+  }
+ ],
+ "related": [
+  "daisyrose-27b-analyse",
+  "coding-agenten-alltag",
+  "sicherheit-fuer-agenten-systeme"
+ ]
+}
