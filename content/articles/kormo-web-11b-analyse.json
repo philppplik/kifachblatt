@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "KORMo-Web-11B: Koreas Web-Agent aus eigenem Grundmodell",
  "dek": "KAIST erweitert sein von Grund auf trainiertes KORMo-Modell zum Browser-Agenten: ein Modell für Text, Bilder und Web-Klicks, zweisprachig und unter Apache-2.0.",
- "published": "2026-11-20T08:01:01+01:00",
- "modified": "2026-11-20T08:01:01+01:00",
+ "published": "2026-11-20T12:10:56+01:00",
+ "modified": "2026-11-20T12:10:56+01:00",
  "author": "philipp-paulik",
  "tags": [
   "KORMo",

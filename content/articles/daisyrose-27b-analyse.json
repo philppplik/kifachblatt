@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "DaisyRose-27B: RL-Posttraining mit engen Benchmark-Grenzen",
  "dek": "RadixArk trainiert Qwen3.8-27B per RL nach. Die Herstellerwerte steigen, doch ein wichtiger Terminal-Bench-Vergleich mischt Versionen.",
- "published": "2026-11-20T08:01:01+01:00",
- "modified": "2026-11-20T08:01:01+01:00",
+ "published": "2026-11-20T12:10:55+01:00",
+ "modified": "2026-11-20T12:10:55+01:00",
  "author": "philipp-paulik",
  "tags": [
   "DaisyRose",
