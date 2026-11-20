@@ -1,5 +1,53 @@
 [
   {
+    "title": "KI-Update Deep-Dive: Smart Glasses als Alltagshilfe",
+    "url": "https://www.heise.de/news/KI-Update-Deep-Dive-Smart-Glasses-als-Alltagshilfe-11530663.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795183200.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Für blinde Menschen sind KI-Brillen eine Alltagshilfe. Doch die Technologie steht wegen Datenschutzbedenken in der Kritik. Das verunsichert Betroffene.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T14:09:31.844596+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Mini-Workstations mit Nvidia RTX Spark jetzt ab 4600 Euro erhältlich",
+    "url": "https://www.heise.de/news/KI-Mini-Workstations-mit-Nvidia-RTX-Spark-jetzt-ab-4600-Euro-erhaeltlich-11532573.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795178220.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Asus und MSI liefern kompakte Windows-11-PCs mit RTX Spark und bis zu 128 GByte; einige Konkurrenten mit AMD Ryzen AI Max Pro sind billiger, einer hat mehr RAM.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T14:09:31.844723+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "FFmpeg 9.1 erfindet Bilder dazu – wenn eine Nvidia-GPU hilft",
+    "url": "https://www.heise.de/news/FFmpeg-9-1-erfindet-Bilder-dazu-wenn-eine-Nvidia-GPU-hilft-11532359.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795174800.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Besserer AAC-Klang, berechnete Zwischenbilder per GPU und ein Vulkan-Encoder für APV: Version 9.1 erweitert das Medien-Framework FFmpeg an vielen Stellen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T14:09:31.844811+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Metas KI-Gadget für die Hosentasche soll 300 Dollar kosten",
+    "url": "https://www.heise.de/news/Metas-KI-Gadget-fuer-die-Hosentasche-soll-300-Dollar-kosten-11532549.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795174140.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Metas KI-Gadget Muse Charm dürfte noch vor Jahresende erscheinen. Einem Bericht zufolge soll es 300 US-Dollar kosten und mit kostenlosem 5G starten.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-20T14:09:31.844836+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "software-architektur.tv: Produktivität mit KI – das Harvard-Paper",
     "url": "https://www.heise.de/news/software-architektur-tv-Produktivitaet-mit-KI-das-Harvard-Paper-11532159.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795167120.0,
