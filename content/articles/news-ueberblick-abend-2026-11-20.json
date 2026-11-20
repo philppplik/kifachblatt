@@ -1,0 +1,164 @@
+{
+ "slug": "news-ueberblick-abend-2026-11-20",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-20T16:17:02+01:00",
+ "modified": "2026-11-20T16:17:02+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Budget Internalization: Fixed-Budget RLVR Trades Test-Time Scaling for In-Budget Accuracy",
+   "publisher": "arXiv; Ilia Zavidnyi, Alexander Kovrigin, Arina Puchkova, Kirill Gelvan, Sergey Titov, JetBrains Research",
+   "url": "https://arxiv.org/abs/2611.26172",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "NariQ: Sub-3-Bit Quantization for Long-Horizon Agentic Tasks",
+   "publisher": "arXiv; Doyeob Kim, Nari Labs",
+   "url": "https://arxiv.org/abs/2611.26157",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "Attention Head Specialization: Phase Transitions in Sample Complexity",
+   "publisher": "arXiv; Léo Catteau, O. Duranthon, Lenka Zdeborová, EPFL",
+   "url": "https://arxiv.org/abs/2611.26228",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "Budget Internalization: veröffentlichte Checkpoints",
+   "publisher": "JetBrains Research / Hugging Face",
+   "url": "https://huggingface.co/collections/JetBrains-Research/budget-internalization",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "Qwen3.8-27B-NariQ-GGUF: Model Card",
+   "publisher": "Nari Labs / Hugging Face",
+   "url": "https://huggingface.co/nari-labs/Qwen3.8-27B-NariQ-GGUF",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "NariQ-Laufzeit und Kompatibilität",
+   "publisher": "Nari Labs / GitHub",
+   "url": "https://github.com/nari-labs/nari-llama.cpp",
+   "accessed": "2026-11-20"
+  },
+  {
+   "title": "Attention Head Specialization: Code",
+   "publisher": "SPOC group / GitHub",
+   "url": "https://github.com/SPOC-group/Attention-head-specialization",
+   "accessed": "2026-11-20"
+  }
+ ],
+ "tags": [
+  "Forschung",
+  "RLVR-Training",
+  "Quantisierung",
+  "Theorie"
+ ],
+ "title": "RLVR-Budgets, NariQ und Attention-Spezialisierung: Befunde und Grenzen",
+ "dek": "RLVR mit Budget-Falle, NariQ bei 3,0 und 2,5 Bit BF16-nah in Tests und datenabhängige Attention-Spezialisierung: drei Studien mit klaren Grenzen.",
+ "key_takeaways": [
+  "Budget Internalization: Bei Qwen3.5-4B mit 4k-Training wechselt die AIME-Differenz zum Basismodell von +34,8 Punkten bei 4k auf -30,2 bei 64k. Die sechs DeepScaleR-Konfigurationen zeigen diese Umkehr, mit unterschiedlichen Testbudgets.",
+  "NariQ auf Qwen3.8-27B: 3,0 und 2,5 Bit lösen 47 beziehungsweise 46 von 113 DeepSWE-Aufgaben, BF16 löst 44. Die BF16-Nähe gilt für die getesteten Benchmarks, nicht als allgemeine Verlustfreiheitsgarantie.",
+  "Attention-Spezialisierung: Die theoretischen Phasenübergänge gelten im hochdimensionalen Modell unter Replica-Symmetrie-Annahme. BERT-Small zeigt empirisch einen scharfen Datenmengeneffekt, beweist aber keine asymptotische Singularität."
+ ],
+ "hero": {
+  "alt": "Datengrafik mit vier von sechs DeepScaleR-Konfigurationen: AIME-Differenz am Trainingslimit gegenüber 64k bei Qwen und 16k bei Gemma/Nemotron; NariQ-DeepSWE-Ergebnisse und bedingte Attention-Theorie.",
+  "caption": "Viererauswahl aus sechs DeepScaleR-Konfigurationen, Werte nach Abschnitt 2.1 des Budget-Papers; größtes AIME-Budget: Qwen 64k, Gemma/Nemotron 16k. NariQ-Dateien sind text-only; Vision benötigt zusätzlich 0,9 GB, der 55,6-GB-BF16-Originalcheckpoint enthält Vision und MTP. Attention-Theorie unter Replica-Symmetrie-Annahme, numerisch gestützt. Eigene Grafik.",
+  "credit": "Eigene Grafik",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Drei neue Forschungsarbeiten setzen an unterschiedlichen Engpässen an: Ein festes Rollout-Limit kann späteres Reasoning begrenzen, eine auf Agentensitzungen kalibrierte Quantisierung hält ein 27B-Modell in Tests nahe an BF16, und eine Attention-Theorie untersucht, wie die Datenmenge Spezialisierung ermöglicht. Die Ergebnisse sind interessant, ihre Versuchsgrenzen aber ebenso wichtig: sechs Trainingskonfigurationen, ein quantisiertes Modell und ein theoretisches Modell mit ausdrücklicher Annahme."
+  },
+  {
+   "t": "h2",
+   "x": "Budget Internalization: Wenn mehr Tokens nach dem Training wenig helfen"
+  },
+  {
+   "t": "p",
+   "x": "Zavidnyi und Kollegen von JetBrains Research untersuchen GRPO-Training mit festen Rollout-Limits an Qwen3.5-4B, Gemma4-E2B und Nemotron-3-Nano-4B. Auf AIME 2024/2025 gewinnen die trainierten Modelle gegenüber ihrer Basis zunächst am jeweiligen Trainingslimit. Bei größeren Testbudgets dreht sich der Vergleich um: Die Basis nutzt zusätzliche Tokens, während die trainierten Modelle bei Antwortlänge und Genauigkeit weitgehend stagnieren. Das ist die als Budget Internalization bezeichnete Beobachtung, kein bei der Ausgabe erzwungenes hartes Tokenlimit. [1,4]"
+  },
+  {
+   "t": "p",
+   "x": "Die sechs DeepScaleR-Konfigurationen in Abschnitt 2.1 zeigen folgende Genauigkeitsdifferenzen zur jeweiligen Basis, jeweils in Prozentpunkten am gleichen Testbudget: Qwen mit 4k-Training +34,8 bei 4k und -30,2 bei 64k; Qwen mit 8k-Training +42,4 bei 8k und -24,6 bei 64k. Gemma mit 1k-Training erreicht +10,9 bei 1k und -24,8 bei 16k; mit 2k-Training +14,8 bei 2k und -20,6 bei 16k. Nemotron mit 1k-Training erreicht +23,3 bei 1k und -25,4 bei 16k; mit 2k-Training +12,6 bei 2k und -13,1 bei 16k. Es handelt sich um Mittelwerte über drei Seeds. Die Grafik zeigt vier dieser sechs Konfigurationen. [1,4]"
+  },
+  {
+   "t": "p",
+   "x": "Quellenhinweis: Die einleitende Zusammenfassung des Papers nennt andere globale Spannengrenzen als die detaillierten sechs Werte in Abschnitt 2.1. Wir verwenden deshalb die einzeln ausgewiesenen Abschnittswerte und leiten aus der abweichenden Zusammenfassung keine zusätzliche Spanne ab. Zudem sind die größten AIME-Testbudgets nicht für alle Modelle identisch. [1,4]"
+  },
+  {
+   "t": "p",
+   "x": "Die Antwortlänge illustriert den Effekt: Am größten AIME-Budget produziert Qwen nach 4k-Training im Mittel 4,97k statt 27,32k Tokens. Reasoning-Gym-Training reproduziert das Muster in weiteren Versuchen; die Größe des Vorteils am Trainingslimit hängt jedoch vom Modell und der Aufgabe ab. Auf GPQA-Diamond und LiveCodeBench v6 sind die Verluste teils viel kleiner: Qwen mit 8k-Training liegt bei 64k um 2,2 beziehungsweise 1,0 Punkte unter seiner Basis und erzeugt auf LiveCodeBench im Mittel 8,31k statt 38,32k Tokens. Weniger Test-Time-Scaling ist daher nicht in jeder Anwendung nachteilig. [1,4]"
+  },
+  {
+   "t": "p",
+   "x": "Die Ablationen stützen keine reine GRPO-Sondererklärung. Natürlich beendete kurze SFT-Trajektorien erhalten Scaling, künstlich gekürzte reproduzieren den Einbruch. Stärkeres KL-Anchoring erhält mehr Hochbudget-Leistung, kostet aber einen Teil des Vorteils am Trainingslimit. Keine getestete Intervention verbindet den vollen In-Budget-Gewinn mit dem Hochbudget-Niveau der Basis. Das ist Evidenz für die Rolle der verstärkten Antwortverteilung und der Behandlung abgeschnittener Rollouts, keine universelle Kausaldiagnose für jedes Post-Training. Für Modellvergleiche folgt daraus: Genauigkeit und tatsächliche Ausgabelänge bei mehreren Budgets messen. Checkpoints sind in der verlinkten Hugging-Face-Sammlung verfügbar. [1,4]"
+  },
+  {
+   "t": "h2",
+   "x": "NariQ: BF16-nahe Agentenwerte bei 3,0 und 2,5 Bit"
+  },
+  {
+   "t": "p",
+   "x": "Doyeob Kim von Nari Labs quantisiert Qwen3.8-27B mit einem Trellis-Verfahren. Die Kalibrierung zählt nur Tokens, die die BF16-Referenz in Agentensitzungen selbst erzeugt hat. Tool-Ausgaben bleiben dabei Kontext, werden aber nicht als Zielpositionen der Verlustfunktion gezählt. Modulweise Verlustschätzungen steuern die Bitverteilung; die Ausgabeschicht erhält 16 Bänder mit mindestens 2 Bit je Band. Damit richtet sich die Kompression auf das Verhalten des Agenten statt nur auf kurze allgemeine Texte. [2,5,6]"
+  },
+  {
+   "t": "p",
+   "x": "Im eigenen Claude-Code-Harness mit einem Versuch je DeepSWE-Aufgabe lösen die 3,0- und 2,5-Bit-Dateien 47 und 46 von 113 Aufgaben, gegenüber 44 für BF16. Der davon verschiedene DeepSWE-Score, der mittlere Anteil bestandener neuer Tests pro Aufgabe, beträgt 84,9 und 84,5 gegenüber 83,0 Prozent. Das ist nicht mit dem Anteil vollständig gelöster Aufgaben zu verwechseln. Bei 2,0 Bit fallen die Ergebnisse auf 33 Aufgaben und 75,7 Score-Punkte. [2,5,6]"
+  },
+  {
+   "t": "p",
+   "x": "Terminal Bench 2.1 umfasst im Versuch 82 Aufgaben mit jeweils drei Anläufen. Die mittleren Testbewertungen liegen bei 63,8 für 3,0 Bit und 60,2 für 2,5 Bit, BF16 erreicht 62,6. Die häufig genannten 102 und 96 Prozent sind also Anteile der eigenen BF16-Wertung, keine absoluten Lösungsquoten. Die gemessenen Differenzen liegen innerhalb der berichteten Unsicherheit. Auf AIME, RealWorldQA und MGSM liegt die 3,0-Bit-Datei höchstens einen Punkt und die 2,5-Bit-Datei höchstens 2,2 Punkte von BF16 entfernt. Daraus folgt keine allgemeine Garantie unveränderter Fähigkeiten. [2,5,6]"
+  },
+  {
+   "t": "p",
+   "x": "Der Vergleich mit anderen Quantisierungen ist eingeschränkt: Laut den übernommenen Unsloth-Ergebnissen lösen dort Dateien mit höchstens 3,0 Bit pro Gewicht maximal 72 Prozent so viele DeepSWE-Aufgaben wie die dortige BF16-Referenz. Unsloth nutzt mini-swe-agent und mindestens drei Durchläufe je Aufgabe, NariQ dagegen Claude Code und einen Versuch. Selbst die Normierung auf die jeweils eigene BF16-Basis beseitigt diesen Harness-Unterschied nicht; die fremden Aufgabenanzahlen wurden aus einer Grafik abgelesen. [2,5,6]"
+  },
+  {
+   "t": "p",
+   "x": "Auch die Speicherangaben benötigen ihren Scope: 10,1, 8,4 und 6,8 GB sind text-only-GGUFs bei 3,0, 2,5 und 2,0 Bit, einschließlich Embeddings und Ausgabeschicht. Vision ergänzt einen gemeinsamen BF16-Projektor mit 0,9 GB. Die im Paper genannten 55,6 GB des Originalcheckpoints enthalten dagegen Vision und Multi-Token-Prediction. Das sind keine identisch ausgestatteten Dateipakete und keine Angaben zum gesamten Laufzeitspeicher. KV-Cache und Aktivierungen bleiben zusätzliche Kosten; lange Kontexte auf 16-GB-Karten sind damit nicht pauschal zugesichert. [2,5,6]"
+  },
+  {
+   "t": "p",
+   "x": "Die Dateien und ein eigener llama.cpp-Fork sind veröffentlicht. Der normale llama.cpp-Stand sowie Ollama und LM Studio können das Format laut aktuellem Projekt-README noch nicht laden. Das Paper evaluiert nur ein Modell und berichtet Geschwindigkeiten für eine RTX PRO 6000; andere Modelle und Harnesses bleiben offene Prüfungen. Der MTP-Baustein ist noch nicht quantisiert. Die Ergebnisse sind ein begrenzter, aber interessanter Nachweis für agentenspezifische Kalibrierung, kein Nachweis verlustfreier 3-Bit-Kompression im Allgemeinen. [2,5,6]"
+  },
+  {
+   "t": "h2",
+   "x": "Attention-Köpfe: Datenmenge als Kontrollgröße, Theorie unter Annahmen"
+  },
+  {
+   "t": "p",
+   "x": "Catteau, Duranthon und Zdeborová von der EPFL betrachten Spezialisierung nicht nur über Trainingszeit, sondern über die Zahl verfügbarer Beispiele. BERT-Small-Modelle werden von zufälligen Gewichten auf unterschiedlich großen festen Datensätzen aus BookCorpus und englischer Wikipedia trainiert. Syntaktische Aufmerksamkeitsstruktur entsteht dabei scharf über einen charakteristischen Bereich von Datensatzgrößen. Die gezeigten Kurven mitteln fünf Läufe; ausgewertet werden Checkpoints mit der niedrigsten Validierungs-Loss. Nahe dem Aufkommen der Struktur steigt die Variabilität zwischen Seeds. [3,7]"
+  },
+  {
+   "t": "p",
+   "x": "Daneben analysiert die Arbeit eine einzelne Mehrkopf-Attention-Schicht für eine synthetische Retrieval-Aufgabe im proportionalen hochdimensionalen Grenzfall. Unter einer Replica-Symmetrie-Annahme ergeben selbstkonsistente Gleichungen Übergänge zu spezialisierten Köpfen und Nichtanalytizitäten in Fehlern und Ordnungsparametern. Wichtig: Abschnitt 3.1 erklärt ausdrücklich, dass die Gültigkeit dieser Annahme im nichtkonvexen Setting offen bleibt. Numerische Optimierung stimmt in den untersuchten Regimen mit den Vorhersagen überein. Ein voraussetzungsloser mathematischer Beweis für beliebige Transformer ist das nicht. [3,7]"
+  },
+  {
+   "t": "p",
+   "x": "Je nach Regularisierung und Signalstruktur differenzieren sich Köpfe zunächst ohne informative Spezialisierung, oder sie erschließen in mehreren Übergängen immer schwächere latente Merkmale. Unterschiedliche Attention-Muster allein belegen damit noch keine bessere Generalisierung. Die Verbindung zu Online-Lernen hilft, statistische Grenzen der verfügbaren Daten von Optimierungsdynamik zu unterscheiden. Die endlichen BERT-Experimente beweisen ihrerseits keine asymptotischen Nichtanalytizitäten; andere Fähigkeitssprünge können dynamische Ursachen haben. Der begleitende Code ist auf GitHub verfügbar. [3,7]"
+  }
+ ],
+ "faq": [
+  {
+   "q": "Warum reicht der Vergleich am RLVR-Trainingsbudget nicht?",
+   "a": "In den untersuchten Konfigurationen gewinnt das trainierte Modell am Limit, verliert aber bei höherem Testbudget gegen seine Basis. Qwen3.5-4B mit 4k-Training wechselt von +34,8 Punkten bei 4k auf -30,2 bei 64k. Deshalb müssen Genauigkeit und tatsächliche Antwortlänge bei mehreren Budgets geprüft werden."
+  },
+  {
+   "q": "Ist NariQ allgemein verlustfreie 3-Bit-Quantisierung?",
+   "a": "Nein. 3,0 und 2,5 Bit erreichen auf dem getesteten Qwen3.8-27B BF16-nahe Agentenwerte. Bei 2,0 Bit sinkt die Leistung. Andere Modelle und Harnesses sind nicht umfassend geprüft. Die Textdateien belegen 10,1 beziehungsweise 8,4 GB, Vision und Laufzeitspeicher kommen hinzu."
+  },
+  {
+   "q": "Ist der Attention-Phasenübergang für große Sprachmodelle bewiesen?",
+   "a": "Nein. Die Theorie gilt für ein hochdimensionales Modell unter Replica-Symmetrie-Annahme, deren Gültigkeit im nichtkonvexen Fall offen ist. Numerik stützt die Vorhersagen. BERT-Small zeigt einen scharfen Datenmengeneffekt, aber keinen Beweis für asymptotische Singularitäten oder sämtliche Fähigkeitssprünge großer Sprachmodelle."
+  }
+ ],
+ "related": [
+  "llm-quantisierung-verfahren-grundlagen",
+  "wie-ein-sprachmodell-lernt"
+ ]
+}
