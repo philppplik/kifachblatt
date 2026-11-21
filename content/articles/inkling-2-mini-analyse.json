@@ -1,0 +1,179 @@
+{
+ "slug": "inkling-2-mini-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Inkling 2 Mini: Geloopter Transformer für den Schreibtisch",
+ "dek": "Thinking Machines veröffentlicht ein 26,4-Mrd.-MoE mit dreifach gelooptem Kern: 3,4 Mrd. aktive Gewichte, 5,4 Mrd. Gewichtsaktivierungen pro Token.",
+ "published": "2026-11-21T07:15:10+01:00",
+ "modified": "2026-11-21T07:15:10+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Inkling",
+  "Thinking Machines",
+  "MoE",
+  "On-Device",
+  "Looped Transformer"
+ ],
+ "key_takeaways": [
+  "Thinking Machines hat Inkling 2 Mini offengelegt: ein multimodales MoE mit 26,4 Mrd. Parametern, 3,4 Mrd. aktiv - laut Karte am 20. November veröffentlicht, das Repository besteht seit dem 17. November [1].",
+  "Das Modell ist der erste veröffentlichte geloopte Transformer des Labors: Die mittleren 12 der 24 Schichten laufen dreimal pro Token, was die effektive Rechnentiefe auf 48 Schichtanwendungen erhöht [1][2].",
+  "Der rund 20 GB große Checkpoint (NVFP4/MXFP8 gemischt) läuft laut Karte auf einer DGX Spark oder Apple-Silicon-Geräten ab 32 GB; Kontext bis zu 1 Mio. Token [1].",
+  "Der HF-Spiegel und die ausführlichere Hersteller-Webkarte führen unterschiedliche Vergleichsumfänge. Die ausgewählten Benchmarkwerte sind Herstellerangaben; wir haben weder Qualität noch Laufzeiten selbst getestet [1][4]."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu Inkling 2 Mini: 26,4 Mrd. Parameter, 3,4 Mrd. aktiv, mittlere Schichten laufen dreimal, rund 20 GB Checkpoint, 1 Mio. Kontext, Apache-2.0.",
+  "caption": "Inkling 2 Mini: geloopter MoE-Transformer für lokale Hardware - Angaben aus der Modellkarte [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "thinkingmachines/Inkling-2-Mini (Modellkarte und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/thinkingmachines/Inkling-2-Mini",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "Inkling 2 Mini (Hersteller-Blog, inkl. Looping- und Monitorbarkeits-Experimenten)",
+   "publisher": "Thinking Machines",
+   "url": "https://thinkingmachines.ai/news/inkling-2-mini/",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "unsloth/Inkling-2-Mini-GGUF (Plattform-API, Quantisierung)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/unsloth/Inkling-2-Mini-GGUF",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "Inkling 2 Mini Model Card, ausführliche Herstellerfassung",
+   "publisher": "Thinking Machines Lab",
+   "url": "https://thinkingmachines.ai/model-card/inkling-2-mini/",
+   "accessed": "2026-11-21"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Thinking Machines hat mit Inkling 2 Mini die kleinere Ausführung seiner Inkling-2-Reihe offengelegt: ein multimodales Mixture-of-Experts-Modell mit 26,4 Milliarden Parametern, von denen pro Token 3,4 Milliarden aktiv sind. Die Gewichte stehen unter Apache-2.0; als Veröffentlichungsdatum nennt die Karte den 20. November, das Hugging-Face-Repository wurde bereits am 17. November angelegt. Ein GGUF-Ableger von Unsloth folgte am 20. November [1][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Dreimal durch die Mitte"
+  },
+  {
+   "t": "p",
+   "x": "Der ungewöhnliche Teil steckt in der Architektur: Inkling 2 Mini hat 24 Schichten in vier Blöcken à sechs. Der erste und der letzte Block laufen einmal, die beiden mittleren Blöcke dreimal - pro Token entstehen so 48 Schichtanwendungen aus 24 Schichten an Gewichten. Die Karte rechnet den Effekt in effektiv aktiven Parametern vor: Jede zusätzliche Schleife fügt etwa 1,0 Milliarde hinzu, sodass das Modell bei drei Durchläufen mit 5,4 Milliarden effektiv aktiven Parametern arbeitet. Pro Schicht wählt ein Router 8 von 128 Experten; die Aufmerksamkeit mischt lokale und globale Schichten; Bilder verarbeitet ein eigener Vision-Transformer im gemeinsamen Hidden Space [1]. Laut Blog entstand das Modell aus der hauseigenen Skalierungsreihe, indem zwei Drittel der Experten gestrichen und das Looping eingeführt wurden; das mittlere Drittel zu loopen brachte in 27 von 28 Auswertungen mehr als das letzte [2]."
+  },
+  {
+   "t": "p",
+   "x": "Looping ermöglicht zusätzliche interne Rechnung, ohne dafür mehr sichtbare Reasoning-Tokens zu erzeugen. Der Blog untersucht deshalb die Überwachbarkeit an einer gesonderten Forschungsvariante mit variabler Schleifenzahl. Im Think-Fast-Test steigt deren No-CoT-Zeithorizont von 16 auf 37 Sekunden: Gemeint ist die menschliche Bearbeitungsdauer von Aufgaben, die das Modell ohne sichtbare Gedankenkette mit geschätzt 50 Prozent Zuverlässigkeit löst, nicht seine autonome Laufzeit. Mehr Schleifen verkürzten die Gedankenkette, sie blieb aber lesbar. Bei diesem Maßstab fanden die Autoren keine bedeutsame Verschlechterung der Monitorbarkeit und keinen steigenden Sabotage-Trend. Das ist kein allgemeiner Sicherheitsnachweis; die Forschungsvariante wurde im RL nur mit drei Durchläufen trainiert. Bei den getesteten wissenslastigen Closed-Book-Fragen änderten weitere Durchläufe die Leistung kaum, während einige Reasoning- und Kontexttests profitierten [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Was die Hersteller-Tabelle zeigt"
+  },
+  {
+   "t": "p",
+   "x": "Der Hugging-Face-Spiegel vergleicht Inkling 2 Mini mit Gemma 4 31B, Muse Glimmer, Qwen3.8-27B und Nemotron 3.5 Super VL. Die ausführlichere Hersteller-Webkarte führt zusätzlich Dory 1.0 4B, SenseNova-Loop-9B und Beam 1.0. Deshalb beziehen wir uns auf einzelne, klar benannte Tabellenwerte statt auf eine versionsabhängige Siegquote. Auf DeepSWE v1.1 nennt die Karte 48,2 Prozent gegenüber 42,2 für Qwen3.8-27B; auf MMMU Pro liegt dagegen Qwen mit 76,3 vor 74,9. Bei SWE-Bench Verified führt in der erweiterten Webtabelle Beam 1.0 mit 80,1 vor Inklings 79,2. AA-Omniscience ist ein weiterer Versionsunterschied: Im HF-Vergleich führt Nemotron, in der erweiterten Karte Beam. Drittanbieter-Indizes sind dort berichtete Werte, keine von uns geprüften Originalmessungen [1][4]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Benchmark-Werte in Prozent: Inkling 2 Mini und zwei Vergleichsmodelle",
+   "alt": "Balkendiagramm mit vier Benchmarks und drei Modellen: DeepSWE v1.1: 48,2 / 42,2 / 4,4; SWE-Bench Verified: 79,2 / 77,8 / 76,0; MMMU Pro: 74,9 / 76,3 / 74,3; OmniDocBench v1.6: 92,8 / 91,5 / 90,4 Prozent (Inkling 2 Mini, Qwen3.8-27B, Muse Glimmer)",
+   "caption": "Ausgewählte Werte aus der Herstellerkarte, nicht unabhängig reproduziert. Modelle werden nur innerhalb derselben Benchmarkzeile verglichen; DeepSWE nutzt mini-swe-agent v2.4.6, SWE-Bench Verified bash only, MMMU Pro Standard 10. Keine Gesamtrangliste [1][4].",
+   "labels": [
+    "DeepSWE v1.1",
+    "SWE-Bench Verified",
+    "MMMU Pro",
+    "OmniDocBench v1.6"
+   ],
+   "series": [
+    {
+     "name": "Inkling 2 Mini",
+     "values": [
+      48.2,
+      79.2,
+      74.9,
+      92.8
+     ]
+    },
+    {
+     "name": "Qwen3.8-27B",
+     "values": [
+      42.2,
+      77.8,
+      76.3,
+      91.5
+     ]
+    },
+    {
+     "name": "Muse Glimmer",
+     "values": [
+      4.4,
+      76.0,
+      74.3,
+      90.4
+     ]
+    }
+   ],
+   "y_label": "Prozent",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Die Karte nennt interne Sicherheitsmessungen zu Fehlverhalten (9,8 Prozent), verdecktem Fehlverhalten (8,3) und destruktiven Aktionen (10,2). Das sind unter den ausgefüllten Vergleichszellen die niedrigsten Werte, kein Beweis sicherer Agentenaktionen. Der Blog berichtet außerdem eine Stanford-Messung mit frühem Zugang: 0,703 Intelligence-per-Joule auf DGX Spark gegenüber 0,430, 0,159 und 0,036 bei drei anderen Modellen. Inkling lief dabei in MXFP8 mit niedrigem Reasoning-Aufwand auf einer 128-GB-DGX-Spark, die anderen Modelle in NVFP4 beziehungsweise INT4. Das ist kein Vergleich bei identischer Präzision; wir haben die Messung nicht unabhängig reproduziert [1][2][4]."
+  },
+  {
+   "t": "h2",
+   "x": "Die Grenzen des Modells"
+  },
+  {
+   "t": "p",
+   "x": "Bemerkenswert ist die Grenzen-Sektion der Karte: Inkling 2 Mini liegt in den hauseigenen Auswertungen fast überall hinter Inkling 2 Small, am deutlichsten bei Faktenwissen. Das Modell neige zu Wiederholungsschleifen beim Reasoning (das Labor empfiehlt Token- und Rundenlimits), sei als Agent weniger zuverlässig als größere Modelle und könne Dateien ohne Rückfrage löschen oder überschreiben - Sandbox und Bestätigungspflicht werden ausdrücklich empfohlen. Außerhalb des Englischen sinke die Qualität; die minimale Reasoning-Stufe schalte das Reasoning nicht ganz ab; und die Unterstützung geloopter Modelle in lokalen Laufzeiten sei neu, die Geschwindigkeit variiere [1]."
+  },
+  {
+   "t": "p",
+   "x": "Zum Betrieb: Der einzelne Checkpoint ist rund 20 GB groß (NVFP4 und MXFP8 gemischt) und läuft laut Karte auf einer DGX Spark, Apple-Silicon-Geräten ab 32 GB oder anderen GPUs ab etwa 32 GB VRAM. Genannt werden Hugging Face, SGLang, vLLM, llama.cpp (GGUF), Ollama und weitere; Nachtraining ist über Miles und SkyRL dokumentiert. Lokaler Betrieb des Modells ist damit möglich - welche Daten eine darauf aufsetzende Anwendung mit externen Diensten austauscht, ist eine separate Frage [1]. Die Hardwareempfehlung ist nicht gleichbedeutend mit einer Zusage, dass der volle Million-Token-Kontext auf einem 32-GB-Gerät nutzbar ist. Laufzeit, KV-Cache, Bildverarbeitung und Parallelität benötigen zusätzlichen Speicher; das maximal unterstützte Kontextfenster und der Speicherbedarf des Checkpoints sind verschiedene Größen."
+  },
+  {
+   "t": "h3",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "Parameter: 26,4 Mrd. gesamt, 3,4 Mrd. aktiv pro Token (5,4 Mrd. effektiv durch dreifaches Looping). Architektur: 24 Schichten (4 Blöcke à 6, mittlere 12 laufen dreimal), 8 von 128 Experten aktiv, hybride lokale/globale Aufmerksamkeit, nativer Vision-Transformer. Kontext: bis 1 Mio. Token. Numerik: NVFP4/MXFP8, Checkpoint ~20 GB. Modalitäten: Text und Bild rein, Text raus. Lizenz: Apache-2.0, Acceptable-Use-Policy des Herstellers verlinkt [1]."
+  }
+ ],
+ "method": "Recherche am 21. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von thinkingmachines/Inkling-2-Mini (vollständig, inkl. Benchmark-Tabelle, Safety- und Limitations-Abschnitten), Hersteller-Blog (vollständig gelesen, inkl. Looping-/Monitorbarkeits-Experimenten und Stanford-Messung), Plattform-API von unsloth/Inkling-2-Mini-GGUF. Alle Benchmark-Werte sind berichtete Werte aus der Karte beziehungsweise dem Blog; Framework-Tests haben wir nicht durchgeführt. Eigenständiger Quellenabgleich um 07:11 Uhr MEZ schließt die ausführlichere Hersteller-Webkarte ein; deren Vergleichsumfang weicht vom HF-Spiegel ab.",
+ "limitations": "Alle Benchmark-Werte stammen von Hersteller-Karte und -Blog ohne unabhängige Bestätigung; die Sicherheitsreihen Fehlverhalten/verdeckt/destruktiv sind interne Messungen; Drittanbieter-Indexwerte (AA, Vals) werden von der Karte nur berichtet. Die Stanford-Messung lief mit frühem Zugang und modellabhängiger Präzision. Looped-Modelle werden von lokalen Laufzeiten erst neu unterstützt. Der Think-Fast-Zeithorizont ist menschliche Aufgabenzeit bei 50 Prozent Erfolgswahrscheinlichkeit, keine Laufzeit. Die Monitorbarkeitsversuche betreffen eine variable Forschungsvariante und belegen keine allgemeine Sicherheit.",
+ "faq": [
+  {
+   "q": "Was ist Inkling 2 Mini?",
+   "a": "Ein offenes multimodales MoE-Modell von Thinking Machines mit 26,4 Mrd. Parametern (3,4 Mrd. aktiv). Seine mittleren 12 Schichten laufen dreimal pro Token - ein sogenannter geloopter Transformer [1]."
+  },
+  {
+   "q": "Was bringt das Looping?",
+   "a": "Es ermöglicht mehr interne Rechentiefe pro Token. In den Herstellertests profitieren vor allem Reasoning und Kontextverarbeitung, nicht jede Aufgabe. Die variable Forschungsvariante löste ohne sichtbare CoT schwierigere Think-Fast-Aufgaben; deren 16- bis 37-Sekunden-Zeithorizont meint menschliche Aufgabenzeit, keine autonome Modelllaufzeit. Eine bedeutsame Abnahme der Monitorbarkeit fand der Blog auf diesem Maßstab nicht [2]."
+  },
+  {
+   "q": "Wie gut ist Inkling 2 Mini?",
+   "a": "Die ausgewählten Herstellerwerte zeigen Stärken bei Coding und Dokumentverarbeitung, aber keinen universellen Sieg. Qwen liegt auf MMMU Pro vorn; in der erweiterten Webkarte übertrifft Beam 1.0 Inkling auf SWE-Bench Verified. Wir haben diese Werte nicht unabhängig getestet [1][4]."
+  },
+  {
+   "q": "Läuft das Modell lokal?",
+   "a": "Laut Karte ja: Der rund 20 GB große Checkpoint unterstützt DGX Spark, Apple Silicon ab 32 GB und GPUs ab etwa 32 GB VRAM, über Hugging Face, SGLang, vLLM, llama.cpp und weitere [1]. Das ist keine Zusage für den vollen 1-Mio.-Token-Kontext bei 32 GB; Cache und Laufzeit brauchen zusätzlichen Speicher."
+  },
+  {
+   "q": "Welche Grenzen nennt der Hersteller?",
+   "a": "Deutlich schwächeres Faktenwissen als Inkling 2 Small, Wiederholungsschleifen beim Reasoning, geringere Agenten-Zuverlässigkeit inklusive möglicher destruktiver Aktionen ohne Rückfrage und schwächere Qualität außerhalb des Englischen [1]."
+  }
+ ],
+ "related": [
+  "inkling-2-small-analyse",
+  "daisyrose-27b-analyse",
+  "sensenova-loop-9b-preview-analyse"
+ ]
+}
