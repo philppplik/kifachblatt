@@ -1,0 +1,128 @@
+{
+ "slug": "news-ueberblick-morgen-2026-11-21",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-21T06:46:28+01:00",
+ "modified": "2026-11-21T06:46:28+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "Physics of Language Models: Part 4.2, Canon Layers at Scale where Synthetic Pretraining Resonates in Reality",
+   "publisher": "arXiv; Zeyuan Allen-Zhu, Allen-Zhu Research (Experimente bei FAIR at Meta)",
+   "url": "https://arxiv.org/abs/2611.24963",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "Separating Interpretability and Reconstruction in Sparse Autoencoders",
+   "publisher": "arXiv; Anh Tien Nguyen, Dimitris Samaras, Stony Brook University; Mahdi S. Hosseini, Concordia University und Mila",
+   "url": "https://arxiv.org/abs/2611.25165",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "Calibrated Decision Rewards: Training Language Models with a Judge That Knows How Sure It Is",
+   "publisher": "arXiv; Rudransh Agnihotri, Manasvi Kapoor, FuturixAI Research",
+   "url": "https://arxiv.org/abs/2611.25135",
+   "accessed": "2026-11-21"
+  }
+ ],
+ "tags": [
+  "Forschung",
+  "Pretraining",
+  "Sparse-Autoencoder",
+  "RL-Training"
+ ],
+ "title": "Canon-Token-Ersparnis, DualSAE und kalibrierter RL-Richter",
+ "dek": "Drei Preprints im Quellencheck: Canon spart Tokens bei festen MMLU-Zielen, DualSAE trennt Lernziele, RLCDR verbessert eine Mathe-Policy mit klaren Grenzen.",
+ "key_takeaways": [
+  "Canon: etwa 25 bis 32 Prozent weniger Tokens bis zum jeweiligen MMLU-Ziel in drei 1T-Settings; keine allgemeine Token-Schwelle und keine gemessene Kosteneinsparung.",
+  "DualSAE: Abstractmittel von rund 29 Prozent relativer Rekonstruktions- und 34 Prozent MonoScore-Verbesserung. Die parametergleiche Kontrolle umfasst drei Aktivierungen auf Bilddaten.",
+  "RLCDR: MATH500 steigt mit einer Qwen3-1.7B-Policy von 72,2 auf 76,8 Prozent. Der Abstand zur Referenzbelohnung ist nicht nachgewiesen, Gleichwertigkeit aber ebenfalls nicht. Nur ein Trainingsseed."
+ ],
+ "hero": {
+  "alt": "Datengrafik: Canon-Token-Ersparnis je Modellgröße, DualSAE-Verbesserungen und MATH500 je Belohnung, jeweils im Studien-Scope.",
+  "caption": "Canon: Token-Ersparnis bis zum jeweiligen MMLU-Ziel, 1,3B/2T gesondert. DualSAE: relative Abstractmittel; parametergleiche Kontrolle auf drei Aktivierungen und Bilddaten begrenzt. MATH500-Achse beginnt bei 70 Prozent. Kein nachgewiesener Unterschied zwischen RLCDR und Referenz, kein Äquivalenznachweis.",
+  "credit": "Eigene Grafik",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Quellenstand: 21. November 2026, 06:37 Uhr MEZ. Dieser Morgenüberblick ordnet drei Preprints ein, nicht drei neue Produktstarts. Canon wurde am 12. November bei arXiv eingereicht, DualSAE und RLCDR am 18. November. Die Manuskripte sind Forschungsberichte, keine unabhängigen Replikationen."
+  },
+  {
+   "t": "h2",
+   "x": "Canon: weniger Tokens bis zum MMLU-Ziel"
+  },
+  {
+   "t": "p",
+   "x": "Zeyuan Allen-Zhu untersucht 64 von Grund auf trainierte Modelle: Llama-Transformer sowie Varianten von Mamba2, GLA und GDN mit 1,3 bis 8 Milliarden Parametern auf 1 bis 2 Billionen Nemotron-CC-Tokens. Die Experimente liefen bei FAIR at Meta. Die Ergebnisse und Rezepte waren laut Manuskript bereits im Dezember 2025 öffentlich, die Transformer-Checkpoints seit Juli 2025; neu hinzugekommen ist die arXiv-Fassung vom 12. November 2026. Es handelt sich also nicht um neue Trainingsläufe dieser Woche."
+  },
+  {
+   "t": "p",
+   "x": "Canon-Schichten mischen benachbarte Tokens mit kurzen Faltungen. Bei den drei 1T-Settings erreicht LlamaCanon die jeweilige finale MMLU-Genauigkeit von Vanilla-Llama mit ungefähr 25 Prozent (1,3B), 32 Prozent (3B) und 28 Prozent (8B) weniger Tokens; beim 1,3B/2T-Setting sind es etwa 37 Prozent. Diese Werte stammen aus den Trainingskurven, jeweils mit der besseren von zwei Lernraten pro Checkpoint. Sie messen weder allgemeine Rechenzeit- noch Kosteneinsparungen. Canon-ABCD ergänzt 0,07 bis 0,15 Prozent Parameter; für eine vorläufig optimierte Implementierung nennt das Paper 2,1 bis 3,3 Prozent mehr Schrittzeit."
+  },
+  {
+   "t": "p",
+   "x": "Die Aussage über unsichtbare Architekturunterschiede gilt für den untersuchten Vergleich mit früheren 1,3B/100B-Experimenten. Neben der Tokenzahl änderte sich die Datenqualität; das Paper kann beide Ursachen nicht trennen. Eine universelle Schwelle bei einer Billion Tokens folgt daraus nicht. Auch gute Standardwerte garantieren keinen sicheren Kontextabruf: Bei 500 Hintergrund-Tokens erreichen Transformer 99,5 bis 100 Prozent, lineare Modelle bei 8B dagegen 94,9 bis 98,2 Prozent, bei 1,3B teils nur 72,5 Prozent. Bei 4.000 Hintergrund-Tokens kommt das beste lineare 8B-Modell auf 50,2 Prozent gegenüber 94,6 Prozent für LlamaCanon. Beim kontrollierten Zwei-Hop-Test bleiben die meisten Modelle nahe der Zufallsrate von 33,3 Prozent. Die 8B-Transformer erreichen ohne Hintergrund etwa 50 Prozent; mit 500 Hintergrund-Tokens verschwindet dieser Vorsprung weitgehend. Die getestete Mamba2-Variante wurde für den Ressourcenvergleich verändert. Die Ergebnisse sind kein Urteil über sämtliche heutigen Modelle dieser Familien."
+  },
+  {
+   "t": "h2",
+   "x": "DualSAE: Rekonstruktion und Deutbarkeit getrennt lernen"
+  },
+  {
+   "t": "p",
+   "x": "DualSAE von Anh Tien Nguyen, Dimitris Samaras und Mahdi S. Hosseini ergänzt einen Sparse Autoencoder um einen Residual-Zweig. Der dünnbesetzte Zweig soll dominante semantische Merkmale lernen, der zusätzliche Zweig übrige Rekonstruktionsinformation übernehmen. Ein Dekorrelationsverlust bestraft Überschneidungen, garantiert aber keine vollständige Trennung. Zunächst wird der Sparse Branch vortrainiert, danach werden beide Zweige gemeinsam optimiert. Die Interpretation der Zweige stützt sich auf die Analysen im Paper, nicht auf einen allgemeinen Nachweis sauber getrennter Semantik."
+  },
+  {
+   "t": "p",
+   "x": "Der Abstract berichtet im Mittel rund 29 Prozent relative Verbesserung der Rekonstruktionstreue und 34 Prozent beim MonoScore, einem Interpretierbarkeitsmaß. Das sind keine Prozentpunkte und kein universelles Maß menschlichen Verstehens. Die Untersuchung umfasst Bildaktivierungen aus ViT, CLIP und SigLIP2 sowie Pythia-Aktivierungen auf OpenWebText und GitHub-Code; sie ist kein vollständiges Kreuzprodukt aus drei Bildencodern und allen Textkorpora. Im Hauptvergleich mit sechs SAE-Varianten auf ImageNet-1K betragen die Mittelwerte konkret 27,1 Prozent für R² und 31,2 Prozent für MonoScore. Die breitere Zusammenfassung ist davon zu unterscheiden."
+  },
+  {
+   "t": "p",
+   "x": "Die zusätzliche Kapazität kontrolliert Tabelle 1 mit breiteren, parametergleichen SAE-Wörterbüchern: In allen dort aufgeführten Kombinationen aus drei Bildencodern, drei Aktivierungen (TopK, BatchTopK, JumpReLU) und zwei Bilddatensätzen liegen die fünf Metriken unter DualSAE. Dieser Kontrollvergleich deckt weder alle sechs SAE-Varianten noch die Sprachversuche ab. Er spricht innerhalb seines Umfangs gegen mehr Parameter als alleinige Erklärung. Die quantitativen Ergebnisse mitteln drei Zufallsseeds. Für Topic Modeling, Hypothesengenerierung und LLM-Steering melden die Autoren ebenfalls Vorteile; allgemeine Übertragbarkeit ist damit nicht belegt."
+  },
+  {
+   "t": "h2",
+   "x": "RLCDR: besseres Mathetraining, keine bewiesene Gleichwertigkeit"
+  },
+  {
+   "t": "p",
+   "x": "RLCDR von Rudransh Agnihotri und Manasvi Kapoor nutzt ein Entscheidungsmodell als Belohnungsgeber. Es bewertet typisierte Fragen zur Korrektheit von Antworten oder Schritten über einen trainierten Readout. Optionsreihenfolgen werden gemittelt, die Ausgabe wird mit ungefähr hundert gelabelten Beispielen kalibriert. Ein einzelner Entscheidungs-Readout braucht einen Forward-Pass; die Mittelung über Reihenfolgen und die Kalibrierung sind zusätzliche Verfahrensschritte. Referenzfrei bezeichnet hier den verwendeten RL-Reward, nicht ein Verfahren ohne gelabelte Kalibrierungsdaten oder referenzbasierte Evaluation."
+  },
+  {
+   "t": "p",
+   "x": "Nach 100 GRPO-Schritten steigt Qwen3-1.7B auf MATH500 von 72,2 auf 76,8 Prozent pass@1. Das Paper berechnet aus ungerundeten Werten einen Gewinn von 4,65 Prozentpunkten, mit gepaartem 95-Prozent-Bootstrapintervall von +2,80 bis +6,50. Die Referenzbelohnung erzielt 76,9 Prozent. Der Unterschied RLCDR minus Referenz beträgt −0,10 Punkte, das Intervall reicht von −1,75 bis +1,50. Ein nicht nachgewiesener Unterschied ist kein Äquivalenznachweis. Auch gegenüber dem Softmax-Richter mit gleichem 27B-Rückgrat (75,5 Prozent) ist der Genauigkeitsvorsprung nicht statistisch gesichert: +1,30 Punkte, Intervall −0,50 bis +3,10."
+  },
+  {
+   "t": "p",
+   "x": "Auf den während des Trainings erzeugten Antworten liegt der Kalibrierungsfehler ECE bei 0,074 statt 0,141 für den Softmax-Richter. Das ist ein Vorteil in dieser Messung, keine Garantie jederzeit korrekter Wahrscheinlichkeiten. Beim Training ausschließlich auf schweren Problemen über 50 Schritte wird die Belohnung überkonfident: 74,1 Prozent MATH500 gegenüber 75,3 mit Referenzbelohnung; auch dieser Abstand ist nicht signifikant. Die RL-Experimente nutzen nur einen Trainingsseed, eine kleine Policy und mathematische Aufgaben. Sie zeigen einen interessanten Ansatz, keinen allgemeinen Ersatz für Referenzlösungen und keinen gesicherten Policy-Vorsprung gegenüber Softmax."
+  },
+  {
+   "t": "h2",
+   "x": "Methodische Einordnung"
+  },
+  {
+   "t": "p",
+   "x": "Die drei Arbeiten untersuchen unterschiedliche Ebenen: Pretraining-Architektur, Messbarkeit interner Merkmale und Qualität von RL-Belohnungen. Ein gemeinsamer Maßstab ist der passende Kontrollvergleich. Bei Canon sind Tokenbudget und Datenmix nicht als Ursachen getrennt, bei DualSAE ist der Kapazitätsabgleich enger als der Gesamtversuch, bei RLCDR lassen die Intervalle noch relevante positive wie negative Abstände zu. Die Kennzahlen dürfen deshalb nicht als ein gemeinsames Ranking oder als bewiesene Produktionsreife gelesen werden."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ab wann werden Architekturunterschiede messbar?",
+   "a": "Die Canon-Studie sieht bei 1 bis 2 Billionen Tokens Unterschiede, die frühere 1,3B/100B-Versuche verdeckten. Zugleich änderte sich der Datensatz. Daraus folgt keine allgemeine Token-Schwelle. Die gemessene Token-Ersparnis gilt für das Erreichen bestimmter MMLU-Zielwerte."
+  },
+  {
+   "q": "Was belegt der parametergleiche DualSAE-Vergleich?",
+   "a": "In Tabelle 1 gewinnt DualSAE gegen breitere SAE-Wörterbücher mit gleichem Parameterbudget bei drei Bildencodern, drei Aktivierungen und zwei Bilddatensätzen. Die Kontrolle umfasst nicht alle sechs SAE-Varianten und nicht die Sprachversuche. MonoScore ist zudem nur ein Interpretierbarkeitsmaß."
+  },
+  {
+   "q": "Kann RLCDR Referenzlösungen im Training ersetzen?",
+   "a": "Das ist nicht allgemein belegt. Im untersuchten Qwen3-1.7B/MATH500-Setup erreicht RLCDR 76,8 Prozent gegenüber 76,9 mit Referenzbelohnung. Das 95-Prozent-Intervall der Differenz reicht von −1,75 bis +1,50 Punkten. Kein nachgewiesener Unterschied bedeutet keine nachgewiesene Gleichwertigkeit. Kalibrierung und Evaluation brauchen weiterhin Labels beziehungsweise Referenzen; untersucht wurde nur ein Trainingsseed."
+  }
+ ],
+ "related": [
+  "architekturen-im-ueberblick",
+  "wie-ein-sprachmodell-lernt"
+ ]
+}
