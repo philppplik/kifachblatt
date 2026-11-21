@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [DriftGuard, sichere BoN-Stoppregel und FAct-Aktivierung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-21): DriftGuard bremst Angriffe auf das Agenten-Gedächtnis, e-RWSC gibt Best-of-N eine Stoppgarantie, FAct überträgt eine Aktivierungsfunktion ohne Gewichte.
 - [Aurora2-400M: 100 Milliarden Token auf einer einzigen GPU](https://kifachblatt.de/aurora2-400m-moe-analyse): AuroraAI Research legt ein 400M-MoE mit nur 19 Mio. aktiven Parametern offen: eine GPU, rund 36 Stunden, 100 Mrd. Token - mit Datenmischung, Optimizer und Seed.
 - [Inkling 2 Mini: Geloopter Transformer für den Schreibtisch](https://kifachblatt.de/inkling-2-mini-analyse): Thinking Machines veröffentlicht ein 26,4-Mrd.-MoE mit dreifach gelooptem Kern: 3,4 Mrd. aktive Gewichte, 5,4 Mrd. Gewichtsaktivierungen pro Token.
 - [Canon-Token-Ersparnis, DualSAE und kalibrierter RL-Richter](https://kifachblatt.de/news-ueberblick-morgen-2026-11-21): Drei Preprints im Quellencheck: Canon spart Tokens bei festen MMLU-Zielen, DualSAE trennt Lernziele, RLCDR verbessert eine Mathe-Policy mit klaren Grenzen.

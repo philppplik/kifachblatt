@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-21</loc><lastmod>2026-11-21T10:00:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-21.jpg</image:loc><image:title>DriftGuard, sichere BoN-Stoppregel und FAct-Aktivierung</image:title><image:caption>Balkendiagramm in drei Feldern: Angriffserfolg ohne und mit DriftGuard (46,7 auf 5,3 und 77,4 auf 3,3 Prozent), Genauigkeit zertifizierter Antworten e-RWSC 94,5 gegenüber MMC 88,9 Prozent, FAct beste Aktivierung in 15 von 16 und 11 von 16 Einstellungen.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/aurora2-400m-moe-analyse</loc><lastmod>2026-11-21T08:35:35+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/aurora2-400m-moe-analyse.jpg</image:loc><image:title>Aurora2-400M: 100 Milliarden Token auf einer einzigen GPU</image:title><image:caption>Eigene Datentafel zu Aurora2-400M-A20M: 400 Mio. Parameter, 19 Mio. aktiv, 32 Experten plus 1, 100 Mrd. Token auf einer GPU in etwa 36 Stunden, Apache-2.0.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/inkling-2-mini-analyse</loc><lastmod>2026-11-21T08:35:35+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/inkling-2-mini-analyse.jpg</image:loc><image:title>Inkling 2 Mini: Geloopter Transformer für den Schreibtisch</image:title><image:caption>Eigene Datentafel zu Inkling 2 Mini: 26,4 Mrd. Parameter, 3,4 Mrd. aktiv, mittlere Schichten laufen dreimal, rund 20 GB Checkpoint, 1 Mio. Kontext, Apache-2.0.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-21</loc><lastmod>2026-11-21T08:35:35+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-21.jpg</image:loc><image:title>Canon-Token-Ersparnis, DualSAE und kalibrierter RL-Richter</image:title><image:caption>Datengrafik: Canon-Token-Ersparnis je Modellgröße, DualSAE-Verbesserungen und MATH500 je Belohnung, jeweils im Studien-Scope.</image:caption></image:image></url>
@@ -331,7 +332,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-21T08:35:35+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-21T08:35:35+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-21T10:00:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-21</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-21</lastmod></url>
