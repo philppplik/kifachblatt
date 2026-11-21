@@ -1,0 +1,96 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-21",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-21T16:00:00+01:00",
+  "modified": "2026-11-21T16:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "A CPU Inside an LLM: Zero-Gradient Compilation of Exact Circuits into Pretrained Weights",
+      "publisher": "arXiv; Tanmay Sah, unabhaengiger Forscher",
+      "url": "https://arxiv.org/abs/2611.26450",
+      "accessed": "2026-11-21"
+    },
+    {
+      "title": "Represented but misread: Post-training changes how language models read out what they represent",
+      "publisher": "arXiv; Jochen Laubrock, Universitaet Potsdam",
+      "url": "https://arxiv.org/abs/2611.26584",
+      "accessed": "2026-11-21"
+    },
+    {
+      "title": "What Does Anti-Hallucination Training Buy? Saying Less, Cheap Pruning, and the Rest",
+      "publisher": "arXiv; Lingkai Bu, Qian Gao, Qilu University of Technology / Shandong Computer Science Center",
+      "url": "https://arxiv.org/abs/2611.25814",
+      "accessed": "2026-11-21"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Gewichtsraum",
+    "Post-Training",
+    "Halluzination"
+  ],
+  "title": "Rechenwerk in Gewichten, verstellte Auslese, Hallu-Audit",
+  "dek": "Schaltkreise ohne Training in LLM-Gewichten, Post-Training verstellt die Auslese, und ein Audit beziffert den Gewinn von Anti-Halluzinations-Training.",
+  "key_takeaways": [
+    "Zero-Gradient-Compiler: 100,0 Prozent (Qwen3.5 4B) und 99,17 Prozent (Granite 4.2 3B) exakte ALU-Präfixe auf sechsstelliger Arithmetik (N = 1.200, BF16), LoRA nur 42,2 Prozent (Granite) und 61,7 Prozent (Qwen); Patch höchstens 0,057 Prozent der Gewichte, Sprache in 14/14 Nichtunterlegenheits-Splits erhalten; Scope keine Division, Ein-Autor-Preprint.",
+    "Laubrock (Potsdam): Sonden dekodieren KI-Autorschaft (median d-prime 1,35 bis 3,70), Antworten verschlechtern sich durch Post-Training in 14 von 18 Vergleichen (Mittel minus 0,34); Negation umgekehrt repariert (Apertus minus 0,88 auf 4,54); 2.000 Labels setzen die Ausleserichtung kausal.",
+    "Hallu-Audit: Elf-Merkmale-Sonde reproduziert mindestens zwei Drittel des Trainingsgewinns bei 7/8 Methoden (COCO), 8/8 (AMBER), 6/8 (HalBench); Positionsgradient 2,5 auf 57,2 Prozent; Sonden-Labels als DPO-Signal 70 bis 73 Prozent, CLIP 87 Prozent des Ground-Truth-Gewinns."
+  ],
+  "hero": {
+    "alt": "Datengrafik: ALU-Genauigkeit der Gewichts-Patches gegenüber LoRA, d-prime-Verlust durch Post-Training und Negationsreparatur, sowie Auditierte über der Zwei-Drittel-Marke, jeweils im Studien-Scope.",
+    "caption": "ALU-Genauigkeit aus dem Sechsstellen-Test (N = 1.200, BF16); d-prime-Werte aus sechs Modellfamilien und drei deutschen Korpora beziehungsweise dem Negations-Fall (Apertus); Anteil der Methoden über der Zwei-Drittel-Marke je Benchmark im LLaVA-Audit.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Drei Preprints aus der arXiv-Neuliste vom 20. November (samstags unverändert): Exakte Rechenschaltkreise lassen sich ohne Training in Modellgewichte kompilieren, Post-Training verstellt vor allem die Auslese repräsentierten Wissens, und ein Audit zerlegt, was Anti-Halluzinations-Training bei Bildbeschreibungen tatsächlich leistet."
+    },
+    {
+      "t": "h2",
+      "x": "Rechenwerk in Gewichten: 100 Prozent ohne Training"
+    },
+    {
+      "t": "p",
+      "x": "Tanmay Sah (unabhängiger Forscher) kompiliert geschlossen hergeleitete Schaltkreise für vier- bis achtstellige Addition, Subtraktion und Multiplikation direkt in die Gewichte von Granite 4.2 3B und Qwen3.5 4B: keine Gradienten, keine Trainingsdaten, keine Laufzeit-Hooks, keine Host-Werkzeuge. Die Primitiven (Mellin-GLU-Quadratur gegen unbekannte RMSNorm-Skalierung, vorzeichenbehaftetes Chebyshev-RoPE mit Self-Sink, achsparallele Breitenerweiterung mit Normkompensation) kommen mit IEEE-754-Fehlerschranken. Ergebnis auf sechsstelliger Arithmetik (N = 1.200, BF16): 100,0 Prozent exakte ALU-Präfixe (Qwen) beziehungsweise 99,17 Prozent (Granite, 100 mit FP32-Sidecar), Inline-Fortsetzung 98 bis 100 Prozent; ein LoRA-Vergleich mit 12.800 Beispielen erreicht 42,2 Prozent (Granite) beziehungsweise 61,7 Prozent (Qwen) bei null Inline. Patch-Größe 1,07 bis 2,39 Millionen Nichtnullen (höchstens 0,057 Prozent), Sidecar-VRAM 7,89/10,65 GiB (minus 42 bis 44 Prozent), Sprachkompetenz in allen 14 vorregistrierten Nichtunterlegenheits-Splits erhalten (N = 4.392), null Fehlauslöser bei 11.134 Out-of-Domain-Prompts. Scope: keine Division, Gemma-4-Arithmetik offen, Ein-Autor-Preprint; konzeptioneller Vorläufer ist Qwenputer (Oktober), neu sind formale Schranken, automatisierter Compiler und geprüfte Spracherhaltung. Der Autor warnt zudem: Solche schlafenden Gewichtsmuster sind für Blackbox-Evals praktisch unsichtbar."
+    },
+    {
+      "t": "h2",
+      "x": "Post-Training: Auslese verstellt, Repräsentation stabil"
+    },
+    {
+      "t": "p",
+      "x": "Jochen Laubrock (Universität Potsdam) testet an deutschen Texten, ob Modelle KI-Autorschaft erkennen: Sechs offene Basismodelle (4 bis 12 Milliarden Parameter) und ihre post-trainierten Versionen, drei Korpora. Lineare Sonden trennen Mensch- und KI-Texte gut (median d-prime 1,35 bis 3,70 je Korpus), die Modellantworten oft nicht: In 14 von 18 Vergleichen verschlechtert das Post-Training die Sensitivität, im Familienmittel um 0,34 d-prime-Einheiten; einzelne Modelle ordnen invers (Qwen3 auf Zeitungssegmenten minus 1,01 bis minus 1,30). Stitching und Patching lokalisieren die Änderung in frühen Schichten beziehungsweise ab Netzmitte an den Positionen nach dem Text, nicht in der Textrepräsentation. Bei negierten Aussagen läuft es umgekehrt: Sonden an der Decke, Basismodelle nutzen die Information nicht (Apertus minus 0,88), das Feintuning repariert die Antworten (bis 4,54). Kausalbeleg: 2.000 gelabelte Autorschaftsurteile in den Feintuning-Daten setzen die Ausleserichtung (d-prime 4,28 auf Nachrichten, minus 0,58 auf Chats), ohne die Sonden an den Textpositionen zu verändern. Analysecode öffentlich, Negationsfallstudie reproduzierbar."
+    },
+    {
+      "t": "h2",
+      "x": "Audit: Was Halluzinations-Training kauft"
+    },
+    {
+      "t": "p",
+      "x": "Bu und Gao (Qilu University of Technology / Shandong Computer Science Center) zerlegen die CHAIR-Gewinne von acht öffentlichen Anti-Halluzinations-Methoden auf LLaVA-1.5-7B gegen eine recall-gematchte Kürzungskontrolle: Eine eingefrorene Elf-Merkmale-Sonde (500 Trainingsbilder) reproduziert mindestens zwei Drittel des Entfernens über das Weniger-Sagen hinaus bei 7 von 8 Methoden auf COCO, 8 von 8 auf AMBER und 6 von 8 auf Object HalBench; RLAIF-V ist die durchgehende Ausnahme, SENTINEL erfüllt die Marke auf beiden Backbones, eigene DPO-Checkpoints bestehen auf Qwen2.5-VL (4/4) und scheitern auf InternVL2.5 auf COCO (2/4). Halluzinationen sind stark positionsabhängig (Rate 2,5 Prozent beim ersten genannten Objekt bis 57,2 Prozent ab Rang 6). Als DPO-Labels holen die billigen Signale 70 bis 73 Prozent (Sonde) beziehungsweise 87 Prozent (CLIP) des Ground-Truth-Gewinns zurück. Limitation: Die menschlich geprüfte CHAIR-Präzision (0,53 bis 0,71 je nach Annotator) unterschreitet die eigene 0,80-Marke."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Wie kommt ein Rechenwerk ohne Training in die Gewichte?",
+      "a": "Über geschlossen hergeleitete Primitive: Eine Mellin-GLU-Quadratur übersetzt die unbekannte RMSNorm-Skalierung in eine Gitterverschiebung, ein vorzeichenbehaftetes RoPE-Muster routet zwischen Tokens, und eine achsparallele Breitenerweiterung hält die Sprachlogits unangetastet. Ein automatisierter Compiler setzt daraus die Schaltkreise zusammen; Fehlerschranken kommen aus der IEEE-754-Analyse."
+    },
+    {
+      "q": "Ändert Post-Training also nichts am Wissen?",
+      "a": "An der Textrepräsentation ändert es wenig: Sonden übertragen sich nahezu verlustfrei zwischen Basis- und post-trainiertem Checkpoint. Was sich ändert, ist die Auslese an den Positionen nach dem Text, also wie die Frage das Repräsentierte aufnimmt; je nach Trainingsignal wird ein Urteil deutlich besser (Negation) oder schlechter (Autorschaft)."
+    },
+    {
+      "q": "Was empfiehlt das Halluzinations-Audit konkret?",
+      "a": "Berichtete CHAIR-Reduktionen sollen gegen eine recall-gematchte Kürzungskontrolle und eine billige Post-hoc-Baseline gerechnet werden, und Trainingslabels lassen sich nach dem Anteil bewerten, den sie gegenüber Ground-Truth-Labels zurückholen (hier 70 bis 87 Prozent für Sonde beziehungsweise CLIP)."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "fine-tuning-wann"
+  ]
+}
