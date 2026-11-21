@@ -1,0 +1,96 @@
+{
+ "slug": "news-ueberblick-mittag-2026-11-21",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-21T10:00:00+01:00",
+ "modified": "2026-11-21T10:00:00+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "DriftGuard: Online Memory-Drift Detection via Causal Attribution for LLM Agents",
+   "publisher": "arXiv; Licheng Pan, Yuzhou Chen, Zhixuan Chu u.a., Zhejiang University, Peking University und Alibaba Group",
+   "url": "https://arxiv.org/abs/2611.25583",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "Sequential Anytime Valid Tests for Efficient Inference-Time Alignment",
+   "publisher": "arXiv; Vishesh Kumar Singh, Sayak Ray Chowdhury, Indian Institute of Technology Kanpur",
+   "url": "https://arxiv.org/abs/2611.26413",
+   "accessed": "2026-11-21"
+  },
+  {
+   "title": "Learn, Freeze, and Transfer an Activation Function Across Architectures",
+   "publisher": "arXiv; Arun Prakash A, Nilekani Centre at AI4Bharat, IIT Madras",
+   "url": "https://arxiv.org/abs/2611.26201",
+   "accessed": "2026-11-21"
+  }
+ ],
+ "tags": [
+  "Forschung",
+  "Agenten-Sicherheit",
+  "Inferenz",
+  "Aktivierungsfunktionen"
+ ],
+ "title": "DriftGuard, sichere BoN-Stoppregel und FAct-Aktivierung",
+ "dek": "DriftGuard bremst Angriffe auf das Agenten-Gedächtnis, e-RWSC gibt Best-of-N eine Stoppgarantie, FAct überträgt eine Aktivierungsfunktion ohne Gewichte.",
+ "key_takeaways": [
+  "DriftGuard (Zhejiang, Peking, Alibaba): Angriffserfolg auf Mem2ActBench von 46,7 auf 5,3 Prozent (Direktüberschreibung) und 77,4 auf 3,3 Prozent (schlafende Erinnerung); MPBench-Erkennung AUPRC 0,2415 gegenüber 0,1297 des besten Richters (plus 86,2 Prozent); Latenz minus 75,4 Prozent.",
+  "e-RWSC (IIT Kanpur): anytime-valide Stoppregel; die Wahrscheinlichkeit, je eine Antwort mit höchstens halbem Anteil an den Modellantworten zu zertifizieren, bleibt unter Alpha; Beispiel MATH500: plus 8,2 Punkte bei 61,7 Prozent kleinerem Budget; 94,5 Prozent Genauigkeit auf zertifizierten Antworten (MMC 88,9), empirisch, keine Richtigkeitsgarantie.",
+  "FAct (AI4Bharat, IIT Madras): fünf-Parameter-Aktivierung, in ViT gelernt und eingefroren, schlägt GELU auf ImageNet-1K um 1,46 Punkte; beste von elf Aktivierungen in 15 von 16 Settings mit kleinen Zielnetzen (getunt 11 von 16); Scope kleine Vision-Modelle, Code auf GitHub."
+ ],
+ "hero": {
+  "alt": "Balkendiagramm in drei Feldern: Angriffserfolg ohne und mit DriftGuard (46,7 auf 5,3 und 77,4 auf 3,3 Prozent), Genauigkeit zertifizierter Antworten e-RWSC 94,5 gegenüber MMC 88,9 Prozent, FAct beste Aktivierung in 15 von 16 und 11 von 16 Einstellungen.",
+  "caption": "DriftGuard: Angriffserfolgsrate auf Mem2ActBench mit und ohne Abwehr. e-RWSC: Genauigkeit der früh zertifizierten Antworten im Vergleich mit MMC (Qwen2.5-3B, ArmoRM, MATH500). FAct: In wie vielen der 16 Architektur-Datensatz-Einstellungen die Funktion unter elf Aktivierungen Platz 1 belegt, bei gemeinsamer Trainingskonfiguration (15) und mit getunter Lernrate (11).",
+  "credit": "Eigene Grafik",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Drei Preprints aus der arXiv-Neuliste vom 20. November (samstags unverändert): DriftGuard erkennt vergiftete Agenten-Erinnerungen kausal und bremst Angriffe zur Laufzeit, e-RWSC gibt Best-of-N eine statistische Stoppgarantie, und eine eingefrorene gelernte Aktivierungsfunktion verbessert neue Architekturen von Grund auf."
+  },
+  {
+   "t": "h2",
+   "x": "DriftGuard: Angriffsrate von 77,4 auf 3,3 Prozent"
+  },
+  {
+   "t": "p",
+   "x": "Pan, Chen, Chu u.a. (Zhejiang University, Peking University, Alibaba) trennen Offline-Aufsicht und Online-Schätzung: Gepaarte kontrafaktische Wiederholungen je Erinnerung erzeugen einen Memory Drift Score aus vier Komponenten, ein Risikomodell (Qwen2.5-7B, LoRA) schätzt ihn zur Laufzeit in einem Forward-Pass. Erkennung: auf MPBench unter GPT-5.6 Luna AUPRC 0,2415 gegenüber 0,1297 des besten Richters (plus 86,2 Prozent). Abwehr: Angriffserfolg auf Mem2ActBench sinkt von 46,7 auf 5,3 Prozent (Direktüberschreibung) und von 77,4 auf 3,3 Prozent (schlafende Erinnerung), Aufgabenerfolg bei Direktüberschreibung von 47,7 auf 77,3 Prozent; Latenz minus 75,4 Prozent gegenüber A-MemGuard. Grenzen: Trainingsdaten aus denselben Benchmarks, Code nur anonym deponiert."
+  },
+  {
+   "t": "h2",
+   "x": "e-RWSC: Stoppgarantie für Best-of-N"
+  },
+  {
+   "t": "p",
+   "x": "Singh und Chowdhury (IIT Kanpur) ersetzen geratene Stoppschwellen durch eine anytime-valide Regel: Antwort-Cluster werden reward-gewichtet bewertet, je Antwort läuft eine Wett-Supermartingale, und per Ville-Ungleichung bleibt die Wahrscheinlichkeit, je eine nichtdominante Antwort zu zertifizieren, unter Alpha, zu jedem Zeitpunkt und über alle Antworten. Nichtdominant heißt: höchstens die Hälfte der Modellantworten, bei unabhängigen Ziehungen aus einer festen Modellverteilung. Das Zertifikat belegt eine Mehrheit des Modells, nicht die Richtigkeit. Walds SPRT ist hier nur Heuristik, weil die führende Antwort während des Samplens wechselt. Experimente mit fünf Modellen, vier Reward-Modellen und vier Benchmarks: im Beispiel Qwen2.5-3B mit ArmoRM auf MATH500 (Generierungsbudget maximal 512) plus 8,2 Prozentpunkte gegenüber Best-of-N bei 61,7 Prozent kleinerem Budget; 94,5 Prozent Genauigkeit auf zertifizierten Antworten (MMC: 88,9, empirisch). Im Modellvergleich (MATH500, Budget 24) braucht e-RWSC im Mittel 13 bis 22 Antworten, AdaBoN rund 19, Best-of-N 24, bei höherer Genauigkeit als beide; bei Llama-3-8B und Phi-3-Mini liegt es nicht unter AdaBoN. Code nennt der Preprint nicht."
+  },
+  {
+   "t": "h2",
+   "x": "FAct: Aktivierungsfunktion ohne Gewichte übertragen"
+  },
+  {
+   "t": "p",
+   "x": "Arun Prakash A (AI4Bharat, IIT Madras) lernt eine punktweise Aktivierungsfunktion mit fünf global geteilten Parametern (Fourier-Reihe, aus GELU initialisiert) in einem kleinen ViT auf ImageNet-1K und friert sie ein. Im identisch neu trainierten ViT schlägt sie GELU auf ImageNet-1K um 1,46 Prozentpunkte (63,91 gegenüber 62,45 Prozent); bei kleinen Zielnetzen (Tiefe 2, je etwa 100.000 Parameter; Fashion-MNIST, CIFAR-10, CIFAR-100, Food-101) ist sie über vier Architekturen und Datensätze in 15 von 16 Einstellungen die beste von elf Aktivierungen (bis plus 1,71 Punkte), mit getunter Lernrate noch in 11 von 16. Einordnung: ein Autor, kleine Vision-Modelle, keine LLM-Aussage. Code und Artefakte auf GitHub (AI4Bharat)."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Wie verteidigt DriftGuard das Agenten-Gedächtnis?",
+   "a": "Offline erzeugt es aus gepaarten kontrafaktischen Wiederholungen einen kausalen Memory Drift Score pro Erinnerung, online schätzt ein kleines Risikomodell diesen Score in einem Forward-Pass. So sinkt der Angriffserfolg auf Mem2ActBench auf 5,3 beziehungsweise 3,3 Prozent (von 46,7 und 77,4), bei deutlich niedrigerer Latenz als A-MemGuard (minus 75,4 Prozent)."
+  },
+  {
+   "q": "Warum reicht Walds SPRT für Best-of-N nicht aus?",
+   "a": "Seine Garantie setzt feste Hypothesen und eine einzige Endauswertung voraus. Beim Sampling wechselt aber die führende Antwort, und der Test wird laufend geprüft. e-RWSC ersetzt ihn durch Wett-Supermartingale je Antwort; die Ville-Ungleichung hält die Wahrscheinlichkeit, je eine Antwort mit höchstens halbem Modellanteil zu zertifizieren, zu jedem Zeitpunkt unter Alpha. Eine Aussage über die Richtigkeit der Antwort ist das nicht."
+  },
+  {
+   "q": "Was ist das Neue an FAct?",
+   "a": "Transfer ohne Gewichte: Eine punktweise Aktivierungsfunktion mit fünf global geteilten Parametern wird einmal in einem ViT auf ImageNet-1K gelernt, eingefroren und verbessert von Grund auf trainierte kleine Netze anderer Architekturen (rund 100.000 Parameter), in 15 von 16 Settings die beste von elf Funktionen. Gezeigt an kleinen Vision-Modellen, nicht an LLMs."
+  }
+ ],
+ "related": [
+  "agenten-architekturen",
+  "test-time-compute-reasoning-modelle-analyse"
+ ]
+}
