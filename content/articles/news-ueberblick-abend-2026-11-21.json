@@ -4,7 +4,7 @@
   "section": "ueberblick",
   "type": "news",
   "published": "2026-11-21T16:14:26+01:00",
-  "modified": "2026-11-21T16:14:26+01:00",
+  "modified": "2026-11-21T16:18:35+01:00",
   "author": "philipp-paulik",
   "sources": [
     {
@@ -37,7 +37,7 @@
   "key_takeaways": [
     "Zero-Gradient-Compiler: 100,0 Prozent (Qwen3.5 4B) und 99,17 Prozent (Granite 4.2 3B) exakte ALU-Präfixe auf sechsstelliger Arithmetik (N = 1.200, BF16), LoRA nur 42,2 Prozent (Granite) und 61,7 Prozent (Qwen); Patch höchstens 0,057 Prozent der Gewichte, Sprache in 14/14 Nichtunterlegenheits-Splits erhalten; Scope keine Division, Ein-Autor-Preprint.",
     "Laubrock (Potsdam): Sonden dekodieren KI-Autorschaft (median d-prime 1,35 bis 3,70), Antworten verschlechtern sich durch Post-Training in 14 von 18 Vergleichen (Mittel minus 0,34); Negation umgekehrt repariert (Apertus minus 0,88 auf 4,54); 2.000 Labels setzen die Ausleserichtung kausal.",
-    "Hallu-Audit: Elf-Merkmale-Sonde reproduziert mindestens zwei Drittel des Trainingsgewinns bei 7/8 Methoden (COCO), 8/8 (AMBER), 6/8 (HalBench); Positionsgradient 2,5 auf 57,2 Prozent; Sonden-Labels als DPO-Signal 70 bis 73 Prozent, CLIP 87 Prozent des Ground-Truth-Gewinns."
+    "Hallu-Audit: Elf-Merkmale-Sonde reproduziert mindestens zwei Drittel des Trainingsgewinns bei 7/8 Methoden (COCO), 8/8 (AMBER), 6/8 (HalBench); Positionsgradient (LLaVA-1.5-Basismodell) 2,5 auf 57,2 Prozent; Sonden-Labels als DPO-Signal 70 bis 73 Prozent, CLIP 87 Prozent des Ground-Truth-Gewinns."
   ],
   "hero": {
     "alt": "Datengrafik: ALU-Genauigkeit der Gewichts-Patches gegenüber LoRA, d-prime-Verlust durch Post-Training und Negationsreparatur, sowie Auditierte über der Zwei-Drittel-Marke, jeweils im Studien-Scope.",
@@ -72,7 +72,7 @@
     },
     {
       "t": "p",
-      "x": "Bu und Gao (Qilu University of Technology / Shandong Computer Science Center) zerlegen die CHAIR-Gewinne von acht öffentlichen Anti-Halluzinations-Methoden auf LLaVA-1.5-7B gegen eine recall-gematchte Kürzungskontrolle: Eine eingefrorene Elf-Merkmale-Sonde (500 Trainingsbilder) reproduziert mindestens zwei Drittel des Entfernens über das Weniger-Sagen hinaus bei 7 von 8 Methoden auf COCO, 8 von 8 auf AMBER und 6 von 8 auf Object HalBench; RLAIF-V ist die durchgehende Ausnahme, SENTINEL erfüllt die Marke auf beiden Backbones, eigene DPO-Checkpoints bestehen auf Qwen2.5-VL (4/4) und scheitern auf InternVL2.5 auf COCO (2/4). Halluzinationen sind stark positionsabhängig (Rate 2,5 Prozent beim ersten genannten Objekt bis 57,2 Prozent ab Rang 6). Als DPO-Labels holen die billigen Signale 70 bis 73 Prozent (Sonde) beziehungsweise 87 Prozent (CLIP) des Ground-Truth-Gewinns zurück. Limitation: Die menschlich geprüfte CHAIR-Präzision (0,53 bis 0,71 je nach Annotator) unterschreitet die eigene 0,80-Marke."
+      "x": "Bu und Gao (Qilu University of Technology / Shandong Computer Science Center) zerlegen die CHAIR-Gewinne von acht öffentlichen Anti-Halluzinations-Methoden auf LLaVA-1.5-7B gegen eine recall-gematchte Kürzungskontrolle: Eine eingefrorene Elf-Merkmale-Sonde (500 Trainingsbilder) reproduziert mindestens zwei Drittel des Entfernens über das Weniger-Sagen hinaus bei 7 von 8 Methoden auf COCO, 8 von 8 auf AMBER und 6 von 8 auf Object HalBench; RLAIF-V ist die durchgehende Ausnahme, SENTINEL erfüllt die Marke auf beiden Backbones, eigene DPO-Checkpoints bestehen auf Qwen2.5-VL (4/4) und scheitern auf InternVL2.5 auf COCO (2/4). Beim LLaVA-1.5-Basismodell sind Halluzinationen stark positionsabhängig (Held-out-Satz, Rate 2,5 Prozent beim ersten genannten Objekt bis 57,2 Prozent ab Rang 6). Als DPO-Labels holen die billigen Signale 70 bis 73 Prozent (Sonde) beziehungsweise 87 Prozent (CLIP) des Ground-Truth-Gewinns zurück. Limitation: Die menschlich geprüfte CHAIR-Präzision (0,53 bis 0,71 je nach Annotator) unterschreitet die eigene 0,80-Marke."
     }
   ],
   "faq": [
