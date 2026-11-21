@@ -1,166 +1,166 @@
 {
- "slug": "aurora2-400m-moe-analyse",
- "lang": "de",
- "section": "modelle",
- "type": "analysis",
- "title": "Aurora2-400M: 100 Milliarden Token auf einer einzigen GPU",
- "dek": "AuroraAI Research legt ein 400M-MoE mit nur 19 Mio. aktiven Parametern offen: eine GPU, rund 36 Stunden, 100 Mrd. Token - mit Datenmischung, Optimizer und Seed.",
- "published": "2026-11-21T07:15:10+01:00",
- "modified": "2026-11-21T07:15:10+01:00",
- "author": "philipp-paulik",
- "tags": [
-  "Aurora2",
-  "MoE",
-  "Kleine Sprachmodelle",
-  "Pretraining",
-  "Open Source"
- ],
- "key_takeaways": [
-  "AuroraAI Research hat Aurora2-400M-A20M veröffentlicht: ein von Grund auf trainiertes Basismodell mit 399,6 Mio. Parametern, von denen nur 19,1 Mio. pro Token aktiv sind [1].",
-  "Das Vortraining über 100 Mrd. Token lief auf einer einzigen RTX Pro 6000 in rund 36 Stunden - die Karte dokumentiert Datenmischung, Lernratenplan, Optimizer und sogar den Seed (1337) [1].",
-  "Architektur: 12 Schichten, Top-1-Routing auf 32 Experten plus ein gemeinsamer Experte pro Schicht, dazu gehashte N-Gramm-Einbettungen und ein von Grund auf trainierter Tokenizer mit 16.384 Einträgen [1].",
-  "Die Karte meldet sechs Benchmark-Werte ohne Vergleichsmodelle (Intelligence Index acc_norm 21,52) und warnt selbst: kein Instruktionsmodell, englischlastig, 2.048 Token Kontext [1]."
- ],
- "hero": {
-  "alt": "Eigene Datentafel zu Aurora2-400M-A20M: 400 Mio. Parameter, 19 Mio. aktiv, 32 Experten plus 1, 100 Mrd. Token auf einer GPU in etwa 36 Stunden, Apache-2.0.",
-  "caption": "Aurora2-400M-A20M: dokumentiertes Forschungsmodell. Trainingsdauer und Hardware sind Herstellerangaben [1].",
-  "ai_generated": false,
-  "credit": "Eigene Grafik (Redaktion)"
- },
- "sources": [
-  {
-   "title": "AuroraAI-Research/Aurora2-400M-A20M (Modellkarte und Plattform-API)",
-   "publisher": "Hugging Face",
-   "url": "https://huggingface.co/AuroraAI-Research/Aurora2-400M-A20M",
-   "accessed": "2026-11-21"
+  "slug": "aurora2-400m-moe-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Aurora2-400M: 100 Milliarden Token auf einer einzigen GPU",
+  "dek": "AuroraAI Research legt ein 400M-MoE mit nur 19 Mio. aktiven Parametern offen: eine GPU, rund 36 Stunden, 100 Mrd. Token - mit Datenmischung, Optimizer und Seed.",
+  "published": "2026-11-21T08:35:35+01:00",
+  "modified": "2026-11-21T08:35:35+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Aurora2",
+    "MoE",
+    "Kleine Sprachmodelle",
+    "Pretraining",
+    "Open Source"
+  ],
+  "key_takeaways": [
+    "AuroraAI Research hat Aurora2-400M-A20M veröffentlicht: ein von Grund auf trainiertes Basismodell mit 399,6 Mio. Parametern, von denen nur 19,1 Mio. pro Token aktiv sind [1].",
+    "Das Vortraining über 100 Mrd. Token lief auf einer einzigen RTX Pro 6000 in rund 36 Stunden - die Karte dokumentiert Datenmischung, Lernratenplan, Optimizer und sogar den Seed (1337) [1].",
+    "Architektur: 12 Schichten, Top-1-Routing auf 32 Experten plus ein gemeinsamer Experte pro Schicht, dazu gehashte N-Gramm-Einbettungen und ein von Grund auf trainierter Tokenizer mit 16.384 Einträgen [1].",
+    "Die Karte meldet sechs Benchmark-Werte ohne Vergleichsmodelle (Intelligence Index acc_norm 21,52) und warnt selbst: kein Instruktionsmodell, englischlastig, 2.048 Token Kontext [1]."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel zu Aurora2-400M-A20M: 400 Mio. Parameter, 19 Mio. aktiv, 32 Experten plus 1, 100 Mrd. Token auf einer GPU in etwa 36 Stunden, Apache-2.0.",
+    "caption": "Aurora2-400M-A20M: dokumentiertes Forschungsmodell. Trainingsdauer und Hardware sind Herstellerangaben [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
   },
-  {
-   "title": "karpathy/climbmix-400b-shuffle (Datensatz-API, Hauptquelle der Trainingsmischung)",
-   "publisher": "Hugging Face",
-   "url": "https://huggingface.co/datasets/karpathy/climbmix-400b-shuffle",
-   "accessed": "2026-11-21"
-  },
-  {
-   "title": "HuggingFaceTB/finemath (Datensatz-API, Mathematik-Anteil der Trainingsmischung)",
-   "publisher": "Hugging Face",
-   "url": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
-   "accessed": "2026-11-21"
-  }
- ],
- "body": [
-  {
-   "t": "p",
-   "x": "Wie viel Dokumentation steckt in einem Modell, das auf einer einzigen GPU entstand? AuroraAI Research legt mit Aurora2-400M-A20M eine ausführlich dokumentierte Antwort vor: ein 400-Millionen-Parameter-MoE, am 18. November auf Hugging Face erschienen, von Grund auf trainiert, mit offener Datenmischung, offenen Hyperparametern und offenem Zufalls-Seed. Das Modell steht unter Apache-2.0 [1]."
-  },
-  {
-   "t": "h2",
-   "x": "Top-1-Routing im Miniaturformat"
-  },
-  {
-   "t": "p",
-   "x": "Von den 399,6 Millionen Parametern arbeiten pro Token nur 19,1 Millionen: Ein Router wählt pro Schicht genau einen von 32 Experten (Top-1, ohne Token-Verluste), dazu kommt ein immer aktiver gemeinsamer Experte. Der Rest ist schlank gehalten: 12 Schichten, versteckte Größe 192, gruppierte Abfrageköpfe (6 Query-, 2 KV-Köpfe), RoPE-Positionen und geteilte Ein-/Ausgabe-Einbettungen. Drei Exoten fallen auf: gehashte N-Gramm-Einbettungen (Bigramm- bis 4-Gramm-Hashes auf je 16.384 Buckets, über ein gelerntes Gate zu den Token-Einbettungen addiert), Skip-Verbindungen von jeder Schicht zurück zur ursprünglichen Einbettung und Value-Residuals, die spätere Schichten mit den Werten der ersten mischen [1]."
-  },
-  {
-   "t": "p",
-   "x": "Der Tokenizer ist ein Byte-Level-BPE, eigens auf etwa einer Milliarde Zeichen der Trainingsmischung trainiert, mit ungewöhnlich kleinem Vokabular von 16.384 Einträgen - jede Ziffer ist ein eigener Token. Geladen wird das Modell mit eigenem Code (trust_remote_code); das Repository führt die Gewichte in FP32, BF16 und FP16 [1]. trust_remote_code führt Python-Code aus dem Modellrepository aus. Vor dem Laden sollte dieser Code geprüft und eine feste Revision verwendet werden. Die Karte empfiehlt wegen BF16-Aktivierungen eine CUDA-GPU mit BF16-Unterstützung; kleine Gewichtsdateien sind keine allgemeine Kompatibilitätszusage."
-  },
-  {
-   "t": "h2",
-   "x": "Ein Rezept, das man nachkochen könnte"
-  },
-  {
-   "t": "p",
-   "x": "Die Trainingsdokumentation geht ungewöhnlich weit. Daten: 100 Milliarden Token, gestreamt und on-the-fly tokenisiert, im Mittel 85,8 Prozent ClimbMix (Web), 6,0 Prozent FineMath, 3,0 Prozent Wikipedia, dazu SmolTalk und zwei Mathe-Frage-Antwort-Sammlungen - mit einer Stufentabelle, wie sich die Mischung über die drei Trainingsphasen verschob. Nur Trainingssplits; ein ClimbMix-Shard blieb als Validierung reserviert. Verfahren: Warmup-Stable-Decay über 381.000 Schritte à 262.144 Token, Peak-Lernrate 1,5e-3, Optimizer Muon für Aufmerksamkeits- und Shared-Expert-Matrizen, AdamW für den Rest - Muon auf den gerouteten Experten habe in Experimenten Routing-Balance und Tempo verschlechtert, notiert die Karte. Hardware: eine RTX Pro 6000, etwa 36 Stunden [1]."
-  },
-  {
-   "t": "p",
-   "x": "Ein Punkt gehört zur Lizenz-Ehrlichkeit: Das Modell steht unter Apache-2.0, die Trainingsdatensätze aber unter ihren eigenen Lizenzen - ClimbMix unter MIT, FineMath unter ODC-BY. Die Karte weist selbst darauf hin, die Lizenzen der einzelnen Datensätze vor einer Weiterverwendung zu prüfen; unsere API-Abfrage bestätigt die beiden genannten Lizenz-Tags [1][2][3]."
-  },
-  {
-   "t": "h2",
-   "x": "Was die Zahlen zeigen - und was nicht"
-  },
-  {
-   "t": "chart",
-   "kind": "bar",
-   "title": "Benchmark-Genauigkeit von Aurora2-400M in Prozent",
-   "alt": "Herstellerwerte für sechs Benchmarks mit acc und acc_norm; ARC-Challenge 22,95 und 26,11 Prozent, übrige Werte in der Datentabelle.",
-   "caption": "Hersteller-Messung am 100-Mrd.-Token-Checkpoint; acc = Standard-Genauigkeit, acc_norm = normalisierte Genauigkeit. Die Karte nennt keine Vergleichsmodelle [1].",
-   "labels": [
-    "PIQA",
-    "ARC-Easy",
-    "ARC-Challenge",
-    "ARC (gesamt)",
-    "ArithMark3",
-    "HellaSwag"
-   ],
-   "series": [
+  "sources": [
     {
-     "name": "acc",
-     "values": [
-      67.41,
-      51.18,
-      22.95,
-      37.07,
-      37.3,
-      32.82
-     ]
+      "title": "AuroraAI-Research/Aurora2-400M-A20M (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/AuroraAI-Research/Aurora2-400M-A20M",
+      "accessed": "2026-11-21"
     },
     {
-     "name": "acc_norm",
-     "values": [
-      66.92,
-      48.11,
-      26.11,
-      37.11,
-      37.4,
-      38.36
-     ]
+      "title": "karpathy/climbmix-400b-shuffle (Datensatz-API, Hauptquelle der Trainingsmischung)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/datasets/karpathy/climbmix-400b-shuffle",
+      "accessed": "2026-11-21"
+    },
+    {
+      "title": "HuggingFaceTB/finemath (Datensatz-API, Mathematik-Anteil der Trainingsmischung)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/datasets/HuggingFaceTB/finemath",
+      "accessed": "2026-11-21"
     }
-   ],
-   "y_label": "Prozent",
-   "x": ""
-  },
-  {
-   "t": "p",
-   "x": "Die Karte meldet sechs Benchmarks mit zwei Genauigkeitsmaßen und nennt separat einen Intelligence Index (acc_norm) von 21,52. Eine Berechnungsvorschrift für diesen Index liefert die Karte nicht; er darf nicht als einfacher Mittelwert der sechs gezeigten Werte oder mit dem gleichnamigen Artificial-Analysis-Index gleichgesetzt werden. Vergleichsmodelle nennt sie nicht - entsprechend lässt sich daraus keine Platzierung im Feld ableiten, und wir bilden keine ab. Ebenso offen sind die Grenzen: Es ist ein reines Basismodell ohne Instruktions- oder Präferenztraining, nicht für Assistenten-Verhalten gedacht; Wissen, Reasoning und Kohärenz sind durch die 19 Millionen aktiven Parameter eng begrenzt; Tokenizer und Mischung sind englischlastig; der Kontext endet bei 2.048 Token. Die Karte rät ausdrücklich von Entscheidungen mit realen Folgen ab [1]."
-  },
-  {
-   "t": "h3",
-   "x": "Eckdaten"
-  },
-  {
-   "t": "p",
-   "x": "Parameter: 399,6 Mio. gesamt, 19,1 Mio. aktiv pro Token. Architektur: 12 Schichten, versteckte Größe 192, 32 geroutete Experten (Top-1) plus 1 gemeinsamer Experte pro Schicht, GQA 6/2, RoPE (Basis 10.000), Logit-Soft-Capping 30. Vokabular: 16.384 (eigener BPE-Tokenizer). Kontext: 2.048 Token. Training: 100 Mrd. Token, ~36 Stunden auf einer RTX Pro 6000, Muon plus AdamW, Seed 1337. Gewichte: FP32, BF16, FP16. Lizenz: Apache-2.0 (Modell); Trainingsdatensätze mit eigenen Lizenzen [1][2][3]."
-  }
- ],
- "method": "Recherche am 21. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von AuroraAI-Research/Aurora2-400M-A20M (vollständig, inkl. Architektur-, Tokenizer-, Daten-, Trainings- und Evaluationsabschnitten sowie Limitations), Datensatz-APIs von karpathy/climbmix-400b-shuffle und HuggingFaceTB/finemath (jeweils inkl. Lizenz-Tag). Alle Benchmark-Werte stammen vom Hersteller; Framework-Tests haben wir nicht durchgeführt. Eigenständiger Abgleich der Karte und Lizenzmetadaten um 07:11 Uhr MEZ; kein Trainings- oder Inferenztest.",
- "limitations": "Alle Benchmark-Werte sind Herstellerangaben ohne Vergleichsmodelle und ohne unabhängige Bestätigung; eine Einordnung ins Modellfeld ist daraus nicht möglich. Basismodell ohne Instruktions-Tuning, englischlastig, kurzer Kontext. Trainingsdatensätze stehen unter eigenen Lizenzen (unter anderem ODC-BY), die eine Weiterverwendung einschränken können.",
- "faq": [
-  {
-   "q": "Was ist Aurora2-400M-A20M?",
-   "a": "Ein offenes, von Grund auf trainiertes MoE-Basismodell von AuroraAI Research mit 399,6 Mio. Parametern, von denen nur 19,1 Mio. pro Token aktiv sind [1]."
-  },
-  {
-   "q": "Wie wurde es trainiert?",
-   "a": "Auf einer einzigen RTX Pro 6000 über 100 Mrd. Token in rund 36 Stunden. Die Karte dokumentiert Datenmischung, Stufenplan, Lernraten, Optimizer (Muon plus AdamW) und den Seed [1]."
-  },
-  {
-   "q": "Kann man Aurora2 als Chat-Assistenten nutzen?",
-   "a": "Nicht als fertigen Assistenten: Es ist ein Basismodell ohne gesondertes Instruktions- oder Präferenztraining. Weitere Anpassung und Tests wären nötig [1]."
-  },
-  {
-   "q": "Wie gut ist das Modell?",
-   "a": "Die Karte meldet sechs Benchmark-Werte und separat einen nicht näher definierten Intelligence Index von 21,52. Vergleichsmodelle fehlen. Eine Rangfolge im Modellfeld oder Gleichsetzung mit einem externen Intelligence Index ist damit nicht begründet [1]."
-  },
-  {
-   "q": "Darf ich Aurora2 kommerziell nutzen?",
-   "a": "Die Modellgewichte stehen unter Apache-2.0. Das ersetzt keine Prüfung der konkreten Anwendung, des Modellcodes und der jeweiligen Datensätze. Deren Lizenzen sind getrennt, unter anderem MIT und ODC-BY [1][2][3]."
-  }
- ],
- "related": [
-  "inkling-2-mini-analyse",
-  "edge0-145b-analyse",
-  "botpsy-0-8b-analyse"
- ]
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Wie viel Dokumentation steckt in einem Modell, das auf einer einzigen GPU entstand? AuroraAI Research legt mit Aurora2-400M-A20M eine ausführlich dokumentierte Antwort vor: ein 400-Millionen-Parameter-MoE, am 18. November auf Hugging Face erschienen, von Grund auf trainiert, mit offener Datenmischung, offenen Hyperparametern und offenem Zufalls-Seed. Das Modell steht unter Apache-2.0 [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Top-1-Routing im Miniaturformat"
+    },
+    {
+      "t": "p",
+      "x": "Von den 399,6 Millionen Parametern arbeiten pro Token nur 19,1 Millionen: Ein Router wählt pro Schicht genau einen von 32 Experten (Top-1, ohne Token-Verluste), dazu kommt ein immer aktiver gemeinsamer Experte. Der Rest ist schlank gehalten: 12 Schichten, versteckte Größe 192, gruppierte Abfrageköpfe (6 Query-, 2 KV-Köpfe), RoPE-Positionen und geteilte Ein-/Ausgabe-Einbettungen. Drei Exoten fallen auf: gehashte N-Gramm-Einbettungen (Bigramm- bis 4-Gramm-Hashes auf je 16.384 Buckets, über ein gelerntes Gate zu den Token-Einbettungen addiert), Skip-Verbindungen von jeder Schicht zurück zur ursprünglichen Einbettung und Value-Residuals, die spätere Schichten mit den Werten der ersten mischen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Der Tokenizer ist ein Byte-Level-BPE, eigens auf etwa einer Milliarde Zeichen der Trainingsmischung trainiert, mit ungewöhnlich kleinem Vokabular von 16.384 Einträgen - jede Ziffer ist ein eigener Token. Geladen wird das Modell mit eigenem Code (trust_remote_code); das Repository führt die Gewichte in FP32, BF16 und FP16 [1]. trust_remote_code führt Python-Code aus dem Modellrepository aus. Vor dem Laden sollte dieser Code geprüft und eine feste Revision verwendet werden. Die Karte empfiehlt wegen BF16-Aktivierungen eine CUDA-GPU mit BF16-Unterstützung; kleine Gewichtsdateien sind keine allgemeine Kompatibilitätszusage."
+    },
+    {
+      "t": "h2",
+      "x": "Ein Rezept, das man nachkochen könnte"
+    },
+    {
+      "t": "p",
+      "x": "Die Trainingsdokumentation geht ungewöhnlich weit. Daten: 100 Milliarden Token, gestreamt und on-the-fly tokenisiert, im Mittel 85,8 Prozent ClimbMix (Web), 6,0 Prozent FineMath, 3,0 Prozent Wikipedia, dazu SmolTalk und zwei Mathe-Frage-Antwort-Sammlungen - mit einer Stufentabelle, wie sich die Mischung über die drei Trainingsphasen verschob. Nur Trainingssplits; ein ClimbMix-Shard blieb als Validierung reserviert. Verfahren: Warmup-Stable-Decay über 381.000 Schritte à 262.144 Token, Peak-Lernrate 1,5e-3, Optimizer Muon für Aufmerksamkeits- und Shared-Expert-Matrizen, AdamW für den Rest - Muon auf den gerouteten Experten habe in Experimenten Routing-Balance und Tempo verschlechtert, notiert die Karte. Hardware: eine RTX Pro 6000, etwa 36 Stunden [1]."
+    },
+    {
+      "t": "p",
+      "x": "Ein Punkt gehört zur Lizenz-Ehrlichkeit: Das Modell steht unter Apache-2.0, die Trainingsdatensätze aber unter ihren eigenen Lizenzen - ClimbMix unter MIT, FineMath unter ODC-BY. Die Karte weist selbst darauf hin, die Lizenzen der einzelnen Datensätze vor einer Weiterverwendung zu prüfen; unsere API-Abfrage bestätigt die beiden genannten Lizenz-Tags [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die Zahlen zeigen - und was nicht"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Benchmark-Genauigkeit von Aurora2-400M in Prozent",
+      "alt": "Herstellerwerte für sechs Benchmarks mit acc und acc_norm; ARC-Challenge 22,95 und 26,11 Prozent, übrige Werte in der Datentabelle.",
+      "caption": "Hersteller-Messung am 100-Mrd.-Token-Checkpoint; acc = Standard-Genauigkeit, acc_norm = normalisierte Genauigkeit. Die Karte nennt keine Vergleichsmodelle [1].",
+      "labels": [
+        "PIQA",
+        "ARC-Easy",
+        "ARC-Challenge",
+        "ARC (gesamt)",
+        "ArithMark3",
+        "HellaSwag"
+      ],
+      "series": [
+        {
+          "name": "acc",
+          "values": [
+            67.41,
+            51.18,
+            22.95,
+            37.07,
+            37.3,
+            32.82
+          ]
+        },
+        {
+          "name": "acc_norm",
+          "values": [
+            66.92,
+            48.11,
+            26.11,
+            37.11,
+            37.4,
+            38.36
+          ]
+        }
+      ],
+      "y_label": "Prozent",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Karte meldet sechs Benchmarks mit zwei Genauigkeitsmaßen und nennt separat einen Intelligence Index (acc_norm) von 21,52. Eine Berechnungsvorschrift für diesen Index liefert die Karte nicht; er darf nicht als einfacher Mittelwert der sechs gezeigten Werte oder mit dem gleichnamigen Artificial-Analysis-Index gleichgesetzt werden. Vergleichsmodelle nennt sie nicht - entsprechend lässt sich daraus keine Platzierung im Feld ableiten, und wir bilden keine ab. Ebenso offen sind die Grenzen: Es ist ein reines Basismodell ohne Instruktions- oder Präferenztraining, nicht für Assistenten-Verhalten gedacht; Wissen, Reasoning und Kohärenz sind durch die 19 Millionen aktiven Parameter eng begrenzt; Tokenizer und Mischung sind englischlastig; der Kontext endet bei 2.048 Token. Die Karte rät ausdrücklich von Entscheidungen mit realen Folgen ab [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Parameter: 399,6 Mio. gesamt, 19,1 Mio. aktiv pro Token. Architektur: 12 Schichten, versteckte Größe 192, 32 geroutete Experten (Top-1) plus 1 gemeinsamer Experte pro Schicht, GQA 6/2, RoPE (Basis 10.000), Logit-Soft-Capping 30. Vokabular: 16.384 (eigener BPE-Tokenizer). Kontext: 2.048 Token. Training: 100 Mrd. Token, ~36 Stunden auf einer RTX Pro 6000, Muon plus AdamW, Seed 1337. Gewichte: FP32, BF16, FP16. Lizenz: Apache-2.0 (Modell); Trainingsdatensätze mit eigenen Lizenzen [1][2][3]."
+    }
+  ],
+  "method": "Recherche am 21. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von AuroraAI-Research/Aurora2-400M-A20M (vollständig, inkl. Architektur-, Tokenizer-, Daten-, Trainings- und Evaluationsabschnitten sowie Limitations), Datensatz-APIs von karpathy/climbmix-400b-shuffle und HuggingFaceTB/finemath (jeweils inkl. Lizenz-Tag). Alle Benchmark-Werte stammen vom Hersteller; Framework-Tests haben wir nicht durchgeführt. Eigenständiger Abgleich der Karte und Lizenzmetadaten um 07:11 Uhr MEZ; kein Trainings- oder Inferenztest.",
+  "limitations": "Alle Benchmark-Werte sind Herstellerangaben ohne Vergleichsmodelle und ohne unabhängige Bestätigung; eine Einordnung ins Modellfeld ist daraus nicht möglich. Basismodell ohne Instruktions-Tuning, englischlastig, kurzer Kontext. Trainingsdatensätze stehen unter eigenen Lizenzen (unter anderem ODC-BY), die eine Weiterverwendung einschränken können.",
+  "faq": [
+    {
+      "q": "Was ist Aurora2-400M-A20M?",
+      "a": "Ein offenes, von Grund auf trainiertes MoE-Basismodell von AuroraAI Research mit 399,6 Mio. Parametern, von denen nur 19,1 Mio. pro Token aktiv sind [1]."
+    },
+    {
+      "q": "Wie wurde es trainiert?",
+      "a": "Auf einer einzigen RTX Pro 6000 über 100 Mrd. Token in rund 36 Stunden. Die Karte dokumentiert Datenmischung, Stufenplan, Lernraten, Optimizer (Muon plus AdamW) und den Seed [1]."
+    },
+    {
+      "q": "Kann man Aurora2 als Chat-Assistenten nutzen?",
+      "a": "Nicht als fertigen Assistenten: Es ist ein Basismodell ohne gesondertes Instruktions- oder Präferenztraining. Weitere Anpassung und Tests wären nötig [1]."
+    },
+    {
+      "q": "Wie gut ist das Modell?",
+      "a": "Die Karte meldet sechs Benchmark-Werte und separat einen nicht näher definierten Intelligence Index von 21,52. Vergleichsmodelle fehlen. Eine Rangfolge im Modellfeld oder Gleichsetzung mit einem externen Intelligence Index ist damit nicht begründet [1]."
+    },
+    {
+      "q": "Darf ich Aurora2 kommerziell nutzen?",
+      "a": "Die Modellgewichte stehen unter Apache-2.0. Das ersetzt keine Prüfung der konkreten Anwendung, des Modellcodes und der jeweiligen Datensätze. Deren Lizenzen sind getrennt, unter anderem MIT und ODC-BY [1][2][3]."
+    }
+  ],
+  "related": [
+    "inkling-2-mini-analyse",
+    "edge0-145b-analyse",
+    "botpsy-0-8b-analyse"
+  ]
 }
