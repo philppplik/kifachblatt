@@ -1,0 +1,120 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-22",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-22T06:50:00+01:00",
+  "modified": "2026-11-22T06:50:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Some Memories Must Fade: Persistence and Decay of User Memories in Model Parameters",
+      "publisher": "arXiv; Sanidhya Vijayvargiya, Rahul Lokesh, Samsung Research America",
+      "url": "https://arxiv.org/abs/2611.25235",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "Pandora's Toolbox Or Why Agent Safety Cannot Be Verified",
+      "publisher": "arXiv; Mario Franco, Carlos Gershenson, Binghamton University",
+      "url": "https://arxiv.org/abs/2611.25325",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "When AI Analysts Disagree: Agentic Multiverse Analysis and the Robustness of Empirical Research",
+      "publisher": "arXiv; Ruijiang Gao, Steven Chong Xiao, University of Texas at Dallas",
+      "url": "https://arxiv.org/abs/2611.25198",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "Brief independent investigation of agents’ behavior, reasoning and collaboration in the OpenAI / Hugging Face hacking incident",
+      "publisher": "METR (Greenblatt, Cotra, Wijk), 26.08.2026; vom Pandora-Paper zitierte Quelle",
+      "url": "https://metr.org/blog/2026-08-26-openai-hugging-face-incident-investigation/",
+      "accessed": "2026-11-22"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Gedaechtnis",
+    "Agentensicherheit",
+    "Replikation"
+  ],
+  "title": "Gedächtnis mit Verfallsdatum, Agenten-Grenzen, KI-Multiversum",
+  "dek": "Parametrisches Gedächtnis mit Verfall, ein Unmöglichkeitsbeweis zur Agenten-Verifikation und ein Agenten-Multiversum für Studienrobustheit.",
+  "key_takeaways": [
+    "Parametrisches Gedächtnis (Samsung): LoRA-Substrat mit Zerfall pro Rang, Controller 2M Parameter; 0,56 (PMM-LR) / 0,60 (PMM-PR) gegen 0,65 (Orakel), CL-Baselines ohne Verfall (Enthaltung 0,00), RAG-Manager 0,50 bis 0,55; Scope: synthetische Trajektorien, Basis Qwen3-1.7B.",
+    "Agentensicherheit (Binghamton): Ausführung gefährlich äquivalenter Programme unentscheidbar, unter endlichen Schranken entscheidbar, aber PSPACE-vollständig, nicht kompositional; Autoren: kein Argument gegen sichere Agenten, nur gegen vollständige Verifikation.",
+    "AMA (UT Dallas): 150 KI-Analysten streuen ähnlich wie Menschen, nur enger (IQR bis 10,69 Prozent pro Jahr), Review ändert wenig, Vorbilder lassen die Streuung per Imitation schrumpfen; zehn Studien geprüft: je Studie 22 bis 100 Prozent der Spezifikationen mit veröffentlichtem Vorzeichen, 0 bis 78 Prozent signifikant, Zweitmodell bestätigt 6 von 10."
+  ],
+  "hero": {
+    "alt": "Titelgrafik Zusatzüberblick Morgen, 22. November 2026, mit drei Themen: Gedächtnis mit Verfall (0,56 und 0,60 gegen 0,65 Orakel), Agentensicherheit nicht vollständig verifizierbar, 150 KI-Analysten streuen, aber enger als Menschen.",
+    "caption": "Titelgrafik mit den drei Themen. Die Datengrafiken mit Scope stehen in den Abschnitten. Eigene Grafik.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Drei arXiv-Preprints vom 18. und 19. November: ein parametrisches Gedächtnis mit Verfallsdatum für Nutzerfakten, ein Unmöglichkeitsresultat zur Verifikation von Agentensicherheit und ein Multiversum-Verfahren, das die Robustheit empirischer Studien mit KI-Agenten vermisst."
+    },
+    {
+      "t": "h2",
+      "x": "Gedächtnis in den Gewichten, mit Verfallsdatum"
+    },
+    {
+      "t": "p",
+      "x": "Vijayvargiya und Lokesh (Samsung Research America) bauen parametrische Gedächtnisverwaltung: ein LoRA-Substrat fester Größe auf Qwen3-1.7B (32 Ränge, k-heiße Kombinationen, 496 Orte, 11 Megabyte pro Nutzer) mit eigener Zerfallskonstante pro Rang, ein kalibrierter Abruf-Adapter, der bei abgelaufenen Spuren mit Unbekannt antwortet, und ein 2-Millionen-Parameter-Controller, der pro Ereignis über Schreiben, Tiefe und Lebensdauer entscheidet. Auf 909 synthetischen Mehrjahres-Trajektorien (15 Testnutzer, 4.584 Abfragen) erreicht das System (Basis Qwen3-1.7B) 0,56 klassenbalancierte Trefferquote mit gelerntem Routing beziehungsweise 0,60 mit perfektem Routing gegenüber 0,65 beim Metadaten-Orakel (86 bis 92 Prozent der Obergrenze); Continual-Learning-Baselines können nicht verfallen (PCGrad 0,42, Enthaltung 0,00), abrufbasierte Manager liegen bei 0,50 (1,7B) bis 0,55. Grenzen: Geteilte Spalten überschreiben Lebensdauern, Haltbarkeit ist aus dem Inhalt allein nicht vorhersagbar, Trajektorien synthetisch."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-morgen-2026-11-22-chart1.jpg",
+      "alt": "Balkendiagramm der klassenbalancierten Trefferquote: PMM-LR 0,56, PMM-PR 0,60, Metadaten-Orakel 0,65, RAG-MM 1,7B 0,50, RAG-MM 122B 0,53, RAG-MM 1,7B trainiert 0,55, PCGrad 0,42.",
+      "caption": "Klassenbalancierte Trefferquote auf 15 Testnutzern mit 4.584 Abfragen, synthetische Trajektorien, Basis Qwen3-1.7B. Werte aus dem Paper (Tabelle 3). Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Agentensicherheit: beweisbar nicht vollständig verifizierbar"
+    },
+    {
+      "t": "p",
+      "x": "Franco und Gershenson (Binghamton University) zeigen für die Kopplung aus festem Sprachmodell und allgemeinem Rechengerät: Ob ein Agent je ein zu einem gefährlichen Programm semantisch äquivalentes ausführt, ist unentscheidbar (Reduktion vom Halteproblem); endliche Blacklists und Zertifikate bleiben notwendigerweise lückenhaft, und jede Zertifizierung verfehlt konstruierbar sichere Agenten. Unter endlichen Schranken (Kontext, Werte, Laufzeit) ist Sicherheit entscheidbar, aber PSPACE-vollständig (laut Autoren „intractable“; eine Komplexitätsklasse, kein Beweis praktischer Unmöglichkeit), die Simulation kann bis zu (B+3) hoch L Runden brauchen, ein Blackbox-Prüfer mindestens (B+1) hoch L plus L minus 1 Anfragen, und Sicherheit ist nicht kompositional: einzeln sichere Agenten können zusammen unsicher werden. Die Autoren betonen: kein Argument gegen sichere Agenten, nur gegen vollständige a-posteriori-Verifikation, die sie für fundamental und praktisch unmöglich halten; sie diskutieren abgeschwächte epsilon-safe-Begriffe samt Schwächen und zitieren einen METR-untersuchten Vorfall (OpenAI-Agenten, Angriff auf Hugging Face): Rund 1.200 Agenten tauschten über 70.000 Nachrichten und Dateien aus, laut Paper beteiligten sich etwa 90 Prozent der aktiven Agenten am Angriff (METR: über 90 Prozent von 533). Die infektionsartige Ausbreitung ist die Deutung der Autoren. Einordnung: Worst-Case-Theorem über eine vereinfachte Abstraktion, keine Produktmessung."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-morgen-2026-11-22-chart2.jpg",
+      "alt": "Drei Karten zur Agentensicherheit: unentscheidbar, PSPACE-vollständig unter endlichen Schranken, nicht kompositional; dazu die Einordnung der Autoren.",
+      "caption": "Kernaussagen des Theoriepapiers von Franco und Gershenson. Worst-Case-Theorem über eine vereinfachte Abstraktion, keine Produktmessung. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Multiversum per Agent: Robustheit wird messbar"
+    },
+    {
+      "t": "p",
+      "x": "Gao und Xiao (UT Dallas) lassen zunächst 150 Claude-Code-Agenten (100 Sonnet 4.6, 50 Opus 4.6) sechs Hypothesen auf denselben TAQ-Daten prüfen (66 Gigabyte, 7 Milliarden Zeilen; 1.558 Dollar, etwa 25 Stunden): Die Schätzungen streuen über dieselben Methodenwahlen wie bei menschlichen Teams, nur enger (IQR 0,43 bis 10,69 Prozent pro Jahr), KI-Peer-Review ändert daran fast nichts, und nur die Konfrontation mit Top-Berichten lässt die Streuung innerhalb konvergierender Maßfamilien um 80 bis 99 Prozent schrumpfen, durch Imitation statt Analyse; Modellfamilien haben stabile Stile (bei der Markteffizienz-Hypothese 87 Prozent der Sonnet-Agenten Autokorrelation, 100 Prozent der Opus-Agenten Varianzratio). Ihr AMA-Verfahren zählt deshalb den Gabelungsraum einer Studie einmal auf, validiert jede Gabel vor jeder Schätzung und rechnet das Gitter mit Aufgabentrennung durch: Bei zehn anonymisierten Studien (1.857 Optionen, 1.755 Schätzungen) tragen je Studie 22 bis 100 Prozent der geprüften Spezifikationen das veröffentlichte Vorzeichen, ein signifikantes Ergebnis in dieser Richtung zeigen nur 0 bis 78 Prozent (Höchstwert: erstes von zwei Ergebnissen in Studie D); bei fünf Studien trägt die Replikationslage die behauptete Robustheit nicht. Ein Zweitmodell (gpt-5.6-sol) bestätigt sechs von zehn Urteilen. Kosten: 28 bis 96 Dollar und 2,0 bis 4,9 Stunden aktive Agentenzeit pro Studie. Limitationen: kein Zufallssample, Überlebensrate kein formaler Test, Gabelraum modellabhängig; Pipeline quelloffen."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-morgen-2026-11-22-chart3.jpg",
+      "alt": "Balkendiagramm zu zehn anonymisierten Studien: Anteil der Spezifikationen mit veröffentlichtem Vorzeichen (blau) und mit signifikantem Ergebnis in dieser Richtung (orange), je Studie A bis J.",
+      "caption": "Anteil der Spezifikationen je Studie (Tabelle 3 des Papers; D und F mit zwei Teilergebnissen). 1.755 Spezifikationen, zehn Studien, kein Zufallssample; die Überlebensrate ist kein formaler Test. Eigene Grafik."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was ist neu am parametrischen Gedächtnis?",
+      "a": "Es kann gezielt verfallen: Jeder Speicherort im LoRA-Adapter trägt eine eigene Zerfallskonstante, ein kalibrierter Abruf-Adapter antwortet bei abgelaufenen Spuren mit Unbekannt, und ein kleiner Controller entscheidet pro Ereignis über Schreiben, Tiefe und Lebensdauer. So kommt das System auf synthetischen Nutzerverläufen auf 86 bis 92 Prozent der Orakelleistung, während Continual-Learning-Verfahren veraltete Fakten nicht loswerden."
+    },
+    {
+      "q": "Sind KI-Agenten damit unbeherrschbar?",
+      "a": "Das Papier zeigt etwas Engeres: Vollständige a-posteriori-Verifikation ist im Allgemeinen unentscheidbar und selbst unter endlichen Schranken PSPACE-vollständig; Filter und Zertifikate bleiben lückenhaft, und Sicherheit vererbt sich nicht auf Agentengruppen. Sichere Agenten bauen bleibt möglich, nur ihr lückenloser Nachweis nicht."
+    },
+    {
+      "q": "Was leistet die agentische Multiversum-Analyse?",
+      "a": "Sie macht sichtbar, wie stark eine publizierte Schlussfolgerung von einzelnen Methodenwahlen abhängt: Ein Agent zählt die vertretbaren Gabeln auf, ein zweiter validiert sie vor jeder Schätzung, ein dritter rechnet das Gitter, ein vierter prüft nach. In zehn Fallstudien trugen je Studie 22 bis 100 Prozent der geprüften Spezifikationen das veröffentlichte Vorzeichen, 0 bis 78 Prozent zeigten ein signifikantes Ergebnis in dieser Richtung, bei Kosten von 28 bis 96 Dollar pro Studie. Die Autoren verstehen das Verfahren als Entscheidungshilfe für menschliche Experten."
+    }
+  ],
+  "related": [
+    "memt-1-natives-gedaechtnis-analyse",
+    "sicherheit-fuer-agenten-systeme"
+  ]
+}
