@@ -1,0 +1,162 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-22",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-22T16:02:00+01:00",
+  "modified": "2026-11-22T16:02:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "World Models Favor Learned Priors over Visual Evidence",
+      "publisher": "arXiv; Han Xiao, Zhiyong Bao, Xiaotong Liu, Yanhao Chen, Qingqiang Wu",
+      "url": "https://arxiv.org/abs/2611.26366",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "Is a Description Worth a Thousand Demonstrations? Specificity and Reliability of Task Descriptions in In-Context Learning",
+      "publisher": "arXiv; Bruce Nguyen, Bei Jiang, Linglong Kong",
+      "url": "https://arxiv.org/abs/2611.25560",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "How Feedback-Free Self-Evolution Reshapes Agent Skills: A Systematic Study",
+      "publisher": "arXiv; Litao Guo, Man Chen, Xinli Xu, Jinsong Zhou, Zixin Zhang, Ying-Cong Chen",
+      "url": "https://arxiv.org/abs/2611.25534",
+      "accessed": "2026-11-22"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Weltmodelle",
+    "ICL",
+    "Agent-Skills"
+  ],
+  "title": "Weltmodell-Priors, Beschreibungs-ESS und Skill-Erosion",
+  "dek": "Drei Preprints über seltene physikalische Regeln, den Wert verlässlicher Beschreibungen und den Verlust von Expertenwissen beim Umschreiben von Skills.",
+  "key_takeaways": [
+    "TailWorld trennt Kalibriervideo und neue Anfangszustände. RIFT erzielt in Tabelle 1 einen ADE von 0,0895 Metern in 2D gegenüber MaNGO mit 0,1767 sowie 0,0989 in 3D gegenüber NCF mit 0,1772. Das sind kontrollierte Kollisionsaufgaben, kein allgemeines Weltmodell-Ranking.",
+    "Beschreibungs-ESS misst einen äquivalenten Vorhersagegewinn in Demonstrationen. Rund 106 versus 4,7 gehören zum theoretischen Null-Beispiel-Vergleich bei d=5 und c=100. Der separate LLM-Test umfasst sechs Modelle, davon nur fünf ohne Reasoning; sein Referenz-ESS von 34,6 ist ein Median über eine, zwei und vier Demonstrationen.",
+    "30 Umschreiberunden ohne Rückmeldung kosten im Mittel über sechs Modelle 14,6 Prozentpunkte SkillsBench-Pass-Rate. Nur verlorene 0/10-Einträge zurückzugeben bringt 8,8 Punkte, alle verlorenen Einträge 10,2. SkillDiff erzielt separat plus 4,8 Punkte gegenüber dem ursprünglichen Skill im selben Messlauf."
+  ],
+  "hero": {
+    "alt": "Abendüberblick am 22. November 2026 zu physikalischen Regeln, Aufgabenbeschreibungen als Prior und Skills ohne Rückmeldung.",
+    "caption": "Die drei Themen des Abendüberblicks. Zahlen und Vergleichsbedingungen stehen in getrennten Grafikpanels in den Abschnitten.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Drei Preprints vom 19. November, ausgewählt für den Abendüberblick am 22. November 2026 (redaktioneller Auswahlstand 16:02 MEZ): Wie Modelle seltene physikalische Regeln aus Videos übernehmen, welchen Vorhersagewert Aufgabenbeschreibungen haben und was beim wiederholten Umschreiben von Experten-Skills verloren geht. Die Zahlen sind Studienergebnisse der jeweiligen Autoren. Eigene Modelltests oder Replikationen haben wir nicht durchgeführt."
+    },
+    {
+      "t": "h2",
+      "x": "Seltene Regeln: Was das Video zeigt und das Modell daraus macht"
+    },
+    {
+      "t": "p",
+      "x": "Han Xiao und Mitautoren trennen in TailWorld sichtbare Bewegung und verborgene physikalische Regel. Ein Kalibriervideo zeigt Kollisionen unter einer bestimmten Stoßelastizität und einem bestimmten Massenverhältnis. Anschließend soll das Modell Bewegung unter derselben Regel, aber aus einem anderen Anfangszustand vorhersagen. Die ersten 0,5 Sekunden der Anfrage sind kollisionsfrei: 15 beobachtete Frames stehen 150 vorherzusagenden Frames bei 30 Hz gegenüber. Zwei Referenzzukünfte vom identischen Anfangszustand folgen entweder der kalibrierten oder einer häufigen Trainingsregel. So lässt sich untersuchen, ob die Vorhersage trotz passender Beobachtungen zur häufigen Regel driftet. Das Verhältnis häufig zu selten beträgt 1:1, 4:1 oder 16:1; seltene Regeln behalten konstant fünf Prozent der Ziehungswahrscheinlichkeit, weitere Trainingsfälle den Rest."
+    },
+    {
+      "t": "p",
+      "x": "RIFT lernt, wie ein Regelvektor die Bewegung beeinflusst, und bestimmt ihn aus den Kalibrierbeobachtungen. Ein Regel-Atlas ergänzt Richtungen, die das Video nicht ausreichend festlegt. Der Einfluss der Trainingshäufigkeit lässt sich separat einstellen. Tabelle 1 berichtet für den 2D-Transfer einen mittleren Positionsfehler ADE von 0,0895 Metern gegenüber 0,1767 bei MaNGO, der besten von fünf Adaptions-Baselines für diese Metrik. Im 3D-Transfer sind es 0,0989 gegenüber 0,1772 Metern bei NCF. Der Endfehler FDE sinkt in 2D auf 0,1388 statt 0,3485 Meter bei MaNGO und in 3D auf 0,1205 statt 0,3261 bei GEPS. Die beste Vergleichsmethode ist also nicht in jedem Teiltest dieselbe."
+    },
+    {
+      "t": "p",
+      "x": "Der Vergleich der Adaptionsmethoden kontrolliert mehrere Komponenten: Alle nutzen dieselben Aufgabenaufteilungen, Zustandsbeobachtungen und Demonstrationslängen. RIFT sowie die Shared-Backbone-Varianten von GEPS, CoDA und NCF teilen einen vortrainierten, eingefrorenen Objektinteraktions-Transformer. CoPhyNet und MaNGO behalten dagegen ihre eigenen Dynamikarchitekturen. Die visuelle Zustandsauslese ist in synthetischen Versuchen für die Trajektorienmethoden gemeinsam und für 2D und 3D getrennt trainiert. Der Test isoliert deshalb nicht in jeder Paarung ausschließlich einen einzigen Algorithmusschritt."
+    },
+    {
+      "t": "p",
+      "x": "Cosmos-Predict2.5-2B erreicht ohne Feintuning einen ADE von 0,4375 Metern in 2D und 0,5874 in 3D. Das ist kein kontrollierter Vergleich identischer Trainingsbedingungen: Die Arbeit unterscheidet eigens trainierte Adaptionsmethoden von vortrainierten Videomodellen und berichtet auch die Rückgewinnung von Trajektorien aus generierten Videos sowie die jeweiligen Auswertungsteilmengen. RIFT erzielt außerdem den niedrigsten ADE in den untersuchten Pendelvideos von IRIS und Delfys75; dort werden nach 0,5 Sekunden Beobachtung drei Sekunden vorhergesagt, nicht fünf. Die Ablation zeigt den größten Einbruch ohne kalibrierungsgetriebene Regelaktualisierung. Die Ergebnisse betreffen damit kontrollierte Kollisionen und zwei Pendeldatensätze, nicht physikalisches Verständnis in beliebigen Videos."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-abend-2026-11-22-chart1.jpg",
+      "alt": "TailWorld Tabelle 1: ADE in Metern, 2D RIFT 0,0895 gegenüber MaNGO 0,1767; 3D RIFT 0,0989 gegenüber NCF 0,1772. Vergleichsmethode und synthetischer Test stehen direkt an den Werten.",
+      "caption": "Mittlerer Positionsfehler über Objekte und Vorhersageschritte. 2D und 3D sind getrennte Transferaufgaben, die jeweils beste Adaptions-Baseline ist unterschiedlich. Quelle: Xiao et al., Tabelle 1, arXiv 2611.26366. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Beschreibungs-ESS: Theorie und Sprachmodelltest getrennt lesen"
+    },
+    {
+      "t": "p",
+      "x": "Bruce Nguyen, Bei Jiang und Linglong Kong modellieren eine Aufgabenbeschreibung als Vorwissen, einen Prior. Spezifität c beschreibt dessen Präzision, Zuverlässigkeit p die Wahrscheinlichkeit, dass die Beschreibung zur richtigen Aufgabe gehört. Ihre effektive Stichprobengröße ESS fragt: Wie viele zusätzliche Demonstrationen ohne Beschreibung wären nötig, um denselben erwarteten Vorhersagefehler zu erreichen? Im Gaußschen Regressionsmodell mit wenig Vorwissen ohne Beschreibung nähert sich der Wert einer zuverlässigen vollständigen Beschreibung vor der ersten Demonstration c+d+1. Das ist ein Grenzergebnis mit Annahmen, keine allgemeine Obergrenze für Prompts."
+    },
+    {
+      "t": "p",
+      "x": "Das Zahlenbeispiel mit Dimension d=5 und Baseline-Varianz 10 macht die Rolle der Zuverlässigkeit sichtbar. Eine spezifische Beschreibung mit c=100 hat ohne Demonstrationen einen Bayes-optimalen ESS von rund 106. Bei nur 90 Prozent Zuverlässigkeit sind es rund 4,7; eine gröbere, zuverlässige Beschreibung mit c=1 erreicht 5,9. Zusätzliche Demonstrationen können Hinweise auf die Relevanz liefern und den gedeckelten Wert wieder anheben. Meta-trainierte Transformer kommen auf passender Trainings- und Testverteilung nahe an die Referenz: Die größte Lücke beträgt 14,3 statt 16,1 bei c=10. Nach Training mit 90 Prozent Zuverlässigkeit gewichten sie selbst vollständig zuverlässige Testbeschreibungen nur mit etwa 0,88 und erreichen dort 60 Prozent des optimalen ESS."
+    },
+    {
+      "t": "p",
+      "x": "Davon getrennt untersucht die Arbeit sechs Sprachmodelle auf 200 synthetischen Mittelwertschätzaufgaben mit Beobachtungsstreuung sigma=60. Berichtet wird der Median-ESS über eine, zwei und vier Demonstrationen, also kein Null-Beispiel-Wert. Fünf Modelle laufen mit und ohne Reasoning: gpt-oss-20b, Qwen3.5 9B, Gemma 4 31B, GPT-6 Sol und Claude Opus 4.6. Claude Haiku 5.5 läuft ausschließlich mit Reasoning, da es sich im Versuchsaufbau nicht abschalten ließ. Bei c=36 erreicht ohne Reasoning keines der fünf dafür getesteten Modelle ein Drittel des Referenz-ESS von 34,6. Mit Reasoning erreichen GPT-6 Sol, Opus 4.6 und Gemma 4 31B die Referenz bei beiden gezeigten Präzisionen. Qwen3.5 9B liegt beim Vorhersagefehler nahe daran, hat bei c=36 auf seiner eigenen Baselinekurve aber keinen definierten ESS. Ein hoher ESS allein bedeutet zudem nicht automatisch einen kleinen absoluten Fehler."
+    },
+    {
+      "t": "p",
+      "x": "Der Zuverlässigkeitstest nutzt nur GPT-6 Sol, Opus 4.6 und Haiku 5.5. Für als zu zehn Prozent irrelevant angegebene Beschreibungen fällt der Referenz-ESS von 34,6 auf 5,0. Mit Reasoning erreichen GPT-6 Sol und Opus 4.6 diese Referenz, Haiku rund zwei Drittel. Die beiden ohne Reasoning getesteten Modelle erreichen nur etwa 1. Eine Kontrolle mit gleich genauen Beschreibungen, aber als c=4 statt 36 angegebener Präzision, senkt bei GPT-6 Sol, Opus 4.6 und Gemma 4 31B mit Reasoning den ESS auf 11 bis 14; die Referenz liegt bei 13,7. Die Autoren sehen darin eine Nutzung der genannten Präzision. Für die drei offenen Modelle unterscheiden sich Reasoning- und Nicht-Reasoning-Läufe jedoch auch in technischen Einstellungen. Der Versuch isoliert dort nicht allein den Reasoning-Schalter. Alle Aufgaben sind synthetisch, Präzision und Zuverlässigkeit stehen ausdrücklich im Prompt. Ein allgemeiner Beweis für bessere Alltagsprompts folgt daraus nicht."
+    },
+    {
+      "t": "p",
+      "x": "Im Zuverlässigkeitstest wird jede Aufgabe einmal mit relevanter und einmal mit unabhängig erzeugter irrelevanter Beschreibung gestellt. Die Fehler werden mit 0,9 und 0,1 gewichtet. Die zehn Prozent sind somit eine experimentell modellierte Relevanzmischung und keine gemessene Fehlerrate beliebiger natürlichsprachlicher Anweisungen."
+    },
+    {
+      "t": "p",
+      "x": "Die ESS-Definition verwendet die jeweilige Baseline-Lernkurve des Prädiktors ohne Beschreibung. ESS=10 bedeutet: n Demonstrationen plus Beschreibung erreichen den Fehler von n+10 Demonstrationen ohne Beschreibung. Bruchteile sind durch Interpolation möglich. Erreicht die eigene Baselinekurve den Fehler mit Beschreibung nie, ist der ESS auf dieser Kurve nicht definiert. Das betrifft bei c=36 mit Reasoning Qwen3.5 9B und gpt-oss-20b; die Abbildung zeigt dafür Ersatzwerte auf der Referenzkurve, die nicht direkt mit den übrigen Punkten vergleichbar sind. Ein Modell kann also im absoluten Fehler nahe an der Referenz liegen, ohne einen vergleichbaren eigenen ESS zu besitzen."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-abend-2026-11-22-chart2.jpg",
+      "alt": "Getrennte ESS-Vergleiche: theoretischer Null-Beispiel-Wert rund 106 zu 4,7 bei 100 zu 90 Prozent Zuverlässigkeit, d=5 und c=100. Separater LLM-Referenzvergleich 34,6 zu 5,0 bei c=36 und Median über eine, zwei, vier Demonstrationen.",
+      "caption": "ESS ist der äquivalente Gewinn an Demonstrationen für denselben erwarteten Vorhersagefehler. Das theoretische Null-Beispiel-Ergebnis darf nicht mit dem separaten LLM-Experiment vermischt werden. Insgesamt sechs Modelle, nur fünf ohne Reasoning; der Zuverlässigkeitstest nutzt drei Modelle. Quelle: Nguyen et al., Abschnitte 3 bis 5, arXiv 2611.25560. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Skill-Erosion: Was ohne Rückmeldung zuerst verschwindet"
+    },
+    {
+      "t": "p",
+      "x": "Litao Guo, Man Chen und Mitautoren lassen sechs Modelle Experten-Skills bis zu 30-mal umschreiben, ohne Aufgabe, Ausführungsergebnis oder Urteil. Anschließend verwendet jeweils dasselbe Modell den bearbeiteten Skill als Agent. Auf den 87 SkillsBench-Aufgaben sinkt die Pass Rate im Mittel über die sechs Modelle nach Runde eins um 7,1 Prozentpunkte, nach fünf um 10,9 und nach 30 um 14,6. Der Verlust nach Runde 30 reicht je nach Modell von 10,3 bis 23,0 Punkten. Bei den 63 Aufgaben mit mehreren kuratierten Skills wählt GPT-5.6-Sol vor den Experimenten einen passenden Skill aus. Umgeschrieben wird nur das Dokument, nicht die zugehörigen Skripte und Referenzdateien. Das ist kein Test freier Skill-Auswahl oder des Zusammenspiels mehrerer Skills."
+    },
+    {
+      "t": "p",
+      "x": "Auch auf LogicBench mit 760 Fragen und 19 Skills sowie MedCalc-Bench mit 1.100 Fragen und 55 Skills verschlechtern sich alle Modelle. Der mittlere ursprüngliche Skill-Vorteil verschwindet nach 30 Runden weitgehend: LogicBench fällt von 86,2 auf 71,4 Prozent Genauigkeit, ungefähr auf das Niveau ohne Skill. MedCalc fällt von 89,7 auf 78,7 Prozent, unter die 81,1 Prozent ohne Skill. Das sind die beiden Einzelantwort-Benchmarks, nicht weitere SkillsBench-Pass-Raten."
+    },
+    {
+      "t": "p",
+      "x": "Zehn vom jeweiligen Modell allein aus dem Thema geschriebene Entwürfe dienen als Stichprobe dessen, was es selbst typischerweise formuliert. Ein LLM-Richter prüft inhaltliche Übereinstimmung und vollständigen Erhalt der ursprünglichen Einträge. Von Einträgen, die keiner der zehn Entwürfe nennt, überleben nach 30 Runden im Mittel 23,1 Prozent; bei Einträgen, die alle zehn nennen, sind es 84,2 Prozent. Dieses Mittel umfasst sechs Modelle und drei Benchmarks. Die Gruppen heißen in der Arbeit außerhalb beziehungsweise nahe am Modell-Prior. 0/10 bedeutet aber nicht, dass das Modell den Inhalt grundsätzlich nicht wissen kann. Es bedeutet, dass es ihn in diesen zehn Entwürfen nicht selbst genannt hat."
+    },
+    {
+      "t": "p",
+      "x": "Die Wiederherstellung liefert mehr als eine Textähnlichkeitskorrelation: Auf SkillsBench gewinnt die Rückgabe nur der verlorenen 0/10-Einträge 8,8 Prozentpunkte zurück, gegenüber 4,4 für die übrigen verlorenen Einträge. Alle verlorenen Inhalte zurückzugeben bringt 10,2 Punkte, also mehr als die 0/10-Gruppe allein, aber keine vollständige Erholung. Die Aussage, beide Maßnahmen brächten gleich viel, wäre falsch. SkillDiff setzt an einem anderen Vergleich an: Zusätzliche Markierungen und eine Notiz lenken den Agenten auf 0/10-Inhalte des ursprünglichen Skills. Dessen eigentlicher Text bleibt erhalten; entfernt man die Ergänzungen, erhält man das Original unverändert zurück. Gegenüber diesem Original im selben Messlauf steigt die SkillsBench-Pass-Rate im Mittel um 4,8 Prozentpunkte. Das ist keine pauschale Reparaturzahl für bereits 30-mal umgeschriebene Skills. Die Studie spricht für überprüfte Änderungen und den Erhalt spezifischer Verfahren, nicht gegen jedes Umschreiben mit externer Rückmeldung."
+    },
+    {
+      "t": "p",
+      "x": "Die sechs Modelle sind GPT-5.6-Luna, GPT-6.1-Sol, MiMo-V2.5-Pro, Claude Haiku 5.5, Qwen3.7-Plus und Qwen3.8-Flash. Die Agenten verwenden je nach Familie Codex, Claude Code oder OpenHands. Beim Item-Erhalt bewertet GPT-5.6-Luna die semantische Vollständigkeit; gemeinsame Wörter allein reichen nicht. Unsichere Fälle werden ausgeschlossen. Eine Zweitbewertung durch GPT-6.1-Sol auf 20 SkillsBench-Aufgaben bestätigt die Richtung der selektiven Verluste, ersetzt aber keine vollständige menschliche Prüfung. Die 23,1 und 84,2 Prozent sind Mittel über Modelle und Benchmarks, keine Erfolgsraten über 87 Aufgaben."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-abend-2026-11-22-chart3.jpg",
+      "alt": "SkillsBench über sechs Modelle: minus 14,6 Prozentpunkte nach 30 Umschreiberunden. Verlorene 0/10-Inhalte wiederherstellen plus 8,8, übrige Inhalte plus 4,4, alle plus 10,2. Separater SkillDiff-Vergleich gegen das unveränderte Original plus 4,8 Punkte.",
+      "caption": "Rückgang und Wiederherstellung betreffen umgeschriebene Skills. SkillDiff ergänzt dagegen Markierungen und eine Notiz zum Original und wird mit diesem im selben Messlauf verglichen. Alle dargestellten Pass-Rate-Werte beziehen sich auf SkillsBench. Quelle: Guo et al., Abschnitt 2.2 sowie Tabellen 2 und 3, arXiv 2611.25534. Eigene Grafik."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was zeigt TailWorld über Weltmodelle und seltene Regeln?",
+      "a": "Im kontrollierten Benchmark können Vorhersagen zur häufigen Trainingsregel driften, obwohl ein Kalibriervideo eine seltene Regel stützt. RIFT trennt Beobachtungsanpassung und Häufigkeitseinfluss. In Tabelle 1 sinkt der 2D-ADE auf 0,0895 Meter gegenüber 0,1767 bei MaNGO, also auf rund die Hälfte. Der 3D-Vergleich ist separat: 0,0989 gegenüber 0,1772 Metern bei NCF. Die Ergebnisse sind keine allgemeine Rangliste physikalischen Verständnisses."
+    },
+    {
+      "q": "Ersetzt eine gute Beschreibung wirklich hundert Beispiele?",
+      "a": "Nur unter den Annahmen des jeweiligen Versuchs. Im theoretischen Regressionsbeispiel mit d=5, c=100 und Baseline-Varianz 10 beträgt der Null-Beispiel-ESS rund 106 bei voller Zuverlässigkeit, aber 4,7 bei 90 Prozent. Der separate Mittelwertschätztest mit 200 Aufgaben berichtet den Median über eine, zwei und vier Demonstrationen. Dort erreichen ohne Reasoning alle fünf dafür getesteten Modelle weniger als ein Drittel der Referenz von 34,6 bei c=36. Haiku 5.5 wurde ausschließlich mit Reasoning getestet."
+    },
+    {
+      "q": "Was folgt aus der Studie zum Umschreiben von Agenten-Skills?",
+      "a": "Im untersuchten Verfahren ohne Aufgabe, Ausführung oder Bewertung verlieren sechs Modelle nach 30 Runden im Mittel 14,6 Prozentpunkte auf SkillsBench. Besonders häufig verschwinden Einträge, die in keinem von zehn Selbstentwürfen vorkommen. Das beweist kein grundsätzlich fehlendes Modellwissen. Auf SkillsBench holt die Rückgabe dieser verlorenen 0/10-Einträge 8,8 Punkte zurück, die aller verlorenen Einträge 10,2. SkillDiff markiert stattdessen das Original und gewinnt gegen dieses im selben Messlauf 4,8 Punkte. Umschreiben mit externer Prüfung wurde damit nicht widerlegt."
+    }
+  ],
+  "related": [
+    "agent-skills-aaif-uebergabe",
+    "few-shot-prompting-praxis"
+  ]
+}
