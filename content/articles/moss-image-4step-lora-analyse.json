@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "MOSS-Image in 4 Schritten: LoRA ersetzt 100 Modellaufrufe durch 4",
   "dek": "Ein Community-LoRA bringt MOSS-Image SFT von 50 Schritten mit CFG 3 auf 4 Schritte ohne CFG. Laut Autor etwa 14-mal weniger GPU-Zeit, Messungen von ihm selbst.",
-  "published": "2026-11-22T07:09:00+01:00",
-  "modified": "2026-11-22T07:09:00+01:00",
+  "published": "2026-11-22T11:54:53+01:00",
+  "modified": "2026-11-22T11:54:53+01:00",
   "author": "philipp-paulik",
   "tags": [
     "MOSS-Image",

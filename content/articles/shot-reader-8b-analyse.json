@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Shot Reader 8B: Vom Videoclip zum 3D-Szenenplan",
   "dek": "Voyagers Qwen3-VL-Feintuning liest einen Kamerashot und schreibt Kamera, Personen und Set als JSON - direkt nach Blender. 16 Frames genügen, Apache-2.0.",
-  "published": "2026-11-22T07:09:00+01:00",
-  "modified": "2026-11-22T07:09:00+01:00",
+  "published": "2026-11-22T11:54:53+01:00",
+  "modified": "2026-11-22T11:54:53+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Shot Reader",
