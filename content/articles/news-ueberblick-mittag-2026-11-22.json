@@ -1,0 +1,146 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-22",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-22T10:00:00+01:00",
+  "modified": "2026-11-22T10:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Many Solutions, One Answer: Search Order Shapes the Default Solutions of Language Models",
+      "publisher": "arXiv; Qinhan Hou, Jing Tang, University of Helsinki",
+      "url": "https://arxiv.org/abs/2611.25916",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "Frontier models need only one text to unmask its human or AI author",
+      "publisher": "arXiv; Atrey Desai, Deniz Bölöni-Turgut, Ty Brassington, Minjoon Choi, Jenna Russell, Rishanth Rajendhran, Bradley Emi, Hila Gonen, Hal Daumé III, John Wieting, Marzena Karpinska, Mohit Iyyer, University of Maryland, Simon Fraser University, Pangram Labs, University of British Columbia, Google DeepMind",
+      "url": "https://arxiv.org/abs/2611.26216",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "The Depth of a Prediction: Where Language Models Resolve a Word Predicts Human Reading Time",
+      "publisher": "arXiv; Donato Riccio, Fabrizio Maturo, Universitas Mercatorum",
+      "url": "https://arxiv.org/abs/2611.25970",
+      "accessed": "2026-11-22"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "LLM-Verhalten",
+    "Attribution",
+    "Interpretierbarkeit"
+  ],
+  "title": "Suchkonventionen, Autoren-Attribution und Resolution Depth",
+  "dek": "Drei Studien zu Antwortvielfalt, Autoren-Attribution und Lesedaten. Was die Werte messen, welche Stichproben dahinterstehen und wo die Grenzen liegen.",
+  "key_takeaways": [
+    "Bei vier offenen Modellen konzentrieren sich gültige Rätselantworten auf wenige Vorschläge. Zufällige Reihenfolgen verbreitern die Lösungen, aber nicht jede Variante hält die Gültigkeit im vorgesehenen Rahmen.",
+    "Autoren-Attribution hängt im Versuch mit Aktivität und selbstberichteter Vertrautheit zusammen. Die tatsächlichen Trainingskorpora sind unbekannt; 398 private Reviews stammen von nur sechs Personen.",
+    "Resolution Depth bringt gepoolt 0,26 Millinats pro Wort an held-out Log-Likelihood. Das ist kein Zeitmaß; über Korpora ist der Nettoeffekt klein und nicht signifikant (0,07; p=0,37)."
+  ],
+  "hero": {
+    "alt": "Titelgrafik Mittagsüberblick 22. November 2026 mit den Themen Suchkonventionen, Autoren-Attribution und Resolution Depth.",
+    "caption": "Die drei Themen des Mittagsüberblicks. Messwerte und Vergleichsbedingungen stehen in den getrennten Grafikpanels der Abschnitte. Eigene Grafik.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Methodischer Mittagsüberblick am 22. November 2026, Auswahlstand 09:56 MEZ. Drei Preprints vom 19. November prüfen unterschiedliche Fragen: die Verteilung gültiger Rätsellösungen, Identitätszuordnung aus Einzeltexten und den Zusatznutzen schichtweiser Wortvorhersagen für Lesedaten. Die folgenden Ergebnisse sind den Autoren zugeschrieben. Eigene Modellläufe oder Replikationen haben wir nicht durchgeführt."
+    },
+    {
+      "t": "h2",
+      "x": "Many Solutions: Ausgabeverteilung, nicht verborgene Suchroutine"
+    },
+    {
+      "t": "p",
+      "x": "Hou und Tang kontrollieren den Lösungsraum vollständig. Der symbolische Benchmark enthält 72 Probleme: fünf Entitäten werden fünf Werten zugeordnet, Ausschlussregeln lassen je nach Gruppe zwei, vier oder sechs gültige Lösungen übrig; jede Gruppe umfasst 24 Probleme. Hinzu kommen Mehrfachlösungs-Varianten aus 48 ZebraLogic-Rätseln. Vier offene Modelle decken drei Familien ab: Qwen3-1.7B mit Thinking, Olmo-3.1-32B-Instruct und gpt-oss mit 20 beziehungsweise 120 Milliarden Parametern. Mehrere Auswertungen betreffen nur die drei Hauptmodelle; Trainingsstufen werden zusätzlich an Olmo 3 7B Think verglichen."
+    },
+    {
+      "t": "p",
+      "x": "Die Modalantwort bündelt im symbolischen Task bei zwei Lösungen 78 bis 88 Prozent, bei sechs Lösungen 58 bis 72 Prozent der gültigen Ausgaben. Die Vergleichswerte 57 und 26 Prozent sind keine Einzelantwort-Zufallswahrscheinlichkeiten. Sie berücksichtigen den erwarteten Maximalanteil nach endlich vielen gleichverteilten Ziehungen. Bei 32 Ziehungen aus zwei Lösungen liegt dieser beispielsweise bei etwa 57 Prozent. Per Zusatzhinweis eindeutig gemachte Alternativen erreichen im Mittel 95 bis 100 Prozent Cue-Erfolg. Weil dadurch das Problem leichter wird, folgt daraus Erreichbarkeit unter veränderten Bedingungen, nicht das interne Bereithalten oder Abwägen aller Lösungen im Originalprompt."
+    },
+    {
+      "t": "p",
+      "x": "Eine vorab definierte MRV-ähnliche Regel sagt die bevorzugte Lösung auf trennenden Held-out-Problemen um 26 bis 40 Prozentpunkte besser voraus als die Namensreihenfolge. Sie besucht zuerst Entitäten mit wenigen anfänglich verbleibenden Werten und testet Werte in der vorgegebenen Reihenfolge. Die Regel ist ein Prädiktor des beobachteten Verhaltens, kein mechanistischer Befund über den Modellzustand. Für die Breite verwenden die Autoren die inverse Konzentration 1/(B mal Summe der quadrierten Lösungsanteile). Gleichverteilung ergibt 100 Prozent, eine einzige genutzte Lösung 100/B Prozent. Daher sind plus 26 bis 42 Punkte symbolisch und plus 11 bis 26 Punkte bei ZebraLogic Änderungen normalisierter Vielfalt, keine Genauigkeitsgewinne."
+    },
+    {
+      "t": "p",
+      "x": "Zufällige Präsentation und zufällige Suchreihenfolge sind außerdem nicht für jede Modell-Konfiguration äquivalent in der Gültigkeit. Die größten beobachteten Verluste sind drei beziehungsweise vier Prozentpunkte. Bei ZebraLogic besteht zufällige Präsentation den vorab gesetzten Test in drei von vier Modellen; zufällige Suchreihenfolge besteht in zwei von drei. Qwen3-1.7B ist jeweils die Ausnahme. Eine reine Zufallsinstruktion bringt nur minus zwei bis plus zwei Punkte Breite. Schon der SFT-Zustand konzentriert Antworten; der Befund ist damit nicht erst an spätere Präferenz- oder RL-Schritte gebunden. Die Übertragung auf offene Generierungsaufgaben mit unbekannter Lösungsmenge bleibt ungeprüft."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-mittag-2026-11-22-chart1.jpg",
+      "alt": "Zwei Karten zur normalisierten Lösungsbreite: plus 26 bis 42 Prozentpunkte bei 72 symbolischen Problemen und plus 11 bis 26 bei 48 ZebraLogic-Varianten. Gültigkeitsgrenzen und Qwen-Ausnahme stehen direkt dabei.",
+      "caption": "Änderung der normalisierten Lösungsbreite, keine Genauigkeit. Zufällige Präsentations- oder Suchreihenfolgen; nicht alle Varianten bestehen den Gültigkeitstest. Quelle: Hou/Tang, arXiv 2611.25916. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Attribution: getrennte Aufgaben und ungleiche Stichproben"
+    },
+    {
+      "t": "p",
+      "x": "Desai und Mitautoren unterscheiden KI-/Mensch-Erkennung, Labor-Attribution und menschliche Urheberschaft. Es gibt keine Websuche, Werkzeuge, Kandidatenliste oder Vergleichstexte im Prompt. Nicht alle 72 getesteten Modelle sehen das vollständige Detektionskorpus: 72 Modelle werden auf einer 860-Dokumente-Stichprobe zeitlich verglichen, zehn Modelle auf 36.427 beantworteten Dokumenten aus 24 Benchmarks. Der Laborversuch verwendet Generierungen von 34 Modellen aus elf Laboren. Die 98 Prozent Labor-Treffer von Opus 5.5 und Gemini 4 Argon gelten für Texte von Anthropic, OpenAI und Google, nicht für alle elf Labore; bei den übrigen acht liegen die Ergebnisse bei höchstens 35 Prozent. Stilähnlichkeit allein beweist keine Destillation."
+    },
+    {
+      "t": "p",
+      "x": "Für menschliche Attribution umfasst das Korpus 3.541 private oder nach Wissensstichtagen veröffentlichte Texte aus fünf Bereichen. Bei Fable 5.2 beträgt die textgewichtete Genauigkeit auf 398 privaten Peer-Reviews 56,0 Prozent. Die Reviews stammen von nur sechs Personen; 132 davon sind Meta-Reviews zweier Personen. Das ist keine unabhängige Stichprobe von 398 Autoren. Die Autoren nennen zusätzlich 78 Prozent für 90 Reviews aus der Nature-Familie und 46 Prozent für mindestens einen Koautor bei 120 arXiv-Papers. Die Auswertung erfolgt über beantwortete Texte, nicht über jede versuchte Anfrage."
+    },
+    {
+      "t": "p",
+      "x": "Der Reddit-Vergleich ist besonders leicht fehlzulesen: Tabelle 29 vergleicht Fable 5.2 auf 165 Kommentaren mit mehr als 500 früheren Posts/Kommentaren des Accounts im selben Subreddit mit 47 Kommentaren ohne frühere Aktivität dort. Die Trefferquoten sind 68,9 und 2,1 Prozent; das Aktivitätsfenster reicht von Juni 2025 bis Mai 2026. Ein inaktiver Account ist kein nachweislich unbekannter Autor. Geschlossene Trainingskorpora lassen keine direkte Zugehörigkeitsprüfung zu. Öffentliche Aktivität und vom Modell genannte Vertrautheit sind Näherungsgrößen für mögliche frühere Exposition."
+    },
+    {
+      "t": "p",
+      "x": "Auch die Kalibrierungswerte haben unterschiedliche Träger: AUC 0,89 betrifft die Vertrautheitsbewertung von Opus 5.5 auf Reddit. Rund 87 Prozent korrekte Nennungen bei mindestens 25 Prozent selbstgenannter Konfidenz betreffen Fable 5.2 auf gepoolten öffentlichen Texten; nur 25 Prozent seiner Antworten erfüllen diese Schwelle. Das darf weder als Gesamttrefferquote noch als Trainingsnachweis gelesen werden. Verweigerungen unter zwei Prozent gelten für Fable und Opus über die API. KI-Paraphrasen schützen in den Versuchen nur teilweise. Das nachträgliche Löschen einer Webseite entfernt bereits gelernte Informationen nicht automatisch aus bestehenden Gewichten. Die kleine private Autorenstichprobe und unsichtbare Trainingsdaten begrenzen die Schlussfolgerungen."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-mittag-2026-11-22-chart2.jpg",
+      "alt": "Fable 5.2: 56 Prozent Autoren-Treffer auf 398 privaten Reviews von sechs Personen. Reddit: 68,9 Prozent bei 165 Kommentaren aktiver Accounts versus 2,1 Prozent bei 47 Kommentaren ohne frühere Aktivität im selben Subreddit.",
+      "caption": "Erfolgreiche menschliche Attribution durch Fable 5.2. Die Reddit-Gruppen unterscheiden frühere Aktivität, nicht gesicherte Trainingszugehörigkeit. Genauigkeit über beantwortete Texte. Quelle: Desai et al., Tabellen 28/29. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Resolution Depth: Log-Likelihood und Korpusheterogenität"
+    },
+    {
+      "t": "p",
+      "x": "Riccio und Maturo berechnen aus dem Tuned-Lens-Surprisal jeder Schicht den Schwerpunkt der absoluten Änderung über die relative Tiefe. Resolution Depth liegt zwischen null und eins und ergibt bei gleichmäßig über die Schichten verteilter Änderung 0,5. Es ist kein direktes Maß neuronaler Verarbeitungszeit. Zehn GPT-2-, OPT- und Pythia-Modelle bis 6,9 Milliarden Parameter werden mit acht englischen Lesekorpora verglichen: sechs Eye-Tracking- und zwei Self-Paced-Reading-Korpora, insgesamt 81.957 analysierte Wortvorkommen."
+    },
+    {
+      "t": "p",
+      "x": "Gepoolt über Korpora und Modelle steigt die held-out Log-Likelihood um 0,26 Millinats pro Wort, 95-Prozent-Intervall 0,10 bis 0,40 und p=0,001. Der Vergleich kontrolliert finales Surprisal, Entropie und beste Einzelschicht. Es handelt sich weder um 0,26 Millisekunden längeres Lesen noch um 0,26 Prozent mehr Genauigkeit. Die gemessene Assoziation zwischen später Auflösung und längerer Lesezeit betrifft auch das folgende Wort; dieser Spillover trägt den größten Teil. Eine kausale Gleichsetzung von Netztiefe und menschlicher Verarbeitung folgt daraus nicht."
+    },
+    {
+      "t": "p",
+      "x": "Die Nettoverbesserung ist heterogen. Ihr Random-Effects-Mittel über Korpora liegt bei 0,07 Millinats pro Wort mit p=0,37, also nicht signifikant; für ein neues Korpus reicht das Vorhersageintervall von minus 0,93 bis plus 1,07. Der Vergleich mit tiefenpermutiertem D bei gleicher Koeffizientenzahl ist in sieben von acht Korpora positiv, mit Mittel 0,23 und p=0,016. GPT-2 und Pythia verdanken ihren Effekt jeweils einem Korpus. Mit Logit Lens, passenden Logit-Kontrollen und ohne Embedding-Readout bleiben in einer Robustheitsvariante 0,013 Millinats pro Wort bei p=0,39. Dies ist keine Zusammenfassung aller Logit-Lens-Varianten. Untrainierte Netze reproduzieren unter der Logit Lens den Gewinn nicht. Die Autoren nennen untertrainierte veröffentlichte Tuned Lenses und die Beschränkung auf Englisch und drei Decoder-Familien als Grenzen."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-mittag-2026-11-22-chart3.jpg",
+      "alt": "Held-out Log-Likelihood-Gewinn durch Resolution Depth: gepoolt 0,26 Millinats pro Wort, 95-Prozent-Intervall 0,10 bis 0,40. Random-Effects-Nettoeffekt über Korpora 0,07, p=0,37. Keine Millisekunden oder Prozentgenauigkeit.",
+      "caption": "Acht englische Korpora, 81.957 Wortvorkommen, zehn Modelle. Der gepoolte Log-Likelihood-Gewinn ist vom nicht signifikanten Random-Effects-Nettoeffekt über Korpora zu unterscheiden. Quelle: Riccio/Maturo. Eigene Grafik."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Warum liefern Modelle bei mehreren richtigen Lösungen häufig denselben Vorschlag?",
+      "a": "In den untersuchten Rätseln passt eine MRV-ähnliche Suchkonvention zu den Ausgaben. Das ist ein Verhaltensbefund, kein Blick auf die interne Berechnung. Zufällige Präsentations- oder Suchreihenfolgen erhöhen die normalisierte Lösungsbreite; nicht jede Modell-Variante besteht dabei den Gültigkeitstest. Hinweise machen Alternativen erreichbar, vereinfachen aber auch die Aufgabe."
+    },
+    {
+      "q": "Beweist erfolgreiche Autoren-Attribution, dass die Person im Training war?",
+      "a": "Nein. Die geschlossenen Trainingskorpora sind unbekannt. Die Studie nutzt öffentliche Schreibaktivität und selbstberichtete Vertrautheit als Näherungen. Bei Fable 5.2 stammen die 56 Prozent aus 398 privaten Reviews von sechs Personen. Der Reddit-Vergleich von 68,9 gegen 2,1 Prozent trennt frühere Aktivität im selben Subreddit, nicht bekannte von unbekannten Autoren."
+    },
+    {
+      "q": "Sind 0,26 Millinats pro Wort eine längere Lesedauer?",
+      "a": "Nein. Gemeint ist der gepoolte Zugewinn der Vorhersagegüte als held-out Log-Likelihood. Es sind weder Millisekunden noch Prozent Genauigkeit. Der Effekt ist klein und korpusabhängig; das Random-Effects-Mittel des Nettoeffekts beträgt 0,07 Millinats pro Wort bei p=0,37."
+    }
+  ],
+  "related": [
+    "ki-texte-erkennen",
+    "wie-ein-sprachmodell-lernt"
+  ]
+}
