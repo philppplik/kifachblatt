@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Weltmodell-Priors, Beschreibungs-ESS und Skill-Erosion](https://kifachblatt.de/news-ueberblick-abend-2026-11-22): Drei Preprints über seltene physikalische Regeln, den Wert verlässlicher Beschreibungen und den Verlust von Expertenwissen beim Umschreiben von Skills.
 - [MOSS-Image in 4 Schritten: LoRA ersetzt 100 Modellaufrufe durch 4](https://kifachblatt.de/moss-image-4step-lora-analyse): Ein Community-LoRA bringt MOSS-Image SFT von 50 Schritten mit CFG 3 auf 4 Schritte ohne CFG. Laut Autor etwa 14-mal weniger GPU-Zeit, Messungen von ihm selbst.
 - [Suchkonventionen, Autoren-Attribution und Resolution Depth](https://kifachblatt.de/news-ueberblick-mittag-2026-11-22): Drei Studien zu Antwortvielfalt, Autoren-Attribution und Lesedaten. Was die Werte messen, welche Stichproben dahinterstehen und wo die Grenzen liegen.
 - [Gedächtnis mit Verfallsdatum, Agenten-Grenzen, KI-Multiversum](https://kifachblatt.de/news-ueberblick-morgen-2026-11-22): Parametrisches Gedächtnis mit Verfall, ein Unmöglichkeitsbeweis zur Agenten-Verifikation und ein Agenten-Multiversum für Studienrobustheit.

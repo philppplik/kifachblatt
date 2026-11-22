@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-abend-2026-11-22</loc><lastmod>2026-11-22T16:02:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-abend-2026-11-22.jpg</image:loc><image:title>Weltmodell-Priors, Beschreibungs-ESS und Skill-Erosion</image:title><image:caption>Abendüberblick am 22. November 2026 zu physikalischen Regeln, Aufgabenbeschreibungen als Prior und Skills ohne Rückmeldung.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/moss-image-4step-lora-analyse</loc><lastmod>2026-11-22T11:54:53+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/moss-image-4step-lora-analyse.jpg</image:loc><image:title>MOSS-Image in 4 Schritten: LoRA ersetzt 100 Modellaufrufe durch 4</image:title><image:caption>Eigene Datentafel zum MOSS-Image-4-Schritt-LoRA: 4 statt 100 Modellaufrufe gegenüber dem 50-Schritte-CFG-3-Lehrer, etwa 14-mal weniger GPU-Zeit laut Autor, 14 von 15 Texten korrekt (Lehrer 15).</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-22</loc><lastmod>2026-11-22T11:54:53+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-22.jpg</image:loc><image:title>Suchkonventionen, Autoren-Attribution und Resolution Depth</image:title><image:caption>Titelgrafik Mittagsüberblick 22. November 2026 mit den Themen Suchkonventionen, Autoren-Attribution und Resolution Depth.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-22</loc><lastmod>2026-11-22T11:54:53+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-22.jpg</image:loc><image:title>Gedächtnis mit Verfallsdatum, Agenten-Grenzen, KI-Multiversum</image:title><image:caption>Titelgrafik Zusatzüberblick Morgen, 22. November 2026, mit drei Themen: Gedächtnis mit Verfall (0,56 und 0,60 gegen 0,65 Orakel), Agentensicherheit nicht vollständig verifizierbar, 150 KI-Analysten streuen, aber enger als Menschen.</image:caption></image:image></url>
@@ -337,7 +338,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-22T11:54:53+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-22T11:54:53+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-22T16:02:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-22</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-22</lastmod></url>
