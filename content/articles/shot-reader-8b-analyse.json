@@ -1,0 +1,143 @@
+{
+  "slug": "shot-reader-8b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Shot Reader 8B: Vom Videoclip zum 3D-Szenenplan",
+  "dek": "Voyagers Qwen3-VL-Feintuning liest einen Kamerashot und schreibt Kamera, Personen und Set als JSON - direkt nach Blender. 16 Frames genügen, Apache-2.0.",
+  "published": "2026-11-22T07:09:00+01:00",
+  "modified": "2026-11-22T07:09:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Shot Reader",
+    "Voyager",
+    "Qwen3-VL",
+    "Blender",
+    "Videoanalyse"
+  ],
+  "key_takeaways": [
+    "Voyager hat Shot Reader 8B veröffentlicht: ein Feintuning von Qwen3-VL-8B-Instruct, das einen Videoshot analysiert und Kamera, Personen, Bewegungen und Set als strukturierte JSON-Datei ausgibt [1].",
+    "Die JSON-Zeichnung ist maschinenlesbar: Positionen in Metern auf der Bodenebene, Kamerahöhe, Brennweite als Bildwinkel, Kamerafahrt - ein 3D-Werkzeug oder Coding-Agent kann daraus direkt eine Szene bauen [1].",
+    "In der Hersteller-Messung erkennt das Modell Kamerahöhe und -bewegung auf 300 zurückgehaltenen Testshots in 69 Prozent der Fälle korrekt (Opus 5.5: 44, Gemini 4 Argon: 46). Das untrainierte Basismodell kommt auf 5 Prozent, wurde aber nur auf 20 Shots geprüft - nicht direkt vergleichbar [1].",
+    "Das Modell läuft lokal: getestet laut Karte auf einer 16-GB-RTX-5080 in etwa 25 Sekunden pro Shot (4-bit, inklusive Laden des Modells); die Gewichte stehen unter Apache-2.0 [1]."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel zu Shot Reader 8B: Videoshot rein, JSON-Szenenplan raus, 69 Prozent Kameratreffer auf 300 Shots laut Hersteller, Apache-2.0.",
+    "caption": "Shot Reader 8B in drei Angaben - alle Werte aus der Modellkarte (Hersteller, nicht unabhängig bestätigt) [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "voyager-so/shot-reader-8b (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/voyager-so/shot-reader-8b",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "VibePrevisBench: Evaluating Agentic Coding for 4D Scene Generation in Blender (Preprint, Abstract)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2611.15789",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "Qwen/Qwen3-VL-8B-Instruct (Plattform-API, Basismodell)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3-VL-8B-Instruct",
+      "accessed": "2026-11-22"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Coding-Agenten können längst Blender-Szenen schreiben - aber sie können einem Referenzvideo nicht ansehen, wie die Kamera stand. Genau diese Lücke adressiert Shot Reader 8B von Voyager, am 19. November auf Hugging Face erschienen: Das Modell schaut einen Videoshot an und schreibt, wie er gemacht ist - Kamerahöhe, Winkel, Brennweite, Kamerafahrt, wer im Bild steht, wo sich wer hinbewegt und wie das Set aussieht. Das Ergebnis ist eine einzige JSON-Datei, die ein 3D-Werkzeug oder Agent direkt nachbauen kann [1]."
+    },
+    {
+      "t": "h2",
+      "x": "16 Frames rein, Szenenplan raus"
+    },
+    {
+      "t": "p",
+      "x": "Technisch ist Shot Reader ein LoRA-Feintuning (Rang 64) von Qwen3-VL-8B-Instruct, in die Gewichte eingearbeitet; der Adapter liegt separat bei. Das Modell sieht 16 gleichmäßig über den Shot verteilte Frames, verkleinert auf 448x256 Pixel, dazu einen festen Prompt mit Schema. Heraus kommt eine JSON-Zeichnung: Kamera mit Höhe in Metern, Neigung in Grad, Bildwinkel, Bewegungsart (etwa crane oder orbit), dazu Personen und Objekte mit Größe, Haltung und Weg über die Zeit - Positionen in Metern auf der Bodenebene, Ursprung unter der Kamera des ersten Frames. Ein Shot bedeutet eine ungeschnittene Einstellung; längere Videos müssen vorher an den Schnitten geteilt werden [1]."
+    },
+    {
+      "t": "p",
+      "x": "Der Hintergrund ist ein aktueller Benchmark: VibePrevisBench (arXiv, 11. November) prüft, ob Coding-Agenten aus Briefings ausführbare 4D-Szenen in Blender bauen - 242 Aufgaben, bewertet per regelbasiertem Szenen-Check gegen versteckte Fakten und per VLM-Jury auf dem gerenderten Video [2]. Die Modellkarte zitiert daraus den Befund, Agenten lieferten bei geforderter Untersicht bis zu zwei Drittel der Shots auf Augenhöhe, eine Orbit-Fahrt bleibe nur zu 4 Prozent eine - und mit einer Klartext-Beschreibung des Shots steige der Wert um 15,6 Punkte. Diese drei Zahlen stammen aus der Karte; wir haben den Preprint nur im Abstract gelesen [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die Hersteller-Messung zeigt"
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Kamerahöhe und -bewegung korrekt, in Prozent (je Modell andere Shot-Zahl)",
+      "alt": "Balkendiagramm: Shot Reader 8B 69 Prozent auf 300 Shots, Gemini 4 Argon 46 auf 300, Opus 5.5 44 auf 300, untrainiertes Qwen3-VL-8B 5 Prozent auf nur 20 Shots",
+      "caption": "Hersteller-Messung (Voyager): Anteil der Shots mit korrekter Kamerahöhen-Bande und -bewegung. Shot Reader, Opus und Gemini wurden auf 300 zurückgehaltenen Shots mit demselben Prompt und Schema gemessen; das Basismodell nur auf 20 Shots, daher ist 5 Prozent nur grob vergleichbar [1].",
+      "labels": [
+        "Shot Reader 8B (300 Shots)",
+        "Gemini 4 Argon (300 Shots)",
+        "Opus 5.5 (300 Shots)",
+        "Qwen3-VL-8B Basis (nur 20 Shots)"
+      ],
+      "series": [
+        {
+          "name": "Prozent",
+          "values": [
+            69,
+            46,
+            44,
+            5
+          ]
+        }
+      ],
+      "y_label": "Prozent",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Zweite Messgröße der Karte (andere Aufgabe, Punktzahl statt Trefferquote): Beim Scene-Check auf echtem Filmmaterial (VibePrevisBench-Rebuilds) liegt Shot Reader mit 35,6 knapp hinter Opus 5.5 (38,5) und Gemini 4 Argon (37,3) - bei 5,9 Sekunden pro Shot gegenüber 14,2 für Opus und etwa 0,002 Dollar gegenüber 0,06 Dollar. Tempo und Kosten gelten laut Karte für eine H100 mit vLLM in FP8; im Bulk sind es 0,76 Sekunden pro Shot beziehungsweise etwa 1,50 Dollar pro Million Ausgabe-Token. Damit ist die Lesart klar: nicht der beste Szenenversteher, aber ein billiger, lokaler Spezialist für die Kamera [1]."
+    },
+    {
+      "t": "p",
+      "x": "Trainiert wurde auf synthetischen Shots aus prozedural erzeugten Szenen, in denen jede Kamera und jeder Weg exakt bekannt ist - teils fotorealistisch nachgerendert mit einem Videomodell - plus gemeinfreiem Filmmaterial (Wikimedia Commons, Prelinger Archives), das ein Frontier-Modell beschriftet hat. Benchmark-Aufgaben waren laut Karte nicht Teil des Trainings. Die Karte benennt die Schwachstellen selbst: Ereignisse und Routen sind auf echtem Material die schwächsten Felder (Opus 5.5 beschreibe Aktionen reicher), Positionen lägen typischerweise innerhalb weniger Meter daneben, und es verarbeitet immer nur einen Shot [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Basis: Qwen3-VL-8B-Instruct, LoRA Rang 64 (eingearbeitet, Adapter separat). Eingabe: ein ungeschnittener Shot, 16 Frames à 448x256. Ausgabe: JSON mit Kamera, Subjekten (Größe, Haltung, Weg), Ereignissen, Set - Positionen in Metern. Betrieb: getestet auf 16-GB-RTX-5080 (~25 s pro Shot inklusive Modellladen, 4-bit), alternativ vLLM; Voyager-Cloud optional. Lizenz: Apache-2.0 wie das Basismodell [1]."
+    }
+  ],
+  "method": "Recherche am 22. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von voyager-so/shot-reader-8b (vollständig, inkl. Benchmark-Tabelle, Trainingsabschnitt und Limitations), arXiv-Abstract von VibePrevisBench (2611.15789; nur Abstract gelesen, Zahlen aus der Karte als solche gekennzeichnet), Plattform-API von Qwen/Qwen3-VL-8B-Instruct (Basismodell). Alle Benchmark-Werte stammen vom Hersteller; Framework-Tests haben wir nicht durchgeführt.",
+  "limitations": "Alle Benchmark-Werte sind Herstellerangaben ohne unabhängige Bestätigung. Die Kameratreffer von Shot Reader, Opus 5.5 und Gemini 4 Argon beruhen auf 300 Shots, der Wert des Basismodells nur auf 20; Opus und Gemini bekamen laut Karte einen eigens für das Zurückrechnen eines Shots geschriebenen Prompt samt Schema. Ereignisse und Positionsgenauigkeit sind laut Karte selbst die Schwachstellen. Die VibePrevisBench-Zahlen der Karte (Untersicht, Orbit, 15,6 Punkte) haben wir nicht im Preprint-Volltext gegengeprüft, nur den Abstract.",
+  "faq": [
+    {
+      "q": "Was ist Shot Reader 8B?",
+      "a": "Ein Feintuning von Qwen3-VL-8B, das einen Videoshot analysiert und Kamera, Personen, Bewegungen und Set als maschinenlesbare JSON-Datei ausgibt - etwa um die Szene in Blender nachzubauen [1]."
+    },
+    {
+      "q": "Wie genau ist das Modell?",
+      "a": "In der Hersteller-Messung trifft es Kamerahöhen-Bande und -bewegung auf 300 Testshots zu 69 Prozent, vor den genannten Frontier-Modellen. Beim allgemeinen Szenen-Check auf echtem Material liegt es knapp hinter ihnen. Unabhängig bestätigt ist kein Wert [1]."
+    },
+    {
+      "q": "Was kostet der Betrieb?",
+      "a": "Laut Karte etwa 0,002 Dollar pro Shot auf einer H100 (FP8, vLLM; 0,06 Dollar für Opus 5.5, für Gemini nennt die Karte keinen Wert). Lokal läuft es getestet auf einer 16-GB-RTX-5080 in etwa 25 Sekunden pro Shot inklusive Modellladen (4-bit) [1]."
+    },
+    {
+      "q": "Welche Grenzen nennt die Karte?",
+      "a": "Ereignisse und Routen auf echtem Filmmaterial sind die schwächsten Felder, Positionsangaben können wenige Meter danebenliegen, und verarbeitet wird immer nur ein ungeschnittener Shot [1]."
+    },
+    {
+      "q": "Unter welcher Lizenz steht Shot Reader?",
+      "a": "Apache-2.0, dieselbe Lizenz wie das Basismodell Qwen3-VL-8B-Instruct [1]."
+    }
+  ],
+  "related": [
+    "p-h3-image-analyse",
+    "longcat-video-avatar-1-6-analyse",
+    "coding-agenten-alltag"
+  ]
+}

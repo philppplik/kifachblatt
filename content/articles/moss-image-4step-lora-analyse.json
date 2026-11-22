@@ -1,0 +1,141 @@
+{
+  "slug": "moss-image-4step-lora-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "MOSS-Image in 4 Schritten: LoRA ersetzt 100 Modellaufrufe durch 4",
+  "dek": "Ein Community-LoRA bringt MOSS-Image SFT von 50 Schritten mit CFG 3 auf 4 Schritte ohne CFG. Laut Autor etwa 14-mal weniger GPU-Zeit, Messungen von ihm selbst.",
+  "published": "2026-11-22T07:09:00+01:00",
+  "modified": "2026-11-22T07:09:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "MOSS-Image",
+    "LoRA",
+    "Diffusion",
+    "Distillation",
+    "ComfyUI"
+  ],
+  "key_takeaways": [
+    "Ein Community-LoRA für MOSS-Image SFT rendert in 4 Schritten bei CFG 1, was das Basismodell in 50 Schritten bei CFG 3 zeichnet - 4 statt 100 Modellaufrufe pro Bild. Der Vergleich gilt nur für diesen 50-Schritte-Lehrer bei CFG 3, nicht für das Modell allgemein [1].",
+    "Laut Autor auf Comfy Cloud gemessen: 26,6 gegenüber 387,3 Sekunden für dieselben 22 Bilder in 1024x1024, also etwa 14-mal weniger GPU-Zeit. Wir haben das nicht nachgemessen [1].",
+    "Die Qualitätsmessungen des Autors liegen nah am Lehrer: Helligkeit im Mittel 1,0 L* darunter, feine Textur 1,16-fach, bei 15 Textprompts 14 korrekt geschriebene Zeichenketten (Lehrer 15, ein anderes 4-Schritt-LoRA 12) [1].",
+    "Trainiert als Rank-64-LoRA (252 Module) mit Distribution Matching (eDMD) plus kritischem Beurteiler, ausgeliefert nach 30.000 Trainingssamples - auf einer einzigen NVIDIA B300 in rund 57 Stunden [1][3]."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel zum MOSS-Image-4-Schritt-LoRA: 4 statt 100 Modellaufrufe gegenüber dem 50-Schritte-CFG-3-Lehrer, etwa 14-mal weniger GPU-Zeit laut Autor, 14 von 15 Texten korrekt (Lehrer 15).",
+    "caption": "MOSS-Image in 4 Schritten in drei Angaben - alle Werte vom LoRA-Autor aus der Modellkarte, nicht nachgemessen [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "lvladikov/MOSS-SFT-Distill-4step-LoRA (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/lvladikov/MOSS-SFT-Distill-4step-LoRA",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "OpenMOSS-Team/MOSS-Image-SFT (Plattform-API, Basismodell)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/OpenMOSS-Team/MOSS-Image-SFT",
+      "accessed": "2026-11-22"
+    },
+    {
+      "title": "eDMD: Endpoint Distribution Matching for Few-Step Diffusion Distillation (Preprint, Abstract)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2611.17194",
+      "accessed": "2026-11-22"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Diffusionsmodelle werden schneller, indem man ihnen das Schrittmachen abtrainiert: Ein Community-Entwickler hat für MOSS-Image SFT ein Destillations-LoRA veröffentlicht, das in 4 Schritten ohne Classifier-Free Guidance zeichnet, was der 50-Schritte-Lehrer bei CFG 3 rendert. Statt 100 Modellaufrufen (50 Schritte à zwei bei CFG 3) sind es vier. Das LoRA erschien am 19. November auf Hugging Face unter Apache-2.0 - ausdrücklich als inoffizielles Derivat, nicht als OpenMOSS-Produkt [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Laut Autor: etwa 14-mal weniger GPU-Zeit"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte legt eine Messung des LoRA-Autors offen (wir haben sie nicht wiederholt): Dieselben 22 Bilder in 1024x1024 brauchten auf Comfy Cloud 26,6 Sekunden mit dem LoRA gegenüber 387,3 Sekunden mit dem Lehrer - jeweils ein Auftrag, die komplette berechnete GPU-Zeit. Daraus leitet der Autor die Angabe von etwa 14-mal weniger GPU-Zeit pro Bild ab; das gilt für den genannten Lehrer-Aufbau (50 Schritte, CFG 3) und diese Bildgröße, nicht für jedes Setup [1]. Der Trick steckt im Zeitplan: Das LoRA bleibt auf MOSS' eigenem Sampler und landet bei 4 Schritten auf genau den vier Rauschpegeln, auf die es trainiert wurde (Sigma 1,0 / 0,910 / 0,717 / 0,024); CFG 1 bedeutet ein Modellaufruf pro Schritt, ohne negativen Prompt [1]."
+    },
+    {
+      "t": "p",
+      "x": "Bei der Qualität nennt die Karte Messungen des Autors: Auf 21 Testprompts in 1824x1024 liegt die mittlere Helligkeit 1,0 L* unter dem Lehrer (Skala 0-100), Dunst bei 0,99-fach und Farbe bei 1,07-fach des Lehrers; die feine Textur liegt laut Karte bei 1,16-fach des Lehrers (gemessen auf 22 Prompts). Bei den 15 Textprompts - Schilder, Menüs, Plakate - schreibt das LoRA 14 der geforderten Zeichenketten korrekt, der Lehrer 15, das Vergleichs-LoRA eines anderen Autors 12. Eine Beobachtung am Rande zeigt den Dokumentationsstandard: In ComfyUI geht durch das Runden beim bf16-Addieren etwa ein Achtel der LoRA-Änderung verloren, deshalb liegt eine eigene ComfyUI-Datei mit eingemessenem Korrekturfaktor (1,12) bei [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Korrekt geschriebene Texte, von 15 Textprompts (Messung des LoRA-Autors)",
+      "alt": "Balkendiagramm: MOSS-Image-SFT-Lehrer 15 von 15, dieses 4-Schritt-LoRA 14, akhaliqs 4-Schritt-LoRA 12",
+      "caption": "Messung des LoRA-Autors auf 15 Textprompts mit geforderten Zeichenketten in 1024x1024, nicht von uns wiederholt; Vergleichs-LoRA: akhaliq/MOSS-Image-SFT-4-steps v2.0 [1].",
+      "labels": [
+        "MOSS-Image SFT (50 Schritte)",
+        "Dieses LoRA (4 Schritte)",
+        "akhaliq 4-Schritt (Vergleich)"
+      ],
+      "series": [
+        {
+          "name": "Korrekte Texte",
+          "values": [
+            15,
+            14,
+            12
+          ]
+        }
+      ],
+      "y_label": "Anzahl",
+      "x": ""
+    },
+    {
+      "t": "h2",
+      "x": "Wie destilliert wurde"
+    },
+    {
+      "t": "p",
+      "x": "Das Verfahren kombiniert Endpoint Distribution Matching (eDMD, ein Preprint vom 12. November, von uns im Abstract gelesen) mit einem kleinen LADD-artigen Kritiker, der die Bilder des Schülers gegen den Lehrer und gegen rund 8.000 echte Fotocrops vergleicht - die Textur soll so an echten Fotos verankert bleiben, nicht nur am Lehrer [1][3]. Die Prompts stammen aus einem öffentlichen 3-Millionen-Prompt-Datensatz (34.000) plus 2.877 Prompts, die Wörter buchstabieren; die ausgelieferten Gewichte stehen bei 30.000 Trainingssamples. Im Kritiker liegen 3.600 Lehrerbilder neben den Fotocrops. Hardware: eine einzige NVIDIA B300, etwa 57 Stunden, Spitzenverbrauch 197 GB [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die Karte führt ihre Schwächen ungewöhnlich konkret auf: erfundene Schriftzüge, wenn der Prompt keine Wörter nennt (mache der Lehrer auch), ein Seil mit Extralänge in Hochformaten, uniforme Menschenmengen, ein Familientisch mit fünf oder sechs statt vier Personen und ein Textfehler (Fresh Braily statt Fresh Bread Daily). Ebenso konkret die Bedienhinweise: Stärke genau 1,0 - höher verdopple laut Messung des Autors vor allem Kanten, statt Details zu liefern; trainierte Größen von 768x512 bis 1824x1024; und bei sehr großen Bildern brauche der Prompt mindestens rund 100 Wörter, sonst werde das Ergebnis weich [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Basis: MOSS-Image SFT (Apache-2.0, 11. Okt. erschienen) [2]. LoRA: Rang 64, 252 Module, fp32 neben bf16-Gewichten, 30.000 Trainingssamples. Betrieb: 4 Schritte, CFG 1, MOSS-Zeitplan; 12 trainierte Auflösungen bis 1824x1024. Verfahren: eDMD plus LADD-Kritiker. Training: 1x NVIDIA B300, ~57 Stunden. Lizenz: Apache-2.0 (Derivat des Basismodells); empfohlene Begleit-LoRAs sind fremde Modelle mit eigenen Lizenzen [1]."
+    }
+  ],
+  "method": "Recherche am 22. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ): Modellkarte und Plattform-API von lvladikov/MOSS-SFT-Distill-4step-LoRA (vollständig, inkl. Messwerten, Methodik, Limitations und Dateilisten), Plattform-API von OpenMOSS-Team/MOSS-Image-SFT, arXiv-Abstract von eDMD (2611.17194; nur Abstract gelesen). Alle Messwerte stammen vom LoRA-Autor; eigene Render- oder Laufzeit-Tests haben wir nicht durchgeführt.",
+  "limitations": "Alle Zeit- und Qualitätswerte sind Messungen des LoRA-Autors ohne unabhängige Bestätigung; die Detail-Modellkarte (DETAILED-README) und die Bildarchive haben wir nicht vollständig eingesehen. Inoffizielles Community-Derivat ohne OpenMOSS-Bindung. Vergleichsbilder konnten wir nicht selbst nachrendern.",
+  "faq": [
+    {
+      "q": "Was macht das 4-Schritt-LoRA?",
+      "a": "Es ersetzt die 50 Schritte bei CFG 3 von MOSS-Image SFT durch 4 Schritte bei CFG 1 - 4 statt 100 Modellaufrufe pro Bild, bei nach Angabe des LoRA-Autors etwa 14-fach geringerer GPU-Zeit (22 Bilder, 1024x1024, gegen den 50-Schritte-Lehrer bei CFG 3; nicht nachgemessen) [1]."
+    },
+    {
+      "q": "Wie gut ist die Bildqualität?",
+      "a": "Nach den Messungen des LoRA-Autors nah am Lehrer: Helligkeit im Mittel 1,0 L* darunter, feine Textur 1,16-fach, 14 von 15 geforderten Texten korrekt. Unabhängig bestätigt ist das nicht [1]."
+    },
+    {
+      "q": "Woran erkenne ich die richtige Einstellung?",
+      "a": "4 Schritte, CFG 1, LoRA-Stärke 1,0 und der MOSS-eigene Zeitplan (Sigma 1,0 / 0,910 / 0,717 / 0,024). In ComfyUI die _comfyui-Datei nutzen, die einen eingemessenen Rundungskorrekturfaktor trägt [1]."
+    },
+    {
+      "q": "Ist das ein offizielles OpenMOSS-Modell?",
+      "a": "Nein. Die Karte stellt ausdrücklich klar, dass es sich um ein Community-Derivat ohne OpenMOSS-Bindung handelt; Lizenz ist die des Basismodells, Apache-2.0 [1]."
+    },
+    {
+      "q": "Welche Schwächen sind bekannt?",
+      "a": "Erfundene Schriftzüge bei Prompts ohne Wörter, gelegentliche Fehler in Hochformaten (Seil, uniforme Mengen, falsche Personenzahl) und ein dokumentierter Textfehler - die Karte listet diese Fälle mit Beispielen [1]."
+    }
+  ],
+  "related": [
+    "shot-reader-8b-analyse",
+    "p-h3-image-analyse",
+    "clover-35b-diffusionsmodell-analyse"
+  ]
+}
