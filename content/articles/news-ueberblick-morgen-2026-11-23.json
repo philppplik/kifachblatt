@@ -1,0 +1,158 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-23",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-23T06:49:01+01:00",
+  "modified": "2026-11-23T06:49:01+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Do Language Models Know Which Words Steer Their Reasoning?",
+      "publisher": "arXiv; Yanbei Jiang, Chao Lei, Jey Han Lau, Krista A. Ehinger, Rena Gao Wei, University of Melbourne",
+      "url": "https://arxiv.org/abs/2611.27317",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Silent Arbitration: How Large Language Models Resolve Co-Authoritative Conflicting Instructions",
+      "publisher": "arXiv; Sihyeon Lee, Jiwoo Kum, Jihun Song, Kyojun Choo, Chanwoo Kim, Chanjun Park, Soongsil University",
+      "url": "https://arxiv.org/abs/2611.27444",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Git History Is a Pangenome: Repetition in Code Training Corpora and What Deduplication Removes, Keeps and Misses",
+      "publisher": "arXiv; Saurabh Chopra, GitLab Inc. (Ein-Autor-Preprint; teilweise präregistrierter Versuchsplan)",
+      "url": "https://arxiv.org/abs/2611.27154",
+      "accessed": "2026-11-23"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Reasoning",
+    "Instruktionen",
+    "Datenkuration"
+  ],
+  "title": "Kontextwirkung, Rollenkonflikte und Git-Deduplizierung",
+  "dek": "Drei Preprints messen Wortwirkung, Antworten auf widersprüchliche Rollen und Git-Historien. Was die Zahlen zeigen und wo ihre Aussage endet.",
+  "key_takeaways": [
+    "Phantom Context Influence vergleicht Wortentfernung mit einer zusätzlichen Modellantwort zur Relevanz. Auf GSM8K steigt Qwen-3.5-4B durch die untersuchte KV-Suppression von 72,3 auf 81,2 Prozent Genauigkeit. Das belegt keine absichtliche Täuschung oder bewusstes Wissen.",
+    "Bei fünf Modellen nennen 72 Prozent der Antworten auf direkte Kompatibilitätsfragen einen Konflikt; in gewöhnlichen Aufgabenantworten sind es 22 Prozent ausdrücklich. Von 4.348 als Kompromiss bewerteten Antworten liegen 35 Prozent neben der Skalenmitte. Die Nenner sind verschieden.",
+    "Der populationsgewichtete Median des Textbyte-Umfangs aller unterschiedlichen Dateiversionen beträgt in 306 Repositories 19-mal den heutigen Stand. SWE-bench-Fixzeilen erscheinen bei 2.229 auswertbaren Instanzen im Median in 18 späteren, veränderten Dateiversionen. Modell- oder Scoreeffekte wurden nicht gemessen."
+  ],
+  "hero": {
+    "alt": "Morgenüberblick am 23. November 2026: Kontextwörter, Rollenkonflikte und Code-Historien.",
+    "caption": "Drei Forschungsfragen. Zahlen, Messgrößen und Bedingungen stehen in den einzelnen Abschnitten.",
+    "credit": "Eigene Grafik",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Drei Preprints im Morgenüberblick vom 23. November 2026, Quellenstand 06:45 MEZ: Ein Melbourne-Team vergleicht den gemessenen Einfluss einzelner Kontextwörter mit den dazu erzeugten Modellurteilen. Eine zweite Arbeit misst Antworten auf gegensätzliche Rollenanweisungen. Eine Einzelstudie untersucht schließlich Code-Historien als Trainingsmaterial. Alle Zahlen stammen aus den jeweiligen Arbeiten; eigene Modelltests oder eine Replikation haben wir nicht durchgeführt."
+    },
+    {
+      "t": "h2",
+      "x": "Phantomwörter: Messung und Selbstauskunft widersprechen sich"
+    },
+    {
+      "t": "p",
+      "x": "Yanbei Jiang und Mitautoren entfernen jeweils ein Wort aus dem ansonsten gleichen Kontext. Sie messen, wie sich dadurch die Verteilung des nächsten Tokens verändert. Pivot-Wörter sind in diesem Versuch Wörter, deren Entfernung die wahrscheinlichste Tokenvorhersage verändert. Das gleiche Modell erhält anschließend eine zusätzliche Frage dazu, ob die Entfernung einen Unterschied machen würde. Ein gemessener Einfluss und die dabei erzeugte Antwort können auseinanderfallen. Die Autoren nennen das Phantom Context Influence beziehungsweise Generation-Judgment Contradiction. Es ist ein Vergleich von Ausgabeverhalten, kein Nachweis bewussten Wissens, absichtlicher Täuschung oder eines zugänglichen inneren Gedankengangs."
+    },
+    {
+      "t": "p",
+      "x": "Die Diagnose umfasst Qwen-3.5-4B, Qwen-3.5-9B, Gemma-3-12B-it und Gemma-3-27B-it auf GSM8K, TruthfulQA und MMLU mit 100 Fragen je Datensatz. Unter den untersuchten Pivot-Wörtern auf Wortebene liegen die Raten für gemessenen Einfluss bei gleichzeitig verneinender Modellantwort bei Qwen zwischen 31,3 und 79,7 Prozent, bei Gemma zwischen 10,7 und 46,4 Prozent. Das sind keine Anteile aller Promptwörter. Die separate Antwortebenenanalyse kommt auf 9,1 bis 68,0 Prozent und verwendet eine andere Auswahlregel. Menschen bewerteten in einer Kontrolle 87 Prozent von 150 ausgewählten, vom Modell als entbehrlich eingestuften Wörtern als semantisch entbehrlich (Qwen-3.5-4B, 50 je Datensatz). Das bestätigt eine semantische Einschätzung, nicht die Abwesenheit eines messbaren Einflusses."
+    },
+    {
+      "t": "p",
+      "x": "Online KV Suppression nutzt diese beiden Signale für eine Intervention. Für jedes Promptwort wird dessen Einfluss auf die bereits erzeugte Antwort mit einer Leave-One-Out-Auswertung bewertet. Die Methode wählt das einflussreichste Wort, dessen Relevanz die zusätzliche Modellantwort verneint, setzt seine Einträge im KV-Cache auf null und generiert erneut. Ein Durchgang über die Wörter bedeutet hier nicht nur einen einzigen Modellaufruf. Im Hauptvergleich über fünf Benchmarks steigt die mittlere Genauigkeit gegenüber der Zero-Shot-Baseline um 3,9 Prozentpunkte bei Qwen-3.5-4B, 1,4 bei Qwen-3.5-9B, 1,5 bei Gemma-3-12B und 1,1 bei Gemma-3-27B. Auf GSM8K erreicht Qwen-3.5-4B 81,2 statt 72,3 Prozent, also plus 8,9 Prozentpunkte. Der Befund erfordert Zugriff auf den KV-Cache, betrifft vier offene Modelle und ist kein Nachweis eines Nutzens für beliebige geschlossene Systeme. Cache-Einträge zu nullen ist außerdem nicht dasselbe, wie ein Wort aus dem Text zu löschen."
+    },
+    {
+      "t": "p",
+      "x": "Die Diagnose auf Wortebene verwendet das erste Token eines generierten Wortes als Vorhersageziel. Die Antwortebenenanalyse bewertet dagegen die absolute Änderung der mittleren Log-Wahrscheinlichkeit der vollständigen Antwort nach einer Promptwort-Entfernung, mit einem Schwellenwert für die Kandidatenauswahl. Diese beiden Auswahlmengen dürfen nicht als gleicher Nenner behandelt werden. Die Haupttabelle nutzt greedy Decoding; zusätzliche temperaturbasierte Wiederholungen halten die ausgewählten Wörter fest und prüfen damit vor allem Decodierstabilität, nicht eine vollständige Wiederholung von Diagnose und Auswahl."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-morgen-2026-11-23-chart1.jpg",
+      "alt": "Qwen-3.5-4B auf GSM8K: 72,3 Prozent ohne und 81,2 Prozent mit Online KV Suppression. Vier offene Modelle im Hauptvergleich, kein Nachweis bewussten Wissens.",
+      "caption": "Genauigkeit in Prozent, Hauptvergleich aus Tabelle 1. Die Differenz beträgt 8,9 Prozentpunkte. Diagnose und Intervention sind getrennte Messungen. Quelle: Jiang et al., arXiv 2611.27317. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Rollenkonflikte: direkte Frage und Aufgabenlösung trennen"
+    },
+    {
+      "t": "p",
+      "x": "Sihyeon Lee und Mitautoren testen acht Paare gegensätzlicher Personas ohne vorgegebene Priorität. Fünf kleine bis mittlere Modelle bearbeiten englische Einzelfragen: Gemma-3-12B, Llama-3.1-8B, Qwen3-8B, GPT-4o-mini und Gemini-3.1-Flash-Lite. Die Studie berichtet insgesamt 31.272 Anfragen über ihre Versuchsbedingungen. Antworten werden vor allem von DeepSeek-v3.2 klassifiziert, nach einer Kalibrierung an 120 Antworten und mit einer Robustheitskontrolle durch ein weiteres Richtermodell. Die Prozentwerte hängen somit auch von dieser Bewertung ab."
+    },
+    {
+      "t": "p",
+      "x": "Auf die direkte Kompatibilitätsfrage nennen 72 Prozent der Antworten einen Konflikt. In gewöhnlichen Aufgabenantworten benennen 22 Prozent die Unvereinbarkeit ausdrücklich; weitere 36 Prozent erwähnen eine Spannung, 42 Prozent geben keinen solchen Hinweis. Diese getrennten Antwortbedingungen belegen kein verborgenes Bewusstsein. Für Antworten unter doppelter Persona vergibt die Auswertung zu 45 Prozent Dominanz einer Seite, zu 30 Prozent Kompromiss, zu 23 Prozent getrennte Darstellung und zu 2 Prozent Verweigerung. Unter den als dominant eingestuften Antworten ist die Richtung gepoolt mit 52 zu 48 Prozent annähernd ausgeglichen. Bei einzelnen Paaren bestehen dagegen deutliche Unterschiede: Im Marktinteressen-Paar gelten 48 Prozent aller Doppel-Persona-Antworten als käuferdominant und 14 Prozent als verkäuferdominant."
+    },
+    {
+      "t": "p",
+      "x": "Von 4.348 als Kompromiss bewerteten Antworten liegen 35 Prozent außerhalb der Mitte der verwendeten Haltungsskala. Das ist ein anderer Nenner als alle Antworten. Für Marktinteressen neigen 62 Prozent der dortigen Kompromisse zur Käuferseite. Die Formulierung der Doppelrolle verändert die Verteilung der Antwortstrategien stärker als die geprüften Paraphrasen: Die mittlere Total-Variation-Distanz beträgt 0,283 zwischen drei Framings gegenüber 0,032 zwischen vier Varianten der Verknüpfungsformulierung, ein Verhältnis von rund 8,8. Das bedeutet weder 8,8-mal schlechtere Antworten noch einen gleich großen Effekt bei beliebigen Prompts. Die Aussage bleibt auf diese Rollenpaare, fünf Modelle, Richterbewertungen und englische Einzelturns begrenzt."
+    },
+    {
+      "t": "p",
+      "x": "Die Strategielabel und die Richtungsskala messen verschiedene Dinge. Ein Text kann beide Personas verbinden und trotzdem näher bei einem Endpunkt der Skala von minus zwei bis plus zwei liegen. Die Total-Variation-Distanz beschreibt Unterschiede zwischen Strategie-Verteilungen, nicht die Qualität eines einzelnen Textes. Die Reihenfolge der Rollen hatte im untersuchten Aufbau einen kleineren Einfluss als Paar und Framing; daraus folgt keine allgemeine Unempfindlichkeit gegenüber der Promptreihenfolge."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-morgen-2026-11-23-chart2.jpg",
+      "alt": "Konflikt ausdrücklich benannt: 72 Prozent bei direkten Kompatibilitätsfragen und 22 Prozent in gewöhnlichen Aufgabenantworten. Fünf Modelle, acht Rollenpaare, unterschiedliche Antwortbedingungen.",
+      "caption": "Die beiden Werte stammen aus verschiedenen Antwortbedingungen und belegen kein verborgenes Modellbewusstsein. Weitere 36 Prozent der Aufgabenantworten erwähnen eine Spannung. Quelle: Lee et al., arXiv 2611.27444, Abschnitt 3.1. Eigene Grafik."
+    },
+    {
+      "t": "h2",
+      "x": "Git-Historien: Byte-Umfang ist keine Kopienzahl"
+    },
+    {
+      "t": "p",
+      "x": "Saurabh Chopra von GitLab untersucht 306 zufällig gezogene öffentliche Repositories, 25 gezielt ausgewählte Projekte mit langen Historien und die zwölf SWE-bench-Repositories. Die Zufallsstichprobe stammt aus aktiven, permissiv lizenzierten Nicht-Forks in acht Sprachen mit mindestens zehn Sternen und 200 Commits. Ihr Auswahlplan und Teile der Auswertung sind präregistriert, nicht sämtliche Teilversuche. Gemessen werden Bytes von Textdateiversionen, keine Modellqualität und keine fertigen realen Trainingskorpora."
+    },
+    {
+      "t": "p",
+      "x": "Der Zähler summiert die unterschiedlichen Versionen je Dateipfad aus den von HEAD erreichbaren Nicht-Merge-Commits, einschließlich später gelöschter Pfade. Bezogen auf die heutigen Textbytes ergibt sich in der Zufallsstichprobe ein populationsgewichteter Median von 19-fachem Umfang, mit einem 95-Prozent-Intervall von 17 bis 23. In den 25 großen Projekten sind es im Median 89-fache heutige Textbytes, bei einer Spannweite von 18 bis 175. Das bedeutet nicht, dass jedes heutige Codewort 19- beziehungsweise 89-mal identisch vorkommt. Betrachtet man nur heute noch vorhandene Pfade, sind es 13- beziehungsweise 53-fache Bytes. Die vollständige Historienmenge ist zudem größer als die Teilmengen veröffentlichter Commit-Datensätze."
+    },
+    {
+      "t": "p",
+      "x": "Für den bereits auf unterschiedliche Versionen je Pfad begrenzten Korpus entfernt exakter Dateihash-Abgleich kaum noch etwas, abgesehen von wenigen identischen Inhalten über verschiedene Pfade. Das ist kein Beleg, dass exakte Deduplizierung grundsätzlich nutzlos wäre. Das unveränderte lokale BigCode-Skript für MinHash/LSH reduziert den Umfang bei Jaccard-Schwelle 0,7 auf etwa das Zweifache der heutigen Textbytes. Dieser Vergleich umfasst die Zufallsstichprobe und nur zehn der 25 großen Projekte. Das Skript behält das zuerst gelieferte Element einer Ähnlichkeitsgruppe; im Versuch war die Eingabe nach Hash sortiert. Damit bleibt die aktuelle Version bei 52 Prozent der Dateien in der Stichprobe und 40 Prozent in der großen Teilmenge erhalten. Eine Auswahl der jeweils neuesten Version erhöht den Anteil auf 94 Prozent. Andere Eingabereihenfolgen oder die anders priorisierte Spark-Pipeline sind damit nicht pauschal bewertet."
+    },
+    {
+      "t": "p",
+      "x": "Die SWE-bench-Analyse umfasst 2.229 von 2.294 Instanzen: Der Gold-Patch muss anwendbar sein und substanzielle hinzugefügte Zeilen enthalten. Als Träger gilt eine spätere Version, in der mindestens 90 Prozent dieser Zeilen wortgetreu wiederkehren; eine substanzielle Zeile hat mindestens zwölf Nicht-Leerzeichen. Vom Vorher- oder Nachherstand byteidentische Dateien werden separat gezählt. Über die Instanzen finden sich im Median 18 solche späteren First-Parent-Versionen der veränderten Dateien, insgesamt über die jeweils betroffenen Dateien gezählt. 88 Prozent der Fixes kommen in mindestens zwei und 64 Prozent in mindestens zehn späteren Versionen vor. Das ist ein zeilenbasierter Überlappungsbefund, kein Beweis, dass ein trainiertes Modell die Lösung kennt."
+    },
+    {
+      "t": "p",
+      "x": "Ein Filter allein auf den Hash der ursprünglichen Fixdatei erreicht diese veränderten Träger nicht. Ein Inhaltsfilter müsste alle Versionen prüfen, die tatsächlich im Korpus landen; ein korrekt vor den Fix gesetzter Datumsschnitt ist eine weitere Möglichkeit innerhalb der untersuchten Historien. Die Arbeit hat die Fixes aber nicht durch die konkreten Ähnlichkeitsgruppen des Deduplizierers verfolgt. Aussagen darüber, welcher Fix dort überlebt, folgen aus der Auswahlregel und sind keine direkte Messung dieser Pipeline. Grenzen sind außerdem der schwache Trägertest bei 23 Prozent der Patches mit höchstens zwei substanziellen Zeilen, der Django-Anteil von 37 Prozent und nicht erfasste Forks, Mirrors oder ausgelagerte Kopien. Ein Effekt auf SWE-bench-Scores wurde nicht gemessen."
+    },
+    {
+      "t": "p",
+      "x": "Die Byte-Attribution ist nochmals ein eigener Versuch: Neue Bytes in geänderten Dateien werden mit einer relativen Lempel-Ziv-Zerlegung bei Mindestlänge 64 bestimmt. Der Mediananteil neuer Bytes beträgt 8,7 Prozent in der auswertbaren Zufallsstichprobe von 305 Repositories und 1,9 Prozent in 19 großen Projekten. Diese Teilmengen sind nicht identisch mit den 306 beziehungsweise 25 Repositories des Umfangszählers oder den zehn großen Projekten des MinHash-Laufs. Bei Edit-Korpora ist die Änderung selbst das Lernziel; die Autoren empfehlen dort nicht einfach, alle ähnlichen Versionen zu einer zusammenzufassen."
+    },
+    {
+      "t": "figure",
+      "file": "news-ueberblick-morgen-2026-11-23-chart3.jpg",
+      "alt": "Git-Historien: 19-fache heutige Textbytes als populationsgewichteter Median von 306 Repositories, einschließlich gelöschter Pfade. Separat 18 spätere Fixträger-Versionen als Median über 2.229 SWE-bench-Instanzen.",
+      "caption": "19-fach ist ein Byte-Umfang, keine Zahl identischer Kopien. 18 zählt spätere, veränderte First-Parent-Dateiversionen mit mindestens 90 Prozent der substanziellen Fixzeilen, über betroffene Dateien je Instanz. Quelle: Chopra, arXiv 2611.27154, Abschnitte III, IV und VII. Eigene Grafik."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Beweisen Phantomwörter, dass ein Modell seinen eigenen Denkprozess nicht kennt?",
+      "a": "Nein. Die Studie vergleicht die Wirkung einzelner Wortentfernungen auf die Ausgabe mit zusätzlichen Modellantworten zur Relevanz. Dabei entstehen Widersprüche. Das ist kein direkter Zugang zu bewusstem Wissen oder inneren Gedanken. Im getrennten Interventionsversuch verbessert KV-Suppression Qwen-3.5-4B auf GSM8K von 72,3 auf 81,2 Prozent Genauigkeit."
+    },
+    {
+      "q": "Wie häufig benennen Modelle widersprüchliche Rollenanweisungen?",
+      "a": "In dieser Studie nennen 72 Prozent der Antworten auf direkte Kompatibilitätsfragen einen Konflikt. In gewöhnlichen Aufgabenantworten benennen 22 Prozent ihn ausdrücklich, 36 Prozent erwähnen eine Spannung. Die Ergebnisse stammen von fünf Modellen und acht Rollenpaaren mit LLM-gestützter Bewertung. Sie gelten nicht automatisch für alle Modelle oder Einsatzsituationen."
+    },
+    {
+      "q": "Was bedeuten 19-fache Git-Historien und 18 spätere Fixversionen?",
+      "a": "Die 19 bezieht sich auf den populationsgewichteten Median der Textbytes unterschiedlicher Versionen je Dateipfad im Verhältnis zu heutigen Textbytes, einschließlich gelöschter Pfade. Sie bedeutet keine 19 identischen Kopien jedes Codeworts. Die 18 ist separat der Median späterer veränderter Dateiversionen mit mindestens 90 Prozent der substanziellen SWE-bench-Fixzeilen, über 2.229 auswertbare Instanzen. Ein bloßer Hashfilter auf die ursprüngliche Fixdatei erfasst diese Träger nicht."
+    }
+  ],
+  "related": [
+    "lhtb-2-langzeit-agenten-benchmark",
+    "prompt-iteration"
+  ]
+}
