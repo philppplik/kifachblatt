@@ -1,0 +1,123 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-23",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-23T10:00:00+01:00",
+  "modified": "2026-11-23T10:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Beyond Math, Code, and Logic: Do Reasoning Models Transfer to Scientific Argumentation?",
+      "publisher": "arXiv; Buse Sibel Korkmaz (Imperial College London, Arbeit vor Amazon-Wechsel), Antonio del Rio Chanona (Imperial College London)",
+      "url": "https://arxiv.org/abs/2611.27722",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "The Vulnerability Window: Decision Instability in Quantized Reward Models",
+      "publisher": "arXiv; Omkar Shewale, Deepak Kumar (Illinois Institute of Technology), Divakar Kumar Yadav (University of Wisconsin-Milwaukee)",
+      "url": "https://arxiv.org/abs/2611.27155",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Reinforcement Learning Unlearns Corrupted SFT Reasoning",
+      "publisher": "arXiv; Anika Misra, Shreyas Vinod, Huteng Dai, University of Michigan",
+      "url": "https://arxiv.org/abs/2611.26756",
+      "accessed": "2026-11-23"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Evaluation",
+    "Quantisierung",
+    "RLHF"
+  ],
+  "title": "Argumentationslücke, 4-bit-Flips, SFT-RL-Teilung",
+  "dek": "Drei Preprints prüfen Argumentationsaufgaben, Entscheidungen quantisierter Reward-Modelle und SFT vor RL. Die Ergebnisse gelten für ihre jeweiligen Tests.",
+  "key_takeaways": [
+    "Fünf Modelle, sieben Argumentationsaufgaben: gemischte Zero-shot-Ergebnisse und Verbesserungen durch gezieltes Training, kein allgemeines Urteil über Wissenschaftsfähigkeit.",
+    "RewardBench: 1,1 bis 12,3 Prozent Präferenz-Flips. Im Best-of-64-Test wechseln Kandidaten häufiger als Endantworten; fast unveränderte Genauigkeit gilt nur für einzelne Einstellungen.",
+    "OLMo-2-1B auf GSM8K: 69,30 Prozent pass@2 nach acht falschen Form-Mustern und GRPO, 1.319 Testaufgaben. Andere Modelle und natürliche Fehler bleiben offen."
+  ],
+  "hero": {
+    "alt": "Drei getrennte Prüfbereiche: wissenschaftliche Argumentation, Reward-Entscheidungen und Post-Training. Schematische Themenillustration ohne Messskala.",
+    "caption": "Drei Studien, drei Testaufbauten. Die Ergebnisse und Grenzen stehen getrennt im Text, nicht auf einer gemeinsamen Rangliste.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenstand: 23. November 2026, 09:52 Uhr. Drei Preprints aus der Montagsliste vom 23. November, eingereicht am 19. beziehungsweise 20. November. Die Studien prüfen unterschiedliche Aufgaben. Ihre Zahlen gehören nicht auf eine gemeinsame Rangliste."
+    },
+    {
+      "t": "h2",
+      "x": "Argumentation: gemischte Ergebnisse auf sieben Aufgaben"
+    },
+    {
+      "t": "callout",
+      "title": "Argumentation: fünf Modelle, sieben Aufgaben",
+      "x": "o3: 49,5 Prozent bei Stance Detection. Das ist ein einzelner Aufgabentest, kein Urteil über wissenschaftliches Denken insgesamt."
+    },
+    {
+      "t": "p",
+      "x": "Buse Sibel Korkmaz und Antonio del Rio Chanona vom Imperial College London testen fünf Modelle auf sieben Aufgaben wissenschaftlicher Argumentation. Die Arbeit entstand laut Autorenangabe vor Korkmaz’ Wechsel zu Amazon AGI. OpenAI o3 erreicht bei der Claim-Erkennung 96,0 Prozent Genauigkeit. Bei der Evidence-Erkennung sind es 99,0 Prozent Genauigkeit, aber nur 49,8 F1: 98 Prozent der Kandidaten gehören zur irrelevanten Mehrheitsklasse. Bei Stance Detection erreicht o3 49,5 Prozent, Gemini 2.5 Flash 32,5 Prozent. Solche unterschiedlichen Metriken dürfen nicht als allgemeine Rangliste oder Wissenschaftsprüfung gelesen werden."
+    },
+    {
+      "t": "p",
+      "x": "Eine Pipeline aus Reasoning-Distillation, multitask SFT und RL hilft kleinen Modellen. Gemini 2.5 Flash erzeugt als Lehrer Begründungen mit vorgegebenen Goldlabels für insgesamt 3.000 Beispiele. Danach übertrifft das 3B-Modell o3 bei Stance Detection; bei Claim Detection liegt F1 für beide Modellgrößen über 0,9. Der Rebuttal-BERTScore des 3B-Modells steigt von 0,126 auf 0,850. Antwortkomposition mit QASA verbessert sich in der RL-Stufe ohne eigenes RL-Signal. Das spricht im untersuchten Aufbau für Transfer, beweist aber keine allgemeine Argumentationsfähigkeit. Lehrerqualität, Referenzmetriken und die begrenzte Aufgabenauswahl bleiben Grenzen."
+    },
+    {
+      "t": "h2",
+      "x": "4-bit-Reward-Modelle: Kandidatenwahl ist nicht Endantwort"
+    },
+    {
+      "t": "callout",
+      "title": "Quantisierung: Auswahl ist nicht Antwort",
+      "x": "Best-of-64 auf 1.000 MATH-500-/GSM8K-Problemen, sechs Modell-Quantizer-Paare: 14,6 bis 65,7 Prozent andere Kandidatenwahl, aber 2,6 bis 9,6 Prozent andere Endantwort."
+    },
+    {
+      "t": "p",
+      "x": "Omkar Shewale, Deepak Kumar und Divakar Kumar Yadav untersuchen acht Reward-Modelle aus zwei Familien mit 0,6 bis 8 Milliarden Parametern, drei generative Judges und vier 4-bit-Quantizer. Auf 2.985 RewardBench-Paaren wechseln 1,1 bis 12,3 Prozent der Präferenzentscheidungen. Fast unveränderte Genauigkeit ist nur ein Beispielfall: Skywork-Reward-V2-Llama-3.2-1B erreicht mit NF4 88,38 statt 88,41 Prozent in BF16, bei 4,0 Prozent geänderten Entscheidungen. 60 Entscheidungen werden schlechter, 59 besser; p = 1,00 ist kein Gleichheitsbeweis. Andere Einstellungen verlieren bis zu 5,49 Prozentpunkte Genauigkeit."
+    },
+    {
+      "t": "p",
+      "x": "Im Best-of-64-Test auf 1.000 MATH-500-/GSM8K-Problemen wechseln über sechs Modell-Quantizer-Paare 14,6 bis 65,7 Prozent der ausgewählten Kandidaten, aber nur 2,6 bis 9,6 Prozent der extrahierten Endantworten. Unterschiedliche Kandidaten können dieselbe Antwort enthalten. Die Rangkorrelation von Entscheidungswechseln mit dem nachgelagerten Wechsel liegt bei 0,89, stammt aber nur aus sechs Paaren. Eine Margin-Diagnose erreicht AUC 0,927; als Routingverfahren ist sie nicht besser als einfaches Top-k. MarginTune hilft bei INT4-RTN, nicht bei GPTQ. Ein stärkerer 32B-Angreifer schwächt den beobachteten Effekt. Das sind begrenzte Diagnosebefunde, keine allgemeine Aussage über sichere Quantisierung."
+    },
+    {
+      "t": "h2",
+      "x": "OLMo-2-1B: 69,30 Prozent pass@2 nach acht Form-Mustern"
+    },
+    {
+      "t": "callout",
+      "title": "Form-SFT: pass@2, nicht Einzelantwort",
+      "x": "OLMo-2-1B, GSM8K, 1.319 Testaufgaben: 69,30 Prozent pass@2 nach acht falschen Form-Mustern und GRPO. Mindestens eine von zwei Antworten muss richtig sein. Gold-SFT: 60,71 Prozent; ohne SFT: 35,00 Prozent."
+    },
+    {
+      "t": "p",
+      "x": "Anika Misra, Shreyas Vinod und Huteng Dai untersuchen OLMo-2-1B auf GSM8K mit 361 Trainingskonfigurationen. Sechs künstlich injizierte Fehlertypen decken 93,51 Prozent der zuvor beobachteten numerischen Fehler ab. Aggregierte reine SFT-Leistung sinkt unter Korruption von 43,61 auf 13,80 Prozent; GRPO erreicht danach wieder ungefähr das Gold-Basisniveau von 60 Prozent. Hauptmetrik ist pass@2 auf 1.319 Testaufgaben: Mindestens eine von zwei Antworten muss richtig sein. Das ist keine Einzelantwortgenauigkeit."
+    },
+    {
+      "t": "p",
+      "x": "Acht minimale falsche Form-Muster vor GRPO liefern 69,30 Prozent pass@2, gegenüber 60,71 Prozent nach Gold-SFT und 35,00 Prozent ohne SFT. SFT- und Post-GRPO-Leistung korrelieren in der Untersuchung kaum; die Autoren deuten Form durch SFT und Funktion durch RL als mögliche Erklärung. Gezeigt ist das für ein Modell, einen Datensatz und deterministische Regex-Fehler. Größere Modelle, schwerere Aufgaben und natürliche Fehler bleiben offen. Daraus folgt keine Empfehlung, fehlerhafte Trainingsdaten generell zu akzeptieren."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Was zeigt der Quantisierungstest?",
+      "a": "Auf 2.985 RewardBench-Paaren ändern sich 1,1 bis 12,3 Prozent der Präferenzentscheidungen. Nur ein Skywork-1B/NF4-Beispiel zeigt 0,03 Prozentpunkte Genauigkeitsunterschied bei 4,0 Prozent Flips. Im Best-of-64-Test wechseln 14,6 bis 65,7 Prozent der Kandidatenwahlen, aber nur 2,6 bis 9,6 Prozent der Endantworten. Nichtsignifikanz beweist keine Gleichheit."
+    },
+    {
+      "q": "Können Reasoning-Modelle wissenschaftlich argumentieren?",
+      "a": "Die Studie prüft sieben Aufgaben und fünf Modelle, nicht Wissenschaft als Ganzes. Zero-shot ist das Bild gemischt. Gezieltes Training hilft kleinen Modellen in einzelnen Aufgaben. Das ist kein allgemeines Unvermögensurteil und kein Beweis umfassender Argumentationsfähigkeit."
+    },
+    {
+      "q": "Was bedeuten 69,30 Prozent nach Form-SFT?",
+      "a": "OLMo-2-1B erreicht auf 1.319 GSM8K-Testaufgaben nach acht falschen Form-Mustern und GRPO 69,30 Prozent pass@2. Dabei genügt mindestens eine richtige von zwei Antworten. Gold-SFT erreicht 60,71 Prozent, GRPO ohne SFT 35,00 Prozent. Form und Funktion sind die Deutung dieses begrenzten Aufbaus, nicht für alle Modelle belegt."
+    }
+  ],
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "agenten-fundamente"
+  ]
+}
