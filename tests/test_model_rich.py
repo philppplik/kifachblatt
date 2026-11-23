@@ -13,7 +13,7 @@ class ModelRichTests(unittest.TestCase):
   d=json.loads((ROOT/'content/portraits.json').read_text())
   for x in d['models']:
    if x.get('rich_model'):
-    t=m.render(x,d,True);self.assertIn('je 1 Mio. Texttoken',t);self.assertIn('Preisstand 19.10.2026',t);self.assertIn('Batch',t);self.assertIn('Cache',t)
+    t=m.render(x,d,True);self.assertIn('je 1 Mio. Texttoken',t);self.assertIn('Preisstand '+m.fmt_dot(x['rich_model'].get('price_checked') or d['reviewed']),t);self.assertIn('Batch',t);self.assertIn('Cache',t)
  def test_no_unverified_typo_pages(self):
   d=json.loads((ROOT/'content/portraits.json').read_text());self.assertFalse(any('atsra' in x['slug'] or 'flable' in x['slug'] for x in d['models']))
 if __name__=='__main__':unittest.main()

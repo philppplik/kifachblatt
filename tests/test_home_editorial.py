@@ -9,5 +9,5 @@ class EditorialTests(unittest.TestCase):
  def test_legacy_records(self):
   d=json.loads((ROOT/'content/home-legacy.json').read_text());self.assertEqual(len(d),6);self.assertEqual(len({x['slug'] for x in d}),6)
  def test_home_has_no_analysis_table(self):
-  text=(ROOT/'index.html').read_text();self.assertNotIn('id="articles"',text);self.assertEqual(text.count('class="hv-card"'),3);self.assertEqual(text.count('data-topic='),10)
+  text=(ROOT/'index.html').read_text();self.assertNotIn('id="articles"',text);self.assertEqual(text.count('class="hv-card"'),3);expected=len(list((ROOT/'content/articles').glob('*.json')))+len(json.loads((ROOT/'content/home-legacy.json').read_text()));self.assertEqual(text.count('data-topic='),expected);self.assertIn(str(expected)+' Beiträge',text)
 if __name__=='__main__':unittest.main()

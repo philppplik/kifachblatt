@@ -75,6 +75,16 @@ console.log(JSON.stringify(costPerRequest(m, s)));
         self.assertEqual(r.returncode, 0, r.stderr)
         return float(r.stdout.strip())
 
+    def test_xai_boundary_inclusive_long_context(self):
+        self.assertAlmostEqual(self._js_cost('grok-4.6', 200000, 100), .8012)
+        self.assertAlmostEqual(self._js_cost('grok-4.6', 199999, 100), .400598)
+
+    def test_openai_long_context_rates(self):
+        self.assertAlmostEqual(self._js_cost('gpt-5.6-terra', 300000, 100), 1.2018)
+
+    def test_google_no_invented_context_surcharge(self):
+        self.assertAlmostEqual(self._js_cost('gemini-4-argon', 300000, 100), .601)
+
     def test_referenz_sonnet5_einfach(self):
         # 1.000 in / 500 out, kein Cache: 1000*2 + 500*10 = 7000 $/1M = 0,007 $
         self.assertAlmostEqual(self._js_cost('claude-sonnet-5', 1000, 500), 0.007)

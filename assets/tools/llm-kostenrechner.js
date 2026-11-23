@@ -50,7 +50,7 @@
   function priceSet(model, inputTokens, offpeak) {
     // DeepSeek-Nebenzeit
     if (offpeak && model.offpeak) return model.offpeak;
-    // Staffelpreise (xAI, Google) nach Eingabegröße
+    // Staffelpreise nach Anbietergrenze nach Eingabegröße
     if (model.tiers) {
       for (var i = 0; i < model.tiers.length; i++) {
         var t = model.tiers[i];

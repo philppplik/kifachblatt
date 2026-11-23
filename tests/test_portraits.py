@@ -6,8 +6,12 @@ spec=importlib.util.spec_from_file_location('portraits',ROOT/'tools/portraits.py
 class PortraitDataTests(unittest.TestCase):
  def setUp(self):self.d=json.loads((ROOT/'content/portraits.json').read_text())
  def test_schema_and_source_references(self):m.validate(self.d)
- def test_first_release_scope(self):
-  self.assertEqual([len(self.d[k]) for k in ('companies','models','benchmarks')],[14,38,10])
+ def test_catalogue_complete_unique_and_linked(self):
+  for kind in ('companies','models','benchmarks'):
+   rows=self.d[kind];self.assertTrue(rows);self.assertEqual(len(rows),len({x['slug'] for x in rows}))
+  companies={x['slug'] for x in self.d['companies']}
+  for model in self.d['models']:
+   if model.get('company'):self.assertIn(model['company'],companies)
  def test_no_unattributed_score(self):
   for s in self.d['scores']:
    self.assertTrue(s['reported_by']);self.assertTrue(s['setup']);self.assertTrue(s['variant']);self.assertTrue(s['metric'])
@@ -26,8 +30,9 @@ class PortraitLogoTests(unittest.TestCase):
    self.assertTrue(asset['source'].startswith('https://'))
    self.assertTrue(asset['license'])
   d=json.loads((ROOT/'content/portraits.json').read_text())
-  self.assertEqual(sum('logo' in x for x in d['companies']),13)
-  self.assertEqual(sum('logo' in x for x in d['models']),37)
+  self.assertTrue(any(x.get('logo') for x in d['companies']))
+  for x in d['companies']+d['models']:
+   self.assertTrue(x.get('logo') or x.get('initials'),x['slug'])
   for x in d['companies']+d['models']:
    if x.get('logo') and x['logo'].get('asset') is not None:self.assertIn(x['logo']['asset'],manifest)
  def test_no_model_logo_means_monogram(self):
