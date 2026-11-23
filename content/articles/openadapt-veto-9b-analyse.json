@@ -1,0 +1,180 @@
+{
+  "slug": "openadapt-veto-9b-analyse",
+  "lang": "de",
+  "section": "agenten",
+  "type": "analysis",
+  "title": "OpenAdapt Veto 9B: Was Bildcheck und Rücklesen jeweils prüfen",
+  "dek": "Ein LoRA-Adapter prüft GUI-Ergebnisse. Im synthetischen Anbietertest erkennt der Bildcheck 31 von 35 Fehlern, erst mit Rücklesen alle 35.",
+  "published": "2026-11-23T07:18:36+01:00",
+  "modified": "2026-11-23T07:18:36+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "GUI-Agenten",
+    "Computer Use",
+    "Verifikation",
+    "LoRA",
+    "Qwen3.5",
+    "OpenAdapt"
+  ],
+  "key_takeaways": [
+    "OpenAdapt-Veto-9B-v4 ist laut Modellkarte ein rund 111 MB großer LoRA-Adapter auf Qwen3.5-9B. Die Adaptergröße ist nicht der Speicherbedarf des vollständigen Modells.",
+    "Im 50-Szenarien-Test erkennt der visuelle Prüfpfad 31 von 35 Fehlerfällen. Erst der Verbund mit unabhängigem Rücklesen erreicht 35 von 35; drei von 15 sauberen Kontrollen werden trotzdem gestoppt.",
+    "Im getrennten 600-Screenshot-Test meldet der Anbieter 98,0 Prozent exakte Genauigkeit. Acht von 420 Fehlerfällen erhalten dennoch eine falsche Freigabe. Die 1,90 Prozent haben einen anderen Nenner als die Genauigkeit.",
+    "Alle Screenshots sind synthetische Browserdarstellungen. 6,6 GB gemessener Spitzen-VRAM betrifft 4-bit NF4 plus FP16-Vision im Anbieteraufbau, keine garantierte Mindestkarte für beliebige Aufgaben."
+  ],
+  "hero": {
+    "alt": "OpenAdapt Veto 9B: Bildzustand prüfen und gespeicherten Zustand unabhängig zurücklesen.",
+    "caption": "Bildcheck und Rücklesen sind zwei verschiedene Prüfpfade. Eigene Grafik, keine nachgemessenen Modellwerte.",
+    "credit": "Eigene Grafik (Redaktion)",
+    "ai_generated": false
+  },
+  "sources": [
+    {
+      "title": "OpenAdapt/OpenAdapt-Veto-9B-v4 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/OpenAdapt/OpenAdapt-Veto-9B-v4",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "OpenAdaptAI/OpenAdapt (Code-Repository, API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/OpenAdaptAI/OpenAdapt",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Qwen/Qwen3.5-9B (Plattform-API, Basismodell)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3.5-9B",
+      "accessed": "2026-11-23"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "OpenAdapt-Veto-9B-v4 prüft, ob der Zustand nach einer GUI-Aktion zur erwarteten Wirkung passt. Der auf Hugging Face am 23. November angelegte LoRA-Adapter basiert auf Qwen3.5-9B und erzeugt PASS, VETO oder ABSTAIN. Das steht für Weiterlaufen, Stoppen oder Pausieren bei Unsicherheit. Die entscheidende Grenze: Ein korrekt aussehender Browserzustand beweist noch nicht, dass eine Änderung im dahinterliegenden System gespeichert wurde [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die Karte nennt Rang 16, Alpha 32 und etwa 111 MB für die Adaptergewichte. Zum Einsatz werden zusätzlich das Basismodell und die Laufzeit benötigt. Training und Benchmarkdarstellungen sind laut Anbieter vollständig synthetisch, ohne Kundendaten. Falsche Freigaben erhielten im Training ein 2,5-faches Verlustgewicht. Die Temperaturkalibrierung mit T=0,95 wurde auf einem separaten Split von 100 Beispielen angepasst [1]."
+    },
+    {
+      "t": "h2",
+      "x": "50 Szenarien: Modellprüfung und zusätzlicher Rücklesepfad"
+    },
+    {
+      "t": "p",
+      "x": "Der erste Test umfasst 50 synthetische Webformular-Szenarien: 35 Fehlerfälle aus sechs Fehlertypen und 15 saubere Kontrollen über fünf Domänen. Die nach dem Absenden aufgenommenen Screenshots haben 960 mal 640 Pixel. Die als Screenshot-Modelle bezeichneten Vergleichssysteme erhielten laut Karte zusätzlich DOM-Zusammenfassung, ARIA-Fehler und URL, aber keinen Datenbankzugriff. Der Vergleich darf deshalb nicht als isolierter Test ausschließlich roher Bildpixel beschrieben werden [1]."
+    },
+    {
+      "t": "p",
+      "x": "Der visuelle Veto-Prüfpfad erkennt 31 von 35 Fehlern, also 88,6 Prozent. Vier Fehler werden fälschlich freigegeben. Der Anbieter beschreibt die vier entgangenen Fälle als stille Backend-Rücknahmen mit normal aussehender Bestätigung. Wird unabhängig zurückgelesen, erreicht der kombinierte Pfad 35 von 35 erkannte Fehler und null falsche Freigaben auf diesen 35 Fällen. Zugleich bleiben drei von 15 sauberen Kontrollen als falsche Stopps bestehen. Das ist keine allgemeine Nullfehlerrate und keine alleinige Leistung des Adapters [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Erkannte Fehler von 35 Fehlerfällen (Hersteller-Messung, 50-Szenarien-Test)",
+      "alt": "Balkendiagramm: Veto-9B mit Rücklese-Check erkennt 35 von 35 Fehlern, ohne Rücklesen 31, wie Sonnet 5.5; GPT-6.2 und Gemini 3.8 Flash je 30, reine DOM-Prüfung 12",
+      "caption": "Anbieterangaben: 50 synthetische Szenarien, davon 35 Fehler und 15 saubere Kontrollen. Der erste Balken enthält einen zusätzlichen Rücklese-Prüfpfad und ist kein reiner Modellvergleich. Ohne Rücklesen erhielten die Modelle laut Karte Screenshot, DOM-Zusammenfassung, ARIA-Fehler und URL [1].",
+      "labels": [
+        "Veto-9B + Rücklesen",
+        "Veto-9B ohne Rücklesen",
+        "Claude Sonnet 5.5",
+        "GPT-6.2 Sol",
+        "Gemini 3.8 Flash",
+        "Nur DOM/ARIA"
+      ],
+      "series": [
+        {
+          "name": "Erkannte Fehler (von 35)",
+          "values": [
+            35,
+            31,
+            31,
+            30,
+            30,
+            12
+          ]
+        }
+      ],
+      "y_label": "Erkannte Fehler",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Karte definiert 0-WA-Coverage als Anteil sauberer Speicherungen, die bei einer auf null Fehlfreigaben eingestellten Konfidenzschwelle akzeptiert werden. Im 50er-Test nennt sie 80 Prozent für den Verbund und null Prozent für den visuellen Pfad allein. Dieser schwellenabhängige Wert ist nicht dasselbe wie die rohe Trefferquote oder der Anteil erkannter Fehler. Der Verbund hat zudem eine zusätzliche Informationsquelle, die den reinen Modellreferenzen fehlt [1]."
+    },
+    {
+      "t": "h2",
+      "x": "600 Screenshots: Genauigkeit und Fehlfreigaben haben andere Nenner"
+    },
+    {
+      "t": "p",
+      "x": "Der zweite Versuch nutzt 600 in Headless Chromium gerenderte Screenshots aus zwei während des Trainings nicht gesehenen UI-Frameworks: ein dunkles Verwaltungsdashboard mit 1280 mal 800 Pixeln und ein um 150 Prozent skaliertes Portal mit 1920 mal 1200 Pixeln. Nicht gesehen bezieht sich auf diese Frameworks und synthetischen Darstellungen, nicht auf einen Nachweis von Zuverlässigkeit in echten Fachportalen. Die Karte beschreibt 420 Fehlerfälle und 180 saubere Kontrollen [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die exakte Genauigkeit über alle 600 Beispiele steigt von 83,83 Prozent beim Zero-Shot-Basismodell Qwen3.5-9B auf 98,00 Prozent mit Adapter. Unter den 420 Fehlerfällen sinken rohe falsche Freigaben von 34 auf acht, also von 8,10 auf 1,90 Prozent. Die acht Fehlfreigaben verschwinden somit nicht durch die hohe Gesamtgenauigkeit. Für den Verbund mit Rücklesen nennt die Karte null falsche Freigaben unter 420 Fehlerfällen und 176 von 180 akzeptierte saubere Kontrollen bei der 0-WA-Schwelle. Diese Werte gehören nicht zum 35-Fehler-Nenner des ersten Versuchs [1]."
+    },
+    {
+      "t": "p",
+      "x": "Auf einem separaten Out-of-Distribution-Split mit 375 Beispielen fällt die rohe Fehlfreigaberate von 15,54 auf 7,57 Prozent. Die 0-WA-Coverage steigt dort von 16,13 auf 17,74 Prozent. Das ist ein deutlich begrenzteres Ergebnis als eine pauschale Zuverlässigkeitsbehauptung. Der genaue Einsatzkontext und die gewählte Schwelle bleiben wichtig [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Speicher, Latenz und Grenzen des lokalen Betriebs"
+    },
+    {
+      "t": "p",
+      "x": "Im Quantisierungsvergleich auf 600 Beispielen meldet der Anbieter 6,6 GB Spitzen-VRAM für 4-bit NF4 mit FP16-Vision und 98,00 Prozent Genauigkeit. Zusammengeführtes BF16 erreicht 18,3 GB und 98,33 Prozent. Die Differenz beträgt 0,33 Prozentpunkte in diesem Aufbau. Die 6,6 GB sind kein garantiertes VRAM-Minimum für beliebige Bildgrößen, Batchgrößen oder Kontextlängen. Die Karte nennt außerdem eine Medianlatenz von 1.102 Millisekunden auf einer L4-GPU, keine universelle Reaktionszeit [1]."
+    },
+    {
+      "t": "p",
+      "x": "Die rund 17 Millisekunden für Adapterwechsel stammen von einem gesonderten anwendungsspezifischen Begleitadapter: 16,73 Millisekunden Median und 17,38 Millisekunden im 95. Perzentil über 20 Wechsel im GPU-Speicher. Das misst weder die gesamte Einrichtung noch das Nachtrainieren eines Adapters und darf nicht als vollständige Prüflatenz von Veto-9B-v4 verkauft werden [1]."
+    },
+    {
+      "t": "p",
+      "x": "Lokale Inferenz benötigt im beschriebenen Betrieb keinen externen Modell-API-Aufruf. Kostenlos ist sie deshalb nicht: Hardware, Strom, Wartung und gegebenenfalls Rücklesedienste bleiben Kostenfaktoren. Die in der Karte geschätzten API-Kosten anderer Modelle übernehmen wir nicht als aktuellen Preisvergleich [1]."
+    },
+    {
+      "t": "p",
+      "x": "Für kritische Schreibvorgänge empfiehlt die Modellkarte einen unabhängigen Rücklesecheck, etwa per API, Datenbankabfrage oder frischem Neuladen. Ein Screenshot allein kann eine unsichtbare fehlende Datenbankzeile nicht feststellen. Vor einem Einsatz sind Schwellenwerte im eigenen Testsystem zu kalibrieren. Alle hier genannten Leistungswerte stammen vom Anbieter, nicht aus einer eigenen Wiederholung. Auch die 35 von 35 gelten nur für den kleinen synthetischen Test und den kombinierten Pfad [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Modell- und Projektlizenz getrennt lesen"
+    },
+    {
+      "t": "p",
+      "x": "Die Adapterkarte kennzeichnet Veto-9B-v4 als Apache-2.0. Das Qwen3.5-9B-Basismodell ist ebenfalls als Apache-2.0 ausgewiesen. Das verlinkte OpenAdapt-Repository führt eine MIT-Lizenz. Diese Zuordnung unterscheidet Modellgewichte und Projektcode; sie ersetzt keine Prüfung weiterer Abhängigkeiten, Daten oder eines konkreten Einsatzes. Die Aussagen des aktuellen OpenAdapt-Repositorys über andere Workflow-Komponenten sind außerdem keine Benchmark-Replikation dieses Adapters [1][2][3]."
+    }
+  ],
+  "method": "Quellenprüfung am 23. November 2026: vollständige Veto-Modellkarte mit allen vier Auswertungen und Grenzen, Plattformmetadaten, adapter_config.json, Lizenzmetadaten und LICENSE des OpenAdapt-Repositories sowie Metadaten des Qwen3.5-9B-Basismodells. Nenner 35/15 und 420/180 getrennt, Rücklese-Verbund vom visuellen Pfad getrennt. Sämtliche Messwerte sind Anbieterangaben; keine eigene Replikation.",
+  "limitations": "Synthetische Browserdarstellungen statt echter Produktivportale, kleine erste Suite mit 35 Fehlern und 15 Kontrollen. Im 600er-Test verbleiben acht rohe Fehlfreigaben unter 420 Fehlerfällen ohne Rücklesen. Rücklese-Verbund hat eine zusätzliche Informationsquelle. Speicher und Latenz gelten für den gemessenen Aufbau; keine Mindesthardware- oder Kostenfreiheitsgarantie. Keine unabhängige Bestätigung.",
+  "faq": [
+    {
+      "q": "Was prüft OpenAdapt-Veto-9B-v4?",
+      "a": "Der Adapter vergleicht den Zustand nach einer GUI-Aktion mit einer erwarteten Wirkung und gibt PASS, VETO oder ABSTAIN aus. Ein korrekt aussehender Screenshot beweist aber nicht, dass ein Schreibvorgang im Backend gespeichert wurde."
+    },
+    {
+      "q": "Hat der Adapter alle 35 Fehler erkannt?",
+      "a": "Nicht allein. Der visuelle Prüfpfad erkannte im ersten synthetischen Test 31 von 35 Fehlerfällen. Erst zusammen mit unabhängigem Rücklesen wurden alle 35 erkannt. Drei von 15 sauberen Kontrollen wurden trotzdem gestoppt. Das ist keine Garantie für andere Umgebungen."
+    },
+    {
+      "q": "Was bedeutet 98 Prozent Genauigkeit?",
+      "a": "Sie gilt laut Anbieter über 600 synthetische Browser-Screenshots. Ohne Rücklesen wurden acht von 420 Fehlerfällen fälschlich freigegeben, also 1,90 Prozent. Der Fehlernenner 420 unterscheidet sich von allen 600 Beispielen und vom ersten 35-Fehler-Test."
+    },
+    {
+      "q": "Reichen 6,6 GB VRAM und ist der Betrieb kostenlos?",
+      "a": "6,6 GB ist der gemeldete Spitzenverbrauch im Anbieteraufbau mit 4-bit NF4 und FP16-Vision, keine allgemeine Mindestanforderung. Lokale Inferenz benötigt dort keine externe Modell-API; Hardware, Strom und Betrieb sind damit nicht kostenlos."
+    },
+    {
+      "q": "Welche Lizenzen sind angegeben?",
+      "a": "Adapter und Qwen3.5-9B-Basismodell sind als Apache-2.0 gekennzeichnet, das verlinkte OpenAdapt-Codeprojekt steht unter MIT. Weitere Abhängigkeiten und der konkrete Einsatz sind gesondert zu prüfen."
+    }
+  ],
+  "related": [
+    "northcua-computer-use-analyse",
+    "kormo-web-11b-analyse",
+    "moss-image-4step-lora-analyse"
+  ]
+}

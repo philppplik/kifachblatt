@@ -1,0 +1,170 @@
+{
+  "slug": "keye-vl-2-30b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Keye-VL 2.0: Was 256K-Kontext und Videotests wirklich zeigen",
+  "dek": "Keye-VL 2.0 verbindet ein 30B-MoE mit Sparse Attention. Wir prüfen Videobenchmarks, Kontextversprechen, Hardwarebeispiel und Lizenzangaben.",
+  "published": "2026-11-23T07:18:36+01:00",
+  "modified": "2026-11-23T07:18:36+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Keye-VL",
+    "Kuaishou",
+    "Videoverständnis",
+    "MoE",
+    "Sparse Attention",
+    "Multimodal"
+  ],
+  "key_takeaways": [
+    "Keye-VL-2.0-30B-A3B kombiniert laut technischem Bericht rund 30 Milliarden Parameter mit etwa drei Milliarden aktiven Parametern pro Token und 256K Kontext. Der konkrete HF-Eintrag ist neu, das Modell wurde vom Hersteller schon im Mai angekündigt.",
+    "Die TimeLens-Werte 58,4, 58,5 und 70,1 mIoU sind Herstellerergebnisse für Charades, ActivityNet und QVHighlights. Der Bericht nutzt dafür überwiegend vier Frames pro Sekunde, für eine übernommene Qwen-Referenz zwei.",
+    "Auf Video-MME-v2 steigt die Genauigkeit im Herstellervergleich von 35,3 Prozent mit 64 Frames auf 42,4 Prozent mit 512 Frames. Das ist kein allgemeiner Beweis verlustfreier Verarbeitung jedes 256K-Kontexts.",
+    "Die Modellplattform kennzeichnet die Gewichte als Apache-2.0. Der H800-Start mit Tensorparallelität zwei ist ein Betriebsbeispiel, keine nachgewiesene Mindesthardware. Code und Abhängigkeiten müssen getrennt lizenziert betrachtet werden."
+  ],
+  "hero": {
+    "alt": "Keye-VL 2.0: Sparse Attention, Videoverständnis und Herstellerbenchmarks.",
+    "caption": "Architektur und Messbedingungen werden getrennt geprüft. Eigene Grafik, keine nachgemessenen Modellwerte.",
+    "credit": "Eigene Grafik (Redaktion)",
+    "ai_generated": false
+  },
+  "sources": [
+    {
+      "title": "Kling-Keye/Keye-VL-2.0-30B-A3B (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Kling-Keye/Keye-VL-2.0-30B-A3B",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Kwai Keye-VL-2.0 Technical Report (vollständig, Abbildung 1 und Tabelle 2)",
+      "publisher": "arXiv",
+      "url": "https://arxiv.org/abs/2606.10651",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Kwai-Keye/Keye (Code-Repository, API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/Kwai-Keye/Keye",
+      "accessed": "2026-11-23"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Keye-VL-2.0-30B-A3B ist ein multimodales Mixture-of-Experts-Modell des Keye-Teams bei Kuaishou. Der am 23. November neu angelegte Hugging-Face-Eintrag darf nicht mit einer heutigen Ersterscheinung des Modells verwechselt werden: Das Hersteller-Repository nennt bereits den 25. Mai 2026 als Ankündigungsdatum; der technische Bericht liegt auf arXiv seit dem 9. Juni vor. Wir ordnen den aktuellen Eintrag anhand von Modellkarte, Konfiguration und vollständigem Bericht ein. Eigene Inferenztests haben wir nicht durchgeführt [1][2][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: langer Kontext bleibt eine bedingte Fähigkeit"
+    },
+    {
+      "t": "p",
+      "x": "Der Bericht beschreibt ein MoE mit rund 30 Milliarden Parametern und etwa drei Milliarden aktiven Parametern pro Token. Der Sprachdecoder baut auf Qwen3-30B-A3B-Thinking-2507 auf, der visuelle Encoder auf Keye-VL-1.5. Ein Projektor verbindet Bild- und Sprachdarstellung. Die aktuelle Konfiguration nennt 262.144 maximale Positionen; der Bericht bezeichnet dies als 256K-Kontext. Die wenigen aktiven Experten verringern die Arbeit pro Token, nicht automatisch den Speicherbedarf der gesamten Gewichte [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "DeepSeek Sparse Attention wird mit Grouped-Query Attention kombiniert. Ein Indexer sucht für jedes Query eine Teilmenge von 2.048 relevanten KV-Positionen; die GQA-Gruppen greifen auf diese gemeinsame Auswahl zu. Abschnitt 2.3 beschreibt zunächst eine dichte Aufwärmphase und danach Sparse-Anpassung. Die Prioritätsbehauptung, dies sei die erste solche multimodale Umsetzung, stammt vom Team und wurde von uns nicht unabhängig bestätigt. Wir übernehmen sie nicht als gesicherten historischen Superlativ [2]."
+    },
+    {
+      "t": "p",
+      "x": "Ebenso ist nahezu verlustfrei eine Eigenbewertung der Modellkarte, keine universelle Genauigkeitsgarantie. Ein Kontextfenster von 256K Token sagt nicht allein, wie viele Videostunden in welcher Auflösung zuverlässig auswertbar sind. Die Vorverarbeitung versieht Frames mit Zeitstempeln und verteilt ein Pixelbudget nach Videolänge. Framerate, Pixelbudget, Textumfang und Aufgabe bestimmen gemeinsam die tatsächlich nutzbare Videomenge [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Videotests: Zeitmarken sind nicht allgemeines Verständnis"
+    },
+    {
+      "t": "p",
+      "x": "TimeLens bewertet die zeitliche Lokalisierung von Ereignissen auf neu annotierten Teilmengen von Charades-STA, ActivityNet Captions und QVHighlights. mIoU mittelt die Überschneidung vorhergesagter und annotierter Zeitintervalle. Die Modellkarte nennt für Keye 58,4 auf Charades, 58,5 auf ActivityNet und 70,1 auf QVHighlights. Die dortigen Gemini-3-Flash-Referenzen sind 61,19, 56,95 und 49,45. Keye liegt damit in diesem Herstellervergleich zweimal darüber und einmal darunter, nicht pauschal vor Gemini [1][2]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Zeitliche Lokalisierung: mIoU im TimeLens-Vergleich",
+      "alt": "Balkendiagramm: Keye-VL 2.0 liegt auf Charades knapp hinter Gemini 3 Flash, auf ActivityNet und QVHighlights davor",
+      "caption": "Herstellerwerte aus Modellkarte und Abbildung 1 des technischen Berichts. TimeLens: vier Frames pro Sekunde für Keye und Gemini; mIoU misst zeitliche Überlappung, nicht allgemeine Antwortgenauigkeit. Keine eigene Replikation [1][2].",
+      "labels": [
+        "Charades",
+        "ActivityNet",
+        "QVHighlights"
+      ],
+      "series": [
+        {
+          "name": "Keye-VL-2.0-30B-A3B",
+          "values": [
+            58.4,
+            58.5,
+            70.1
+          ]
+        },
+        {
+          "name": "Gemini 3 Flash (Vergleichswert der Karte)",
+          "values": [
+            61.19,
+            56.95,
+            49.45
+          ]
+        }
+      ],
+      "y_label": "mIoU",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Messbedingungen gehören zum Vergleich: Für TimeLens beschreibt Abschnitt 6.1 vier Frames pro Sekunde bei Keye, Qwen3.5-35B-A3B und Gemini. Die Qwen3-VL-235B-A22B-Referenz wurde dagegen aus einer Arbeit mit zwei Frames pro Sekunde übernommen. Die Tabelle und die Eingangsabbildung vergleichen daher nicht ausschließlich identische Auswertungsaufbauten. Die Gemini-Werte stehen in der Modellkarte und Abbildung 1; Tabelle 2 enthält andere Vergleichsmodelle. Es handelt sich nicht um eine unabhängige Rangliste [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Auf Video-MME-v2 nennt Tabelle 2 für Keye 35,3 Prozent Genauigkeit bei 64 Frames und 42,4 Prozent bei 512 Frames. Das sind plus 7,1 Prozentpunkte zwischen zwei Eingabebedingungen desselben Modells. Der separate nichtlineare Gruppenscore steigt von 18,5 auf 24,2. Er basiert auf zusammengehörigen Viererfragen und ist nicht dieselbe Metrik wie die einfache Genauigkeit. Die Kurve allein isoliert den Effekt von DSA gegenüber Training, Daten oder anderen Architekturkomponenten nicht [2]."
+    },
+    {
+      "t": "p",
+      "x": "LongVideoBench erreicht laut Tabelle 2 74,1 gegenüber 61,6 für Qwen3.5-35B-A3B und 70,5 für Qwen3-VL-235B-A22B. Qwen3.5 ist dabei ein fremdes Vergleichsmodell, kein Keye-Vorgänger. Abbildung 1 nennt für LongVideoBench zwei Frames pro Sekunde bei allen gezeigten Modellen. Auch dort ist Keye nicht über alle Vergleichsmodelle hinweg führend: Die gezeigte Gemini-Referenz liegt bei 81,1. Auf MLVU und Video-MME ohne Untertitel liegen zudem einzelne offene Referenzen vor Keye. Eine einzelne Stärke bei langen Videos ist kein Gesamtranking [2]."
+    },
+    {
+      "t": "h2",
+      "x": "Nachtraining, Betrieb und Lizenzen"
+    },
+    {
+      "t": "p",
+      "x": "Im Nachtraining werden laut Abschnitt 4 dreizehn spezialisierte RL-Lehrermodelle über Cross-Modal Multi-Teacher On-Policy Distillation zusammengeführt. Der Schüler erzeugt Antworten, ein nach Modalität und Aufgabe gewählter Lehrer liefert tokenbezogene Rückmeldung. Der Bericht beschreibt außerdem Context-RL, Video-RL sowie Code-, Tool- und Search-Aufgaben. Das sind dokumentierte Trainings- und Testbereiche, keine Zusage, dass ein Agent beliebige reale Arbeitsabläufe sicher ausführt [2]."
+    },
+    {
+      "t": "p",
+      "x": "Der Quickstart nutzt eigene Zweige von SGLang und DeepGEMM sowie zusätzliche Kernel. Das als H800-Beispiel bezeichnete Startkommando setzt Tensorparallelität auf zwei. Daraus folgt keine allgemein notwendige Mindestkonfiguration von zwei H800-GPUs. Eine belastbare Verbrauchermaschinen-Empfehlung oder vollständige VRAM-Bedarfsrechnung liefert dieser Startausschnitt nicht. Auch die im Bericht modellierten Inferenzkosten hängen von einer angenommenen H800-Stundenrate ab und sind kein aktuelles Hostingangebot [1][2][3]."
+    },
+    {
+      "t": "p",
+      "x": "Die Hugging-Face-Metadaten kennzeichnen die Modellgewichte als Apache-2.0. Das ist von der Lizenz des Codes zu trennen: Das eingesehene GitHub-Repository hat keine von GitHub erkannte Lizenz, und die gelisteten Dateien im Wurzelverzeichnis enthalten keine Lizenzdatei. Das beweist nicht, dass jede einzelne Datei oder Abhängigkeit unlizenzierbar wäre, liefert aber keine pauschale Code-Freigabe. Vor einem Einsatz müssen Modell, Remote-Code, Bibliotheken und Daten jeweils passend geprüft werden [1][3]."
+    }
+  ],
+  "method": "Quellenprüfung am 23. November 2026: aktuelle Modellkarte und Plattformmetadaten, config.json, vollständiger technischer Bericht (insbesondere Abschnitte 2, 4 bis 6, Abbildung 1 und Tabelle 2), aktuelles GitHub-README und API-Dateiliste/Lizenzmetadaten. Modell- und Repositorydatum wurden getrennt abgeglichen. Alle Leistungswerte bleiben Herstellerangaben; keine eigene Modellreplikation.",
+  "limitations": "Keine unabhängige Benchmark-Replikation. Erstmaligkeit und pauschale Verlustfreiheit nicht bestätigt. Auswertungen nutzen unterschiedliche Framebedingungen; TimeLens-mIoU ist nicht allgemeine Genauigkeit. H800-Tensorparallelität zwei ist ein Beispiel, kein nachgewiesenes Minimum. Gewichtskennzeichnung Apache-2.0 ersetzt keine Code- oder Abhängigkeitslizenzprüfung.",
+  "faq": [
+    {
+      "q": "Ist Keye-VL 2.0 am 23. November neu erschienen?",
+      "a": "Der konkrete Hugging-Face-Eintrag wurde am 23. November angelegt. Das Hersteller-Repository kündigt das Modell jedoch schon für den 25. Mai 2026 an, der technische Bericht liegt seit Juni auf arXiv. Wir behandeln es daher nicht als heutige Ersterscheinung."
+    },
+    {
+      "q": "Was bedeuten drei Milliarden aktive Parameter und 256K Kontext?",
+      "a": "Laut Bericht sind von rund 30 Milliarden Parametern etwa drei Milliarden pro Token aktiv. Das verringert nicht automatisch den Speicherbedarf der gesamten Gewichte. 256K bezeichnet den maximalen Kontext; eine garantierte Zahl zuverlässig verstandener Videostunden folgt daraus nicht."
+    },
+    {
+      "q": "Ist Keye besser als Gemini 3 Flash?",
+      "a": "Nicht allgemein. Im Herstellervergleich auf TimeLens liegt Keye bei ActivityNet und QVHighlights vor der Gemini-Referenz, bei Charades dahinter. Es geht um zeitliche Lokalisierung mit mIoU, nicht um ein Gesamtranking. Die Ergebnisse wurden nicht von uns repliziert."
+    },
+    {
+      "q": "Brauche ich mindestens zwei H800-GPUs?",
+      "a": "Das ist nicht belegt. Der Quickstart zeigt einen H800-Start mit Tensorparallelität zwei. Das ist eine Beispielkonfiguration, keine allgemeine Mindestanforderung. Eine geprüfte Alternative für Consumer-Hardware leiten wir daraus ebenfalls nicht ab."
+    },
+    {
+      "q": "Welche Lizenz gilt?",
+      "a": "Die Modellplattform kennzeichnet die Gewichte als Apache-2.0. Für das verlinkte GitHub-Repository ist in den eingesehenen Metadaten keine Lizenz erkannt; das ist keine pauschale Code-Freigabe. Abhängigkeiten und Remote-Code sind gesondert zu prüfen."
+    }
+  ],
+  "related": [
+    "multimodale-modelle",
+    "video-ki",
+    "shot-reader-8b-analyse"
+  ]
+}
