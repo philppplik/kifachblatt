@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "OpenAdapt Veto 9B: Was Bildcheck und Rücklesen jeweils prüfen",
   "dek": "Ein LoRA-Adapter prüft GUI-Ergebnisse. Im synthetischen Anbietertest erkennt der Bildcheck 31 von 35 Fehlern, erst mit Rücklesen alle 35.",
-  "published": "2026-11-23T07:18:36+01:00",
-  "modified": "2026-11-23T07:18:36+01:00",
+  "published": "2026-11-23T07:24:26+01:00",
+  "modified": "2026-11-23T07:24:26+01:00",
   "author": "philipp-paulik",
   "tags": [
     "GUI-Agenten",

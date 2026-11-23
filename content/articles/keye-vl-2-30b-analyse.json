@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Keye-VL 2.0: Was 256K-Kontext und Videotests wirklich zeigen",
   "dek": "Keye-VL 2.0 verbindet ein 30B-MoE mit Sparse Attention. Wir prüfen Videobenchmarks, Kontextversprechen, Hardwarebeispiel und Lizenzangaben.",
-  "published": "2026-11-23T07:18:36+01:00",
-  "modified": "2026-11-23T07:18:36+01:00",
+  "published": "2026-11-23T07:24:26+01:00",
+  "modified": "2026-11-23T07:24:26+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Keye-VL",
