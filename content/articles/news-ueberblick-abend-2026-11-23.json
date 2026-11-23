@@ -1,0 +1,139 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-23",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-23T16:28:42+01:00",
+  "modified": "2026-11-23T16:28:42+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "On the Limits of Observability for Evaluating Coverage in Machine Unlearning",
+      "publisher": "arXiv; Ziluowen Luo, Senzhang Wang (Central South University), Jun Yin (Hong Kong Polytechnic University), Songyang Liu, Ji Qi, Kyrie You Wu, Chaozhuo Li (Beijing University of Posts and Telecommunications)",
+      "url": "https://arxiv.org/abs/2611.27543",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Cannot Wait to Verify: Parallel Drafting to Eliminate Verifier Idle Time in Speculative Decoding",
+      "publisher": "arXiv; Divya Jyoti Bajpai, Manjesh K. Hanawal (IIT Bombay), Arun Verma (Singapore-MIT Alliance for Research and Technology)",
+      "url": "https://arxiv.org/abs/2611.27477",
+      "accessed": "2026-11-23"
+    },
+    {
+      "title": "Reasoning in Two Dimensions: Quantifying Chain-of-Thought Faithfulness and Efficiency",
+      "publisher": "arXiv; Chenruo Liu, Qi Lei (New York University), Quan Zhang (Michigan State University)",
+      "url": "https://arxiv.org/abs/2611.27100",
+      "accessed": "2026-11-23"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Unlearning",
+    "Speculative Decoding",
+    "CoT-Evaluation"
+  ],
+  "title": "CEO-Coverage, ALD-Drafts und die Grenzen von CoT-Metriken",
+  "dek": "Drei Preprints prüfen Lösch-Evaluation, Draft-Geschwindigkeit und Begründungsketten. Testaufbau und Vergleichsbasis entscheiden, was die Zahlen bedeuten.",
+  "key_takeaways": [
+    "Tabelle 1A, 20 Konfigurationen, drei Seeds: Neutraining deckt bei 16/64/256 Zielen alle Ziele ab. NPO+retain fällt von 97,92 auf 2,47 Prozent. Nicht mit dem jeweils besten approximativen Verfahren verwechseln.",
+    "Draft: bis 1,81-fach gegenüber Standard-SD, MMLU, Qwen-4B/30B, Tabelle 1. End-to-end: bis 3,75-fach gegenüber autoregressivem Decoding, Math, Qwen-Paar. Abstractabweichung: 1,65-fach.",
+    "Fünf Modelle, drei Benchmarks: Antwort-Untreue und Antwort-Entropie hängen zusammen, Rho 0,330 bis 0,796. Kein konsistenter Zusammenhang mit Korrektheit bedeutet keinen Unabhängigkeitsbeweis."
+  ],
+  "hero": {
+    "alt": "Drei getrennte Forschungsbereiche: Unlearning, paralleles Drafting und Begründungsketten. Schematischer Themenhero ohne Messskala.",
+    "caption": "Drei Studien mit getrennten Testaufbauten. Zahlen, Bedingungen und Grenzen stehen in den lesbaren Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 23. November 2026, 16:28 Uhr MEZ. Drei am 20. November eingereichte Preprints untersuchen Lösch-Evaluation, schnelleres Drafting und die Bewertung von Begründungsketten. Die folgenden Zahlen sind Ergebnisse der jeweiligen Autoren, keine unabhängige Reproduktion und keine allgemeine Leistungsrangliste."
+    },
+    {
+      "t": "h2",
+      "x": "Unlearning: Löschung und ihre Erkennbarkeit"
+    },
+    {
+      "t": "callout",
+      "title": "Coverage im synthetischen CEO-Test",
+      "x": "Tabelle 1A, 20 Konfigurationen, drei Seeds: Neutraining deckt bei 16/64/256 Zielen alle Ziele ab. NPO+retain fällt von 97,92 auf 2,47 Prozent. Nicht mit dem jeweils besten approximativen Verfahren verwechseln."
+    },
+    {
+      "t": "p",
+      "x": "Machine Unlearning soll den Einfluss angefragter Trainingsdaten entfernen. Eine Evaluation muss aber auch erkennen können, dass tatsächlich gelöscht wurde. Luo und Kollegen prüfen das zunächst mit 502 nachtrainierten Bildmodellen auf Aircraft und Pets: Selbst bei bekanntem Neutraining ohne das Ziel erkennt eine beschränkte Auswertung manche Löschungen nicht. Zusätzliche Embedding-Dimensionen können einen Teil der zuvor übersehenen Fälle sichtbar machen. Der theoretische Befund betrifft lineare Scores und die für die Unterscheidung aller n Einzellöschungen nötige gemeinsame Repräsentation: Deren Rang kann mindestens in der Größenordnung log n wachsen müssen."
+    },
+    {
+      "t": "p",
+      "x": "Für den gesonderten synthetischen CEO-Farb-Form-Test definiert das Paper Coverage als Anteil zuverlässig erkannter Löschziele: mindestens 90 Prozent Trefferquote und höchstens 5 Prozent Fehlalarme unter jeder anderen Löschung. Tabelle 1A vergleicht 20 Konfigurationen bei 16, 64 und 256 Zielen, mit 60, 252 beziehungsweise 1.020 Ausgaben pro Versuch, gemittelt über drei Seeds. Nur Neutraining erreicht in diesem konkreten Tabellenvergleich bei allen drei Größen volle Coverage. Das ist keine Aussage, dass ausschließlich Neutraining jemals korrekt löschen kann: Bei verändertem Trainingsbudget decken laut Paper fünf von 28 Konfigurationen nach 800 Updates alle 256 Ziele ab."
+    },
+    {
+      "t": "p",
+      "x": "NPO mit Retain-Term erreicht in Tabelle 1A 97,92, 21,35 und 2,47 Prozent Coverage für 16, 64 und 256 Ziele. Diese eine Methode ist nicht bei jeder Größe die beste Approximation. Die jeweils besten Mittelwerte unter den approximativen Verfahren lauten 97,92, 29,17 und 16,54 Prozent. Auch die Auswertung ändert das Ergebnis: Bei identischen Oracle-Ausgaben erkennen getrennte Farb- und Formzählungen kein Ziel, Paarzählungen dagegen alle 256 bei 1.020 Ausgaben. Eine Expansion einzelner Ausgaben vor dem Poolen erhält diese Information, eine Expansion danach nicht. Ein auf dem Originalmodell trainierter, eingefrorener Sparse Autoencoder verbessert in den getesteten Sprach- und Bildaufbauten die Erkennung gegenüber Rohembeddings. Das ist kein universeller Löschbeweis."
+    },
+    {
+      "t": "p",
+      "x": "Selbst hohe Trefferquoten reichen nicht allein: Im synthetischen 256-Ziele-Test mit 8.192 Ausgaben erreicht Joint Frequency im Mittel 100 Prozent Trefferquote, aber null Coverage, weil mindestens ein zielerhaltender Kontrollfall die Fehlalarmgrenze verletzt. Zero Count deckt im gleichen Versuch alle Ziele ab. Vollabdeckung gilt hier stets für dieses endliche Zielset, die jeweilige Regel und das angegebene Budget."
+    },
+    {
+      "t": "h2",
+      "x": "ALD: Draft-Zeit und End-to-end strikt trennen"
+    },
+    {
+      "t": "callout",
+      "title": "ALD: zwei Geschwindigkeitsvergleiche",
+      "x": "Draft: bis 1,81-fach gegenüber Standard-SD, MMLU, Qwen-4B/30B, Tabelle 1. End-to-end: bis 3,75-fach gegenüber autoregressivem Decoding, Math, Qwen-Paar. Abstractabweichung: 1,65-fach."
+    },
+    {
+      "t": "p",
+      "x": "ALD steht für Adaptive Layer-parallel Drafting. Bajpai, Verma und Hanawal berechnen mehrere künftige Layertransformationen des kleinen Draft-Modells parallel aus einem gemeinsamen Hidden State. Eine Ähnlichkeitsprüfung bestimmt, wie weit der Zustand übernommen wird; bei zu großer Abweichung wird nachgerechnet. Das Verfahren benötigt laut Autoren weder neues Training noch eine geänderte Modellarchitektur. Die Hauptversuche nutzen vier NVIDIA RTX A6000, einen spekulativen Tokenblock von sechs, Ähnlichkeitsschwelle 0,95 und maximales Parallelfenster K gleich 10."
+    },
+    {
+      "t": "p",
+      "x": "Tabelle 1 weist für die Draft-Phase gegenüber Standard-Speculative-Decoding Faktoren von 1,40 bis 1,81 aus. Das Maximum gehört zu MMLU mit Qwen-4B als Draft- und Qwen-30B als Zielmodell: 17,2 statt 31,2 Sekunden je 100 Draft-Token. Der Abstract nennt dagegen maximal 1,65-fach, eine interne Abweichung des Preprints. Die hier genannten 1,81 stammen ausdrücklich aus Tabelle 1. End-to-end ist eine andere Messgröße mit anderer Basis: Auf Math erreicht ALD beim Qwen-Paar 3,75-fache Geschwindigkeit gegenüber autoregressivem Zielmodell-Decoding; Standard-SD erreicht in demselben Vergleich 2,19-fach. 3,75 ist also kein Faktor gegenüber Standard-SD."
+    },
+    {
+      "t": "p",
+      "x": "Die Tokenakzeptanz bleibt in einzelnen Vergleichen nah am Standard: 0,38 statt 0,40 auf WMT beim Qwen-Paar und 0,60 statt 0,61 auf MGSM beim LLaMA-3B/70B-Paar. Die K-Sensitivitätstabelle zeigt von K gleich 5 zu 10 eine kürzere Draft-Zeit von 20,4 auf 18,7 Sekunden pro 100 Token; mit voller verbleibender Tiefe steigt die End-to-end-Beschleunigung nur noch von 2,95 auf 3,03 gegenüber autoregressivem Decoding. Die Akzeptanz sinkt von 0,42 bei K gleich 5 auf 0,34 bei voller Tiefe. Das illustriert abnehmenden Zusatznutzen, keine universell optimale Fenstergröße. Zusätzliche Cache-Kalibrierung ist laut Paper im End-to-end-Zeitmaß enthalten. Eine Kombination mit gelernten Draft-Verfahren bleibt offen."
+    },
+    {
+      "t": "h2",
+      "x": "CoT: Treue und Effizienz ergänzen die Genauigkeit"
+    },
+    {
+      "t": "callout",
+      "title": "Korrelation ist keine Unabhängigkeit",
+      "x": "Fünf Modelle, drei Benchmarks: Antwort-Untreue und Antwort-Entropie hängen zusammen, Rho 0,330 bis 0,796. Kein konsistenter Zusammenhang mit Korrektheit bedeutet keinen Unabhängigkeitsbeweis."
+    },
+    {
+      "t": "p",
+      "x": "Liu, Lei und Zhang zerlegen Chain-of-Thought-Ausgaben mithilfe eines semantischen Reasoning-Graphen. Ihre Messgrößen unterscheiden semantische Stütze von zusätzlicher Historie und Schritte auf dem Antwortpfad von solchen abseits davon. Untersucht werden fünf Instruct-Modelle aus Qwen3, Ministral 3 und Llama 3.1 auf MATH, Omni-MATH-2 und 2WikiMultiHopQA. Damit wollen die Autoren Treue und Effizienz genauer messen als nur anhand richtiger Antworten oder kurzer Texte."
+    },
+    {
+      "t": "p",
+      "x": "Antwort-Untreue hängt in diesen Versuchen positiv mit der Entropie der Antwort zusammen: Spearman-Rho liegt über Modelle und Datensätze zwischen 0,330 und 0,796. Die globale Untreue zeigt diesen klaren Zusammenhang nicht. Mit Antwortkorrektheit finden die Autoren für ihre Treue- und Effizienzmaße keinen über Modelle und Aufgaben konsistent klaren Zusammenhang. Das beweist weder statistische Unabhängigkeit noch allgemeine Entbehrlichkeit von Begründungen. Einzelne Komponenten haben in einzelnen Modellen durchaus erkennbare Zusammenhänge."
+    },
+    {
+      "t": "p",
+      "x": "Beim Entfernen als ineffizient markierter Schritte und erneuten Erzeugen der Antwort ändert sich die Genauigkeit in acht von zehn geprüften Modell-Datensatz-Kombinationen um höchstens 0,5 Prozentpunkte. Das Ergebnis ist auf diese Interventionen begrenzt. Beim effizienzsensitiven RFT mit Qwen3-4B auf MATH sinkt die Ineffizienz von 13,34 auf 10,00 in Einheiten mal 10 hoch minus 2. Pass-at-1 steigt von 75,70 auf 78,20 Prozent, denselben Wert erreicht dort auch Standard-RFT, dessen Ineffizienz aber auf 16,83 steigt. Die Graph-Extraktion braucht selbst ein leistungsfähiges LLM; die Autoren nennen die Verbesserungen treuesensitiven RFTs moderat."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Beweist der CEO-Test, dass nur Neutraining vollständig löschen kann?",
+      "a": "Nein. Nur im synthetischen Vergleich der Tabelle 1A mit 20 Konfigurationen und festem Budget erreicht Neutraining bei 16, 64 und 256 Zielen volle Coverage. Andere Trainingsbudgets und Auswertungsregeln ändern die Ergebnisse. Coverage bedeutet hier mindestens 90 Prozent Trefferquote bei höchstens 5 Prozent Fehlalarmen unter jeder anderen Löschung."
+    },
+    {
+      "q": "Was beschleunigt ALD um bis zu 1,81-fach?",
+      "a": "Die Draft-Phase gegenüber Standard-Speculative-Decoding, laut Tabelle 1 auf MMLU mit Qwen-4B/30B. Der Abstract nennt abweichend 1,65-fach. Die bis zu 3,75-fache End-to-end-Geschwindigkeit gehört zu Math und vergleicht ALD mit autoregressivem Zielmodell-Decoding, nicht mit Standard-SD."
+    },
+    {
+      "q": "Sind CoT-Treue und Genauigkeit unabhängig?",
+      "a": "Das zeigen die Daten nicht. Die Autoren finden über die geprüften Modelle und Aufgaben keinen konsistent klaren Zusammenhang mit Korrektheit. Das ist kein Unabhängigkeitsbeweis. Antwort-Untreue korreliert in den Tests positiv mit Antwort-Entropie, Spearman-Rho 0,330 bis 0,796."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "test-time-compute-reasoning-modelle-analyse"
+  ]
+}
