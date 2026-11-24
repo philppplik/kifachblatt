@@ -1,0 +1,139 @@
+{
+  "slug": "news-ueberblick-mittag-2026-11-24",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-24T09:55:00+01:00",
+  "modified": "2026-11-24T09:55:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "The KL Divergence Is Never Negative, Except in PyTorch",
+      "publisher": "arXiv; Zhen Yang (Yale University), Wei Tang (University of Oxford), Chu Chen (University of Cambridge), Rui Qian (Fudan University), Yixuan Chen (University of Oxford), Fan Yang (Wake Forest University), Kangning Cui (City University of Hong Kong, Dongguan)",
+      "url": "https://arxiv.org/abs/2611.30835",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Language Models Steer on Injected Uncertainty Tokens, but Fail to Self-Monitor In Situ",
+      "publisher": "arXiv; Daniel Theron (Single-Autoren-Preprint)",
+      "url": "https://arxiv.org/abs/2611.31228",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Reproducible by Seed? Not on GPUs: Batch-Dependent Non-Determinism in Text-to-Image Models",
+      "publisher": "arXiv; Javier Conde, Pedro Reviriego (Universidad Politécnica de Madrid), Xiuyuan Qi, Shanshan Liu (University of Electronic Science and Technology of China)",
+      "url": "https://arxiv.org/abs/2611.30545",
+      "accessed": "2026-11-24"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Numerik",
+    "Reasoning",
+    "Reproduzierbarkeit"
+  ],
+  "title": "KL-Fehler in PyTorch, blinde Konfidenz und GPU-Batches",
+  "dek": "Drei Preprints prüfen, ob Werkzeugzahlen tragen: die KL-Divergenz in PyTorch, verbalisierte Konfidenz und reproduzierbare Bildgenerierung auf GPUs.",
+  "key_takeaways": [
+    "Im gezielt auf kleine Divergenzen ausgerichteten KL-Test sind nahe 10 hoch minus 7 über 85 Prozent der FP32-Werte skalarer Familien im gewöhnlichen Parameterbereich um mindestens 1 Prozent falsch. Das ist keine Fehlerquote aller PyTorch-Aufrufe.",
+    "Bei vier offenen Instruct-Modellen liegt die nach Schrittposition bereinigte Konfidenz-AUROC bei 0,500 bis 0,561. Von außen gesetzter Zweifel erhöht im passiven Test die Korrekturrate um 3,7 bis 22,5 Prozentpunkte, kann korrekte Lösungen aber beschädigen.",
+    "Janus-Pro-7B in bf16 liefert im getesteten Vergleich von RTX 6000 Ada und RTX A6000 keine bitidentischen Bilder über 100 Prompts. Andere Modelle und Präzisionen reagieren anders; Prompt und Seed allein beschreiben die Ausführung nicht vollständig."
+  ],
+  "hero": {
+    "alt": "Drei schematische Forschungsfelder: eine Kurve, die unter eine Nulllinie kippt, eine flache Sättigungslinie mit Markierung und ein Raster leicht voneinander abweichender Bildkacheln. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über Werkzeugzahlen und ihre Grenzen. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 24. November 2026, 10:08 Uhr MEZ. Drei am 23. November eingereichte Preprints prüfen, ob verbreitete Werkzeugzahlen tragen: die KL-Divergenz in PyTorch, verbalisierte Konfidenz beim schrittweisen Reasoning und die Reproduzierbarkeit von Text-zu-Bild-Modellen auf GPUs. Alle Zahlen sind Ergebnisse der jeweiligen Autoren, keine unabhängige Reproduktion. Konfiguration, Stichprobe und Grenzen stehen direkt bei den Werten."
+    },
+    {
+      "t": "h2",
+      "x": "Negative KL-Werte in PyTorch sind nur das sichtbare Symptom"
+    },
+    {
+      "t": "callout",
+      "title": "Fehlerquoten nahe am Gleichstand",
+      "x": "Die Autoren prüfen 8,5 Millionen Eingaben über 18 geschlossene KL-Familien und F.kl_div. Für skalare Familien im gewöhnlichen Parameterbereich gilt: Nahe einer wahren KL von 10 hoch minus 7 haben über 85 Prozent der FP32-Werte mindestens 1 Prozent relativen Fehler. Unter etwa 10 hoch minus 10 werden rund 30 Prozent negativ. FP16 zeigt das Genauigkeitsproblem etwa vier Größenordnungen früher. Über alle getesteten Bereiche und Divergenzklassen bleiben nach einer Präzisionsstufe mehr in 22 von 23 Konfigurationen noch 7 bis 51 Prozent der FP32-Werte signifikant falsch."
+    },
+    {
+      "t": "p",
+      "x": "Die KL-Divergenz ist mathematisch nie negativ, doch PyTorch-Nutzer melden seit 2019 negative Werte, und der Standardrat lautet, bei null zu klemmen. Ein Team um Zhen Yang (Yale University), Fan Yang (Wake Forest University) und Kangning Cui (City University of Hong Kong, Dongguan) zeigt, dass das Klemmen nur das Symptom verdeckt: Viele falsche Werte sind positiv, endlich und unbemerkt. Die Autoren messen beide PyTorch-Schnittstellen, torch.distributions.kl_divergence mit 7,5 Millionen Parameterpaaren über 18 Verteilungsfamilien und torch.nn.functional.kl_div mit 0,94 Millionen Batches, geschichtet nach wahrer Divergenz von 10 hoch minus 15 bis 1 und per Intervallarithmetik zertifiziert, auf CPU und GPU. Bei zwei Exponentialverteilungen erreicht der Fehler der offiziellen Formel 100 Prozent, sobald die wahre KL unter etwa 4 mal 10 hoch minus 8 fällt (FP32; FP16: 4 mal 10 hoch minus 4); die Funktion gibt dann null oder einen negativen Wert zurück. Unter 116 geprüften PyTorch-Paketen rufen 39 mindestens eine der beiden Schnittstellen auf."
+    },
+    {
+      "t": "p",
+      "x": "Mehr Präzision löst das Problem nicht, eine andere Formel schon. Die Autoren kombinieren nicht-negative Zerlegungen, kompensierte Arithmetik und analytische Gradienten und entfernen damit über 97 Prozent der signifikanten Fehler im Arbeitsformat. Strikte Reparaturen erzeugen auf 7,2 Millionen bewerteten geschlossenen Samples keinen signifikanten Fehler mehr und runden alle 567 Millionen geprüften F.kl_div-Komponenten korrekt. Dabei trennen sie zwei Fehlerquellen: den Operatorfehler von F.kl_div auf seinen Eingaben und den Repräsentationsfehler, der bereits in gerundeten Wahrscheinlichkeiten steckt. Letzteren kann keine F.kl_div-Implementierung beheben; nötig ist eine Divergenz, die direkt aus Logits rechnet."
+    },
+    {
+      "t": "p",
+      "x": "Die Fehler verändern Ergebnisse. In der synthetischen Identical-Start-Distillation startet ein MLP-Student (32 auf 256 auf Vokabulargröße) als exakte Kopie seines Teachers und wird 300 Schritte nur mit dem KL-Verlust trainiert (Vokabular 151.936, Adam, Lernrate 10 hoch minus 2, Median über 10 Seeds): Mit dem offiziellen Verlust weichen die Top-1-Vorhersagen des Students im FP16-Extremfall um 97,4 Prozent vom Teacher ab, mit dem reparierten Logits-Pfad bewegt sich kein Gewicht. Bei der quantisierten Variante von Qwen2.5-1.5B-Instruct (16.384 WikiText-2-Tokens) meldet das offizielle FP16-F.kl_div für 24 von 28 Layern eine negative mittlere KL und invertiert 19 der 378 Layerpaare (BF16-Varianten: bis zu 158); die BF16-Categorical-Auswahl schützt vier falsche Layer und erhöht die wahre KL des resultierenden Mischmodells um 9,8 Prozent. In der Circuit-Analyse mit der auto-circuit-Bibliothek sind in FP32 (Standardpräzision) 19, 46 und 59 Prozent der Kantenscores in drei GPT-2-Settings falsch, tausende davon negativ; in FP16 sind es 54 bis 81 Prozent in drei von vier Settings, und bei GPT-2 medium in FP16 sind nur 38 Prozent der 1000 höchsten Kanten korrekt, gegenüber 99,9 Prozent mit dem Logits-Pfad. Die Fehler sitzen bei Scores unterhalb von etwa 10 hoch minus 6 und verändern vor allem, welche kleinen Kanten eine Schwelle passieren."
+    },
+    {
+      "t": "p",
+      "x": "Die Autoren nennen die Grenzen selbst: Der Stichprobenplan überzeichnet kleine Divergenzen absichtlich, die Fehlerquoten sind also an dieses Design gebunden. Gemessen wurde mit PyTorch 2.15.0 auf CPU und 2.4.0 auf einer A100-GPU. Die Reparaturen sind unoptimierte Referenzimplementierungen und kosten auf der GPU für fünf geschlossene Formen das 2,4- bis 5,9-Fache der offiziellen Aufrufe, bei Gamma, Beta und F.kl_div deutlich mehr. Die ersten drei Experimente sind synthetisch oder simuliert, der Trainingseffekt ist nur für identischen Start gezeigt, und im Layer-Ranking traf die häufigste offizielle Konfiguration noch die richtige Auswahl. Praktischer Rat der Autoren: Divergenzen aus Parametern oder Logits statt aus gerundeten Wahrscheinlichkeiten berechnen, nicht-negative Terme summieren und Präzision nur dort erhöhen, wo korrekte Rundung gefordert ist."
+    },
+    {
+      "t": "h2",
+      "x": "Verbalisierte Konfidenz: Modelle reagieren auf Zweifel, bemerken Fehler aber nicht"
+    },
+    {
+      "t": "callout",
+      "title": "Erkennung nahe Zufallsniveau, Steuerung wirkt",
+      "x": "Vier offene Instruct-Modelle, 15.200 Primärtraces, darunter 2.017 vom Judge erkannte Fehlertraces: Die nach Schrittposition bereinigte AUROC der Trajektorienkonfidenz liegt bei 0,500 bis 0,561. Werden am bekannten Fehlerschritt beide Konfidenz-Tags auf 10 statt 95 Prozent gesetzt, steigt die Korrekturrate im passiven Arm um 3,7 bis 22,5 Prozentpunkte (unbereinigte p-Werte höchstens 0,0022). Mit aktiver Nachdenk-Anweisung erreicht Phi-4 38,5 Prozent Korrektur. Das ist keine autonome Fehlererkennung."
+    },
+    {
+      "t": "p",
+      "x": "Agentische Reasoning-Systeme lassen Modelle gern nach jedem Schritt eine numerische Konfidenz aussprechen, um bei Unsicherheit zurückzuspringen. Ein Single-Autoren-Preprint von Daniel Theron trennt die zwei nötigen Fähigkeiten sauber: Erkennt das Modell seinen Fehler während der Generierung, und steuert ein Unsicherheitstoken die Reparatur? Getestet werden Qwen2.5-7B-Instruct, Llama-3.1-8B-Instruct, Mistral-7B-Instruct-v0.3 und Phi-4 (14,7 Milliarden Parameter) auf GSM8K und MATH-500 mit 15.200 Primärtraces (je 4.400 für Qwen und Llama, je 3.200 für Mistral und Phi-4). Nach Formatprüfung bleiben 3.873 gültige Traces auf 563 modellbezogenen Aufgabenfällen mit mittlerer Lösungsquote (die Mengen können sich zwischen Modellen überschneiden) mit mittlerer Lösungsquote, darunter 2.017 verifizierte Fehlertraces; darauf folgen 27.568 kontrafaktische Fortsetzungen in fünf Konfidenzbedingungen und zwei Prompt-Armen. Als Schritt-Judge dient Claude Opus 5.5, je Test getrennt validiert: auf 200 ProcessBench-Traces (100 Fehler- und 100 fehlerfreie Traces) 85,0 Prozent exakte Schrittlokalisation und 94,0 Prozent innerhalb eines Schritts unter den 100 Fehlertraces, in einer blinden Autorenkontrolle von 30 experimentellen Traces 93,3 Prozent exakte Übereinstimmung (Wilson-95-Prozent-Intervall: 78,7 bis 98,2)."
+    },
+    {
+      "t": "p",
+      "x": "Beim Monitoring versagen alle vier Modelle. Nach Bereinigung um die Schrittposition unterscheidet die verbalisierte Konfidenz Fehlerschritte kaum von korrekten, und am ersten Fehler bleibt die Trajektorienkonfidenz flach bei 95,1 bis 99,9 Prozent (Qwen 94,8 auf 95,1 auf 95,0; Llama 97,9 auf 97,2 auf 97,2; Mistral 99,4 auf 99,2 auf 99,2; Phi-4 konstant 99,9). Einbrüche von mindestens 10 Punkten treten bei Llama auf unter 9 Prozent der Fehler auf, bei den anderen drei Modellen auf höchstens 1,6 Prozent. Für die vermutete Konfidenz-Ratsche, einen unverdienten Überkompensationsrebound nach Einbrüchen, findet der Autor keinen Beleg: Die gepoolte Obergrenze des 95-Prozent-Intervalls liegt bei 0,12, und bei Qwen, Mistral und Phi-4 ist die Ratsche mangels Einbrüchen operativ ausgeschlossen; die Teststatistik trägt primär Llama."
+    },
+    {
+      "t": "p",
+      "x": "Die Steuerung dagegen funktioniert in beide Richtungen. Der Zweifelstag am Fehlerschritt erhöht die Korrekturrate, aber derselbe Zweifel auf einem korrekten Schritt lässt Modelle gültiges Reasoning verwerfen und senkt die Lösungsrate um bis zu 22,8 Punkte. Der Autor schließt daraus, dass inferenzzeitliche Selbstkorrektur an der In-situ-Erkennung hängt, nicht an der Reparaturfähigkeit. Die Grenzen sind zu beachten: einzelner Autor ohne getrennte Replikation; nur dichte Instruct-Modelle zwischen 7 und 14,7 Milliarden Parametern, keine 70-Milliarden-Klasse und keine nativen RL-Reasoning-Modelle wie DeepSeek-R1 oder o1; nur das verbalisierte Prozentformat, ein Vergleich mit Token-Logprobs steht noch aus; Phi-4 steuert wegen hoher Basisgenauigkeit nur 25 umstrittene Aufgaben bei. Eine Sensitivitätsanalyse um den Fehlerschritt plus/minus 1 verändert die berichteten Grenzfälle um höchstens 1,01 Punkte. Sie ersetzt keine unabhängige Prüfung aller Judge-Urteile. Injektionen vor dem tatsächlichen Fehlerschritt wurden nicht empirisch geprüft; damit ist kein fertiger mehrstufiger Einsatzmonitor getestet."
+    },
+    {
+      "t": "h2",
+      "x": "Gleicher Prompt, gleicher Seed, anderes Bild auf dem GPU-Server"
+    },
+    {
+      "t": "callout",
+      "title": "Batch und GPU entscheiden mit",
+      "x": "Im 10-Prompt-Hauptvergleich erreicht Emu3.5 auf H100 eine mittlere SSIM von 0,580 in bf16 und 0,551 in int8, Janus-Pro-7B auf RTX 6000 Ada in bf16 0,261 mit Sampling und 0,229 mit greedy Decoding. Verglichen werden Batch- und Einzelbilder. Im separaten Vergleich von RTX 6000 Ada und RTX A6000 ist bei Janus-Pro-7B in bf16 über 100 Prompts kein Bild bitidentisch. Dort sind GPU- und Batch-Effekt in der Wahrnehmungsmetrik LPIPS ähnlich groß. Alle berichteten Wiederholungskontrollen sind bitexakt."
+    },
+    {
+      "t": "p",
+      "x": "Prompt und Seed festzusetzen gilt als Garant für dasselbe Bild. Javier Conde und Pedro Reviriego (Universidad Politécnica de Madrid) zeigen mit Xiuyuan Qi und Shanshan Liu (University of Electronic Science and Technology of China), dass das auf GPUs nicht gilt. Sie testen sechs Modelle, die Diffusionsmodelle SDXL base 1.0, Qwen-Image-2.1, FLUX 3 Klein und HiDream-O1 sowie die autoregressiven Emu3.5 und Janus-Pro-7B, unter vier Präzisionen auf drei GPU-Generationen (RTX A6000, RTX 6000 Ada, H100 NVL, letztere auch als MIG-Partition), mit bis zu 100 Prompts pro Set. Pro Konfiguration wird dasselbe Bild einzeln und innerhalb eines Batches erzeugt. Alle Wiederholungskontrollen sind bitexakt, die Unterschiede sind also kein Zufallsrauschen, sondern folgen aus der Ausführungsumgebung."
+    },
+    {
+      "t": "p",
+      "x": "Die Effektgrößen trennen sich nach Modellfamilie. Die autoregressiven Modelle zeigen die größten Unterschiede (Emu3.5 im Mittel 0,580 in bf16 und 0,551 in int8, Janus-Pro-7B 0,261 mit Sampling und 0,229 mit greedy Decoding, gemessen an 10-Prompt-Sets); bei 100 Prompts ist keines von 100 Batch-Paaren exakt. Unter den Diffusionsmodellen bleibt HiDream-O1 in bf16 und int8 bitinvariant (SSIM 1,000) und bricht nur in fp8 ein (0,686 bei Stufe 100); FLUX 3 Klein liegt in bf16 bei mindestens 0,989. Unter den drei Diffusionsmodellen mit fp8-Vergleich ist fp8 bei Stufe 10 am empfindlichsten (0,811 bei Qwen-Image, 0,829 bei FLUX 3 Klein, 0,748 bei HiDream-O1, jeweils Stufe 10). Der größte einzelne Diffusionsfall ist Qwen-Image in bf16 bei 768 Pixeln: SSIM 0,228 gegenüber 0,997 für denselben Prompt in fp16. Meist ist das Batchbild ein anderes, gleichwertiges Bild; bei Prompts mit Ziffern und Zählwerken wird es teils sichtbar schlechter, etwa ein Scoreboard mit falschen Ziffern, während die Einzelreferenz korrekt bleibt."
+    },
+    {
+      "t": "p",
+      "x": "Die Dosis-Wirkung ist flach: Der Sprung von Batch 1 auf Batch 8 ist viel größer als jeder weitere Anstieg bis 32; nur bei Qwen-Image fällt die gepoolte SSIM weiter. Als Ursache nennen die Autoren ausdrücklich Hypothesen, keine Bestätigung: batchabhängige Reduktionsreihenfolgen in den Kernels, Verstärkung durch 8-Bit-Formate, eine batchweite Skala bei dynamischer fp8-Quantisierung, und bei autoregressiven Modellen kaskadierende Token-Flips (Trace-Nachweis nur für einen bf16-Lauf von Janus-Pro-7B). Drei Abhilfen: Batch 1 entfernt den Batch-Effekt auf derselben GPU, macht Ausgaben aber nicht GPU-übergreifend portabel; die Präzision ist modellabhängig zu wählen (fp16 am sichersten für SDXL und Qwen-Image, FLUX 3 Klein und HiDream-O1 tolerieren bf16 und int8, Emu3.5 verschlechtert sich weniger in bf16 als in int8); und Benchmarks, Audits und A/B-Tests sollten Batchgröße, Präzision und Hardware immer mitberichten. Grenzen: sechs Modelle, drei GPU-Typen, ein Basis-Seed pro Set; die autoregressiven Hauptvergleiche laufen mit 10 Prompts gegenüber bis zu 100 bei den Diffusionsmodellen, SDXL wird nur bis 25 bewertet (Ausnahme bf16); ein vollständiger Serving-Fix bleibt offen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Warum liefert PyTorch negative KL-Werte, obwohl die Divergenz nie negativ sein kann?",
+      "a": "Die geschlossenen Formeln berechnen eine Größe zweiter Ordnung als Summe größerer Terme mit gemischten Vorzeichen. Sobald die wahre Divergenz in die Größenordnung der Rundungseinheit fällt (FP32 etwa 6 mal 10 hoch minus 8), wird das Ergebnis zu Rauschen und kann negativ ausfallen. Das Klemmen bei null verdeckt das Symptom, lässt aber falsche positive Werte und deren Gradienten unverändert stehen."
+    },
+    {
+      "q": "Können Sprachmodelle ihre Fehler also doch selbst korrigieren?",
+      "a": "In dieser Studie können vier offene Instruct-Modelle mit 7 bis 14,7 Milliarden Parametern häufiger reparieren, wenn ein externer Judge den Fehlerschritt bereits lokalisiert hat und beide Konfidenz-Tags dort verändert werden. Der passive Vergleich von 10 gegen 95 Prozent erhöht die Korrekturrate um 3,7 bis 22,5 Prozentpunkte. Das belegt weder verlässliche autonome Erkennung noch eine allgemeine Garantie für andere Modelle. Zweifel an korrekten Schritten kann die Lösungsrate senken."
+    },
+    {
+      "q": "Wie bekomme ich reproduzierbare Bilder aus einem Text-zu-Bild-Modell?",
+      "a": "In den berichteten Kontrollen waren Wiederholungen mit exakt gleicher Ausführung bitidentisch. Batchgröße 1 entfernt dort den Batch-Effekt auf derselben GPU, garantiert aber keine Portabilität. Janus-Pro-7B in bf16 zeigte im Vergleich von RTX 6000 Ada und RTX A6000 über 100 Prompts keine bitidentischen Bilder. Andere Modelle reagieren anders. Deshalb Prompt, Seed, Batchgröße, Präzision, GPU und Laufzeitkonfiguration gemeinsam dokumentieren."
+    }
+  ],
+  "related": [
+    "llm-quantisierung-verfahren-grundlagen",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ]
+}
