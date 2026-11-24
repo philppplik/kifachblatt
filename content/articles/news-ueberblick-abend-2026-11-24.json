@@ -1,0 +1,135 @@
+{
+  "slug": "news-ueberblick-abend-2026-11-24",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-24T16:00:00+01:00",
+  "modified": "2026-11-24T16:00:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "Uncovering the Tells: Efficient Black-Box Audits for LLM Data Contamination",
+      "publisher": "arXiv; Dominik B. Lau, Filip Pawlicki, Jan Dubiński, Sebastian Cygert (NASK National Research Institute, Technische Universität Danzig)",
+      "url": "https://arxiv.org/abs/2611.30639",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Predicting Rare-Mode Collapse in Recursive Generative Training from Single-Generation Calibration",
+      "publisher": "arXiv; Jingyao Zhang, Luhan (University of Sydney), Mingyu Du (University of New South Wales)",
+      "url": "https://arxiv.org/abs/2611.30897",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Empirical Margin Sensitivity: An Interventional Neuron-Level Probe of Post-Trained Medical LLMs",
+      "publisher": "arXiv; Aniruddh Shreyas, Aarnav Kembhavi, Minal Moharir (RV College of Engineering, Bengaluru)",
+      "url": "https://arxiv.org/abs/2611.30675",
+      "accessed": "2026-11-24"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "Evaluation",
+    "Modellkollaps",
+    "Interpretierbarkeit"
+  ],
+  "title": "Kontaminations-Audit, Kollaps-Prognose und Neuronensonde",
+  "dek": "Drei Preprints prüfen Modelle, statt ihnen zu vertrauen: Audit ohne Logprobs, Kollaps-Prognose aus einer Generation, Neuronensonde fürs Finetuning.",
+  "key_takeaways": [
+    "Ein rein generationbasiertes Kontaminations-Audit erreicht im Mittel über 11 offene Basismodelle eine datensatzbezogene AUC von 0,952, mit 100 Dokumenten je Datensatz, 3 Kontextdokumenten und 16 abgefragten Tokenpositionen. Die separate Budgetablation zeigt sparsamere Abfragen; an fünf Frontier-APIs bleibt die Trennung unklar.",
+    "Kollapsrisiken rekursiven Trainings lassen sich aus einer einzigen Generation Kalibrierung prognostizieren: exakte Zählausbreitung mit 0,49 statt 1,85 Prozentpunkten Fehler auf 2.178 Einstellungen. Die Bruchstelle ist Nichtstationarität (Standard-DDIM: 16,38 Prozentpunkte).",
+    "Die auf MedQA entdeckten Ankersets senken unter Aktivierungs-Mittelwertablation die MedQA-Genauigkeit der sechs medizinischen Checkpoints um rund 6 bis 28 Prozentpunkte. Negative PubMedQA-EMS und tiefere Anker sind checkpointbezogene Beobachtungen, kein Beweis gegen SFT."
+  ],
+  "hero": {
+    "alt": "Drei schematische Prüfbilder: eine Suchleiste über einer Tokenzeile mit wenigen markierten Positionen, eine Prognosekurve mit Intervallband und ein Netzschema mit wenigen hervorgehobenen Spalten. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über das Prüfen und Prognostizieren von Modellen. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 24. November 2026, 16:02 Uhr MEZ. Drei am 23. November eingereichte Preprints drehen sich um das Prüfen von Modellen: ein Black-Box-Audit für Kontamination, eine Kollaps-Vorhersage aus einer einzigen Generation und eine Neuronensonde für medizinisches Post-Training. Alle Zahlen sind Ergebnisse der jeweiligen Autoren, keine unabhängige Reproduktion. Konfiguration, Stichprobe und Grenzen stehen direkt bei den Werten."
+    },
+    {
+      "t": "h2",
+      "x": "Black-Box-Audit: Wenige verräterische Token tragen das Kontaminationssignal"
+    },
+    {
+      "t": "callout",
+      "title": "Sparsames Signal, kleines Budget",
+      "x": "Rund 10 Prozent der Tokenpositionen ändern unter Kontext ihre Top-1-Vorhersage. Bei 100 Dokumenten je Datensatz, 3 Kontextdokumenten und 16 Tokenpositionen erreicht die LCS-Auswahl im Mittel über 11 offene Basismodelle eine datensatzbezogene AUC von 0,952. Die Black-Box-Vergleiche liegen bei 0,562 bis 0,732. Eine separate Budgetablation untersucht die Abfrageersparnis; die Frontier-Audits liefern keinen gesicherten Kontaminationsnachweis."
+    },
+    {
+      "t": "p",
+      "x": "Ob ein Sprachmodell einen Datensatz im Training gesehen hat, lässt sich bislang vor allem mit Grau-Kasten-Zugriff prüfen, also mit Logprobs, die kommerzielle APIs kaum herausgeben. Dominik B. Lau, Filip Pawlicki, Jan Dubiński und Sebastian Cygert (NASK National Research Institute und Technische Universität Danzig; gleiche Beiträge, Reihenfolge per Münzwurf) schlagen ein rein generationbasiertes Rahmenwerk vor: Es misst den Informationsgewinn, den ein Kontextdokument an gezielt ausgewählten Tokenpositionen stiftet. Die Positionen wählt eine String-Matching-Heuristik (längste gemeinsame Teilsequenz). Getestet wird auf 11 offenen Basismodellen aus den Pile- und Dolma-Familien mit bekannten Trainingsdaten; die ungesehenen Kontrollkorpora liegen strikt nach dem jeweiligen Trainingsstichtag."
+    },
+    {
+      "t": "p",
+      "x": "Die zentralen Messwerte (Hauptaudit: 100 Dokumente pro Datensatz, 3 Kontextdokumente, 16 Tokenpositionen): Mit 3 Kontextdokumenten und einem Budget von 16 Token erreicht das Verfahren auf 7 Ablationsmodellen eine AUC von 0,74; 5 Dokumente und 64 bis 100 Token bringen nur 0,75. Eine Orakel-Auswahl, die nur informative Positionen abfragt, liegt theoretisch bei einer 9,5-fachen Budgetersparnis gegenüber uniformer Auswahl (Anteil relevanter Positionen etwa 0,1); beobachtet werden mindestens 8,8-fach bei AUC 0,75. Gegenüber Grau-Kasten-Verfahren mit Logprob-Zugriff schlägt die Black-Box-Variante Loss (0,585), Min-K Prozent (0,599) und zlib (0,759) und liegt auf Augenhöhe mit CoDeC (0,961), bei höherer Trefferrate unter 5 Prozent Falsch-Positiv-Rate (0,893 gegenüber 0,698). Auf Dokumentebene trennt es pile_stackexchange von gsm8k_2021 mit AUC 0,930, math500_2021 mit 0,761 und pile_github von humaneval_2021 mit 0,896. Nach Post-Training bleibt das Signal unverändert oder steigt, Ausnahme OLMo 7B mit einem Rückgang von 0,910 auf 0,859 nach SFT."
+    },
+    {
+      "t": "p",
+      "x": "Der Praxistest an fünf geschlossenen Frontier-Modellen ist ausdrücklich explorativ und erhebt keinen Kontaminationsanspruch: Kimi-k2.6 (nur mit Temperatur 0,6 abfragbar, Anbieterbeschränkung), DeepSeek-V3, DeepSeek-V4-Pro, Claude Sonnet 4.5 und Claude Opus 4.5, mit höchstens 3.200 API-Aufrufen pro Prüfung und 2026er-Datensätzen als Negativkontrollen. Ergebnis: Für beide Claude-Modelle ist das Audit nicht verlässlich (93 Prozent der Antworten ohne Kontext kommen in Assistentenstimme, das Zieltoken erscheint an nur rund 1 Prozent der Positionen); Kimi-k2.6 und beide DeepSeek-Modelle trennen gesehene und ungesehene Daten nicht klar; MMLU liegt auf allen fünf Modellen auf oder unter den Kontrollwerten. Die Autoren nennen vier Grenzen: Das Verfahren braucht Assistant-Prefill, das manche Anbieter bereits zurückziehen; gezielte Obfuskation des Anbieters kann das Maß stören; die zeitlich getrennten Negativkontrollen können Verteilungsverschiebungen enthalten, die nichts mit Mitgliedschaft zu tun haben; und bei fähigeren Modellen oder wenig überraschenden Texten komprimiert sich das Signal."
+    },
+    {
+      "t": "h2",
+      "x": "Kollaps vorhersagen aus einer einzigen Generation"
+    },
+    {
+      "t": "callout",
+      "title": "Vierfach genauer als die Gauß-Näherung",
+      "x": "Rekursives generatives Training kann eine seltene Region der Datenmenge zahlenmäßig erhalten und trotzdem ihren charakteristischen Kern aushöhlen. Ein entkoppeltes Prognoseverfahren senkt auf 2.178 Zähleinstellungen den mittleren absoluten Fehler von 1,85 auf 0,49 Prozentpunkte; 2.061 der 2.178 Prognosen liegen im empirischen 95-Prozent-Intervall."
+    },
+    {
+      "t": "p",
+      "x": "Jingyao Zhang (University of Sydney), Mingyu Du (University of New South Wales) und Luhan (University of Sydney) ersetzen die aufwendige Simulation langer Trainingsketten durch ein entkoppeltes Verfahren: Ein exaktes multinomiales Zählgesetz treibt die Häufigkeiten, und Antwortbanken aus nur einer Generation Kalibrierung liefern die Übergänge. Zum Beweis gehört eine geometrische Aussage: Bei additiven Gauß-Störungen kehren zwei Störpolitiken (gleiche Varianz auf allen Reihen gegenüber spärlich) ihre Reihenfolge beim Überschreiten der Risikogrenze an genau einer Distanz zur Trennhyperebene um (d gleich 1,46); die Vorhersage wird im Experiment über sechs Runden bestätigt."
+    },
+    {
+      "t": "p",
+      "x": "Die Validierung läuft auf drei Ebenen. Ein kontrolliertes Zählmodell mit 2.601 Einstellungen und 8,52 mal 10 hoch 7 simulierten Trajektorien trifft das empirische Sechs-Runden-Risiko mit 0,073 Prozentpunkten Fehler; alle 123 empirisch eingegrenzten 20-Prozent-Übertritte enthalten den exakten Übergang. Auf zehn zweidimensionalen Lernern erreicht die Kalibrierung auf neun stationären 2,60 bis 5,69 Prozentpunkte Sechs-Runden-MAE (65 bis 81 Prozent unter der ungestörten Basislinie); in den 42 primären Validierungseinstellungen sinkt der Fehler von 13,03 auf 2,60 Prozentpunkte, die gleichzeitige 95-Prozent-Abdeckung steigt von 14 auf 41 von 42 Einstellungen, und alle 34 entschiedenen Einstellungen landen auf der richtigen Seite der 20-Prozent-Grenze (zuvor 24 von 34), gepaarte Brier-Differenz minus 0,0282 (95-Prozent-Intervall minus 0,0389 bis minus 0,0184). Der zehnte Lerner, Standard-DDIM, verletzt die Stationaritätsannahme (47,4 Prozent Ausreißer in Runde 6), der kalibrierte Risikoprädiktor erreicht dort nur 16,38 Prozentpunkte MAE; ein abgeschnittener Sampler stellt die Genauigkeit mit 4,91 wieder her. Auf Fashion-MNIST-Latentketten verfolgt die Kalibrierung eine 20-Prozent-Grenzverschiebung mit 3,14 gegenüber 10,78 Prozentpunkten der Proportionskopie. Die separate Mehr-Runden-Stabilitätssonde wurde bei DDPM, DDIM und den beiden Flow-Matching-Verfahren nachträglich zur Diagnose und Schwellenfestlegung eingesetzt. Nur bei den fünf übrigen Lernern wurde sie vor der Validierung geprüft. Der DDIM-Fehler ist deshalb kein unabhängiger prospektiver Nachweis eines fertigen Warnsystems."
+    },
+    {
+      "t": "p",
+      "x": "Die Autoren benennen vier Transportgrenzen, ohne die Befunde im eigenen Design anzutasten: Die Kalibrierbanken sind störungsspezifisch (eine ungestörte Bank auf Rauschen 0,75 übertragen unterschätzt das Kernrisiko um 26,6 Prozentpunkte); die Bildstudie deckt ein Klassenpaar, eine Prävalenz und zwei Rauschstufen ab; bei flachen Risikohängen bleiben die Übergangsintervalle breit; und die prospektive Stationaritätsprüfung verfehlte in zwei von vier stabilen Fällen ein bis zwei Randeinstellungen. Insgesamt bleibt es eine Kleinskalen-Studie (2D-Lerner, Fashion-MNIST-Latents), Code soll erst mit der Publikation erscheinen."
+    },
+    {
+      "t": "h2",
+      "x": "Neuronensonde: Medizinisches Post-Training lagert sich je nach Rezept unterschiedlich ein"
+    },
+    {
+      "t": "callout",
+      "title": "Ankerspalten tragen 6 bis 28 Punkte",
+      "x": "Zehn öffentliche Checkpoints, vier Basismodelle und sechs medizinisch nachtrainierte Varianten aus Gemma, Llama, Qwen und AFM: Die auf MedQA entdeckten Ankersets senken unter Mittelwertablation ihrer Aktivierungen die MedQA-Genauigkeit der sechs nachtrainierten Modelle um rund 6 bis 28 Prozentpunkte. Das ist ein anderer Eingriff als der Gewichts-Crush, der die Anker über Margenänderungen auswählt."
+    },
+    {
+      "t": "p",
+      "x": "Aniruddh Shreyas, Aarnav Kembhavi und Minal Moharir (RV College of Engineering, Bengaluru) übertragen das Gewichtseingriffs-Paradigma von ROME und MEMIT auf einzelne Spalten der MLP-Down-Projektion. Ihr Maß, Empirical Margin Sensitivity, ersetzt die Koordinatenbeträge einer Spalte durch deren Mittelwert, erhält aber Vorzeichenmuster und L1-Skala, und protokolliert die Änderung der Logit-Marge zwischen richtiger Antwort und härtestem falschen Konkurrenten. So lässt sich die Feinstruktur einer Spalte messen, während die Spalte selbst im Netz bleibt. Anker werden auf MedQA entdeckt und auf MedMCQA und PubMedQA nachgemessen, jeweils 500 frische Fragen; eine dreistufige Pipeline zieht die Kandidaten (bei AFM-4.5B: 663.552 Spalten), mit einer konservativen theoretischen Obergrenze des erwarteten Falschentdeckungsanteils von 18 bis 27 Prozent je Modell, nicht einer gemessenen Fehlerquote."
+    },
+    {
+      "t": "p",
+      "x": "Die Befunde im Einzelnen: Basismodelle haben kleine Ankersets (9 bis 31 Spalten), nachtrainierte Varianten größere (38 bis 66). AlphaMed-8B zeigt die größte Abhängigkeit (minus 28,4 Punkte MedQA unter Aktivierungs-Mittelwertablation auf dem vollständigen, ungefilterten Fragensatz), doch seine Anker haben positive Margen auf MedMCQA und PubMedQA, und die Ablation ändert die Genauigkeit dort um 0,0 beziehungsweise plus 0,8 Punkte: Abhängigkeit vom Entdeckungsbenchmark und Transfer fallen auseinander. Nur die beiden reinen SFT-Checkpoints (MedGemma, BioMed-L3) zeigen negative PubMedQA-EMS (Cohens d etwa minus 1,0; Rohwerte minus 0,018 und minus 0,0263), und diese Anker liegen signifikant tiefer als die übrigen Anker desselben Modells (MedGemma plus 2,9 Schichten, p gleich 0,002; BioMed-L3 plus 2,0, p gleich 0,011); die vier RL- oder Mischrezept-Checkpoints zeigen positive Werte und keinen Tiefenshift. Die Tiefenassoziation wiederholt sich in drei zurückgehaltenen Checkpoints. Bei dieser Aktivierungsablation können Werte außerhalb ihrer natürlichen Verteilung entstehen; ein Patching-Vergleich mit zufälligen gleich großen Ankersets fehlt. Die EMS-Margenanalyse dagegen nutzt nur Fragen, die das unveränderte Modell korrekt beantwortet."
+    },
+    {
+      "t": "p",
+      "x": "Die Autoren selbst rahmen eng: Das negative Vorzeichen ist ein Margeneffekt auf korrekt beantwortete Fragen, kein Genauigkeitsverlust (Ablation des ganzen Ankersets ändert die PubMedQA-Genauigkeit um minus 0,4 Punkte bei MedGemma und minus 3,3 bei BioMed-L3; die Teilmenge der negativen Anker allein ist nicht getestet). Das Design ist beobachtend: Pro Rezeptkategorie gibt es zwei Checkpoints, die sich neben dem Trainingsziel auch in Daten, Datenumfang und Pipeline unterscheiden; jede Aussage gilt je Checkpoint, nicht als Schätzung des Effekts eines Trainingsziels. Ankersets der Basismodelle sind schwach identifiziert (Betrag von d höchstens 0,26), und PubMedQA läuft als standardisiertes Vier-Optionen-Format mit zwei templatisierten Antwortoptionen; das Vorzeichen bleibt stabil, wenn nur die nativen Optionen zählen."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Braucht ein Kontaminations-Audit Zugriff auf die Innereien des Modells?",
+      "a": "Im gezeigten Rahmen nicht: Das Verfahren arbeitet rein generationbasiert mit Assistant-Prefill und Temperatur 0 und erreicht auf 11 offenen Basismodellen AUC 0,952. An fünf kommerziellen APIs blieb es explorativ: Die Claude-Audits sind unzuverlässig, Kimi-k2.6 und beide DeepSeek-Modelle trennen nicht klar, und das nötige Assistant-Prefill ziehen manche Anbieter zurück."
+    },
+    {
+      "q": "Heißt Kollaps-Vorhersage, dass sich Modellkollaps damit verhindern lässt?",
+      "a": "Nein. Die Arbeit prognostiziert Risiken und Risikogrenzen aus einer Generation Kalibrierung, sie verhindert nichts. Die Prognosen gelten innerhalb des Designs (2D-Lerner, Fashion-MNIST-Latentketten), brechen bei Nichtstationarität ein und sind an die jeweilige Störung gebunden; eine neue Störungsart erfordert eine neue Kalibrierung."
+    },
+    {
+      "q": "Beweist die Neuronensonde, dass SFT schlechter ist als RL?",
+      "a": "Nein. Pro Rezeptkategorie gibt es nur zwei Checkpoints, die sich auch in Daten und Pipeline unterscheiden. Gezeigt ist eine Beobachtung: Negative PubMedQA-Margen und tiefer sitzende Anker treten nur bei den beiden reinen SFT-Modellen auf, wiederholt in drei zurückgehaltenen Checkpoints. Die negativen Werte sind Margeneffekte auf korrekt beantwortete Fragen, keine Genauigkeitsverluste. Der Gewichts-Crush misst Margen auf ursprünglich korrekt beantworteten Fragen; die davon getrennte Aktivierungs-Mittelwertablation misst Genauigkeit auf dem vollständigen Fragensatz."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ]
+}
