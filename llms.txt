@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [KL-Fehler in PyTorch, blinde Konfidenz und GPU-Batches](https://kifachblatt.de/news-ueberblick-mittag-2026-11-24): Drei Preprints prüfen, ob Werkzeugzahlen tragen: die KL-Divergenz in PyTorch, verbalisierte Konfidenz und reproduzierbare Bildgenerierung auf GPUs.
 - [Ling-3.2-air: 124B-MoE mit 5,5B aktiven Parametern für Workflows](https://kifachblatt.de/ling-3-2-air-analyse): InclusionAI meldet Workflow-Fortschritte mit einem 124B-MoE und 5,5B aktiven Parametern. Der Rechtsbenchmark zeigt zugleich klare Grenzen.
 - [VideoGym-LTX-2.3: Regelkombination scheitert in diesen Tests](https://kifachblatt.de/videogym-ltx-2-3-analyse): Nachtraining auf 245.884 Denk-Videos: 56,34 Prozent In-Domain, unter 1 Prozent bei Regelkomposition. Die Karte zeigt Grenzen dieses Versuchs.
 - [Halluzinationslernen, INT4-Brüche und Byte-Token-Exposition](https://kifachblatt.de/news-ueberblick-morgen-2026-11-24): Drei Preprints prüfen Belohnungsfehler im RL-Nachtraining, ungleiche Quantisierungsverluste und Byte-Token-Training. Aufbau und Messgrenzen entscheiden.
