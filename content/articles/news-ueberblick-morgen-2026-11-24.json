@@ -1,0 +1,147 @@
+{
+  "slug": "news-ueberblick-morgen-2026-11-24",
+  "lang": "de",
+  "section": "ueberblick",
+  "type": "news",
+  "published": "2026-11-24T06:54:00+01:00",
+  "modified": "2026-11-24T06:54:00+01:00",
+  "author": "philipp-paulik",
+  "sources": [
+    {
+      "title": "LLMs Memorize Their Own Hallucinations During Post-Training",
+      "publisher": "arXiv; Anirudh Atmakuru, Tanya Goyal (Cornell University)",
+      "url": "https://arxiv.org/abs/2611.26863",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Jagged Robustness: Uneven Safety Transfer and Emerging Vulnerabilities under LLM Quantization",
+      "publisher": "arXiv; Ramneek Agnihotri, Hans Vath (Ruhr University Bochum), Yingte Xu (Max Planck Institute for Security and Privacy)",
+      "url": "https://arxiv.org/abs/2611.27424",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "How Many Bytes Has a BPE Model Seen? Estimating Byte-Token Exposure in Pretraining from Corpus Statistics and Embedding Norms",
+      "publisher": "arXiv; Liwei Zhang, ZhiMing Tong, Mochen Guan, Linzhe Li (Landi Lab)",
+      "url": "https://arxiv.org/abs/2611.27506",
+      "accessed": "2026-11-24"
+    }
+  ],
+  "tags": [
+    "Forschung",
+    "RL-Nachtraining",
+    "Quantisierung",
+    "Tokenizer"
+  ],
+  "title": "Halluzinationslernen, INT4-Brüche und Byte-Token-Exposition",
+  "dek": "Drei Preprints prüfen Belohnungsfehler im RL-Nachtraining, ungleiche Quantisierungsverluste und Byte-Token-Training. Aufbau und Messgrenzen entscheiden.",
+  "key_takeaways": [
+    "Tabelle 1, sechs Modelle, zwei Wissensdatensätze: Merkscore 5,66 (QuALITY) und 4,01 (TriviaQA) für im Training belohnte Eigen-Halluzinationen. Die Held-out-Kontrolle ohne Belohnung liegt im Mittel bei 0,17. Gemessen als Multiple-Choice-Sonde, nicht als Freitextverhalten.",
+    "Freie Generierung, Qwen3-4B, N=300, 5-shot, Judge DeepSeek-V4-Flash: Deception-Rate unter INT4 von 42,67 auf 53,67 Prozent. Im Multiple-Choice-Teil (N=300, zero-shot) finden die Autoren dagegen keinen ausreichenden Beleg für ungleiche Robustheit.",
+    "Qwen3.8-Tokenizer, angenommene Korpusmischungen: hohe UTF-8-Fallback-Bytes sind 0,15 bis 0,27 Prozent der Token, mit zehn Prozent Langschwanz-Sprachen 0,66 Prozent. In vier Modellen weisen die 13 in UTF-8 unmöglichen Byte-Werte sehr niedrige Einbettungsnormen auf. Das ist ein indirekter Hinweis, kein beobachtetes Trainingsprotokoll."
+  ],
+  "hero": {
+    "alt": "Drei getrennte Forschungsfelder: Halluzinationslernen, Quantisierung und Byte-Tokens. Schematischer Themenhero ohne Messskala.",
+    "caption": "Drei Studien mit unterschiedlichen Tests. Kennzahlen, Modellbezug und Grenzen stehen in den nativen Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 24. November 2026, 06:54 Uhr MEZ. Drei Preprints vom 19. und 20. November untersuchen Belohnungsfehler im RL-Nachtraining, ungleiche Quantisierungsverluste und die Trainingshistorie von Byte-Tokens. Alle Zahlen sind Ergebnisse der jeweiligen Autoren, keine unabhängige Reproduktion."
+    },
+    {
+      "t": "h2",
+      "x": "RL-Nachtraining prägt Modelle ihre eigenen Halluzinationen ein"
+    },
+    {
+      "t": "callout",
+      "title": "Belohnt versus unbelohnt",
+      "x": "Tabelle 1, sechs Modelle, zwei Wissensdatensätze: Merkscore 5,66 (QuALITY) und 4,01 (TriviaQA) für im Training belohnte Eigen-Halluzinationen. Die Held-out-Kontrolle ohne Belohnung liegt im Mittel bei 0,17. Gemessen als Multiple-Choice-Sonde, nicht als Freitextverhalten."
+    },
+    {
+      "t": "p",
+      "x": "Anirudh Atmakuru und Tanya Goyal (Cornell University) prüfen, was passiert, wenn RL-Rezepte aus Mathematik und Code auf Wissensfragen treffen. Bei GRPO bestimmt allein die Endantwort die Belohnung, die Begründungskette bleibt unbewertet. Trainiert werden Qwen3-4B, Qwen3-8B, Qwen3-14B, Qwen3-30B-A3B, Olmo-3-7B-Think und OLMoE-1B-7B, jeweils eine Epoche mit 3.609 Trainings- und 1.000 Testfragen. QuALITY steht für neue Domänen (Forttraining, dann SFT, dann RL), TriviaQA für Weltwissen (RL auf fertig nachtrainierte Modelle)."
+    },
+    {
+      "t": "p",
+      "x": "Der Merkscore misst, wie stark das Wiedererkennen eines halluzinierten Fakts nach dem Trainingsschritt steigt, der ihn belohnt hat: Mittel der Treffer nach dem Halluzinationspunkt minus dem Stand unmittelbar davor, an acht gespeicherten Checkpoints zuzüglich des Initialmodells. Die Größen sind Änderungen in Prozentpunkten, keine Freitext-Halluzinationsraten. GPT-4.1-mini extrahiert die Fakten aus den Ketten und baut daraus Vier-Optionen-Fragen. Die Autoren betonen selbst: Eine MCQ-Auswahl belegt kein frei erzeugtes Halluzinieren, die Sonde misst nur die erhöhte Abrufbereitschaft."
+    },
+    {
+      "t": "p",
+      "x": "Weitere Befunde: 25 bis 55 Prozent der Reasoning-Sätze enthalten laut Studie einen halluzinierten Fakt (QuALITY 43,83 bis 54,88 Prozent, TriviaQA 26,94 bis 46,18 Prozent, je Modell). Halluzinationen, die das Modell in derselben Kette zurücknimmt, werden fast genauso stark gelernt wie stehen gelassene, Unterschied höchstens 0,18 Punkte, nur auf TriviaQA untersucht. Bei schwereren Trainingsfragen beobachten die Autoren stärkeres Einprägen. Als mögliche Erklärung nennen sie größere positive GRPO-Vorteile, wenn nur wenige Rollouts korrekt sind; diese Erklärung ist nicht separat kausal bewiesen."
+    },
+    {
+      "t": "p",
+      "x": "Zwei Ablationen runden das Bild ab. Wird eine Antwortoption durch \"None of the above\" ersetzt, sinkt die Wahl dieser Enthaltung nach dem Belohnungspunkt im Mittel um 7,23 Punkte (Tabelle 2, Raten in Prozent). Eine KL-Strafe von 0,001 senkt den Merkscore auf QuALITY im Mittel nur um 0,52 Punkte, und in einer zweiten Epoche bleiben früh belohnte Halluzinationen auf ihrem Niveau. Zwei Autoren, ein Preprint: Die Größenordnung ist ein Befund, keine etablierte Konstante."
+    },
+    {
+      "t": "h2",
+      "x": "Quantisierung schwächt Sicherungen ungleich"
+    },
+    {
+      "t": "callout",
+      "title": "Freitext zeigt Brüche, Multiple-Choice nicht",
+      "x": "Freie Generierung, Qwen3-4B, N=300, 5-shot, Judge DeepSeek-V4-Flash: Deception-Rate unter INT4 von 42,67 auf 53,67 Prozent. Im Multiple-Choice-Teil (N=300, zero-shot) finden die Autoren dagegen keinen ausreichenden Beleg für ungleiche Robustheit."
+    },
+    {
+      "t": "p",
+      "x": "Forschende der Ruhr-Universität Bochum und des Max-Planck-Instituts für Sicherheit und Datenschutz vergleichen Qwen3-4B in BF16 mit den Quantisierungen INT8, INT4 und AWQ (Gewichtsquantisierung nach dem Training). Sie nennen das Muster ungleicher Verluste Jagged Robustness: Ob eine Fähigkeit leidet, hängt von Aufgabentyp, Auswertungsmethode und Generierungskohärenz ab."
+    },
+    {
+      "t": "p",
+      "x": "Im Log-Likelihood-Teil bleiben die Unterschiede klein: MMLU fällt unter INT4 um 4,39 Punkte, ARC um 5,00, BBQ um 3,00, TruthfulQA und GPQA bleiben nahe am Ausgangswert; der gemittelte ETHICS-Wert fällt allerdings um 5,35 Punkte. Über Multiple-Choice allein lässt sich das Schärfemuster also nicht zeigen, die Autoren sagen das ausdrücklich."
+    },
+    {
+      "t": "p",
+      "x": "Anders im Freitext: Neben der Deception-Rate steigt die Erfüllungsrate unerwünschter Anfragen auf SORRYBench von 14,67 auf 19,00 Prozent, die Antwortqualität auf realen Nutzerprompts (WildChat-nontoxic) fällt von 66,00 auf 57,67 Prozent, während das Befolgen klarer Anweisungen (InFoBench) von 83,33 auf 82,33 Prozent nur gering abnimmt. Alle vier Raten sind urteilsabhängige Benchmarkmaße, keine universellen Sicherheitswahrscheinlichkeiten. Das kleinere Qwen3-1.7B bricht unter INT4 im Freitext regelrecht zusammen: HumanEval von 41,46 auf 9,15 Prozent, und der Anteil inkohärenter Antworten auf SORRYBench steigt von 3,11 auf 42 Prozent (3-Gramm-Wiederholungsregel, N=450), während die Log-Likelihood-Werte vergleichsweise stabil bleiben."
+    },
+    {
+      "t": "p",
+      "x": "Aktiv getestet wird mit einem universellen 20-Token-Suffix, optimiert auf 24 SORRYBench-Prompts, geprüft auf 426 zurückgehaltenen. Hier bewertet ein auf SORRYBench abgestimmter Mistral-7B-Instruct-Judge, nicht DeepSeek-V4-Flash aus dem vorigen Versuch. Unter diesem LM-Judge wächst die Compliance-Lücke zwischen INT4 und BF16 von 8,22 auf 13,62 Punkte, vor allem weil BF16 häufiger ablehnt, INT4 ändert sich kaum. Ein Regex-Judge, der nur Ablehnungsphrasen erkennt, zeigt eine 35,45-Punkte-Lücke; die Autoren ordnen das selbst als überwiegend oberflächliche Compliance ein. Grenzen laut Paper: nur die Qwen3-Familie, keine wiederholten Läufe mit verschiedenen Seeds und keine Konfidenzintervalle. N=300 gilt für die 4B-Benchmarkreihen, nicht pauschal für den Suffix-Test oder die 1,7B-Reihen."
+    },
+    {
+      "t": "h2",
+      "x": "Byte-Tokens: Exposition schätzen, nicht Trainingsprotokolle lesen"
+    },
+    {
+      "t": "callout",
+      "title": "Zwei Schätzwege, ein Befund",
+      "x": "Qwen3.8-Tokenizer, angenommene Korpusmischungen: hohe UTF-8-Fallback-Bytes sind 0,15 bis 0,27 Prozent der Token, mit zehn Prozent Langschwanz-Sprachen 0,66 Prozent. In vier Modellen weisen die 13 in UTF-8 unmöglichen Byte-Werte sehr niedrige Einbettungsnormen auf. Das ist ein indirekter Hinweis, kein beobachtetes Trainingsprotokoll."
+    },
+    {
+      "t": "p",
+      "x": "Vier Autoren des Landi Lab fragen, wie gut die 256 Ein-Byte-Tokens eines Byte-Level-BPE-Modells vortrainiert sind, ein Erbe der GPT-2-Kodierung, das jede Zeichenkette codierbar macht. Route eins tokenisiert 540 MB öffentlicher Texte aus 40 Domänen in 33 Sprachen (Wikipedia, FineWeb und FineWeb-2, WildChat, OASST2, GitHub-Code, FineMath) mit den Tokenizern von Qwen3.8, MiniMax-M3.1-Flash und MiniCPM5-2B."
+    },
+    {
+      "t": "p",
+      "x": "Beim Qwen3.8-Tokenizer stellen Ein-Byte-Tokens je Domain 13 bis 36 Prozent aller Token, über sechs angenommene Mischungen 18,5 bis 21,9 Prozent. Das ist fast durchgängig ASCII: Qwen zerlegt jede Zahl in Einzelziffern, Satzzeichen sind Einzelbytes. Beim Qwen3.8-Tokenizer liegt das echte Fallback, die hohen Bytes 0x80 bis 0xFF, bei 0,15 bis 0,27 Prozent, bei zehn Prozent Langschwanz-Sprachen in der Mischung bei 0,66 Prozent. Die Fallback-Rate hängt an der Vokabelabdeckung der Schrift: Russisch 0,003 Prozent, Chinesisch 0,44, Koreanisch 1,3, Amharisch 45 Prozent, eine Spannweite von vier Größenordnungen. Diese Werte gehören zum Qwen3.8-Tokenizer. MiniMax liegt unter den Mainstream-Mischungen bei 0,31 bis 0,84 Prozent hohen Bytes, MiniCPM5 bei 0,64 bis 1,74 Prozent; im Langschwanz-Szenario sind es 3,38 beziehungsweise 5,26 Prozent."
+    },
+    {
+      "t": "p",
+      "x": "Die 36 Billionen Token aus dem älteren Qwen3-Report dienen nur als Rechenskala, nicht als offengelegte Trainingsmenge von Qwen3.8. Im Basisszenario mit Qwen3.8-Tokenizer wird der Median der legalen hohen Bytes auf 19 Millionen Vorkommen pro Billion Trainingstoken geschätzt, auf der hypothetischen 36-Billionen-Skala etwa 680 Millionen. Das sind Vorkommen, keine gemessene Zahl von Gradientenupdates. Die Gewichtsroute untersucht Qwen3.8-27B, Qwen3.5-9B, MiniCPM5-2B und MiniMax-M3.1-Flash. Die 13 ungültigen Byte-Werte 0xC0, 0xC1 und 0xF5 bis 0xFF haben in allen vier Modellen sehr niedrige Einbettungsnormen. Die Autoren deuten dies als fehlende Trainingssignale. Eine exakte Gleichheit zur Referenzinitialisierung gilt aber nicht überall: Bei Qwen3.8 liegt ein Wert knapp über der Baseline-Grenze, bei MiniCPM5 liegen die Byte-Zeilen über den auf null gesetzten Reservetokens. Gewichtsschrumpfung ist dort eine mögliche Erklärung. Die Norm-Rückrechnung weicht bei Qwen3.8-27B um 0,6 dex, etwa Faktor vier, und bei MiniMax um 0,05 dex von der Korpusschätzung ab. Bei Qwen3.5-9B und MiniCPM5 unterschätzt dieselbe Einbettungsnorm-Inversion dagegen um 1,7 bis 1,8 dex, weil die Kurve umkehrt. Eine gute Übereinstimmung gilt also nicht pauschal für alle vier Modelle."
+    },
+    {
+      "t": "p",
+      "x": "Grenzen: Die Mischung ist angenommen, nicht offengelegt (Sensitivität unter Faktor 2 für Mainstream-Mischungen, Faktor 3 mit Langschwanz); die Stichproben umfassen 10 bis 30 MB pro Domain, Bytes mit einer Häufigkeit unter etwa einem Vorkommen in zehn Millionen Token löst die Korpus-Route nicht auf; und die Gewichte bilden Vor- und Nachtraining gemeinsam ab. Skripte und Statistiken sind laut Paper öffentlich, private Daten kamen nicht zum Einsatz."
+    }
+  ],
+  "faq": [
+    {
+      "q": "Erzeugt ein so nachtrainiertes Modell im Freitext ständig falsche Fakten?",
+      "a": "Das misst die Cornell-Studie nicht. Sie zeigt über eine Multiple-Choice-Sonde und Log-Wahrscheinlichkeiten, dass belohnte Eigen-Halluzinationen stärker abrufbar werden (Merkscore im Mittel 4,83 Punkte gegenüber 0,17 in der Kontrolle). Die Autoren schreiben ausdrücklich, dass die MCQ-Auswahl keine Aussage über freie Generierung zulässt."
+    },
+    {
+      "q": "Beweisen die INT4-Tests ein allgemeines Sicherheitsproblem?",
+      "a": "Nein. Die Studie untersucht Qwen3-4B und Qwen3-1.7B, ohne verschiedene Seeds oder Konfidenzintervalle. N=300 gilt für die 4B-Benchmarkreihen; beim Suffix sind es 24 Optimierungs- und 426 Testprompts, bei SORRYBench mit 1,7B 450 Antworten. DeepSeek-V4-Flash bewertet die 4B-Freitextbenchmarks, ein anderer Mistral-Judge den Suffix. Ein Regex-Judge erfasst nur Ablehnungsphrasen. Im Multiple-Choice-Teil finden die Autoren keinen ausreichenden Beleg für ungleiche Robustheit."
+    },
+    {
+      "q": "Gelten 0,15 bis 0,27 Prozent Fallback und 36 Billionen Token für alle Modelle?",
+      "a": "Nein. Die Fallback-Anteile gelten für den Qwen3.8-Tokenizer unter angenommenen Mainstream-Mischungen. Andere Tokenizer und mehr Langschwanz-Sprachen ergeben höhere Werte. 36 Billionen stammen aus dem älteren Qwen3-Report und dienen nur als Rechenskala, weil Qwen3.8 keine Trainingsgröße offenlegt. Einbettungsnormen sind ein indirektes, modellspezifisches Expositionssignal, kein Trainingsprotokoll."
+    }
+  ],
+  "related": [
+    "llm-quantisierung-verfahren-grundlagen",
+    "wie-ein-sprachmodell-lernt"
+  ]
+}
