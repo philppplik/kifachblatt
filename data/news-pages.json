@@ -1,5 +1,65 @@
 [
   {
+    "title": "Google führt eine neue Suchseite mit KI-Seitenleiste ohne Suchbutton ein",
+    "url": "https://www.heise.de/news/Google-fuehrt-eine-neue-Suchseite-mit-KI-Seitenleiste-ohne-Suchbutton-ein-11536330.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795529220.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Google baut seine Startseite um: Aus dem Such- wird ein KI-Button, zudem zieht eine Seitenleiste für die letzten KI-Suchanfragen und Gemini Notebook ein.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-24T15:15:19.144503+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Linnemann: KI als „Gamechanger“, Bundeswehr will krisenfeste Gesundheitsdaten",
+    "url": "https://www.heise.de/news/Linnemann-KI-als-Gamechanger-Bundeswehr-will-krisenfeste-Gesundheitsdaten-11536290.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795526640.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Minister Linnemann will das Gesundheitssystem mit KI und präventiver Datenmedizin bezahlbar halten. Militär und Industrie mahnen zur besseren Notfallversorgung.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-24T15:15:19.144613+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Beschleunigung: Wie weit Apple bei Siri AI und Co. gekommen ist",
+    "url": "https://www.heise.de/news/Siri-AI-und-KI-Greifen-Apples-interne-Umbaumassnahmen-11535122.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795524420.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Unter John Ternus will Apple schneller werden. Allerdings scheinen die großen Veränderungen im KI-Bereich und anderswo noch nicht zu greifen, so ein Bericht.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-24T15:15:19.144653+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Drei Fragen und Antworten: Was der KI-Agent wusste, bevor er falsch abbog",
+    "url": "https://www.heise.de/news/Drei-Fragen-und-Antworten-Der-KI-Agent-irrt-Aber-war-es-ueberhaupt-das-Modell-11536024.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795520460.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Ein geänderter Prompt reicht oft nicht. Wie man Fehler von KI-Agenten an der richtigen Stelle behebt und prüft, ob dadurch neue Probleme entstehen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-24T15:15:19.144782+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Shirudo: OpenAI und Cisco stellen KI-Schutzschild für Linux-Server vor",
+    "url": "https://www.heise.de/news/Shirudo-OpenAI-und-Cisco-stellen-KI-Schutzschild-fuer-Linux-Server-vor-11535772.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795518720.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Shirudo ermöglicht KI-Agenten, temporäre Schutzprogramme zu entwickeln, die Linux-Systeme bis zur Installation von Sicherheitspatches schützen sollen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-24T15:15:19.144839+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Nothing stellt am 8. Dezember KI-Ohrhörer Ear (note) mit Aufnahmefunktion vor",
     "url": "https://www.heise.de/news/Nothing-stellt-am-8-Dezember-KI-Ohrhoerer-Ear-note-mit-Aufnahmefunktion-vor-11535554.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795508880.0,
