@@ -33,6 +33,8 @@
 ## Beiträge
 
 <!--GEN-->
+- [Ling-3.2-air: 124B-MoE mit 5,5B aktiven Parametern für Workflows](https://kifachblatt.de/ling-3-2-air-analyse): InclusionAI meldet Workflow-Fortschritte mit einem 124B-MoE und 5,5B aktiven Parametern. Der Rechtsbenchmark zeigt zugleich klare Grenzen.
+- [VideoGym-LTX-2.3: Regelkombination scheitert in diesen Tests](https://kifachblatt.de/videogym-ltx-2-3-analyse): Nachtraining auf 245.884 Denk-Videos: 56,34 Prozent In-Domain, unter 1 Prozent bei Regelkomposition. Die Karte zeigt Grenzen dieses Versuchs.
 - [Halluzinationslernen, INT4-Brüche und Byte-Token-Exposition](https://kifachblatt.de/news-ueberblick-morgen-2026-11-24): Drei Preprints prüfen Belohnungsfehler im RL-Nachtraining, ungleiche Quantisierungsverluste und Byte-Token-Training. Aufbau und Messgrenzen entscheiden.
 - [CEO-Coverage, ALD-Drafts und die Grenzen von CoT-Metriken](https://kifachblatt.de/news-ueberblick-abend-2026-11-23): Drei Preprints prüfen Lösch-Evaluation, Draft-Geschwindigkeit und Begründungsketten. Testaufbau und Vergleichsbasis entscheiden, was die Zahlen bedeuten.
 - [Argumentationslücke, 4-bit-Flips, SFT-RL-Teilung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-23): Drei Preprints prüfen Argumentationsaufgaben, Entscheidungen quantisierter Reward-Modelle und SFT vor RL. Die Ergebnisse gelten für ihre jeweiligen Tests.
