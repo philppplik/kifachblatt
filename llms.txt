@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Halluzinationslernen, INT4-Brüche und Byte-Token-Exposition](https://kifachblatt.de/news-ueberblick-morgen-2026-11-24): Drei Preprints prüfen Belohnungsfehler im RL-Nachtraining, ungleiche Quantisierungsverluste und Byte-Token-Training. Aufbau und Messgrenzen entscheiden.
 - [CEO-Coverage, ALD-Drafts und die Grenzen von CoT-Metriken](https://kifachblatt.de/news-ueberblick-abend-2026-11-23): Drei Preprints prüfen Lösch-Evaluation, Draft-Geschwindigkeit und Begründungsketten. Testaufbau und Vergleichsbasis entscheiden, was die Zahlen bedeuten.
 - [Argumentationslücke, 4-bit-Flips, SFT-RL-Teilung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-23): Drei Preprints prüfen Argumentationsaufgaben, Entscheidungen quantisierter Reward-Modelle und SFT vor RL. Die Ergebnisse gelten für ihre jeweiligen Tests.
 - [Keye-VL 2.0: Was 256K-Kontext und Videotests wirklich zeigen](https://kifachblatt.de/keye-vl-2-30b-analyse): Keye-VL 2.0 verbindet ein 30B-MoE mit Sparse Attention. Wir prüfen Videobenchmarks, Kontextversprechen, Hardwarebeispiel und Lizenzangaben.
