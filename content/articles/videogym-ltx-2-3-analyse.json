@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "VideoGym-LTX-2.3: Regelkombination scheitert in diesen Tests",
   "dek": "Nachtraining auf 245.884 Denk-Videos: 56,34 Prozent In-Domain, unter 1 Prozent bei Regelkomposition. Die Karte zeigt Grenzen dieses Versuchs.",
-  "published": "2026-11-24T07:15:00+01:00",
-  "modified": "2026-11-24T07:15:00+01:00",
+  "published": "2026-11-24T07:21:44+01:00",
+  "modified": "2026-11-24T07:21:44+01:00",
   "author": "philipp-paulik",
   "tags": [
     "VideoGym",
