@@ -1,0 +1,157 @@
+{
+  "slug": "videogym-ltx-2-3-analyse",
+  "lang": "de",
+  "section": "evals",
+  "type": "analysis",
+  "title": "VideoGym-LTX-2.3: Regelkombination scheitert in diesen Tests",
+  "dek": "Nachtraining auf 245.884 Denk-Videos: 56,34 Prozent In-Domain, unter 1 Prozent bei Regelkomposition. Die Karte zeigt Grenzen dieses Versuchs.",
+  "published": "2026-11-24T07:15:00+01:00",
+  "modified": "2026-11-24T07:15:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "VideoGym",
+    "OpenMOSS",
+    "LTX-2.3",
+    "Videogenerierung",
+    "Visuelles Denken",
+    "Generalisierung"
+  ],
+  "key_takeaways": [
+    "VideoGym-LTX-2.3 ist ein Full-DiT-Nachtraining des Videomodells LTX-2.3 (Lightricks) auf 245.884 prozeduralen Denk-Videos aus 246 Aufgaben - trainiert auf 32 H200-GPUs, als Epoch-10-Checkpoint veröffentlicht.",
+    "In vertrauten Aufgabenmustern steigt die Trefferquote von 0 auf 56,34 Prozent (693 von 1.230 In-Domain-Fragen, Referenzlänge) - das Basismodell liegt in den sechs VideoGym-Test-Stufen bei null, auf dem externen VBVR-Pro-Bench bei 0,60 Prozent.",
+    "Außerhalb vertrauter Muster bricht das Modell ein: 0,59 Prozent bei Regel-Komposition (1 von 170), 0,61 Prozent bei neuen Aufgabenarten (1 von 165), 4,60 Prozent auf einem fremden Benchmark (23 von 500).",
+    "Schon das Umzeichnen der visuellen Symbole bei gleichem Rätsel lässt die Mehrschritt-Quote auf 0,00 Prozent fallen (0 von 70) - Text-Umschreibungen erhalten über alle zuvor gelösten In-Domain-Fragen 90,76 Prozent der Lösungen (629 von 693); das ist keine Mehrschritt-Gesamtquote.",
+    "Die Karte zeigt für diesen Checkpoint und diese Tests schwache Übertragung über vertraute Aufgabenmuster hinaus. Das ist kein allgemeiner Beweis, dass Videomodelle keine Regeln lernen können."
+  ],
+  "hero": {
+    "alt": "Eigene Themenillustration: VideoGym-LTX-2.3, Muster und Regeltests.",
+    "caption": "Ein Nachtrainingsversuch, mehrere Generalisierungstests. Werte, Stichproben und Grenzen stehen im nativen Diagramm und Text [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "OpenMOSS-Team/VideoGym-LTX-2.3 (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/OpenMOSS-Team/VideoGym-LTX-2.3",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Lightricks/LTX-2.3 (Modellkarte, Basismodell)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Lightricks/LTX-2.3",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "LTX-2 Community License Agreement (Lightricks, 5. Januar 2026)",
+      "publisher": "GitHub (Lightricks/LTX-2)",
+      "url": "https://github.com/Lightricks/LTX-2/blob/main/LICENSE-2",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "VideoGym/VideoGym (Code-Repository, API)",
+      "publisher": "GitHub",
+      "url": "https://github.com/VideoGym/VideoGym",
+      "accessed": "2026-11-24"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Kann ein Videogenerator denken lernen, wenn man ihm genug Denk-Videos zeigt? Das OpenMOSS-Team hat die Frage experimentell angegangen: VideoGym-LTX-2.3, seit dem 23. November 2026 auf Hugging Face bereitgestellt, ist ein vollständiges Nachtraining aller 48 DiT-Blöcke des 22-Milliarden-Parameter-Backbones von Lightricks' LTX-2.3 auf 245.884 prozedural erzeugten Videos - Rätsel und Aufgaben, deren Lösung sich Bild für Bild entfaltet. Das zugehörige Paper ist laut Karte noch nicht erschienen; Trainingsdaten (246 Aufgaben in 11 Familien) und Testdaten (3.220 Fragen in sechs Generalisierungsstufen) liegen als eigene Hugging-Face-Datensätze vor [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die Messung zeigt"
+    },
+    {
+      "t": "p",
+      "x": "Innerhalb vertrauter Muster funktioniert das Rezept: Von null auf 56,34 Prozent pass@1 (693 von 1.230 In-Domain-Fragen bei Referenzlänge), 70,45 Prozent in der Einzelschritt-Gruppe. Umgeschriebene Textanweisungen verkraftet das Modell weitgehend (52,60 Prozent, 647 von 1.230). Besonders schwach sind neue Regelkombinationen und neue Aufgabenarten: Umgezeichnete visuelle Symbole drücken die Mehrschritt-Quote auf 0,00 Prozent (0 von 70), Regel-Kompositionen landen bei 0,59 Prozent (1 von 170), fremde Aufgabenarten bei 0,61 Prozent (1 von 165) und der externe VBVR-Pro-Bench bei 4,60 Prozent (23 von 500) [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Trefferquoten (pass@1): VideoGym-Test und externer VBVR-Pro-Bench",
+      "alt": "Balkendiagramm: In-Domain 56,34 Prozent, Text-Umschreibung 52,60, Symbol-Umzeichnung 28,48, Extrapolation 25,77, Komposition 0,59, fremde Aufgaben 0,61, fremder Benchmark 4,60",
+      "caption": "Angaben aus der Modellkarte, nicht von uns wiederholt; Nenner je Stufe: 1.230 / 1.230 / 165 / 260 / 170 / 165 / 500 Fragen, LTX-2.3-Basis: 0 Prozent in VideoGym-Test, 0,60 Prozent auf VBVR-Pro [1].",
+      "labels": [
+        "In-Domain (Referenzlänge)",
+        "Text-Umschreibung",
+        "Symbol-Umzeichnung",
+        "Extrapolation",
+        "Regel-Komposition",
+        "Fremde Aufgabenart",
+        "VBVR-Pro (fremd)"
+      ],
+      "series": [
+        {
+          "name": "pass@1 in Prozent",
+          "values": [
+            56.34,
+            52.6,
+            28.48,
+            25.77,
+            0.59,
+            0.61,
+            4.6
+          ]
+        }
+      ],
+      "y_label": "pass@1 (Prozent)",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Karte benennt die Mechanik hinter dem Einbruch ungewöhnlich konkret: Bei Regel-Kompositionen - beide Einzelregeln sitzen je zu 5 von 5 - fällt das Modell auf 1,67 Prozent (1 von 60). Die Karte nennt außerdem 60,8 Prozent als rechnerischen Erwartungswert aus den Einzelquoten unter einer Unabhängigkeitsannahme. Das ist keine gemessene Baseline und folgt nicht einfach aus den fünf von fünf Treffern dieser ausgewählten Teilgruppe. Die 1,67 Prozent beziehen sich auf die 60 ausgewählten Kompositionsfragen, nicht auf alle 170. Es lässt eine Regel weg oder verdirbt Zustandsübergänge. Und ein künstliches Zeitraffer-Budget (81 feste Frames statt natürlicher Länge) kostet allein In-Domain 24,14 Prozentpunkte (56,34 auf 32,20 Prozent): Das Modell schummelt dann Mehrfach-Schritte in ein Bild oder malt nach der Lösung weiter [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Wie trainiert wurde - und unter welcher Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Trainiert wurde Epoch 10 mit 76.840 Optimizerschritten auf 32 H200-GPUs (vier Knoten, FSDP, bf16) bei globaler Batchgröße 32; Textencoder, VAEs und Vocoder blieben eingefroren. Der Checkpoint liegt als komplette diffusers-Pipeline vor (rund 96 GB, DiT allein 38 GB). Das VideoGym-Code-Repository steht unter Apache-2.0 [1][4]."
+    },
+    {
+      "t": "p",
+      "x": "Bei den Gewichten ist Vorsicht geboten: Das Modell ist ein Derivat von LTX-2.3 und fällt damit unter die LTX-2 Community License Agreement von Lightricks (5. Januar 2026). Deren Kern: Nutzung und Weitergabe sind erlaubt, doch Unternehmen mit einem Jahresumsatz von mindestens 10 Millionen US-Dollar brauchen eine kostenpflichtige kommerzielle Lizenz; Attachment A Nr. 18 verbietet kommerzielles Training, Verbessern oder Fine-Tuning anderer ML-Modelle, mit Ausnahme der ausdrücklich erlaubten LTX-2-Derivate. Nr. 20 verlangt für direkt konkurrierende Produkte oder Dienste eine separate kommerzielle Lizenz. Die Umsatzschwelle wird für verbundene Unternehmen unter gemeinsamer Kontrolle zusammen betrachtet; unterhalb der Schwelle gelten die übrigen Bedingungen weiter. Zwei Unstimmigkeiten fanden wir bei der Prüfung: Die LICENSE-Datei im VideoGym-Repository ist leer, und der in den Metadaten verlinkte Lizenzpfad auf Hugging Face führt ins Leere - der tatsächliche Lizenztext steht im GitHub-Repository von Lightricks [1][2][3]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Basis: Lightricks LTX-2.3 (22-Mrd.-DiT-Backbone). Nachtraining: alle 48 DiT-Blöcke, bf16, 245.884 Videos, 246 Aufgaben, 32x H200, 76.840 Schritte, Epoch 10. Inferenz: 30 Euler-Schritte, CFG 3.0, 768x512 bei 24 FPS. Daten: VideoGym-Train/-Test als HF-Datensätze; Code unter Apache-2.0. Gewichte: LTX-2 Community License Agreement - kommerzielle Nutzung ab 10 Mio. US-Dollar Jahresumsatz nur mit bezahlter Lizenz. Bereitgestellt am 23. November 2026 [1][2][3][4]."
+    }
+  ],
+  "method": "Recherche am 24. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ). Modellkarte und Plattform-API von OpenMOSS-Team/VideoGym-LTX-2.3 (vollständig, inklusive Trainingsrezept und Messwerten), Modellkarte von Lightricks/LTX-2.3, Volltext der LTX-2 Community License Agreement im GitHub-Repository Lightricks/LTX-2, GitHub-API des Repos VideoGym/VideoGym. Alle Messwerte stammen von der Modellkarte; eigene Läufe haben wir nicht durchgeführt. Das Paper ist laut Karte noch nicht erschienen und konnte nicht eingesehen werden.",
+  "limitations": "Alle Messwerte sind Angaben des OpenMOSS-Teams ohne unabhängige Bestätigung; das zugehörige Paper liegt noch nicht vor (Kartenangabe 'Coming Soon'). Die Einordnung der Lizenz beruht auf dem von uns gelesenen Volltext der LTX-2 Community License Agreement; die leere LICENSE-Datei und der ins Leere führende Lizenzlink im VideoGym-Repository benennen wir als Befund, nicht als Rechtsauskunft. Ob der 23. November die Erstveröffentlichung des Checkpoints ist, konnten wir in den eingesehenen Quellen nicht klären. Die 0 von 70 bei umgezeichneten Symbolen betreffen nur die Mehrschritt-Gruppe; die Gesamtquote dieser Stufe ist 47 von 165. Die 629 von 693 bei Textumschreibung messen den Erhalt zuvor gelöster Fragen. Die 60,8-Prozent-Rechnung setzt unabhängige Regelausführung voraus und ist keine beobachtete Kontrollgruppe.",
+  "faq": [
+    {
+      "q": "Was ist VideoGym-LTX-2.3?",
+      "a": "Ein vollständiges Nachtraining des Videomodells LTX-2.3 auf 245.884 prozedural erzeugte Denk-Videos: Rätsel, deren Lösung sich Frame für Frame entfaltet. Ziel der Studie ist die Frage, ob Videogeneratoren visuelles Schlussfolgern lernen können."
+    },
+    {
+      "q": "Was ist das zentrale Ergebnis?",
+      "a": "In vertrauten Mustern steigt die Trefferquote von 0 auf 56,34 Prozent. Sobald Regeln neu kombiniert oder Aufgabenarten gewechselt werden, fällt sie unter 1 Prozent - die Autoren deuten das in diesen Tests als schwache Regelverallgemeinerung. Daraus folgt keine allgemeine Unfähigkeit aller Videomodelle."
+    },
+    {
+      "q": "Warum ist die Karte ungewöhnlich?",
+      "a": "Sie dokumentiert die Negativergebnisse im Detail: Zähler und Nenner je Stufe, den Zusammenbruch bei umgezeichneten Symbolen (0 von 70 in der Mehrschritt-Gruppe) und die Effekte künstlicher Frame-Budgets, statt nur Bestwerte zu zeigen."
+    },
+    {
+      "q": "Kann ich den Checkpoint kommerziell nutzen?",
+      "a": "Das hängt an der LTX-2 Community License Agreement von Lightricks: Unter 10 Millionen US-Dollar Jahresumsatz gilt die beschränkte, gebührenfreie Lizenz unter allen übrigen Bedingungen; ab dieser Schwelle verlangt der Text eine bezahlte kommerzielle Lizenz. Verbundene Unternehmen zählen zusammen. Für konkurrierende Angebote und kommerzielles Training anderer Modelle bestehen zusätzliche Einschränkungen. Zudem fanden wir eine leere LICENSE-Datei und einen defekten Lizenzlink im Repository - im Zweifel den Lizenztext bei Lightricks prüfen."
+    },
+    {
+      "q": "Gibt es ein Paper dazu?",
+      "a": "Laut Modellkarte ist ein Paper angekündigt, aber noch nicht erschienen (Stand unserer Recherche am 24. November 2026). Daten, Code und Checkpoint sind bereits öffentlich."
+    }
+  ],
+  "related": [
+    "video-ki",
+    "moss-image-4step-lora-analyse",
+    "shot-reader-8b-analyse"
+  ]
+}

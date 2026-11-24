@@ -1,0 +1,167 @@
+{
+  "slug": "ling-3-2-air-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Ling-3.2-air: 124B-MoE mit 5,5B aktiven Parametern für Workflows",
+  "dek": "InclusionAI meldet Workflow-Fortschritte mit einem 124B-MoE und 5,5B aktiven Parametern. Der Rechtsbenchmark zeigt zugleich klare Grenzen.",
+  "published": "2026-11-24T07:15:00+01:00",
+  "modified": "2026-11-24T07:15:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Ling",
+    "InclusionAI",
+    "MoE",
+    "Workflow-Automatisierung",
+    "SGLang",
+    "MIT"
+  ],
+  "key_takeaways": [
+    "Ling-3.2-air ist ein offenes MoE-Modell von InclusionAI: 124 Milliarden Parameter gesamt, davon 5,5 Milliarden pro Token aktiv, hybrid-lineare Architektur (35 KDA- plus 7 Gated-MLA-Schichten), MIT-Lizenz.",
+    "Gegenüber dem eigenen Vorgänger Ling-3.0-flash-VL meldet die Karte Sprünge bei Arbeitsabläufen und Fachdokumenten: AutomationBench-AA von 15,7 auf 61 Prozent, Terminal-Bench 4.0 von 0 auf 27 Prozent.",
+    "Beim Juristen-Benchmark Harvey LAB-AA v1.1 erreicht das Modell 87,7 Prozent der Einzelkriterien - die All-pass-Quote fällt aber von 8,3 auf 0,8 Prozent, sobald die Karte einen Halluzinationscheck zuschaltet.",
+    "Der Betrieb ist anspruchsvoll: Die Karte empfiehlt 256K Kontext auf vier 141-GB-GPUs oder acht 80-GB-Karten über SGLang beziehungsweise einen vLLM-Fork.",
+    "Die Workflow- und Rechtsbenchmarkwerte stammen vom Hersteller; wir haben sie nicht unabhängig überprüft."
+  ],
+  "hero": {
+    "alt": "Eigene Themenillustration: Ling-3.2-air, MoE für Workflows.",
+    "caption": "Workflow- und Rechtsbenchmarkwerte sind Herstellerangaben. Architektur, Betrieb und Grenzen stehen als Text im Artikel [1][4].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "inclusionAI/Ling-3.2-air (Modellkarte und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/Ling-3.2-air",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "inclusionAI/Ling-3.0-flash-VL (Plattform-API, Vorgängermodell)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/inclusionAI/Ling-3.0-flash-VL",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "inclusionAI/vllm-ling-v3 (Code-Repository)",
+      "publisher": "GitHub",
+      "url": "https://github.com/inclusionAI/vllm-ling-v3",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Ling-3.2-air, SGLang-Deployment und Funktionstests",
+      "publisher": "SGLang",
+      "url": "https://docs.sglang.io/cookbook/autoregressive/InclusionAI/Ling-3.2-air",
+      "accessed": "2026-11-24"
+    },
+    {
+      "title": "Ling-3.2-air config.json",
+      "publisher": "Hugging Face / inclusionAI",
+      "url": "https://huggingface.co/inclusionAI/Ling-3.2-air/raw/main/config.json",
+      "accessed": "2026-11-24"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Bei einem Mixture-of-Experts-Modell werden nicht alle Experten für jedes Token berechnet. Das spart Rechenarbeit, bedeutet aber nicht, dass nur die aktiven Parameter im Speicher liegen müssen. Ling-3.2-air von InclusionAI, seit dem 23. November 2026 auf Hugging Face bereitgestellt, treibt diese Idee weit: Von 124 Milliarden Parametern aktiviert das Modell laut Karte nur 5,5 Milliarden pro Token - 8 von 512 Experten plus ein geteilter Experte. Die Architektur mischt 35 KDA-Schichten mit 7 Gated-MLA-Schichten im Verhältnis 5:1 und teilt sich die native multimodale Basis mit dem Vorgänger Ling-3.0-flash-VL desselben Herstellers [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Positioniert wird das Modell für Workflow-Automatisierung und die Arbeit mit Fachdokumenten. Die Gewichte stehen unter MIT, der empfohlene Betrieb läuft über ein SGLang-Image mit Thinking-Modus, MTP-Spekulativdecodierung und 256K Kontext - empfohlen auf vier 141-GB-GPUs (H20-3e, H200) oder acht 80-GB-Karten; ein eigener vLLM-Fork steht daneben [1][3]."
+    },
+    {
+      "t": "p",
+      "x": "256K bezeichnet das konkrete Startrezept der Modellkarte, keine garantierte Grenze jeder Runtime-Konfiguration. SGLang beschreibt eine YaRN-Erweiterung um Faktor vier auf 1.048.576 Token. Die von uns abgerufene config.json weist hingegen max_position_embeddings=262144 und keine rope_scaling-Angabe aus [5]. Diese Abweichung ist offen; eine 1M-Garantie leiten wir daraus nicht ab. SGLang dokumentiert dafür einzelne Retrieval-Proben, warnt aber ausdrücklich: Ein erreichbares Fenster belegt noch keine allgemeine Qualität über diese Länge. SGLang hat zudem 2x B200 und 4x GB300 getestet; die H200/H100-Rezepte werden dort als nicht verifiziert geführt. MTP ist eine Option, kein garantierter Geschwindigkeitsgewinn [4]."
+    },
+    {
+      "t": "h2",
+      "x": "Was die Hersteller-Messung zeigt"
+    },
+    {
+      "t": "p",
+      "x": "Für die hier betrachteten Workflow-Benchmarks vergleicht die Karte Ling-3.2-air mit dem eigenen Vorgänger Ling-3.0-flash-VL: AutomationBench-AA steigt von 15,7 auf 61 Prozent, die All-pass-Quote auf GDP.pdf von 8,4 auf 16 Prozent, die Elo-Wertung auf AA-Briefcase v1.1 von 987 auf 1340 (+353 Punkte) und Terminal-Bench 4.0 von 0 auf 27 Prozent. Das sind Sprünge, die - falls sie unabhängige Messungen bestätigen - ein anderes Einsatzfeld eröffnen: wiederkehrende Arbeitsabläufe statt nur Antworten [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Ling-3.2-air gegenüber dem Vorgänger Ling-3.0-flash-VL (Hersteller-Messung)",
+      "alt": "Balkendiagramm: AutomationBench-AA steigt von 15,7 auf 61 Prozent, GDP.pdf All-pass von 8,4 auf 16, Terminal-Bench 4.0 von 0 auf 27",
+      "caption": "Hersteller-Angaben aus der Modellkarte, nicht von uns wiederholt; jeweils gleiche Benchmark-Version pro Paar [1].",
+      "labels": [
+        "AutomationBench-AA",
+        "GDP.pdf (All-pass)",
+        "Terminal-Bench 4.0"
+      ],
+      "series": [
+        {
+          "name": "Ling-3.0-flash-VL (Vorgänger)",
+          "values": [
+            15.7,
+            8.4,
+            0
+          ]
+        },
+        {
+          "name": "Ling-3.2-air",
+          "values": [
+            61,
+            16,
+            27
+          ]
+        }
+      ],
+      "y_label": "Prozent",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Der ehrlichste Abschnitt der Karte betrifft die Juristen-Auswertung Harvey LAB-AA v1.1: 87,7 Prozent der Einzelkriterien erfüllt das Modell. Doch die All-pass-Quote - alle Kriterien einer Aufgabe gleichzeitig - liegt bei 8,3 Prozent und fällt auf 0,8 Prozent, sobald ein Halluzinationscheck auf das Quellenmaterial zuschaltet. Für die Praxis heißt das: Im Mittel stark, aber belastbare Volltreffer in Rechtsdokumenten sind selten, und eine erfundene Angabe reicht, um eine sonst gute Antwort zu entwerten [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Für wen sich das lohnt"
+    },
+    {
+      "t": "p",
+      "x": "Ling-3.2-air richtet sich an Betreiber mit eigener GPU-Infrastruktur, die Dokument- und Workflow-Lasten selbst hosten wollen - die MIT-Lizenz erlaubt die kommerzielle Nutzung ohne Umsatzschwelle. Der hier dokumentierte Karten-Pfad verlangt mehrere Datacenter-GPUs. Das ist keine nachgewiesene Mindestanforderung für jede denkbare Quantisierung oder Offloading-Lösung. Ob die gemeldeten Sprünge halten, hängt an unabhängigen Tests; bis dahin gilt die Kartenlage als Hersteller-Selbstauskunft, inklusive der bemerkenswert offenen Halluzinationszahlen [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Architektur: hybrid-lineares MoE, 124 Mrd. Parameter, 5,5 Mrd. aktiv pro Token, 512 geroutete plus 1 geteilter Experte (8 aktiv), 35 KDA- und 7 Gated-MLA-Schichten, Vokabular 157.184. Kontext: 256K im Karten-Rezept; SGLang beschreibt eine YaRN-Erweiterung auf 1.048.576 Token, die die abgerufene Modellkonfiguration nicht ausweist [4]. Betrieb: SGLang-Image (Thinking-Modus, MTP) oder vLLM-Fork, empfohlen 4x 141-GB- oder 8x 80-GB-GPUs. Lizenz: MIT. Bereitgestellt auf Hugging Face am 23. November 2026 [1][3]."
+    }
+  ],
+  "method": "Recherche am 24. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ). Modellkarte und Plattform-API von inclusionAI/Ling-3.2-air (vollständig), Plattform-API des Vorgängers inclusionAI/Ling-3.0-flash-VL, Repository-Angaben des vLLM-Forks inclusionAI/vllm-ling-v3. Alle Benchmark-Werte stammen vom Hersteller; eigene Tests haben wir nicht durchgeführt. Das Datum '23. November 2026' belegt die Bereitstellung des Hugging-Face-Repositories, nicht zwingend die Erstveröffentlichung des Modells. Ergänzend geprüft gegen 07:17 Uhr MEZ: aktuelle Modellkonfiguration [5] und SGLang-Cookbook [4].",
+  "limitations": "Die hier verglichenen Workflow- und Rechtsbenchmarkwerte sind Herstellerangaben; wir haben keine eigenen Benchmarkläufe durchgeführt. SGLang dokumentiert eigene Laufzeit- und Funktionstests, die diese Workflow-Ergebnisse nicht unabhängig bestätigen [4]. Die Vergleiche gelten jeweils innerhalb derselben Benchmark-Version gegen den eigenen Vorgänger; Werte anderer Hersteller nennt die Karte im von uns eingesehenen Text nicht tabellarisch. Die Auswertungsgrafik der Karte liegt als Bild vor - daraus übernehmen wir keine Zahlen. Ob der 23. November die weltweite Erstveröffentlichung ist, konnten wir in den eingesehenen Quellen nicht klären. Die MIT-Zuordnung steht in den Hugging-Face-Metadaten; eine separate LICENSE-Datei ist im Modellrepository nicht enthalten. Lizenzpflichten und Drittkomponenten bleiben beim Einsatz zu prüfen.",
+  "faq": [
+    {
+      "q": "Was ist Ling-3.2-air?",
+      "a": "Ein offenes Mixture-of-Experts-Modell von InclusionAI mit 124 Milliarden Parametern, von denen laut Karte 5,5 Milliarden pro Token aktiv sind. Es teilt die multimodale Basis mit dem Vorgänger Ling-3.0-flash-VL und ist auf Workflow-Automatisierung und Fachdokumente ausgerichtet."
+    },
+    {
+      "q": "Wie groß ist der Sprung zum Vorgänger?",
+      "a": "Nach Hersteller-Messung steigt AutomationBench-AA von 15,7 auf 61 Prozent und Terminal-Bench 4.0 von 0 auf 27 Prozent. Wir haben diese Herstellerwerte nicht unabhängig überprüft."
+    },
+    {
+      "q": "Was bedeuten die Juristen-Zahlen?",
+      "a": "Auf Harvey LAB-AA v1.1 erfüllt das Modell laut Karte 87,7 Prozent der Einzelkriterien, aber nur 8,3 Prozent der Aufgaben vollständig - nach dem Halluzinationscheck aufs Quellenmaterial nur 0,8 Prozent. Starke Einzelleistung, wenig belastbare Volltreffer."
+    },
+    {
+      "q": "Kann ich Ling-3.2-air selbst betreiben?",
+      "a": "Das dokumentierte Rezept braucht viel GPU-Speicher: Die Karte empfiehlt vier 141-GB-GPUs oder acht 80-GB-Karten über SGLang oder einen vLLM-Fork. Das ist ein empfohlenes Rezept, keine bewiesene Untergrenze für andere Präzisionen oder Offloading."
+    },
+    {
+      "q": "Unter welcher Lizenz steht das Modell?",
+      "a": "Laut Hugging-Face-Lizenzmetadaten unter MIT - kommerzielle Nutzung ist damit ohne Umsatzschwelle erlaubt."
+    }
+  ],
+  "related": [
+    "multimodale-modelle",
+    "keye-vl-2-30b-analyse",
+    "inkling-2-small-analyse"
+  ]
+}
