@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Harness-Effekt, Judge-Bias und Roboter-Backdoor](https://kifachblatt.de/news-ueberblick-morgen-2026-11-25): Drei Preprints zum Prüfen: 53.100 Läufe trennen Modell- von Harness-Effekt, Menschendaten entlarven Judge-Bias, 1 Prozent Trainingsgift kapert VLA im Benchmark.
 - [Kontaminations-Audit, Kollaps-Prognose und Neuronensonde](https://kifachblatt.de/news-ueberblick-abend-2026-11-24): Drei Preprints prüfen Modelle, statt ihnen zu vertrauen: Audit ohne Logprobs, Kollaps-Prognose aus einer Generation, Neuronensonde fürs Finetuning.
 - [KL-Fehler in PyTorch, blinde Konfidenz und GPU-Batches](https://kifachblatt.de/news-ueberblick-mittag-2026-11-24): Drei Preprints prüfen, ob Werkzeugzahlen tragen: die KL-Divergenz in PyTorch, verbalisierte Konfidenz und reproduzierbare Bildgenerierung auf GPUs.
 - [Ling-3.2-air: 124B-MoE mit 5,5B aktiven Parametern für Workflows](https://kifachblatt.de/ling-3-2-air-analyse): InclusionAI meldet Workflow-Fortschritte mit einem 124B-MoE und 5,5B aktiven Parametern. Der Rechtsbenchmark zeigt zugleich klare Grenzen.
