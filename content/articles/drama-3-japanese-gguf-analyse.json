@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "Drama-3 als GGUF: Japanische Sprachsynthese lokal auf der GPU",
  "dek": "StudioYebisu bringt das japanische TTS-Modell Drama-3 als GGUF für speech.cpp: Voice Cloning lokal, ein CUDA-Patch macht es nach eigener Messung 3x schneller.",
- "published": "2026-11-25T07:09:00+01:00",
- "modified": "2026-11-25T07:09:00+01:00",
+ "published": "2026-11-25T07:21:49+01:00",
+ "modified": "2026-11-25T07:21:49+01:00",
  "author": "philipp-paulik",
  "tags": [
   "TTS",

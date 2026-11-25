@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "RD Flow 64: Pixel-Art-Modell mit 271 Millionen Parametern",
  "dek": "Retro Diffusion zeichnet mit einem 542-MB-Modell direkt auf dem 64x64-Raster - mit Palette und Transparenz. Läuft auf 2-GB-GPUs, nicht kommerziell lizenziert.",
- "published": "2026-11-25T07:08:00+01:00",
- "modified": "2026-11-25T07:08:00+01:00",
+ "published": "2026-11-25T07:21:49+01:00",
+ "modified": "2026-11-25T07:21:49+01:00",
  "author": "philipp-paulik",
  "tags": [
   "Pixel-Art",
