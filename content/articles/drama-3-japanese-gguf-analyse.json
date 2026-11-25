@@ -1,0 +1,157 @@
+{
+ "slug": "drama-3-japanese-gguf-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Drama-3 als GGUF: Japanische Sprachsynthese lokal auf der GPU",
+ "dek": "StudioYebisu bringt das japanische TTS-Modell Drama-3 als GGUF für speech.cpp: Voice Cloning lokal, ein CUDA-Patch macht es nach eigener Messung 3x schneller.",
+ "published": "2026-11-25T07:09:00+01:00",
+ "modified": "2026-11-25T07:09:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "TTS",
+  "Japanisch",
+  "GGUF",
+  "speech.cpp",
+  "Voice Cloning",
+  "Quantisierung"
+ ],
+ "key_takeaways": [
+  "StudioYebisu hat Drama-3-Japanese - ein japanisches TTS- und Voice-Cloning-Modell auf Fish-Audio-Basis - als stratifizierte GGUF-Quantisierungen für speech.cpp und audio.cpp veröffentlicht.",
+  "Vier Pakete von 9,1 bis 24,6 GiB decken 12-GB- bis 24-GB-GPUs ab; die vollen Q4_K/Q5_K-Varianten laufen laut Karte nur auf Vulkan oder CPU fehlerfrei, nicht auf CUDA.",
+  "Ein mitgelieferter CUDA-Patch für das 9,1-GB-Paket beschleunigt die Synthese in der eigenen Messung von RTFx 1,31 auf 3,88 - Faktor 2,96 bei rund 0,8 GiB weniger Speicherzuwachs.",
+  "Referenzbasiertes Voice Cloning ist laut Karte hörbar sauberer als reine Textbeschreibung der Stimme; unveränderte 44,1-kHz-Hörproben liegen im Repository.",
+  "Lizenz beachten: Fish Audio Community License 1.0 - kommerzielle Nutzung frei nur unter 500.000 US-Dollar Jahresumsatz, gehostete Selbstbedienungs-Dienste brauchen immer eine separate Lizenz."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu Drama-3 als GGUF: vier Pakete ab 9,1 GiB, lokales Voice Cloning, kommerziell erst ab Lizenzschwelle.",
+  "caption": "Drama-3 als GGUF in drei Angaben - aus der Modellkarte, nicht nachgemessen [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "StudioYebisu-ship-it/Drama-3-Japanese-speech-cpp-gguf (Modellkarte und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/StudioYebisu-ship-it/Drama-3-Japanese-speech-cpp-gguf",
+   "accessed": "2026-11-25"
+  },
+  {
+   "title": "Fish Audio Community License Agreement 1.0 (Volltext im Repository)",
+   "publisher": "Hugging Face (StudioYebisu-ship-it)",
+   "url": "https://huggingface.co/StudioYebisu-ship-it/Drama-3-Japanese-speech-cpp-gguf/blob/main/LICENSE",
+   "accessed": "2026-11-25"
+  },
+  {
+   "title": "Aratako/Drama-3-Japanese (Plattform-API, Basismodell)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/Aratako/Drama-3-Japanese",
+   "accessed": "2026-11-25"
+  },
+  {
+   "title": "nyosegawa/speech.cpp (Code-Repository, API)",
+   "publisher": "GitHub",
+   "url": "https://github.com/nyosegawa/speech.cpp",
+   "accessed": "2026-11-25"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Japanische Sprachsynthese mit Stimmklon wandert auf den eigenen Rechner: StudioYebisu hat Drama-3-Japanese - ein japanischer Fine-Tune von Fish Audios Drama 3, bereitgestellt von Aratako - als GGUF-Pakete für speech.cpp und audio.cpp veröffentlicht, seit dem 23. November 2026 auf Hugging Face. Vier Varianten decken unterschiedliche Hardware ab: die vollen Modelle Q4_K (20,82 GiB) und Q5_K (24,57 GiB) sowie die kleinen IQ3_XXS-Pakete mit 9,09 beziehungsweise 9,28 GiB für 12- bis 24-GB-GPUs [1][3]."
+  },
+  {
+   "t": "p",
+   "x": "Die Karte ist ungewöhnlich ehrlich bei den Fallstricken. So laufen die vollen Q4_K/Q5_K-Dateien auf CUDA nicht fehlerfrei - ein FP16-Überlauf in ggml-cuda löst Assertions aus - und gehören auf Vulkan (mit drei gesetzten GGML_VK_DISABLE-Flags) oder die CPU. Zudem legt speech.cpp rund 2,40 GiB Rechen- und KV-Reserve auf die Gewichtsgröße; auf typischen 24-GB-Desktopkarten mit 19 bis 21 GiB freiem VRAM lagern deshalb 6 bis 10 Expertenschichten auf die CPU aus [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Was die eigene Messung zeigt"
+  },
+  {
+   "t": "p",
+   "x": "Für das 9,1-GB-Paket liefert das Repository einen CUDA-Patch (drama3-speechcpp-fast.patch), der in der eigenen Messung auf einer RTX 4090 die Synthesegeschwindigkeit von RTFx 1,31 auf 3,88 hebt - Faktor 2,96 im Mittel über drei Fälle, bei rund 0,8 GiB geringerem Speicherzuwachs. RTFx meint das Verhältnis von Audiolänge zu Rechenzeit: 3,88 heißt, eine Sekunde Audio entsteht in etwa 0,26 Sekunden. Die Karte dokumentiert die Fälle einzeln (Erzählung, Stimmklon, Pausenbegrenzung) samt Seed-Abweichung und nennt die Nachprüfung des gehärteten Patch-Standes [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Synthesetempo ohne und mit CUDA-Patch (RTFx, eigene Messung des Paket-Autors)",
+   "alt": "Balkendiagramm: Erzählung steigt von 1,19 auf 3,17 RTFx, Stimmklon von 1,26 auf 3,68, Pausenbegrenzung von 1,40 auf 4,18",
+   "caption": "Hersteller-Messung auf RTX 4090 / CUDA 12.8 mit dem 9,1-GB-Paket, nicht von uns wiederholt; RTFx = Audiolänge geteilt durch Rechenzeit, höher ist schneller [1].",
+   "labels": [
+    "Erzählung",
+    "Stimmklon",
+    "Pausenbegrenzung"
+   ],
+   "series": [
+    {
+     "name": "Ohne Patch",
+     "values": [
+      1.19,
+      1.26,
+      1.4
+     ]
+    },
+    {
+     "name": "Mit CUDA-Patch",
+     "values": [
+      3.17,
+      3.68,
+      4.18
+     ]
+    }
+   ],
+   "y_label": "RTFx",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Zur Qualität: Referenzbasiertes Voice Cloning - eine gespeicherte Stimmprobe als Vorgabe - liefert laut Karte hörbar sauberere und stabilere Prosodie als die reine Textbeschreibung einer Stimme, besonders bei geflüsterten oder mehrgliedrigen Sätzen. Unveränderte 44,1-kHz-Hörproben (ohne Stimmklon) liegen im Repository; wir haben sie nicht ausgewertet [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Lizenz: Community mit Umsatzschwelle"
+  },
+  {
+   "t": "p",
+   "x": "Die Pakete stehen unter der Fish Audio Community License 1.0 (13. Oktober 2026), deren Volltext im Repository liegt. Forschung und nicht-kommerzielle Nutzung sind frei. Kommerzielle Nutzung ist kostenfrei, solange der Jahresumsatz - aggregiert über verbundene Unternehmen - unter 500.000 US-Dollar liegt; wer die Schwelle erreicht, meldet sich innerhalb von 30 Tagen und hat 90 Tage Übergangsfrist. Gehostete Selbstbedienungs-Dienste, bei denen Dritte eigene Texte oder Stimmproben einspeisen, brauchen unabhängig vom Umsatz immer eine separate Lizenz; das Ausliefern fertig erzeugter Audiodateien an Kunden fällt nicht darunter. Bei Weitergabe ist der Vermerk 'Built with Fish Audio' Pflicht [2]."
+  },
+  {
+   "t": "h3",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "Basis: Aratako/Drama-3-Japanese, japanischer Fine-Tune von fishaudio/drama-3 (TTS und Zero-Shot-Voice-Cloning). Pakete: Q4_K 20,82 GiB, Q5_K 24,57 GiB (Vulkan/CPU), small IQ3_XXS 9,09 GiB (CUDA/Vulkan) plus audio.cpp-Variante 9,28 GiB. Laufzeit: speech.cpp ab v0.11.2 (MIT) oder audio.cpp. Eigenmessung: RTFx 1,31 auf 3,88 mit CUDA-Patch. Lizenz: Fish Audio Community License 1.0. Bereitgestellt am 23. November 2026 [1][2][3][4]."
+  }
+ ],
+ "method": "Recherche am 25. November 2026 gegen 6:08 Uhr UTC (7:08 Uhr MEZ). Modellkarte und Plattform-API des GGUF-Repos (vollständig, inklusive Messtabellen und Backend-Hinweisen), Volltext der Fish Audio Community License 1.0 aus dem Repository, Plattform-API des Basismodells Aratako/Drama-3-Japanese, GitHub-API von nyosegawa/speech.cpp. Alle Geschwindigkeits- und Speicherwerte stammen vom Paket-Autor; eigene Läufe und Hörproben-Auswertung haben wir nicht durchgeführt. Das Datum '23. November 2026' belegt die Bereitstellung des Hugging-Face-Repositories, nicht zwingend die Erstveröffentlichung.",
+ "limitations": "Alle Geschwindigkeits-, Speicher- und Qualitätsangaben sind Messungen des Paket-Autors ohne unabhängige Bestätigung. Die Klangqualität der Quantisierungen haben wir nicht gehört und nicht bewertet; die Hörproben liegen ungeprüft im Repository. Die Lizenzeinordnung beruht auf dem gelesenen Volltext und ist keine Rechtsberatung. Ob der 23. November die weltweite Erstveröffentlichung ist, konnten wir in den eingesehenen Quellen nicht klären.",
+ "faq": [
+  {
+   "q": "Was ist in dem GGUF-Paket?",
+   "a": "Stratifizierte Quantisierungen des japanischen TTS- und Voice-Cloning-Modells Drama-3-Japanese (Basis: Fish Audio Drama 3) für speech.cpp und audio.cpp - von 9,1 GiB für kleinere GPUs bis 24,6 GiB für die volle Q5_K-Qualität."
+  },
+  {
+   "q": "Welche Variante passt zu meiner GPU?",
+   "a": "Laut Karte: 12- bis 24-GB-CUDA-Karten nehmen das 9,1-GB-IQ3_XXS-Paket mit dem Fast-Patch; die vollen Q4_K/Q5_K laufen fehlerfrei nur auf Vulkan (mit drei GGML_VK_DISABLE-Flags) oder CPU. Zusätzlich reserviert speech.cpp rund 2,40 GiB über den Gewichten."
+  },
+  {
+   "q": "Wie schnell ist die Synthese lokal?",
+   "a": "In der eigenen Messung des Autors steigt das Tempo mit dem CUDA-Patch von RTFx 1,31 auf 3,88 - eine Sekunde Audio entsteht dann in gut einer Viertelsekunde. Unabhängig nachgemessen ist das nicht."
+  },
+  {
+   "q": "Darf ich die Pakete kommerziell nutzen?",
+   "a": "Kostenfrei nur unter 500.000 US-Dollar Jahresumsatz (inklusive verbundener Unternehmen); darüber und für gehostete Selbstbedienungs-Dienste ist eine separate Lizenz von Fish Audio nötig. Fertig erzeugte Audiodateien an Kunden zu liefern gilt laut Lizenztext nicht als gehosteter Dienst."
+  },
+  {
+   "q": "Brauche ich eine Stimmprobe fürs Klonen?",
+   "a": "Nicht zwingend - Stimmen lassen sich auch per Text beschreiben. Laut Karte klingt das referenzbasierte Klonen aber hörbar sauberer, besonders bei Flüstern und langen Sätzen."
+  }
+ ],
+ "related": [
+  "nemotron-3-5-transcribe-analyse",
+  "dessa-sprachmodell-analyse",
+  "multimodale-modelle"
+ ]
+}
