@@ -1,5 +1,41 @@
 [
   {
+    "title": "KI-Update kompakt: Nvidia, KI-Migrationsgesetz, Valiants Vermutung, Perplexity",
+    "url": "https://www.heise.de/news/KI-Update-kompakt-Nvidia-KI-Migrationsgesetz-Valiants-Vermutung-Perplexity-11536344.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795615200.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Das „KI-Update“ liefert drei mal pro Woche eine Zusammenfassung der wichtigsten KI-Entwicklungen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-25T15:12:23.345958+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Flut an KI-Spielen bringt Atari-Entwickler-Wettbewerb zum Stillstand",
+    "url": "https://www.heise.de/news/Zu-viel-KI-Retro-Wettbewerb-der-Atari-Homebrew-Szene-faellt-aus-11537667.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795607160.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Der Organisator sieht keine Möglichkeit mehr, menschliche Entwicklungsleistungen fair zu bewerten. Ähnliche Probleme kennen Open-Source-Projekte.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-25T15:12:23.346152+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "KI-Experiment: Anthropic führt KI-Agenten in Versuchung",
+    "url": "https://www.heise.de/news/KI-Experiment-Anthropic-fuehrt-KI-Agenten-in-Versuchung-11537463.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795603080.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic untersucht mit einem Experiment, wie leicht sich KI-Agenten dazu verleiten lassen, Sicherheitslücken auszunutzen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-25T15:12:23.346274+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "KI ermittelt in 22 Minuten den unbekannten Zeichner eines Skizzenbuchs von 1808",
     "url": "https://www.heise.de/news/KI-ermittelt-in-22-Minuten-den-unbekannten-Zeichner-eines-Skizzenbuchs-von-1808-11537049.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795597080.0,

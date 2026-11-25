@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Fehlererholung, Erfahrungsschutz, Ausfall-Audit](https://kifachblatt.de/news-ueberblick-abend-2026-11-25): Selbst mit Plan gelingen nur 27 Prozent der Erholungen, ein Filter stoppt vergiftete Erfahrungen, ein Audit findet den entscheidenden Fehlschritt.
 - [Agenten-Geduld, Dateigrößen-Bias, prüfbare RL-Fehler](https://kifachblatt.de/news-ueberblick-mittag-2026-11-25): Ein Posterior-Reward bremst vorschnelle Agenten, die Dateigröße entlarvt zwei Deepfake-Datensätze, ein Risiko-Budget macht RL-Fehler menschenprüfbar.
 - [Drama-3 als GGUF: Japanische Sprachsynthese lokal auf der GPU](https://kifachblatt.de/drama-3-japanese-gguf-analyse): StudioYebisu bringt das japanische TTS-Modell Drama-3 als GGUF für speech.cpp: Voice Cloning lokal, ein CUDA-Patch macht es nach eigener Messung 3x schneller.
 - [RD Flow 64: Pixel-Art-Modell mit 271 Millionen Parametern](https://kifachblatt.de/rd-flow-64-analyse): Retro Diffusion zeichnet mit einem 542-MB-Modell direkt auf dem 64x64-Raster - mit Palette und Transparenz. Läuft auf 2-GB-GPUs, nicht kommerziell lizenziert.
