@@ -1,0 +1,135 @@
+{
+ "slug": "news-ueberblick-morgen-2026-11-25",
+ "lang": "de",
+ "section": "ueberblick",
+ "type": "news",
+ "published": "2026-11-25T06:34:28+01:00",
+ "modified": "2026-11-25T06:43:50+01:00",
+ "author": "philipp-paulik",
+ "sources": [
+  {
+   "title": "ShellBench: What Matters More for AI Agents, Models, or Harness for Everyday Tasks",
+   "publisher": "arXiv; Vincent Koc (OpenClaw Foundation), Aditya Washikar u. a. (Parsewave, Hugging Face, Red Hat, NVIDIA u. a.)",
+   "url": "https://arxiv.org/abs/2611.32946",
+   "accessed": "2026-11-25"
+  },
+  {
+   "title": "Auditing the Judge: Human-Derived Bias Discovery, Quantification, and Mitigation in LLM Judges",
+   "publisher": "arXiv; Hamin Koo, Chanjoo Jung (Yonsei University), Fangzhao Wu (Microsoft Research Asia), Jaehyung Kim (Yonsei University)",
+   "url": "https://arxiv.org/abs/2611.33065",
+   "accessed": "2026-11-25"
+  },
+  {
+   "title": "Sparse Poison, Strong Hijack: Efficient Trajectory-Level Backdoors in Vision-Language-Action Models with Only 1% Poisoning",
+   "publisher": "arXiv; Simin Huang, Jiawei Chen, Shaolong Zhu, Qiwei Liang, Zhaoxia Yin (East China Normal University, Tsinghua University, HKUST Guangzhou)",
+   "url": "https://arxiv.org/abs/2611.32304",
+   "accessed": "2026-11-25"
+  }
+ ],
+ "tags": [
+  "Forschung",
+  "Evaluation",
+  "Agenten",
+  "Robotik"
+ ],
+ "dek": "Drei Preprints zum Prüfen: 53.100 Läufe trennen Modell- von Harness-Effekt, Menschendaten entlarven Judge-Bias, 1 Prozent Trainingsgift kapert VLA im Benchmark.",
+ "key_takeaways": [
+  "ShellBench trennt auf 53.100 Läufen Modell- von Harness-Wahl: In der Varianzzerlegung über die elf in allen fünf Harnesses getesteten Modelle gehen 95,7 Prozent der Leistungsvarianz aufs Modell, 0,36 Prozent auf den Harness; die drei Spitzenmodelle liegen 1,1 Prozentpunkte auseinander, bei geschätzten 0,19 bis 1,10 US-Dollar pro Versuch. 15,7 Prozent der Läufe verletzen ein Sicherheitskriterium.",
+  "HuB-J leitet Judge-Verzerrungen aus 1.830 Konsens-Uneinigkeitsfällen zwischen Menschen und fünf Richtern ab: Umfassende Listen kippen im Mittel 28,6 Prozent der Entscheidungen, und die trainingsfreie Regressionskorrektur ordnet 31,8 Prozent der Präferenzen dem Bias zu. Alle Werte gelten für die fünf getesteten Richter und fünf Präferenzdatensätze.",
+  "Ein Trajektorien-Backdoor mit 1 Prozent vergifteten Demonstrationen erreicht im Mittel über vier VLA-Modelle und vier Suiten 78,2 Prozent Ziel-Erfolg. Die Abwehrwerte stammen aus einem separaten Aufbau (OpenVLA-OFT auf LIBERO-Spatial, je 500 Episoden pro Bedingung): Dort bleiben 84,0 bis 89,6 Prozent des Ziel-Erfolgs dieser einen Konfiguration bestehen, nicht des Gesamtmittels. Auf dem echten Roboterarm bleiben es 57,5 Prozent: Machbarkeit gezeigt, verlässliche Übernahme nicht."
+ ],
+ "hero": {
+  "alt": "Drei schematische Bildkarten: ein Agent am Terminal mit Weggabelung, eine Waage über Antwortpaaren und ein Roboterarm mit markiertem Trigger-Objekt. Themenhero ohne Zahlen und Messskala.",
+  "caption": "Drei Studien über das Prüfen von Agenten, Richtern und Roboterpolicies. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+  "credit": "Eigene Illustration",
+  "ai_generated": false
+ },
+ "body": [
+  {
+   "t": "p",
+   "x": "Quellenprüfung: 25. November 2026, 06:40 Uhr MEZ. Drei am 24. November eingereichte Preprints drehen sich um das Prüfen von Modellen und Agenten: ein Alltags-Benchmark, der Modell- und Harness-Wahl trennt, ein Audit, das Richter-Verzerrungen aus menschlichen Präferenzen ableitet, und ein Trajektorien-Backdoor für Roboterpolicies mit nur einem Prozent vergifteter Demonstrationen. Alle Zahlen sind Ergebnisse der jeweiligen Autoren, keine unabhängige Reproduktion. Konfiguration, Stichprobe und Grenzen stehen direkt bei den Werten."
+  },
+  {
+   "t": "h2",
+   "x": "Modellwahl schlägt Harness-Wahl: 53.100 Läufe auf 100 Alltagsaufgaben"
+  },
+  {
+   "t": "callout",
+   "title": "1,1 Punkte oben, Faktor sechs beim Preis",
+   "x": "GPT-6 Astra besteht 62,5 Prozent der Einzelversuche, Claude Fable 5.2 61,9 und GPT-6.1 Sol 61,4 Prozent: Die drei Spitzenmodelle liegen 1,1 Prozentpunkte auseinander. Ein Versuch mit Sol kostet geschätzt 0,19 US-Dollar, mit Astra 1,10 Dollar. Die Harness-Mittel liegen zwischen 42,9 (Claude Code) und 45,2 Prozent (OpenClaw)."
+  },
+  {
+   "t": "p",
+   "x": "Wer einen Agenten für Alltagsaufgaben einsetzt, wählt zweimal: das Modell und den Harness, also die Software, über die das Modell Dateien liest und handelt. Ein Team um Vincent Koc (OpenClaw Foundation) mit Mitarbeitenden von Parsewave, Hugging Face, Red Hat, NVIDIA und weiteren hat dafür ShellBench gebaut: 100 Aufgaben, abgeleitet aus 10.456.576 anonymisierten, freiwillig geteilten echten Nutzeranfragen, mit Arbeitsbereichen von im Median 188 Dateien, widersprüchlichen Belegen und teils Phishing-Mails. 90 Aufgaben bewertet ein LLM-Judge an 721 binären Kriterien (340 Korrektheit, 381 Sicherheit) im Alles-oder-nichts-Modus, zehn prüfen eigene Code-Tests. Getestet wurden 12 Modelle in fünf Harnesses (Claude Code, Codex, Hermes, OpenClaw, Pi) auf drei Effortstufen mit je drei Versuchen: 53.100 bewertete Läufe zwischen dem 7. und 20. November 2026. Eine Konfiguration fehlt, weil DeepSeek V4.1 Flash in Hermes nicht lauffähig war."
+  },
+  {
+   "t": "p",
+   "x": "Die Varianzzerlegung über die 55 Konfigurationen der elf vollständig abgedeckten Modelle: 95,7 Prozent der Leistungsvarianz gehen auf das Modell, 0,36 Prozent auf den Harness, 4,0 Prozent auf die Interaktion samt Stichprobenrauschen. Nur unter den fünf besten Modellen bleiben es 65,6 Prozent Modell und 16,5 Prozent Harness. Der stärkste Einzeleffekt: Muse Wonder Full verliert in Claude Code 9,2 Prozentpunkte gegenüber seinem Harness-Mittel. OpenClaw streut am wenigsten (1,4 Prozentpunkte Residuen-Streuung), Claude Code am stärksten (4,7). Höherer Reasoning-Effort hilft elf der zwölf Modelle (plus 0,4 bis plus 19,1 Prozentpunkte); Gemini 4 Carbon fällt um 4,1 Punkte."
+  },
+  {
+   "t": "p",
+   "x": "Sicherheit: 15,7 Prozent aller 53.100 Läufe verletzen ein Sicherheitskriterium, am seltensten bei GPT-6 Astra (9,4 Prozent) und GPT-6.1 Sol (9,7), am häufigsten bei DeepSeek V4 Pro (24,4). Gemini 4 Carbon liegt bei 20,6 Prozent, 11,1 Punkte über Astra (95-Prozent-Intervall plus 6,4 bis plus 16,1). Die Modellwahl erklärt 75,5 Prozent dieser Varianz, der Harness 4,7. Einordnung: Der Judge ist GPT-6.1 Sol, zugleich eines der getesteten Modelle; im Blindabgleich stimmte er bei 89,9 Prozent der 278 referenzierten Einzelentscheidungen mit dem menschlichen Konsens überein (Cohens Kappa 0,75), wobei Annotatoren 186 seiner 198 Passes, aber nur 64 seiner 80 Fails bestätigten. Die Kosten beruhen auf OpenRouter-Preisen vom 18. November 2026 ohne Judge-Aufrufe; Muse Wonder Full ist mangels eigener Preisliste mit den Raten von Muse Wonder 1.0 bewertet. Zu beachten ist die Nähe der Autorenschaft: Mehrere Autoren sind OpenClaw-Maintainer, und OpenClaw ist einer der getesteten Harnesses; 20 der 100 Aufgaben sind öffentlich."
+  },
+  {
+   "t": "h2",
+   "x": "Judge-Audit aus Menschendaten: Fünf Richter, fünf Bias-Profile"
+  },
+  {
+   "t": "callout",
+   "title": "Bis zu 28,6 Prozent Entscheidungskippen",
+   "x": "HuB-J injiziert entdeckte Biasfaktoren gestuft in abgelehnte Antworten und misst, wie oft fünf Richter ihre Wahl kippen: Umfassende Listen kippen im Schnitt 28,6 Prozent der Entscheidungen, Fachjargon 8,3, aber modellabhängig: Haiku kippt am stärksten bei höchster Intensität, Qwen und DeepSeek schon bei schwacher. Die trainingsfreie Korrektur ordnet im Schnitt 31,8 Prozent der Präferenzen dem Bias zu."
+  },
+  {
+   "t": "p",
+   "x": "LLM-Judges gelten als skalierbarer Ersatz für menschliche Bewertung, folgen aber Oberflächenmerkmalen. Hamin Koo und Chanjoo Jung (Yonsei University, gleiche Beiträge), Fangzhao Wu (Microsoft Research Asia) und Jaehyung Kim (Yonsei University) leiten Biasfaktoren nicht aus vorhandenen Listen ab, sondern aus realen Uneinigkeiten: Fälle, in denen alle fünf getesteten Richter (GPT-4o, Claude-Haiku-4.5, Gemini-3-Flash-Preview, Qwen-Plus, DeepSeek-V3.2; Temperatur 0, beide Reihenfolgen) dem menschlichen Label widersprechen, liefern 1.830 Konsens-Uneinigkeitsfälle (1.464 Training, 366 Test) aus fünf zusammengeführten Präferenzdatensätzen; 100 Kalibrierungs- und 500 Testfälle mit voller Übereinstimmung dienen der Stärkemessung."
+  },
+  {
+   "t": "p",
+   "x": "Die entdeckten Top-5-Faktoren: umfassende Listen, professioneller Ton, narrative Struktur, Umsetzungsfokus und Fachjargon. Auf dem Uneinigkeits-Testset erklären sie die Mensch-LLM-Diskrepanz besser als die Baselines (mittleres Delta 0,480 gegenüber 0,238 für bekannte Faktoren und 0,308 für BiasScope; alle fünf mit p kleiner 0,01, mehrere Baseline-Faktoren nicht signifikant). Fachjargon, Umsetzungsfokus und professioneller Ton korrelieren unter 0,5 mit bekannten Biasmaßen und gelten damit als neu; umfassende Listen und narrative Struktur hängen mit dem bekannten Verbosity-Bias zusammen. Auf 20 weiteren Richtern wiederholen sich die Muster: Llama-3.1-8B, Mixtral-8x7B und Phi-4 kippen häufig, GPT-5, Qwen-3.5-9B und Kimi-K2.6 bleiben vergleichsweise robust. Auf dem objektiv gelabelten JudgeBench kippen die entdeckten Faktoren 8,4 Prozent der Entscheidungen (Baselines 7,0 und 6,9), bei durchgehend niedriger Antwortänderungsrate."
+  },
+  {
+   "t": "p",
+   "x": "Die Mitigation kommt ohne Nachtraining aus: Eine Regression zerlegt jede Entscheidung in Basispräferenz, Bias-Empfindlichkeit und Anfrageneffekt und rechnet den Biasanteil heraus. Auf dem eigenen Faktorset ordnet sie im Schnitt 31,8 Prozent der beobachteten Präferenzen dem injizierten Bias zu, bei narrativer Struktur 59,1 Prozent (Baselines 27,3 und 28,2 Prozent). Grenzen: Das Verfahren braucht menschliche Präferenzlabels, setzt in allen Stufen LLM-Aufrufe ein (GPT-4o als Generationsmodul), die eigene Verzerrungen eintragen können, und die semantische Erhaltung der umgeschriebenen Antworten ist nur über LLM- und Embedding-Prüfungen abgesichert."
+  },
+  {
+   "t": "h2",
+   "x": "Ein Prozent vergiftete Demonstrationen kapert den Roboterarm"
+  },
+  {
+   "t": "callout",
+   "title": "78,2 Prozent Ziel-Erfolg bei 1 Prozent Gift",
+   "x": "Mit einem Prozent vergifteter Demonstrationen lenkt der Angriff vier VLA-Modelle in vier LIBERO-Suiten im Schnitt zu 78,2 Prozent auf die Angreiferaufgabe (stärkste gezielte Baseline: 15,5 Prozent), bei 3,8 Prozentpunkten Clean-Verlust. Auf dem echten Roboterarm gelingen 46 von 80 Zieltrajektorien. Die Abwehrtests laufen separat auf OpenVLA-OFT/LIBERO-Spatial: Dort bleiben 84,0 bis 89,6 Prozent des Ziel-Erfolgs dieser einen Konfiguration bestehen."
+  },
+  {
+   "t": "p",
+   "x": "Vision-Language-Action-Modelle lernen aus Demonstrationen, und genau dort setzt der Angriff von Simin Huang, Jiawei Chen, Shaolong Zhu, Qiwei Liang und Zhaoxia Yin (East China Normal University, Zhongguancun Academy, Tsinghua University, HKUST Guangzhou; zwei Erstautoren zu gleichen Teilen) an. Statt die Aufgabe nur zu stören, soll ein physisches 3D-Trigger-Objekt den Arm eine komplette fremde Trajektorie ausführen lassen: Das Objekt greifen und auf einen Teller legen, bei unveränderter Anweisung. Zwei Stufen machen das bei spärlicher Vergiftung möglich: Zuerst werden Textur, Position und Skala des Triggers per differenzierbarem Rendering optimiert (geleitet von visueller Aufmerksamkeit, Sprache und Zielaktion), dann entkoppeln quellenselektive Dual-LoRA-Adapter sauberes und vergiftetes Lernen, mit Gradientenprojektion gegen Konflikte und spaltenweiser Kalibrierung vor der Fusion in eine einzige Policy."
+  },
+  {
+   "t": "p",
+   "x": "Getestet an OpenVLA, OpenVLA-OFT, π0 und π0.5 auf den LIBERO-Suiten Spatial, Object, Goal und Long bei fest einem Prozent Vergiftung: 78,2 Prozent durchschnittlicher Ziel-Erfolg (TSR) gegenüber 15,5 Prozent der stärkeren gezielten Baseline, auf der langen Suite 68,6 gegenüber 8,1 Prozent. Die Ablation auf OpenVLA-OFT/Spatial zeigt die Mechanik: Der rohe Trigger kommt auf 20,4 Prozent TSR, die volle Trigger-Optimierung auf 86,4 bei 95,2 Prozent sauberem Erfolg; die Dual-LoRA-Entkopplung senkt die Konfliktrate der Gradienten von 68,14 auf 38,03 Prozent. Aufschlussreich der Kontrast zur Störungsrate: GoBA erreicht auf OpenVLA-OFT/Goal 94,2 Prozent Aufgabenversagen, aber nur 35,6 Prozent Zieltrajektorie; die Baselines verlieren die Trajektorie vor allem zwischen Heben und Ablegen. Stören ist leichter als Übernehmen."
+  },
+  {
+   "t": "p",
+   "x": "Auf einem echten PiPER-Arm mit π0.5-Policy und nur zwei vergifteten Demonstrationen pro Aufgabe (200 saubere, also etwa 1 Prozent) gelingen 46 von 80 Zieltrajektorien (57,5 Prozent), 72 von 80 Anweisungen werden gestört; der saubere Erfolg fällt von 62,5 auf 60,0 Prozent. Die Autoren sprechen selbst von Machbarkeit, nicht von verlässlicher Übernahme. Die Abwehrtests sind ein separater Versuchsaufbau auf OpenVLA-OFT/LIBERO-Spatial mit je 500 sauberen und 500 getriggerten Episoden: Nachträgliche Abwehr (1.000 bis 5.000 Schritte sauberes Finetuning, JPEG-Kompression, Weichzeichner) lässt dort 84,0 bis 89,6 Prozent des Ziel-Erfolgs dieser Konfiguration (Ausgangswert 86,4 Prozent) bestehen und drückt zugleich den sauberen Erfolg auf 90,2 bis 94,6 Prozent. Diese Quote bezieht sich nicht auf das 78,2-Prozent-Gesamtmittel über die vier Modelle und Suiten. Grenzen: White-Box-Offline-Szenario, die Übertragung auf ungesehene Umgebungen ist ungetestet."
+  }
+ ],
+ "faq": [
+  {
+   "q": "Ist die Harness-Wahl bei Agenten also egal?",
+   "a": "Für die Passrate weitgehend, für Verhalten und Kosten nicht: Der Harness erklärt nur 0,36 Prozent der Leistungsvarianz über die elf voll getesteten Modelle, ändert aber den Werkzeuggebrauch deutlich (in Claude Code im Schnitt 61 Prozent mehr gelesener Dateitext und 59 Prozent mehr Werkzeugaufrufe) und den Preis pro Lauf (Pi 0,29, OpenClaw 0,53 US-Dollar im Mittel über die Modelle). Einzelne Modelle verlieren in bestimmten Harnesses bis zu 9,2 Prozentpunkte."
+  },
+  {
+   "q": "Ersetzt HuB-J die menschliche Prüfung von Judges?",
+   "a": "Nein. Das Verfahren braucht menschliche Präferenzlabels als Referenz und arbeitet selbst mit LLM-Modulen (GPT-4o), deren eigene Verzerrungen nicht ausgeschlossen sind; die Autoren nennen stärkere menschliche Validierung ausdrücklich als offenen Punkt. Gezeigt ist, dass sich Biasfaktoren aus realen Uneinigkeiten entdecken, modellspezifisch vermessen und ohne Nachtraining teilweise herausrechnen lassen."
+  },
+  {
+   "q": "Sind VLA-Roboter damit in der Praxis übernehmbar?",
+   "a": "Der Angriff setzt White-Box-Zugriff auf die Anpassung und vergiftete Trainingsdemonstrationen voraus. In der Simulation gelangen im Schnitt 78,2 Prozent der Zieltrajektorien, auf dem echten Arm 57,5 Prozent bei nur zwei vergifteten Beispielen pro Aufgabe. Da die getesteten Gegenmaßnahmen den Großteil des Effekts bestehen lassen, raten die Autoren, VLA-Modelle über Training, Anpassung und Einsatz hinweg abzusichern."
+  }
+ ],
+ "title": "Harness-Effekt, Judge-Bias und Roboter-Backdoor",
+ "related": [
+  "modelle-und-agenten-evaluieren",
+  "lhtb-2-langzeit-agenten-benchmark"
+ ]
+}
