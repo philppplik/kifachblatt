@@ -16,7 +16,7 @@
   ],
   "hero": {
     "alt": "Drei schematische Bildkarten: ein Agent, der ein Sichtfenster über eine verdeckte Karte schiebt, zwei unterschiedlich große Videodateien auf einer Waage und eine Bildbeschreibung unter der Lupe. Themenhero ohne Zahlen und Messskala.",
-    "caption": "Drei Studien über vorschnelle Agenten, verzerrte Deepfake-Datensätze und schwer prüfbare RL-Fehler. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel. Eigene Illustration.",
+    "caption": "Drei Studien über vorschnelle Agenten, verzerrte Deepfake-Datensätze und schwer prüfbare RL-Fehler. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
     "credit": "Eigene Illustration",
     "ai_generated": false
   },
