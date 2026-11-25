@@ -1,0 +1,135 @@
+{
+  "title": "Fehlererholung, Erfahrungsschutz, Ausfall-Audit",
+  "dek": "Selbst mit Plan gelingen nur 27 Prozent der Erholungen, ein Filter stoppt vergiftete Erfahrungen, ein Audit findet den entscheidenden Fehlschritt.",
+  "slug": "news-ueberblick-abend-2026-11-25",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-25T16:09:30+01:00",
+  "modified": "2026-11-25T16:09:30+01:00",
+  "tags": [
+    "Forschung",
+    "Evaluation",
+    "Agenten",
+    "Sicherheit"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein abgeknickter Weg mit Rückwärtsschleife zum Ziel, ein Filtertrichter zwischen Gedächtniskarten und einem Schild, und eine Spur von Schritten mit einer Markierung auf dem entscheidenden Schritt. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über Fehlererholung, Erfahrungsschutz und Fehleraudit bei Agenten. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 25. November 2026, 16:01 Uhr MEZ. Drei neue Preprints fragen, was nach dem Fehler kommt: ein Benchmark für Fehlererholung, ein Schutz für wiederverwendete Erfahrungen und ein Audit, das den entscheidenden Fehlschritt lokalisiert."
+    },
+    {
+      "t": "h2",
+      "x": "Fehlererholung bleibt die Ausnahme"
+    },
+    {
+      "t": "callout",
+      "title": "16 Prozent ohne, 27 Prozent mit Plan",
+      "x": "Im SecondChance-Benchmark (12 Modelle, 129 Checkpoints, 5.760 Fortsetzungen) stellt das beste Modell (GPT-6.1-sol) gepoolt 16 Prozent der Fehler ohne Hilfe wieder her, 27 mit Reparaturplan. Pro Umgebung höchstens 21 ohne und 34 Prozent mit Plan."
+    },
+    {
+      "t": "p",
+      "x": "Die Fehler sind natürlich: Sie stammen aus eigenen Aufgabenversuchen von zehn Open-Weight-Modellen auf tau-2-bench, BFCL und AppWorld. 57 Checkpoints haben einen demonstrierten Fix, bei 15 ist er beweisbar unmöglich, bei 57 unbekannt."
+    },
+    {
+      "t": "p",
+      "x": "Korrigieren ist nicht Erholen: Llama-3.3-70B korrigiert 26 Prozent der tau-2-Fehler mit Plan, beendet aber keine Erholung; 40 von 84 erfolgreichen AppWorld-Läufen mit Plan lassen den Fehler im Zustand. Hinweis oder Fehlerort allein bringen für die meisten Modelle kaum etwas, erst der Plan steigert die Korrekturen um 3,3 bis 13,7 Prozentpunkte."
+    },
+    {
+      "t": "p",
+      "x": "Ohne Plan informiert nur GPT-6.1-sol den Nutzer regelmäßig (74 Prozent auf tau-2, alle anderen höchstens 6). Manche Modelle bestätigen den Fehler und korrigieren nichts (mit Plan gpt-oss-20b: 61 Prozent Zugeständnisse auf tau-2, null Korrekturen). Zwölf reparierbare Fehler korrigiert kein einziger Lauf."
+    },
+    {
+      "t": "h2",
+      "x": "Erfahrungen erst prüfen, dann nutzen"
+    },
+    {
+      "t": "callout",
+      "title": "Angriffsquote minus 26,2 bis 59,1 Prozentpunkte",
+      "x": "ExpGuard senkt in neun Angriffs-Benchmark-Settings die Angriffserfolgsquote um 26,2 bis 59,1 Prozentpunkte und hebt die Aufgabenquote um 21,8 bis 46,0 Punkte, jeweils gegenüber keinem Schutz; in allen neun Settings liegt es bei beiden Werten vorn."
+    },
+    {
+      "t": "p",
+      "x": "Agenten destillieren alte Abläufe in wiederverwendbare Erfahrungen; schadhafte Anleitungen können darin aufgabenübergreifend weiterwirken. Bisherige Schutzmechanismen prüfen Eingaben oder Werkzeugaufrufe, nicht die Erfahrung beim Abruf."
+    },
+    {
+      "t": "p",
+      "x": "ExpGuard baut einen Herkunftsgraphen und gewinnt Labels aus einer Gegenprobe: Original und neutralisierte Variante werden vom selben Checkpoint abgespielt, die Kontraste liefern getrennte Risiken für Angriff und Aufgabenversagen. Riskante Erfahrungen werden umgeschrieben und erneut bewertet."
+    },
+    {
+      "t": "p",
+      "x": "Bei der Risikoerkennung führt es alle neun Benchmark-Backbone-Kombinationen (AUPRC plus 0,091 bis 0,175 auf den besten Vergleich). Online fällt die Angriffsquote etwa auf STATE-Bench von 53,8 auf 10,9 Prozent. Grenze: Das Verfahren greift nur am expliziten Abrufpunkt; AppWorld bleibt unter dem SMP-Angriff mit 26,5 Prozent Angriffsquote am exponiertesten."
+    },
+    {
+      "t": "h2",
+      "x": "Fehleraudit: Schritt finden, dann deuten"
+    },
+    {
+      "t": "callout",
+      "title": "63,67 Prozent komplette Attribution",
+      "x": "Auf Who&When Pro (6.257 kontrolliert injizierte Fehler) erreicht RecordRoute 63,67 Prozent bei Akteur, Schritt und Modus kombiniert, gegen 52,30 (ASCon) und 48,53 (StepFinder). Lokale Diagnose statt ganzer Spur: 77,47 gegen 69,28 Prozent."
+    },
+    {
+      "t": "p",
+      "x": "Ein Audit braucht Akteur, frühesten entscheidenden Schritt und Fehlermodus. RecordRoute lernt überwacht ein paarweises Ranking der Datensätze und diagnostiziert den Modus nur aus dem lokalisierten Datensatz."
+    },
+    {
+      "t": "p",
+      "x": "Auf natürlichen Fehlern sinkt die Quote: 27,06 Prozent exakte Schritte auf TraceElephant (ASCon 18,81, bestes der drei offenen LLMs 23,85), 37,46 Prozent Top-1 auf CatchBench POST. Die drei getesteten offenen Sprachmodelle (ohne Trainingslabels) liegen bei kompletter Attribution bei höchstens 15,91 Prozent."
+    },
+    {
+      "t": "p",
+      "x": "Gemischte Verallgemeinerung: Auf ungesehenen Aufgaben-Benchmarks 81,99 Prozent Schritttreffer gepoolt, bei ungesehenen Agenten-Frameworks Makrosieg über StepFinder, aber gepoolt 49,03 gegen 49,38 Prozent für die Letzter-Schritt-Baseline. Als überwachtes Verfahren braucht es beschriftete Trainingsdaten."
+    }
+  ],
+  "key_takeaways": [
+    "Fehlererholung ist rar: 12 Modelle, 129 Checkpoints, 5.760 Fortsetzungen; das beste Modell schafft gepoolt 16 Prozent ohne und 27 Prozent mit Reparaturplan; Hinweis oder Fehlerort allein helfen kaum.",
+    "ExpGuard prüft Erfahrungen vor der Wiederverwendung per Herkunftsgraph und Gegenprobe: Angriffsquote minus 26,2 bis 59,1 Prozentpunkte, Aufgabenquote plus 21,8 bis 46,0 in neun Settings; Grenze ist der explizite Abrufpunkt.",
+    "RecordRoute lokalisiert erst, dann diagnostiziert es: 63,67 Prozent komplette Attribution auf kontrollierten Fehlern, auf natürlichen nur 27,06 bis 37,46 Prozent Schritttreffer, bei ungesehenen Frameworks gepoolt unter der einfachen Baseline."
+  ],
+  "faq": [
+    {
+      "q": "Sagen die SecondChance-Werte, wie oft Agenten Fehler machen?",
+      "a": "Nein. Der Datensatz beschreibt die Bewertungspopulation, nicht die Fehlerhäufigkeit: Die 129 Checkpoints wurden nach Fehlerart und Modellgröße ausbalanciert, und darunter sind 15, deren Reparatur nachweislich unmöglich ist, sowie 57, deren Fixbarkeit unbekannt ist. Gemessen wird, was Modelle nach einem dokumentierten Fehler tun, nicht wie oft er passiert."
+    },
+    {
+      "q": "Schützt ExpGuard den ganzen Agenten?",
+      "a": "Nein, nur die explizite Abrufgrenze für Erfahrungsbausteine: Dort wird jeder Kandidat bewertet, repariert und erneut bewertet, bevor er in den Kontext darf. Wege, die Speicherinhalte ohne diesen Abruf direkt in den Kontext stellen, brauchen laut den Autoren eine eigene Prüfgrenze. Die Laufzeitkosten messen die Autoren: im Schnitt 9,69 Sekunden Zusatzlatenz und 1.598 Verteidigungs-Tokens, weniger als bei A-MemGuard und LLM Auditor."
+    },
+    {
+      "q": "Ersetzt RecordRoute die Fehlersuche durch Menschen?",
+      "a": "Nein. Das Verfahren ist überwacht gelernt und braucht Trainingsdaten; auf natürlichen Fehlern liegt die exakte Schritttrefferquote bei 27,06 (TraceElephant) und 37,46 Prozent (CatchBench POST). Bei ungesehenen Agenten-Frameworks liegt die gepoolte Quote mit 49,03 Prozent sogar knapp unter der Letzter-Schritt-Baseline (49,38), nur das Makromittel schlägt StepFinder. Es unterstützt die Diagnose, es ersetzt sie nicht."
+    }
+  ],
+  "related": [
+    "lhtb-2-langzeit-agenten-benchmark",
+    "sicherheit-fuer-agenten-systeme"
+  ],
+  "sources": [
+    {
+      "title": "SecondChance: Benchmarking Reliable Error Recovery in AI Agents",
+      "publisher": "arXiv; Atahan Dokme, Adar Avsian, Larry Heck (AVA Lab, Georgia Institute of Technology)",
+      "url": "https://arxiv.org/abs/2611.31586",
+      "accessed": "2026-11-25"
+    },
+    {
+      "title": "ExpGuard: Guarding Long-Horizon LLM Agents against Corrupted Experience",
+      "publisher": "arXiv; Yuzhou Chen, Licheng Pan, Zhixuan Chu u. a.",
+      "url": "https://arxiv.org/abs/2611.32085",
+      "accessed": "2026-11-25"
+    },
+    {
+      "title": "RecordRoute: Auditing Agent Failures with Localization-Guided Diagnosis",
+      "publisher": "arXiv; Yifan Duan, Lihuan Li, Chao Xue, Siyuan Zheng, Du Yin, Flora D. Salim (UNSW Sydney)",
+      "url": "https://arxiv.org/abs/2611.33022",
+      "accessed": "2026-11-25"
+    }
+  ]
+}
