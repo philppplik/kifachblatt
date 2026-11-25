@@ -1,0 +1,135 @@
+{
+  "title": "Agenten-Geduld, Dateigrößen-Bias, prüfbare RL-Fehler",
+  "dek": "Ein Posterior-Reward bremst vorschnelle Agenten, die Dateigröße entlarvt zwei Deepfake-Datensätze, ein Risiko-Budget macht RL-Fehler menschenprüfbar.",
+  "slug": "news-ueberblick-mittag-2026-11-25",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-25T10:03:00+01:00",
+  "modified": "2026-11-25T10:03:00+01:00",
+  "tags": [
+    "Forschung",
+    "Evaluation",
+    "Agenten",
+    "Deepfakes"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein Agent, der ein Sichtfenster über eine verdeckte Karte schiebt, zwei unterschiedlich große Videodateien auf einer Waage und eine Bildbeschreibung unter der Lupe. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über vorschnelle Agenten, verzerrte Deepfake-Datensätze und schwer prüfbare RL-Fehler. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel. Eigene Illustration.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 25. November 2026, 09:52 Uhr MEZ. Drei neue Preprints zeigen blinde Flecke beim Trainieren und Prüfen: Agenten antworten gegen ihre eigene Überzeugung, Deepfake-Benchmarks verraten ihr Label über die Dateigröße, und RL macht Fehler schwerer erkennbar."
+    },
+    {
+      "t": "h2",
+      "x": "Posterior-Reward gegen vorschnelle Antworten"
+    },
+    {
+      "t": "callout",
+      "title": "Von bis zu 68 auf höchstens 2,2 Prozent Fehlgriffe",
+      "x": "Basismodelle mit Belief-Zeile legen sich auf 3 bis 68 Prozent der Züge fest, obwohl die Beweise fehlen und ihre Belief-Zeile mehrere Antworten nennt; mit RLVB sind es 0,1 bis 2,2 Prozent. RLVB steigert die Trefferquote im Mittel um 17,1 Prozentpunkte (EM-Variante: 10,4)."
+    },
+    {
+      "t": "p",
+      "x": "Auf HiddenGames antworten die drei Basismodelle in 64 bis 97 Prozent der Fälle, bevor die Beweise reichen. Ein Ergebnisreward belohnt auch geratene Treffer, ein Check im Harness scheitert, weil er die Beobachtungen nicht lesen kann."
+    },
+    {
+      "t": "p",
+      "x": "RLVB berechnet aus dem Privilegwissen des Simulators pro Zug den exakten Posterior und belohnt Aktionen per Vorausschau gegen den Posterior-Lehrer, ganz ohne Richter- oder Belohnungsmodell. Gelernt wird per Policy-Gradient oder EM mit LoRA-Adaptern."
+    },
+    {
+      "t": "p",
+      "x": "Auf drei Qwen-Modellen und drei Benchmarks ist RLVB in acht von neun Einstellungen vorn; ergebnisbasiertes GRPO und PPO verlieren im Mittel. Grenzen: Der Posterior braucht bekannte Regeln, Fehllesungen bei guter Beweislage steigen auf 10 bis 15 Prozent, und zum Lehrer bleibt ein großer Abstand (32,4 gegen 100 Prozent auf Pro-Worlds)."
+    },
+    {
+      "t": "h2",
+      "x": "Dateigröße als Benchmark-Kurzschluss"
+    },
+    {
+      "t": "callout",
+      "title": "Über 91 Prozent AUC ohne Pixel",
+      "x": "Dateigröße allein: 70,13 Prozent AUC auf 1M-Deepfakes (Validierung). Dateigröße pro Sekunde: 91,20 bis 91,47 Prozent. Auf FakeAVCeleb etwa 85 Prozent, auf DFDC nur 49,97 Prozent, also Zufall. Die Verzerrung steckt im Datensatz, nicht in Deepfakes an sich."
+    },
+    {
+      "t": "p",
+      "x": "Der Score normiert die Dateigröße mit den Extremwerten des Trainingsteils und sieht weder Bild noch Ton. 1M-Deepfakes umfasst über eine Million Videos von mehr als 2.000 Personen."
+    },
+    {
+      "t": "p",
+      "x": "Das Muster überträgt sich zwischen 1M und FakeAVCeleb (84,86 bis 86,52 Prozent AUC über die Kreuztests). Die unbalancierte SVC scheitert am FakeAVCeleb-Trainingsteil mit 430 echten gegenüber 18.018 gefälschten Videos."
+    },
+    {
+      "t": "p",
+      "x": "Die Ursache ist ungeklärt, Kandidaten sind Kodierung, Kompression und Nachbearbeitung. Ob inhaltsbasierte Detektoren betroffen sind, bleibt offen. Empfehlung: Dateieigenschaften je Klasse prüfen und auf abgeglichenen Teilmengen messen. Beachten: Zwei-Autoren-Preprint."
+    },
+    {
+      "t": "h2",
+      "x": "RL-Fehler wieder menschenprüfbar machen"
+    },
+    {
+      "t": "callout",
+      "title": "Plus 5,78 bis 9,72 Prozentpunkte bei schwer prüfbaren Fehlern",
+      "x": "DAPO-V schlägt genauigkeitsbasiertes DAPO auf den schwer prüfbaren Fragen von ITHV bei drei Modellen um 5,78 bis 9,72 Prozentpunkte und senkt das gewichtete Risiko um 10,1 bis 19,5 Prozent. Festgewicht-Varianten sind auf zwei Qwen-Modellen insgesamt genauer."
+    },
+    {
+      "t": "p",
+      "x": "RL kann die Leistung steigern und Restfehler zugleich schwerer erkennbar machen. ITHV enthält 2.728 bildgebundene Fälle und trennt über menschliche Prüfgenauigkeit offensichtliche von schwer erkennbaren Halluzinationen, auch für Freitext."
+    },
+    {
+      "t": "p",
+      "x": "DAPO-V bestraft falsche Antworten umso stärker, je schwerer Menschen die Frage prüfen können; ein adaptiver Multiplikator reagiert auf Budget-Verletzungen. Ein Budget von 0,1 liefert bei allen drei Modellen die besten Werte auf den schweren Fragen."
+    },
+    {
+      "t": "p",
+      "x": "In der verblindeten Studie (zehn Personen, je 100 Paare) erkannten die Teilnehmenden Fehler von DAPO-V zu 77,2 Prozent, vom Basismodell zu 70,0 und von DAPO nur zu 60,0 Prozent, bei kürzester Prüfzeit. Der Reward überträgt sich auf PPO und GRPO (plus 4,10 und 5,18 Prozentpunkte)."
+    }
+  ],
+  "key_takeaways": [
+    "Prozessreward aus dem exakten Posterior (RLVB): plus 17,1 Prozentpunkte Trefferquote im Mittel über drei Modelle und Benchmarks, vorschnelle Festlegungen sinken von 3 bis 68 (Basismodell mit Belief-Zeile) auf 0,1 bis 2,2 Prozent der Züge.",
+    "Dateigröße pro Sekunde trennt echte von gefälschten Videos mit über 91 Prozent AUC auf 1M-Deepfakes, auf DFDC dagegen nicht: Datensatz-Bias statt Deepfake-Eigenschaft, Ursache offen.",
+    "Verifizierbarkeitsbudget im RL: plus 5,78 bis 9,72 Prozentpunkte auf schwer prüfbaren Fragen, minus 10,1 bis 19,5 Prozent gewichtetes Risiko, mit Trade-off bei der Gesamtgenauigkeit auf zwei Modellen."
+  ],
+  "faq": [
+    {
+      "q": "Braucht RLVB immer einen Simulator mit bekannten Regeln?",
+      "a": "Für den exakten Posterior ja: Die Umgebung muss die Priorverteilung über die versteckte Antwort und die Wahrscheinlichkeit jeder Beobachtung kennen. Das gilt laut den Autoren für viele Rätsel, Spiele und simulierte Haushaltsaufgaben. Bei offenen Regeln muss der Posterior geschätzt werden, sehr große Aktionsräume brauchen eine flachere oder gesampelte Vorausschau, deren Kosten mit der Zahl der Aktionen und Beobachtungen wachsen."
+    },
+    {
+      "q": "Heißt der Dateigrößen-Befund, dass Deepfake-Detektoren schummeln?",
+      "a": "Das zeigt die Studie nicht. Sie misst nur Eigenschaften der Datei, nicht des dekodierten Bildes oder Tons. Ob inhaltsbasierte Detektoren verwandte Spuren nutzen, ist offen und wird als künftige Arbeit benannt, etwa mit kontrolliertem Neukodieren und dateiabgeglichenen Teilmengen. Und DFDC zeigt: Der Effekt ist eine Eigenschaft bestimmter Datensätze, nicht von Deepfake-Videos an sich."
+    },
+    {
+      "q": "Macht DAPO-V die Modelle insgesamt genauer?",
+      "a": "Gegenüber dem nur auf Genauigkeit trainierten DAPO ja, etwa von 69,96 auf 72,75 Prozent Gesamtgenauigkeit beim Qwen2.5-VL-3B und von 77,82 auf 78,30 beim 7B-Modell; auf LLaVA-OneVision-1.5-8B erreicht DAPO-V die höchste Gesamtgenauigkeit. Fest gewichtete DAPO-Varianten liegen auf den beiden Qwen-Modellen aber noch höher. Das Ziel von DAPO-V ist nicht der Gesamtspitzenwert, sondern eine Fehlermischung, die Menschen leichter erkennen."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ],
+  "sources": [
+    {
+      "title": "Lazy Agents Answer Against Their Own Beliefs: Reinforcement Learning with Verifiable Beliefs Teaches Them to Act on What They Believe",
+      "publisher": "arXiv; Richmond Sin Jing Xuan, Peilin Feng, Wenbin Wang, Soujanya Poria",
+      "url": "https://arxiv.org/abs/2611.32884",
+      "accessed": "2026-11-25"
+    },
+    {
+      "title": "File Size as a Potential Dataset Bias in Audio-Visual Deepfake Data",
+      "publisher": "arXiv; Marcella Astrid (SnT, Universität Luxemburg; Helmholtz AI), Niki Maria Foteinopoulou",
+      "url": "https://arxiv.org/abs/2611.32979",
+      "accessed": "2026-11-25"
+    },
+    {
+      "title": "More Powerful, Less Verifiable? Mitigating Hard-to-Verify Hallucinations in MLLM's Reinforcement Learning",
+      "publisher": "arXiv; Jianhong Pang, Ziyi Ye, Qiuxia Hou, Yanhao Zhang, Zuxuan Wu (Fudan-Universität u. a.)",
+      "url": "https://arxiv.org/abs/2611.32055",
+      "accessed": "2026-11-25"
+    }
+  ]
+}
