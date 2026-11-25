@@ -109,6 +109,7 @@
 
 
 
+<url><loc>https://kifachblatt.de/news-ueberblick-mittag-2026-11-25</loc><lastmod>2026-11-25T10:03:00+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-mittag-2026-11-25.jpg</image:loc><image:title>Agenten-Geduld, Dateigrößen-Bias, prüfbare RL-Fehler</image:title><image:caption>Drei schematische Bildkarten: ein Agent, der ein Sichtfenster über eine verdeckte Karte schiebt, zwei unterschiedlich große Videodateien auf einer Waage und eine Bildbeschreibung unter der Lupe. Themenhero ohne Zahlen und Messskala.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/drama-3-japanese-gguf-analyse</loc><lastmod>2026-11-25T07:21:49+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/drama-3-japanese-gguf-analyse.jpg</image:loc><image:title>Drama-3 als GGUF: Japanische Sprachsynthese lokal auf der GPU</image:title><image:caption>Eigene Datentafel zu Drama-3 als GGUF: vier Pakete ab 9,1 GiB, lokales Voice Cloning, kommerziell erst ab Lizenzschwelle.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/rd-flow-64-analyse</loc><lastmod>2026-11-25T07:21:49+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/rd-flow-64-analyse.jpg</image:loc><image:title>RD Flow 64: Pixel-Art-Modell mit 271 Millionen Parametern</image:title><image:caption>Eigene Datentafel zu RD Flow 64: 271 Millionen Parameter, 64x64 Pixel nativ, nicht-kommerzielle Lizenz.</image:caption></image:image></url>
 <url><loc>https://kifachblatt.de/news-ueberblick-morgen-2026-11-25</loc><lastmod>2026-11-25T06:56:02+01:00</lastmod><image:image><image:loc>https://kifachblatt.de/assets/articles/news-ueberblick-morgen-2026-11-25.jpg</image:loc><image:title>Harness-Effekt, Judge-Bias und Roboter-Backdoor</image:title><image:caption>Drei schematische Bildkarten: ein Agent am Terminal mit Weggabelung, eine Waage über Antwortpaaren und ein Roboterarm mit markiertem Trigger-Objekt. Themenhero ohne Zahlen und Messskala.</image:caption></image:image></url>
@@ -351,7 +352,7 @@
 <url><loc>https://kifachblatt.de/thema/modelle</loc><lastmod>2026-11-25T07:21:49+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/praxis</loc><lastmod>2026-10-20T10:05:00+02:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/recht</loc><lastmod>2026-10-20T09:00:00+02:00</lastmod></url>
-<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-25T06:56:02+01:00</lastmod></url>
+<url><loc>https://kifachblatt.de/thema/ueberblick</loc><lastmod>2026-11-25T10:03:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/thema/verlaesslichkeit</loc><lastmod>2026-10-30T07:19:00+01:00</lastmod></url>
 <url><loc>https://kifachblatt.de/berichte</loc><lastmod>2026-11-25</lastmod></url>
 <url><loc>https://kifachblatt.de/lernpfade</loc><lastmod>2026-11-25</lastmod></url>

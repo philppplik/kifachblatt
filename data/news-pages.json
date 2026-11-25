@@ -1,5 +1,41 @@
 [
   {
+    "title": "Euphorie verpufft: Anthropic-Papier fällt unter 83 Dollar",
+    "url": "https://www.heise.de/news/Anthropic-Aktie-faellt-unter-Ausgabepreis-11537185.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795594860.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Anthropic startete an der Börse mit einem Kurssprung von 34 Prozent und einer Bewertung von zwei Billionen Dollar. Doch die Euphorie währte nur kurz.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-25T09:04:46.650800+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Claude Ship soll Review-Engpässe bei Pull-Requests lösen",
+    "url": "https://www.heise.de/news/Claude-Ship-soll-Review-Engpaesse-bei-Pull-Requests-loesen-11536568.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795594380.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Mit Claude Ship automatisiert Anthropic Pull-Requests, von der Codeprüfung über Korrekturen bis hin zur Freigabe.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-25T09:04:46.650855+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Tidal verbannt KI-Musik und löscht 27 Millionen Tracks",
+    "url": "https://www.heise.de/news/Tidal-Vollstaendig-KI-generierte-Musik-fliegt-raus-11537113.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795594020.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Tidal nimmt ab dem 9. Dezember keine vollständig KI-generierte Musik mehr an. Auch rund 27 Millionen bereits markierte Tracks sollen verschwinden.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-25T09:04:46.650877+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Mathe-Wettlauf: Anthropic und OpenAI mit fast zeitgleichen Beweisen für VP ≠ VNP",
     "url": "https://www.heise.de/news/Mathe-Wettlauf-Anthropic-und-OpenAI-mit-fast-zeitgleichen-Beweisen-fuer-VP-VNP-11536640.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795534500.0,
