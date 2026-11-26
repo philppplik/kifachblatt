@@ -1,5 +1,29 @@
 [
   {
+    "title": "Riemannsche Vermutung: Claude kürzt KI-Beweis um mehr als 99 Prozent",
+    "url": "https://www.heise.de/news/Riemannsche-Vermutung-Claude-kuerzt-KI-Beweis-um-mehr-als-99-Prozent-11539145.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795697400.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Claude hat den eigenen Beweis der Riemannschen Vermutung drastisch verschlankt. Die mathematische Fachwelt arbeitet weiterhin daran, ihn zu verstehen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-26T15:06:58.219351+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Cloudera: Mehr infrastrukturelle Unabhängigkeit für Daten und KI",
+    "url": "https://www.heise.de/news/Cloudera-Mehr-infrastrukturelle-Unabhaengigkeit-fuer-Daten-und-KI-11538779.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795689720.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Mit lokal ausführbaren KI-Modellen und neuen Infrastrukturpartnern erweitert Cloudera die Anwendungsbreite seiner KI- und Datenplattform.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-26T15:06:58.219568+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Klageschwemme mit KI: NRW-LSG möchte 15-Euro-Gebühr",
     "url": "https://www.heise.de/news/Klageschwemme-mit-KI-NRW-LSG-moechte-15-Euro-Gebuehr-11538487.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795673580.0,

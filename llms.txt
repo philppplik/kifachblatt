@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Skill-Lift-Audit, Backdoor-Linsen, Harness-Transfer](https://kifachblatt.de/news-ueberblick-abend-2026-11-26): Ein Audit zerlegt die Skill-Gewinne von SkillsBench, Linsen lesen Backdoors im Feintuning, Harness-Evolution überträgt mit Vorbehalten: drei Nachmessungen.
 - [Kolibri 1.1: 75-Mrd.-MoE für Deutsch und Englisch, 3,4 Mrd. aktiv](https://kifachblatt.de/kolibri-1-1-analyse): Aleph Alpha legt ein 75-Mrd.-MoE für Deutsch und Englisch unter Apache 2.0 offen. Die Gewichte brauchen 72 GiB, die Benchmarks stammen vom Hersteller.
 - [Raon-1 mini: 28,8-Mrd.-MoE aus Korea unter Apache-2.0](https://kifachblatt.de/raon-1-mini-analyse): KRAFTON legt ein Hybrid-MoE mit 4,3 Mrd. aktiven Parametern, 262.144 Token Kontext und sechs Denkstufen offen vor. Die Benchmarks sind Herstellerangaben.
 - [Monitor-Tests, Einflussfunktionen, SVD-Kompression](https://kifachblatt.de/news-ueberblick-mittag-2026-11-26): Monitor-Quoten hängen am Angriff; Einflussfunktionen finden Trainingsdaten je nach Phänomen unterschiedlich gut; LLift rüstet einmal für mehrere SVD-Budgets.
