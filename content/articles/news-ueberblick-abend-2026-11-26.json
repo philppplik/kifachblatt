@@ -1,0 +1,135 @@
+{
+  "title": "Skill-Lift-Audit, Backdoor-Linsen, Harness-Transfer",
+  "dek": "Ein Audit zerlegt die Skill-Gewinne von SkillsBench, Linsen lesen Backdoors im Feintuning, Harness-Evolution überträgt mit Vorbehalten: drei Nachmessungen.",
+  "slug": "news-ueberblick-abend-2026-11-26",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-26T16:06:00+01:00",
+  "modified": "2026-11-26T16:06:00+01:00",
+  "tags": [
+    "Forschung",
+    "Evaluation",
+    "Agenten",
+    "Sicherheit"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: eine Lupe über Listenzeilen mit Häkchen und Lücken, eine Linse, die ein verstecktes Wort in einem Balken sichtbar macht, und Pfeile, die eine Mauer zwischen zwei Feldern überqueren. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über die Prüfung von Skill-Benchmarks, das Lesen von Feintuning-Unterschieden und übertragbare Harness-Evolution. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 26. November 2026, 16:00 Uhr MEZ. Drei Preprints (Einreichung jeweils 25. November, an den Abstract-Seiten geprüft) prüfen Messwerte nach: Skill-Benchmark, Backdoor-Erkennung, Harness-Evolution."
+    },
+    {
+      "t": "h2",
+      "x": "Skill-Lift: Was der Gewinn misst"
+    },
+    {
+      "t": "callout",
+      "title": "74,6 Punkte auf drei Lücken-Aufgaben",
+      "x": "Im Snapshot (7.554 Läufe, 1.421 Zellen) bringen drei Aufgaben, deren Bewertungsregeln nur im Skill-Paket stehen, plus 74,6 Prozentpunkte im Mittel, der Gesamtschnitt liegt bei 18,7; die drei Aufgaben tragen rund 18 Prozent des Gesamtlifts."
+    },
+    {
+      "t": "p",
+      "x": "SkillsBench meldete bei 87 Aufgaben plus 16,6 Prozentpunkte im Schnitt, aber Einbrüche bei 13; Folgearbeiten sortieren Skills danach aus. Das Audit (Trine University, National University of Singapore) vergleicht Prompts, Referenzlösungen, Bewerter und Skill-Pakete auf Quelltextebene und testet 83 Aufgaben mit gepaarten Zellen."
+    },
+    {
+      "t": "p",
+      "x": "Drei Lücken-Fälle bleiben bestehen: eine Kartenprojektion (EPSG:4087), die nur der Skill nennt (plus 72,2, kontrolliert), zwischengespeicherte Formelwerte (plus 75,9, kontrolliert), eine fehlende Hochwasser-Definition (plus 76,2, Quelltext). Dazu vier Platzhalter-Verzeichnisse und ein Harness mit 48 eingebauten Skills."
+    },
+    {
+      "t": "p",
+      "x": "Kein Verlust ist nach FDR-Korrektur signifikant (26 signifikante Aufgaben, alle positiv; negativste bei p=0,15); 169 Zellen (11,9 Prozent) zeigen negative Differenzen, doch reines Rauschen würde 327,7 erwarten, und in 823 Zellen mit Basislinie null ist ein Verlust rechnerisch unmöglich. Auf Testläufen schrumpfen scheinbare Verluste von minus 56,2 auf minus 9,9 Punkte und hoch-basislinige Auswahl von minus 16,1 auf minus 0,5; ein Basislinien-Gater holt plus 2,92 im Replay, aber plus 0,12 auf Testläufen. Grenze: erst Verluste ab etwa 24 Punkten sind mit drei Läufen je Bedingung erkennbar."
+    },
+    {
+      "t": "h2",
+      "x": "Backdoor-Linsen: Diffs lesbar machen"
+    },
+    {
+      "t": "callout",
+      "title": "11 von 12 in den Top 10",
+      "x": "Die Gewichtsdifferenz durch die J++-Linse reiht auf fünf selbst trainierten Qwen3.5-4B-Organismen in 11 von 12 Einstellungen einen Backdoor-Token unter die ersten zehn und schlägt die rohe Differenz in allen 12."
+    },
+    {
+      "t": "p",
+      "x": "Bisher testete jedes Verfahren auf eigenen Backdoor-Modellen. Die Studie (Western University, Vanderbilt University) bringt Gewichts-, Aktivierungs- und Ausgabeverfahren in eine gemeinsame Form: gerankte Token-Auslesungen pro Schicht, fünf Organismen nach Literatur-Rezepten."
+    },
+    {
+      "t": "p",
+      "x": "Suppress-Training (Backdoor-Wörter auf sauberen Eingaben bestraft) lässt Diff Mining den Ziel-Token überall verlieren und verschlechtert ADL; die Gewichtsverfahren bleiben unberührt. Eine LoRA-Kontrolle zeigt: Das beste Verfahren kann geänderte Verweigerung nicht vom Backdoor trennen."
+    },
+    {
+      "t": "p",
+      "x": "Umgekehrt brechen die Gewichtsverfahren bei permutierten Schreiber-Neuronen (Wal-Organismus, Zielrang 28 auf 2.032) oder einem Nur-Leser-LoRA (3.007), wo ADL (Logit-Linse) auf Rang 4 findet. Kein Verfahren hält beiden stand; Grenzen: eine Modellgröße, ein Lauf je Organismus, 20 bis 50 Prozent Vergiftungsanteil."
+    },
+    {
+      "t": "h2",
+      "x": "TransHarness: Evolution mit Transfer"
+    },
+    {
+      "t": "callout",
+      "title": "76,4 und 95,5 Prozent, Intervalle bei null",
+      "x": "DeepSeek V4.1 Flash mit TransHarness: 76,4 Prozent auf DeepSWE v1.1 und 95,5 auf Terminal-Bench 2.1; die gepaarten 95-Prozent-Intervalle gegenüber dem Basisharness (minus 2,4 bis 8,8 und minus 1,1 bis 12,4, je drei Läufe) schließen die Null ein."
+    },
+    {
+      "t": "p",
+      "x": "Harness-Evolution überfittet leicht: Meta-Harness verliert im selben Setup 4,1 Punkte auf DeepSWE. TransHarness (Huazhong University of Science and Technology, Unicom Data Intelligence, Xiamen University) lernt Eingriffe aus 300 Trajektorien eines unabhängigen 100-Aufgaben-Sets, das keines der 91 DeepSWE-Repositories enthält."
+    },
+    {
+      "t": "p",
+      "x": "Im direkten Vergleich kommen Self-Harness und RRSI auf plus 0,3 netto, TransHarness rettet 13,0 Prozent der gepaarten Läufe bei 9,7 Prozent Verschlechterungen; am stärksten gewinnt Qwen Code mit plus 7,9. Ohne evidenzbasierte Neubewertung fallen 10,9 Punkte; Harnesses aus 25 oder 50 Quellaufgaben liegen unter der Basis."
+    },
+    {
+      "t": "p",
+      "x": "Die Spitzenwerte liegen plus 2,4 und plus 5,6 über den öffentlichen Scores von GPT-6 Astra und sind Mittel über drei Läufe; auf kompositionalen OOD-Aufgaben gewinnen mit DeepSeek Mini-SWE auf DeepSWE 14,6 und Terminus 2 auf Terminal-Bench 4,1 Punkte. Evolutionskosten: 132,7 Millionen Token. Die Autoren raten zu Sicherheits- und Wartbarkeitsprüfungen beim Einsatz."
+    }
+  ],
+  "key_takeaways": [
+    "Skill-Lift im Audit: plus 74,6 Punkte auf drei Aufgaben mit Bewertungslücken (18,7 im Gesamtschnitt); kein Verlust signifikant, Verlustzellen unter dem Rausch-Erwartungswert; Basislinien-Gater auf Testläufen ohne nachweisbaren Gewinn (plus 0,12, Intervall minus 0,67 bis plus 0,93).",
+    "Backdoor-Diffing: J++-Linse in 11 von 12 Einstellungen mit Ziel-Token in den Top 10 (Qwen3.5-4B, eigene Organismen); Suppress-Training bricht Ausgabe-/Aktivierungsverfahren, Permutation und Nur-Leser-LoRA die Gewichtsverfahren.",
+    "TransHarness: 76,4 Prozent (DeepSWE v1.1) und 95,5 (Terminal-Bench 2.1) mit unabhängigem Evolutionsset; Intervalle der Spitzenwerte schließen null ein, Vergleichsmethoden überfitten (Meta-Harness minus 4,1)."
+  ],
+  "faq": [
+    {
+      "q": "Schaden Agent-Skills manchen Aufgaben nachweislich?",
+      "a": "Im geprüften Snapshot (7.554 Läufe, 1.421 Zellen, höchstens drei Läufe je Bedingung) sagt die Reanalyse: Keine der 17 Aufgaben mit negativem Lift erreicht Signifikanz (Permutationstests, FDR 10 Prozent; kleinster zweiseitiger p-Wert 0,15), und es gibt weniger Verlustzellen (169), als reines Laufrauschen ohne jeden Skill-Effekt erzeugen würde (erwartet 327,7). Das beweist keine Harmlosigkeit: Auf unabhängigen Testläufen bleibt ein Rest von minus 9,9 Prozentpunkten, und die geringe Laufzahl erkennt echte Verluste erst ab etwa 24 Prozentpunkten mit 80 Prozent Power."
+    },
+    {
+      "q": "Findet man Backdoors aus dem Feintuning jetzt zuverlässig?",
+      "a": "Kein Verfahren allein: Auf fünf selbst trainierten Qwen3.5-4B-Organismen (12 Einstellungen) ist die Gewichtsdifferenz durch die J++-Linse das stärkste Einzelverfahren und reiht einen Backdoor-Token in 11 Einstellungen unter die ersten zehn. Aber ausgaben- und aktivierungsbasierte Verfahren brechen ein, sobald das Modell die Backdoor-Wörter auf sauberen Eingaben bestraft, und die gewichtsbasierten brechen bei permutierten Schreiber-Neuronen oder einem Nur-Leser-LoRA. Die Verfahren ergänzen sich; sie beschreiben, was ein Feintuning ändert, nicht ob die Änderung ein Backdoor ist."
+    },
+    {
+      "q": "Überträgt sich Harness-Evolution wirklich auf neue Benchmarks?",
+      "a": "Besser als die Vergleichsmethoden: TransHarness erreicht auf DeepSWE v1.1 76,4 Prozent, während Meta-Harness bei gleichem Startpunkt 4,1 Punkte verliert und Self-Harness sowie RRSI auf plus 0,3 netto kommen. Die Evolutionsdaten teilen kein Repository mit dem Zielbenchmark. Aber die beiden Schlagzeilen-Gewinne gegenüber dem Basisharness haben 95-Prozent-Intervalle von minus 2,4 bis plus 8,8 beziehungsweise minus 1,1 bis plus 12,4 Punkten über nur drei Läufe; sie schließen die Null ein."
+    }
+  ],
+  "related": [
+    "modelle-und-agenten-evaluieren",
+    "hersteller-benchmarks-vergleichbarkeit-analyse"
+  ],
+  "sources": [
+    {
+      "title": "What Does Skill Lift Actually Measure? A Source-Code-Level Audit and Noise-Aware Reanalysis of SkillsBench",
+      "publisher": "arXiv; Haozhe Zhang (Trine University), Zhen Long (National University of Singapore)",
+      "url": "https://arxiv.org/abs/2611.33943",
+      "accessed": "2026-11-26"
+    },
+    {
+      "title": "Reading Fine-Tuning Diffs Through Lenses: Model Diffing for Backdoor Detection",
+      "publisher": "arXiv; Maximilian Petrowitsch, Ben Connors (Western University), Krzysztof Kapulkin (Vanderbilt University, Western University)",
+      "url": "https://arxiv.org/abs/2611.34758",
+      "accessed": "2026-11-26"
+    },
+    {
+      "title": "TransHarness: From Benchmark Overfitting to Transferable Harness Evolution",
+      "publisher": "arXiv; Tianze Xia, Zimo Wang, Heng Tong u. a. (Huazhong University of Science and Technology, Unicom Data Intelligence, Xiamen University)",
+      "url": "https://arxiv.org/abs/2611.33757",
+      "accessed": "2026-11-26"
+    }
+  ]
+}
