@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "Kolibri 1.1: 75-Mrd.-MoE für Deutsch und Englisch, 3,4 Mrd. aktiv",
  "dek": "Aleph Alpha legt ein 75-Mrd.-MoE für Deutsch und Englisch unter Apache 2.0 offen. Die Gewichte brauchen 72 GiB, die Benchmarks stammen vom Hersteller.",
- "published": "2026-11-25T07:35:00+01:00",
- "modified": "2026-11-25T07:35:00+01:00",
+ "published": "2026-11-26T10:32:30+01:00",
+ "modified": "2026-11-26T10:32:30+01:00",
  "author": "philipp-paulik",
  "tags": [
   "Kolibri 1.1",
@@ -84,7 +84,7 @@
   },
   {
    "t": "p",
-   "x": "Kolibri 1.1 zweigt vom Mid-Training-Checkpoint von Kolibri 1 ab (nach 3,42 Billionen Token), stellt die Aufmerksamkeit auf Sparse Attention um und trainiert weiter: 805 Milliarden Token Mid-Training bei Sequenzlänge 196.608 und 201 Milliarden Token Long-Context bei 262.144. Das veröffentlichte Modell ist der Durchschnitt aller 40 gespeicherten Checkpoints. Der einzige neue Datenmix ist der des zweiten Mid-Trainings: Der Anteil deutscher Web- und Dokumentdaten steigt laut Karte von 2,1 auf 14,5 Prozent. Danach folgen SFT mit gefilterten, zweisprachigen offenen und synthetischen Daten sowie RL mit Umgebungen für Reasoning, Agenten und Anweisungsbefolgung [1]."
+   "x": "Kolibri 1.1 zweigt vom Mid-Training-Checkpoint von Kolibri 1 ab (nach 3,42 Billionen Token), stellt die Aufmerksamkeit auf Sparse Attention um und trainiert weiter: 805 Milliarden Token Mid-Training bei Sequenzlänge 196.608 und 201 Milliarden Token Long-Context bei 262.144. Der Basis-Checkpoint nach beiden Phasen ist der Durchschnitt aller 40 gespeicherten Checkpoints. Der einzige neue Datenmix ist der des zweiten Mid-Trainings: Der Anteil deutscher Web- und Dokumentdaten steigt laut Karte von 2,1 auf 14,5 Prozent. Danach folgen SFT mit gefilterten, zweisprachigen offenen und synthetischen Daten sowie RL mit Umgebungen für Reasoning, Agenten und Anweisungsbefolgung; der finale Checkpoint entsteht laut Karte durch das Zusammenführen („Souping“) dreier Checkpoints [1]."
   },
   {
    "t": "p",
@@ -136,7 +136,7 @@
   },
   {
    "t": "p",
-   "x": "Stark sind laut Karte unter anderem LiveCodeBench v6 (93,0; Kolibri 1: 85,4), AIME 2025 auf Englisch (98,3) und Deutsch (95,2) und die Engineering-Tests (BenchCAD Code Edit 86,2 gegen 52,2 bei Kolibri 1). Schwach oder rückläufig sind: BrowseComp 34,8 (Qwen3.8 Flash Next 70,1), TerminalBench 2.1 35,6 (Qwen3.8 Flash Next 86,5), GraphWalks bis 128k 64,4 (Qwen3.6 35B-A3B 94,4), Tau3-Bench Banking 28,6 (Kolibri 1: 38,7) und Industry RAG auf Englisch 81,8 (Kolibri 1: 84,8). Bei der Prompt-Injection-Prüfung AgentDojo sinkt die Erfolgsquote gezielter Angriffe von 69,7 bei Kolibri 1 auf 0,9; die Karte empfiehlt dennoch, externe Inhalte als nicht vertrauenswürdig zu behandeln und Aktionen mit Nebenwirkungen von einer Person bestätigen zu lassen [1]."
+   "x": "Stark sind laut Karte unter anderem LiveCodeBench v6 (93,0; Kolibri 1: 85,4), AIME 2025 auf Englisch (98,3) und Deutsch (95,2) und die Engineering-Tests (BenchCAD Code Edit 86,2 gegen 52,2 bei Kolibri 1). Schwach oder rückläufig sind: BrowseComp 34,8 (Qwen3.8 Flash Next 70,1), TerminalBench 2.1 35,6 (Qwen3.8 Flash Next 86,5), GraphWalks bis 128k 64,4 (GLM-5.3 Flash 97,0, Qwen3.6 35B-A3B 94,4), Tau3-Bench Banking 28,6 (Kolibri 1: 38,7) und Industry RAG auf Englisch 81,8 (Kolibri 1: 84,8). Bei der Prompt-Injection-Prüfung AgentDojo sinkt die Erfolgsquote gezielter Angriffe von 69,7 bei Kolibri 1 auf 0,9; die Karte empfiehlt dennoch, externe Inhalte als nicht vertrauenswürdig zu behandeln und Aktionen mit Nebenwirkungen von einer Person bestätigen zu lassen [1]."
   },
   {
    "t": "chart",
