@@ -1,0 +1,325 @@
+{
+ "slug": "kolibri-1-1-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Kolibri 1.1: 75-Mrd.-MoE für Deutsch und Englisch, 3,4 Mrd. aktiv",
+ "dek": "Aleph Alpha legt ein 75-Mrd.-MoE für Deutsch und Englisch unter Apache 2.0 offen. Die Gewichte brauchen 72 GiB, die Benchmarks stammen vom Hersteller.",
+ "published": "2026-11-25T07:35:00+01:00",
+ "modified": "2026-11-25T07:35:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Kolibri 1.1",
+  "Aleph Alpha",
+  "Mixture-of-Experts",
+  "Apache-2.0",
+  "Deutsch",
+  "GGUF"
+ ],
+ "key_takeaways": [
+  "Kolibri 1.1 ist laut Modellkarte ein Mixture-of-Experts-Modell von Aleph Alpha Research für Deutsch und Englisch: 75 Milliarden Gesamt-, 3,44 Milliarden aktive Parameter, 384 geroutete Experten (6 pro Token plus 1 geteilter), Apache 2.0.",
+  "Es setzt das Training von Kolibri 1 fort: 805 Milliarden Token Mid-Training und 201 Milliarden Long-Context-Token mit Sparse Attention; der Anteil deutscher Web- und Dokumentdaten stieg im zweiten Mid-Training laut Karte von 2,1 auf 14,5 Prozent.",
+  "Die Karte weist im eigenen Vergleich einen Gesamtwert von 73,2 aus (Kolibri 1: 66,6; DE 74,2, EN 72,2). Drei Vergleichsmodelle liegen darüber (bis 80,1). Gemessen hat der Hersteller selbst; schwach sind etwa BrowseComp (34,8), TerminalBench 2.1 (35,6) und GraphWalks (64,4).",
+  "Die Gewichte kommen als FP8-Dateien mit zusammen 72,2 GiB; als Minimum nennt die Karte 2 H100 SXM5, 2 H200, 1 B200 oder 1 B300. Offizielle GGUF-Dateien gibt es ab 15,4 GiB, llama.cpp lädt das Modell laut Karte erst nach dem Merge eines noch offenen Pull Requests.",
+  "Der Hersteller hält die Kosten pro Aufgabe für niedrig (0,21 GPU-Stunden je 1.000 Aufgaben gegenüber 0,72 bei Kolibri 1); das ist eine modellierte Rechnung auf einem 8xB200-Knoten, keine Messung im Betrieb bei Anwendern."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu Kolibri 1.1: 75 Milliarden Parameter gesamt, 3,44 Milliarden aktiv, Gesamtwert 73,2 laut Herstellerkarte.",
+  "caption": "Kolibri 1.1 in drei Angaben - aus der Modellkarte, nicht nachgemessen [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "Aleph-Alpha/Kolibri-1.1 (Modellkarte, config.json, LICENSE, Dateiliste und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/Aleph-Alpha/Kolibri-1.1",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "Aleph-Alpha/Kolibri-1.1-GGUF (Modellkarte, Qualitätstabelle, Dateiliste)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/Aleph-Alpha/Kolibri-1.1-GGUF",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "model : add Kolibri-1.1 support (Pull Request 32891, Status über GitHub-API)",
+   "publisher": "GitHub (ggml-org/llama.cpp)",
+   "url": "https://github.com/ggml-org/llama.cpp/pull/32891",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "Kolibri 1.1, Responsible Use",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/Aleph-Alpha/Kolibri-1.1/blob/main/RESPONSIBLE_USE.md",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "Aleph-Alpha/aleph-alpha-inference (Repository-API, vLLM-Plugin)",
+   "publisher": "GitHub",
+   "url": "https://github.com/Aleph-Alpha/aleph-alpha-inference",
+   "accessed": "2026-11-26"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Aleph Alpha Research hat Kolibri 1.1 auf Hugging Face veröffentlicht (Repo angelegt am 20. November 2026; die Karte nennt als Veröffentlichungsdatum den 23. November 2026). Das Modell ist die Fortsetzung des Reasoning-MoE Kolibri 1 und bewusst auf zwei Sprachen beschränkt: Deutsch und Englisch. Die Karte begründet das ausdrücklich als Entscheidung für Tiefe statt Breite. Sie nennt außerdem einen auf deutsche Wortstruktur zugeschnittenen Tokenizer mit 128.000 Einträgen [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Architektur: großes Gedächtnis, kleine Rechnung"
+  },
+  {
+   "t": "p",
+   "x": "Kolibri 1.1 hat 75 Milliarden Parameter, von denen pro Token 3,44 Milliarden aktiv sind. Nach der Karte folgen auf 2 dichte Schichten 48 MoE-Schichten mit je 384 gerouteten Experten (6 pro Token) und einem geteilten Experten. Die Aufmerksamkeit ist im Verhältnis 4:1 gemischt: Schichten mit gleitendem Fenster (512 vorangehende Token) und Sparse-Attention-Schichten, in denen jede Anfrage 2.048 ausgewählte Schlüssel ansieht und mehrere Schichten Schlüssel und Werte einer früheren Schicht wiederverwenden. Der Kontext beträgt nativ 262.144 Token und per Extrapolation bis 1.048.576; für komplexe Aufgaben empfiehlt die Karte höchstens 262.144 [1]."
+  },
+  {
+   "t": "p",
+   "x": "Der Preis des Designs ist Speicher: Das ganze Modell muss geladen sein, obwohl nur ein kleiner Teil rechnet. Die Gewichte liegen als blockweise FP8-Dateien (Blöcke 128 x 128 laut config.json) vor, zusammen 72,2 GiB (77,5 GB; die Karte nennt etwa 77,6 GB Speicherbedarf des Modells). Als Minimum nennt sie 2x H100 SXM5, 2x H200, 1x B200 oder 1x B300. Betrieb mit vLLM braucht das Plugin aus dem Paket aleph-alpha-inference [1][5]."
+  },
+  {
+   "t": "h2",
+   "x": "Training: Fortsetzung mit mehr Deutsch"
+  },
+  {
+   "t": "p",
+   "x": "Kolibri 1.1 zweigt vom Mid-Training-Checkpoint von Kolibri 1 ab (nach 3,42 Billionen Token), stellt die Aufmerksamkeit auf Sparse Attention um und trainiert weiter: 805 Milliarden Token Mid-Training bei Sequenzlänge 196.608 und 201 Milliarden Token Long-Context bei 262.144. Das veröffentlichte Modell ist der Durchschnitt aller 40 gespeicherten Checkpoints. Der einzige neue Datenmix ist der des zweiten Mid-Trainings: Der Anteil deutscher Web- und Dokumentdaten steigt laut Karte von 2,1 auf 14,5 Prozent. Danach folgen SFT mit gefilterten, zweisprachigen offenen und synthetischen Daten sowie RL mit Umgebungen für Reasoning, Agenten und Anweisungsbefolgung [1]."
+  },
+  {
+   "t": "p",
+   "x": "Zum Aufwand nennt die Karte 5,52 x 10^22 FLOPs für die Phasen von Kolibri 1.1 (ohne die 5,65 x 10^23 FLOPs bis zum verwendeten Kolibri-1-Checkpoint) und eine geschätzte Energie von 988 MWh, davon 882 MWh von Kolibri 1 geerbt [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Benchmarks: Herstellerwerte mit Gegenseite"
+  },
+  {
+   "t": "p",
+   "x": "Alle Vergleiche stammen aus der Karte und laufen laut Hersteller im selben Aufbau mit gleichen Prompts, jedes Modell auf seiner höchsten Reasoning-Stufe, die meisten Tests im eigenen eval-framework, TerminalBench und SWE-Bench in Harbor. Der Gesamtwert ist das Mittel aus dem englischen und dem deutschen Gesamtwert; Kategorien-Mittel enthalten nur Tests, für die jedes Modell einen gültigen Wert hat. Die Karte warnt selbst, dass Mittelwerte nicht kategorien- und sprachübergreifend vergleichbar sind. Unabhängig geprüft haben wir nichts [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Gesamtwert laut Modellkarte (Herstellerangabe)",
+   "alt": "Säulendiagramm: Kolibri 1.1 73,2, Kolibri 1 66,6, Qwen3.6 35B-A3B 67,3, Gemma 4 26B-A4B 65,3, Qwen3.8 27B 77,2, GLM-5.3 Flash 80,0, Qwen3.8 Flash Next 80,1",
+   "caption": "Overall (Mittel aus EN und DE) der Karten-Tabelle zum Post-Training, nicht von uns nachgemessen [1].",
+   "labels": [
+    "Kolibri 1.1",
+    "Kolibri 1",
+    "Qwen3.6 35B-A3B",
+    "Gemma 4 26B-A4B",
+    "Qwen3.8 27B",
+    "GLM-5.3 Flash",
+    "Qwen3.8 Flash Next"
+   ],
+   "series": [
+    {
+     "name": "Overall",
+     "values": [
+      73.2,
+      66.6,
+      67.3,
+      65.3,
+      77.2,
+      80.0,
+      80.1
+     ]
+    }
+   ],
+   "y_label": "Punkte (Herstellerangabe)",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Gegenüber Kolibri 1 steigt der Gesamtwert von 66,6 auf 73,2 (EN 72,2 gegen 64,0; DE 74,2 gegen 69,2). Im deutschen Gesamtwert liegt Kolibri 1.1 vor Qwen3.6 35B-A3B (67,4) und Gemma 4 26B-A4B (66,1), hinter Qwen3.8 Flash Next (81,8), GLM-5.3 Flash (81,4) und Qwen3.8 27B (79,2). Die Karte hebt Deutsch hervor; die Werte zeigen eine klare Verbesserung gegenüber dem Vorgänger, aber keine Spitzenposition in dieser Tabelle [1]."
+  },
+  {
+   "t": "p",
+   "x": "Stark sind laut Karte unter anderem LiveCodeBench v6 (93,0; Kolibri 1: 85,4), AIME 2025 auf Englisch (98,3) und Deutsch (95,2) und die Engineering-Tests (BenchCAD Code Edit 86,2 gegen 52,2 bei Kolibri 1). Schwach oder rückläufig sind: BrowseComp 34,8 (Qwen3.8 Flash Next 70,1), TerminalBench 2.1 35,6 (Qwen3.8 Flash Next 86,5), GraphWalks bis 128k 64,4 (Qwen3.6 35B-A3B 94,4), Tau3-Bench Banking 28,6 (Kolibri 1: 38,7) und Industry RAG auf Englisch 81,8 (Kolibri 1: 84,8). Bei der Prompt-Injection-Prüfung AgentDojo sinkt die Erfolgsquote gezielter Angriffe von 69,7 bei Kolibri 1 auf 0,9; die Karte empfiehlt dennoch, externe Inhalte als nicht vertrauenswürdig zu behandeln und Aktionen mit Nebenwirkungen von einer Person bestätigen zu lassen [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "line",
+   "title": "RULER nach Eingabelänge laut Modellkarte (Herstellerangabe)",
+   "alt": "Liniendiagramm: RULER-Wert von Kolibri 1.1 fällt von 86,7 bei 4k auf 62,5 bei 1M; Qwen3.5 35B-A3B von 96,4 auf 68,5",
+   "caption": "Mittel aus NIAH, VT, WE und QA je Eingabelänge, Temperatur 0 [1].",
+   "labels": [
+    "4k",
+    "16k",
+    "64k",
+    "256k",
+    "1M"
+   ],
+   "series": [
+    {
+     "name": "Kolibri 1.1",
+     "values": [
+      86.7,
+      82.7,
+      75.5,
+      66.6,
+      62.5
+     ]
+    },
+    {
+     "name": "Kolibri 1",
+     "values": [
+      86.8,
+      80.9,
+      72.3,
+      69.7,
+      63.2
+     ]
+    },
+    {
+     "name": "Qwen3.5 35B-A3B",
+     "values": [
+      96.4,
+      95.3,
+      91.1,
+      81.7,
+      68.5
+     ]
+    }
+   ],
+   "y_label": "RULER (Herstellerangabe)",
+   "x": "",
+   "min": 50
+  },
+  {
+   "t": "p",
+   "x": "Die Karte zeigt auch die Kehrseite des langen Kontexts: Kolibri 1.1 fällt bei RULER von 86,7 (4k) auf 66,6 (256k) und 62,5 (1M). Qwen3.5 35B-A3B liegt in dieser Tabelle bei allen Längen höher. Die Karte rät deshalb zu höchstens 262.144 Token für komplexe Aufgaben [1]."
+  },
+  {
+   "t": "h3",
+   "x": "Kosten pro Aufgabe"
+  },
+  {
+   "t": "p",
+   "x": "Die Karte stellt Gesamtwert und Kosten gegenüber: Kolibri 1.1 erreicht 73,2 bei 0,21 GPU-Stunden je 1.000 Aufgaben, Kolibri 1 66,6 bei 0,72 (3,4-fach). GLM-5.3 Flash (2,49) und Qwen3.8 27B (1,97) liegen laut Beschriftung jenseits der Achse. Die Rechnung nutzt gemessenen Durchsatz mit vLLM 0.33 auf einem 8xB200-Knoten mit 8-Bit-Gewichten und interpoliert zwischen acht Kontextlängen; es ist eine modellierte Größe des Herstellers [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Lokal: GGUF und der Preis der Quantisierung"
+  },
+  {
+   "t": "p",
+   "x": "Aleph Alpha liefert offizielle GGUF-Quantisierungen für llama.cpp. Zwei Vorbehalte nennt die Karte selbst: llama.cpp kann Kolibri 1.1 erst laden, wenn der Pull Request ggml-org/llama.cpp#32891 gemerged ist; bis dahin muss man llama.cpp aus diesem PR bauen. Bei unserem Abruf zeigte die GitHub-API den PR als offen und nicht gemerged (zuletzt aktualisiert am 24. November 2026). Und: Reines CPU-Rechnen empfiehlt der Hersteller nicht. Die Qualitätswerte wurden nicht mit llama.cpp gemessen; die Quantisierungen wurden zu BF16 zurückgerechnet und in vLLM ausgewertet. Sie zeigen also den Verlust durch die Gewichte, nicht den Betrieb in llama.cpp [2][3]."
+  },
+  {
+   "t": "table",
+   "head": [
+    "GGUF-Datei",
+    "Größe",
+    "Gesamtwert gegenüber Original (Punkte)"
+   ],
+   "rows": [
+    [
+     "Q8_0",
+     "74,5 GiB",
+     "-0,3"
+    ],
+    [
+     "Q6_K",
+     "57,5 GiB",
+     "+0,3"
+    ],
+    [
+     "Q5_K_M",
+     "49,7 GiB",
+     "+0,1"
+    ],
+    [
+     "Q4_K_M",
+     "42,4 GiB",
+     "-0,7"
+    ],
+    [
+     "Q4_0",
+     "39,7 GiB",
+     "-0,2"
+    ],
+    [
+     "IQ4_XS",
+     "37,4 GiB",
+     "-0,4"
+    ],
+    [
+     "Q3_K_M",
+     "33,5 GiB",
+     "-1,2"
+    ],
+    [
+     "IQ2_XS (GSQ-RCO 2,25 bpw)",
+     "19,9 GiB",
+     "-2,6"
+    ],
+    [
+     "IQ2_XXS (GSQ-RCO 2,00 bpw)",
+     "17,6 GiB",
+     "-4,6"
+    ],
+    [
+     "IQ1_M (GSQ-RCO 1,75 bpw)",
+     "15,4 GiB",
+     "-9,0"
+    ]
+   ],
+   "caption": "Größen aus der Dateiliste des GGUF-Repos (GiB, gerundet), Differenzen aus der Qualitätstabelle der Karte; Streuung gibt die Karte nicht an [2]."
+  },
+  {
+   "t": "p",
+   "x": "Bis Q3_K_M bleibt der Gesamtwert innerhalb von etwa 1,2 Punkten des Originals, bei 2,25 Bit pro Gewicht sind es 2,6, bei 1,75 Bit 9,0 Punkte. Einzelne Tests schwanken stärker als der Gesamtwert: RGB Fact-Check (Fehlerkorrektur) fällt bei allen zehn Stufen, um 2 bis 29 Punkte, und RGB Closed-Book fällt bei den drei kleinsten Stufen um 9, 12 und 25 Punkte. Wer mit den kleinsten Dateien arbeiten will, sollte Fakten- und Grounding-Aufgaben selbst prüfen, statt sich auf den Gesamtwert zu verlassen [2]."
+  },
+  {
+   "t": "h2",
+   "x": "Lizenz und Einsatzgrenzen"
+  },
+  {
+   "t": "p",
+   "x": "Karte und LICENSE-Datei des Hauptrepos nennen Apache 2.0; die LICENSE-Datei enthält den Standardtext. Aleph Alpha verzichtet laut Responsible-Use-Dokument auf zusätzliche Bedingungen wie eine Acceptable-Use-Policy, bittet aber um Verzicht auf rechtswidrige Nutzung, ausdrücklich einschließlich verbotener Praktiken nach Artikel 5 der EU-KI-Verordnung. Für das GGUF-Repo gilt: Die Apache-Rechte beziehen sich nur auf die dort veröffentlichten Quantisierungen und Konfigurationsdateien, nicht auf zugrunde liegenden Code, Architektur, Parameter-Einstellungen oder Trainingsmethoden. Aleph Alpha ist laut Karte Unterzeichner des GPAI-Verhaltenskodex der EU [1][2][4]."
+  },
+  {
+   "t": "p",
+   "x": "Als Einsatz sieht die Karte Assistenten und agentische Abläufe, bei denen eine Person die Ausgabe prüft, bevor gehandelt wird; in Entscheidungsunterstützung soll das Modell beratend bleiben, nicht entscheidend. Das Wissen endet laut Karte am 18. Juni 2026 (EN und DE) und wird über Werkzeugaufrufe ergänzt [1]."
+  },
+  {
+   "t": "h3",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "Parameter: 75 Mrd. gesamt (75.128.393.984), 3,44 Mrd. aktiv. Schichten: 50 (2 dicht, 48 MoE), 384 Experten, 6 + 1 aktiv. Kontext: 262.144 nativ, bis 1.048.576. Sprachen: Deutsch, Englisch. Reasoning: low, medium, high oder none. Empfohlenes Sampling: Temperatur 1,0, top_p 0,99, top_k 128. Lizenz: Apache 2.0. Gewichte: FP8, 72,2 GiB. Repo angelegt am 20. November 2026 [1]."
+  }
+ ],
+ "method": "Recherche am 26. November 2026 gegen 9:27 Uhr UTC (10:27 Uhr MEZ). Modellkarte (vollständig, inklusive Evaluationstabellen, Trainingsdetails und Risikoabschnitt), config.json, LICENSE und Dateiliste von Aleph-Alpha/Kolibri-1.1, Karte und Dateiliste des GGUF-Repos, Responsible-Use-Dokument, GitHub-API für den llama.cpp-Pull-Request und das Plugin-Repository. Alle Leistungs-, Kosten- und Qualitätsangaben stammen vom Hersteller; eigene Läufe haben wir nicht durchgeführt. Der Blogbeitrag und der Technische Bericht zu Kolibri 1 wurden nicht geöffnet.",
+ "limitations": "Alle Benchmark-, Kosten- und Quantisierungswerte sind Herstellerangaben ohne unabhängige Gegenprüfung und ohne Streuungsangaben. Die Kostenrechnung ist modelliert, nicht im Betrieb gemessen. Die Quantisierungswerte beziehen sich auf zurückgerechnete BF16-Gewichte in vLLM, nicht auf llama.cpp. Der Status des llama.cpp-Pull-Requests ist eine Momentaufnahme vom Abruf. Die Karte nennt als Datum den 23. November, das Repo wurde am 20. November angelegt; was davon die Erstveröffentlichung ist, haben wir nicht geklärt. Unterschiede zwischen 75.128.393.984 Parametern (Karte) und 75.112.665.344 (Plattform-API) haben wir nicht aufgelöst. Die Lizenzlektüre ist keine Rechtsberatung.",
+ "faq": [
+  {
+   "q": "Was ist Kolibri 1.1?",
+   "a": "Ein Mixture-of-Experts-Reasoning-Modell von Aleph Alpha Research für Deutsch und Englisch mit 75 Milliarden Gesamt- und 3,44 Milliarden aktiven Parametern, laut Karte unter Apache 2.0 veröffentlicht."
+  },
+  {
+   "q": "Was brauche ich, um es zu betreiben?",
+   "a": "Laut Karte mindestens 2 H100 SXM5, 2 H200, 1 B200 oder 1 B300 für die FP8-Gewichte (72,2 GiB Dateien). Kleinere GGUF-Dateien beginnen bei 15,4 GiB, brauchen aber llama.cpp aus einem noch offenen Pull Request."
+  },
+  {
+   "q": "Ist es das beste Modell für Deutsch?",
+   "a": "Das lässt sich aus den Quellen nicht sagen. In der Herstellertabelle liegt es beim deutschen Gesamtwert (74,2) vor einigen Vergleichsmodellen, aber hinter Qwen3.8 Flash Next (81,8), GLM-5.3 Flash (81,4) und Qwen3.8 27B (79,2). Unabhängige Messungen liegen uns nicht vor."
+  },
+  {
+   "q": "Wie viel Qualität kostet die Quantisierung?",
+   "a": "Laut Karte bis Q3_K_M etwa 1,2 Punkte im Gesamtwert, bei 1,75 Bit pro Gewicht 9,0 Punkte. Die Werte stammen von zurückgerechneten BF16-Gewichten in vLLM, nicht aus llama.cpp, und einzelne Tests wie Fehlerkorrektur fallen stärker."
+  },
+  {
+   "q": "Darf ich es kommerziell nutzen?",
+   "a": "Karte und LICENSE nennen Apache 2.0 ohne Zusatzbedingungen; das Responsible-Use-Dokument bittet um Verzicht auf rechtswidrige Nutzung. Für das GGUF-Repo gilt die Lizenz nur für die dort veröffentlichten Dateien, nicht für Code oder Trainingsmethoden. Keine Rechtsberatung."
+  }
+ ],
+ "related": [
+  "ling-3-2-air-analyse",
+  "nemotron-3-5-super-lightning-analyse",
+  "inkling-2-mini-analyse"
+ ]
+}
