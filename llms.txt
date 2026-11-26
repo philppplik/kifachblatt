@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Monitor-Tests, Einflussfunktionen, SVD-Kompression](https://kifachblatt.de/news-ueberblick-mittag-2026-11-26): Monitor-Quoten hängen am Angriff; Einflussfunktionen finden Trainingsdaten je nach Phänomen unterschiedlich gut; LLift rüstet einmal für mehrere SVD-Budgets.
 - [SFT-Vergessen, Skill-Komposition, SQL-Reward-Hacks](https://kifachblatt.de/news-ueberblick-morgen-2026-11-26): SFT vergisst weniger als gedacht, wenn die Auswahl stimmt; gelernte Skills komponieren kaum in einem Aufruf; Gegendatenbanken erschweren SQL-Reward-Hacks.
 - [Fehlererholung, Erfahrungsschutz, Ausfall-Audit](https://kifachblatt.de/news-ueberblick-abend-2026-11-25): Selbst mit Plan gelingen nur 27 Prozent der Erholungen, ein Filter stoppt vergiftete Erfahrungen, ein Audit findet den entscheidenden Fehlschritt.
 - [Agenten-Geduld, Dateigrößen-Bias, prüfbare RL-Fehler](https://kifachblatt.de/news-ueberblick-mittag-2026-11-25): Ein Posterior-Reward bremst vorschnelle Agenten, die Dateigröße entlarvt zwei Deepfake-Datensätze, ein Risiko-Budget macht RL-Fehler menschenprüfbar.
