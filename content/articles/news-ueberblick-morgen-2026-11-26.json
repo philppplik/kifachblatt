@@ -1,0 +1,135 @@
+{
+  "title": "SFT-Vergessen, Skill-Komposition, SQL-Reward-Hacks",
+  "dek": "SFT vergisst weniger als gedacht, wenn die Auswahl stimmt; gelernte Skills komponieren kaum in einem Aufruf; Gegendatenbanken erschweren SQL-Reward-Hacks.",
+  "slug": "news-ueberblick-morgen-2026-11-26",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-26T06:43:00+01:00",
+  "modified": "2026-11-26T06:43:00+01:00",
+  "tags": [
+    "Forschung",
+    "Evaluation",
+    "Agenten",
+    "Training"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein niedrig gestellter Regler über zwei gestapelten Schichten, zwei Puzzleteile mit Lücke neben einer Kette aus zwei Pfeilen, und ein Datenbanksymbol mit einer Geisterkopie und einem durchgestrichenen Käfer. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über Vergessen beim Feintuning, komponierbare Skills und hackbare SQL-Belohnungen. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 26. November 2026, 06:38 Uhr MEZ. Drei neue Preprints (Einreichung jeweils 25. November, an den Abstract-Seiten geprüft) prüfen das Training selbst: Vergessen beim Feintuning, Komposition gelernter Skills und hackbare SQL-Belohnungen."
+    },
+    {
+      "t": "h2",
+      "x": "SFT vergisst weniger als sein Ruf"
+    },
+    {
+      "t": "callout",
+      "title": "1,4 statt 8,5 Punkte Verlust",
+      "x": "Auf Qwen2.5-7B (Science-Aufgabe, 9 Kategorien alter Fähigkeiten im Blick) bringt SFT mit gemeinsamer Auswahl nach Gewinn und Behalt plus 34,6 Punkte bei 1,4 Verlust; Auswahl nur nach Neuaufgabe: plus 36,9 bei 8,5 Verlust. 2,2 Punkte mehr Gewinn kosten 7,1 Punkte mehr Vergessen."
+    },
+    {
+      "t": "p",
+      "x": "Die These, Off-Policy-SFT vergesse zwangsläufig und On-Policy-Lernen sei das Gegenmittel, wird angefochten: Niedrigere Lernrate und Batchgröße erreichen ähnliche Gewinne mit wenig oder keinem Vergessen."
+    },
+    {
+      "t": "p",
+      "x": "Gegen SDFT ist SFT auf Science und ToolUse konkurrenzfähig, auf der Rechtsaufgabe MBE liegt SDFT vorn; beide Verfahren brauchen die behaltsbewusste Auswahl. In einer Llama-3.1-8B-Replikation erreicht SFT die Neuaufgabenleistung von GRPO ohne nennenswerten Altfähigkeiten-Verlust; Qwen2.5-14B im Anhang."
+    },
+    {
+      "t": "p",
+      "x": "Grenzen: ToolUse hat nur 97 Auswertungsbeispiele (Auswahl gleich Bericht), und aggressivere Hyperparameter vergessen weiter katastrophal. Die Arbeit entstand während eines Apple-Praktikums."
+    },
+    {
+      "t": "h2",
+      "x": "Skills: einzeln stark, zusammen schwach"
+    },
+    {
+      "t": "callout",
+      "title": "Höchstens 7,6 Prozent in einem Aufruf",
+      "x": "Über sieben Einstellungen mit Soft-Prompt-Skills (20 Embedding-Zeilen je Skill) liegt die Komposition in einem Aufruf bei höchstens 7,6 Prozent, über zwei Aufrufe mit Zwischenergebnis bei 88,2 bis 100; auf den Ziffernaufgaben interferieren alle 27 Paare."
+    },
+    {
+      "t": "p",
+      "x": "Die Werte sind einseitig: 6,4, 1,3 und 0,9 Prozent auf den drei Qwen-Ziffernbasen. Austausch scheinbar gleicher Bausteine scheitert: Der Median zweier Qwen-Basen fällt von 98,0 und 95,3 auf 12,7 und 0,5 Prozent, obwohl jeder Ersatz allein mindestens 90 Prozent schafft."
+    },
+    {
+      "t": "p",
+      "x": "Reparatur kann die Komposition heben und den Skill selbst beschädigen. Grenzen: synthetische Aufgaben, nur Soft-Prompts, keine Agentenplanung; der Zwei-Aufruf-Pfad ist teurer (49 gegen 58 Token, Faktor 1,61 bis 2,06)."
+    },
+    {
+      "t": "p",
+      "x": "Wiederholungstraining stützt den Behalt des reparierten Skills, die Übertragung auf neue Partner bleibt auf Qwen2.5-0.5B begrenzt."
+    },
+    {
+      "t": "h2",
+      "x": "SQL-Rewards: Gegendatenbanken gegen Hacks"
+    },
+    {
+      "t": "callout",
+      "title": "54,1 auf 1,9 Prozent bezahlte Hacks",
+      "x": "Im Audit (1.302 Fragen, 1.814 Mutanten, 2.839 Hacks, 2.847 korrekte Anfragen) bezahlt die strikte Einzeldatenbank-Belohnung 29,5 Prozent der Mutanten und 54,1 Prozent der Hacks; mit versteckten Kopien 16,8 und 1,9 Prozent, null von 2.847 korrekten abgelehnt."
+    },
+    {
+      "t": "p",
+      "x": "Ein Ergebnisvergleich auf einer Datenbank bezahlt Zufallstreffer: Bei 50 Kunden bestehen 29,2 Prozent der fehlerhaften Abfragen, bei 500 nur 0,8. Ein Mengenvergleich im BIRD-Stil bezahlt 37,5 Prozent der Mutanten, darunter alle 203 ohne DISTINCT; ein AgentTune-Exploit (314 Ja-Fragen) wurde gemeldet und behoben, 8,1 bis 14,9 Prozent der als korrekt geltenden Antworten von acht Spider-Systemen scheitern an einer Testsuite-Datenbank."
+    },
+    {
+      "t": "p",
+      "x": "Die Gegenprobe prüft die finale Abfrage auf zwei bis drei versteckten Kopien. Familienblinde Kopien taugen ähnlich gut (17,2 Prozent Mutanten, 2,3 Hacks); eine einfach größere Datenbank fängt 92,2 Prozent der Mutanten, aber jeden Exploit. Das registrierte Ziel von 50 Prozent relativer Senkung wurde mit 43 Prozent verfehlt."
+    },
+    {
+      "t": "p",
+      "x": "Besseres Training ergab sich nicht: 8,4 gegen 11,7 Prozent verifizierte Genauigkeit in der Domäne (die Rewards unterschieden sich nur auf 5 bis 7 Prozent der Rollouts), plus 1,6 Punkte auf Spider im Seed-Rauschen, ein Seed dreht die Vorzeichen. Grenzen: ein Schema, drei Seeds, 60 Trainingsschritte, ein 3,35B-Modell; Drei-Autoren-Preprint."
+    }
+  ],
+  "key_takeaways": [
+    "Behaltsbewusste Auswahl: SFT auf Qwen2.5-7B (Science) plus 34,6 Punkte bei 1,4 Verlust statt plus 36,9 bei 8,5; SDFT robuster, aber nicht auswahlfrei, auf MBE vorn.",
+    "Soft-Prompt-Skills komponieren in einem Aufruf höchstens zu 7,6 Prozent (sieben Einstellungen), über zwei Aufrufe 88,2 bis 100; Austausch gleichwertiger Bausteine bricht die Komposition (Median 98,0 auf 12,7 Prozent).",
+    "Gegendatenbank-Reward: 16,8 statt 29,5 Prozent bezahlte Mutanten, 1,9 statt 54,1 Prozent Hacks, null Fehlablehnungen; Trainingsvorteil nicht gezeigt (8,4 vs 11,7 Prozent, drei Seeds)."
+  ],
+  "faq": [
+    {
+      "q": "Heißt das Ergebnis, dass überwachtes Feintuning nie vergisst?",
+      "a": "Nein. Aggressive Hyperparameter (hohe Lernrate, große Batchgröße) erzeugen auch in dieser Studie katastrophales Vergessen. Der Punkt ist das Auswahlkriterium: Wer Checkpoints gemeinsam nach Neuaufgaben-Gewinn und Behalt wählt, erhält mit einfachem SFT auf Science und ToolUse ähnliche Gewinne bei wenig Verlust. SDFT ist robuster über die Hyperparameter, braucht aber dieselbe behaltsbewusste Auswahl, und auf der Rechtsaufgabe MBE liegt SDFT vorn."
+    },
+    {
+      "q": "Warum sind zwei Modellaufrufe kein einfacher Ausweg für Skill-Bibliotheken?",
+      "a": "Zwei Aufrufe mit Zwischenausgabe erreichen zwar 88,2 bis 100 Prozent, sind aber ein anderes Verfahren: Sie brauchen mehr Rechenzeit (um den Faktor 1,61 bis 2,06) und eine explizite Zwischendarstellung, und sie testen sequenzielle Ausführbarkeit, nicht Komposition in einem Kontext. Das Versprechen der Bibliothek ist gerade, gelernte Bausteine beliebig neu zu kombinieren; genau das funktioniert in einem Aufruf kaum (höchstens 7,6 Prozent)."
+    },
+    {
+      "q": "Macht der Gegendatenbank-Reward das Training besser?",
+      "a": "Nicht nachweisbar: In der kontrollierten Studie mit drei Seeds lag der CF-Arm innerhalb der Domäne bei 8,4 Prozent verifizierter Genauigkeit gegen 11,7 für den Einzeldatenbank-Arm, auf Spider gewann er 1,6 Punkte innerhalb des Seed-Rauschens, und ein Seed dreht beide Vorzeichen um. Der Gewinn ist eine schwerer hackbare Belohnung, kein gezeigter Genauigkeitsvorteil; die Autoren melden das ausdrücklich als ehrliches Nullergebnis."
+    }
+  ],
+  "related": [
+    "hersteller-benchmarks-vergleichbarkeit-analyse",
+    "modelle-und-agenten-evaluieren"
+  ],
+  "sources": [
+    {
+      "title": "Tune for Retention, Not Just Gain: SFT Forgets Far Less than You Think",
+      "publisher": "arXiv; Nirmit Joshi, Nathan Srebro (TTIC), Eran Malach (Apple)",
+      "url": "https://arxiv.org/abs/2611.34579",
+      "accessed": "2026-11-26"
+    },
+    {
+      "title": "When Skills Fail to Compose: Compatibility and Retention in Language Models",
+      "publisher": "arXiv; Yan Lin (Newcastle University), Zhongliang Guo, Jingyu Sun u. a. (INSAIT, MBZUAI, KIT u. a.)",
+      "url": "https://arxiv.org/abs/2611.34398",
+      "accessed": "2026-11-26"
+    },
+    {
+      "title": "Single-Database Rewards Are Hackable: Counterfactual Execution for Trustworthy Text-to-SQL RL",
+      "publisher": "arXiv; Shreshth Rai, Rishii Kumar Singh, Aksh Aggarwal (AIMS, Delhi Technological University)",
+      "url": "https://arxiv.org/abs/2611.34363",
+      "accessed": "2026-11-26"
+    }
+  ]
+}
