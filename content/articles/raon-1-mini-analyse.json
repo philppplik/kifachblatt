@@ -1,0 +1,250 @@
+{
+ "slug": "raon-1-mini-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Raon-1 mini: 28,8-Mrd.-MoE aus Korea unter Apache-2.0",
+ "dek": "KRAFTON legt ein Hybrid-MoE mit 4,3 Mrd. aktiven Parametern, 262.144 Token Kontext und sechs Denkstufen offen vor. Die Benchmarks sind Herstellerangaben.",
+ "published": "2026-11-25T07:30:00+01:00",
+ "modified": "2026-11-25T07:30:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Raon-1 mini",
+  "KRAFTON",
+  "Mixture-of-Experts",
+  "Apache-2.0",
+  "Koreanisch",
+  "Reasoning"
+ ],
+ "key_takeaways": [
+  "Raon-1 mini ist laut Modellkarte ein von KRAFTON AI von Grund auf trainiertes Mixture-of-Experts-Modell mit 28,8 Milliarden Gesamt- und 4,3 Milliarden aktiven Parametern; pro Token werden 6 von 128 Experten plus 1 geteilter Experte genutzt.",
+  "Die Architektur ist hybrid: 18 von 25 Schichten nutzen eine lineare Aufmerksamkeit mit festem Zustand (Raon Delta Attention), nur 7 Schichten halten einen KV-Cache (laut Karte etwa 8 KiB pro Token in BF16). Der native Kontext liegt bei 262.144 Token.",
+  "Die Gewichte stehen unter Apache 2.0, auch für kommerzielle Nutzung; Krafton nimmt ausdrücklich seine gehostete API und das Playground aus, für die gesonderte Bedingungen gelten.",
+  "Alle Benchmarkwerte stammen von der Karte des Herstellers, mit einem GPT-basierten Richter und teils nicht öffentlichen Datensätzen. Das Modell führt die Hersteller-Tabelle in der MoE-Gruppe bei MultiChallenge und BrowseComp Plus an, liegt aber etwa bei Terminal-Bench Lite (52,0) klar hinter Inkling 2 Mini (77,0).",
+  "Lokal laufen GGUF-Dateien von 15,1 bis 28,6 GiB, eine NVFP4-Fassung (16,3 GiB Gewichte) zielt auf eine RTX 5090 mit 32 GB; sechs Denkstufen von none bis max sind einstellbar."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu Raon-1 mini: 28,8 Milliarden Parameter gesamt, 4,3 Milliarden aktiv, 262.144 Token Kontext.",
+  "caption": "Raon-1 mini in drei Angaben - aus der Modellkarte, nicht nachgemessen [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "KRAFTON/Raon-1-mini (Modellkarte, Lizenzhinweis und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KRAFTON/Raon-1-mini",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "KRAFTON/Raon-1-mini-gguf (Dateiliste und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KRAFTON/Raon-1-mini-gguf",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "KRAFTON/Raon-1-mini-nvfp4 (Dateiliste und Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KRAFTON/Raon-1-mini-nvfp4",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "KRAFTON/Raon-1-mini-dflash2 (Plattform-API)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KRAFTON/Raon-1-mini-dflash2",
+   "accessed": "2026-11-26"
+  },
+  {
+   "title": "KRAFTON/Raon-1-mini, LICENSE und config.json",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/KRAFTON/Raon-1-mini/blob/main/LICENSE",
+   "accessed": "2026-11-26"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "KRAFTON, bekannt als Spielehersteller, hat mit Raon-1 mini ein eigenes Sprachmodell auf Hugging Face bereitgestellt (Repo angelegt am 24. November 2026). Laut Karte ist es ein von Grund auf trainiertes Mixture-of-Experts-Modell mit 28,8 Milliarden Gesamtparametern, von denen pro Token 4,3 Milliarden aktiv sind, mit Schwerpunkt auf koreanischer Konversation und Agentenaufgaben. Die Karte nennt Koreanisch, Englisch, Japanisch, Chinesisch, Spanisch, Französisch und Thai als Trainingssprachen; Deutsch steht nicht darunter [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Architektur: wenig Cache, viele Experten"
+  },
+  {
+   "t": "p",
+   "x": "Das Modell hat 25 Schichten. 18 davon nutzen Raon Delta Attention (RDA), eine lineare Aufmerksamkeit mit festem Zustand, die laut Karte die Lösch- und Schreib-Gatter der Kimi Delta Attention entkoppelt. Nur die übrigen 7 Schichten sind Gated MLA und halten einen KV-Cache; die Karte beziffert ihn auf etwa 8 KiB pro Token in BF16. Für lange Kontexte (nativ bis 262.144 Token) bleibt der Cache dadurch klein. Dazu kommt eine Variante der manifold-constrained Hyper-Connections von DeepSeek (Raon-mHC mit 4 Strömen), die das Training beschleunigen soll [1]."
+  },
+  {
+   "t": "p",
+   "x": "Die Experten-Ebene: 128 geroutete Experten, 6 davon plus 1 geteilter Experte pro Token, Zwischengröße 1.088, Hidden Size 2.560, Vokabular 259.840 Einträge. Die config.json im Repo bestätigt 25 Schichten, Hidden Size 2.560, 128 Experten, 262.144 Positionen und Vokabulargröße 259.840 [1][5]."
+  },
+  {
+   "t": "h2",
+   "x": "Denkstufen und Betrieb"
+  },
+  {
+   "t": "p",
+   "x": "Raon-1 mini ist für den Denkmodus gebaut. Sechs Stufen (none, low, medium, high, xhigh, max) lassen sich pro Anfrage setzen; ohne Angabe gilt high. Alle Stufen außer max werden laut Karte über mitgelieferte Steuervektoren erzeugt, der Prompt bleibt gleich. Für none empfiehlt die Karte Chat, Anweisungsbefolgung und einfache Werkzeugaufrufe, nicht Mathe, Code oder mehrstufige Agentenaufgaben wie Websuche. Empfohlene Sampling-Werte: Temperatur 1,0, top_p 0,95, top_k 20; presence_penalty 0 für Code und Mathe, 1,5 für alles andere [1]."
+  },
+  {
+   "t": "p",
+   "x": "Die Karte beschreibt Betrieb mit Transformers, vLLM (Krafton-Fork), llama.cpp und MLX; Werkzeugaufrufe sind für Hermes Agent, Pi und OpenCode dokumentiert. Zusätzlich gibt es ein DFlash2-Entwurfsmodell für spekulatives Decoding. Die Karte schreibt dazu nur, dass die Beschleunigung von Hardware und Workload abhängt; eine Zahl nennt sie nicht [1][4]."
+  },
+  {
+   "t": "table",
+   "rows": [
+    [
+     "Hauptrepo (MXFP8): Auf 32-GB-GPU mit CPU-Offload",
+     "30,5 GiB"
+    ],
+    [
+     "NVFP4: Einzelne RTX 5090 (32 GB), eigenes vLLM-Profil",
+     "16,3 GiB"
+    ],
+    [
+     "GGUF Q8_0: llama.cpp",
+     "28,6 GiB"
+    ],
+    [
+     "GGUF Q6_K: llama.cpp",
+     "24,1 GiB"
+    ],
+    [
+     "GGUF Q5_K_M: llama.cpp",
+     "20,7 GiB"
+    ],
+    [
+     "GGUF Q4_K_M: Beispielbefehl der Karte",
+     "18,3 GiB"
+    ],
+    [
+     "GGUF IQ4_XS: llama.cpp",
+     "15,1 GiB"
+    ]
+   ],
+   "caption": "Größen aus den Dateilisten der Repositories, GiB gerundet [1][2][3].",
+   "head": [
+    "Fassung und Hinweis laut Karte",
+    "Größe"
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Die Größen haben wir aus den Dateilisten der Repositories addiert beziehungsweise abgelesen (GiB, auf zwei Stellen gerundet). Sie sind keine Speicherbedarfsangaben für den Betrieb: KV-Cache, Kontextlänge und Laufzeit kommen hinzu [2][3]."
+  },
+  {
+   "t": "h2",
+   "x": "Benchmarks: Herstellerangaben mit Gegenseite"
+  },
+  {
+   "t": "p",
+   "x": "Die Karte vergleicht Raon-1 mini mit fünf MoE-Modellen (Raon-1 mini preview, Qwen3.6-35B-A3B, Gemma 4 26B-A4B, Flint 40B-A2.5B, Inkling 2 Mini 26.4B-A5.4B) und zwei dichten Referenzen. Als Richter und Nutzersimulator diente für alle Läufe gpt-5.6-luna; die Karte gibt an, dass Reasoning-Stufe und Penalty je Benchmark gewählt wurden. Zwei Werte stammen nicht aus öffentlichen Sätzen: Die Koreanisch-Chat-Auswertung ist intern und unveröffentlicht, AutomationBench läuft auf dem öffentlichen Split, nicht dem offiziellen Satz. Wir haben nichts nachgemessen [1]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Ausgewählte Benchmarks laut Modellkarte (Herstellerangaben)",
+   "alt": "Gruppiertes Balkendiagramm: Raon-1 mini, Inkling 2 Mini, Qwen3.6-35B-A3B und Gemma 4 26B-A4B bei MultiChallenge, BrowseComp Plus, SWE-Verified und Terminal-Bench Lite",
+   "caption": "Werte aus der Tabelle der Modellkarte, nicht von uns nachgemessen [1]. SWE-Verified mit mini-SWE-agent-Harness.",
+   "labels": [
+    "MultiChallenge",
+    "BrowseComp Plus",
+    "SWE-Verified",
+    "Terminal-Bench Lite"
+   ],
+   "series": [
+    {
+     "name": "Raon-1 mini",
+     "values": [
+      64.9,
+      55.9,
+      71.0,
+      52.0
+     ]
+    },
+    {
+     "name": "Inkling 2 Mini",
+     "values": [
+      52.4,
+      48.3,
+      74.2,
+      77.0
+     ]
+    },
+    {
+     "name": "Qwen3.6-35B-A3B",
+     "values": [
+      58.2,
+      34.8,
+      63.2,
+      63.3
+     ]
+    },
+    {
+     "name": "Gemma 4 26B-A4B",
+     "values": [
+      58.4,
+      32.2,
+      61.6,
+      52.0
+     ]
+    }
+   ],
+   "y_label": "Punkte (Herstellerangabe)",
+   "x": ""
+  },
+  {
+   "t": "p",
+   "x": "Das Bild ist gemischt. In der MoE-Gruppe der Karte führt Raon-1 mini bei MultiChallenge (64,9; Inkling 2 Mini 52,4), BrowseComp Plus (55,9; Qwen3.6-35B-A3B 34,8) und GDPVal (72,3, ein Richterwert, kein Elo); bei IFBench liegt Flint vorn (88,4 gegen 84,9). Bei Code und Terminal-Aufgaben liegt es hinter Inkling 2 Mini: SWE-Verified 71,0 gegen 74,2, Terminal-Bench Lite 52,0 gegen 77,0; bei AutomationBench 39,9 gegen 56,7. Bei GPQA Diamond (86,0 gegen 86,6) und AIME 2026 (96,7 gegen 97,5) trennen die Werte wenig. Ob die Unterschiede über Läufe hinweg stabil sind, nennt die Karte nicht - sie gibt weder Streuung noch Fallzahlen an [1]."
+  },
+  {
+   "t": "p",
+   "x": "Zusätzlich führt die Karte die koreanische Hochschulaufnahmeprüfung 2027 (CSAT). Raon-1 mini erreicht als reines Textmodell 371,8 von 450 Punkten bei Abschnittseingabe und 401,3 bei Einzelfragen; auf der Textteilmenge (352,5 Punkte möglich, 318 Fragen ohne Bilder) 324,4 und 336,2. Andere Modelle erhielten teils Bilder, die Karte weist die Eingabeart je Modell aus. Der Vergleich mit größeren koreanischen Modellen (etwa A.X K2 mit 688B-A33B: 391,7 bzw. 399,7) zeigt: bei Einzelfragen liegt das kleine Modell knapp davor, bei Abschnittseingabe dahinter [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Lizenz"
+  },
+  {
+   "t": "p",
+   "x": "Die Karte lizenziert Modell, Gewichte, Konfigurationsdateien und weitere Komponenten aus dem Repo unter Apache 2.0 und nennt ausdrücklich kommerzielle Nutzung. Ausgenommen sind laut Karte Kraftons eigene Trainingsdatensätze und -methoden, nicht verteilte Software, die gehostete API, das Playground und andere proprietäre Materialien. Für die gehostete API gelten separate Nutzungsbedingungen, die erst vor dem Zugang vorgelegt werden und unter anderem das Recht auf künftige Gebühren enthalten. Die LICENSE-Datei im Repo enthält den Apache-Standardtext [1][5]."
+  },
+  {
+   "t": "h3",
+   "x": "Eckdaten"
+  },
+  {
+   "t": "p",
+   "x": "Parameter: 28,8 Mrd. gesamt, 4,3 Mrd. aktiv. Experten: 128 geroutet, 6 + 1 geteilt aktiv. Schichten: 25 (18 RDA, 7 Gated MLA). Kontext: 262.144 Token. Denkstufen: none, low, medium, high (Standard), xhigh, max. Lizenz: Apache 2.0 (Gewichte). Repo angelegt am 24. November 2026 [1]."
+  }
+ ],
+ "method": "Recherche am 26. November 2026 gegen 9:25 Uhr UTC (10:25 Uhr MEZ). Modellkarte (vollständig, inklusive Benchmarktabelle, Betriebsabschnitten und Lizenzteil), Plattform-API und Dateiliste der Repos Raon-1-mini, -gguf, -nvfp4 und -dflash2, LICENSE und config.json des Hauptrepos. Alle Leistungsangaben stammen vom Hersteller; eigene Läufe haben wir nicht durchgeführt. Das Datum 24. November 2026 belegt die Anlage der Hugging-Face-Repos, nicht zwingend die Erstveröffentlichung.",
+ "limitations": "Alle Benchmarkwerte sind Herstellerangaben mit einem GPT-basierten Richter; ohne Streuung, ohne Fallzahlen, teils auf internen oder nicht offiziellen Datensätzen. Tempo oder Speicherbedarf im Betrieb haben wir nicht gemessen; die Karte nennt für DFlash2 keine Zahl. Für Deutsch gibt die Karte keine Auswertung an; Deutsch ist nicht unter den genannten Trainingssprachen. Ob der 24. November die Erstveröffentlichung ist, konnten wir in den eingesehenen Quellen nicht klären. Die Lizenzlektüre ist keine Rechtsberatung.",
+ "faq": [
+  {
+   "q": "Was ist Raon-1 mini?",
+   "a": "Ein Mixture-of-Experts-Sprachmodell von KRAFTON AI mit 28,8 Milliarden Gesamt- und 4,3 Milliarden aktiven Parametern, laut Karte von Grund auf trainiert, mit Schwerpunkt auf Koreanisch und Agentenaufgaben."
+  },
+  {
+   "q": "Darf ich es kommerziell nutzen?",
+   "a": "Die Gewichte im Repo stehen laut Karte unter Apache 2.0, ausdrücklich auch für kommerzielle Zwecke. Die gehostete API und das Playground von Krafton sind davon ausgenommen und haben eigene Bedingungen."
+  },
+  {
+   "q": "Läuft es auf einer Consumer-GPU?",
+   "a": "Laut Karte ja für die NVFP4-Fassung auf einer einzelnen RTX 5090 mit 32 GB (mit begrenztem Kontext im dokumentierten Profil, 32.768 Token). Kleinere GGUF-Dateien beginnen bei 15,1 GiB. Eigene Tempomessungen haben wir nicht."
+  },
+  {
+   "q": "Wie gut ist es im Vergleich?",
+   "a": "Die Hersteller-Tabelle zeigt es vorn bei MultiChallenge und BrowseComp Plus und hinter Inkling 2 Mini bei Terminal-Bench Lite und AutomationBench. Unabhängige Messungen liegen uns nicht vor."
+  },
+  {
+   "q": "Versteht es Deutsch?",
+   "a": "Die Karte nennt Deutsch nicht unter den Trainingssprachen und gibt keine Deutsch-Auswertung an. Aussagen dazu wären Spekulation."
+  }
+ ],
+ "related": [
+  "inkling-2-mini-analyse",
+  "ling-3-2-air-analyse",
+  "ernie-5-5-flash-preview-analyse"
+ ]
+}
