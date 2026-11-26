@@ -1,5 +1,29 @@
 [
   {
+    "title": "Chinas KI-Labore unter Druck: US-Maßnahmen bremsen Modellentwicklung",
+    "url": "https://www.heise.de/news/Chinas-KI-Labore-unter-Druck-US-Massnahmen-bremsen-Modellentwicklung-11539653.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795711980.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Wegen US-Chipauflagen und Maßnahmen gegen Destillation drohen Chinas KI-Entwicklern angeblich verspätete Modellstarts und längere Entwicklungszyklen.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-26T17:47:16.108365+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
+    "title": "Autonome KI-Angriffe: BSI warnt vor Bedrohung durch AOF",
+    "url": "https://www.heise.de/news/Kuenstliche-Intelligenz-als-Angreifer-Eine-neue-Aera-hat-begonnen-11539545.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795708920.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Attacken mit KI-Frameworks: Das BSI warnt und im heise security PRO-Talk diskutieren Sicherheitsverantwortliche, wie man die Gefahr in den Griff bekommen kann.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-26T17:47:16.108425+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "OpenAI korrigiert Abrechnungsfehler: GPT-6.2-Limits sind schneller erreicht",
     "url": "https://www.heise.de/news/OpenAI-korrigiert-Abrechnungsfehler-GPT-6-2-Limits-sind-schneller-erreicht-11539469.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795705320.0,
