@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "Raon-1 mini: 28,8-Mrd.-MoE aus Korea unter Apache-2.0",
  "dek": "KRAFTON legt ein Hybrid-MoE mit 4,3 Mrd. aktiven Parametern, 262.144 Token Kontext und sechs Denkstufen offen vor. Die Benchmarks sind Herstellerangaben.",
- "published": "2026-11-25T07:30:00+01:00",
- "modified": "2026-11-25T07:30:00+01:00",
+ "published": "2026-11-26T10:27:00+01:00",
+ "modified": "2026-11-26T10:27:00+01:00",
  "author": "philipp-paulik",
  "tags": [
   "Raon-1 mini",
@@ -20,7 +20,7 @@
   "Raon-1 mini ist laut Modellkarte ein von KRAFTON AI von Grund auf trainiertes Mixture-of-Experts-Modell mit 28,8 Milliarden Gesamt- und 4,3 Milliarden aktiven Parametern; pro Token werden 6 von 128 Experten plus 1 geteilter Experte genutzt.",
   "Die Architektur ist hybrid: 18 von 25 Schichten nutzen eine lineare Aufmerksamkeit mit festem Zustand (Raon Delta Attention), nur 7 Schichten halten einen KV-Cache (laut Karte etwa 8 KiB pro Token in BF16). Der native Kontext liegt bei 262.144 Token.",
   "Die Gewichte stehen unter Apache 2.0, auch für kommerzielle Nutzung; Krafton nimmt ausdrücklich seine gehostete API und das Playground aus, für die gesonderte Bedingungen gelten.",
-  "Alle Benchmarkwerte stammen von der Karte des Herstellers, mit einem GPT-basierten Richter und teils nicht öffentlichen Datensätzen. Das Modell führt die Hersteller-Tabelle in der MoE-Gruppe bei MultiChallenge und BrowseComp Plus an, liegt aber etwa bei Terminal-Bench Lite (52,0) klar hinter Inkling 2 Mini (77,0).",
+  "Alle Benchmarkwerte stammen von der Karte des Herstellers, mit einem GPT-basierten Richter und teils internen oder nicht offiziellen Datensätzen. Das Modell führt die Hersteller-Tabelle in der MoE-Gruppe bei MultiChallenge und BrowseComp Plus an, liegt aber etwa bei Terminal-Bench Lite (52,0) klar hinter Inkling 2 Mini (77,0).",
   "Lokal laufen GGUF-Dateien von 15,1 bis 28,6 GiB, eine NVFP4-Fassung (16,3 GiB Gewichte) zielt auf eine RTX 5090 mit 32 GB; sechs Denkstufen von none bis max sind einstellbar."
  ],
  "hero": {
@@ -138,7 +138,7 @@
   },
   {
    "t": "p",
-   "x": "Die Karte vergleicht Raon-1 mini mit fünf MoE-Modellen (Raon-1 mini preview, Qwen3.6-35B-A3B, Gemma 4 26B-A4B, Flint 40B-A2.5B, Inkling 2 Mini 26.4B-A5.4B) und zwei dichten Referenzen. Als Richter und Nutzersimulator diente für alle Läufe gpt-5.6-luna; die Karte gibt an, dass Reasoning-Stufe und Penalty je Benchmark gewählt wurden. Zwei Werte stammen nicht aus öffentlichen Sätzen: Die Koreanisch-Chat-Auswertung ist intern und unveröffentlicht, AutomationBench läuft auf dem öffentlichen Split, nicht dem offiziellen Satz. Wir haben nichts nachgemessen [1]."
+   "x": "Die Karte vergleicht Raon-1 mini mit fünf MoE-Modellen (Raon-1 mini preview, Qwen3.6-35B-A3B, Gemma 4 26B-A4B, Flint 40B-A2.5B, Inkling 2 Mini 26.4B-A5.4B) und zwei dichten Referenzen. Als Richter und Nutzersimulator diente für alle Läufe gpt-5.6-luna; die Karte gibt an, dass Reasoning-Stufe und Penalty je Benchmark gewählt wurden. Zwei Werte haben Einschränkungen: Die Koreanisch-Chat-Auswertung ist intern und unveröffentlicht, AutomationBench läuft auf dem öffentlichen Split, nicht dem offiziellen Satz. Wir haben nichts nachgemessen [1]."
   },
   {
    "t": "chart",
