@@ -1,0 +1,273 @@
+{
+  "slug": "gigachat-4-708b-a41b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "GigaChat 4: 708B-MoE mit 1 Mio. Token Kontext unter MIT",
+  "dek": "Ai-Sage legt ein Hybrid-MoE mit 41 Mrd. aktiven Parametern offen vor, ein Modell für Instant- und Reasoning-Modus. Die Benchmarks sind Herstellerangaben.",
+  "published": "2026-11-27T07:12:00+01:00",
+  "modified": "2026-11-27T07:12:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "GigaChat 4",
+    "Ai-Sage",
+    "Mixture-of-Experts",
+    "MIT-Lizenz",
+    "FP8",
+    "Hybrid-Attention",
+    "Agenten"
+  ],
+  "key_takeaways": [
+    "GigaChat 4 ist laut Modellkarte ein Mixture-of-Experts-Modell mit 708 Mrd. Parametern gesamt und 41 Mrd. aktiv pro Token, 256 gerouteten Experten (8 aktiv) und bis zu 1.048.576 Token Kontext. Es steht unter der MIT-Lizenz.",
+    "Aufbau: 64 Schichten, davon 48 mit linearer Aufmerksamkeit (Gated DeltaNet) und 16 mit Sparse Attention (DSA, 2.048 Token pro Anfrage). Die Konfigurationsdatei bestätigt das Verhältnis 3:1 (16 Schichten mit voller Aufmerksamkeit).",
+    "Ein Modell, zwei Modi: Instant und Reasoning werden pro Anfrage gewählt. Die Herstellerzahlen unterscheiden sich stark: GPQA Diamond 82,83 im Reasoning- gegen 70,20 im Instant-Modus, SWE-bench Verified aber 80,89 gegen 80,82.",
+    "Im Reasoning-Vergleich des Herstellers liegt das Modell bei BFCL v4 (79,55) und tau2-Bench (83,31) vorn, bei GPQA Diamond (82,83) und HLE (23,91) hinter allen gezeigten Vergleichsmodellen und bei tau3-Bench Banking mit 18,03 weit hinter GLM-5.3 (56,00).",
+    "Die Karten-Beispiele für den FP8-Betrieb nutzen zwei Knoten mit je acht H100 mit 80 GB (16 GPUs); eine kleinere Konfiguration nennt die Karte nicht. Alle Benchmarkwerte sind Herstellerangaben; wir haben nichts nachgemessen und den Technikbericht nicht gelesen."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel zu GigaChat 4: 708 Milliarden Parameter gesamt, 41 Milliarden aktiv, 1.048.576 Token Kontext, MIT-Lizenz.",
+    "caption": "GigaChat 4 in drei Angaben - aus der Modellkarte, nicht nachgemessen [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "ai-sage/GigaChat4-708B-A41B (Modellkarte, Dateiliste und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/ai-sage/GigaChat4-708B-A41B",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "ai-sage/GigaChat4-708B-A41B, config.json",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/ai-sage/GigaChat4-708B-A41B/blob/main/config.json",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "ai-sage/GigaChat4-708B-A41B, LICENSE.txt",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/ai-sage/GigaChat4-708B-A41B/blob/main/LICENSE.txt",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "salute-developers/gigachat4 (Repository-Metadaten über GitHub-API)",
+      "publisher": "GitHub (salute-developers)",
+      "url": "https://github.com/salute-developers/gigachat4",
+      "accessed": "2026-11-27"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Ai-Sage hat GigaChat 4 auf Hugging Face veröffentlicht, das Flaggschiff der GigaChat-Familie. Das Repository wurde am 20. November 2026 um 12:15 Uhr UTC angelegt; das GitHub-Repository salute-developers/gigachat4 laut API am 23. November. Das Hauptrepo enthält die finale FP8-Fassung mit Instruktionstraining. Daneben nennt die Karte Repos mit GGUF-, BF16-, Base- und Zwischenstand-Gewichten [1][4]."
+    },
+    {
+      "t": "h2",
+      "x": "Architektur: Drei Viertel lineare Aufmerksamkeit"
+    },
+    {
+      "t": "p",
+      "x": "Laut Karte hat das Modell 708 Mrd. Parameter, davon 41 Mrd. aktiv pro Token. Die Plattform-API zählt 710,2 Mrd. Parameter in den Safetensors (700,9 Mrd. in FP8, 9,3 Mrd. in BF16); der Unterschied zur Herstellerzahl ist in den Quellen nicht erklärt. Das Modell hat 64 Schichten mit Hidden-Größe 7.168 und drei dichten Feed-Forward-Schichten am Anfang. Pro MoE-Schicht werden 8 von 256 gerouteten Experten plus ein geteilter Experte genutzt [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Die Aufmerksamkeit ist hybrid: 48 Schichten nutzen Gated DeltaNet mit festem rekurrentem Zustand, 16 nutzen Multi-head Latent Attention mit DeepSeek Sparse Attention (DSA), die pro Anfrage 2.048 frühere Token auswählt. Die Konfigurationsdatei listet 16 Schichten mit voller Aufmerksamkeit (Index 3, 7, 11 bis 63) und index_topk 2.048, das passt zu den Kartenangaben. Der Kontext wurde schrittweise von 32K über 128K auf 1M Token erweitert; DSA kam laut Karte bei 128K über ein reines Indexer-Training hinzu. Die Konfiguration nennt max_position_embeddings 1.048.576 und YaRN-Skalierung mit Faktor 32 ab 32.768 [1][2]."
+    },
+    {
+      "t": "p",
+      "x": "Zum Beschleunigen unterstützt das Modell zwei Drafter: einen rekurrenten MTP-Kopf, der eine einzelne Vorhersageschicht wiederverwendet (etwa 3-mal weniger Drafter-Parameter als drei unabhängige MTP-Blöcke bei GigaChat 3.5), und DFlash2, einen separaten fünfschichtigen BF16-Drafter mit Blöcken aus acht Positionen. Geschwindigkeitswerte nennt die Karte nicht; sie verweist auf ein SGLang-Cookbook, das wir nicht geöffnet haben [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Training und zwei Modi"
+    },
+    {
+      "t": "p",
+      "x": "Laut Karte wurden nach dem überwachten Feintuning Expertenmodelle per Reinforcement Learning für Mathematik, Code, Werkzeugnutzung und mehrstufige Agenten-Abläufe trainiert und dann per Multi-Teacher-On-Policy-Distillation in ein Modell zusammengeführt; für diese Stufe wurde Muon verwendet. Anders als GigaChat 3.5, das getrennte Instant- und Reasoning-Checkpoints hatte, deckt GigaChat 4 beide Modi in einem Modell ab. Der Modus wird über chat_template_kwargs.reasoning pro Anfrage gesetzt; ohne Angabe ist Reasoning an. Für Pretraining-Stabilität nennt die Karte unter anderem ProRes, Z-Loss mit Logit-Softcapping und eine dynamische Lernraten-Anpassung für MoE-Blöcke. Details stehen laut Karte im Technikbericht, den wir nicht gelesen haben [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: Herstellerwerte in zwei Modi"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte gibt zwei Tabellensätze an, Reasoning und Instant, mit jeweils anderen Vergleichsmodellen. Reasoning: GigaChat 3.5 Ultra 432B, DeepSeek V4 Flash 0731, GLM-5.3, DeepSeek 4.1 1017, Qwen 3.5 397B und Mistral 4 Large. Agentische Tests mit Harbor-Runnern und sieben Stunden Zeitlimit sind markiert; die Karte nennt keine Zahl zu Fallzahlen oder Streuung. Bei Mistral 4 Large sind einige AIME-Werte ohne Werkzeuge gemessen. Alle Werte sind Herstellerangaben [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Reasoning-Modus: ausgewählte Tests laut Modellkarte (Herstellerangabe)",
+      "alt": "Gruppiertes Balkendiagramm: GigaChat 4, DeepSeek V4 Flash 0731, GLM-5.3 und Qwen 3.5 397B bei GPQA Diamond, HLE, SWE-bench Verified, Terminal-Bench 2.0, BFCL v4 und tau2-Bench",
+      "caption": "Werte aus den Reasoning-Tabellen der Karte. SWE-bench Verified und Terminal-Bench 2.0 mit sieben Stunden Zeitlimit. HLE: nur Text, ohne Werkzeuge [1].",
+      "labels": [
+        "GPQA Diamond",
+        "HLE (Text)",
+        "SWE-bench Verified",
+        "Terminal-Bench 2.0",
+        "BFCL v4",
+        "tau2-Bench"
+      ],
+      "series": [
+        {
+          "name": "GigaChat 4",
+          "values": [
+            82.83,
+            23.91,
+            80.89,
+            71.26,
+            79.55,
+            83.31
+          ]
+        },
+        {
+          "name": "DeepSeek V4 Flash 0731",
+          "values": [
+            91.0,
+            37.8,
+            81.8,
+            55.01,
+            73.12,
+            83.3
+          ]
+        },
+        {
+          "name": "GLM-5.3",
+          "values": [
+            90.4,
+            39.62,
+            86.67,
+            71.67,
+            68.29,
+            78.7
+          ]
+        },
+        {
+          "name": "Qwen 3.5 397B",
+          "values": [
+            85.35,
+            28.36,
+            73.0,
+            56.18,
+            69.1,
+            78.83
+          ]
+        }
+      ],
+      "y_label": "Punkte (Herstellerangabe)",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Das Bild ist gemischt. Bei BFCL v4 (79,55) und tau2-Bench (83,31, gleichauf mit DeepSeek V4 Flash 0731 mit 83,30) steht GigaChat 4 in dieser Tabelle an der Spitze der gezeigten Modelle; bei Terminal-Bench 2.0 (71,26) liegt es nahe an GLM-5.3 (71,67), bei SWE-bench Verified (80,89) hinter GLM-5.3 (86,67) und DeepSeek V4 Flash 0731 (81,80). Bei GPQA Diamond (82,83) und HLE (23,91) liegt es hinter den drei anderen Modellen der Grafik. Deutlich ist die Lücke bei tau3-Bench Banking (18,03 gegen 56,00 bei GLM-5.3), bei SkillsBench ohne Skills (33,08 gegen 45,47) und bei DeepSWE (35,40 gegen 74,34 bei DeepSeek 4.1 1017). Beim Mittel aus acht Läufen (mean@8) liegt AIME 2025 bei 93,33, bei den anderen Modellen der Tabelle zwischen 89,00 und 97,60 [1]."
+    },
+    {
+      "t": "h3",
+      "x": "Instant gegen Reasoning im selben Modell"
+    },
+    {
+      "t": "p",
+      "x": "Aussagekräftiger als der Vergleich mit anderen Modellen ist hier der Vergleich der beiden Modi desselben Modells, jeweils aus den Tabellen der Karte. Der Instant-Modus verliert bei Mathematik und Wissen deutlich, bei SWE-bench Verified praktisch nichts [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "GigaChat 4: Reasoning gegen Instant laut Modellkarte (Herstellerangabe)",
+      "alt": "Gruppiertes Balkendiagramm: GigaChat 4 im Reasoning- und im Instant-Modus bei GPQA Diamond, AIME 2025 mean@8, HMMT mean@8, LiveCodeBench v6, SWE-bench Verified, Terminal-Bench 2.0 und tau2-Bench",
+      "caption": "Beide Reihen aus den Tabellen der Karte; SWE-bench Verified und Terminal-Bench 2.0 mit sieben Stunden Zeitlimit [1].",
+      "labels": [
+        "GPQA Diamond",
+        "AIME 2025 (mean@8)",
+        "HMMT (mean@8)",
+        "LiveCodeBench v6",
+        "SWE-bench Verified",
+        "Terminal-Bench 2.0",
+        "tau2-Bench"
+      ],
+      "series": [
+        {
+          "name": "Reasoning",
+          "values": [
+            82.83,
+            93.33,
+            93.75,
+            88.82,
+            80.89,
+            71.26,
+            83.31
+          ]
+        },
+        {
+          "name": "Instant",
+          "values": [
+            70.2,
+            68.75,
+            63.75,
+            78.77,
+            80.82,
+            60.47,
+            66.75
+          ]
+        }
+      ],
+      "y_label": "Punkte (Herstellerangabe)",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Die Instant-Tabellen vergleichen mit anderen Modellen (GigaChat 3.1 Ultra 702B, GigaChat 3.5 Ultra 432B, DeepSeek V4 Flash 0731, Qwen 3.5 397B) und sind nicht mit den Reasoning-Tabellen vermischbar. Beispiele: Instant erreicht SWE-bench Verified 80,82 (DeepSeek V4 Flash 0731: 78,80, Qwen 3.5 397B: 68,60), bei GPQA Diamond 70,20 (Qwen 3.5 397B: 83,33) und bei JSONSchemaBench 88,31 (DeepSeek V4 Flash 0731: 93,70) [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Betrieb: SGLang und vLLM, Karten-Beispiele mit 16 GPUs"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte beschreibt SGLang (getestet mit einem benannten Commit) und vLLM (Commit aus einem Integrations-Pull-Request) mit je zwei Knoten à acht H100 mit 80 GB und Tensor-Parallelität 16, also 1.280 GB GPU-Speicher. Das Gewichtsvolumen laut Dateiliste (Safetensors-Dateien zusammen etwa 720 GB, in der Liste mit dem Drafter) liegt deutlich darunter. Die Beispiele nutzen die Modelle mit MTP-Spekulation, getrennt nach Denk- und Instant-Modus und mit Werkzeugaufrufen. Als Agenten-Harnesses empfiehlt die Karte Pi, alternativ Codex CLI und DeepSeek Harness; die Verbindung wurde laut Karte mit einem internen Checkpoint geprüft [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte nennt die MIT-Lizenz; die LICENSE.txt des Repos beginnt mit dem MIT-Text und 'Copyright (c) 2026 Giga'. Die GitHub-API meldet für das Code-Repository ebenfalls MIT. Die Lizenzen der Basis-, BF16- und GGUF-Repos haben wir nicht einzeln geprüft [1][3][4]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Parameter: 708 Mrd. gesamt, 41 Mrd. aktiv (Karte). Schichten: 64, davon 48 Gated DeltaNet und 16 DSA. Experten: 256 geroutet, 8 aktiv, 1 geteilt. Kontext: 1.048.576 Token. Sprachen laut Karte: Russisch und Englisch. Gewichte: FP8 (Hauptrepo). Lizenz: MIT. Repo angelegt am 20. November 2026 [1][2][3]."
+    }
+  ],
+  "method": "Recherche am 27. November 2026 gegen 6:10 Uhr UTC (7:10 Uhr MEZ). Modellkarte (vollständig, inklusive aller Benchmark-Tabellen und Betriebsabschnitte), Plattform-API und Dateiliste von ai-sage/GigaChat4-708B-A41B, config.json, Beginn der LICENSE.txt und die GitHub-API zum Repository salute-developers/gigachat4. Alle Benchmarkwerte stammen vom Hersteller; eigene Läufe haben wir nicht durchgeführt. Nicht geöffnet: Technikbericht, Blog, SGLang-Cookbook, die anderen Repos der Familie.",
+  "limitations": "Alle Benchmarkwerte sind Herstellerangaben ohne unabhängige Prüfung, ohne Streuung und ohne Fallzahlen; Auswertungsumgebung und Prompts stehen im Technikbericht, den wir nicht gelesen haben. Reasoning- und Instant-Tabelle nennen unterschiedliche Vergleichsmodelle. Einzelne Vergleichswerte haben Fußnoten (z. B. ohne Werkzeuge) und fehlen teils. Die Parameterzahl der Karte (708 Mrd.) und die der Plattform-API (710,2 Mrd.) haben wir nicht aufgelöst. Geschwindigkeit und Speicherbedarf im Betrieb haben wir nicht gemessen. Das Datum 20. November belegt nur die Anlage des Hugging-Face-Repos, nicht zwingend die Erstveröffentlichung. Die Lizenzlektüre ist keine Rechtsberatung.",
+  "faq": [
+    {
+      "q": "Was ist GigaChat 4?",
+      "a": "Ein Mixture-of-Experts-Modell von Ai-Sage mit 708 Mrd. Parametern, 41 Mrd. aktiv pro Token, hybrider Aufmerksamkeit und bis zu 1.048.576 Token Kontext, laut Karte für Russisch und Englisch, unter MIT-Lizenz."
+    },
+    {
+      "q": "Was ist der Unterschied zwischen Instant und Reasoning?",
+      "a": "Beide Modi stecken im selben Modell und werden per Anfrage über chat_template_kwargs.reasoning gewählt. Laut Karte liegt etwa GPQA Diamond im Reasoning-Modus bei 82,83, im Instant-Modus bei 70,20; SWE-bench Verified liegt bei 80,89 gegen 80,82."
+    },
+    {
+      "q": "Welche Hardware braucht das Modell?",
+      "a": "Die Beispiele der Karte für SGLang und vLLM nutzen zwei Knoten mit je acht H100 mit 80 GB (16 GPUs). Eine kleinere Konfiguration nennt die Karte nicht."
+    },
+    {
+      "q": "Wie gut ist es im Vergleich?",
+      "a": "Laut Herstellerwerten gemischt: vorn bei BFCL v4 und tau2-Bench in der Reasoning-Tabelle, bei GPQA Diamond und HLE hinter allen gezeigten Vergleichsmodellen, bei tau3-Bench Banking weit hinter GLM-5.3. Unabhängige Messungen liegen uns nicht vor."
+    },
+    {
+      "q": "Unter welcher Lizenz steht es?",
+      "a": "MIT, laut Modellkarte und dem Beginn der LICENSE.txt im Repo."
+    }
+  ],
+  "related": [
+    "mistral-large-4-analyse",
+    "deepseek-v4-1-flash-1017-analyse",
+    "kimi-k3-1-pro-analyse"
+  ]
+}
