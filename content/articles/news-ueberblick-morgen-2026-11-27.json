@@ -1,0 +1,134 @@
+{
+  "title": "Prompt-Injection-Filter, Zeitstempel-Test, Weltmodell-Zweifel",
+  "dek": "Ein neuer Filter hält versteckte Anweisungen niedrig, Zeitreihen-Tests kommen oft ohne Datumslektüre aus, nur eines von zwei Weltmodellen bemerkt Störungen.",
+  "slug": "news-ueberblick-morgen-2026-11-27",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-27T06:38:53+01:00",
+  "modified": "2026-11-27T06:38:53+01:00",
+  "tags": [
+    "Sicherheit",
+    "Evaluation",
+    "Forschung"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein Trichter, der farbige Textstreifen sortiert und einen abweichenden Streifen abweist, eine Uhr neben einer Kette mit einem gelösten Glied, und eine Landkarte mit hellen und dunklen Feldern über einem Raster. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über Abwehr von Prompt-Injection, die Rolle von Zeitstempeln in Zeitreihen-Tests und Unsicherheitsschätzung in Weltmodellen. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 27. November 2026, 06:39 Uhr MEZ. Drei am 25. November eingereichte Preprints (jeweils an den Abstract-Seiten geprüft) behandeln die Verlässlichkeit von KI-Systemen: einen Schutzfilter gegen versteckte Anweisungen in abgerufenen Texten, eine Untersuchung, ob Sprachmodelle Zeitangaben wirklich nutzen, und einen Vergleich, welche Weltmodelle ihre eigene Unsicherheit bemerken."
+    },
+    {
+      "t": "h2",
+      "x": "Versteckte Anweisungen abwehren: MINE filtert vor dem Modell"
+    },
+    {
+      "t": "callout",
+      "title": "Höchstens 3,31 Prozent Angriffserfolg im Langkontext",
+      "x": "Auf dem neuen Testdatensatz LC-Inj-SQuAD (694 Kontexte, im Mittel 4.032 Wörter) hält der Filter MINE die Angriffserfolgsrate in jeder Kombination aus drei Modellen und fünf Angriffstypen bei höchstens 3,31 Prozent, bei mindestens 79,11 Prozent Antwortgenauigkeit. Ein Angreifer, der das Verfahren vollständig kennt, treibt den Wert auf 23,20 Prozent; die anderen getesteten Schutzwege werden dann unbrauchbar."
+    },
+    {
+      "t": "p",
+      "x": "Wer Antwortsysteme mit Textsuche betreibt, kennt das Risiko: Ein abgerufener Text kann versteckte Anweisungen enthalten, und das Sprachmodell folgt ihnen statt der Nutzerfrage. Übliche Abwehr versucht, solche Angriffe zu erkennen. MINE, entwickelt bei Qualcomm AI Research, geht den umgekehrten Weg und wählt vor dem Modell die Textstellen aus, die inhaltlich zur Frage passen. Dazu misst es, wie eng Frage und Textstellen zusammenhängen, und bestraft Ausreißer im Themenraum; versteckte Anweisungen fallen dabei automatisch durch. Das Verfahren braucht weder Training noch Beispielangriffe und keinen zusätzlichen Modellaufruf."
+    },
+    {
+      "t": "p",
+      "x": "Für realistische Prüfbedingungen bauten die Autoren kurze Frage-Antwort-Beispiele zu mehrseitigen Kontexten aus (3.376 bis 4.734 Wörter, Median 4.039) und testeten drei offene Modelle gegen fünf Angriffsarten. Im Kurzbereich beantwortet MINE im Mittel 84,32 bis 91,93 Prozent der Fragen richtig bei 0,46 bis 0,55 Prozent Angriffserfolg. Der trainierte Vergleichsdetektor blockt zwar jeden statischen Angriff, verliert aber bei getarnten Anweisungen fast alle Antworten (4,03 bis 18,01 Prozent richtig, wo MINE 83,57 bis 92,22 Prozent hält). Die stärkste Prompt-Abwehr kommt nie unter 12,82 Prozent Angriffserfolg."
+    },
+    {
+      "t": "p",
+      "x": "Auch gegen Werkzeug-Agenten wirkt der Filter: Auf dem Benchmark InjecAgent (510 Fälle) bleiben mit Qwen3-30B-A3B 99,60 Prozent der Abläufe regelkonform bei 0,12 Prozent Angriffserfolg, mit Llama-3.1-70B 90,20 bei 2,06 Prozent. Die Zusatzzeit bleibt klein: 0,47 bis 0,75 Sekunden pro Anfrage unter dem getarnten Angriff, während zwei Vergleichsverfahren auf knapp vier Sekunden steigen. Ohne Angriff kostet der Filter fast nichts an Genauigkeit (92,22 statt 92,51 Prozent). Grenze: Die Zerlegung in Textspannen setzt saubere Prosa voraus; Code und Tabellen sind offen."
+    },
+    {
+      "t": "h2",
+      "x": "Zeitangaben: Gute Noten ohne Blick auf das Datum"
+    },
+    {
+      "t": "callout",
+      "title": "Nur 3 von 10 Prüfregeln nötig",
+      "x": "Ein Prüfprotokoll der TU Eindhoven testet mit zehn Regeln, ob ein Modell Zeitstempel wirklich verwertet. Die beiden untersuchten Aufgaben mit zusammen 310 Fragen erzwingen nur drei davon; den Rest ersetzen die vorgegebene Reihenfolge der Ereignisse oder das Erinnerungswissen der Modelle."
+    },
+    {
+      "t": "p",
+      "x": "Viele Tests für Zeitreihen-Verständnis liefern die Ereignisse schon sortiert und der Zahlenreihe zugeordnet. Dann kann ein Modell richtig liegen, ohne ein Datum zu lesen. Das Team um Tingrui Huang und Yuanyuan Deng griff gezielt in die Zeitangaben ein: einmal nur relative Abstände statt echter Zeiten, einmal ganz ohne, einmal echte Zeiten an falschen Ereignissen. Geprüft wurden zwei Aufgaben aus TSRBench: NBA (150 Fragen zu einem entfernten Spielereignis) und GDELT (160 Fragen zur Reihenfolge von Nachrichtenmeldungen)."
+    },
+    {
+      "t": "p",
+      "x": "Auf NBA ändert fehlende Uhrzeit bei den drei stärkeren Modellen kaum etwas: GLM-5.3-Flash liegt voll bei 0,973 Trefferquote und ohne Zeitstempel noch bei 0,947, Sonnet-5 bei 0,980 und 0,947; vertauschte Zeiten senken die Werte auf 0,867 beziehungsweise 0,887. Nur Qwen3.5-9B bricht ohne Zeiten deutlich ein (0,680 auf 0,513). Die Lösungsspuren zeigen, warum das reicht: In 61 bis 66 Prozent der Läufe wird einfach die Punkteänderung an der markierten Stelle abgelesen, und vertauschte Zeiten bemerkt nur 1 Prozent der Läufe."
+    },
+    {
+      "t": "p",
+      "x": "Anders auf GDELT, wo die Reihenfolge nicht mitgeliefert wird: Ohne Zeitstempel fällt GLM-5.3-Flash von 52 auf 12 Prozent, mit relativen Angaben auf 40 Prozent. Vertauschte Zeiten fallen nur in etwa einem Drittel der Läufe auf. Sonnet-5 hält sich ganz ohne Zeitangaben bei 43 Prozent, deutlich über der Zufallslinie von 25 Prozent, offenbar aus Erinnerung an die echten Ereignisse. Einschränkungen: nur zwei Aufgaben, Spurenanalyse nur für ein Modell, und teils mäßig übereinstimmende automatische Labels."
+    },
+    {
+      "t": "h2",
+      "x": "Weltmodelle: Nicht jedes Modell bemerkt, was es nicht kennt"
+    },
+    {
+      "t": "callout",
+      "title": "Ein Fehlerbild kommt nur zu einem Fünftel an",
+      "x": "In zehn simulierten Steuerungsumgebungen verglich das Fraunhofer Heinrich-Hertz-Institut zwei Weltmodell-Typen: DreamerV3 dämpft eine einzelne Störung auf etwa ein Fünftel, bevor sie die Unsicherheitsschätzung erreicht; das Modell LeWM gibt sie nahezu vollständig weiter. Grund sind das rekurrente Update, das über den Kontext mittelt, und ein Trainingsziel, das Objekte nach Pixelzahl gewichtet."
+    },
+    {
+      "t": "p",
+      "x": "Weltmodelle sagen voraus, wie eine Umgebung auf Aktionen reagiert; Planer verlassen sich darauf. Wichtig ist daher ein Signal, das anzeigt, wo das Modell außerhalb seiner Erfahrung liegt. Die Berliner Studie setzte beiden Paradigmen denselben nachträglichen Schätzer auf und verfolgte eine gezielte Zustandsänderung durch jede Verarbeitungsstufe. LeWM registriert die Änderung in jeder Umgebung fast vollständig (Sensitivität mindestens 0,94), Dreamer nur zu etwa einem Fünftel; erst wenn die Änderung über acht Bilder anhält, wächst die weitergegebene Stärke um den Faktor 2,3 bis 4,6, und die Sensitivität steigt mit."
+    },
+    {
+      "t": "p",
+      "x": "Die Folgen zeigen sich in der Praxis: LeWM erkennt zurückgehaltene Zustandsbereiche in sechs von zehn Umgebungen mit mindestens 0,96 AUROC und einzelne Bilder mit Physikverletzungen in acht Ein-Objekt-Umgebungen mit mindestens 0,75 (Ausnahme: nicht sichtbare Durchdringung in zwei Umgebungen); Dreamer liegt in den meisten Zellen darunter und überschreitet 0,80 nur bei umgekehrter Bewegung in zwei Umgebungen. Beim Planen mit Unsicherheitsstrafe gewinnt LeWM in vier Umgebungen 17 bis 28 Prozentpunkte Erfolgsquote, Dreamer bleibt meist unter 10 Punkten; drei Umgebungen profitieren bei keinem der beiden."
+    },
+    {
+      "t": "p",
+      "x": "Die Autoren grenzen das Ergebnis selbst ein: Pro Paradigma wurde nur ein Modell geprüft, die Befunde zu rekurrenten Modellen betreffen Dreamer-artige Architekturen; nur Schätzer auf der letzten Schicht kamen zum Einsatz, und die Analyse braucht einen Simulator, große vortrainierte Modelle sind nicht abgedeckt. Künftig sollen die Mechanismen kausal getestet und große JEPA-Modelle wie V-JEPA 2 einbezogen werden."
+    }
+  ],
+  "key_takeaways": [
+    "Der trainingsfreie Filter MINE wählt abgerufene Textstellen nach Relevanz zur Frage aus, statt Angriffe zu erkennen: Auf dem neuen Langkontext-Test LC-Inj-SQuAD (694 Kontexte, im Mittel 4.032 Wörter) bleibt die Angriffserfolgsrate in jeder Zelle bei höchstens 3,31 Prozent; ein Angreifer mit vollem Methodenwissen erreicht 23,20 Prozent, alle Vergleichsverfahren werden dann unbrauchbar.",
+    "Zeitangaben werden in zwei geprüften Zeitreihen-Aufgaben (310 Fragen) oft umgangen: Ohne Zeitstempel halten drei stärkere Modelle auf NBA ihre Trefferquote fast, auf GDELT fällt GLM-5.3-Flash von 52 auf 12 Prozent und bemerkt falsche Zeiten nur in etwa einem Drittel der Läufe.",
+    "Ob ein Weltmodell eigene Unsicherheit registriert, hängt an Bauart und Trainingsziel: DreamerV3 dämpft kurze Störungen auf etwa ein Fünftel und gewichtet kleine Objekte nach Pixelzahl, LeWM reicht sie vollständig durch und liefert das brauchbarere Unsicherheitssignal; geprüft wurde je ein Vertreter pro Paradigma."
+  ],
+  "faq": [
+    {
+      "q": "Was bringt MINE für eigene Antwortsysteme mit Textsuche?",
+      "a": "Der Filter sitzt vor dem Sprachmodell, braucht kein Training und keine Beispielangriffe und kostet laut Paper kaum Genauigkeit, wenn kein Angriff vorliegt (92,22 statt 92,51 Prozent mit Llama-3.1-70B). Unter Angriff hält er die Erfolgsrate auf dem Langkontext-Test bei höchstens 3,31 Prozent. Ein voll informierter Angreifer kommt allerdings noch auf 23,20 Prozent, und die Textzerlegung setzt saubere Prosa voraus; Code und Tabellen sind ungelöst."
+    },
+    {
+      "q": "Sind Benchmarks für Zeitreihen damit wertlos?",
+      "a": "Nicht wertlos, aber ihre Trefferquoten sagen weniger, als sie versprechen: Wenn Ereignisse sortiert und zugeordnet geliefert werden, kann ein Modell ohne jeden Blick auf Zeitangaben richtig liegen. Das Eindhovener Protokoll TCDP schlägt vor, zusätzlich die Lösungsspuren zu prüfen. Erst wenn die Reihenfolge zurückgehalten wird, zeigt sich, ob ein Modell Daten nutzt, und ob es falsche Daten bemerkt."
+    },
+    {
+      "q": "Welches Weltmodell eignet sich laut der Studie für Planung mit Unsicherheit?",
+      "a": "Innerhalb der getesteten Konfiguration, je ein Vertreter pro Bauart und ein Schätzer auf der letzten Schicht, spricht das Ergebnis für den JEPA-Vertreter LeWM: Er registriert Störungen nahezu vollständig und gewann beim Planen mit Unsicherheitsstrafe in vier Umgebungen 17 bis 28 Prozentpunkte, während der RSSM-Vertreter DreamerV3 kurze und kleinteilige Abweichungen dämpft und meist unter 10 Punkten blieb. Eine allgemeine Modellwahl über diese Konfiguration hinaus leitet die Studie daraus nicht ab: Große vortrainierte Weltmodelle und andere Unsicherheitsschätzer waren nicht Teil der Untersuchung."
+    }
+  ],
+  "related": [
+    "guardrails-sichere-prompts",
+    "timeh2o-v1-zeitreihen-prognose-analyse"
+  ],
+  "sources": [
+    {
+      "title": "MINE: A Training-Free Defense against Indirect Prompt Injection via Mutual Information and Embedding Variance",
+      "publisher": "arXiv; Truong Phan, Ngoc-Quan Pham, Dat Quoc Nguyen (Qualcomm AI Research)",
+      "url": "https://arxiv.org/abs/2611.34188",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "Put the World Back: Timestamps Matter in Time Series Reasoning",
+      "publisher": "arXiv; Tingrui Huang, Yuanyuan Deng, Qingren Yao, Joaquin Vanschoren, Mykola Pechenizkiy, Songgaojun Deng (TU Eindhoven)",
+      "url": "https://arxiv.org/abs/2611.34848",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "Not all world models can doubt: how training objective and architecture shape epistemic uncertainty in JEPA and RSSM world models",
+      "publisher": "arXiv; Simon Baur, Wojciech Samek, Jackie Ma (Fraunhofer Heinrich-Hertz-Institut)",
+      "url": "https://arxiv.org/abs/2611.34830",
+      "accessed": "2026-11-27"
+    }
+  ]
+}
