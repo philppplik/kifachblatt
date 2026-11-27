@@ -1,0 +1,269 @@
+{
+  "slug": "ternary-bonsai-2-5-27b-analyse",
+  "lang": "de",
+  "section": "modelle",
+  "type": "analysis",
+  "title": "Ternary Bonsai 2.5: 27B-Modell in 5,9 GB für Agenten",
+  "dek": "Prism ML packt Qwen3.8-27B auf 1,76 Bit pro Gewicht. Beim Tool-Calling liegt es im Herstellervergleich im Mittel knapp unter FP16 (77,2 zu 77,7), einzelne Tests darunter; beim Agenten-Coding hält es 90 Prozent. Alles Herstellerwerte.",
+  "published": "2026-11-27T07:05:00+01:00",
+  "modified": "2026-11-27T07:05:00+01:00",
+  "author": "philipp-paulik",
+  "tags": [
+    "Ternary Bonsai",
+    "Prism ML",
+    "Quantisierung",
+    "GGUF",
+    "llama.cpp",
+    "Agenten"
+  ],
+  "key_takeaways": [
+    "Ternary Bonsai 2.5 27B ist laut Modellkarte eine ternäre Fassung von Qwen3.8-27B: Gewichte aus {-1, 0, +1} mit einem FP16-Skalierungsfaktor je 128 Gewichte, 1,76 Bit pro Gewicht, 5,93 GB gegenüber 53,8 GB für FP16 (die Dateiliste des Repos zeigt für die PTQ1_0-Datei 5,99 GB).",
+    "Im eigenen Vergleich des Herstellers erreicht es bei fünf Tool-Calling-Tests im Mittel 77,2 gegen 77,7 für FP16; bei drei Agenten-Coding-Tests 54,2 gegen 60,5, also 90 Prozent. Das Vorgängermodell Bonsai 2 kam hier auf 37,9.",
+    "Schwächen laut Karte: BFCL v4 liegt 3,6 Punkte unter FP16, das Coding-Mittel unter dem des 1,7-fach größeren GSQ-RCO-IQ3_XXS-Builds (55,5), bei Anweisungsbefolgung und Vision liegen einzelne Builds bis 1,1 Punkte vorn.",
+    "Tempo: Mit MTP-Kopf und noch unveröffentlichten Kernels nennt die Karte rund 300 Token/s Decoding auf H200 und B200. Die Ausgabe soll mit und ohne Drafting übereinstimmen (mittlere KL-Divergenz 5,2 x 10^-5 auf einer H200).",
+    "Auf Standard-llama.cpp läuft nur die Q2_0-Datei (7,67 GB laut Dateiliste) ab Build b11556; ältere Builds laden sie laut Karte ohne Warnung und liefern Unsinn. Das kompakte PTQ1_0-Format steckt noch in offenen Upstream-Pull-Requests."
+  ],
+  "hero": {
+    "alt": "Eigene Datentafel zu Ternary Bonsai 2.5 27B: 5,93 GB Dateigröße, 1,76 Bit pro Gewicht, Tool-Calling-Mittel 77,2 laut Herstellerkarte.",
+    "caption": "Ternary Bonsai 2.5 27B in drei Angaben - aus der Modellkarte, nicht nachgemessen [1].",
+    "ai_generated": false,
+    "credit": "Eigene Grafik (Redaktion)"
+  },
+  "sources": [
+    {
+      "title": "prism-ml/Ternary-Bonsai-2.5-27B-GGUF (Modellkarte, Dateiliste und Plattform-API)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/prism-ml/Ternary-Bonsai-2.5-27B-GGUF",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "ggml-org/llama.cpp, Pull Requests 29600, 29672 und 29676 (Status über GitHub-API)",
+      "publisher": "GitHub (ggml-org/llama.cpp)",
+      "url": "https://github.com/ggml-org/llama.cpp/pull/29672",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "Qwen/Qwen3.8-27B (Plattform-API, Basismodell)",
+      "publisher": "Hugging Face",
+      "url": "https://huggingface.co/Qwen/Qwen3.8-27B",
+      "accessed": "2026-11-27"
+    }
+  ],
+  "body": [
+    {
+      "t": "p",
+      "x": "Prism ML hat Ternary Bonsai 2.5 27B bereitgestellt, die agentische Ausgabe seiner ternären Bonsai-27B-Linie; das Hugging-Face-Repo wurde am 24. November 2026 um 16:32 Uhr UTC angelegt. Basis ist Qwen3.8-27B, ein Hybridmodell mit etwa 75 Prozent linearer und 25 Prozent voller Aufmerksamkeit und 262K Kontext. Das Format ist gegenüber Bonsai 2 unverändert; neu ist laut Karte die Ausrichtung auf lange, werkzeuggesteuerte Aufgaben [1][3]."
+    },
+    {
+      "t": "h2",
+      "x": "Das Format: Ternär, rotiert, 1,76 Bit"
+    },
+    {
+      "t": "p",
+      "x": "Jedes Gewicht nimmt einen der Werte -1, 0 oder +1 an; je 128 Gewichte teilen einen FP16-Skalierungsfaktor. Reine Ternärwerte tragen log2(3), etwa 1,585 Bit; mit den Skalen kommt die Karte auf 1,76 Bit pro Gewicht und 5,93 GB, gegenüber 53,8 GB in FP16. Die Matrizen werden vor der Ternärzuweisung blockweise mit einer Hadamard-Rotation transformiert; die Laufzeit wendet die passende Transformation auf die Aktivierungen an. Die Rotation steckt laut Karte offline in den gespeicherten Gewichten und kostet weder Bits noch zusätzlichen Gewichtsverkehr. Das Bildmodul (0,47 Mrd. Parameter) liegt als optionale mmproj-Datei bei (0,63 oder 0,93 GB laut Dateiliste) [1]."
+    },
+    {
+      "t": "table",
+      "head": [
+        "Datei",
+        "Läuft auf",
+        "Größe laut Dateiliste"
+      ],
+      "rows": [
+        [
+          "PTQ1_0",
+          "Fork von PrismML (Upstream in Prüfung)",
+          "5,99 GB (mit MTP-Kopf 6,23 GB)"
+        ],
+        [
+          "PQ2_0",
+          "Fork von PrismML",
+          "7,25 GB (mit MTP-Kopf 7,49 GB)"
+        ],
+        [
+          "Q2_0",
+          "Standard-llama.cpp ab Build b11556",
+          "7,67 GB (mit MTP-Kopf 7,91 GB)"
+        ]
+      ],
+      "caption": "Größen aus der Dateiliste des Repos (dezimale GB, gerundet). Die Karte nennt 5,93 GB für PTQ1_0; die Abweichung haben wir nicht aufgelöst [1]."
+    },
+    {
+      "t": "p",
+      "x": "Wichtig für den Betrieb: PTQ1_0 und PQ2_0 brauchen laut Karte Kernels aus dem PrismML-Fork von llama.cpp; Standard-llama.cpp lehnt sie als unbekannte Typen ab. Q2_0 läuft auf Standard-llama.cpp ab Release b11556, das die Hadamard-Aktivierungslaufzeit enthält. Ältere Builds laden Q2_0 laut Karte ohne Warnung und erzeugen Unsinn. Die kleinste Datei ist also an den Fork gebunden; auf dem Standardweg sind es 7,67 GB [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Benchmarks: Herstellerwerte gegen andere Low-Bit-Builds"
+    },
+    {
+      "t": "p",
+      "x": "Alle Werte stammen aus der Karte. Laut Hersteller sind alle Modelle gleich ausgewertet, im Denkmodus bei Reasoning-Stufe xhigh, mit der von Qwen empfohlenen Abtastung (Temperatur 1,0, top_p 0,95, top_k 20). Verglichen werden FP16-Qwen3.8-27B, drei GSQ-RCO-Builds (IQ3_XXS, IQ2_S, IQ2_XS), ein Unsloth-Dynamic-Build (UD-IQ2_XS) und Bonsai 2. Die Auswertungsdetails stehen laut Karte im Whitepaper, das wir nicht geöffnet haben. Unabhängig geprüft haben wir nichts [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Agentische Mittelwerte laut Modellkarte (Herstellerangabe)",
+      "alt": "Gruppiertes Balkendiagramm der Tool-Calling-Mittel (fünf Tests) und Coding-Mittel (drei Tests) für FP16, drei GSQ-RCO-Builds, Unsloth UD-IQ2_XS, Bonsai 2 und Bonsai 2.5",
+      "caption": "Tool-Calling: Mittel aus tau2, tau3, BFCL v3, BFCL v4 und AppWorld. Coding: Mittel aus Terminal-Bench 2.1, SWE-bench Verified und DeepSWE. Dateigrößen: FP16 53,8 GB, GSQ-RCO 10,1/9,3/8,4 GB, Unsloth 7,6 GB, Bonsai 5,93 GB [1].",
+      "labels": [
+        "Qwen3.8 FP16",
+        "GSQ-RCO IQ3_XXS",
+        "GSQ-RCO IQ2_S",
+        "GSQ-RCO IQ2_XS",
+        "Unsloth UD-IQ2_XS",
+        "Bonsai 2",
+        "Bonsai 2.5"
+      ],
+      "series": [
+        {
+          "name": "Tool-Calling (Mittel aus 5)",
+          "values": [
+            77.7,
+            75.3,
+            74.1,
+            65.6,
+            75.3,
+            67.0,
+            77.2
+          ]
+        },
+        {
+          "name": "Agenten-Coding (Mittel aus 3)",
+          "values": [
+            60.5,
+            55.5,
+            52.5,
+            48.5,
+            47.8,
+            37.9,
+            54.2
+          ]
+        }
+      ],
+      "y_label": "Punkte (Herstellerangabe)",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Beim Tool-Calling liegt Bonsai 2.5 mit 77,2 nahe an FP16 (77,7) und vor allen Vergleichs-Builds; tau2-Bench (82,0 gegen 80,6), tau3-Bench (73,9 gegen 72,8) und BFCL v3 (72,6 gegen 71,2) liegen sogar über FP16. Die Ausnahme ist BFCL v4: 67,2 gegen 70,8. AppWorld steigt von 51,2 bei Bonsai 2 auf 90,5 (FP16: 93,2). Die Karte nennt als Ursache vor allem abgeschlossene Szenarien (89,3 Prozent gegen 80,4 bei IQ3_XXS) und beschreibt einen Ausfall des IQ2_XS-Builds: Er erreicht 79,5 bei tau2, aber nur 46,5 bei AppWorld, weil er laut Karte in etwa jeder fünften Aufgabe ein langes Skript mit geratenen API-Aufrufen schreibt und die Aufgabe als erledigt meldet, bevor er eine Ausgabe sieht [1]."
+    },
+    {
+      "t": "p",
+      "x": "Beim Agenten-Coding hält Bonsai 2.5 54,2 von 60,5 Punkten (90 Prozent), Bonsai 2 hielt 63 Prozent. DeepSWE steigt von 0,0 auf 27,0 (FP16: 30,1), SWE-bench Verified von 60,8 auf 75,6 (FP16: 80,6), Terminal-Bench 2.1 von 52,8 auf 60,1 (FP16: 70,8). Das Coding-Mittel des 1,7-fach größeren IQ3_XXS-Builds ist mit 55,5 höher, vor allem wegen Terminal-Bench 2.1 (66,3). Die Aussage 'stärkstes agentisches Modell unter 10 GB' bezieht sich laut Karte auf die Low-Bit-GGUF-Builds von Qwen3.8-27B, mit denen der Hersteller vergleicht; andere Modelle sind nicht Teil der Tabelle [1]."
+    },
+    {
+      "t": "p",
+      "x": "Bei allgemeinen Fähigkeiten (16 Tests in fünf Kategorien) erreicht Bonsai 2.5 im Mittel 82,1 gegen 84,3 für FP16, den höchsten Wert der komprimierten Builds (IQ3_XXS 81,7, Bonsai 2 81,6). Die größte Lücke zu FP16 liegt bei Mathe (90,1 gegen 93,2). Bei Anweisungsbefolgung (80,9) und Vision (83,7) liegen einzelne Builds bis 1,1 Punkte vorn, bei Anweisungsbefolgung führt Bonsai 2 mit 82,6 [1]."
+    },
+    {
+      "t": "h2",
+      "x": "Tempo: Was veröffentlicht ist und was noch getestet wird"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte trennt drei Stände. Erstens reines Decoding auf der aktuellen PrismML-Laufzeit (llama-bench, Batch 1, fünf Wiederholungen, Streuung unter 1 Prozent): PTQ1_0 erreicht 189 Token/s auf einer H200, 163 auf einer RTX 5090 und 112 auf einer RTX 4090; PQ2_0 auf einem Apple M5 Pro 30,2. Zweitens die MTP-Varianten mit eingebautem Entwurfskopf, gemessen mit llama-server auf 36 echten Prompts: auf NVIDIA-GPUs 1,5 bis 1,8 Mal schnelleres Decoding, aber 9 bis 23 Prozent langsameres Prefill. Drittens 'plus Kernels', also noch unveröffentlichte Kernels: 306 Token/s auf H200, 309 auf B200, 312 auf der RTX 5090 und 204 auf der RTX 4090 [1]."
+    },
+    {
+      "t": "chart",
+      "kind": "bar",
+      "title": "Decoding seit Bonsai 2 laut Modellkarte (Token/s, Herstellerangabe)",
+      "alt": "Gruppiertes Balkendiagramm: Decoding-Geschwindigkeit von Bonsai 2 am Veröffentlichungstag gegen Bonsai 2.5 mit MTP und Kernels in Test auf sieben NVIDIA-GPUs",
+      "caption": "Bonsai 2: schnellstes Setup der Veröffentlichungswoche (September 2026). Bonsai 2.5: MTP plus noch unveröffentlichte Kernels. Teils unterschiedliche Rechner; die Karte nennt den RTX-4090-Wert konservativ [1].",
+      "labels": [
+        "H200",
+        "H100",
+        "B200",
+        "A100",
+        "RTX PRO 6000",
+        "RTX 5090",
+        "RTX 4090"
+      ],
+      "series": [
+        {
+          "name": "Bonsai 2",
+          "values": [
+            114,
+            112,
+            104,
+            73,
+            120,
+            135,
+            106
+          ]
+        },
+        {
+          "name": "Bonsai 2.5 (MTP + Kernels in Test)",
+          "values": [
+            306,
+            291,
+            309,
+            175,
+            283,
+            312,
+            204
+          ]
+        }
+      ],
+      "y_label": "Token/s (Herstellerangabe)",
+      "x": ""
+    },
+    {
+      "t": "p",
+      "x": "Der Sprung gegenüber Bonsai 2 (2,3 bis 3,0 Mal auf sechs von sieben NVIDIA-GPUs, 1,9 Mal auf der RTX 4090) setzt sich laut Karte aus Laufzeit, Format und MTP zusammen; auf der H100 etwa je zur Hälfte (1,65 Mal ohne Drafting, dazu 1,58 Mal durch MTP mit Kernels). Die Vergleichszeilen stammen teils von verschiedenen Rechnern. Zur Ausgabetreue des Drafting schreibt die Karte: Die mittlere KL-Divergenz zwischen Drafting an und aus liegt auf einer H200 bei 5,2 x 10^-5, nicht höher als in einer Kontrolle, die jeden Vorschlag annimmt; für Metal, SYCL und die NPU ist das noch nicht geprüft [1]."
+    },
+    {
+      "t": "p",
+      "x": "Auf Standard-llama.cpp läuft Q2_0 laut Karte auf einer H200 mit 109 Token/s gegen 150 auf der PrismML-Laufzeit, bei gleichem Greedy-Text (mittlere KL-Divergenz 3,6 x 10^-4). Die Runtime-Unterstützung für die Bonsai-27B-Familie ist als Pull Request 29600 gemerged (am 11. Oktober 2026 laut GitHub-API). PTQ1_0 hängt in den offenen Pull Requests 29672 (Format und CPU) und 29676 (CUDA); beide zeigte die GitHub-API bei unserem Abruf am 27. November als offen und nicht gemerged [1][2]."
+    },
+    {
+      "t": "h2",
+      "x": "Bekannte Probleme und Lizenz"
+    },
+    {
+      "t": "p",
+      "x": "Die Karte nennt eine Falle für den Serverbetrieb: Im Automatikmodus kann der Prism-Server mit vier Slots und gemeinsamem KV-Cache starten. Wer eine Anfrage nach der anderen auf einer GPU mit wenig VRAM bedient, soll -np 1 setzen. Ein Community-Bericht auf einer RTX 3080 mit 10 GB nennt etwa 9,5 GB GPU-Speicher ohne und 7,8 GB mit -np 1, einschließlich Desktop. Das Modell denkt standardmäßig mit xhigh; low wird nicht unterstützt und verhält sich laut Karte ähnlich wie xhigh. Zu kleine Token-Grenzen (etwa 256) beenden die Ausgabe mitten im Denken, die Karte empfiehlt -n 16384 [1]."
+    },
+    {
+      "t": "p",
+      "x": "Das Modell steht laut Karte unter Apache 2.0, mit Verweis auf eine NOTICE-Datei zu Herkunft und Entwurfskopf. Die Lizenz des Basismodells Qwen3.8-27B haben wir über die Plattform-API abgefragt: Apache-2.0. Die Lizenzdatei des Repos und die NOTICE-Datei haben wir nicht gelesen [1][3]."
+    },
+    {
+      "t": "h3",
+      "x": "Eckdaten"
+    },
+    {
+      "t": "p",
+      "x": "Basis: Qwen3.8-27B (27,36 Mrd. Parameter inklusive Bildmodul und Embeddings). Format: ternär g128, FP16-Skalen, Hadamard-Basis, 1,76 Bit pro Gewicht. Größe: 5,93 GB laut Karte (PTQ1_0). Kontext: 262K. Reasoning: xhigh (Standard) oder medium. Backends: llama.cpp (CUDA, Metal, CPU, SYCL) und MLX. Lizenz: Apache 2.0. Repo angelegt am 24. November 2026 [1]."
+    }
+  ],
+  "method": "Recherche am 27. November 2026 gegen 6:10 Uhr UTC (7:10 Uhr MEZ). Modellkarte (vollständig, inklusive aller Benchmark- und Tempotabellen), Plattform-API und Dateiliste von prism-ml/Ternary-Bonsai-2.5-27B-GGUF, GitHub-API zu den llama.cpp-Pull-Requests 29600, 29672 und 29676, Plattform-API von Qwen/Qwen3.8-27B. Alle Benchmark- und Tempowerte stammen vom Hersteller; eigene Läufe haben wir nicht durchgeführt. Das Whitepaper, die Demo-Repositories, die Lizenz- und NOTICE-Datei und die MLX-Fassung haben wir nicht geöffnet.",
+  "limitations": "Alle Leistungs- und Tempowerte sind Herstellerangaben ohne unabhängige Gegenprüfung und ohne Streuungsangaben bei den Qualitätstests. Die 'plus Kernels'-Werte beruhen auf unveröffentlichten Kernels. Die Vergleichszeilen zu Bonsai 2 stammen teils von verschiedenen Rechnern. Die Auswertungsdetails im Whitepaper haben wir nicht geprüft. Die Größenangabe der Karte (5,93 GB) weicht von der Dateiliste (5,99 GB) ab. Das Datum 24. November belegt nur die Anlage des Hugging-Face-Repos, nicht zwingend die Erstveröffentlichung. Die Lizenzlektüre ist keine Rechtsberatung.",
+  "faq": [
+    {
+      "q": "Was ist Ternary Bonsai 2.5 27B?",
+      "a": "Eine ternäre Fassung von Qwen3.8-27B von Prism ML mit 1,76 Bit pro Gewicht, laut Karte auf agentische Aufgaben mit Tool-Calling und Coding ausgerichtet. Die Karte nennt 5,93 GB Modellgewicht; die PTQ1_0-Datei in der Repo-Dateiliste ist 5,99 GB groß."
+    },
+    {
+      "q": "Wie gut ist es gegenüber FP16?",
+      "a": "Laut Herstellerkarte liegt es beim Tool-Calling im Mittel nahe dran (77,2 gegen 77,7), beim Agenten-Coding bei 54,2 gegen 60,5 (90 Prozent) und bei allgemeinen Fähigkeiten bei 82,1 gegen 84,3. Unabhängige Messungen liegen uns nicht vor."
+    },
+    {
+      "q": "Läuft es mit normalem llama.cpp?",
+      "a": "Die Q2_0-Datei (7,67 GB) ja, ab Build b11556. Ältere Builds laden sie laut Karte ohne Warnung und liefern Unsinn. PTQ1_0 und PQ2_0 brauchen den PrismML-Fork; PTQ1_0 ist noch in offenen Upstream-Pull-Requests."
+    },
+    {
+      "q": "Wie schnell ist es?",
+      "a": "Laut Karte ohne Drafting 189 Token/s auf einer H200 und 112 auf einer RTX 4090 (PTQ1_0). Mit MTP-Kopf und noch unveröffentlichten Kernels 306 Token/s auf der H200 und 204 auf der RTX 4090. Alles Herstellermessungen."
+    },
+    {
+      "q": "Warum verlangt der Server mehr VRAM als erwartet?",
+      "a": "Laut Karte startet der Server automatisch mit vier Slots und gemeinsamem KV-Cache. Wer eine Anfrage nach der anderen bearbeitet, soll -np 1 setzen; ein Community-Bericht nennt auf einer RTX 3080 etwa 9,5 gegen 7,8 GB."
+    }
+  ],
+  "related": [
+    "inkling-2-mini-analyse",
+    "kolibri-1-1-analyse",
+    "raon-1-mini-analyse"
+  ]
+}
