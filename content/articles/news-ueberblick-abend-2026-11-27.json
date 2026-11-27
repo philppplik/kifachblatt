@@ -1,0 +1,134 @@
+{
+  "title": "Hilfsbilder bremsen Sehmodelle, Agenten-Retter SPLICE, SMOTE-Bilanz",
+  "dek": "Generierte Hilfsbilder bremsen Sehmodelle, SPLICE rettet Agenten aus Fehlschlag-Gruppen, und ein Review bilanziert 25 Jahre SMOTE kritisch.",
+  "slug": "news-ueberblick-abend-2026-11-27",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-27T16:02:00+01:00",
+  "modified": "2026-11-27T16:02:00+01:00",
+  "tags": [
+    "Multimodal",
+    "Reinforcement Learning",
+    "Datenqualität",
+    "Praxis"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein Bleistift, der ein Hilfsbild neben einer Frage zeichnet, ein Verkehrsschild mit eingelegtem kurzen Wegstück auf einer langen Route, und eine Waage, die einen Balkendiagramm-Stapel gegen ein einzelnes Gewicht prüft. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über selbst gemalte Hilfsbilder von Sprachmodellen, reparierte Trainingsläufe von Agenten und eine Bestandsaufnahme des Oversampling-Verfahrens SMOTE. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 27. November 2026, 16:02 Uhr MEZ. Drei neue Preprints vom 25. November liefern Praxiswissen für alle, die Modelle betreiben oder Daten vorbereiten: Selbst gemalte Hilfsbilder verschlechtern visuelle Antworten meist, ein neues Trainingsverfahren rettet Agenten aus kompletten Fehlschlägen, und eine Großprüfung zieht nach 25 Jahren Bilanz über das Oversampling-Verfahren SMOTE. Alle Angaben stammen aus den voll gelesenen Originalen."
+    },
+    {
+      "t": "h2",
+      "x": "Generierte Hilfsbilder: Meistens schadet das Zeichnen"
+    },
+    {
+      "t": "callout",
+      "x": "Wenn ein Sehmodell sich erst ein Hilfsbild generieren lässt und dann antwortet, sinkt die Trefferquote in 106 von 130 getesteten Pipeline-Aufgaben-Kombinationen, im Schnitt um 3,7 Prozentpunkte; nur bei hypothetischen Raumfragen hilft es regelmäßig."
+    },
+    {
+      "t": "p",
+      "x": "Die Idee klingt gut: Das Modell beschreibt, welches Bild ihm beim Antworten helfen würde, ein Generator zeichnet es, und das Modell antwortet mit beiden Bildern. Princeton- und Meta-Forscher testeten das mit 13 Pipelines (drei Sehmodelle mit je vier Generatoren plus Gemini 3.0 Flash mit Nano-Banana) und den zwei Kombimodellen BAGEL und Janus-Pro-7B auf neun Benchmarks. Ergebnis: Rückgänge auf neun von zehn Aufgaben, am deutlichsten bei der Suche kleiner Objekte (VSTAR, im Schnitt minus 21,0 Punkte). Selbst das stärkste Modell, Gemini 3.0 Flash, verlor mit Nano-Banana auf neun Aufgaben und gewann nirgends."
+    },
+    {
+      "t": "p",
+      "x": "Für die Praxis sind zwei Befunde wichtig. Erstens: Wenn das Modell nur einen Ausschnitt braucht, ist ein simpler Crop aus dem Originalbild besser als jede Neugenerierung, auf den 43 geprüften VSTAR-Fragen 72,09 gegen 51,16 Prozent. Zweitens: Lässt man Qwen3-VL die Wahl, fragt es nur bei 2 bis 12 Prozent der Fragen nach einem Bild und bleibt innerhalb von 0,7 Punkten der Textbaseline. Einen Grund sehen die annotierten Fehlerfälle: Zwei Drittel scheitern schon am Hinweis, gut ein Viertel am gezeichneten Bild. Die einzige durchgehende Ausnahme bilden hypothetische Fragen (würde dieses Objekt hierhin passen?), weil das gemalte Bild genau die gefragte Szene zeigt, so die Deutung der Autoren."
+    },
+    {
+      "t": "p",
+      "x": "Grenzen des Befunds: getestet wurden statische Frage-Antwort-Benchmarks, keine Agenten oder Videos; die Autoren schließen nicht aus, dass Videogeneratoren oder Weltmodelle anders abschneiden. Wer heute Pipelines mit generierten Zwischenbildern baut, sollte gegen die reine Textbaseline und gegen den Pixel-Crop messen, nicht gegen die eigene Erwartung. Der Code der Studie ist laut Abstract auf GitHub verfügbar."
+    },
+    {
+      "t": "h2",
+      "x": "Agenten-RL: Wenn alle Versuche scheitern, hilft ein kurzer Eingriff"
+    },
+    {
+      "t": "callout",
+      "x": "SPLICE setzt an Total-Fehlschlag-Gruppen kurze, an Ort und Stelle geprüfte Korrekturen ein: plus 2,8 bis 9,8 Prozentpunkte gegen GRPO in vier Einstellungen und deutlich mehr gerettete Aufgaben bei weniger Lehrer-Rechnung als die Vergleichsmethode."
+    },
+    {
+      "t": "p",
+      "x": "Beim gruppenbasierten Reinforcement Learning werden mehrere Lösungsversuche derselben Aufgabe verglichen. Scheitern alle, gibt es nichts zu verstärken, und gerade die schwersten Aufgaben fallen durchs Raster. SPLICE lässt dann ein starkes Vorschlagsmodell nicht die ganze Lösung schreiben, sondern nur ein kurzes Segment ab einem selbst gewählten Punkt im gescheiterten Verlauf. Drei solcher Optionen werden jeweils von der eigenen Policy dreimal zu Ende gespielt; was dann Erfolg zeigt, geht gewichtet nach Erfolgsquote ins Training."
+    },
+    {
+      "t": "p",
+      "x": "Auf SWE-bench Verified und BrowseComp-Plus, mit Qwen3-8B-CS und Qwen3.5-9B als Policies und Qwen3.5-122B-A10B als Vorschlagsmodell, gewann SPLICE alle vier Einstellungen und lag über der teureren Kombination aus überwachtem Feintuning plus RL. Besonders aussagekräftig: Von den anfangs gescheiterten SWE-Trainingsaufgaben schaffte die SPLICE-Policy am Ende 18,9 Prozent, die GRPO-Policy 8,1 Prozent. Dabei traf das Vorschlagsmodell seltener ins Ziel als bei ReLIFT (30,7 gegen 55,1 Prozent), verbrauchte aber 17,5 Prozent weniger Züge; kurze Eingriffe schlagen komplette Musterlösungen also nicht durch Trefferquote, sondern durch Passform."
+    },
+    {
+      "t": "p",
+      "x": "Für eigene Trainingsläufe heißt das: Wer Agenten mit verifizierbarer Belohnung trainiert, sollte Total-Fehlschlag-Gruppen nicht verwerfen, sondern gezielt mit kurzen, von der aktuellen Policy verifizierten Eingriffen bestücken. Kostenpunkt laut Paper: zusätzliche Rollouts der eigenen Policy zur Optionsbewertung, und die Wertschätzung auf Basis von drei Fortsetzungen ist verrauscht; in Umgebungen mit teurer Ausführung kann das stärker ins Gewicht fallen, merken die Autoren an."
+    },
+    {
+      "t": "h2",
+      "x": "SMOTE nach 25 Jahren: Viel Reichweite, dünne Evidenz"
+    },
+    {
+      "t": "callout",
+      "x": "Ein 25-Jahres-Review zählt 34.416 zitierende Arbeiten, findet in den entschiedenen Vergleichen eigener Papiere 79,0 Prozent Siege neuer Varianten, aber keine einzige Kalibrierungsmessung in 71 Studien und eine geschätzte Leakage-Quote von 37 Prozent in Anwendungen."
+    },
+    {
+      "t": "p",
+      "x": "SMOTE erzeugt synthetische Beispiele der Minderheitenklasse auf der Strecke zwischen echten Nachbarn und ist das Standardmittel gegen unausgewogene Daten. Die vier Autoren von der Khon Kaen University prüfen 76 Korpus-Papiere, 37 davon mit einer eigenen SMOTE-Variante, und spiegeln sie an einer systematischen Suche über 22.426 Records. Ergebnis der Methodenprüfung: Jede der 36 Varianten entscheidet im Schnitt 2,8 von sechs Grundentscheidungen neu, 24 der 37 laufen ausschließlich auf Zwei-Klassen-Problemen, und in den 29 Papieren mit direkt vergleichbaren Werten gewinnt die neue Methode 79,0 Prozent der entschiedenen Vergleiche (1.102 von 1.395) gegen das Original."
+    },
+    {
+      "t": "p",
+      "x": "Die Gegenprobe aus unabhängigen Studien fällt anders aus: Bei starken Lernern und abgestimmter Entscheidungsschwelle schrumpfen die Gewinne, und die Kalibrierung der Wahrscheinlichkeiten verschlechtert sich regelmäßig, was keine der 71 geprüften Methodenstudien überhaupt misst. In der Schadensrecherche fanden 9 von 14 Vergleichsstudien schlechtere Kalibrierung nach Oversampling, und alle 8 Leakage-Studien sahen aufgeblähte Ergebnisse, wenn vor dem Trainings-Test-Split resampelt wurde, ein Fehler, den die Autoren für geschätzt 37 Prozent der 110 im Volltext gelesenen Anwendungen ermitteln. Hinzu kommt ein dokumentierter Angriff, der echte Minderheitsdatensätze aus SMOTE-Daten rekonstruiert."
+    },
+    {
+      "t": "p",
+      "x": "Konkret für Datenarbeit: Erst prüfen, ob überhaupt eine Wahrscheinlichkeit gebraucht wird; wenn ja, nicht resampeln oder nachträglich kalibrieren. Gegen Klassengewichtung und Schwellentuning mit starkem Lerner testen, nicht nur gegen das Original-SMOTE. Immer erst splitten, dann sampeln. Und die Position der Autoren im Blick behalten, begrenzt auf tabellarische Klassifikation: Eine neue SMOTE-Variante allein ist kein Forschungsbeitrag mehr. Der Korpus ist kuratiert und deckt die Jahre ab 2016 dünn ab; die Autoren weisen selbst darauf hin."
+    }
+  ],
+  "key_takeaways": [
+    "Generierte Hilfsbilder senkten die Genauigkeit in 106 von 130 getesteten Pipeline-Aufgaben-Kombinationen; ein simpler Pixel-Crop schlug die Neugenerierung (72,09 gegen 51,16 Prozent auf 43 VSTAR-Fragen).",
+    "SPLICE holt Agenten-Training aus Total-Fehlschlägen: plus 2,8 bis 9,8 Prozentpunkte gegen GRPO, Graduierung anfangs gescheiterter SWE-Aufgaben von 8,1 auf 18,9 Prozent (GRPO gegen SPLICE), bei 17,5 Prozent weniger Lehrer-Rechnung als ReLIFT.",
+    "SMOTE-Review: 79,0 Prozent Siege in den entschiedenen Vergleichen eigener Papiere, aber keine Kalibrierungsmessung in 71 Studien und geschätzt 37 Prozent Leakage in gelesenen Anwendungen; Klassengewichtung und Schwellentuning zuerst prüfen."
+  ],
+  "faq": [
+    {
+      "q": "Lohnt sich Bildgenerierung als Zwischenschritt in meiner Vision-Pipeline?",
+      "a": "Nach dieser Studie in den meisten Fällen nicht: Im Schnitt minus 3,7 Prozentpunkte Genauigkeit über 13 getestete Pipelines, bei Objektsuche bis minus 31,3. Die Ausnahme sind hypothetische Raumfragen. Braucht das Modell nur einen Bildausschnitt, schneiden Sie aus dem Original aus; das war im Test um 20,93 Punkte besser. Geprüft wurden nur statische QA-Benchmarks."
+    },
+    {
+      "q": "Wann lohnt sich SPLICE beim Agenten-Training?",
+      "a": "Wenn gruppenbasiertes RL wie GRPO viele Gruppen ohne einzigen Erfolg erzeugt, etwa bei langen Agentenaufgaben. SPLICE fügt dort kurze Lehrer-Segmente ein, die die eigene Policy verifiziert, und gewann in vier getesteten Einstellungen 2,8 bis 9,8 Prozentpunkte gegen GRPO bei geringerer Lehrer-Rechnung als komplette Musterlösungen. Es braucht zusätzliche Rollouts der eigenen Policy, und kleine Stichproben machen die Optionswerte verrauscht."
+    },
+    {
+      "q": "Muss ich SMOTE jetzt aus meinen Pipelines werfen?",
+      "a": "Nicht automatisch. Das Review zeigt schwindende Gewinne bei starken Lernern und regelmäßig schlechtere Kalibrierung, keine der 71 Studien maß sie. Praktisch: Wenn Wahrscheinlichkeiten Entscheidungen tragen, nicht resampeln oder kalibrieren; immer erst splitten, dann sampeln; gegen Klassengewichtung und Schwellentuning testen. Bei schwachen Lernern darf Oversampling laut Review weiter helfen."
+    }
+  ],
+  "related": [
+    "multimodale-modelle",
+    "test-time-compute-reasoning-modelle-analyse"
+  ],
+  "sources": [
+    {
+      "title": "Can image generation help visual reasoning? An empirical study",
+      "publisher": "arXiv; Xueyang Yu, Yifan Jing, Taiming Lu, Linrong Cai, Gabriel Sarch, Zhuang Liu (Princeton University), Zhipeng Cai, Yunyang Xiong (Meta)",
+      "url": "https://arxiv.org/abs/2611.34935",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "When Every Rollout Fails: Splicing Learner-Conditioned Options into Long-Horizon Agent RL",
+      "publisher": "arXiv; Haowen Hou, Yicheng Liu, Zhen Huang, Jiaqi Wang (Shanghai Jiao Tong University, Shanghai Innovation Institute, JD.com)",
+      "url": "https://arxiv.org/abs/2611.34777",
+      "accessed": "2026-11-27"
+    },
+    {
+      "title": "SMOTE 25 Years of Magic: What Has Been Done, What the Evidence Shows, and Whom It Reached",
+      "publisher": "arXiv; Thanapong Intharah, Pharamut Makjaroen, Kanvara Thawarorit, Supawit Chaingam (Khon Kaen University)",
+      "url": "https://arxiv.org/abs/2611.34511",
+      "accessed": "2026-11-27"
+    }
+  ],
+  "published_at": "2026-11-27T16:02:00+01:00",
+  "updated_at": "2026-11-27T16:02:00+01:00"
+}
