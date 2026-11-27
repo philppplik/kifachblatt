@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "Ternary Bonsai 2.5: 27B-Modell in 5,9 GB für Agenten",
   "dek": "Prism ML packt Qwen3.8-27B auf 1,76 Bit pro Gewicht. Im Tool-Calling knapp unter FP16 (77,2 zu 77,7), Einzeltests darunter. Alles Herstellerwerte.",
-  "published": "2026-11-27T07:05:00+01:00",
-  "modified": "2026-11-27T07:05:00+01:00",
+  "published": "2026-11-27T07:24:31+01:00",
+  "modified": "2026-11-27T07:24:31+01:00",
   "author": "philipp-paulik",
   "tags": [
     "Ternary Bonsai",

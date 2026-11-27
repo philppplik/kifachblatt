@@ -5,8 +5,8 @@
   "type": "analysis",
   "title": "GigaChat 4: 708B-MoE mit 1 Mio. Token Kontext unter MIT",
   "dek": "Ai-Sage legt ein Hybrid-MoE mit 41 Mrd. aktiven Parametern offen vor, ein Modell für Instant- und Reasoning-Modus. Die Benchmarks sind Herstellerangaben.",
-  "published": "2026-11-27T07:12:00+01:00",
-  "modified": "2026-11-27T07:12:00+01:00",
+  "published": "2026-11-27T07:24:31+01:00",
+  "modified": "2026-11-27T07:24:31+01:00",
   "author": "philipp-paulik",
   "tags": [
     "GigaChat 4",
