@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Loop-Warmstart, Distill-Reparatur, Tabellen-Frühwarnung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-27): Ein Warmstart spart Loop-Modellen Rechenschritte, ein Verfahren repariert destillierte Modelle ohne Originaldaten, ein Wächter erkennt Drift in Tabellen-KI.
 - [GigaChat 4: 708B-MoE mit 1 Mio. Token Kontext unter MIT](https://kifachblatt.de/gigachat-4-708b-a41b-analyse): Ai-Sage legt ein Hybrid-MoE mit 41 Mrd. aktiven Parametern offen vor, ein Modell für Instant- und Reasoning-Modus. Die Benchmarks sind Herstellerangaben.
 - [Ternary Bonsai 2.5: 27B-Modell in 5,9 GB für Agenten](https://kifachblatt.de/ternary-bonsai-2-5-27b-analyse): Prism ML packt Qwen3.8-27B auf 1,76 Bit pro Gewicht. Im Tool-Calling knapp unter FP16 (77,2 zu 77,7), Einzeltests darunter. Alles Herstellerwerte.
 - [Prompt-Injection-Filter, Zeitstempel-Test, Weltmodell-Zweifel](https://kifachblatt.de/news-ueberblick-morgen-2026-11-27): Ein neuer Filter hält versteckte Anweisungen niedrig, Zeitreihen-Tests kommen oft ohne Datumslektüre aus, nur eines von zwei Weltmodellen bemerkt Störungen.
