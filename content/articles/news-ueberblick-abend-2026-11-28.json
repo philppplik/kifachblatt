@@ -1,0 +1,134 @@
+{
+  "title": "Merging-Fläche, Research-Benchmark, 23.777 Rätsel",
+  "dek": "Spezialmodelle als durchquerbare Fläche, ein Abdeckungs-Benchmark für Recherche-Agenten und der große Community-Rätseltest.",
+  "slug": "news-ueberblick-abend-2026-11-28",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-28T16:11:00+01:00",
+  "modified": "2026-11-28T16:11:00+01:00",
+  "tags": [
+    "Forschung",
+    "Modell-Merging",
+    "Benchmarks",
+    "Evaluation"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein Dreieck mit verbundenen Eckpunkten und gewölbten Flächenlinien, ein verzweigter Baum unter einer Lupe, und ein Raster aus Puzzleteilen. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über das Verschmelzen von Spezialmodellen zu einer Fläche, einen Abdeckungs-Benchmark für Recherche-Agenten und einen Rätseltest für neun Modelle. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 28. November 2026, 16:04 Uhr Drei neue Preprints aus der letzten Novemberwoche: eine Fläche, die Spezialmodelle nahtlos verbindet, ein Benchmark, der Recherche-Agenten an Wissensbäumen misst, und 23.777 Community-Rätsel als Härtetest. Alle Angaben aus den voll gelesenen Originalen."
+    },
+    {
+      "t": "h2",
+      "x": "Spezialmodelle als Fläche: Nimbus verbindet bis zu zehn Experten"
+    },
+    {
+      "t": "callout",
+      "x": "Eine Bézier-Mannigfaltigkeit verbindet N unabhängig trainierte Spezialisten zu einer durchquerbaren Fläche; drei Interaktionsordnungen genügen, und aus der Fläche gesampelte Ensembles sind robuster als rechengleiche Kontrollen."
+    },
+    {
+      "t": "p",
+      "x": "Model Merging scheitert meist an Barrieren: Lineare Mittelung unabhängig trainierter Modelle kreuzt Hochverlust-Zonen. Nimbus (MIT und ICTS-TIFR) lernt stattdessen eine hochdimensionale Bézier-Fläche, deren Eckpunkte exakt die N Spezialmodelle sind; dazwischen liegen lauter taugliche Mischmodelle. Der Trick: Statt kombinatorisch vieler Korrekturen genügen Tensoren von drei Interaktionsordnungen, die Parameterkosten bleiben in der Größenordnung eines Einzelmodells. Trainiert wird hierarchisch mit zufällig gezogenen Mischgewichten, die Spezialisten bleiben eingefroren."
+    },
+    {
+      "t": "p",
+      "x": "Gemessen auf ConvNeXt (CIFAR-100-Teilmengen, N bis 10), ViT-B/32 mit LoRA (acht Aufgaben) und nanoGPT (sieben Textdomänen): Die Multitask-NLL fällt schon einen halben Expertenabstand von der Ecke entfernt von etwa 10,0 auf etwa 1,0 (Zufall 3,4), die naive Mittelung bleibt im Zentrum bei etwa 4,0. Als Ensemble-Quelle schlägt die Fläche gleich große Ensembles gemeinsam trainierter Modelle auf jeder Einzelaufgabe in der NLL, und unter Eingabe- und Gewichtsrauschen degradiert sie gleichmäßiger als alle rechengleichen Baselines, inklusive ASAM, das explizit auf Flachheit trainiert wird. Code ist laut Anhang öffentlich, die Experimente liefen auf einer einzigen RTX 4090."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Der Befund ist ein Existenznachweis mit praktischem Robustheitsgewinn, kein Fertigrezept. Die Autoren nennen die Grenzen selbst: nur innerhalb einer Modalität getestet, kein crossmodales Experiment, keine Theorie dafür, wann so eine Fläche zwischen beliebigen Modellen existiert. Und anders als datenfreie Merging-Verfahren braucht der Aufbau die Trainingsdaten der Aufgaben."
+    },
+    {
+      "t": "h2",
+      "x": "Recherche-Agenten im Zähltest: DRBench Pro misst Abdeckung"
+    },
+    {
+      "t": "callout",
+      "x": "144 Fälle, 24 Domänen, 44.102 Rubriken aus Wikipedia-Wissensbäumen: Der Benchmark bewertet, welche Forschungsrichtungen ein Bericht abdeckt und wie tief, nicht wie gut er liest. Bestwert: Claude Opus 5 mit 57,04 Prozent."
+    },
+    {
+      "t": "p",
+      "x": "Deep-Research-Agenten schreiben Berichte zu offenen Fragen; bisherige Benchmarks benoten vor allem die Textqualität. DRBench Pro (Zhejiang University und Tencent) dreht das um: Aus lokalen Wikipedia-Wissensbäumen werden Anfragen und Rubriken generiert, jede Rubrik prüft eine Relation im Baum. Der Agent sieht nur die Frage; gemessen werden Breite (abgedeckte Hauptrichtungen) und Tiefe (Detailgrad), die Gesamtnote ist das geometrische Mittel, ein schwaches Standbein lässt sich nicht ausgleichen."
+    },
+    {
+      "t": "p",
+      "x": "Von 16 getesteten Agenten führt Claude Opus 5 mit 57,04 Prozent Gesamtabdeckung, vor Grok 4.5 (50,98); unter den spezialisierten Deep-Research-Systemen liegt o3 Deep Research mit 49,45 vorn, vor Perplexity Sonar Deep Research (46,06) und Qwen Deep Research (35,16). Ein lokales Recherche-Framework mit festem Budget hebt Qwen3.8 Max von 36,53 auf 47,94, knapp über GPT-5.6 Sol mit nativer Suche (47,80), aber hinter Grok 4.5 und Claude Opus 5. Das Maß stimmt mit Menschenurteilen deutlich besser überein als eine flache Zählung (Kendalls Tau-b 0,751 gegenüber 0,508, geprüft an 72 Berichten). Der Code ist laut Paper öffentlich."
+    },
+    {
+      "t": "p",
+      "x": "Die Fallstudien des Papers zeigen, wofür das Maß taugt: Bei Lew Grade verbirgt eine ähnliche Gesamtabdeckung einen Kompromiss zwischen Breite und Tiefe, bei Temperance vertiefen Agenten entlang unterschiedlicher Wissenspfade. Ein Vorbehalt betrifft die Konstruktion: Der Benchmark wurde mit Claude Opus 4.8 gebaut, und Claude Opus 5 führt. Ein Test mit Kimi K2.6 als Konstruktionsmodell (10 Fälle, vier Modelle) ließ Claude vorn (40,20 gegen 37,63 für Grok 4.5), der Vorsprung schrumpfte aber; laut den Autoren kann die Wahl des Konstruktionsmodells weiter eine Rolle spielen."
+    },
+    {
+      "t": "h2",
+      "x": "23.777 Community-Rätsel: Kein Modell knackt den harten Kern"
+    },
+    {
+      "t": "callout",
+      "x": "Puzzling-Bench stellt neun Modellen Rätsel aus zwölf Jahren Puzzling Stack Exchange, mit vom Autor akzeptierten Antworten als Wahrheit. GPT-6.1 Sol löst 74,8 Prozent des 255er-Pilotsets; Bei 17 von 193 gemeinsam bearbeiteten Rätseln scheitern alle neun."
+    },
+    {
+      "t": "p",
+      "x": "Die Datenbasis ist ungewöhnlich vertrauenswürdig: Auf Puzzling Stack Exchange kennt der Fragesteller die Lösung und markiert die korrekte Antwort. Aus dem Dump vom Juni 2026 bleiben nach den Filtern 23.777 Rätsel mit verifizierter Antwort, Hinweisen, Tags und Datum; die kurzen Referenzantworten extrahiert ein LLM, handgeprüft an einer 50er-Stichprobe. Bewertet wird erst per Stringabgleich, dann per LLM-Juror; drei Juroren aus zwei Modellfamilien stimmen zu über 95 Prozent überein und zeigen keine Bevorzugung der eigenen Familie."
+    },
+    {
+      "t": "p",
+      "x": "Die Tabelle: GPT-6.1 Sol 74,8 Prozent, Claude Opus 5.5 66,1, Opus 4.8 62,9, Kimi K3 60,7, GPT-5.6 Sol 60,0, danach Grok 4.7 und die Sonnets bei 48 bis 51, Haiku 4.5 bei 28,3. Spannender ist die Struktur dahinter: Die Modelle scheitern an denselben Rätseln, doch ein Orakel über alle neun löst 91,2 Prozent, und der größte Zusatzbeitrag kommt vom älteren Opus 4.8, nicht vom Zweitplatzierten. 17 der 193 gemeinsam bearbeiteten Rätsel besiegen alle, darunter Steganografie, kryptische Hinweise und Mathematik; Riddle-Rätsel sind dagegen fast gelöst (nur 3 von 75 offen). Auf Rätseln nach dem Trainings-Cutoff fallen die Werte um 6 bis 24 Punkte, was die Autoren aber ausdrücklich als Diagnostik und nicht als Kontaminationsbeweis lesen."
+    },
+    {
+      "t": "p",
+      "x": "Zwei Nebenbefunde verdienen Aufmerksamkeit: Timeout-Zeilen fehlen nicht zufällig, langsame Modelle wirken in Benchmarks systematisch zu gut (Kimi K3 sinkt nach Nachholung von 65,0 auf 62,9 Prozent); und bei Bildrätseln trägt das Bild 24 bis 35 Punkte der Leistung, ohne Bild brechen selbst die Spitzenmodelle ein. Datensatz und Scoring-Pipeline sind laut Paper öffentlich; ob Rätselstärke allgemeine Denkfähigkeit misst, lassen die Autoren offen."
+    }
+  ],
+  "key_takeaways": [
+    "Nimbus verbindet bis zu zehn Spezialmodelle über eine Bézier-Fläche mit nur drei Interaktionsordnungen; Ensembles daraus sind robuster als rechengleiche Baselines und ASAM, aber nur innerhalb einer Modalität getestet und ohne erklärende Theorie.",
+    "DRBench Pro misst Recherche-Agenten an 44.102 Rubriken aus Wissensbäumen: Claude Opus 5 führt mit 57,04 Prozent, das beste Spezialsystem liegt bei 49,45, der Benchmark wurde mit Claude Opus 4.8 gebaut, ein Test mit anderem Konstruktionsmodell lässt Claude vorn, aber mit kleinerem Vorsprung.",
+    "Puzzling-Bench: GPT-6.1 Sol löst 74,8 Prozent von 255 Rätseln, 17 der 193 gemeinsam bearbeiteten Rätsel knackt keines der neun Modelle; die Juroren sind validiert, aber Timeouts verzerren Benchmarks zugunsten langsamer Modelle."
+  ],
+  "faq": [
+    {
+      "q": "Was bringt eine Merging-Fläche gegenüber einem einzigen Gemisch?",
+      "a": "Flexibilität nach dem Training: Statt sich auf ein festes Mischverhältnis festzulegen, wählt ein Mischgewicht je nach Aufgabe einen Punkt auf der Fläche, und jedes dortige Modell bleibt laut Studie tauglich, an den Eckpunkten exakt der jeweilige Spezialist. Dazu kommt ein Robustheitsgewinn beim Ensembling. Voraussetzungen: Die Spezialisten existieren bereits mit ihren Trainingsdaten, und übertragen ist das bisher nur innerhalb einer Modalität auf Modelle kleinerer Größe."
+    },
+    {
+      "q": "Warum ist Abdeckung ein besseres Maß als Berichtsqualität?",
+      "a": "Weil ein sprachlich starker Bericht ganze Themenzweige auslassen kann, ohne dass es auffällt. DRBench Pro zerlegt das Thema vorab in einen Wissensbaum und prüft Relation für Relation, ob der Bericht sie trifft; Breite und Tiefe gehen als geometrisches Mittel ein, sodass Einseitigkeit abgestraft wird. Das Maß korreliert spürbar besser mit Expertenurteilen als eine flache Zählung. Für die Praxis heißt das: Deep-Research-Systeme lassen sich jetzt auf Vollständigkeit prüfen, nicht nur auf Stil."
+    },
+    {
+      "q": "Sind die Rätselwerte ein verlässlicher Modellvergleich?",
+      "a": "Verlässlicher als viele, dank dreier Validierungen: Juroren aus zwei Familien ändern keinen Wert um mehr als 1,6 Punkte und bevorzugen niemanden, die Referenzantworten sind stichprobenartig handgeprüft, und eine Post-Cutoff-Scheibe dient als Kontaminations-Diagnostik. Aber die Autoren selbst listen die Grenzen: 255 Piloträtsel haben etwa drei Punkte Standardfehler, akzeptierte Antworten sind die Wahl des Fragestellers (etwa 5 Prozent der Rätsel haben weitere gültige Lösungen), und ob Rätselstärke allgemeine Intelligenz misst, ist nicht erwiesen."
+    }
+  ],
+  "related": [
+    "deep-research-recherche",
+    "modelle-und-agenten-evaluieren"
+  ],
+  "sources": [
+    {
+      "title": "The Marauder's Map: Bézier Manifolds Reveal Hidden Surfaces for Model Merging and Ensembling",
+      "publisher": "arXiv; Abhiram Iyer, Mark T. Harnett (MIT) und Sarthak Chandra (ICTS-TIFR)",
+      "url": "https://arxiv.org/abs/2611.33353",
+      "accessed": "2026-11-28"
+    },
+    {
+      "title": "DRBench Pro: A Knowledge-Centric Benchmark for Professional Deep Research Agents",
+      "publisher": "arXiv; Han Huang, Yuchen Yan, Yongliang Shen u. a. (Zhejiang University und Tencent)",
+      "url": "https://arxiv.org/abs/2611.34852",
+      "accessed": "2026-11-28"
+    },
+    {
+      "title": "Puzzling-Bench: Evaluating Language Models on 23,777 Human-Written Puzzles with Community-Verified Answers",
+      "publisher": "arXiv; Abhinav Sharma (University of Massachusetts Amherst) u. a.",
+      "url": "https://arxiv.org/abs/2611.34331",
+      "accessed": "2026-11-28"
+    }
+  ],
+  "published_at": "2026-11-28T16:11:00+01:00",
+  "updated_at": "2026-11-28T16:11:00+01:00"
+}
