@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Merging-Fläche, Research-Benchmark, 23.777 Rätsel](https://kifachblatt.de/news-ueberblick-abend-2026-11-28): Spezialmodelle als durchquerbare Fläche, ein Abdeckungs-Benchmark für Recherche-Agenten und der große Community-Rätseltest.
 - [Loop-Baukasten, Löschungs-Audit, Agenten schlagen Videomodelle](https://kifachblatt.de/news-ueberblick-mittag-2026-11-28): Regeln für Loop-MoE, ein Audit, das Löschtests erst validiert, und Coding-Agenten, die Videomodelle mit gerendertem Code schlagen.
 - [Inworld Voice Isolator: Sprache freistellen, offline und live](https://kifachblatt.de/inworld-voice-isolator-analyse): Zwei Checkpoints: 64 Mio. Parameter für Aufnahmen, 58 Mio. mit 63 ms algorithmischer Latenz für Live-Streams. Apache-2.0, 48 kHz, 10.000 h Training.
 - [Kandinsky ImageSR 2.0: Ein-Schritt-Upscaling ohne Textturm](https://kifachblatt.de/kandinsky-imagesr-2-analyse): Ein Gewichtssatz für x2 und x4, vorberechnete Zeitstufen statt Textturm, kachelbasiert bis 8K: was Kandinskys Diffusers-Bundle liefert und was ihm fehlt.
