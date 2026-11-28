@@ -1,0 +1,224 @@
+{
+ "slug": "kandinsky-imagesr-2-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Kandinsky ImageSR 2.0: Ein-Schritt-Upscaling ohne Textturm",
+ "dek": "Ein Gewichtssatz für x2 und x4, vorberechnete Zeitstufen statt Textturm, kachelbasiert bis 8K: was Kandinskys Diffusers-Bundle liefert und was ihm fehlt.",
+ "published": "2026-11-28T07:15:00+01:00",
+ "modified": "2026-11-28T07:15:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Kandinsky",
+  "Super-Resolution",
+  "Diffusers",
+  "Bild-KI",
+  "Upscaling",
+  "Open Source"
+ ],
+ "key_takeaways": [
+  "Ein Gewichtssatz (rund 4,5 Mrd. Parameter laut Plattform-API) deckt x2- und x4-Upscaling ab; der Textturm ist durch vorberechnete Tabellen ersetzt.",
+  "Tempo laut Hersteller: 2,78 s für 1K→2K bis 37,7 s für 4K→8K auf einer H100, jeweils Median aus fünf Läufen.",
+  "Gesteuert wird über Kreativitätsstufen 0 bis 8 je Faktor; Stufe 4 entspricht dem Standard-t (0,15 bei x2, 0,244 bei x4).",
+  "MIT für Transformer und Pipeline-Code; der beigelegte VAE stammt aus FLUX.1-schnell und ist Apache-2.0-lizenziert.",
+  "Qualitätsvergleiche mit anderen Upscalern nennt die Karte nicht; alle Tempowerte sind Herstellerangaben."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu Kandinsky ImageSR 2.0: Faktoren x2 und x4 aus einem Gewichtssatz, 2,78 Sekunden für 1K nach 2K auf H100 laut Hersteller, rund 4,5 Milliarden Parameter laut Plattform-API.",
+  "caption": "Kandinsky ImageSR 2.0 in drei Angaben - aus Karte und Plattform-API, nicht nachgemessen [1][3].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "kandinskylab/Kandinsky-ImageSR-2.0 (Modellkarte)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/kandinskylab/Kandinsky-ImageSR-2.0",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "kandinskylab/kandinsky-image-sr (README)",
+   "publisher": "GitHub",
+   "url": "https://github.com/kandinskylab/kandinsky-image-sr",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "Plattform-API: kandinskylab/Kandinsky-ImageSR-2.0 (Metadaten, Dateiliste, Parameterzählung)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/api/models/kandinskylab/Kandinsky-ImageSR-2.0",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "model_index.json (Pipeline-Konfiguration)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/kandinskylab/Kandinsky-ImageSR-2.0/raw/main/model_index.json",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "transformer/config.json (Architektur und gebackene Zeitstufen)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/kandinskylab/Kandinsky-ImageSR-2.0/raw/main/transformer/config.json",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "SOURCE.json (VAE-Herkunft und Zero-Text-Baking)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/kandinskylab/Kandinsky-ImageSR-2.0/raw/main/SOURCE.json",
+   "accessed": "2026-11-28"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Kandinsky Lab hat Kandinsky ImageSR 2.0 veröffentlicht, ein Diffusers-Bundle zur Bildhochrechnung (Super-Resolution); das Hugging-Face-Repo wurde am 24. November 2026 um 8:51 Uhr UTC angelegt, das Begleit-Repository auf GitHub am 25. November [3][2]. Ein einziger Satz Transformer-Gewichte deckt die Faktoren x2 und x4 ab. Die Besonderheit: Der Textturm entfällt komplett, seine Konditionierung ist für feste Zeitstufen vorberechnet und als kleine Safetensors-Tabellen hinterlegt [1][5]."
+  },
+  {
+   "t": "h2",
+   "x": "Gebackene Konditionierung statt Text-Encoder"
+  },
+  {
+   "t": "p",
+   "x": "Klassische Diffusions-Upscaler rechnen bei jedem Lauf einen Text-Encoder mit. ImageSR 2.0 setzt auf 'pre-baked zero-text conditioning': Der Textturm und alle 50 Cross-Attention-Schichten sind laut Karte durch kleine, pro Zeitschritt hinterlegte Safetensors-Tabellen ersetzt [1]. Die Transformer-Konfiguration listet 19 solcher gebackener Zeitstufen zwischen 0,07 und 0,38, eine Modellbreite von 2560, 50 Visual-Blocks und eine Feed-Forward-Dimension von 10.240 [5]. Gesteuert wird über 'creativity'-Stufen 0 bis 8; Stufe 4 entspricht dem Standard-t (x2: 0,15; x4: 0,244). Die Karte nennt 18 kalibrierte Kreativitätswerte, die Konfiguration 19 Zeitstufen; welche Stufe exakt auf welchen Zeitwert fällt, dokumentieren die Quellen nicht im Einzelnen [1][5]."
+  },
+  {
+   "t": "p",
+   "x": "Die Parameterzählung der Plattform-API kommt auf rund 4,53 Milliarden Parameter (596 Mio. in F32, 3,93 Mrd. in BF16)[3]. Die Pipeline setzt auf den Kandinsky-5-Transformer, der seit Diffusers 0.41 enthalten ist; installiert wird das Paket vom GitHub-Repo, empfohlen mit einem CUDA-torch [1][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Kacheln, Hanning-Fenster, bis 8K"
+  },
+  {
+   "t": "p",
+   "x": "Das Modell verarbeitet 1024-Pixel-Ausgabekacheln und überblendet die Überlappungen (0,25 laut model_index.json) mit randbewussten Hanning-Fenstern; kleinere Eingaben werden per Replikat-Rand aufgefüllt und danach exakt auf die angefragte Größe zurückgeschnitten [1][4]. So entstehen aus einer 1K-Datei 2K oder 4K, aus 4K bis zu 8K (8192 x 8192 Pixel)."
+  },
+  {
+   "t": "table",
+   "head": [
+    "Eingabe",
+    "Faktor",
+    "Ausgabe",
+    "Kachelgrid",
+    "Zeit pro Bild"
+   ],
+   "rows": [
+    [
+     "1K (1024 x 1024)",
+     "x2",
+     "2K (2048 x 2048)",
+     "3 x 3",
+     "2,78 s"
+    ],
+    [
+     "1K (1024 x 1024)",
+     "x4",
+     "4K (4096 x 4096)",
+     "5 x 5",
+     "7,80 s"
+    ],
+    [
+     "2K (2048 x 2048)",
+     "x2",
+     "4K (4096 x 4096)",
+     "5 x 5",
+     "7,84 s"
+    ],
+    [
+     "2K (2048 x 2048)",
+     "x4",
+     "8K (8192 x 8192)",
+     "11 x 11",
+     "37,5 s"
+    ],
+    [
+     "4K (4096 x 4096)",
+     "x2",
+     "8K (8192 x 8192)",
+     "11 x 11",
+     "37,7 s"
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Messbedingungen der Tabelle: NVIDIA H100 80GB (SXM), quadratische Bilder, bfloat16, torch 2.13.0 (CUDA 12.9), Standardeinstellungen; jeder Wert ist der Median aus fünf vollen pipe(...)-Läufen nach zwei Aufwärmläufen. Es sind Herstellerangaben, wir haben nicht nachgemessen. Ein Skript scripts/test.py im GitHub-Repo soll die Werte reproduzierbar machen [1][2]."
+  },
+  {
+   "t": "chart",
+   "kind": "bar",
+   "title": "Laufzeit pro Bild auf H100 laut Karte (Herstellerangabe)",
+   "alt": "Balkendiagramm der fünf Hersteller-Messwerte: 1K auf 2K in 2,78 Sekunden, 1K auf 4K in 7,80 Sekunden, 2K auf 4K in 7,84 Sekunden, 2K auf 8K in 37,5 Sekunden, 4K auf 8K in 37,7 Sekunden.",
+   "caption": "Median aus je fünf Läufen auf H100 80GB, Angaben der Modellkarte, nicht nachgemessen [1].",
+   "labels": [
+    "1K→2K (x2)",
+    "1K→4K (x4)",
+    "2K→4K (x2)",
+    "2K→8K (x4)",
+    "4K→8K (x2)"
+   ],
+   "series": [
+    {
+     "name": "Sekunden pro Bild",
+     "values": [
+      2.78,
+      7.8,
+      7.84,
+      37.5,
+      37.7
+     ]
+    }
+   ],
+   "y_label": "Sekunden (Herstellerangabe)",
+   "x": ""
+  },
+  {
+   "t": "h2",
+   "x": "Lizenzen und Herkunft"
+  },
+  {
+   "t": "p",
+   "x": "Transformer und Pipeline-Code stehen unter der MIT-Lizenz, in Übereinstimmung mit Kandinsky 5; der beigelegte VAE stammt aus der Apache-2.0-lizenzierten Veröffentlichung black-forest-labs/FLUX.1-schnell [1][2]. Das SOURCE.json im Repo dokumentiert die VAE-Herkunft und das Zero-Text-Baking ausdrücklich [6]. Eine eigenständige LICENSE-Datei liegt dem Hugging-Face-Repo dagegen nicht bei; unser Abruf am 28. November 2026 lief ins Leere. Die MIT-Angabe steht in Karte, API-Metadaten und GitHub-Repo [1][3][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Was der Veröffentlichung fehlt"
+  },
+  {
+   "t": "p",
+   "x": "Qualitätswerte fehlen komplett: Die Karte nennt weder PSNR- noch LPIPS-Werte und stellt keinen Vergleich mit anderen Upscalern an; wie gut die Hochrechnung gegenüber Alternativen aussieht, lässt sich aus den Quellen nicht beurteilen. Die Tempowerte stammen von einem einzigen Beschleunigertyp und nur von quadratischen Bildern. Und die Installationsanleitung zielt auf CUDA; andere Backends erwähnt sie nicht [1][2]."
+  },
+  {
+   "t": "callout",
+   "x": "Kandinsky ImageSR 2.0 arbeitet als Ein-Schritt-Verfahren: pro Faktor ein fester Zeitwert (x2: 0,15; x4: 0,244; Parameter one_step_t). Die 8K-Hochrechnung einer 2K-Datei dauert auf einer H100 laut Hersteller 37,5 Sekunden."
+  },
+  {
+   "t": "p",
+   "x": "Für die Praxis: Die Pipeline läuft per from_pretrained, Voraussetzung sind Diffusers 0.41 oder neuer und ein CUDA-fähiger Rechner. Wer das Modell erst sehen will: Die Plattform führt einen Demo-Space des Herstellers; wer Stapel verarbeitet, sollte Kachelgröße und tile_batch_size im Blick behalten. Ob sich die Qualität für den eigenen Bestand eignet, muss ein eigener Test mit echten Bildern zeigen, die Karte allein beantwortet das nicht [1][3]."
+  }
+ ],
+ "method": "Recherche am 28. November 2026 gegen 6:12 Uhr UTC (7:12 Uhr MEZ). Modellkarte von kandinskylab/Kandinsky-ImageSR-2.0 (vollständig gelesen, inklusive aller Tabellen), README des GitHub-Repos kandinskylab/kandinsky-image-sr, Plattform-API (Metadaten, Dateiliste, Parameterzählung), model_index.json, transformer/config.json und SOURCE.json. Alle Tempowerte stammen vom Hersteller; eigene Läufe haben wir nicht durchgeführt.",
+ "limitations": "Alle Tempo- und Verhaltensangaben sind Herstellerangaben ohne unabhängige Gegenprüfung, gemessen auf einem einzigen Beschleunigertyp (H100 80GB) und nur an quadratischen Bildern. Die Karte nennt keine Bildqualitäts-Metriken und keine Vergleichsmodelle. Das Verhältnis der 18 genannten Kreativitätswerte zu den 19 Zeitstufen in der Konfiguration ist nicht im Einzelnen dokumentiert. Eine LICENSE-Datei fehlt im Hugging-Face-Repo; die Lizenzangaben stehen in Karte und GitHub-README.",
+ "faq": [
+  {
+   "q": "Was ist Kandinsky ImageSR 2.0?",
+   "a": "Ein Diffusers-Bundle von Kandinsky Lab zur Bildhochrechnung um Faktor 2 oder 4. Ein einziger Satz Transformer-Gewichte dient beide Faktoren; der Textturm ist durch vorberechnete Zeitstufen-Tabellen ersetzt."
+  },
+  {
+   "q": "Was brauche ich zum Ausführen?",
+   "a": "Laut Anleitung eine CUDA-GPU mit passendem torch (das Beispiel nennt cu128), Diffusers 0.41 oder neuer und das Paket aus dem GitHub-Repo kandinskylab/kandinsky-image-sr; danach läuft alles per from_pretrained."
+  },
+  {
+   "q": "Wie schnell ist es?",
+   "a": "Herstellerangaben auf H100 80GB: 1K→2K in 2,78 s, 1K→4K in 7,80 s, 4K→8K in 37,7 s, jeweils Median aus fünf Läufen nach zwei Aufwärmläufen. Eigene Messungen liegen uns nicht vor."
+  },
+  {
+   "q": "Unter welcher Lizenz steht es?",
+   "a": "Transformer und Pipeline-Code unter MIT (in Übereinstimmung mit Kandinsky 5); der mitgelieferte VAE stammt aus FLUX.1-schnell und ist Apache-2.0-lizenziert."
+  }
+ ],
+ "related": [
+  "moss-image-4step-lora-analyse",
+  "p-h3-image-analyse",
+  "invoker-render-1-0-analyse"
+ ]
+}
