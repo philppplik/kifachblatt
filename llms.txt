@@ -33,6 +33,7 @@
 ## Beiträge
 
 <!--GEN-->
+- [Tokenizer-Grenze, Policies aus Code gelesen, Netze mit Prüfschein](https://kifachblatt.de/news-ueberblick-morgen-2026-11-28): Optimale Tokenizer sind unerreichbar, ein Agent schreibt Steuerregeln aus Umgebungscode, und Mini-Netze aus dem Sprachmodell werden beweisbar exakt.
 - [Hilfsbilder bremsen Sehmodelle, Agenten-Retter SPLICE, SMOTE-Bilanz](https://kifachblatt.de/news-ueberblick-abend-2026-11-27): Generierte Hilfsbilder bremsen Sehmodelle, SPLICE rettet Agenten aus Fehlschlag-Gruppen, und ein Review bilanziert 25 Jahre SMOTE kritisch.
 - [Loop-Warmstart, Distill-Reparatur, Tabellen-Frühwarnung](https://kifachblatt.de/news-ueberblick-mittag-2026-11-27): Ein Warmstart spart Loop-Modellen Rechenschritte, ein Verfahren repariert destillierte Modelle ohne Originaldaten, ein Wächter erkennt Drift in Tabellen-KI.
 - [GigaChat 4: 708B-MoE mit 1 Mio. Token Kontext unter MIT](https://kifachblatt.de/gigachat-4-708b-a41b-analyse): Ai-Sage legt ein Hybrid-MoE mit 41 Mrd. aktiven Parametern offen vor, ein Modell für Instant- und Reasoning-Modus. Die Benchmarks sind Herstellerangaben.
