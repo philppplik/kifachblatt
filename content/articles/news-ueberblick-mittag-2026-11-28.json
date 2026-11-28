@@ -1,0 +1,134 @@
+{
+  "title": "Loop-Baukasten, Löschungs-Audit, Agenten schlagen Videomodelle",
+  "dek": "Regeln für Loop-MoE, ein Audit, das Löschtests erst validiert, und Coding-Agenten, die Videomodelle mit gerendertem Code schlagen.",
+  "slug": "news-ueberblick-mittag-2026-11-28",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-28T10:00:00+01:00",
+  "modified": "2026-11-28T10:00:00+01:00",
+  "tags": [
+    "Forschung",
+    "Modellarchitektur",
+    "Unlearning",
+    "Coding-Agenten"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: geschwungene Kreispfeile über einem Stapel aus Schichten, eine Lupe über einer Liste mit einem Tor-Symbol, und Code-Klammern über einem Bilderrahmen. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über Baukasten-Regeln für Loop-Modelle, eine Prüfordnung für gelöschte Trainingsdaten und Coding-Agenten, die Videomodelle beim visuellen Schließen schlagen. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 28. November 2026, 09:56 Uhr MEZ. Drei neue Preprints aus der letzten Novemberwoche zeigen, wie Modelle mit Schleife richtig gebaut werden, warum ein Löschtest erst seine Referenz braucht, und wann ein Coding-Agent das Videomodell schlägt. Alle Angaben aus den voll gelesenen Originalen."
+    },
+    {
+      "t": "h2",
+      "x": "Baukasten für Loop-Modelle: zweimal durch den Kern"
+    },
+    {
+      "t": "callout",
+      "x": "Meituan-Forscher vermessen Loop-MoE-Modelle bei exakt gleichem Parameter- und Rechenbudget und liefern Startwerte: zwei Durchläufe, Kern mit 25 bis 35 Prozent der Tiefe, Ersparnis in mehr Experten."
+    },
+    {
+      "t": "p",
+      "x": "Loop-Modelle sparen Parameter, indem ein gewichtsgeteilter Kern mehrfach läuft. Die Arbeit zeigt zwei Reparaturen am Informationsfluss: Der erste Durchlauf startet direkt aus der Eingabe statt aus Rauschen, und eine Residualverbindung von Prelude zu Coda hält den Gradientenpfad offen; ohne sie steigt die Validierungs-Loss in der Ablation spürbar (1,8020 auf 1,8327). Zusätzlich bekommen Behalten und Neueingabe des Zustands getrennte Gate-Parameter, damit sich beides nicht gegenseitig verstellt."
+    },
+    {
+      "t": "p",
+      "x": "Die gemessene Bestkonfiguration: zwei Durchläufe (sieben sind schlechter, Loss 1,5684 statt 1,5603), Kern-Anteil 25 bis 35 Prozent (45 Prozent kippt wieder auf 1,5702), und die durchs Teilen frei gewordenen Parameter als zusätzliche Experten pro Schicht. Nach 1 Billion Tokens liegen die Modelle mit MLA (69B) und KDA (51B) im Mittel von vier Benchmarks 1,16 und 2,29 Prozentpunkte vor identisch teuren Modellen ohne Schleife; gegen die Loop-Vorgänger Parcae und SMELT gewinnt das Verfahren auf gemeinsamem Backbone die Perplexität (8,3109 gegen 8,3596 und 8,3567 auf Dolma, 200B Tokens)."
+    },
+    {
+      "t": "p",
+      "x": "Einordnung: Die Gewinne sind echte, aber gemessene Vorsprünge unter Budgetgleichheit, keine Größenordnung. Die Autoren nennen die Grenzen selbst: nur frisches Pre-Training, kein Warmstart, kein Post-Training, ungemessene Inferenzkosten. Der Nachbau-Code für die Vergleichsexperimente ist laut Abstract öffentlich."
+    },
+    {
+      "t": "h2",
+      "x": "Vergessen nachweisen: Erst die Referenz prüfen, dann die Methode"
+    },
+    {
+      "t": "callout",
+      "x": "Ein AUC nahe 0,5 beim Membership-Test gilt als Beleg fürs Vergessen. Zwei FU-Berlin-Forscher zeigen: Ohne validierte Vergleichsgruppe taugt der Wert nichts, und drei gängige Unlearning-Verfahren fallen durch das vollständige Audit."
+    },
+    {
+      "t": "p",
+      "x": "Der Standardtest vergleicht gelöschte Datensätze mit angeblich ungesehenen und liest Zufallsniveau als Vergessen. Die Berliner Studie (QLoRA auf Llama-3.2-1B und Qwen2.5-1.5B, Korpora ArxivMIA und BookMIA) prüft diese Annahme mit exaktem Neutraining ohne die Löschmenge: Auf ArxivMIA bleibt der Referenz-Score im Zufallsband, auf BookMIA rutscht er bis auf 0,122, die Metrik würde also selbst die korrekte Referenz als nicht gelöscht verwerfen. Tauscht man die Vergleichsdatensätze gegen welche aus demselben Pool, kehrt der Wert auf 0,523 zurück; die Vergleichsgruppe, nicht das Modell, war das Problem."
+    },
+    {
+      "t": "p",
+      "x": "Das vorgeschlagene Audit prüft jeden Checkpoint auf drei Dinge zugleich: Membership im Zufallsband, gezielte Bewegung (die Löschmenge muss mindestens halb so weit wandern wie beim exakten Neutraining, die Behalte-Daten höchstens 20 Prozent) und erhaltene Utility (Perplexität maximal 10 Prozent schlechter). Keine getestete Konfiguration von GA+GD, NPO-RT oder SCRUB besteht alle Bedingungen auf der geprüften Achse. Besonders lehrreich: Vier GA+GD-Stufen sehen beim Membership-Test wie Vergessen aus, zerstören aber das Modell (Behalte-Perplexität um Faktoren von 12,74 bis zu 4,93 mal 10 hoch 7 erhöht)."
+    },
+    {
+      "t": "p",
+      "x": "Praxisplus: Selbst fast perfekte Erkennung einzelner gelöschter Datensätze (AUC 0,9936 bis 0,9999) liefert bei seltenen Löschungen, projiziert auf 1 zu 100, nur Trefferquoten von 0,365 bis 0,793; jeder dritte bis vierte Alarm wäre falsch. Und schon ein Routine-Update ohne Löschung verschiebt die Messwerte um 13,2 Prozent der Referenzbewegung. Code und Daten der Studie sind laut Paper öffentlich; dass die DSGVO Löschung verlangt, aber keinen Test definiert, notieren die Autoren gleich zu Beginn."
+    },
+    {
+      "t": "h2",
+      "x": "Sehen mit Code: Agenten gewinnen den Video-Benchmark"
+    },
+    {
+      "t": "callout",
+      "x": "Drei Coding-Agenten lösen VBVR-Pro-Bench, einen Benchmark für Videomodelle, mit gerenderten Programmen und Scores von 0,893 bis 0,923; das beste Videomodell kommt auf 0,670, obwohl es mit RL genau auf diesen Aufgaben trainiert wurde."
+    },
+    {
+      "t": "p",
+      "x": "Die Regeln: gleiches Eingabebild und Prompt wie beim Videomodell, gleicher unveränderter Auswerter, aber der Agent schreibt ein Programm, das das Antwortvideo rendert, im CPU-Sandbox mit 30 Minuten Limit, ein Versuch pro Instanz, kein Zugriff auf die Lösung, keine generativen Bild- oder Videomodelle erlaubt. Codex liefert alle 500 Videos und 0,923 Punkte, Claude Code 0,894, Gemini CLI 0,893. Die Videomodell-Werte stammen aus dem veröffentlichten Leaderboard und wurden nicht neu gemessen."
+    },
+    {
+      "t": "p",
+      "x": "Offene Modelle: GLM-5 kommt auf 0,572 und schlägt damit jedes Videomodell außer dem RL-trainierten; viele andere scheitern schon am Ausliefern, vier Modelle rufen in 500 Versuchen kein einziges Werkzeug auf und liefern null Videos. Auffällig sind die Kostenunterschiede bei fast gleichem Ergebnis: Gemini CLI braucht etwa achtmal so viele Werkzeugaufrufe wie Codex für 0,030 Punkte weniger."
+    },
+    {
+      "t": "p",
+      "x": "Das spannendste Detail: Die Agenten lösen die Aufgaben auf zwei Arten. Depiktive Programme vermessen das Bild zur Laufzeit und funktionieren auch auf neuen Instanzen, propositionale rendern nur eine vorher gefundene Antwort. Wahrnehmungsaufgaben laufen zu 67 Prozent depiktiv, Wissensaufgaben zu 28 Prozent propositional; keiner der beiden Stile sagt den Score voraus. Die Autoren warnen selbst: Die Aufgaben sind codegeneriert mit flachen Farben, und 30 Minuten Werkzeugzeit gegen einen einzigen Videomodell-Wurf ist kein fairer Ringkampf; eine prinzipielle Grenze für Videomodelle leiten sie nicht ab."
+    }
+  ],
+  "key_takeaways": [
+    "Loop-MoE-Startrezept unter Budgetgleichheit: zwei Kern-Durchläufe, 25 bis 35 Prozent Kerntiefe, gesparte Parameter in Experten; plus 1,16 und 2,29 Prozentpunkte im Vier-Benchmark-Schnitt nach 1 Billion Tokens.",
+    "Löschnachweise erst nach Referenzprüfung glauben: Dieselbe Metrik, die auf ArxivMIA passt, verwirft auf BookMIA sogar die korrekte Exakt-Referenz (AUC bis 0,122); kein getestetes Unlearning-Verfahren besteht das volle Audit.",
+    "Coding-Agenten schlagen Videomodelle beim visuellen Schließen: 0,923 bis 0,893 gegen 0,670 auf VBVR-Pro-Bench; unter 23 offenen Modellen liegt GLM-5 mit 0,572 vorn, viele scheitern schon an der Auslieferung des Videos."
+  ],
+  "faq": [
+    {
+      "q": "Sollte ich Loop-Architekturen jetzt ernst nehmen?",
+      "a": "Die Studie liefert geprüfte Startwerte unter Budgetgleichheit, keine Wunderzahlen: zweimal durch einen geteilten Kern, der ein Viertel bis ein Drittel der Tiefe ausmacht, und die gesparten Parameter als zusätzliche Experten. Die Vorsprünge von 1,16 bis 2,29 Prozentpunkten im Benchmark-Schnitt sind real, aber moderat, und sie gelten fürs Pre-Training; Verhalten nach Feintuning und die Inferenzkosten sind ungemessen."
+    },
+    {
+      "q": "Worauf achte ich bei einem Unlearning-Versprechen?",
+      "a": "Auf drei Fragen: Wurde die Vergleichsgruppe des Membership-Tests an einer echten Neutrainings-Referenz validiert? Wurde neben Membership auch geprüft, ob die Löschmenge gezielt wandert und die Utility erhalten bleibt? Und gelten die Aussagen pro Checkpoint oder nur im Mittel über Läufe? Die Berliner Arbeit zeigt, dass jede dieser Fragen einzeln kippen kann, und stellt ihren Prüfcode öffentlich."
+    },
+    {
+      "q": "Warum gewinnen Coding-Agenten gegen Videomodelle?",
+      "a": "Weil sie das Problem symbolisch lösen dürfen: Statt Pixel zu denoisen, schreibt der Agent ein Programm, das das Antwortvideo exakt rendert, und der regelbasierte Auswerter prüft nur das Ergebnis. Das spielt den Aufgaben in die Karten, sie sind selbst codegeneriert und flächig; zudem bekommt der Agent 30 Minuten und Werkzeuge, das Videomodell einen Wurf. Die Autoren sehen das als Befund über den heutigen Stand, nicht als prinzipielle Grenze von Videomodellen."
+    }
+  ],
+  "related": [
+    "videogym-ltx-2-3-analyse",
+    "test-time-compute-reasoning-modelle-analyse"
+  ],
+  "sources": [
+    {
+      "title": "Scaling Looped MoE Language Models under Matched Budgets: Information Flow and Parameter Allocation",
+      "publisher": "arXiv; Shipeng Bai, Jiayu Qin, Jianchao Tan u. a. (Meituan)",
+      "url": "https://arxiv.org/abs/2611.34276",
+      "accessed": "2026-11-28"
+    },
+    {
+      "title": "Deletion You Can Check: Auditing LLM Unlearning",
+      "publisher": "arXiv; Mayank Gulati und Gerhard Wunder (Freie Universität Berlin)",
+      "url": "https://arxiv.org/abs/2611.33525",
+      "accessed": "2026-11-28"
+    },
+    {
+      "title": "Solve Vision with Code: Coding Agents Are Stronger Visual Reasoners Than Video Models",
+      "publisher": "arXiv; Dezhi Luo (University College London) u. a.",
+      "url": "https://arxiv.org/abs/2611.34813",
+      "accessed": "2026-11-28"
+    }
+  ],
+  "published_at": "2026-11-28T10:00:00+01:00",
+  "updated_at": "2026-11-28T10:00:00+01:00"
+}
