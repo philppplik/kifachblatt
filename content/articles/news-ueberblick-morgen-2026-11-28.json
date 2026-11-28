@@ -1,0 +1,134 @@
+{
+  "title": "Tokenizer-Grenze, Policies aus Code gelesen, Netze mit Prüfschein",
+  "dek": "Optimale Tokenizer sind unerreichbar, ein Agent schreibt Steuerregeln aus Umgebungscode, und Mini-Netze aus dem Sprachmodell werden beweisbar exakt.",
+  "slug": "news-ueberblick-morgen-2026-11-28",
+  "section": "ueberblick",
+  "type": "news",
+  "author": "philipp-paulik",
+  "lang": "de",
+  "published": "2026-11-28T06:38:00+01:00",
+  "modified": "2026-11-28T06:38:00+01:00",
+  "tags": [
+    "Tokenisierung",
+    "Reinforcement Learning",
+    "Verifikation",
+    "Praxis"
+  ],
+  "hero": {
+    "alt": "Drei schematische Bildkarten: ein Puzzle mit einem nicht passenden Teil, ein aufgeschlagenes Codebuch mit einem Kompass darüber, und ein Stempel über einem kleinen Netzdiagramm. Themenhero ohne Zahlen und Messskala.",
+    "caption": "Drei Studien über die Grenzen von Tokenizern, Steuerungsregeln aus lesbarem Code statt aus Trainingsläufen und kleine Netze mit mathematischem Prüfschein. Alle Werte, Bedingungen und Grenzen stehen in den Textpanels und im Artikel.",
+    "credit": "Eigene Illustration",
+    "ai_generated": false
+  },
+  "body": [
+    {
+      "t": "p",
+      "x": "Quellenprüfung: 28. November 2026, 06:37 Uhr MEZ. Drei neue Preprints vom 25. November beantworten Grundsatzfragen des KI-Alltags: Warum es den perfekten Tokenizer nicht geben kann, wann ein Agent seine Steuerregeln lieber liest statt lernt, und wie kleine Netze aus dem Sprachmodell einen echten Prüfschein bekommen. Alle Angaben aus den voll gelesenen Originalen."
+    },
+    {
+      "t": "h2",
+      "x": "Der perfekte Tokenizer ist beweisbar unerreichbar"
+    },
+    {
+      "t": "callout",
+      "x": "ETH-Forscher beweisen: Kein effizienter Algorithmus findet auch nur annähernd den besten Tokenizer, für keines der beiden gängigen Verfahren und keine der zwei gängigen Zielfunktionen, sofern P ungleich NP."
+    },
+    {
+      "t": "p",
+      "x": "Tokenizer wie BPE entscheiden, wie Text in Bausteine zerlegt wird, und damit über Kosten, Tempo und Qualität von Sprachmodellen. Bisher war bekannt, dass die optimale Wahl NP-schwer ist. Die neue Arbeit der ETH Zürich zeigt mehr: Selbst eine Näherung mit beliebigem konstantem Gütefaktor ist nicht effizient berechenbar, für direkte und für Bottom-up-Tokenisierung, unter Kompression und unter Unigram-Log-Likelihood, schon bei binären Alphabeten. Im allereinfachsten Fall, einem Alphabet aus einem Zeichen, bleibt es bei APX-Härte, also keiner beliebig genauen Näherung."
+    },
+    {
+      "t": "p",
+      "x": "Für die Praxis relativieren die Autoren selbst: Auf natürlicher Sprache liegen übliche Tokenizer etwa ein Prozent neben dem optimalen Kompressionswert, der Beweis betrifft den worst case über alle denkbaren Datensätze. Wer Güte braucht, sollte sie für den eigenen Datensatz zertifizieren, statt auf allgemeine Garantien zu hoffen; genau das nennen die Autoren als Forschungsrichtung."
+    },
+    {
+      "t": "p",
+      "x": "Warum das trotzdem zählt: Es beendet die Suche nach dem einen optimalen Tokenizer-Algorithmus und erklärt, warum alle gängigen Verfahren Heuristiken bleiben. Parallelarbeiten anderer Gruppen zeigen Teile des Ergebnisses nur für Kompression; diese Arbeit deckt beide Verfahrensklassen und beide Zielfunktionen ab."
+    },
+    {
+      "t": "h2",
+      "x": "Wenn der Agent den Quellcode liest, spart er sich das Ausprobieren"
+    },
+    {
+      "t": "callout",
+      "x": "Ein Coding-Agent schreibt Steuerregeln direkt aus dem Code der Simulationsumgebung: in 15 von 16 getesteten Online-Szenarien besser als modellfreies RL, auf MiniGrid DoorKey mit mehr als 200-mal weniger Umgebungsschritten als DreamerV3, aber nicht überall vorn."
+    },
+    {
+      "t": "p",
+      "x": "Statt eine Policy über Millionen Interaktionen zu trainieren, liest der Agent (Codex mit gpt-6-astra) die Umgebung als lesbares Weltmodell: Dynamik und Belohnung stehen im Code, daraus schreibt er ein ausführbares Steuerprogramm und verfeinert es über kurze Testläufe. Beim Messen bekommt die fertige Policy nur die normalen Beobachtungen, keinen Wissensvorsprung. Ergebnis: Auf SMAC mindestens 99,3 Prozent Siegquote auf drei Karten, auf MiniGrid 100 Prozent in allen vier Aufgaben, offline vorn auf Maze2D und Kitchen, auf AntMaze konkurrenzfähig."
+    },
+    {
+      "t": "p",
+      "x": "Die ehrlichen Gegenstellen: Auf der SMAC-Karte 8m_vs_9m liegen QMIX und MBVD vorn, auf BipedalWalker bleibt DreamerV3 besser, und bei den Dauersteuerungs-Benchmarks MuJoCo und Adroit ist das Verfahren weniger konkurrenzfähig. Der Effizienzgewinn schwankt stark: DoorKey schafft PS-RWM nach 1.789 Schritten (DreamerV3: 400.000), bei BipedalWalker liegen beide Verfahren mit 529.773 zu 633.333 Schritten (PPO) nah beieinander."
+    },
+    {
+      "t": "p",
+      "x": "Relevant wird das, wo Simulatoren oder digitale Zwillinge ohnehin lesbaren Code haben: Dann kann der Agent Regeln ableiten statt sie zu erproben, und bei Sparse Rewards, unter denen klassisches RL einbricht, bleibt das Verfahren stabil, weil die Belohnungslogik im Code sichtbar ist. Ohne Codezugang schneidet dieselbe Pipeline in 8 von 16 Szenarien schlechter ab als mit (3 besser, 5 gleich). Die Autoren selbst sagen: RL wird dadurch nicht generell überflüssig; das Verfahren ergänzt es, etwa als Starthand."
+    },
+    {
+      "t": "h2",
+      "x": "Kleine Netze aus dem Sprachmodell, mit Prüfschein statt Stichproben"
+    },
+    {
+      "t": "callout",
+      "x": "Spec2Weights lässt ein Sprachmodell Netzgewichte direkt aus einer Spezifikation schreiben und beweist dann mathematisch, auf welchen Eingaben das Netz exakt ist und ab wo es bricht: 12 von 15 Suite-Netzen und 25 von 30 neuen Spezifikationen zertifiziert."
+    },
+    {
+      "t": "p",
+      "x": "Das Sprachmodell bekommt eine Beschreibung, etwa die Luhn-Prüfziffer oder eine Steuertabelle, und schreibt ein kurzes Programm, das jedes Gewicht eines kleinen Netzes setzt. Kein Training, keine Daten. Das Team dahinter zertifiziert die Ergebnisse mit erschöpfender float32-Aufzählung, dynamischer Programmierung, SMT-Beweisen und Induktion, jedes Zertifikat in höchstens etwa einer Minute CPU. Bemerkenswert ist die Nebenauskunft: Das Zertifikat nennt die Bruchstelle, etwa Distanz 4.096 beim Kürzeste-Wege-Netz, das alle Stichprobentests bis 200 Knoten bestanden hatte."
+    },
+    {
+      "t": "p",
+      "x": "Bei 30 frisch geschriebenen Spezifikationen waren 25 Erstversuche für jede Rechenreihenfolge beweisbar exakt; die fünf Steuernetze lagen an jedem ganzen Dollar höchstens 0,11 Dollar daneben, aber eben nicht exakt auf den Cent. Ein offenes 27B-Modell kam auf 23 von 30, mit mehr Denkbudget auf 25, die Übertragbarkeit ist also begrenzt. Die Autoren nennen die Grenzen selbst: nur eine Modellfamilie für die Suite, neue Varianten bekannter Aufgabenfamilien statt ganz neuer Aufgaben, ein Versuch pro Aufgabe, kein Transformer zertifiziert."
+    },
+    {
+      "t": "p",
+      "x": "Für den Alltag heißt das: Feste Regelwerke, die sonst als getesteter Code laufen, können als winzige, beweisbar korrekte Netze ausgeliefert werden, inklusive Betriebsgrenze. Aber: Ein zertifiziertes Netz ist nur so richtig wie seine Spezifikation, außerhalb der Domäne versagt es still. Und geschriebene Netze ohne Zertifikat bleiben, wie der Wochentags-Fehlgriff zeigt, ein Risiko."
+    }
+  ],
+  "key_takeaways": [
+    "Optimale Tokenisierung ist nicht einmal näherungsweise effizient berechenbar (APX-Ausschluss für beide Verfahren und beide Zielfunktionen, Vorbehalt P ungleich NP); praktische Tokenizer liegen auf natürlicher Sprache etwa ein Prozent neben dem Optimum.",
+    "Policies aus lesbarem Umgebungscode schlugen modellfreies RL in 15 von 16 Szenarien und sparten auf MiniGrid über 200-mal Interaktionen; Grenzen bei Dauersteuerung und ohne Codezugang werden im Paper selbst benannt.",
+    "Geschriebene Mini-Netze lassen sich mathematisch zertifizieren: 25 von 30 Neuschreibungen beweisbar exakt, Bruchstellen werden mitgeliefert (Kürzeste Wege exakt bis 4.096); Steuernetze binnen 0,11 Dollar, nicht centgenau."
+  ],
+  "faq": [
+    {
+      "q": "Muss ich mir um meinen Tokenizer jetzt Sorgen machen?",
+      "a": "Nein. Der Beweis betrifft den worst case über alle Datensätze: Kein Algorithmus kann universal einen annähernd optimalen Tokenizer effizient finden. Auf natürlicher Sprache liegen gängige Tokenizer laut der Arbeit etwa ein Prozent neben dem Optimum. Wer es genau braucht, kann die Güte für den eigenen Datensatz zertifizieren; eine allgemeine Garantie wird es grundsätzlich nicht geben."
+    },
+    {
+      "q": "Kann ich mir RL-Training künftig sparen?",
+      "a": "Nur wo ein korrektes, lesbares Modell der Umgebung existiert, etwa Simulatoren oder digitale Zwillinge. Dann schreibt ein Coding-Agent die Steuerregeln direkt aus dem Code und spart auf DoorKey mehr als 200-fach Umgebungsschritte gegenüber DreamerV3. Ohne Codezugang schneidet die Pipeline in 8 von 16 Szenarien schlechter ab als mit, bei präziser Dauersteuerung (MuJoCo, Adroit) war sie weniger konkurrenzfähig, und auf BipedalWalker blieb DreamerV3 vorn. Die Autoren empfehlen ihn als Ergänzung, nicht Ersatz."
+    },
+    {
+      "q": "Sind vom Sprachmodell geschriebene Netze vertrauenswürdig?",
+      "a": "Nur mit Zertifikat: 25 von 30 Erstschreibungen waren beweisbar exakt, aber ein Kalendernetz lag zunächst bei jeder Eingabe einen Tag daneben, und ein Wege-Netz bestand alle Tests bis 200 Knoten und bricht ab Distanz 4.097. Zertifikate liefern die exakte Domäne und die Bruchstelle gleich mit. Ohne Zertifikat gelten geschriebene Netze nicht als geprüfter Code."
+    }
+  ],
+  "related": [
+    "duo-v1-weltmodell-analyse",
+    "agenten-fundamente"
+  ],
+  "sources": [
+    {
+      "title": "Tokenisation is not in APX",
+      "publisher": "arXiv; Violeta Kastreva, Philip Whittington, Dennis Komm, Tiago Pimentel (ETH Zürich)",
+      "url": "https://arxiv.org/abs/2611.34938",
+      "accessed": "2026-11-28"
+    },
+    {
+      "title": "Do We Still Need Reinforcement Learning When We Can Read the World Model?",
+      "publisher": "arXiv; Autoren der Shandong University, des Instituts für Automatisierung der Chinesischen Akademie der Wissenschaften, von Li Auto und der Tsinghua University",
+      "url": "https://arxiv.org/abs/2611.34656",
+      "accessed": "2026-11-28"
+    },
+    {
+      "title": "Spec2Weights: Certifying Networks that a Language Model Writes from a Specification",
+      "publisher": "arXiv; Autoren der Bangladesh University of Engineering and Technology und der University of Asia Pacific, Dhaka",
+      "url": "https://arxiv.org/abs/2611.34711",
+      "accessed": "2026-11-28"
+    }
+  ],
+  "published_at": "2026-11-28T06:38:00+01:00",
+  "updated_at": "2026-11-28T06:38:00+01:00"
+}
