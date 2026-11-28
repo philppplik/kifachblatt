@@ -1,5 +1,17 @@
 [
   {
+    "title": "Nvidia-Affäre: Racks mit exportbeschränkten Blackwell-GPUs in Singapur",
+    "url": "https://www.heise.de/news/Nach-Huang-Affaere-Blackwell-Racks-tauchen-in-Shanghai-auf-11541610.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
+    "ts": 1795886100.0,
+    "src": "heise online",
+    "sum": "",
+    "teaser": "Nach Berichten über eine Affäre des Nvidia-CEOs mit einer unter Spionageverdacht stehenden Frau gibt es erste Anzeichen für geschmuggelte KI-Beschleuniger.",
+    "license_key": "heise",
+    "feed_url": "https://www.heise.de/rss/heise-atom.xml",
+    "captured_at": "2026-11-28T18:28:57.043745+00:00",
+    "rights_checked": "2026-10-19"
+  },
+  {
     "title": "Developer-Häppchen: Twig sortiert sprachgerecht, Qt Creator steuert KI-Agenten",
     "url": "https://www.heise.de/news/Developer-Haeppchen-Twig-sortiert-sprachgerecht-Qt-Creator-steuert-KI-Agenten-11538863.html?wt_mc=rss.red.ho.ho.atom.beitrag.beitrag",
     "ts": 1795850220.0,
