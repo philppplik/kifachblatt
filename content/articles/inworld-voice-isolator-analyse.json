@@ -1,0 +1,172 @@
+{
+ "slug": "inworld-voice-isolator-analyse",
+ "lang": "de",
+ "section": "modelle",
+ "type": "analysis",
+ "title": "Inworld Voice Isolator: Sprache freistellen, offline und live",
+ "dek": "Zwei Checkpoints: 64 Mio. Parameter für Aufnahmen, 58 Mio. mit 63 ms algorithmischer Latenz für Live-Streams. Apache-2.0, 48 kHz, 10.000 h Training.",
+ "published": "2026-11-28T07:15:00+01:00",
+ "modified": "2026-11-28T07:15:00+01:00",
+ "author": "philipp-paulik",
+ "tags": [
+  "Inworld",
+  "Voice Isolator",
+  "Sprach-KI",
+  "Denoising",
+  "Apache-2.0",
+  "Audio"
+ ],
+ "key_takeaways": [
+  "Zwei Checkpoints unter Apache-2.0: offline mit 64,0 Mio. Parametern, realtime mit 58,2 Mio. und 63 ms algorithmischer Latenz bei 20 ms Vorausblick.",
+  "Band-Split-Dual-Path über der STFT: 46 Bänder, sieben Blöcke aus Aufmerksamkeit und Mamba, Ausgabe als komplexe Maske plus Restsignal.",
+  "Trainiert auf rund 10.000 Stunden Audio; Ziel laut Karte: die Stimme erhalten, alles andere entfernen, nichts erfinden.",
+  "Der hauseigene VIBE-Benchmark rechnet auf einem nicht veröffentlichten Evaluierungssatz; seine Platzierungen sind Herstellerangaben.",
+  "Version 1 macht nur Denoising; Restauration, etwa fehlender Bandbreite, ist für Version 2 angekündigt."
+ ],
+ "hero": {
+  "alt": "Eigene Datentafel zu Inworld Voice Isolator: 64 beziehungsweise 58 Millionen Parameter für Offline- und Realtime-Checkpoint, 63 Millisekunden algorithmische Latenz, rund 10.000 Stunden Trainingsaudio.",
+  "caption": "Inworld Voice Isolator in drei Angaben (63 ms = algorithmische Latenz bei 20 ms Vorausblick) - aus der Modellkarte, nicht nachgemessen [1].",
+  "ai_generated": false,
+  "credit": "Eigene Grafik (Redaktion)"
+ },
+ "sources": [
+  {
+   "title": "inworld/voice-isolator (Modellkarte)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/inworld/voice-isolator",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "inworld-ai/voice-isolator (README)",
+   "publisher": "GitHub",
+   "url": "https://github.com/inworld-ai/voice-isolator",
+   "accessed": "2026-11-28"
+  },
+  {
+   "title": "Plattform-API: inworld/voice-isolator (Metadaten und Dateiliste)",
+   "publisher": "Hugging Face",
+   "url": "https://huggingface.co/api/models/inworld/voice-isolator",
+   "accessed": "2026-11-28"
+  }
+ ],
+ "body": [
+  {
+   "t": "p",
+   "x": "Inworld hat den Voice Isolator veröffentlicht, ein Apache-2.0-lizenziertes Modellpaar zur Freistellung von Sprache aus Störgeräuschen bei 48 kHz; das Hugging-Face-Repo wurde am 14. November 2026 angelegt, das GitHub-Repo am 16. November [3][2]. Zwei Checkpoints teilen eine Architektur: voice-isolator-v1 für Aufnahmen (64,0 Mio. Parameter) und voice-isolator-v1-realtime für den Live-Betrieb (58,2 Mio.) [1]. In der Plattformwertung steht das Repo zuletzt bei über 1.000 Likes und rund 20.500 Downloads im Monat [3]."
+  },
+  {
+   "t": "h2",
+   "x": "Zwei Betriebsarten, ein Netz"
+  },
+  {
+   "t": "table",
+   "head": [
+    "",
+    "voice-isolator-v1",
+    "voice-isolator-v1-realtime"
+   ],
+   "rows": [
+    [
+     "Einsatz",
+     "Aufnahmen, beste Qualität",
+     "Live-Audio als Stream"
+    ],
+    [
+     "Arbeitsweise",
+     "offline, ganzer 8-s-Block",
+     "kausal, 20 ms Vorausblick"
+    ],
+    [
+     "Parameter",
+     "64 Mio.",
+     "58 Mio."
+    ]
+   ]
+  },
+  {
+   "t": "p",
+   "x": "Das Offline-Modell ist zweiseitig: Jedes Frame sieht seinen vollständigen 8-Sekunden-Block, längere Dateien laufen in 8-s-Blöcken mit 2 s Überlappung. Das Realtime-Modell ist kausal, mit trainiertem Vorausblick von 0, 20 oder 40 ms; die algorithmische Latenz liegt bei 63 ms bei 20 ms Vorausblick [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Architektur: Band-Split mit Aufmerksamkeit und Mamba"
+  },
+  {
+   "t": "p",
+   "x": "Es arbeitet ein Band-Split-Dual-Path-Netz über der STFT (n_fft 2048, Hop 480 bei 48 kHz, also 10-ms-Frames). Jedes Spektrum wird in 46 Bänder geschnitten, unten schmal, oben breit; ein Token pro Band und Frame, Breite 512. Sieben Blöcke verfeinern die Tokens im Wechsel: Vier Blöcke Zeit-Aufmerksamkeit mit Rotary-Positionen und exklusiver Selbstaufmerksamkeit, gefolgt von Aufmerksamkeit über die Bänder; drei Blöcke Mamba entlang der Zeit, gefolgt von Mamba über die Bänder (Zustand 16). Pro-Band-Köpfe erzeugen eine begrenzte komplexe Maske und ein begrenztes Restsignal pro Bin, das zum Eingangsspektrum addiert wird [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Was Version 1 tut, und was nicht"
+  },
+  {
+   "t": "p",
+   "x": "Version 1 ist Denoising: Das Modell entfernt, was die Stimme umgibt, und stellt nichts wieder her, was der Aufnahme fehlt, etwa fehlende Bandbreite; Restauration kommt laut Plan mit Version 2. Es ist auch kein Sprecher-Wähler: Sprechen zwei Personen gleichzeitig, bleibt die lautere Stimme erhalten und eine wenige dB leisere wird entfernt; bei ähnlicher Lautstärke bleiben meist beide [1]."
+  },
+  {
+   "t": "p",
+   "x": "Nebenprodukt mit Nutzen: Zieht man die isolierte Stimme vom Eingang ab, bleibt das Hintergrund-Residual, etwa als Backing-Track bei der Gesangs-Musik-Trennung. Beide Ausgaben sind float32-WAVs bei 48 kHz mit Originalpegeln und rekonstruieren zusammen den ausgerichteten Mono-Eingang [1]."
+  },
+  {
+   "t": "h2",
+   "x": "Training und Benchmark"
+  },
+  {
+   "t": "p",
+   "x": "Trainiert wurde auf rund 10.000 Stunden Audio: gelesene und gesprächige Sprache in vielen Sprachen, expressive Stimmen und Charakterstimmen, Flüstern, Gesang und nicht-verbale Laute wie Lachen, Atmen oder Seufzen. Gemischt wurde mit Umgebungs- und Haushaltslärm, Verkehr, Regen und Wind, Musik, Publikumsgeräusch, Einzelereignissen und Nebensprechern, über gemessene und simulierte Raumantworten sowie Telefonie- und Codec-Verzerrungen; reale Aufnahmen derselben Sprache ergänzen den Satz. Das Ziel laut Karte: die Stimme so zurückgeben, wie sie aufgenommen wurde, alles andere entfernen, Pegel und Timing halten, nichts erfinden [1]."
+  },
+  {
+   "t": "p",
+   "x": "Zum hauseigenen Benchmark VIBE (Voice Isolation Benchmark and Evals): Er sortiert 48-kHz-Isolatoren auf zwei Tafeln, Denoising und Restauration. Wer einem bandbegrenzten Eingang mehr als 10 dB zusätzliche Energie oberhalb der Bandgrenze hinzufügt, landet auf der Restaurations-Tafel, alle anderen auf der Denoising-Tafel. Wichtig: Inworld bewertet alle Systeme auf einem internen Evaluierungssatz, der nicht veröffentlicht ist; die Platzierungen sind damit Herstellerangaben ohne öffentlich prüfbare Daten [1][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Betrieb und Voraussetzungen"
+  },
+  {
+   "t": "p",
+   "x": "Getestet ist das Modell auf NVIDIA Ampere, Hopper und Blackwell (A100, H100, B200 und B300) sowie auf CPU; kleinere GPUs sind laut Karte noch ungetestet. Es läuft auf CUDA, falls verfügbar, auf Apples Metal-Backend (mps) auf Apple-Silicon-Macs ab PyTorch 2.6 und sonst auf der CPU. Voraussetzung sind Python 3.10+ und PyTorch 2.1+; das Extra [fast] bringt die CUDA-Mamba-Kernels. Die Gewichte laden beim ersten Lauf und werden gegen Prüfsummen verifiziert [1][2]."
+  },
+  {
+   "t": "h2",
+   "x": "Lizenz und Pläne"
+  },
+  {
+   "t": "p",
+   "x": "Code und Gewichte stehen unter Apache-2.0, Drittnotizen stehen in einer NOTICE-Datei [1][2]. Auf der Roadmap stehen Version 2 (ein Modell für offline und streaming, mit Denoising und Restauration), Tests auf kleineren GPUs, On-Device-Unterstützung über Apple Silicon hinaus und Steuerung per natürlicher Sprache [2]."
+  },
+  {
+   "t": "callout",
+   "x": "Version 1 entfernt Lärm und leisere Nebensprecher, stellt aber nichts wieder her, was in der Aufnahme fehlt. Wer eine bandbeschnittene Telefonaufnahme retten will, muss auf Version 2 warten; die soll Denoising und Restauration in einem Modell vereinen."
+  },
+  {
+   "t": "p",
+   "x": "Für Podcast- und Redaktions-Workflows ist das Offline-Modell der Einstieg: eine Datei hinein, Stimme und Hintergrund als getrennte float32-WAVs heraus. Für Live-Calls und Streams ist das Realtime-Modell gedacht, dessen algorithmische Latenz bei 20 ms Vorausblick 63 ms beträgt (Ende-zu-Ende-Verzögerung mit Audiogerät und Netz kommt hinzu und ist nicht angegeben); die interaktive Demo im GitHub-Repo streamt das Mikrofon bis zu 60 Sekunden und lädt beide Modelle beim Start [1][2]."
+  }
+ ],
+ "method": "Recherche am 28. November 2026 gegen 6:15 Uhr UTC (7:15 Uhr MEZ). Modellkarte von inworld/voice-isolator (vollständig gelesen), README des GitHub-Repos inworld-ai/voice-isolator, Plattform-API (Metadaten und Dateiliste). Alle Architektur-, Trainings- und Latenzangaben stammen vom Hersteller; eigene Läufe haben wir nicht durchgeführt. Den VIBE-Benchmark haben wir nur anhand der Beschreibung eingeordnet; der Evaluierungsdatensatz ist nicht öffentlich.",
+ "limitations": "Alle Angaben zu Architektur, Training, Latenz und Trennverhalten stammen vom Hersteller und sind nicht unabhängig geprüft. Der VIBE-Benchmark nutzt einen internen, nicht veröffentlichten Evaluierungssatz; die Platzierungen lassen sich nicht nachrechnen. Kleinere GPUs als die genannten sind ungetestet. Version 1 umfasst kein Restoration; alles zu Version 2 ist eine Ankündigung.",
+ "faq": [
+  {
+   "q": "Was ist der Inworld Voice Isolator?",
+   "a": "Ein Apache-2.0-lizenziertes Modellpaar von Inworld zur 48-kHz-Sprachfreistellung: voice-isolator-v1 für Aufnahmen, voice-isolator-v1-realtime für Live-Streams. Code, Demo und Benchmark liegen auf GitHub."
+  },
+  {
+   "q": "Kann es Sprecher voneinander trennen?",
+   "a": "Es ist kein Sprecher-Wähler: Bei zwei gleichzeitigen Sprechern bleibt laut Karte die lautere Stimme, bei ähnlicher Lautstärke meist beide. Nebensprecher zählen als Störung, nicht als auswählbares Ziel."
+  },
+  {
+   "q": "Läuft es ohne GPU?",
+   "a": "Ja, auf CPU. Getestet sind außerdem NVIDIAs A100, H100, B200 und B300 sowie Apple Silicon über Metal ab PyTorch 2.6; kleinere GPUs sind laut Karte bislang ungetestet."
+  },
+  {
+   "q": "Wie vertrauenswürdig ist der VIBE-Benchmark?",
+   "a": "Er stammt vom Hersteller und rechnet auf einem internen, nicht veröffentlichten Datensatz. Die Methodik ist beschrieben, aber ohne die Daten bleiben die Platzierungen Herstellerangaben."
+  }
+ ],
+ "related": [
+  "haru-4b-analyse",
+  "sov-transcribe-1-analyse",
+  "audio-sprach-ki"
+ ]
+}
