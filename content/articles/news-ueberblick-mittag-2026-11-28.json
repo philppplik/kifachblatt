@@ -6,8 +6,8 @@
   "type": "news",
   "author": "philipp-paulik",
   "lang": "de",
-  "published": "2026-11-28T10:00:00+01:00",
-  "modified": "2026-11-28T10:00:00+01:00",
+  "published": "2026-11-28T10:07:36+01:00",
+  "modified": "2026-11-28T10:07:36+01:00",
   "tags": [
     "Forschung",
     "Modellarchitektur",
@@ -129,6 +129,6 @@
       "accessed": "2026-11-28"
     }
   ],
-  "published_at": "2026-11-28T10:00:00+01:00",
-  "updated_at": "2026-11-28T10:00:00+01:00"
+  "published_at": "2026-11-28T10:07:36+01:00",
+  "updated_at": "2026-11-28T10:07:36+01:00"
 }
