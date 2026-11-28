@@ -5,8 +5,8 @@
  "type": "analysis",
  "title": "Inworld Voice Isolator: Sprache freistellen, offline und live",
  "dek": "Zwei Checkpoints: 64 Mio. Parameter für Aufnahmen, 58 Mio. mit 63 ms algorithmischer Latenz für Live-Streams. Apache-2.0, 48 kHz, 10.000 h Training.",
- "published": "2026-11-28T07:15:00+01:00",
- "modified": "2026-11-28T07:15:00+01:00",
+ "published": "2026-11-28T07:21:10+01:00",
+ "modified": "2026-11-28T07:21:10+01:00",
  "author": "philipp-paulik",
  "tags": [
   "Inworld",
